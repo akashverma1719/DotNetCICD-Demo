@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "Awp_b_component_form";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+
+
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/Pip_js.js"></script>
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-success"> B Component Form</h4>
+                    <h4 class="text-primary padding-bottom">ANNUAL WORK PLAN (PIP)</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12" style="">
+                    <div class="hpanel hgreen contact-panel">
+                        <div class="panel-body">
+                            <div class="stats-title pull-left">
+                                <h5 class="font-extra-bold no-margins text-success">  INSTITUTIONAL STRENGTHENING & CAPACITY BUILDING </h5>
+                            </div>
+
+                            <div class="stats-title pull-right">
+                                <i class=" fa fa-bar-chart fa-4x text-success"></i>
+                            </div>
+                            <div class="cle"></div>
+
+                            <h5 class="m-top15"><span id="" class="font-bold count">00.00</span></h5>
+                            <h4>
+                                <div class="text-muted font-bold m-b-xs left"></div>
+                                <div class="right"> </div>
+                            </h4><h4></h4>
+                            <h4></h4>
+                            <h4></h4>
+
+
+
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1 </div> <strong> <span id="" class="font-bold">00.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A2 </div> <strong><span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A3 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A4 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A5 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2" style=""> <div class="contact-stat font-extra-bold"><div>A6 </div> <strong> <span id="">0.00</span></strong></div> </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12" style="">
+                    <div class="hpanel hblue contact-panel">
+                        <div class="panel-body">
+                            <div class="stats-title pull-left">
+                                <h5 class="font-extra-bold no-margins text-info"> INCENTIVE </h5>
+                            </div>
+                            <div class="stats-title pull-right"><i class="fa fa-area-chart fa-4x text-info"></i></div>
+                            <div class="cle"></div>
+                            <h5 class="m-top15"> <span id="" class="font-bold count">00.00</span></h5>
+                            <h4>
+                                <div class="text-muted font-bold m-b-xs left"> </div>
+                                <div class="text-muted font-bold m-b-xs right"></div>
+                            </h4><h4></h4>
+                            <h4></h4>
+                            <h4></h4>
+
+
+
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B1 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B2 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B3 </div> <strong>  <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B4 </div> <strong>   <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B5 </div> <strong>   <span id="">0.00</span></strong></div> </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget row no-gutter p-lg border-top-form">
+                        <div class=" col-lg-offset-1 col-md-11  col-sm-12">
+                            <div>
+                                <h3 class="widget-title fz-lg text-primary m-b-lg">ANNUAL WORK PLAN ( PIP) </h3>
+                                <div class="row database_trainer_row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <label for="" class=""> Work and Activity <span class="Required_star">*</span>:</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <select class="form-control" id="awp_b_workactivity" onchange="AWP_B_Activity_Name_Info()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row database_trainer_row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <label for="" class=""> Item code:</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control" id="awp_b_item_code" placeholder="Item code" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row database_trainer_row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <label for="lname">
+                                            Total Target (no.):
+                                            <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Estimated cost for 5 years">
+                                                <span class="fa fa-info-circle" aria-hidden="true"></span>
+                                            </a>:
+                                        </label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" id="awp_total" class="form-control" placeholder="Enter Total" />
+                                    </div>
+                                </div>
+                                <div class="row database_trainer_row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <label for="lname">
+                                            Estimated cost for 5 years
+                                            <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Total Target Number ">
+                                                <span class="fa fa-info-circle" aria-hidden="true"></span>
+                                            </a>:
+                                        </label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" id="awp_b_estimated_cost_for_five_years" class="form-control" placeholder=" Enter Estimated cost for 5 years" />
+                                    </div>
+                                </div>
+                                <h4 class="heading_label"> Financial Year (2020-21)</h4>
+                                <div class="row database_trainer_row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <label for="lname">
+                                            Physical:
+                                        </label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" id="awp_b_physical_year_20_21" class="form-control" placeholder="Enter Physical" />
+                                    </div>
+                                </div>
+                                <div class="row database_trainer_row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <label for="lname">
+                                            Financial:
+                                        </label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" id="awp_b_financial_year_20_21" class="form-control" placeholder="Enter Financial" />
+                                    </div>
+                                </div>
+
+                                <div class="row database_trainer_row">
+                                    <div class="text-center">
+                                        <button class="btn btn-primary" onclick="Save_AWP_B_Form_Info()">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright GCRS 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        AWP_WorkActivity_Info();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+</script>

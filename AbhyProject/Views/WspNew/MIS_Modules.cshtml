@@ -1,0 +1,178 @@
+﻿@model IEnumerable<AbhyProject.Models.abhy_villages>
+@{
+    ViewBag.Title = "mis_login_after";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+<title>MIS Login</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+@*
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+<!-- Google Fonts
+
+   ============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
+
+
+<div class="container-fluid mis_modules_tabs">
+
+
+    <div class="row mb-0">
+        <div class="col-sm-10 mx-auto mb-4">
+            <div class="row justify-content-around my-4">
+                <div class="col">
+                    <a href="~/Home/LogOut" class="btn btn-link text-dark p-0" id="backto_login"><img src="/DashboardStyles/images/left-arrows.png" class="mx-2"> Back to Login</a>
+
+                </div>
+                <div class="col-md-4" style="margin-left:200px">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" style="width: 20px;" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#000;">:@Session["UserName"].ToString()</span>
+                            }
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+                        <li class="text-center">
+                           
+                        </li>
+
+                    </ul>
+                </div>
+                @*<div class="col-auto">
+            <a type="button" href="#" class="btn btn-success btn-sm" id="Changepass"> Change Password</a>
+        </div>*@
+
+            </div>
+
+
+            <div class="row justify-content-center ">
+
+                <div class="col-md-4 mb-3" id="grampanchayat_module_tab">
+                    <a href="/WSPHome/Gp_information">
+                        <div class="card blockBoxWhite">
+                            <div class="card-body text-center iconImg">
+                                <img src="~/DashboardStyles/images/grampanchayat_icon.png" />
+                                <h4 class="text-info p-2">Gram Panchayat Modules</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4 mb-3" id="monitoring_module_tab">
+                    <a href="/WSPHome/Monitoring_evaluation">
+                        <div class="card blockBoxWhite">
+                            <div class="card-body text-center iconImg">
+                                <img src="~/DashboardStyles/images/Monitoring.png" />
+                                <h4 class="text-info p-2">Monitoring And Evaluation Modules</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-3" id="training_module_tab">
+                    <a href="/MasterDropDown/Training_evaluation">  
+                        <div class="card blockBoxWhite">
+                            <div class="card-body text-center iconImg">
+                                <img src="~/DashboardStyles/images/training.png" />
+                                <h4 class="text-info p-2">Training And Workshop</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4 mb-3" id="gis_module_tab">
+                    <a href="https://ataljal-arcgis.mowr.gov.in/ajportal/apps/webappviewer/index.html?id=ad93b6842c8a4176aad6bace98358370" target="_blank">
+                        <div class="card blockBoxWhite">
+                            <div class="card-body text-center iconImg">
+                                <img src="~/DashboardStyles/images/gis_portal.png" />
+                                <h4 class="text-info p-2">GIS Web Portal</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mb-3" id="tracker_tab">
+                    <a href="#">
+                        <div class="card blockBoxWhite">
+                            <div class="card-body text-center iconImg">
+                                <img src="~/DashboardStyles/images/training.png" />
+                                <h4 class="text-info p-2">Tracker</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    var StateOfficer = "";
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+        $("#grampanchayat_module_tab").hide();
+        $("#monitoring_module_tab").hide();
+        $("#training_module_tab").hide();
+        $("#gis_module_tab").hide();
+        $("#tracker_tab").hide();
+
+        if (StateOfficer == "Gram Panchyat Nodal Officer") {
+            $("#grampanchayat_module_tab").show();
+            $("#training_module_tab").show();
+            $("#gis_module_tab").show();
+        } else if (StateOfficer == "Block Level Nodal Officer") {
+            $("#training_module_tab").show();
+            $("#grampanchayat_module_tab").show();
+            $("#gis_module_tab").show();
+        } else if (StateOfficer == "District Level Nodal Officer") {
+            $("#training_module_tab").show();
+            $("#grampanchayat_module_tab").show();
+            $("#monitoring_module_tab").show();
+            $("#gis_module_tab").show();
+        } else if (StateOfficer == "State Level Nodal Officer") {
+            $("#grampanchayat_module_tab").show();
+            $("#monitoring_module_tab").show();
+            $("#training_module_tab").show();
+            $("#gis_module_tab").show();
+        } else if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin") {
+            $("#grampanchayat_module_tab").show();
+            $("#monitoring_module_tab").show();
+            $("#training_module_tab").show();
+            $("#gis_module_tab").show();
+            //$("#tracker_tab").hide();
+        }
+    });
+</script>
+<script>
+        $(document).ready(function () {
+            var currentUrl = window.location.href;
+            const myArray = currentUrl.split("/");
+            let coun = myArray.length - 1;
+            //alert(myArray[coun].toString());
+            if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
+                GetCunCurrentUser();
+            }
+        });
+
+        function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+                    if (data == "False") {
+                        //window.location.href = "/Home/LogOut";
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                }
+            });
+        }
+</script>

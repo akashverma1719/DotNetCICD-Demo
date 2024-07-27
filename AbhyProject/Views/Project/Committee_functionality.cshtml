@@ -1,0 +1,736 @@
+﻿@{
+    ViewBag.Title = "Committee_functionality";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title>Committee functionality</title>
+<style>
+    .btn-success {
+        width: 100px;
+        float: none;
+        right: 0px;
+    }
+
+    .fa-trash,
+    .fa-save {
+        padding-right: 5px;
+    }
+
+    .dateinput {
+        position: relative;
+        top: 10px;
+    }
+
+    .add-on > i {
+        float: right;
+        position: relative;
+        top: -10px;
+        left: -5px;
+    }
+
+    .table-bordered > tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
+        margin: -14px 5px 0px -5px !important;
+        position: absolute;
+        left: 4px;
+        top: -5px;
+        width: 20px;
+    }
+
+    .ms-options-wrap > .ms-options {
+        position: inherit !important;
+        max-height: 20px !important;
+        min-height: 100px !important;
+    }
+
+    span.tdspan {
+        position: relative;
+        top: -20px;
+        left: 20px;
+    }
+
+    img#blah {
+        max-width: 180px;
+    }
+
+    input[type=file] {
+        padding: 5px;
+    }
+</style>
+
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+<link href="~/Scripts/jquery.multiselect.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.multiselect.js"></script>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Committee Functionality</div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-md-12">
+        <!-- Accordion -->
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div id="collapse-one" class="panel-collapse in">
+                    <div class="panel-body">
+
+
+                        <div class="col-md-12" style="overflow-y: scroll;overflow-x:scroll; height:460px;">
+                            <div class="col-md-12 col12">
+                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px; height: 355px;">
+                                    <tbody class="tablebaody">
+                                        <tr class="tableheader1">
+                                            <td>Water Management Committee :</td>
+                                            <td>
+                                                <select class="form-control" id="wm_community_name">
+                                                    <option value="Please Select Committee">Please Select Committee</option>
+                                                    <option value="State Level Committee">State Level Committee</option>
+                                                    <option value="District Level Committee">District Level Committee</option>
+                                                    <option value="Block Level Committee">Block Level Committee</option>
+                                                    <option value="Gram Panchayat Level Committee">Gram Panchayat Level Committee</option>
+                                                </select>
+                                            </td>
+                                            <td>Date :</td>
+                                            <td>
+                                                <div class="input-container input-append date form_datetime">
+                                                    <input name="" type="text" maxlength="50" id="meet_date" class="form-control dateinput" placeholder="Select the Date" required>
+                                                    <span class="add-on">
+                                                        <i class="fa fa-calendar icon"></i>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="tableheader1">
+                                            <td>Start Time :</td>
+                                            <td><input type="time" id="meet_start_time" class="form-control" /></td>
+                                            <td>End Time :</td>
+                                            <td><input type="time" id="meet_end_time" class="form-control" /></td>
+                                        </tr>
+                                        <tr class="tableheader1">
+                                            <td>Name of Meeting Organizer :</td>
+                                            <td><input type="text" id="meet_organizer" class="form-control" /></td>
+                                            <td>Name of Chairperson of the Meeting:</td>
+                                            <td><input type="text" id="chair_person" class="form-control" /></td>
+                                        </tr>
+                                        <tr class="tableheader1">
+                                            <td>Location :</td>
+                                            <td><input type="text" id="meet_location" class="form-control" /></td>
+                                            <td colspan="2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table id="tdata1111" class="display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100% !important">
+                                    <thead>
+                                        <tr>
+                                            <td><button type="button" class="btn btn-info" onclick="adddonordetails();">New</button></td>
+                                            <td>Delete</td>
+                                            <td>Category</td>
+                                            <td>Total Households</td>
+                                            <td>SC (M)</td>
+                                            <td>SC (F)</td>
+                                            <td>ST (M)</td>
+                                            <td>ST (F)</td>
+                                            <td>OBC (M)</td>
+                                            <td>OBC (F)</td>
+                                            <td>Minority (M)</td>
+                                            <td>Minority (F)</td>
+                                            <td>Others (M)</td>
+                                            <td>Others (F)</td>
+                                        </tr>
+
+                                        @*<td><table><tbody><tr class="trbordercolor"><td colspan="3">Category:</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">Total Households:</td><td colspan="4"><input type="text" class="form-control" /></td></tr></tbody></table></td>*@
+                                    </thead>
+
+                                    <tbody id="tblHouseholdsDetails">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table stripe row-border order-column   table-striped table-bordered dataTable no-footer">
+                                    <tbody>
+                                        <tr>
+                                            <td>Attendees of Meeting:</td>
+                                            <td colspan="3"><input type="text" id="meet_attendees" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Action Item:</td>
+                                            <td colspan="3"><input type="text" id="action_item" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Number of conflicts or grievance received:</td>
+                                            <td><input type="number" id="conflicts_received" class="form-control" /></td>
+                                            <td>Number of conflicts or grievance resolved:</td>
+                                            <td><input type="number" id="conflicts_resolved" class="form-control" /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer">
+                                    <tbody>
+
+                                        <tr>
+
+                                            <td colspan="2"><input type="checkbox" name="objective_discussed" id="objective_discussed" class="form-control" style="width:20px;height:20px;" value="Is Program objective discussed in the meeting ? Click on the check box if discussed and select way of communication." /><span class="tdspan">Is Program objective discussed in the meeting ? Click on the check box if discussed and select way of communication.</span></td>
+                                            <td>Information communicated by:</td>
+                                            <td>
+                                                <select class="55col active" id="mck1" name="mck1" onchange="Data()">
+                                                    <option value="Poster/wall writing">Poster/wall writing</option>
+                                                    <option value="Gram Sabha">Gram Sabha</option>
+                                                    <option value="Separate Meetings">Separate Meetings</option>
+                                                    <option value="Audio/Video Screening">Audio/Video Screening</option>
+                                                    <option value="Dissemination by FWS and experimental games">Dissemination by FWS and experimental games</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><input type="checkbox" name="gw_discussed" id="gw_discussed" class="form-control" style="width:20px;height:20px;" value="Is GW situation discussed in the meeting ? Click on the check box if discussed and select way of communication." /><span class="tdspan">Is GW situation discussed in the meeting ? Click on the check box if discussed and select way of communication.</span></td>
+                                            <td>Information communicated by :</td>
+                                            <td>
+                                                <select  name="mck2" id="mck2" class="55col active">
+                                                    <option value="Poster/wall writing">Poster/wall writing</option>
+                                                    <option value="Gram Sabha">Gram Sabha</option>
+                                                    <option value="Separate Meetings">Separate Meetings</option>
+                                                    <option value="Audio/Video Screening">Audio/Video Screening</option>
+                                                    <option value="Dissemination by FWS and experimental games">Dissemination by FWS and experimental games</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td colspan="2"><input type="checkbox" name="wsp_discussed" id="wsp_discussed" class="form-control" style="width:20px;height:20px;" value="Is WSP discussed in the meeting ? Click on the check box if discussed and select way of communication." /><span class="tdspan">Is WSP discussed in the meeting ? Click on the check box if discussed and select way of communication.</span></td>
+                                            <td>Information communicated by :</td>
+                                            <td>
+                                                <select  id="mck3" name="mck3" class="55col active">
+                                                    <option value="Poster/wall writing">Poster/wall writing</option>
+                                                    <option value="Gram Sabha">Gram Sabha</option>
+                                                    <option value="Separate Meetings">Separate Meetings</option>
+                                                    <option value="Audio/Video Screening">Audio/Video Screening</option>
+                                                    <option value="Dissemination by FWS and experimental games">Dissemination by FWS and experimental games</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td colspan="2"><input type="checkbox" name="role_clarify" id="role_clarify" class="form-control" style="width:20px;height:20px;" value="Is Role Clarify in the meeting ? Click on the check box if Clarify and select way of communication." /><span class="tdspan">Is Role Clarify in the meeting ? Click on the check box if Clarify and select way of communication.</span></td>
+                                            <td>Information communicated by :</td>
+                                            <td>
+                                                <select  id="mck4" name="mck4" class="55col active">
+                                                    <option value="Poster/wall writing">Poster/wall writing</option>
+                                                    <option value="Gram Sabha">Gram Sabha</option>
+                                                    <option value="Separate Meetings">Separate Meetings</option>
+                                                    <option value="Audio/Video Screening">Audio/Video Screening</option>
+                                                    <option value="Dissemination by FWS and experimental games">Dissemination by FWS and experimental games</option>
+                                                </select>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2"><input type="checkbox" name="budget_expenditure" id="budget_expenditure" class="form-control" style="width:20px;height:20px;" value="Is Budget and Expenditure displayed in the meeting ? Click on the check box if displayed." /><span class="tdspan">Is Budget and Expenditure displayed in the meeting ? Click on the check box if displayed..</span></td>
+                                            <td colspan="2" rowspan="3"> <img id="blah" src="http://placehold.it/180" alt="your image" /></td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2"><input type="checkbox" name="committee_fees" id="committee_fees" class="form-control" style="width:20px;height:20px;" value="Is Committee Collecting fees for Operation and Maintenance ? Click on the check box if collected." /><span class="tdspan">Is Committee Collecting fees for Operation and Maintenance ? Click on the check box if collected.</span></td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>
+
+                                                <input type="file" name="files" id="files" class="form-control" onchange="readURL(this);" />
+                                                @*onchange="readURL(this);"*@
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+
+                                <div class=" col-md-12" style="margin-bottom:20px;">
+                                    <div class="text-center">
+                                        <button type="submit" class=" btn btn-success" onclick="SaveImageFromFolder()"><i class="fa fa-save"></i>Save</button>
+                                        <button type="button" class="btn btn-danger" onclick="deleteAllData()"> <i class="fa fa-trash"></i>Delete</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<label id="AlertError" style="text-align:center;color:red;"></label>
+
+
+
+
+
+<script>
+    (function ($) {
+
+
+        $('select[multiple].active.55col').multiselect({
+
+            placeholder: 'Information Communicated',
+
+            search: true,
+            searchOptions: {
+                'default': 'Information Communicated'
+            },
+            selectAll: true
+        });
+
+    })(jQuery);
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+
+
+
+
+<script>
+    var ss;
+    var n = 1;
+    function adddonordetails() {
+        defalutval = "1";
+        $('#DUError').text("");
+        //$('#tdata1111 tbody tr').length;
+
+        for (var a = 0; a < n; a++) {
+            $('#tdata1111 tr:first').after('<tr id="abc_' + a + '"><tr class="trbordercolor"><td colspan="1">Category:</td><td colspan="4"><input type = "text" class= "form-control" id = "gpicat" /></td > <td colspan="3">Total Households:</td> <td colspan="6"><input type="text" id="gpith" class="form-control" /></td></tr > <tr class="trbordercolor"><td colspan="1">SC (M):</td><td colspan="4"><input type="text" id="gpiscm" class="form-control" /></td><td colspan="3">SC (F):</td><td colspan="6"><input type="text" id="gpiscf" class="form-control" /></td></tr> <tr class="trbordercolor"><td colspan="1">ST (M):</td><td colspan="4"><input type="text" id="gpistm" class="form-control" /></td><td colspan="3">ST (F):</td><td colspan="6"><input type="text" id="gpistf" class="form-control" /></td></tr> <tr class="trbordercolor"><td colspan="1">OBC (M):</td><td colspan="4"><input type="text" id="gpiobcm" class="form-control" /></td><td colspan="3">OBC (F):</td><td colspan="6"><input type="text" id="gpiobcf" class="form-control" /></td></tr> <tr class="trbordercolor"><td colspan="1">Minority (M):</td><td colspan="4"><input type="text" id="minorm" class="form-control" /></td><td colspan="3">Minority (F):</td><td colspan="6"><input type="text" id="minorf" class="form-control" /></td></tr> <tr class="trbordercolor"><td colspan="1">Others (M):</td><td colspan="4"><input type="text" id="gpiothersm" class="form-control" /></td><td colspan="3">Others (F):</td><td colspan="6"><input type="text" id="gpiothersf" class="form-control" /></td></tr> <tr class="trbordercolor"><td><button type="button" class=" btn btn-primary" onclick="SaveHDetails(' + a + ')">Save</button></td><td><button type="button" class=" btn btn-danger" onclick="cancel();">Cancel</button></td></tr></tr > ');
+            //$('.donarclass').first().show();
+        }
+        //a = a + 1;
+        //DonarDetails();
+    }
+
+    function cancel() {
+
+        $('.trbordercolor').remove();
+    }
+
+
+    function SaveHDetails() {
+        var obj = {};
+        obj.category = $("#gpicat").val();
+        obj.tol_households = $("#gpith").val();
+        obj.sc_m = $("#gpiscm").val();
+        obj.sc_f = $("#gpiscf").val();
+        obj.st_m = $("#gpistm").val();
+        obj.st_f = $("#gpistf").val();
+        obj.obc_m = $("#gpiobcm").val();
+        obj.obc_f = $("#gpiobcf").val();
+        obj.minority_m = $("#minorm").val();
+        obj.minority_f = $("#minorf").val();
+        obj.others_m = $("#gpiothersm").val();
+        obj.others_f = $("#gpiothersf").val();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Project/SaveHouseHolds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                HouseholdsDetails();
+                document.getElementById('AlertError').innerHTML = response;
+            }
+        });
+
+
+    }
+
+
+    $(document).ready(function () {
+        defalutval = "0";
+        HouseholdsDetails(defalutval);
+        if (defalutval == "0") {
+            $('#tblHouseholdsDetails').hide();
+        }
+        else {
+            $('#tblHouseholdsDetails').show();
+        }
+
+    });
+    function HouseholdsDetails(condval) {
+        cancel();
+        var cval = condval;
+        if (cval == "0") {
+            $('#tblHouseholdsDetails').hide();
+        }
+        else {
+            $('#tblHouseholdsDetails').show();
+        }
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Project/HouseholdDetails',
+            data: "{'condval':'" + cval + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+
+                var tr = "";
+
+                if (data != null) {
+                    var count = data.length;
+                    for (var i = 0; i < data.length; i++) {
+                        tr +=
+                            '<tr id="trn' + i + '" class="donarclass"  role="row" style="display:none">' +
+                            '<tr class="trhideclass' + i + '" style="display:none" ><td colspan="2">Category</td><td colspan="5" class="tdborder"><input type="text" id="Category' + i + '" value="' + data[i].category + '" /></td>' +
+                            '<td colspan="2">Total_Households</td><td colspan="5" class="tdborder"><input type="text" id="Total_Households' + i + '" value="' + data[i].tol_households + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">SC(M)</td><td colspan="5" class="tdborder"><input type="text" id="sc_m' + i + '" value="' + data[i].sc_m + '" /></td>' +
+                            '<td colspan="2">SC(F)</td><td colspan="5" class="tdborder"><input type="text" id="sc_f' + i + '" value="' + data[i].sc_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">ST(M)</td><td colspan="5" class="tdborder"><input type="text" id="st_m' + i + '" value="' + data[i].st_m + '" /></td>' +
+                            '<td colspan="2">ST(F)</td><td colspan="5" class="tdborder"><input type="text" id="st_f' + i + '" value="' + data[i].st_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">OBC(M)</td><td colspan="5" class="tdborder"><input type="text" id="obc_m' + i + '" value="' + data[i].obc_m + '" /></td>' +
+                            '<td colspan="2">OBC(F)</td><td colspan="5" class="tdborder"><input type="text" id="obc_f' + i + '" value="' + data[i].obc_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">Minority(M)</td><td colspan="5" class="tdborder"><input type="text" id="minority_m' + i + '" value="' + data[i].minority_m + '" /></td>' +
+                            '<td colspan="2">Minority(F)</td><td colspan="5" class="tdborder"><input type="text" id="minority_f' + i + '" value="' + data[i].minority_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">Others(M)</td><td colspan="5" class="tdborder"><input type="text" id="others_m' + i + '" value="' + data[i].others_m + '" /></td>' +
+                            '<td colspan="2">Others(F)</td><td colspan="5" class="tdborder"><input type="text" id="others_f' + i + '" value="' + data[i].others_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td><button type="submit" onclick="update_detail(' + data[i].hlid + ',' + i + ')">Update</button>' + '</td><td><button type="button" onclick="cancelonedit(' + i + ');">Cancel</button>' + '</td>' +
+                            '</tr>' + '</tr>' +
+                            '<tr role="row"  id="hiderowonedit_' + i + '"><td><button type="submit" onclick="editrow(' + i + ')";> Edit </button></td>' + '<td><button type="button"  onclick="delete_detail(' + data[i].hlid + ',' + i + ')"> Delete</button ></td> ' + ' <td > ' + data[i].category + '</td> <td>' + data[i].tol_households + '</td> <td>' + data[i].sc_m + '</td> <td>' + data[i].sc_f + '</td><td>' + data[i].st_m + '</td> <td>' + data[i].st_f + '</td> <td>' + data[i].obc_m + '</td> <td>' + data[i].obc_f + '</td> <td>' + data[i].minority_m + '</td> <td>' + data[i].minority_f + '</td> <td>' + data[i].others_m + '</td> <td>' + data[i].others_f + '</td></tr>'
+                    }
+                    i = i + 1;
+                }
+                else {
+                    tr += '<tr  role="row"><td colspan="2">No Data</td></tr>';
+                }
+
+                $("#tblHouseholdsDetails").html(tr);
+
+
+            }
+        });
+    }
+
+</script>
+<script>
+    function cancelonedit(i) {
+        $('.trhideclass' + i).hide();
+        $('#hiderowonedit_' + i).show();
+        $('#trn' + i).hide();
+    }
+    function editrow(i) {
+        $('#DUError').text("");
+        $('#trn' + i).show();
+        $('#hiderowonedit_' + i).hide();
+        $('.trhideclass' + i).show();
+
+
+    }
+</script>
+
+
+<script>
+    function saveAllData() {
+
+        var fileUpload = $("#files").get(0);
+        var files = fileUpload.files;
+        var obj = {};
+        obj.wm_community_name = $("#wm_community_name").val();
+        obj.meet_date = $("#meet_date").val();
+        obj.meet_start_time = $("#meet_start_time").val();
+        obj.meet_end_time = $("#meet_end_time").val();
+        obj.meet_organizer = $("#meet_organizer").val();
+        obj.chair_person = $("#chair_person").val();
+        obj.meet_location = $("#meet_location").val();
+        obj.meet_attendees = $("#meet_attendees").val();
+        obj.action_item = $("#action_item").val();
+        obj.image_name = files[0].name;
+        // obj.image_type = files[0].type;
+        obj.conflicts_received = $("#conflicts_received").val();
+        obj.conflicts_resolved = $("#conflicts_resolved").val();
+        obj.objective_discussed = $("#objective_discussed").val();
+        obj.gw_discussed = $("#gw_discussed").val();
+        obj.wsp_discussed = $("#wsp_discussed").val();
+        obj.role_clarify = $("#role_clarify").val();
+        obj.budget_expenditure = $("#budget_expenditure").val();
+        obj.committee_fees = $("#committee_fees").val();
+        var MCK11 = "";
+        if ($("#mck1").val() != "" && $("#mck1").val() != null) {
+            for (var i = 0; i < $("#mck1").val().length; i++) {
+                MCK11 = MCK11 + "," + $("#mck1").val()[i] + ",";
+            }
+
+        }
+
+        var MCK22 = "";
+        if ($("#mck2").val() != "" && $("#mck2").val() != null) {
+
+            for (var i = 0; i < $("#mck2").val().length; i++) {
+                MCK22 = MCK22 + "," + $("#mck2").val()[i] + ",";
+            }
+        }
+        var MCK33 = "";
+        if ($("#mck3").val() != "" && $("#mck3").val() != null) {
+
+            for (var i = 0; i < $("#mck3").val().length; i++) {
+                MCK33 = MCK33 + "," + $("#mck3").val()[i] + ",";
+            }
+        }
+        var MCK44 = "";
+        if ($("#mck4").val() != "" && $("#mck4").val() != null) {
+
+            for (var i = 0; i < $("#mck4").val().length; i++) {
+                MCK44 = MCK44 + "," + $("#mck4").val()[i] + ",";
+            }
+
+        }
+        obj.mck1 = MCK11;
+        obj.mck2 = MCK22;
+        obj.mck3 = MCK33;
+        obj.mck4 = MCK44;
+
+
+        $.ajax({
+
+
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Project/Committee_functionality",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+
+                HouseholdsDetails();
+
+                alert(response);
+            }
+        });
+
+
+
+    }
+
+
+
+    function SaveImageFromFolder() {
+        var fileUpload = $("#files").get(0);
+        var files = fileUpload.files;
+
+        // Create FormData object
+        var fileData = new FormData();
+
+        // Looping over all files and add it to FormData object
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
+
+        }
+
+        // Adding one more key to FormData object
+
+
+
+
+
+        $.ajax({
+
+            url: '/Project/Committee_functionality1',
+            type: "POST",
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            data: fileData,
+            success: function (response) {
+
+                alert(response);
+                saveAllData();
+            }
+        });
+    }
+
+    function encodeImageFileAsURL() {
+
+
+    }
+
+    function binEncode(data) {
+
+        var binArray = []
+        var datEncode = "";
+
+        for (i = 0; i < data.length; i++) {
+            binArray.push(data[i].charCodeAt(0).toString(2));
+        }
+        for (j = 0; j < binArray.length; j++) {
+            var pad = padding_left(binArray[j], '0', 8);
+            datEncode += pad + ' ';
+        }
+        function padding_left(s, c, n) {
+            if (!s || !c || s.length >= n) {
+                return s;
+            }
+            var max = (n - s.length) / c.length;
+            for (var i = 0; i < max; i++) {
+                s = c + s;
+            } return s;
+        }
+        console.log(binArray);
+    }
+
+</script>
+<script>
+    function delete_detail(IDD, i) {
+        $('.trhideclass' + i).hide();
+        var obj = {};
+        obj.hlid = IDD;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Project/DeleteHouseholds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                document.getElementById('AlertError').innerHTML = response;
+                $('#tblHouseholdsDetails').hide();
+                //HouseholdsDetails();
+            }
+        });
+    }</script>
+
+
+<script>
+    function update_detail(Id, i) {
+
+        var obj = {};
+        obj.category = $('#Category' + i).val();
+        obj.tol_households = $('#Total_Households' + i).val();
+        obj.sc_m = $('#sc_m' + i).val();
+        obj.sc_f = $('#sc_f' + i).val();
+        obj.st_m = $('#st_m' + i).val();
+        obj.st_f = $('#st_f' + i).val();
+        obj.obc_m = $('#obc_m' + i).val();
+        obj.obc_f = $('#obc_f' + i).val();
+        obj.minority_m = $('#minority_m' + i).val();
+        obj.minority_f = $('#minority_f' + i).val();
+        obj.others_m = $('#others_m' + i).val();
+        obj.others_f = $('#others_f' + i).val();
+        obj.hlid = Id;
+        //obj.ttkid = DID;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Project/UpdateHouseholds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                document.getElementById('AlertError').innerHTML = response;
+                $('.trhideclass' + i).hide();
+                HouseholdsDetails();
+            }
+        });
+
+
+    }
+
+    function deleteAllData() {
+        // $('.form-control').find('input:text').val('');
+        //// document.getElementById('form-control').value = "";
+        // document.getElementById('AlertError').innerHTML = "Delete Successfully";
+
+        $("#reset").bind("click", function () {
+            $("input[type=text], textarea").val("");
+            document.getElementById('AlertError').innerHTML = "Delete Successfully";
+        });
+    }
+</script>
+<script>
+    function Data() {
+
+        var Abc = $("#mck1").val();
+        alert(Abc);
+    }
+</script>
+<script type="text/javascript">
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown >  li:nth-child(7)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2) > ul.dropdown >  li:nth-child(7)").siblings().removeClass('active');
+</script>
+@*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.fr.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+</script>

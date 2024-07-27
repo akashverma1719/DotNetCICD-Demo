@@ -1,0 +1,1040 @@
+﻿
+@model IEnumerable<AbhyProject.Models.abhy_villages>
+@{
+    ViewBag.Title = "GWM_login";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<title>MIS Login</title>
+<!-- favicon
+============================================ -->
+@*<link rel="shortcut icon" type="image/x-icon" href="~/Content/Website/images/favicon.ico">*@
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- Google Fonts
+   ============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
+
+<!-- All css files are included here
+============================================ -->
+<!-- Bootstrap CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/bootstrap.min.css">
+
+<!-- This core.css file contents all plugins css file
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/core.css">
+
+<!-- Theme shortcodes/elements style
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/shortcode/shortcodes.css">
+
+<!--  Theme main style
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/style.css">
+
+<!-- Responsive CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/responsive.css">
+
+<!-- Style Customizer CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/style-customizer.css">
+<link href="#" data-style="styles" rel="stylesheet">
+
+<!-- Modernizr JS -->
+<script src="~/Content/Website/js/vendor/modernizr-2.8.3.min.js"></script>
+<link href="~/Content/css/Ataljalheader.css" rel="stylesheet" />
+
+<!--favicon end-->
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    .input-box {
+        font-size: 42px;
+        border: none;
+        border-bottom: 1px solid #000;
+        height: 50px;
+        line-height: 28px;
+        border-radius: 0px;
+        box-shadow: none;
+        padding: 0px;
+    }
+
+        .input-box input {
+            width: 100%;
+        }
+
+    .sss1 {
+        margin-top: 0px !important;
+    }
+
+    .append {
+        display: block !important;
+    }
+
+        .append > h4.uppercas > span {
+            background-color: #337ab7;
+            color: #fff;
+        }
+
+        .append > h4.uppercas {
+            background-color: #337ab7;
+            color: #fff;
+        }
+
+    h4.uppercas > span {
+        font-size: 16px;
+    }
+
+    .button.lemon:hover {
+        background-color: #398439;
+    }
+
+    .uppercas {
+        box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+        transition: box-shadow .25s;
+        padding: 4px;
+    }
+
+    .button.lemon {
+        background: #5cb85c;
+        padding: 4px;
+        text-align: center;
+        border: none;
+        border-radius: 10px;
+        /*box-shadow: 8px 3px 17px rgba(0, 0, 0, 1);*/
+        transition: all 0.3s ease 0s;
+        font-size: 14px;
+        height: 40px;
+        font-size: 20px;
+        width: 100%;
+        border-color: #4cae4c;
+        text-transform: none;
+    }
+
+    @@media (max-width:768px) {
+        /*.button.lemon {
+            position: absolute;
+        }*/
+        .btnsinup {
+            font-size: 14px !important;
+        }
+    }
+
+
+
+    #ss {
+    }
+
+    .field-icon {
+        float: right;
+        font-size: 20px;
+        margin-top: -32px;
+        position: relative;
+        z-index: 2;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    .mt-140 {
+        margin-top: 0px !important;
+    }
+
+    .mb-19 {
+        margin-bottom: 24px;
+    }
+
+    /*colmd12:hover {
+        color: #fff;
+        background-color: #398439;
+        border-color: #398439;
+    }*/
+
+    a.button, button {
+        text-transform: none;
+    }
+
+    ul.relogin {
+        display: inline-flex;
+        width: 98%;
+    }
+
+        ul.relogin > li {
+        }
+
+    .EdgeButton, .EdgeButton:visited {
+        border-radius: 100px;
+        box-shadow: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 20px;
+        padding: 6px 16px;
+        position: relative;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .StaticLoggedOutHomePage-buttonSignup, .StaticLoggedOutHomePage-buttonLogin {
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .EdgeButton--secondary {
+        background-color: #fff;
+        border: 1px solid #1da1f2;
+        /* color: #1da1f2; */
+    }
+
+    .EdgeButton--medium {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 6px 16px;
+    }
+
+    a {
+        color: #1c94e0;
+        text-decoration: none;
+    }
+
+    a {
+        background: transparent;
+    }
+
+    .EdgeButton--secondary:hover {
+        background-color: #eaf5fd;
+        color: #1da1f2;
+    }
+
+    .EdgeButton:active, .EdgeButton:focus, .EdgeButton:hover {
+        text-decoration: none;
+    }
+
+    .text-dark .text-icon > h2, .single-fun-factor.text-dark h4 {
+        padding: 1px 1px 6px 1px !important;
+    }
+    /*#ss {
+        border: 1px solid #000;
+    }*/
+    .input-box input {
+        padding: 0px !important;
+    }
+
+    .forgotlink {
+        font-size: 16px;
+        width: 100%;
+        color: #1c94e0;
+        font-weight: 600;
+    }
+
+    #MISSIGUP > .Loginlabel,
+    #MISLOGIN > .Loginlabel {
+        font-size: 22px;
+        font-weight: 900;
+        margin-bottom: 12%;
+    }
+
+    .labelName {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    /*.colmd12 {
+        padding: 10px;
+        background-color: #5cb85c;
+    }
+        .colmd12:hover {
+            background-color: #398439;
+        }*/
+    .colmd12 {
+        padding: 0px;
+    }
+
+    .text-color {
+        position: relative;
+        top: -4px;
+    }
+
+    .labelName > i.fa,
+    .labelName > span.fa {
+        padding-right: 3px;
+    }
+
+    .mb-191 {
+        margin-bottom: 10px;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        $('[data-id]').on('click', function (e) {/*h4.uppercas*/
+            e.preventDefault();
+            if ($(this).hasClass("uppercas")) {
+
+                $(this).parent().addClass('append');
+                $(this).parent().siblings().removeClass('append');
+            }
+            var ref = $(this).attr('data-id');
+            $('div[id^="MIS"]').hide();
+            $("#" + ref).fadeIn(500);
+        });
+
+    });
+
+
+</script>
+<script>
+
+
+    function Image_harvesting() {
+        $('.loading').show();
+        $('.allcontent').hide();
+
+
+        //document.getElementById('Change1').style.display = "none";
+        //document.getElementById('Change').style.display = "block";
+    }
+
+
+
+
+</script>
+<header class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-sm-9" style="font-size:90%;padding: 1em  0;">
+                <div class="header-top-info">
+                    <ul class="clearfix headerlist">
+                        <li>
+
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:50px;">
+                        </li>
+                        <li>
+                            <span class="responsive_go_hindi" lang="hi">
+                                <a target="_blank" href="http://ataljal.mowr.gov.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link">
+                                    ATAL BHUJAL YOJANA (ATAL JAL)
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a target="_blank" href="https://india.gov.in/" title="GOVERNMENT OF INDIA" role="link">Ministry of Jal Shakti</a></span>
+                            <span class="li_eng responsive_go_eng"><a target="_blank" href="https://india.gov.in/" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-weight: 600;text-transform: none;font-size: 15px;">Department of Water Resources,</a></span>
+                            <span class="li_eng responsive_go_eng" style="text-align:center;"><a target="_blank" href="https://india.gov.in/" title="GOVERNMENT OF INDIA" role="link"> River Development & Ganga Rejuvenation</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="pull_right" style="margin-top:10px;">
+                    <div class="header-login-register">
+                        <ul class="login login1">
+                            <li>
+                                <a href="~/Home/index">
+                                    <i class="fa fa-home"></i>
+                                    <span>Home</span>
+                                </a>
+
+                            </li>
+                        </ul>
+                        <ul class="login login1">
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <i class="fa fa-home"></i>
+                                    <span>WSP & GWM</span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="allcontent">
+
+    <div class="about-area mt-140 about-two">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="" style="position:relative;top:50px;">
+                        <img src="~/Content/Agriculture_icons/GWM.png" />
+                    </div>
+                </div>
+
+                <div class="col-md-6" style="padding: 0px 43px 20px 29px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="row" style="margin-top:25px;">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <div class="col-xs-6 append" style="margin-top: 21px;padding:0px;">
+                                    <h4 class="uppercas" data-id="MISLOGIN" style="text-align: center;font-family: 'montserratlight'; display:block;">
+                                        @*onclick="switchVisible_MISLOGIN();"*@
+                                        <span class="text-color" id="ss">Log in</span>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-6" style="margin-top: 21px;padding:0px;">
+                                    <h4 class="uppercas
+                            " data-id="MISSIGUP" style="text-align: center;font-family: 'montserratlight'; display:block;">
+                                        @*onclick="switchVisible_MISSIGUP();"*@
+                                        <span class="text-color" id="ss">Register</span>
+
+                                    </h4>
+                                </div>
+                            </div>
+                            <div id="MISLOGIN" style="margin-top:100px;padding:10px;">
+
+                                <label class="Loginlabel">Log in</label>
+                                @using (Html.BeginForm("GWM_login", "WspNew"))
+                                {<label class="labelName"> <i class="fa fa-envelope"></i>Email</label>
+                                    <div class="input-box mb-19 form-control">
+
+                                        @*<i class="fa fa-envelope"></i>*@
+
+                                        <input type="email" name="useremail" placeholder="Enter your email id" required>
+                                    </div>
+                                    <label class="labelName"> <i class="fa fa-lock"></i>Password</label>
+                                    <div class="input-box form-control">
+                                        @*<i class="fa fa-lock"></i>*@
+
+                                        <input type="password" name="userpassword" id="userpassword" placeholder=" Enter your password" min="4" maxlength="25" required>
+                                        <span toggle="#userpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    </div>
+                                    <div class="" style="margin-top: 30px;font-size: 18px;">
+                                        <ul>
+                                            <li class="col-md-12 colmd12" style="">
+                                                <button type="submit" class="login-btn button lemon" style="">Log in</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="">
+                                        <ul style="margin-top:15px;">
+                                            <li class="col-md-12" style="margin-top:30px;padding: 10px 0px 0px 0px;">
+                                                <a href="#" class="forgotlink" data-toggle="modal" data-target="#myModal">Forgotten your password ?</a>
+
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div style="text-align:center;font-size:25px;"><label>@ViewBag.Error</label></div>
+                                }
+
+                            </div>
+
+                            <div id="MISSIGUP" style="display:none;margin-top:100px;padding:10px;">
+                                <label class="Loginlabel">Register</label>
+
+                                <div>
+                                    <label class="labelName"><span class="fa"><img src="~/Images/officer_2@1x.png" /></span>Select Nodal Officer</label>
+                                </div>
+                                <div class="input-box form-control  mb-191">
+
+                                    <select id="change" name="signupdata" required>
+                                        <option value="Nodal Officer">Select Nodal Officer</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="National Level Nodal Officer">National Level Nodal Officer</option>
+                                        <option value="State Level Nodal Officer">State Level Nodal Officer</option>
+                                        <option value="District Level Nodal Officer">District Level Nodal Officer</option>
+                                        <option value="Block Level Nodal Officer">Block Level Nodal Officer</option>
+                                        <option value="Gram Panchyat Nodal Officer">Gram Panchyat Nodal Officer</option>
+                                    </select>
+
+                                </div>
+                                <select style="margin-bottom: 10px;text-transform: capitalize;" name="state" id="state" class="state form-control">
+                                    <option value="0">Select State</option>
+                                </select>
+
+                                <select style="margin-bottom: 10px;text-transform: capitalize;" name="dist" id="dist" class="dist form-control">
+                                    <option value="0">Select District</option>
+                                </select>
+
+                                <select style="margin-bottom: 10px !important;text-transform: capitalize;" name="block" id="block" class="block form-control">
+                                    <option value="0">Select Block</option>
+
+                                </select>
+                                <select style="margin-bottom: 10px;text-transform: capitalize;  " name="gram" id="gram" class="gram form-control">
+                                    <option value="0">Select Panchayat</option>
+
+                                </select>
+                                @*<select style="margin-bottom: 10px;" name="village" id="village" class="village form-control">
+
+
+                                    </select>*@
+
+
+                                <input type="text" name="signupdata" hidden />
+
+                                <label class="labelName"><i class="fa fa-user"></i>Username</label>
+                                <div class="input-box form-control  mb-191">
+
+                                    <input type="text" name="username" id="username1" class="sinup" placeholder="Enter your username" maxlength="30" required />
+
+                                </div>
+                                <label class="labelName"><i class="fa fa-envelope"></i>Email</label>
+                                <div class="input-box form-control mb-191">
+                                    <input type="email" name="useremail" id="useremail" placeholder="Enter your email id" required>
+                                </div> <label class="labelName"><i class="fa fa-mobile" style="font-size:22px;"></i>Mobile Number</label>
+                                <div class="input-box form-control mb-191">
+                                    <input type="text" name="usernumber" id="mobilenumber" placeholder="Enter your mobile number" class="integer" maxlength="10" required>
+                                </div>
+                                <label class="labelName"><i class="fa fa-building"></i>Department Name</label>
+                                <div class="input-box form-control mb-191">
+                                    <input type="text" id="department" name="userdepartment" placeholder="Enter your department name" maxlength="25" required>
+                                </div>
+                                <label class="labelName"><i class="fa fa-lock"></i>Password</label>
+                                <div class="input-box form-control mb-191">
+                                    <input type="password" name="usercreatepassword" id="usercreatepassword" placeholder="Create your password" maxlength="25" min="3" required>
+                                    <span toggle="#usercreatepassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <label class="labelName"><i class="fa fa-lock"></i>Confirm Password</label>
+                                <div class="input-box form-control mb-191">
+
+                                    <input type="password" name="userconfirmpassword" id="userconfirmpassword" placeholder="Confirm your password" maxlength="25" min="3" required>
+                                    <span toggle="#userconfirmpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+
+
+                                <div class="button-box mt-20" style="font-size:25px">
+
+                                    <ul>
+
+                                        <li class="col-md-12" style="padding:0px;">
+                                            <button type="submit" id="register-btn" onclick="SaveDetails()" class="register-btn button lemon pull_right" @*onclick="myFunction()"*@>Register</button>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <input type="text" name="state" hidden />
+                                <input type="text" name="dist" hidden />
+                                <input type="text" name="block" hidden />
+                                <input type="text" name="gram" hidden />
+                                <input type="text" name="village" hidden />
+
+                            </div>
+                            <div style="text-align:center;color:red;font-weight:600;font-size:21px;"><b><label id="AlertInfo"></label></b></div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Password Recovery</h4>
+                </div>
+                @using (Html.BeginForm("ForgetPassword", "WspNew"))
+                {
+                    <div class="modal-body">
+                        <input type="text" class="form-control" name="Email" placeholder="Enter Valid Email Address" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--password icon script start-->
+
+<script src="~/Scripts/validations.js"></script>
+<script type="text/javascript">
+    $(".toggle-password").click(function () {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+
+
+    $('#userconfirmpassword').on('change', function () {
+
+        //// alert($('#usercreatepassword').val());
+        // alert($('#userconfirmpassword').val());
+
+        if ($('#usercreatepassword').val() != $('#userconfirmpassword').val()) {
+            //   alert("not equal");
+            $('#message').css("display", "block");
+            return false;
+        }
+        else {
+            $('#message').css("display", "none");
+            return false;
+        }
+    });
+
+</script>
+<!--password iconscript End-->
+<!--Nodel officer pop script start-->
+<script type="text/javascript">
+    var Jsondata = "";
+    $(document).ready(function () {
+        $("#Change").css("display", "none");
+        DropDownInfo();
+    });
+
+    function DropDownInfo() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Report/DashboardJsondata',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                setTimeout(function () {
+                    $('.loading').hide();
+                    $('.allcontent').show();
+                }, 4000);
+
+                Jsondata = JSON.parse(data);
+                $.each(Jsondata, function (i, stateval) {
+                    $("#state").append($('<option></option>').val(stateval.sid).html(stateval.statename));
+                });
+                $("#state").prepend($('<option></option>').val("").html("Select State"));
+                $("#state").val("");
+
+                $("#state").change(function () {
+                    if (this.value != "") {
+                        var distid = this.value;
+                        var distjsondata = Jsondata.filter(m => m.sid == distid);
+                        $("#dist").html("");
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(distjsondata, function (i, dist) {
+                            $.each(dist.abhy_districts, function (j, distval) {
+                                $("#dist").append($('<option></option>').val(distval.did).html(distval.district_name));
+                            });
+                        });
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#dist").val("");
+                    }
+                    else {
+                        $("#dist").html("");
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#dist").change(function () {
+                    if (this.value != "" && $("#state").val() != "") {
+                        var distjsondata2 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata = distjsondata2[0].abhy_districts.filter(m => m.did == this.value);
+                        $("#block").html("");
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(mandjsondata, function (j, mandval) {
+                            $.each(mandval.abhy_blocks, function (k, mandval2) {
+                                $("#block").append($('<option></option>').val(mandval2.bid).html(mandval2.block_name));
+                            });
+                        });
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#block").val("");
+                    }
+                    else {
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#block").change(function () {
+                    if (this.value != "" && $("#state").val() != "" && $("#dist").val() != "") {
+                        var distjsondata3 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata2 = distjsondata3[0].abhy_districts.filter(m => m.did == $("#dist").val());
+                        var gramjsonata = mandjsondata2[0].abhy_blocks.filter(m => m.bid == this.value);
+                        $("#gram").html("");
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(gramjsonata, function (j, gramval) {
+                            $.each(gramval.abhy_grampanchayat, function (k, gramval2) {
+                                $("#gram").append($('<option></option>').val(gramval2.gpid).html(gramval2.gpname));
+                            });
+                        });
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#gram").val("");
+                    }
+                    else {
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+
+            }
+        });
+    }
+
+
+
+</script>
+<script>
+    $('#register-btn').change(function () {
+
+        alert("Plese Select Nodel Officer");
+    });
+    $('#change').change(function () {
+        if ($(this).val() == 'Nodal Officer') {
+            //alert("Plese ")
+            $('#modal1').modal('hide');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+
+
+        }
+        if ($(this).val() == 'Admin') {
+            $('#modal1').modal('hide');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+
+
+        }
+        if ($(this).val() == 'National Level Nodal Officer') {
+            $('#modal1').modal('hide');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#gram').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            //$('#gram').val('Select Panchayat');
+        }
+
+        if ($(this).val() == 'State Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#state').show();
+            $('#gram').hide();
+            $('#block').hide();
+            $('#dist').hide();
+            //$('#state').vaL('');
+            //$('#state').val('Select State');
+
+            $('#State1').show();
+            $('#District1').hide();
+            $('#Gram1').hide();
+            $('#Block1').hide();
+            $('#village').hide();
+
+        }
+        if ($(this).val() == 'District Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#state').show();
+            $('#dist').show();
+            $('#block').hide();
+            $('#gram').hide();
+            $('#village').hide();
+            //$('#state').val('Select State');
+            // $('#dist').val('Select District');
+            $('#block').hide();
+            $('#District1').show();
+            $('#State1').hide();
+            $('#Gram1').hide();
+            $('#Block1').hide();
+            $('#village').hide();
+        }
+        if ($(this).val() == 'Block Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#state').show();
+            $('#dist').show();
+            $('#block').show();
+            $('#gram').hide();
+            $('#village').hide();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            $('#Block1').show();
+            $('#State1').hide();
+            $('#Gram1').hide();
+            $('#District1').hide();
+            $('#village').hide();
+        }
+
+        if ($(this).val() == 'Gram Panchyat Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').show();
+            $('#state').show();
+
+            $('#dist').show();
+
+            $('#block').show();
+
+            $('#gram').show();
+            $('#village').hide();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#gram').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            //$('#gram').val('Select Panchayat');
+        }
+        if ($(this).val() == 'Village Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').show();
+            $('#state').show();
+
+            $('#dist').show();
+
+            $('#block').show();
+
+            $('#gram').show();
+            $('#village').show();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#gram').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            //$('#gram').val('Select Panchayat');
+        }
+
+
+
+
+    });
+    $(document).ready(function () {
+        if ($('#change').val() == 'Nodal Officer') {
+            $('#modal1').modal('hide');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+
+
+        }
+    });
+    //function myFunction() {
+    //    alert("Plese Select Nodel Officer");
+    //}
+</script>
+<!--Nodel officer pop script End-->
+<script>
+    function SaveDetails() {
+
+        var j = 0;
+        var Officer = $("#change").val();
+        var State = $("#state").val();
+        var Dist = $("#dist").val();
+        var Block = $("#block").val();
+        var Gram = $("#gram").val();
+        if (Officer == "State Level Nodal Officer") {
+
+            if (State != "" && State != null) {
+            }
+            else {
+
+                document.getElementById('AlertInfo').innerHTML = "Please Fill StateName";
+                j = 1;
+            }
+        }
+        if (Officer == "District Level Nodal Officer") {
+
+            if (State != "" && State != null && Dist != "" && Dist != null) {
+
+            }
+            else {
+                document.getElementById('AlertInfo').innerHTML = "Please Fill StateName And District Name";
+
+                j = 1;
+            }
+        }
+        if (Officer == "Block Level Nodal Officer") {
+
+            if (State != "" && State != null && Dist != "" && Dist != null && Block != "" && Block != null) {
+
+            }
+            else {
+                document.getElementById('AlertInfo').innerHTML = "Please Fill StateName , District Name && BlockName";
+
+                j = 1;
+            }
+        }
+        if (Officer == "Gram Panchyat Nodal Officer") {
+            if (State != "" && State != null && Dist != "" && Dist != null && Block != "" && Block != null && Gram != "" && Gram != null) {
+
+            }
+            else {
+                document.getElementById('AlertInfo').innerHTML = "Please Fill StateName , District Name && BlockName, GramPanchayat";
+                j = 1;
+            }
+        }
+        var Pass = $("#usercreatepassword").val();
+        var CPass = $("#userconfirmpassword").val();
+        var UserName = $("#username1").val();
+        var Email = $("#useremail").val();
+        var NodalOfficer = $("#change").val();
+        var Mobile = $("#mobilenumber").val();
+        var DepartmentName = $("#department").val();
+        if (Pass != CPass && Pass != "" && CPass != "") {
+            document.getElementById('AlertInfo').innerHTML = "Password's Doesn't Matched";
+        }
+
+        if (UserName == "") {
+            document.getElementById('AlertInfo').innerHTML = "Please Enter UserName";
+            j = 1;
+        }
+        else if (Email == "") {
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Email";
+            j = 1;
+        }
+        else if (NodalOfficer == "") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Nodal Officer";
+            j = 1;
+        }
+        else if (Mobile == "") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Mobile Number";
+            j = 1;
+        }
+        else if (DepartmentName == "") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Department Name";
+            j = 1;
+        }
+        else if (Pass == "") {
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Password";
+            j = 1;
+        }
+        else if (CPass == "") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Confirm Password";
+            j = 1;
+        }
+
+
+
+
+        if (j != 1) {
+            ddd = 0;
+            var obj = {};
+            obj.UserName = UserName;
+            obj.Email = Email;
+            obj.NodalOfficer = NodalOfficer;
+            obj.ContactNumber = Mobile;
+            obj.DepartmentName = DepartmentName;
+            obj.Password = Pass;
+            obj.StateName = State;
+            obj.DistrictName = Dist;
+            obj.BlockName = Block;
+            obj.GramPanchayatName = Gram;
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/WspNew/MisSignUp",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    document.getElementById('AlertInfo').innerHTML = response;
+                }
+            });
+
+
+        }
+        else {
+
+
+
+
+        }
+
+    }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+

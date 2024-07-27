@@ -1,0 +1,619 @@
+﻿@model IEnumerable<AbhyProject.Models.New_Grievance>
+@{
+    ViewBag.Title = "Appeal_Registration";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<title>New Appeal Registration</title>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(6)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(6)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(6) > ul.dropdown > li:nth-child(2) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(6) > ul.dropdown > li:nth-child(2) ").siblings().removeClass('active');
+    function refress() {
+
+        var img = document.getElementById("captchaimg");
+        img.src = "/Contact/GetCaptchaImage?query=" + Math.random();
+
+
+    }
+</script>
+<script>
+    var s = 0;
+    var CapchaInfo = "";
+    function Checking() {
+
+
+        $.post("@Url.Action("CustomCaptcha1", "Grievance")",
+        {
+            clientCaptcha: $("#clientCaptcha").val(),
+
+        },
+        function (data) {
+        if (data == 0) {
+            $("#status").html('<font color="Green"> Not Matched</font>');
+            CapchaInfo = "Not Matched";
+            refress();
+        }
+        else {
+        $("#status").html('<font color="Red">Captch process is Succesfully</font>');
+            CapchaInfo = "Matched";
+            SearchInformation();
+
+        }
+
+        });
+        }
+
+</script>
+<style>
+    .form-group .form-control {
+        margin-top: 5px;
+    }
+
+    .btn-success,
+    .btn-danger {
+        float: none;
+        right: 0px;
+        width: 100px;
+    }
+
+    .msg {
+        color: red !important;
+        font-weight: bold;
+    }
+
+    .body {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    .highlight {
+        color: red;
+    }
+
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        border-top: 2px solid #62cb31;
+    }
+
+    .hpanel {
+        border: none !important;
+        box-shadow: none;
+        margin-bottom: 25px;
+    }
+
+    .col-md-12 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .btninfo {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    .refreshicon {
+        position: relative;
+        right: 21px;
+        top: -12px;
+    }
+</style>
+
+
+
+<div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Grievance</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <img style="width:100%;" src="~/Content/WspImages/Graviance (1).png" />
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="col-lg-12" style="background-color:#fff;">
+                <div class="hpanel">
+                    <div class="">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <section class="content-header mt-3">
+                                    <h4 style="color:#337ab7">New Appeal Registration</h4>
+                                    <div style="text-align:center;color:red;font-family: initial;"><label id="Error1" style="font-size:20px;"></label></div>
+
+
+                                </section>
+                                <div class="hpanel hgreen">
+                                    <div class="panel-body">
+                                        <div class="row align-items-center">
+
+                                            <div class="form-group col-md-4">
+
+                                                Previous Grievance ID : <span class="msg">*</span>
+
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
+                                                <input type="text" name="grivanceid" id="grivanceid" maxlength="30" class="form-control alphanum" placeholder="Previous Grievance ID">
+
+
+                                            </div>
+                                            <div class="col-md-1 mt-3">
+                                                @*<input type="submit" value="Info" class="btn btn-primary" />*@
+                                                <button type="button" value="Info" class="btn btn-sm btn-primary" onclick="SearchInfo()">info</button>
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                @*<h5 style="color:red;">Your Grievance Status***</h5>*@
+                                                <br />
+
+
+
+                                                <button class="btn btn-danger" id="Pending">Pending</button>
+
+                                                <button class="btn btn-success" id="Approved">Approved</button>
+                                                <button class="btn btn-primary" id="Decline">Decline</button>
+
+                                            </div>
+                                            <div style="text-align:center;color:red;font-family: initial;"><label id="Error1" style="font-size:20px;"></label></div>
+
+
+
+
+                                            <div id="RegForm">
+                                                <div class="form-group col-md-12">
+                                                    Subject : <span class="msg">*</span>
+                                                    <span id="apl_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
+                                                    <input name="subject" type="text" id="subject" value="" class="form-control alpha" placeholder="Subject">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Appeal Type  : <span class="msg">*</span>
+                                                    <span id="Apl_Apl_type" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <select name="appeal_type" id="appeal_type" class="form-control">
+                                                        <option selected="selected" value="0">--Select Appeal Type--</option>
+                                                        <option value="All administrative and financial matters">All administrative and financial matters</option>
+                                                        <option value="Parliament questions/VIP reference/RTI related matters">Parliament questions/VIP reference/RTI related matters</option>
+                                                        <option value="Technical and operational issues">Technical and operational issues</option>
+                                                        <option value="Training/ Workshop/Seminars">Training/ Workshop/Seminars</option>
+                                                        <option value="Others">Others</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Appeal  Addressed To : <span class="msg">*</span>
+                                                    <span id="Apl_Address" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <select name="address_to" id="address_to" class="form-control">
+                                                        <option value="0">--Select Appeal Addressed To--</option>
+
+                                                        <option value="NPMU">NPMU</option>
+                                                        <option value="Gujarat">Gujarat</option>
+                                                        <option value="Haryana">Haryana</option>
+                                                        <option value="Karnataka">Karnataka</option>
+                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                        <option value="Maharashtra">Maharashtra</option>
+                                                        <option value="Rajasthan">Rajasthan</option>
+                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Full Name : <span class="msg">*</span>
+                                                    <span id="Apl_name" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                    <input name="name" type="text" id="name" value="" class="form-control alpha" maxlength="50" placeholder="Full Name" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Email : <span class="msg">*</span>
+                                                    <span id="Apl_Email" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                                                    <input name="email" type="text" id="email" value="" class="form-control mail" readonly placeholder="Email ID" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Mobile : <span class="msg">*</span>
+                                                    <span id="Apl_mobile" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter numeric only</span>
+                                                    <input name="mobile" type="text" maxlength="10" id="mobile" class="form-control integer" value="" placeholder="Mobile" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Phone :
+                                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter numeric only</span>
+                                                    <input name="phone" type="text" maxlength="10" id="phone" value="" class="form-control integer" placeholder="Phone">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Address : <span class="msg">*</span>
+                                                    <span id="Apl_Address1" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
+                                                    <textarea name="address" rows="2" cols="20" id="address" value="" class="form-control" placeholder="Address" required></textarea>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    Reason for Appeal/ Appeal Description  : <span class="msg">*</span>
+                                                    <span id="Apl_Description" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
+                                                    <textarea name="description" rows="2" cols="20" id="description" class="form-control" placeholder="Reason for Appeal/ Appeal Description" required></textarea>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Supported Document : <span class="msg">(PDF/ JPG/ PNG Only)</span>
+
+                                                    <input type="file" name="files" id="files" class="form-control" autopostback="true">
+                                                </div>
+
+
+
+                                                <div class="form-group col-md-6" style="margin-top:15px;">
+                                                    <div>
+                                                        <img src="/Contact/GetCaptchaImage" id="captchaimg" class="" title="Captcha" style="width:150px;height: 50px;padding: 0px 0px 16px 16px;" />
+                                                        <span class="refreshicon"><i class="fa fa-refresh" onclick="refress()"></i></span>
+                                                        <span id="Apl_captcha" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                        <input type="text" class="col-md-3 form-control" style="width:60%;" name="clientCaptcha" id="clientCaptcha" placeholder="Type the text" required />
+
+
+
+                                                        <p id="status" style="font-weight:bold;color:red;"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <button type="button" name="" id="btnSubmit" class="btn btn-success ">Save</button>
+                                                    @*<button type="reset" value="Reset" id="" class="btn btn-danger">Reset</button>*@
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        //document.getElementById('RegForm').style.display = "none";
+        $('#RegForm').hide();
+
+        $('#Approved').hide();
+        $('#Submit1').hide();
+        $('#Pending').hide();
+        //Decline
+        $('#Decline').hide();
+    });
+    var Grievance_Id = "";
+    function SearchInfo() {
+
+        var grivanceid = $('#grivanceid').val();
+        if (grivanceid != "") {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Grievance/Appeal_Registration",
+                data: "{'grivanceid': '" + grivanceid + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    if (response == "Data") {
+                        APPealInfo();
+                    }
+                    else if (response == "Pending") {
+                        alert("Sorry, Your Grievance is not eligible for appeal.");
+                        $('#RegForm').hide();
+                        $('#Approved').hide();
+                        $('#Pending').hide();
+                        $('#Decline').hide();
+                    }
+                    else if (response.length != 0) {
+                        $('#name').val(response[0].fullname);
+                        $('#phone').val(response[0].phone);
+                        $('#mobile').val(response[0].mobile);
+                        $('#address').val(response[0].address);
+                        $('#email').val(response[0].email);
+                        $('#subject').val(response[0].subject);
+                        $("#appeal_type").val(response[0].grievance_type);
+                        $("#address_to").val(response[0].grievance_address_to);
+                        $('#gid').val(response[0].gid);
+                        if (response[0].accept == "Pending") {
+                            $('#Decline').hide();
+                            $('#RegForm').show();
+                            $('#Approved').hide();
+                            $('#Pending').show();
+                        }
+                        else if (response[0].accept == "Approved") {
+                            $('#Decline').hide();
+                            $('#RegForm').show();
+                            $('#Approved').show();
+                            $('#Pending').hide();
+                        }
+                        else if (response[0].accept == "Decline") {
+                            $('#Decline').show();
+                            $('#RegForm').show();
+                            $('#Approved').hide();
+                            $('#Pending').hide();
+                        } else {
+                            $('#Decline').hide();
+                            $('#RegForm').show();
+                            $('#Approved').hide();
+                            $('#Pending').hide();
+                        }
+
+                        Grievance_Id = response[0].IdentificationId;
+                    }
+                    else {
+                        $('#RegForm').hide();
+                        $('#Approved').hide();
+                        $('#Pending').hide();
+                    }
+                }
+            });
+        } else {
+
+            alert("Please Enter Grivance Id")
+        }
+
+    }
+
+
+
+
+    function APPealInfo() {
+        var grivanceid = $('#grivanceid').val();
+
+        if (grivanceid != "") {
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Grievance/Grievance_Tracking",
+                data: "{'Gid': '" + grivanceid + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    
+                    if (response == "NoData") {
+                        $('#Error1').text("No Data");
+
+                    }
+                    else if (response.length != 0) {
+                        $('#name').val(response.fullname);
+                        $('#phone').val(response.phone);
+                        $('#mobile').val(response.mobile);
+                        $('#address').val(response.address);
+                        $('#email').val(response.email);
+                        $('#description').val(response.description);
+                        $('#subject').val(response.subject);
+                        $("#appeal_type").val(response.appeal_type);
+                        $("#address_to").val(response.appeal_address_to);
+
+                        if (response.accept == "Pending") {
+                            $('#Decline').hide();
+                            $('#RegForm').show();
+                            $('#Approved').hide();
+                            $('#Pending').show();
+                        }
+                        else if (response.accept == "Approved") {
+                            $('#Decline').hide();
+                            $('#RegForm').show();
+                            $('#Approved').show();
+                            $('#Pending').hide();
+                        }
+                        else if (response.accept == "Decline") {
+                            $('#Decline').show();
+                            $('#RegForm').show();
+                            $('#Approved').hide();
+                            $('#Pending').hide();
+                        } else {
+                            $('#Decline').hide();
+                            $('#RegForm').show();
+                            $('#Approved').hide();
+                            $('#Pending').hide();
+                        }
+
+
+                    }
+
+                }
+            });
+        }
+    }
+
+
+
+
+
+    $(function () {
+        $("#btnSubmit").click(function () {
+            
+            Checking();
+
+        });
+    });
+
+
+    function SearchInformation() {
+        var grivanceid = $('#grivanceid').val();
+        var i = 0;
+
+
+        //clientCaptcha
+        
+        var clientCaptcha = $('#clientCaptcha').val();
+        if (clientCaptcha == "") {
+            i = 1;
+
+            //  $('#Error1').text("Please Enter Client Captcha");
+            $('#Apl_captcha').show();
+        }
+        else {
+            $('#Apl_captcha').hide();
+        }
+        var Status = $('#status').text();
+        if (Status == "Captch process is Succesfully") {
+            i = 0;
+        } else if (Status == "") {
+            i = 1;
+            // $('#Grv_captcha').show();
+
+        }
+        else {
+            i = 1;
+            // $('#Grv_captcha').show();
+        }
+        var description = $('#description').val();
+        if (description == "") {
+            i = 1;
+            // $('#Error1').text("Please Enter description");
+            $('#Apl_Description').show();
+        }
+        else {
+            $('#Apl_Description').hide();
+        }
+        var address = $('#address').val();
+        if (address == "") {
+            i = 1;
+            //  $('#Error1').text("Please Select Address");
+            $('#Apl_Address1').show();
+        }
+        else {
+            $('#Apl_Address1').hide();
+        }
+        var phone = $('#phone').val();
+        if (phone == "") {
+            i = 1;
+            //$('#Error1').text("Please Select Phone");
+
+        }
+        var mobile = $('#mobile').val();
+        if (mobile == "") {
+            i = 1;
+            // $('#Error1').text("Please Select mobile");
+            $('#Apl_mobile').show();
+        }
+        else {
+            $('#Apl_mobile').hide();
+        }
+        var email = $('#email').val();
+        if (email == "") {
+            i = 1;
+            // $('#Error1').text("Please Select Email");
+            $('#Apl_Email').show();
+        }
+        else {
+            $('#Apl_Email').hide();
+        }
+        var name = $('#name').val();
+        if (name == "") {
+            i = 1;
+            // $('#Error1').text("Please Enter name");
+            $('#Apl_name').show();
+        }
+        else {
+            $('#Apl_name').hide();
+        }
+
+        var address_to = $('#address_to').val();
+        if (address_to == "0") {
+            i = 1;
+            $('#Apl_Address').show();
+            //  $('#Error1').text("Enter address_to");
+        }
+        else {
+            $('#Apl_Address').hide();
+        }
+
+        var appeal_type = $('#appeal_type').val();
+        if (appeal_type == "0") {
+            i = 1;
+            $('#Apl_Apl_type').show();
+            // $('#Error1').text("Enter appeal_type");
+        } else {
+            $('#Apl_Apl_type').hide();
+        }
+
+        var subject = $('#subject').val();
+        if (subject == "") {
+            i = 1;
+            $('#apl_sub').show();
+            //   $('#Error1').text("Enter Subject");
+        }
+        else { $('#apl_sub').hide(); }
+        if (i == 0) {
+            $.ajax({
+                url: "/Grievance/Appeal_Registration_Data",
+                type: "POST",
+                data: function () {
+                    var data = new FormData();
+                    data.append("subject", jQuery("#subject").val());
+                    data.append("appeal_type", jQuery("#appeal_type").val());
+                    data.append("address_to", jQuery("#address_to").val());
+                    data.append("address", jQuery("#address").val());
+                    data.append("name", jQuery("#name").val());
+                    data.append("email", jQuery("#email").val());
+                    data.append("mobile", jQuery("#mobile").val());
+
+
+                    data.append("phone", jQuery("#phone").val());
+                    data.append("description", jQuery("#description").val());
+                    data.append("files", jQuery("#files").get(0).files[0]);
+                    data.append("Grievance_Id", grivanceid);
+
+                    return data;
+                }(),
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+
+                    $('#Error1').text('Please Check Mail Id');
+
+
+                    $("#files").val("");
+                    $("#subject").val("");
+                    $("#appeal_type").val("0");
+                    $("#address_to").val("0");
+
+                    $("#name").val("");
+                    $("#email").val("");
+                    $("#mobile").val("");
+
+                    $('#clientCaptcha').val("");
+                    $("#phone").val("");
+                    $("#description").val("");
+
+                    $('#status').text("");
+                    var String1 = "You Successfully lodged a Grievance. Your Grievance id is " + grivanceid;
+                    alert(String1);
+                    $('#Decline').hide();
+                    $('#RegForm').hide();
+                    $('#Approved').hide();
+                    $('#Pending').hide();
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+        }
+    }
+
+
+</script>
+<script src="~/Scripts/jquery.min.js"></script>

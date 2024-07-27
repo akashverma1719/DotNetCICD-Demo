@@ -1,0 +1,322 @@
+﻿@{
+    ViewBag.Title = "MisSignUp";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+
+<style>
+    .input-box {
+        font-size: 42px;
+        border: none;
+        border-bottom: 1px solid #000;
+        height: 50px;
+        line-height: 28px;
+    }
+
+
+    .button.lemon {
+        background: #0B940F;
+        padding: 4px;
+        text-align: center;
+        border: none;
+        border-radius: 45px;
+        box-shadow: 8px 3px 17px rgba(0, 0, 0, 1);
+        transition: all 0.3s ease 0s;
+        font-size: 18px;
+        height: 45px;
+        width: 125px;
+    }
+
+    #ss {
+        border-style: solid;
+        border-width: 3px;
+        -webkit-border-image: -webkit-linear-gradient( left, rgba(0,0,0,1) 1%, rgba(0,255,255,1) 50%, rgba(0,0,0,1) 100% ) 0 0 100% 0/0 0 3px 0 stretch;
+        -moz-border-image: -moz-linear-gradient( left, rgba(0,0,0,1) 1%, rgba(0,255,255,1) 50%, rgba(0,0,0,1) 100% ) 0 0 100% 0/0 0 3px 0 stretch;
+        -o-border-image: -o-linear-gradient( left, rgba(0,0,0,1) 1%, rgba(0,255,255,1) 50%, rgba(0,0,0,1) 100% ) 0 0 100% 0/0 0 3px 0 stretch;
+        border-image: linear-gradient( to left, rgba(0,0,0,1) 1%, rgba(0,255,255,1) 50%, rgba(0,0,0,1) 100% ) 0 0 100% 0/0 0 3px 0 stretch;
+
+    }
+    .field-icon {
+        float: right;
+        margin-left: -25px;
+        margin-top: 5px;
+        position: relative;
+        z-index: 2;
+    }
+    .mt-140 {
+        margin-top: 20px;
+    }
+   
+</style>
+
+<script src="~/Scripts/jquery.min.js"></script>
+
+
+<div class="about-area mt-140 about-two">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="" style="border: 1px solid;padding: 33px 44px 22px 41px;">
+                    @*<span class="block text-uppercase s-title">SINCE 2007</span>*@
+                    <div class="section-title mb-38 mt-31">
+                        @*<span class="opacity-text text-uppercase">About</span>*@
+                        <h2 class="uppercase">KNOW ABOUT <span class="text-color">MIS</span></h2>
+                    </div>
+                    <p class="23">
+
+                        ABHY’s MIS system is a user-friendly information portal designed for people working in the
+                        areas of ground water and related fields. The system gives easier access to
+                        hydrogeological information alongside information about weather, geology and water
+                        harvesting structures for water budgeting and water security planning in the long run. The
+                        system also presents trends in ground water levels over time and recent ground water
+                        levels compared to the long term average. It is a valuable tool for non-experts as it
+                        provides background information that can be used to understand ground water at a
+                        particular location. Government, industry and the general public can use these products to
+                        inform decision-making and research about ground water resources.
+                    </p>
+
+                </div>
+
+                <div class="link mb-33 pt-18">
+                    <a href="#">Download our apps</a><span class="text pl-12">and get notifications for new property</span>
+                </div>
+                <div class="fun-factor pb-10 pt-32">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="single-fun-factor text-dark">
+                                <div class="text-icon mb-14 block">
+                                    <img src="~/Content/Website/images/banner/profiles.png"alt="" class="mr-15"style="width: 50px;height:50px;"/> 
+                                 
+                                    <h2><span class="counter">999</span></h2>
+                                </div>
+                                <h4>Complete Project</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="single-fun-factor text-dark">
+                                <div class="text-icon mb-14 block">
+                                    <img src="~/Content/Website/images/banner/deal.png"alt="" class="mr-15"style="width: 50px;height:50px;" />
+                                    
+                                    <h2><span class="counter">720</span></h2>
+                                </div>
+                                <h4>Property Sold</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-3">
+                            <div class="single-fun-factor text-dark">
+                                <div class="text-icon mb-14 block">
+                                    <img src="~/Content/Website/images/banner/good-mood-emoticon.png"alt="" class="mr-15"style="width: 50px;height:50px;"/>
+                                    <h2><span class="counter">750</span></h2>
+                                </div>
+                                <h4>Happy Clients</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 hidden-md col-sm-3">
+                            <div class="single-fun-factor text-dark">
+                                <div class="text-icon mb-14 block">
+                                    <img src="~/Content/Website/images/banner/ribbon-badge-award.png"alt="" class="mr-15"style="width: 50px;height:50px;"/>
+                                    <h2><span class="counter" style="font-size:31px;">120</span></h2>
+                                </div>
+                                <h4>Awards Won</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding: 0px 43px 20px 29px;  border: 1px solid;    height: 600px;">
+                <div class="section-title mb-38 mt-31">
+
+                    <h2 class="upperca" style="text-align:center;"><span class="text-color" id="ss">Sign Up</span></h2>
+                </div>
+                @using (Html.BeginForm("MisSignUp", "Home"))
+                {
+                    @*<form action="#" method="post">*@
+
+                    <div class="input-box mb-19">
+
+                        <select id="change" name="signupdata" required>
+                            <option>Nodal Officer</option>
+                            <option value="Admin">Admin</option>
+                            <option value="District Level Nodal Officer">District Level Nodal Officer</option>
+                            <option value="National Level Nodal Officer">National Level Nodal Officer</option>
+                            <option value="State Level Nodal Officer">State Level Nodal Officer</option>
+                            <option value="Block Level Nodal Officer">Block Level Nodal Officer</option>
+                            <option value="Gram Panchyat Nodal Officer">Gram Panchyat Nodal Officer</option>
+                        </select>
+                    </div>
+                    <input type="text" name="signupdata" hidden />
+                    <div class="input-box mb-19">
+                        @* <i class="fa fa-user"></i>*@
+                        <img src="~/Content/Website/images/banner/user-outline@2x.png"style="padding: 13px 0px 0px 0px;width: 21px" />
+                        <input type="text" name="username" class="sinup"placeholder="username" required />
+                        
+                    </div>
+                    <div class="input-box">
+                        @* <i class="fa fa-envelope"></i>*@
+                        <img src="~/Content/Website/images/banner/email.png" style="padding: 13px 0px 0px 0px;width: 21px" />
+                        <input type="email" name="useremail" placeholder="Email" required>
+                    </div>
+                    <div class="input-box mb-19">
+                       @* <i class="fa fa-mobile"></i>*@
+                        <img src="~/Content/Website/images/banner/contact-book@2x.png" style="padding: 13px 0px 0px 0px;width: 21px" />
+                        <input type="number" name="usernumber" placeholder="Contact Number" required>
+                    </div>
+                    <div class="input-box">
+                        @* <i class="fa fa-building"></i>*@
+
+                        <img src="~/Content/Website/images/banner/profile@2x.png"style="padding: 13px 0px 0px 0px;width: 21px" />
+                        <input type="text" name="userdepartment" placeholder="Department Name" required>
+                    </div>
+                    <div class="input-box">
+                        @* <i class="fa fa-lock"></i>*@
+                        <img src="~/Content/Website/images/banner/locked.png" style="padding: 13px 0px 0px 0px;width: 21px" />
+                        <input type="password" name="usercreatepassword" id="usercreatepassword" placeholder="Create a Password" required>
+                        <span toggle="#usercreatepassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="input-box">
+                        @* <i class="fa fa-lock"></i>*@
+                        <img src="~/Content/Website/images/banner/locked.png"style="padding: 13px 0px 0px 0px;width: 21px" />
+                        <input type="password" name="userconfirmpassword" id="userconfirmpassword" placeholder="Confirm Your Password" required>
+                       
+                    </div>
+
+
+                    <div class="button-box mt-20" style="font-size:25px">
+                        <a href="~/Home/MisLogin" style="font-size: 20px;"><i class="fa fa-arrow-left" aria-hidden="true" style="font-size: 30px;padding: 18px 5px 3px 0px;"></i></a>
+                            <b>Login</b>
+                           @* <span><i class="fa fa-arrow-left" aria-hidden="true" style="font-size: 30px;padding: 18px 5px 3px 0px;"></i><a href="~/Home/MisLogin" style="font-size: 15px;">Back To Login</a></span>*@
+                            <button type="submit" class="register-btn button lemon pull_right">Register</button>
+                    </div>
+
+                    <h5 style="text-align:center;color:red;">@ViewBag.Error</h5>
+
+                    <!--District Level Nodal Officer  Model Popup Starts-->
+
+                    <div class="modal fade" tabindex="-1" role="dialog" id="modal1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="District1">Select State And District</h4>
+                                    <h4 class="modal-title" id="State1">Select State</h4>
+                                    <h4 class="modal-title" id="Block1">Select State, District And Block</h4>
+                                    <h4 class="modal-title" id="Gram1">Select State, District ,Block And Gram</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <select style="margin-bottom: 10px;" name="state" id="state" class="state">
+                                        <option>Select State Name</option>
+                                        <option value="Ap">
+                                            AP
+                                        </option>
+                                        <option value="Telangana">
+                                            Telangana
+                                        </option>
+                                    </select>
+
+                                    <select style="margin-bottom: 10px;" name="dist" id="dist" class="dist">
+                                        <option>Select District Name</option>
+                                        <option value="Vizag">
+                                            Vizag
+                                        </option>
+                                        <option value="Vizianagaram">
+                                            Vizianagaram
+                                        </option>
+                                    </select>
+
+                                    <select style="margin-bottom: 10px;" name="block" id="block" class="block">
+                                        <option>Select Block Name</option>
+                                        <option value="Ap">
+                                            AP
+                                        </option>
+                                        <option value="Telangana">
+                                            Telangana
+                                        </option>
+                                    </select>
+                                    <select style="margin-bottom: 10px;" name="gram" id="gram" class="gram">
+                                        <option>Select Gram Panchyat Name</option>
+                                        <option value="gpm">
+                                            GPM
+                                        </option>
+                                        <option value="mtd">
+                                            MTD
+                                        </option>
+                                    </select>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    <!--State Level Nodal Officer  Model Popup Starts-->
+
+
+
+
+
+
+                    <input type="text" name="state" hidden />
+                    <input type="text" name="dist" hidden />
+                    <input type="text" name="block" hidden />
+                    <input type="text" name="gram" hidden />
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#change').change(function () {
+
+        //this is just getting the value that is selected
+        var title = $(this).val();
+        if ($(this).val() == 'District Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#gram').hide();
+            $('#block').hide();
+            $('#State1').hide();
+            $('#Gram1').hide();
+            $('#Block1').hide();
+        }
+        if ($(this).val() == 'State Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#gram').hide();
+            $('#block').hide();
+            $('#dist').hide();
+            $('#block').hide();
+            $('#District1').hide();
+            $('#Gram1').hide();
+            $('#Block1').hide();
+
+        }
+        if ($(this).val() == 'Block Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#gram').hide();
+
+            $('#State1').hide();
+            $('#Gram1').hide();
+            $('#District1').hide();
+        }
+
+        if ($(this).val() == 'Gram Panchyat Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+        }
+    });
+</script>
+<script>
+    $(".toggle-password").click(function () {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>

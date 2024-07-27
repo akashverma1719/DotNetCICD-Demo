@@ -1,0 +1,428 @@
+﻿
+@{
+    ViewBag.Title = "physical_monitoring";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <center>
+                <h1 class="text-primary">Data For DLI</h1>
+            </center>
+
+            <br />
+
+            @*dropdown start*@
+            <div class="hpanel horange" style="margin-bottom:0px;">
+                <div class="panel-body">
+                    <div class="row" id="">
+
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Select Year * <sup class="Required_star"></sup></label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="Syear" onchange="Check_Data()">
+                                        <option value="0">Select Year</option>
+                                        <option value="2020-21">2020-2021</option>
+                                        <option value="2021-22">2021-2022</option>
+                                        <option value="2022-23">2022-2023</option>
+                                        <option value="2023-24">2023-2024</option>
+                                        <option value="2024-25">2024-2025</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Select State<sup class="Required_star"></sup></label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="Sstate" onchange="Check_Data()">
+                                        <option value="0">Select State</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Select DLI *</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="Stype" onchange="Check_Data_DLI()">
+                                        <option value="0">Select DLI</option>
+                                        <option value="DLI1">DLI1</option>
+                                        <option value="DLI2">DLI2</option>
+                                        <option value="DLI3">DLI3</option>
+                                        <option value="DLI4">DLI4</option>
+                                        <option value="DLI5">DLI5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*dropdown end*@
+                    </div>
+
+
+                    @*label here*@
+                    <div class="row" id="Target_Achievement">
+
+
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="" id="target">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label"> <sup class="Required_star"></sup>Target</label>
+                                <div class="col-sm-8">
+                                    <input type="tel" class="form-control" id="Target" maxlength="10" placeholder="Enter Target" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="" id="achievement">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label"><sup class="Required_star"></sup>Achievement</label>
+                                <div class="col-sm-8">
+                                    <input type="tel" id="Achievement" class="form-control" maxlength="10" placeholder="Achievement" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="" id="achievement_dli">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label"><sup class="Required_star"></sup>Achievement</label>
+                                @*<a href="javascript:;" data-toggle="tooltip" title="Total Achievement= Water Level+WaterQuality+Hydrogeological Reports"></a>*@
+                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Achievement= Water Level+WaterQuality+Hydrogeological Reports" style="font-size:16px;color:blue;margin-left:-10px"></i>
+
+                                <div class="col-sm-8">
+                                    <input type="number" id="Achievement_Dli" class="form-control" placeholder="Achievement" style="margin-top: -20px;" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="" id="water_level">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label"><sup class="Required_star"></sup>Water Level</label>
+                                <div class="col-sm-8">
+                                    <input type="tel" id="Water_Level" maxlength="5" class="form-control" placeholder="Enter Achievement" onkeyup="Total_Numbers1()" onkeydown="Total_Numbers1()" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4" style="float:right" id="water_quality">
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label"><sup class="Required_star"></sup>Water Quality</label>
+                                <div class="col-sm-8">
+                                    <input type="tel" maxlength="5" id="Water_Quality" class="form-control" placeholder="Enter Achievement" onkeyup="Total_Numbers1()" onkeydown="Total_Numbers1()" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-sm-4 col-md-4" style="float:right" id="hydro_report">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label"><sup class="Required_star"></sup>Hydrogeological Reports</label>
+                            <div class="col-sm-8">
+                                <input type="tel" maxlength="5" id="Hydro_Reports" class="form-control" placeholder="Enter Achievement" onkeyup="Total_Numbers1()" onkeydown="Total_Numbers1()" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-12 bg-light " style="text-align:center; width:100%; padding:0; margin-top:30px;">
+                    <button class="btn btn-primary" type="button" id="btnSave" onclick='Save_Data()' disabled>Save</button>
+                    @*<button type="button" class="btn " style="background-color:papayawhip;color:black">Cancel</button>*@
+                </div>
+
+
+            </div>
+
+        </section>
+    </div>
+
+
+</main>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Content/JS_Files/DLI.js"></script>
+
+<script type="text/javascript">
+    var Email = '';
+    $(document).ready(function () {
+        
+        Email = '@Session["Email"]';
+        $("#target").hide();
+        $("#achievement").hide();
+        $("#achievement_dli").hide();
+        $("#water_level").hide();
+        $("#water_quality").hide();
+        $("#hydro_report").hide();
+        $("#btnSave").text("Save");
+        if (Email == 'neetynagi@gmail.com') {
+            $('#btnSave').prop('disabled', false);
+        }
+        State();
+        FetchData();
+
+    });
+
+    function Check_Data_DLI() {
+        
+        var check = $("#Stype option:selected").val();
+        if (check == 'DLI1') {
+            $("#target").show();
+            $("#achievement").hide();
+            $("#achievement_dli").show();
+            $("#water_level").show();
+            $("#water_quality").show();
+            $("#hydro_report").show();
+        }
+        else {
+            $("#target").show();
+            $("#achievement").show();
+            $("#achievement_dli").hide();
+            $("#water_level").hide();
+            $("#water_quality").hide();
+            $("#hydro_report").hide();
+
+        }
+
+    }
+
+    function Total_Numbers1() {
+        
+        var total = 0;
+        var Water_Level = $('#Water_Level').val();
+        var Water_Quality = $('#Water_Quality').val();
+        var Hydro_Reports = $('#Hydro_Reports').val();
+
+        if (Water_Level == "") {
+
+            Water_Level = 0;
+        }
+
+        if (Water_Quality == "") {
+
+            Water_Quality = 0;
+        }
+        if (Hydro_Reports == "") {
+
+            Hydro_Reports = 0;
+        }
+
+        total = parseFloat(Water_Level) + parseFloat(Water_Quality) + parseFloat(Hydro_Reports);
+
+        $('#Achievement_Dli').val(total);
+
+
+    }
+
+    function Export_Table() {
+        //if (component != 0) {
+        //    for (var i = 0; i < component; i++) {
+        //        var ss = "TRA01" + i;
+        //        $(ss).remove();
+        //    }
+        //}
+
+        $('#dli_report_excel').click();
+        Dli_1_Details();
+
+    }
+
+    var tableToExcel = (function () {
+
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+
+    function State() { //add value to state dropdown
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/DLI/Get_States',
+            dataType: 'JSON',
+            success: function (data) {
+                        
+             var StateType = '@Session["Officer"]';
+                if (StateType != 'National Level Nodal Officer' && StateType != 'Admin') {
+              window.location = "/Home/LogOut";
+        }
+
+                var html = '';
+                html += '<option id="' + "0" + '" value="0" id="lblstates"> ' + "Select state" + ' </option>';
+                html += '<option id="' + "ALL" + '" value="ALL" id="lblstates"> ' + "ALL states" + ' </option>';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].state_name != "Delhi_7") {
+                    html += '<option stateid="' + data[i].state_name + '" id="lblstates"> ' + data[i].state_name + ' </option>';
+                    }
+                }
+                var html1 = '';
+                html1 += '<option id="' + "0" + '" value="0" id="lblstates"> ' + "Select state" + ' </option>';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].state_name != "Delhi_7") {
+                        html1 += '<option stateid="' + data[i].state_name + '" id="lblstates"> ' + data[i].state_name + ' </option>';
+                    }
+                }
+                $('#Sstate').html(html1);
+                //html += '<option stateid="ALL" id="lblstates">ALL </option>';
+                $('#Sstate_check').html(html);
+
+            }
+        });
+
+    }
+
+
+    function Save_Data() {      //save data
+        
+        if ($('#Syear').val() == '0') {
+            alert('Please Select Year');
+            return;
+        }
+        if ($('#Sstate').val() == '0') {
+            alert('Please Select State');
+            return;
+        }
+        if ($('#Stype').val() == '0') {
+            alert('Please Select Type');
+            return;
+        }
+        //if ($('#Stype').val() == 'DLI1') {
+
+        //    if ($('#WQTarget').val() == '') {
+        //        alert('Please Select Water Quality Target');
+        //        return;
+        //    }
+        //    if ($('#WQAchievement').val() == '') {
+        //        alert('Please Select Water Quality Achievement');
+        //        return;
+        //    }
+        //    if ($('#HGRTarget').val() == '') {
+        //        alert('Please Select HGR Target');
+        //        return;
+        //    }
+        //    if ($('#HGRAchievement').val() == '') {
+        //        alert('Please Select HGR Achievemet');
+        //        return;
+        //    }
+
+        //}
+        if ($('#Stype').val() == 'DLI1') {
+
+            var obj = {};
+            obj.Year = $('#Syear').val();
+            obj.State = $('#Sstate').val();
+            obj.type = $('#Stype').val();
+            obj.Target = $('#Target').val();
+            obj.Achievement = $('#Achievement_Dli').val();
+            obj.WaterLevel_Achievement = $('#Water_Level').val();
+            obj.WaterQuality_Achievement = $('#Water_Quality').val();
+            obj.HGR_Achievement = $('#Hydro_Reports').val();
+
+            if ($('#Target').val() == '') {
+                alert('Please fill DLI Target');
+                return;
+            }
+            if ($('#Achievement_Dli').val() == '') {
+                alert('Please fill DLI Achievements');
+                return;
+            }
+
+        }
+        else {
+            var obj = {};
+            obj.Year = $('#Syear').val();
+            obj.State = $('#Sstate').val();
+            obj.type = $('#Stype').val();
+            obj.Target = $('#Target').val();
+            obj.Achievement = $('#Achievement').val();
+
+            if ($('#Target').val() == '') {
+                alert('Please fill DLI Target');
+                return;
+            }
+            if ($('#Achievement').val() == '') {
+                alert('Please fill DLI Achievement');
+                return;
+            }
+        }
+
+        //var obj = {};
+        //obj.Target = $('#DLTarget').val();
+        //obj.Achievement = $('#DLAchievement').val();
+        //obj.Year = $('#Syear').val();
+        //obj.State = $('#Sstate').val();
+        //obj.type = $('#Stype').val();
+        //obj.WaterQuality_Target = $('#WQTarget').val();
+        //obj.WaterQuality_Achievement = $('#WQAchievement').val();
+        //obj.HGR_Target = $('#HGRTarget').val();
+        //obj.HGR_Achievement = $('#HGRAchievement').val();
+        //obj.Id = $('#DLTarget').attr('RowId');
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/DLI/Save_Data",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                $('#Target').val('');
+                $('#Achievement').val('');
+                $('#Achievement_Dli').val('');
+                $('#Water_Level').val('');
+                $('#Water_Quality').val('');
+                $('#Hydro_Reports').val('');
+                $('#Syear').val(0);
+                $('#Sstate').val(0);
+                $('#Stype').val(0);
+                $("#btnSave").text("Save");
+                FetchData();
+
+            },
+            error: function () {
+                alert("errror save_data");
+            }
+
+
+        });
+        $("#target").hide();
+        $("#achievement").hide();
+        $("#achievement_dli").hide();
+        $("#water_level").hide();
+        $("#water_quality").hide();
+        $("#hydro_report").hide();
+
+    }
+
+
+</script>
+
+<script>
+   
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        
+
+    });
+</script>

@@ -1,0 +1,844 @@
+﻿
+@{
+    ViewBag.Title = "WSPDemansidereports";
+    Layout = null;
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+
+<script src="~/Scripts/all_scripts/data.js"></script>
+
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+
+
+<!--Pie Chart-->
+
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+
+
+<!--pie chart-->
+@*<script src="https://code.highcharts.com/modules/variable-pie.js"></script>*@
+
+
+<meta name="viewport" content="width=device-width" />
+<title>Water Security Plan Report</title>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .demandside_text > tbody > tr > td {
+        text-align: left;
+        font-size: 13px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 13px !important;
+    }
+    td{
+        font-size:13px !important;
+    }
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .demandsidesupplyside_space {
+        margin-top: 70px;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .dateandtime_ul > li {
+        display: inline-block;
+        color: #000;
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+
+    .heding_demandindside {
+        padding: 0px 20px;
+        color: #337ab7
+    }
+
+        .heding_demandindside > #resetinfo {
+            padding: 5px;
+        }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff0;
+        font-size: 13px;
+    }
+    #data_sprinkler .tableheader1 th {
+        color: #337ab7;
+    }
+    
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-xs-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 13px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            text-transform: uppercase;
+            word-spacing: 1px;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    /*.firsttable {
+        display: block;
+    }
+        */
+    .secondtable {
+        text-align: right;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .demandsidesupplyside_space1_121 {
+        margin-top: 300px;
+    }
+    /*  .firsttable
+    {
+        margin-bottom:10px;
+    }*/
+    /*    .report_heading_div
+    {
+        margin-bottom:15px;
+    }*/
+</style>
+<div class="container" id="Data1">
+    <div class="col-md-12">
+        <div class="firsttable col-md-12" style="margin-bottom:15px;">
+            <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+        </div>
+    </div>
+    <div class="col-md-12 report_heading_div">
+        <div class="col-md-9">
+            <h1>Water Security Plan Report </h1>
+
+        </div>
+        <div class="col-md-3 text-right" id="btnExport">
+            <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+        </div>
+        <div class="col-md-12">
+            <ul class="dateandtime_ul">
+                <li>Date : <span id="demodemandsupply"></span></li>
+                <li>Time : <span id="demodemandsupply2"></span></li>
+                <li>
+                    User Name :
+                    @if (Session["UserName"] != null)
+                    {
+                        <span>@Session["UserName"].ToString()</span>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-12 state_dist_level">
+        <div class="row" id="Select_dist_level">
+            <ul class="Select_option">
+                @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                {
+
+                    <li>
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate">@Session["gstate"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                }
+                else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                {
+                    <li>
+                        <label id="lblstate">Admin</label>
+
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <label id="lblstate">National Level Nodal Officer</label>
+
+                    </li>
+                }
+
+
+                @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                {
+                    <li>
+
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+
+                }
+
+                @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Block:</label>
+                        <span id="spnblock">@Session["gblock"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                }
+                @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Gram panchayat:</label>
+                        <span id="spngram">@Session["ggram"]</span>
+
+                    </li>
+                }
+                @if (Session["Year"] != null && Session["Year"].ToString() != "null" && Session["Year"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Year:</label>
+                        <span id="Year">@Session["Year"]</span>
+
+                    </li>
+                }
+                @if (Session["month"] != null && Session["month"].ToString() != "null" && Session["month"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Month:</label>
+                        <span id="month">@Session["month"]</span>
+
+                    </li>
+                }
+
+            </ul>
+        </div>
+
+    </div>
+    <div>
+        <div class="col-md-12 demandsidesupplyside_space1">
+            <div class="col-md-12 ">
+                <table class="table demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;height: 340px;">
+                    <tbody id="data_sprinkler">
+                        <tr style="height:20px;">
+                            <th colspan="8" style="background-color:#337ab7;color:#fff;">
+                                <center>
+                                    Demand Side
+                                </center>
+                            </th>
+
+                        </tr>
+                        @*<tr> <th colspan="13" style="background-color:#337ab7;color:#fff"><center>Micro-Irrigation through Sprinkler</center></th></tr>*@
+                        <tr class="tableheader1" style="height:20px;">
+                            <th>Sr No</th>
+                            <th>Name of Intervention</th>
+                            @*<th>Area under crop shifted (ha)</th>*@
+                            <th>Proposed Area(ha)</th>
+                            <th>Total Water demand(ha m)</th>
+                            <th>Net Water Demand(ha m)</th>
+                            <th>Reduction in Water demand(ha m)</th>
+                            <th>Approximate cost(in lakh)</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12 ">
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table class="table demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="data_sprinkler_fund">
+
+                            <tr> <th colspan="9" style="background-color:#337ab7;color:#fff"><center>Funding Source</center></th></tr>
+                            <tr class="tableheader1">
+                                <th>Sr No</th>
+                                <th>Name of Intervention</th>
+                                @*<th>Total Area under Conventional Irrigation (ha)</th>
+                                <th>Total Area Proposed (ha)</th>*@
+                                <th>Area Proposed(ha)</th>
+                                <th>Financial Year</th>
+                                <th>Department Name</th>
+                                <th>Scheme Name</th>
+                                <th>Approximate Cost(in Lakh)</th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center heding_demandindside">
+            <div id="resetinfo">
+                <h2>Demand Side</h2>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div id="resetinfo" style="padding:5px;">
+                <div id="container_demand_side" style="height:400px"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12 ">
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table class="table demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="supp_summ">
+                            <tr>
+                                <th colspan="11" style="background-color:#337ab7;color:#fff;text-align:center;">
+                                    Supply Side (Artificial Recharge Structures)
+                                </th>
+                            </tr>
+                            <tr class="tableheader1">
+                                <th>SR No</th>
+                                <th>Name of Structure</th>
+                                <th>Storage Capacity(ha m)</th>
+                                <th>Annual GW Recharge(ha m)</th>
+                                <th>Village Name</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Financial Year</th>
+                                <th>Department Name</th>
+                                <th>Scheme Name</th>
+                                <th>Approximate Cost (in Lakhs)</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12 ">
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table class="table demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="supp_WCS">
+                            <tr>
+                                <th colspan="11" style="background-color:#337ab7;color:#fff;text-align:center;">
+                                    Supply Side (Water Conservation Structures)
+                                </th>
+                            </tr>
+                            <tr class="tableheader1">
+                                <th>SR No</th>
+                                <th>Name of Structure</th>
+                                <th>Storage Capacity(ha m)</th>
+                                <th>Effective storage available for use (ha m)</th>
+                                <th>Village Name</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Financial Year</th>
+                                <th>Department Name</th>
+                                <th>Scheme Name</th>
+                                <th>Approximate Cost (in Lakhs)</th>
+                                <!--<th>SR No</th>
+                            <th>Names of Structures proposed as Supply side Intervention in WSP in for which funds are to be allocated</th>-->
+                                @*<th>Number of Structures</th>*@
+                                <!--<th>Funding Source(Name of scheme in Supply side)</th>
+                            <th>Total fund required for Supply Side(Amount in lakh)</th>
+                            <th>Fund through Convergance in Supply Side</th>
+                            <th>Gap Funding Via Atal Jal in Supply Side(Amount in lakh)</th>
+                            <th>Effective storage available for use (ha m)</th>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-12">
+            <div class="col-md-6 text-center heding_demandindside demandsidesupplyside_space1_12">
+                <div id="resetinfo">
+                    <h5>Supply Side (Artificial Recharge Structures)</h5>
+                </div>
+                <div id="resetinfo" style="padding:10px;">
+                    <div id="container_supply_ar" style="height:350px"></div>
+                </div>
+            </div>
+            <div class="col-md-6 text-center heding_demandindside demandsidesupplyside_space1_12">
+                <div id="resetinfo">
+                    <h5>Supply Side (Water Conservation Structures)</h5>
+                </div>
+                <div id="resetinfo" style="padding:10px;">
+                    <div id="container_supply_wcs" style="height:350px"></div>
+                </div>
+            </div>
+        </div>
+        
+    <div class="col-md-12" style="margin-bottom:15px;">
+        <div class="col-md-12">
+            <p class="text-center">
+                .............................
+            </p>
+            <p class="text-justify">
+                The results and analysis contained within the Water Security Plan Report are generated with the help of inputs given by the
+                user as well as existing database. Each component of water budgeting is designed to make understand the users about
+                the processes, parameters and equations involved in the system. The overall goal of water budgeting is therefore to
+                improve the management of ground water resources in priority areas of the country.
+            </p>
+            <p class="text-center">
+                .............................
+            </p>
+        </div>
+
+        <div class="container hidediv " id="btnExport1">
+            <div class="col-md-12 text-center">
+                <a href=""></a>
+                <a href="~/SupplySide/Index" class="btn btn-danger">
+                    Back
+                </a>
+
+                @*<button type="button" class="btn btn-success" onclick="ReportPdf();">Download</button>*@
+
+                <a href="~/PGWM/index" class=" btn btn-primary">Go to PGWM</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<script src="~/Content/JS_Files/Summary_supp_dem.js"></script>
+
+<script>
+    var KharifArray = [];
+    var RabiArray = [];
+    var AOIArray = [];
+    var KharifArray_wcs = [];
+    var RabiArray_wcs = [];
+    var AOIArray_wcs = [];
+    var DemandSide_KharifArray = [];
+    var DemandSide_RabiArray = [];
+    var DemandSide_SummerArray = [];
+    function demandside_graph() {
+        Highcharts.chart('container_demand_side', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+
+            xAxis: {
+                categories: [
+                    // 'Standard Water<br/> Demand(ha.m)',
+                    'Micro-irrigation (Sprinkler)',
+                    'Micro-irrigation (Drip)',
+                    'Irrigation through <br/>underground <br/> pipelines ',
+                    'Crop <br/>diversification',
+                    'Any other measure <br/> for saving of <br/>water in agriculture',
+                    'Other measures <br/>for saving water'
+                ],
+                title: {
+                    useHTML: true,
+                    enabled: true,
+                    text: '<b>Name of intervention<b>',
+                    style: {
+                        fontWeight: 'normal'
+                    }
+                },
+
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: '<b>Volume of water (ha m)<b>'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.2f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+
+            },
+            series: [{
+                name: 'Total water Demand',
+                data: DemandSide_KharifArray
+
+            }, {
+                name: 'Net water Demand',
+                data: DemandSide_RabiArray
+
+            }, {
+                name: 'Reduction in water Demand',
+                data: DemandSide_SummerArray
+
+            }]
+        });
+    }
+
+
+    function Supply_SideReport() {
+        Highcharts.chart('container_supply_ar', {
+            chart: {
+                type: 'column'
+            },
+
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'AR Structures'
+
+                ],
+                title: {
+                    useHTML: true,
+                    enabled: true,
+                    text: '<b>Name of intervention<b>',
+                    style: {
+                        fontWeight: 'normal'
+                    }
+                },
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: '<b>Number of Structures/Volume (ha m)<b>'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.2f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            series: [{
+                name: 'No. of Structures Proposed (New)',
+                data: KharifArray,
+
+            }, {
+                name: 'No. of Structures Proposed (Renovation)',
+                data: RabiArray,
+
+            }, {
+                name: 'Annual GW Recharge (ha m)',
+                data: AOIArray
+
+            }]
+        });
+    }
+
+
+    function Supply_SideReport_wcs() {
+        Highcharts.chart('container_supply_wcs', {
+            chart: {
+                type: 'column'
+            },
+
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'WC Structures',
+                ],
+                title: {
+                    useHTML: true,
+                    enabled: true,
+                    text: '<b>Name of intervention<b>',
+                    style: {
+                        fontWeight: 'normal'
+                    }
+                },
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: '<b>Number of Structures/Volume (ha m)<b>'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.2f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            series: [{
+                name: 'No. of Structures Proposed (New)',
+                data: KharifArray_wcs,
+
+            }, {
+                name: 'No. of Structures Proposed (Renovation)',
+                data: RabiArray_wcs,
+
+            }, {
+                name: 'Effective storage available for use (ha m)',
+                data: AOIArray_wcs
+
+            }]
+        });
+    }
+
+
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demodemandsupply2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/ ' + mm + '/ ' + yyyy;
+    document.getElementById("demodemandsupply").innerHTML = today;
+</script>

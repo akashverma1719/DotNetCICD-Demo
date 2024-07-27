@@ -1,0 +1,1136 @@
+﻿@{
+
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+
+    // var dataa = @ViewBag.IndexData;
+}
+
+<html>
+<head>
+    <style>
+        body:not(.modal-open) {
+            padding-right: 0 !important
+        }
+
+        .piegraphtitle {
+            text-align: center;
+        }
+    </style>
+    <title>Dashboard View</title>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        .highcharts-credits {
+            display: none !important;
+        }
+
+        .canvasjs-chart-credit {
+            display: none !important;
+        }
+
+        .highcharts-color-0 {
+            fill: #7bbde3;
+            stroke: #7bbde3;
+        }
+
+        /*.highcharts-color-1 {
+            fill: #2E578C;
+            stroke: #2E578C;6fb01d
+        }*/
+
+        .highcharts-color-1 {
+            fill: #236ab3;
+            stroke: #236ab3;
+        }
+
+        .highcharts-color-3 {
+            fill: #6fb01d;
+            stroke: #6fb01d;
+        }
+
+        .highcharts-color-4 {
+            fill: #8c8c8c;
+            stroke: #8c8c8c;
+        }
+
+        .highcharts-color-5 {
+            fill: #5a5f5e;
+            stroke: #5a5f5e;
+        }
+
+        .highcharts-color-6 {
+            fill: #79ae3d;
+            stroke: #79ae3d;
+        }
+
+        .highcharts-color-2 {
+            fill: #3b99ed;
+            stroke: #3b99ed;
+        }
+    </style>
+
+    <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('.loading').hide();
+            $('.clearfix').show();
+
+        });
+
+
+    </script>
+
+    <!--=================================-->
+    @*<script src="~/Content/WspImages/Dashboard/highcharts.js"></script>*@
+    @*<script src="https://code.highcharts.com/highcharts.js"></script>*@
+
+    <script src="~/Scripts/all_scripts/highcharts.js"></script>
+    <!-------------------------------------------------------------------------->
+    <script src="~/Content/WspImages/Dashboard/graphs.js"></script>
+    @*<script src="https://code.highcharts.com/modules/variable-pie.js"></script>*@
+
+    <script src="~/Scripts/all_scripts/variable-pie.js"></script>
+    <!------------------------------------------------------------------------------->
+    @*<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>*@
+    <script src="~/Scripts/all_scripts/jquery-3.1.1.min.js"></script>
+    <!-------------------------------------------------------------------------->
+    @*<script src="https://code.highcharts.com/modules/exporting.js"></script>*@
+    <script src="~/Scripts/all_scripts/exporting.js"></script>
+    <!----------------------------------------------------------------------->
+    @*<script src="https://code.highcharts.com/modules/export-data.js"></script>*@
+
+    <script src="~/Scripts/all_scripts/export-data.js"></script>
+    <!------------------------------------------------------------------------------------------------->
+    <!--=======================================-->
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+
+    @*<script src="https://code.highcharts.com/modules/data.js"></script>*@
+
+    <script src="~/Scripts/all_scripts/data.js"></script>
+
+    @*<script src="https://code.highcharts.com/modules/drilldown.js"></script>*@
+    <script src="~/Scripts/all_scripts/drilldown.js"></script>
+    <!--===================================================-->
+    @*<script src="https://code.highcharts.com/modules/variable-pie.js"></script>*@
+
+
+    <!--=====================================-->
+
+    <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = { lat: @ViewBag.Lat, lng: @ViewBag.Lng };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 7, center: uluru });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+    }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgurNrZ8JU8NiUs9bleClqbVul6VR5u4s&callback=initMap">
+    </script>
+    <!--=================-->
+
+    <style type="text/css">
+
+        .panel-body {
+            padding: 0px;
+        }
+
+        .table {
+            margin-bottom: 0px;
+        }
+
+        #chartdiv5 {
+            width: 100%;
+            height: 370px;
+        }
+
+        #chartdiv6 {
+            width: 100%;
+            height: 370px;
+        }
+
+        g[Attributes Style] {
+            display: block;
+        }
+
+        #container {
+            min-width: 300px;
+            max-width: 800px;
+            height: 370px;
+            margin: 1em auto;
+        }
+
+        .graph_dig {
+            width: 60%;
+        }
+
+        .graph_data {
+            float: left;
+            width: 39%;
+        }
+
+        #myChart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .zc-ref {
+            display: none;
+        }
+
+        .panelbodyheading {
+            line-height: 40px;
+            background: #E2cf31;
+            height: 40px;
+            font-weight: 600;
+            padding-left: 10px;
+            text-align: center;
+        }
+
+        .highcharts-pie-series .highcharts-point {
+            stroke: #EDE;
+            stroke-width: 2px;
+        }
+
+        .highcharts-pie-series .highcharts-data-label-connector {
+            stroke: silver;
+            stroke-dasharray: 2, 2;
+            stroke-width: 2px;
+        }
+
+        #datatable {
+            display: none;
+        }
+    </style>
+    <style type="text/css">
+        .modal-backdrop.in {
+            z-index: 0px !important;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.95;
+            visibility: visible;
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+
+        .loading-inactive {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="loading-container loading" id="loading">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="300" width="300" />
+        </div>
+    </div>
+    <div class="clearfix" style="display:none;">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Location
+                                </div>
+                                @if (ViewBag.Lat != null)
+
+                                {
+                                    <div id="map" style="height:480px;width:100%;"></div>
+                                }
+                                else
+                                {
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.191999136997!2d83.38742814969557!3d17.829632187755173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a395b3c5a9a002f%3A0x77d10e25fa2825ec!2sGeo+Climate+Risk+Solutions+Pvt.+Ltd.!5e0!3m2!1sen!2sin!4v1554224570070!5m2!1sen!2sin" width="600" height="370" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Total Geographical Area and Villages
+                                </div>
+
+                                @*<div id="chartdiv" style="height:350px;"> </div>*@
+                                @*<div class="graph_dig" id="apepdcl" style="height:370px; width:100%;"></div>*@
+                                <div id='containertotal_number_of_villages' style="width:100%;height:425px; margin-top:15px;"></div>
+                                <p class="piegraphtitle">Source : Census of India,2011</p>
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Total Population
+                                </div>
+
+                                <div id='containerTotalNumberofpopulation' data-toggle="modal" data-target="#myModal" style="width:100%;height:342px; margin-top:15px;"><a class="zc-ref" href="javascript:;"></a></div>
+                                <p class="piegraphtitle">Source : Census of India,2011 </p>
+                                <table id="datatable">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Geographical Area (ha)</th>
+                                            <th>Villages</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Gujarat</th>
+                                            <td>@ViewBag.Geographical_area</td>
+                                            <td>@ViewBag.Villages</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Haryana</th>
+                                            <td>@ViewBag.Geographical_area1</td>
+                                            <td>@ViewBag.Villages1</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Karnataka</th>
+                                            <td>@ViewBag.Geographical_area2</td>
+                                            <td>@ViewBag.Villages2</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Madhya Pradesh</th>
+                                            <td>@ViewBag.Geographical_area3</td>
+                                            <td>@ViewBag.Villages3</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Maharashtra</th>
+                                            <td>@ViewBag.Geographical_area4</td>
+                                            <td>@ViewBag.Villages4</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Rajasthan</th>
+                                            <td>@ViewBag.Geographical_area5</td>
+                                            <td>@ViewBag.Villages5</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Uttar Pradesh</th>
+                                            <td>@ViewBag.Geographical_area6</td>
+                                            <td>@ViewBag.Villages6</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Annual Rainfall
+                                </div>
+
+                                @*<div id="chartContainer" style="width:100%;height:400px; margin: 0px auto;"></div>*@
+                                <div id="containerAnnualRainfall" style="width:100%;height:360px; margin: 0px auto;"></div>
+                                <p class="piegraphtitle">Source : IMD,2018 </p>
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Surface Water Bodies
+                                </div>
+                                <div id="containerSurface_Water_Bodies" style="width:100%;height:360px; margin: 0px auto;"></div>
+                                <p class="piegraphtitle">Source : Census of India,2011  </p>
+                                <!--Table data start-->
+                                <!--Table data end-->
+
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Ground Water Observation Wells
+                                </div>
+
+                                <div id="Ground_Water_Observation_Wells" style="width:100%;height:365px; margin: 0px auto;"></div>
+                                <p class="piegraphtitle">Source : CGWB </p>
+                                @*<div id="container"></div>*@
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Annual Ground Water Draft
+                                </div>
+
+                                @*<div id="chartdiv6"></div>*@
+                                <div id="containerAnnual_Ground_Water_Draft" style="width:100%;height:360px;"></div>
+                                <p class="piegraphtitle">Source : CGWB,2013 </p>
+
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <!-- Start Accordion 1 -->
+                    <div class="panel panel-default">
+                        <!-- Toggle Heading -->
+                        <!-- Toggle Content -->
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="panelbodyheading">
+                                    Annual Water Availability
+                                </div>
+
+                                @*<div id="container6 containerAnnual_Replenishable_Ground_Water_Resources" style="min-width: 310px; height: 370px; max-width: 600px; margin: 0 auto"></div>*@
+                                <div id="containerAnnual_Replenishable_Ground_Water_Resources" style="min-width: 310px; height: 360px; max-width: 600px; margin: 0 auto">
+
+                                </div>
+                                <p class="piegraphtitle">Source : CGWB,2013 </p>
+                            </div>
+                        </div>
+
+                        <!-- End Accordion 1 -->
+
+                    </div>
+                    <!-- End Accordion -->
+                </div>
+
+            </div>
+        </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <a href="~/Report/DashboardReport" target="_blank">
+                    <button class="btn btn-primary">Generate Report</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="container">
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                        <div class="col-md-12">
+                            <div id="tabTNameDesc" class="tab-content">
+
+                                <div class="tbl-responsive tab-pane active text-justify" id="Tname1">
+                                    <table id="example" class="tab-pane text-justify  display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    #
+                                                </th>
+                                                <th>
+                                                    Agencies
+                                                </th>
+                                                <th>
+                                                    Address
+                                                </th>
+                                                <th>
+                                                    Website Link
+                                                </th>
+                                                <th>
+                                                    Email Id
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>
+                                                    aid
+                                                </td>
+                                                <td>
+                                                    agencies
+                                                </td>
+                                                <td>
+                                                    address
+                                                </td>
+                                                <td>
+                                                    weblink
+                                                </td>
+                                                <td>
+                                                    emailid
+                                                </td>
+                                            </tr>
+
+
+
+                                            <!--Rows here-->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>*@
+
+
+
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap framework js
+    ========================================================= -->
+    <script src="~/Content/Website/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        $('#Filter').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            $('body').css('padding-right', '0px');
+            var recipient = button.data('whatever');
+            var modal = $(this);
+            modal.addClass(recipient);
+            $('#Filter').on('hide.bs.modal', function (event) {
+                modal.removeClass(recipient);
+            });
+        });
+    </script>
+    <script>
+        // Create the chart
+        Highcharts.chart('containerAnnualRainfall', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+
+            xAxis: {
+
+                title: {
+                    text: 'Source',
+
+                },
+
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.y:.1f}(mm)'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b>(mm)<br/>'
+            },
+
+            series: [
+                {
+                    name: "Annual Rainfall",
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: "Gujarat",
+                            y: @ViewBag.avg_rainfall,
+
+                        },
+                        {
+                            name: "Haryana",
+                            y: @ViewBag.avg_rainfall1,
+
+                        },
+                        {
+                            name: "Karnataka",
+                            y: @ViewBag.avg_rainfall2,
+
+                        },
+                        {
+                            name: "Madhya Pradesh",
+                            y: @ViewBag.avg_rainfall3,
+
+                        },
+                        {
+                            name: "Maharashtra",
+                            y: @ViewBag.avg_rainfall4,
+
+                        },
+                        {
+                            name: "Rajasthan",
+                            y: @ViewBag.avg_rainfall5,
+
+                        },
+                        {
+                            name: "Uttar Pradesh",
+                            y: @ViewBag.avg_rainfall6,
+
+                        }
+                    ]
+                }
+            ],
+
+        });
+
+        //Highcharts.chart('containerSurface_Water_Bodies', {
+        //    chart: {
+        //        type: 'variablepie'
+        //    },
+        //    title: {
+        //        text: ''
+        //    },
+
+        //    tooltip: {
+        //        headerFormat: '',
+        //        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+        //            'Area (square km): <b>{point.y}</b><br/>' +
+        //            'Population density (people per square km): <b>{point.z}</b><br/>'
+        //    },
+        //    legend: {
+        //        enabled: true
+        //    },
+        //    series: [{
+        //        minPointSize: 10,
+        //        innerSize: '20%',
+        //        zMin: 0,
+        //        name: 'countries',
+        //        data: [{
+        //            name: 'Gujarat',
+        //            y: 14973,
+        //            z: 92.9
+        //        }, {
+        //            name: 'Haryana',
+        //            y: 2110,
+        //            z: 118.7
+        //        }, {
+        //            name: 'Karnataka',
+        //            y: 20342,
+        //            z: 124.6
+        //        }, {
+        //            name: 'Madhya Pradesh',
+        //            y: 66705,
+        //            z: 137.5
+        //        }, {
+        //            name: 'Maharashtra',
+        //            y: 231659,
+        //            z: 201.8
+        //        }, {
+        //            name: 'Rajasthan',
+        //            y: 36541,
+        //            z: 214.5
+        //        }, {
+        //            name: 'Uttar Pradesh',
+        //            y: 421648,
+        //            z: 235.6
+        //        }]
+        //    }]
+        //});
+
+        //surface water bodies
+         Highcharts.chart('containerSurface_Water_Bodies', {
+            chart: {
+                type: 'variablepie'
+            },
+            title: {
+                text: ''
+            },
+
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                    'Surface Water Bobies: <b>{point.y}</b><br/>'
+                    
+            },
+            legend: {
+                enabled: true
+            },
+            series: [{
+                minPointSize: 10,
+                innerSize: '20%',
+                zMin: 0,
+                name: 'countries',
+                data: [{
+                    name: 'Gujarat',
+                    y: @ViewBag.sw_bodies
+
+                }, {
+                    name: 'Haryana',
+                    y: @ViewBag.sw_bodies1
+
+                }, {
+                    name: 'Karnataka',
+                    y: @ViewBag.sw_bodies2
+
+                }, {
+                    name: 'Madhya Pradesh',
+                    y: @ViewBag.sw_bodies3
+
+                }, {
+                    name: 'Maharashtra',
+                    y: @ViewBag.sw_bodies4
+
+                }, {
+                    name: 'Rajasthan',
+                    y: @ViewBag.sw_bodies5
+
+                }, {
+                    name: 'Uttar Pradesh',
+                    y: @ViewBag.sw_bodies6
+
+                }]
+            }]
+        });
+        // Create the chart
+        Highcharts.chart('containerTotalNumberofpopulation', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category',
+                title: 'source'
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
+            },
+
+            series: [
+                {
+                    name: "Total Population",
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: "Gujarat",
+                            y: @ViewBag.Population,
+
+                        },
+                        {
+                            name: "Haryana",
+                            y: @ViewBag.Population1,
+
+                        },
+                        {
+                            name: "Karnataka",
+                            y: @ViewBag.Population2,
+
+                        },
+                        {
+                            name: "Madhya Pradesh",
+                            y: @ViewBag.Population3,
+
+                        },
+                        {
+                            name: "Maharashtra",
+                            y: @ViewBag.Population4,
+
+                        },
+                        {
+                            name: "Rajasthan",
+                            y: @ViewBag.Population5,
+
+                        },
+                        {
+                            name: "Uttar Pradesh",
+                            y: @ViewBag.Population6,
+
+                        }
+                    ]
+                }
+            ],
+
+        });
+
+        Highcharts.chart('containerAnnual_Replenishable_Ground_Water_Resources', {
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45
+                }
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: 100,
+                    depth: 45
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b>(ha m)<br/>'
+            },
+            series: [{
+                name: 'Annual Water Availability',
+                data: [
+                    ['Gujarat', @ViewBag.ARGW_Resourses],
+                    ['Haryana', @ViewBag.ARGW_Resourses1],
+                    ['karnataka', @ViewBag.ARGW_Resourses2],
+                    ['Madhya Pradesh', @ViewBag.ARGW_Resourses3],
+                    ['Maharashtra', @ViewBag.ARGW_Resourses4],
+                    ['Rajasthan', @ViewBag.ARGW_Resourses5],
+                    ['Uttar Pradesh', @ViewBag.ARGW_Resourses6]
+
+                ]
+            }]
+        });
+        //last chart
+        Highcharts.chart('containerAnnual_Ground_Water_Draft', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category',
+                title: 'source'
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
+
+            },
+
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b>(ha m)<br/>'
+            },
+
+            series: [
+                {
+                    name: "Annual Ground Water Draft",
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: "Gujarat",
+                            y: @ViewBag.AGW_Drafts,
+
+                        },
+                        {
+                            name: "Haryana",
+                            y: @ViewBag.AGW_Drafts1,
+
+                        },
+                        {
+                            name: "Karnataka",
+                            y: @ViewBag.AGW_Drafts2,
+
+                        },
+                        {
+                            name: "Madhya Pradesh",
+                            y: @ViewBag.AGW_Drafts3,
+
+                        },
+                        {
+                            name: "Maharashtra",
+                            y: @ViewBag.AGW_Drafts4,
+
+                        },
+                        {
+                            name: "Rajasthan",
+                            y: @ViewBag.AGW_Drafts5,
+
+                        },
+                        {
+                            name: "Uttar Pradesh",
+                            y: @ViewBag.AGW_Drafts6,
+
+                        }
+                    ]
+                }
+            ],
+
+        });
+
+        Highcharts.chart('Ground_Water_Observation_Wells', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Gujarat', 'Haryana', 'karnataka', 'Madhya Pradesh', 'Maharashtra', 'Rajasthan', 'Uttar Pradesh'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                //min: 0,
+                title: {
+                    text: '',
+                    //align: '50%'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            //tooltip: {
+            //    valueSuffix: ' Source'
+            //},
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '',
+                data: [@ViewBag.GWO_wells, @ViewBag.GWO_wells1, @ViewBag.GWO_wells2, @ViewBag.GWO_wells3, @ViewBag.GWO_wells4, @ViewBag.GWO_wells5, @ViewBag.GWO_wells6]
+
+            }]
+        });
+
+        // Semi Cricle Chart
+        
+
+
+        Highcharts.chart('containertotal_number_of_villages', {
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            yAxis: {
+                categories: ['25', '50', '100','150', '200', '250','300','350']
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' '/*this.point.name.toLowerCase()*/;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

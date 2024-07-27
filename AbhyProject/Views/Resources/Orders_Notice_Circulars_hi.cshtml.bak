@@ -1,0 +1,1596 @@
+﻿@{
+    ViewBag.Title = "Orders_Notice_Circulars";
+    Layout = "~/Views/Shared/WebsiteLayout_hindi.cshtml";
+}
+
+
+<title>Orders/Notice/Circulars</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+
+<style>
+    .maindiv {
+        width: 100%;
+        margin: auto;
+    }
+
+    .table-responsive {
+        overflow-x: inherit;
+    }
+
+    .clearfix:after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    .classic-title {
+        margin: 0 0 16px 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid mediumblue;
+        font-weight: 600;
+        line-height: 1.5em;
+    }
+
+    .panel-group > .panel {
+        -webkit-border-radius: 6px;
+        border: 1px solid #e8e8e8;
+        margin: 5px 0;
+    }
+
+    /*.panel-group > .panel-heading {
+        background-color: #ffad33;
+        padding: 0px;
+    }*/
+
+    .panel-title > a {
+        position: relative;
+        display: block;
+        color: #444 !important;
+        background-color: #fff;
+        padding: 10px 21px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .text-info {
+        color: mediumblue;
+    }
+
+    .panel-title > a > .control-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -11px;
+    }
+
+    .panel-title > a > i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+    .dataTables_length {
+        display: flex !important;
+    }
+
+    .dataTables_filter, .dataTables_paginate {
+        float: right;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 8px 15px !important;
+        margin-bottom: -1px;
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .dataTables_info {
+        margin-bottom: 20px;
+    }
+
+    .card-header h5 {
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .accordion .card-body {
+        padding: 0px !important;
+    }
+
+    .list-group {
+        display: inherit !important;
+        padding: 10px 0px 10px 0px;
+    }
+
+    .panel-inner > ul.list-group > li.list-group-item > a {
+        color: #3a99ed !important;
+    }
+
+        .panel-inner > ul.list-group > li.list-group-item > a:hover {
+            color: #6FB11D !important;
+        }
+
+    span.tablecellhead {
+        font-size: 15px;
+        font-weight: bold;
+        color: mediumblue;
+    }
+
+    .dataTables_empty {
+        text-align: center;
+    }
+
+    .list_table_function {
+        float: none;
+        margin-left: 13px;
+        background: none !important;
+    }
+
+    .cricle_round {
+        background: #30abec;
+        color: white;
+        font-size: 13px;
+        border-radius: 100%;
+        font-weight: bold;
+        padding: 4px;
+        margin: -6px;
+        width: 26px;
+        height: 24px;
+        text-align: center
+    }
+
+    .form-inline {
+        display: block !important;
+    }
+</style>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").siblings().removeClass('active');
+
+</script>
+<div class="row">
+    <div class="
+         md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Orders/ Notices/ Circulars </div>
+    </div>
+</div>
+<div class="">
+    <div id="content">
+        <div class="row " style="width: 100%; margin-bottom: 20px;">
+
+            <div class="col-md-3 call-action call-action-style2 clearfix" style="padding-top: 10px">
+                <div class="widget widget-categories">
+                    <h6 class="classic-title"><span class="text-info">TOPICS</span></h6>
+                    @* <div class="panel-group" id="topic">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-2111">
+                                                    <i class="fa fa-angle-down control-icon"></i>
+                                                    ORDERS
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="doc1tier-2111" class="panel-body collapse" style="padding: 4px;">
+                                            <div class="panel-inner">
+                                                <ul class="list-group" role="tablist" style="display:inherit !important;">
+
+                                                    <li onclick="table11();" class="list-group-item list_table_function">
+                                                        <a href="#submenu11" style="color: #000; display: initial">2020 - 2021</a>
+                                                        <span class="pull-right  cricle_round">7</span>
+                                                    </li>
+                                                    <li onclick="table12();" class="list-group-item list_table_function">
+                                                        <a href="#submenu12" style="color: #000; display: initial">2021 - 2022</a>
+                                                        <span class="pull-right  cricle_round">7</span>
+                                                    </li>
+                                                    <li onclick="table13();" class="list-group-item list_table_function">
+                                                        <a href="#submenu12" style="color: #000; display: initial">2022 - 2023</a>
+                                                        <span class="pull-right  cricle_round">7</span>
+                                                    </li>
+                                                    <li onclick="table14();" class="list-group-item list_table_function">
+                                                        <a href="#submenu12" style="color: #000; display: initial">2023 - 2024</a>
+                                                        <span class="pull-right  cricle_round">0</span>
+                                                    </li>
+                                                    <li onclick="table15();" class="list-group-item list_table_function">
+                                                        <a href="#submenu12" style="color: #000; display: initial">2024 - 2025</a>
+                                                        <span class="pull-right  cricle_round">0</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-24">
+                                                    <i class="fa fa-angle-down control-icon"></i>
+                                                    NOTICE
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="doc1tier-24" class="panel-body collapse" style="padding: 4px;">
+                                            <div class="panel-inner">
+                                                <ul class="list-group" role="tablist" style="display:inherit !important;">
+
+
+                                                    <li onclick="table1();" class="list-group-item list_table_function" style="">
+                                                        <a href="#submenu9" style="color: #000; display: initial">Notice</a>
+
+                                                        <span class="pull-right  cricle_round">0</span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-25">
+                                                    <i class="fa fa-angle-down control-icon"></i>
+                                                    CIRCULARS
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="doc1tier-25" class="panel-body collapse" style="padding: 4px;">
+                                            <div class="panel-inner">
+                                                <ul class="list-group " style="display:inherit !important;">
+
+                                                    <li onclick="table2();" id="" class="list-group-item list_table_function">
+                                                        <a href="#submenu2" style="color: #000; display: initial">Circulars</a>
+                                                        <span class="pull-right  cricle_round">0</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-26">
+                                        <i class="fa fa-angle-down control-icon"></i>
+                                        MODEL BIDDING DOCUMENT
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-26" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group" style="display:inherit !important;">
+                                        <li id="" onclick="table3();" class="list-group-item list_table_function">
+                                            <a href="#submenu3" style="color: #000; display: initial">MODEL BIDDING DOCUMENT</a>
+                                            <span class="pull-right  cricle_round">0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-27">
+                                        <i class="fa fa-angle-down control-icon"></i>
+                                        STANDARD BIDDING DOCUMENT
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-27" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group " style="display:inherit !important;">
+
+                                        <li id="" onclick="table4();" class="list-group-item list_table_function">
+                                            <a href="#submenu4" style="color: #000; display: initial">STANDARD BIDDING DOCUMENT</a>
+                                            <span class="pull-right  cricle_round" style="">0</span>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-29">
+                                        <i class="fa fa-angle-down control-icon"></i>
+                                        TECHNICAL DOCUMENT
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-29" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group " role="tablist" style="display:inherit !important;">
+
+                                        <li id="" onclick="table5();" class="list-group-item list_table_function">
+                                            <a href="#submenu5" style="color: #000; display: initial">GENERAL</a>
+                                            <span class="pull-right  cricle_round">10</span>
+                                        </li>
+
+                                        <li id="" onclick="table6();" class="list-group-item list_table_function">
+                                            <a href="#submenu6" style="color: #000; display: initial">GUIDELINES</a>
+                                            <span class="pull-right  cricle_round">0</span>
+                                        </li>
+
+                                        <li id="" onclick="table7();" class="list-group-item list_table_function">
+                                            <a href="#submenu7" style="color: #000; display: initial">MANUALS</a>
+                                            <span class="pull-right  cricle_round">0</span>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-33">
+                                        <i class="fa fa-angle-down control-icon"></i>
+                                        MISCELLANEOUS
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-33" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group" style="display:inherit !important;">
+
+                                        <li id="" onclick="table8();" class="list-group-item list_table_function">
+                                            <a href="#submenu7" style="color: #000; display: initial">MISCELLANEOUS</a>
+                                            <span class="pull-right  cricle_round">3</span>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>*@
+                    <!--Accordion wrapper-->
+                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+
+                        <!-- Accordion card -->
+                        <div class="card">
+
+                            <!-- Card header -->
+                            <div class="card-header" role="tab" id="headingTwo1">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo1"
+                                   aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        ORDERS <i class="fa fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+
+                            <!-- Card body -->
+                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                                 data-parent="#accordionEx1">
+                                <div class="card-body">
+                                    <ul class="list-group" role="tablist" style="display:inherit !important;">
+
+                                        <li onclick="table11();" class="list-group-item list_table_function">
+                                            <a href="#submenu11 javascript:void(0);" style="color: #000; display: initial">2020 - 2021</a>
+                                            <span class="pull-right  cricle_round">7</span>
+                                        </li>
+                                        <li onclick="table12();" class="list-group-item list_table_function">
+                                            <a href="#submenu12 javascript:void(0);" style="color: #000; display: initial">2021 - 2022</a>
+                                            <span class="pull-right  cricle_round">7</span>
+                                        </li>
+                                        <li onclick="table13();" class="list-group-item list_table_function">
+                                            <a href="#submenu12 javascript:void(0);" style="color: #000; display: initial">2022 - 2023</a>
+                                            <span class="pull-right  cricle_round">7</span>
+                                        </li>
+                                        <li onclick="table14();" class="list-group-item list_table_function">
+                                            <a href="#submenu12 javascript:void(0);" style="color: #000; display: initial">2023 - 2024</a>
+                                            <span class="pull-right  cricle_round">7</span>
+                                        </li>
+                                        <li onclick="table15();" class="list-group-item list_table_function">
+                                            <a href="#submenu12 javascript:void(0);" style="color: #000; display: initial">2024 - 2025</a>
+                                            <span class="pull-right  cricle_round">0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Accordion card -->
+                        <!-- Accordion card -->
+                        <div class="card">
+
+                            <!-- Card header -->
+                            <div class="card-header" role="tab" id="headingTwo2">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo21"
+                                   aria-expanded="false" aria-controls="collapseTwo21">
+                                    <h5 class="mb-0">
+                                        NOTICE <i class="fa fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+
+                            <!-- Card body -->
+                            <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
+                                 data-parent="#accordionEx1">
+                                <div class="card-body">
+                                    <ul class="list-group" role="tablist" style="display:inherit !important;">
+                                        <li onclick="table1();" class="list-group-item list_table_function" style="">
+                                            <a href="#submenu9 javascript:void(0);" style="color: #000; display: initial">Notice</a>
+
+                                            <span class="pull-right  cricle_round">0</span>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Accordion card -->
+                        <!-- Accordion card -->
+                        <div class="card">
+
+                            <!-- Card header -->
+                            <div class="card-header" role="tab" id="headingThree31">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseThree31"
+                                   aria-expanded="false" aria-controls="collapseThree31">
+                                    <h5 class="mb-0">
+                                        CIRCULARS <i class="fa fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+
+                            <!-- Card body -->
+                            <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31"
+                                 data-parent="#accordionEx1">
+                                <div class="card-body">
+                                    <ul class="list-group " style="display:inherit !important;">
+
+                                        <li onclick="table2();" id="" class="list-group-item list_table_function">
+                                            <a href="#submenu2 javascript:void(0);" style="color: #000; display: initial">Circulars</a>
+                                            <span class="pull-right  cricle_round">0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Accordion card -->
+
+                    </div>
+                    <!-- Accordion wrapper -->
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" id="submenu11">
+
+                        <div class="table-responsive">
+                            <table class=" datainitial display  table  row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%;margin-top:20px;">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th> Orders 2020-2021 Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">PIP-Gujarat</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/PIP-Gujarat.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   PIP-Gujarat
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/PIP-Gujarat.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">PIP-Haryana</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/PIP-Haryana.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   PIP-Haryana
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/PIP-Haryana.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">PIP-Karnataka</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/PIP-Karnataka.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   PIP-Karnataka
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/PIP-Karnataka.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">PIP-Madhya Pradesh</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/PIP-Madhya Pradesh.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   PIP-Madhya Pradesh
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/PIP-Madhya Pradesh.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>5</td>
+                                        <td>
+                                            <span class="tablecellhead">PIP-Maharashtra</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/PIP-Maharashtra.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   PIP-Maharashtra
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/PIP-Maharashtra.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>6</td>
+                                        <td>
+                                            <span class="tablecellhead">PIP-Rajasthan</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/PIP-Rajasthan.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   PIP-Rajasthan
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/PIP-Rajasthan.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>7</td>
+                                        <td>
+                                            <span class="tablecellhead">PIP-Uttar Pradesh</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/PIP-Uttar Pradesh.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   PIP-Uttar Pradesh
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/PIP-Uttar Pradesh.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane " id="submenu12">
+
+                        <div class="table-responsive">
+                            <table id="submenu12_table" class="datainitial display  table  row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%;margin-top:20px;">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th> Orders 2021-2022 Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP UTTAR PRADESH 2021-22</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP UTTAR PRADESH 2021-22.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP UTTAR PRADESH 2021-22
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP UTTAR PRADESH 2021-22.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP RAJASTHAN 2021-22</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP RAJASTHAN 2021-22.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP RAJASTHAN 2021-22
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP RAJASTHAN 2021-22.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP KARNATAKA 2021-22</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP KARNATAKA 2021-22.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP KARNATAKA 2021-22
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP KARNATAKA 2021-22.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP MAHARASHTRA 2021-22</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP MAHARASHTRA 2021-22.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP MAHARASHTRA 2021-22
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP MAHARASHTRA 2021-22.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>5</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP MADHYA PRADESH 2021-22</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP MADHYA PRADESH 2021-22.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP MADHYA PRADESH 2021-22
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP MADHYA PRADESH 2021-22.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>6</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP HARYANA 2021-22</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP HARYANA 2021-22.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP HARYANA 2021-22
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP HARYANA 2021-22.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>7</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP GUJARAT 2021-22</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP GUJARAT 2021-22.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP GUJARAT 2021-22
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP GUJARAT 2021-22.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane  in" id="submenu13">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table  row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%;margin-top:20px;">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th> Orders 2022-2023 Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP UTTAR PRADESH 2022-23</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP UTTAR PRADESH 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP UTTAR PRADESH 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP UTTAR PRADESH 2022-23.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP RAJASTHAN 2022-23</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP RAJASTHAN 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP RAJASTHAN 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP RAJASTHAN 2022-23.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP KARNATAKA 2022-23</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP KARNATAKA 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP KARNATAKA 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP KARNATAKA 2022-23.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP MAHARASHTRA 2022-23</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP MAHARASHTRA 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP MAHARASHTRA 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP MAHARASHTRA 2022-23.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>5</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP MADHYA PRADESH 2022-23</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP MADHYA PRADESH 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP MADHYA PRADESH 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP MADHYA PRADESH 2022-23.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>6</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP HARYANA 2022-23</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP HARYANA 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP HARYANA 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP HARYANA 2022-23.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>7</td>
+                                        <td>
+                                            <span class="tablecellhead">AWP GUJARAT 2022-23</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/AWP GUJARAT 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   AWP GUJARAT 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/AWP GUJARAT 2022-23.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane " id="submenu14">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table  row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>DLI Verification 2023-2024 Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">Annual Work Plan-Gujarat-2023-24</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/Annual Work Plan-Gujarat-2023-24.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>Annual Work Plan-Gujarat-2023-24
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/Annual Work Plan-Gujarat-2023-24.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">Annual Work Plan-Haryana-2023-24</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/Annual Work Plan-Haryana-2023-24.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>Annual Work Plan-Haryana-2023-24
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/Annual Work Plan-Haryana-2023-24.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">Annual Work Plan-Karnataka-2023-24</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/Annual Work Plan-Karnataka-2023-24.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>Annual Work Plan-Karnataka-2023-24
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/Annual Work Plan-Karnataka-2023-24.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">Annual Work Plan-Madhya Pradesh-2023-24</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/Annual Work Plan-MP-2023-24.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>Annual Work Plan-Madhya Pradesh-2023-24
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/Annual Work Plan-MP-2023-24.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>5</td>
+                                        <td>
+                                            <span class="tablecellhead">Annual Work Plan-Maharashtra-2023-24</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/Annual Work Plan-Maharashtra-2023-24.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>Annual Work Plan-Maharashtra-2023-24
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/Annual Work Plan-Maharashtra-2023-24.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>6</td>
+                                        <td>
+                                            <span class="tablecellhead">Annual Work Plan-Rajasthan-2023-24</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/Annual Work Plan-Rajasthan-2023-24.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>Annual Work Plan-Rajasthan-2023-24
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/Annual Work Plan-Rajasthan-2023-24.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>7</td>
+                                        <td>
+                                            <span class="tablecellhead">Annual Work Plan-UP-2023-24</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Content/Pdf_files/Annual Work Plan-UP-2023-24.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>Annual Work Plan-UP-2023-24
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Content/Pdf_files/Annual Work Plan-UP-2023-24.pdf" download style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane " id="submenu15">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table  row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>DLI Verification 2024-2025 Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane " id="firstsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table  row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane " id="secondsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane  in" id="thirdsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane  in" id="fourthsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane  in" id="fifthsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th> Technical Documents - General</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">Template For Uploading Water Level Data of Observation Wells</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/Template_For_Uploading_Water_Level_Data_of_Observation_Wells.xlsx" target="_blank">
+                                                    <i class="fa fa-download"></i> Template For Uploading Water Level Data of Observation Wells
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Template_For_Uploading_Water_Level_Data_of_Observation_Wells.xlsx" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-excel-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                Template For Uploading Water Quality Testing Laboratories
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/Template_For_Uploading_Water_Quality_Testing_Laboratories.xlsx" target="_blank">
+                                                    <i class="fa fa-download"></i> Template For Uploading Water Quality Testing Laboratories
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Template_For_Uploading_Water_Quality_Testing_Laboratories.xlsx" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-excel-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                Template For Uploading Water Quality Data
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/Template_For_Uploading_Water Quality_Data.xlsx" target="_blank">
+                                                    <i class="fa fa-download"></i> Template For Uploading Water Quality Data
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Template_For_Uploading_Water Quality_Data.xlsx" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-excel-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                Template For Uploading Data in Respect of Water Or Energy Meters
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Template_For_Uploading_Data_in_Respect_of_Water_Or_Energy_Meters.xlsx" target="_blank">
+                                                    <i class="fa fa-download"></i> Template For Uploading Data in Respect of Water Or Energy Meters
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Template_For_Uploading_Data_in_Respect_of_Water_Or_Energy_Meters.xlsx" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-excel-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>5</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                DLI-1 Verification Protocol Round 2
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/DLI_1_Verification_Protocol_Round_2.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i> DLI-1 Verification Protocol Round 2
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/DLI_1_Verification_Protocol_Round_2.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>6</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                DLI 2 Protocol Methodology
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/DLI_2_Protocol_Methodology.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i> DLI 2 Protocol Methodology
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/DLI_2_Protocol_Methodology.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>7</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                Attendance Sheet for MOM
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/Template_For_Attendance.doc" target="_blank">
+                                                    <i class="fa fa-eye"></i> Attendance Sheet for MOM
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Template_For_Attendance.doc" download="" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-word-o" style="color:blue;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>8</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                Template For Declaration of Source of Data With Parameters in WSP
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/Template_for_Declaration_of_Source_of_Data_With_Parameters_in_WSP.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i> Template For Declaration of Source of Data With Parameters in WSP
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Template_for_Declaration_of_Source_of_Data_With_Parameters_in_WSP.pdf" download="" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>9</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                DPMU DECLARATION FORM
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/DPMU_DECLARATION_FORM.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i> DPMU DECLARATION FORM
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/DPMU_DECLARATION_FORM.pdf" download="" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>10</td>
+                                        <td>
+                                            <span class="tablecellhead">
+                                                RESOLUTION BY THE COMMITTEE
+                                            </span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/RESOLUTION_BY_THE_COMMITTEE.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i> RESOLUTION BY THE COMMITTEE
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/RESOLUTION_BY_THE_COMMITTEE.pdf" download="" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane  in" id="sixthsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane  in" id="seventhsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane  in" id="eighthsubmenu">
+
+                        <div class="table-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">ABY Framework and Approach For Capacity Building 2020</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/ABY_Framework_and_Approach_For_Capcity_Building_2020.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   ABY Framework and Approach For Capacity Building 2020
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/ABY_Framework_and_Approach_For_Capcity_Building_2020.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">Assessment of Hydrogeological Reports for DLI #1</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/Assessment_of_Hydrogeological_Reports_for_DLI_1.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   Assessment of Hydrogeological Reports for DLI #1
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Assessment_of_Hydrogeological_Reports_for_DLI_1.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">Report of the 1st Round Verification in Respect of Disbursement Linked Indicators (DLI)</span>
+                                            <div style="    margin: 8px 0px 0px 0px; font-size: 13px;">
+                                                <a href="~/Ataljalimages/Report_of_the_1st_Round_Verification_in_respect_of_Disbursement_Linked_Indicators_DLI.pdf" target="_blank">
+                                                    <i class="fa fa-eye"></i>   Report of the 1st Round Verification in Respect of Disbursement Linked Indicators (DLI)
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="~/Ataljalimages/Report_of_the_1st_Round_Verification_in_respect_of_Disbursement_Linked_Indicators_DLI.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 25px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#submenu11').show();
+        $.noConflict();
+        $('table.datainitial').DataTable();
+        $('#submenu12_table').DataTable();
+    });
+
+    function table11() {
+        $('#submenu11').show(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table12() {
+        $('#submenu11').hide(); $('#submenu12').show(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table13() {
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').show(); $('#submenu14').hide(); $('#submenu15').hide();
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table14() {
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').show(); $('#submenu15').hide();
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table15() {
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').show();
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table1() {
+        $('#firstsubmenu').show(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+    }
+    function table2() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').show(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+    }
+    function table3() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').show(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+    }
+    function table4() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').show();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+    }
+    function table5() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').show(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+    }
+    function table6() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').show(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+    }
+    function table7() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').show(); $('#eighthsubmenu').hide();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+
+    }
+    function table8() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').show();
+        $('#submenu11').hide(); $('#submenu12').hide(); $('#submenu13').hide(); $('#submenu14').hide(); $('#submenu15').hide();
+    }
+</script>

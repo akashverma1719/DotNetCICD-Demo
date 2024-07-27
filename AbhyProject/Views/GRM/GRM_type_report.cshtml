@@ -1,0 +1,1676 @@
+﻿
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<meta name="viewport" content="width=device-width" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+<!--Pie Chart-->
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<!--pie chart-->
+
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+<!--favicon end-->
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/table2excel.js"></script>
+
+<html>
+<head>
+
+    <style>
+        .colorline1 {
+            background: #ddd;
+            background-size: 100% 6px;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin-top: 12px;
+            height: 3px;
+            width: 100%
+        }
+
+        .table-striped tbody tr td:last-child {
+            /*text-align: right;*/
+        }
+
+        .dateandtime_ul {
+            padding: 0px;
+        }
+
+            .dateandtime_ul > li {
+                display: inline-block;
+                color: #000;
+                font-size: 18px;
+                padding: 0px 15px;
+            }
+
+        .hideDownload {
+            display: none;
+        }
+
+        .background_after_download * {
+            font-weight: normal !important;
+            text-decoration: none !important;
+            text-shadow: none !important;
+        }
+
+
+        .col-md-9 > h1 {
+            font-weight: bold;
+            color: #404040;
+            text-shadow: -1px -1px #000;
+        }
+
+        .col-md-9 > p {
+            color: #404040;
+        }
+
+        .col12 > .firsttable > h6 {
+            letter-spacing: 0px;
+            padding-left: 10px;
+        }
+
+        .firstptag {
+            padding-left: 4%;
+        }
+
+        body {
+            background-color: #ddd;
+        }
+
+        .clearfixcolor {
+            margin-top: 15px;
+        }
+
+        .col12 {
+            background-color: #fff;
+            padding: 25px;
+        }
+
+        .highcharts-credits {
+            display: none;
+        }
+
+
+
+        .highcharts-button-box {
+            display: none;
+        }
+
+        #Data1 {
+            background-color: #fff;
+        }
+
+        .firsttable {
+            padding: 10px 0px 0px 0px;
+        }
+
+        .report_heading_div {
+            background-color: #ddd;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .cololr-div {
+            background: #4cae4c;
+            height: 3px;
+            padding: 0px;
+        }
+
+        .last-div-footer {
+            padding: 10px 0px;
+        }
+
+        .text-right > .btn-success {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .text-right {
+            padding: 5px;
+        }
+
+            .text-right > .btn-success {
+                padding: 8px 20px 8px 20px;
+                border-radius: 50px;
+                font-size: 18px;
+            }
+
+        .btn-success {
+            color: #fff;
+            background-color: #6fb01d;
+            border-color: #4cae4c;
+        }
+
+        .coll7 {
+            padding-right: 0px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            display: block;
+            padding: 10px 0px 0px 0px;
+            font-size: 15px;
+            /*margin: 0px;*/
+        }
+
+            ul.Select_option > li {
+                display: inline-block;
+                padding: 0px 0px 0px 46px;
+                text-transform: uppercase;
+                word-spacing: 1px;
+            }
+
+                ul.Select_option > li > span > i {
+                    padding: 0px 0px 0px 10px;
+                }
+
+        #Select_dist_level {
+            padding: 10px 0px 5px 15px;
+            text-transform: capitalize;
+        }
+
+        ul.firstimages {
+            display: block;
+            margin-bottom: 0px;
+            padding: 0px;
+        }
+
+            ul.firstimages > li {
+                display: inline-block;
+                padding-left: 5px;
+                border: 1px solid #ddd;
+                padding: 10px 10px 5px 10px;
+            }
+
+                ul.firstimages > li > img {
+                    border-left: 2px solid #ddd;
+                }
+
+                ul.firstimages > li > span > img {
+                    width: 25px;
+                    height: 25px;
+                }
+
+        .highcharts-title {
+            font-weight: bold;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+        }
+
+        tspan {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+
+
+        .secondtable {
+            text-align: right;
+        }
+
+        sup {
+            font-weight: bold;
+        }
+
+        .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            background: #fff;
+        }
+
+        .tolat_report_color {
+            color: #337ab7;
+        }
+
+        .balnace_mater_space1 {
+            margin-top: 75px;
+        }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="Data1" @*style="width: 1850px;"*@>
+        <div class="row row_padding_10">
+            <div class="col-md-12 ">
+                <div class="firsttable col-md-12">
+                    <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+                </div>
+
+            </div>
+
+            <div class="col-md-12 report_heading_div">
+                <div class="col-md-9">
+                    <h1>Grievance Summary Report</h1>
+
+                </div>
+                <div class="col-md-3 text-right" id="btnExport">
+                    <button class="btn btn-success download1" onclick="ReportPdf()" id="download">Download</button>
+                    <button class="btn btn-success download1" id="btnexcel">Excel</button>
+                </div>
+                <div class="col-md-12">
+                    <ul class="dateandtime_ul">
+                        <li>Date : <span id="demobalance"></span></li>
+                        <li>Time : <span id="demobalance2"></span></li>
+                        <li>
+                            User Name :
+                            @if (Session["UserName"] != null)
+                            {
+                                <span>@Session["UserName"].ToString()</span>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="col-md-10 Select_option_div">
+
+                <ul class="Select_option col-md-12 col-sm-12  text-left">
+
+                    <li id="">
+                        <label id="">Year:</label>
+                    </li>
+                    <li class="">
+                        <select name="" id="Finacial_Year" class="form-control" onchange="Year()">
+                            <option value="0">Select Year</option>
+                            <option value="ALL">All 5 Year</option>
+                            <option value="2020-21">2020-21</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2022-23">2022-23</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2024-25">2024-25</option>
+
+                        </select>
+                    </li>
+                    <li id="">
+                        <label id="">Month:</label>
+                    </li>
+                    <li>
+                        <select name="" id="Finacial_Month" class="form-control" onchange="Year()">
+                            <option value="0">Select Month</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                        </select>
+                    </li>
+
+                </ul>
+
+
+            </div>
+            <br />
+            <div class="col-md-6">
+                <div class="tbl-responsive" style="overflow-x: scroll; width: 200%;">
+                    <table id="tblreport" style="width:100%" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <thead>
+                            <tr class="tableheader1"></tr>
+                            <tr style="display:none">
+                                <td colspan="11" class="text-center">
+                                    <label>
+                                        Year :
+                                        <label id="year_fill"></label>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td rowspan="2" class="text-center"><label style="padding-top:20px;">Sl.No</label></td>
+                                <td rowspan="2" class="text-center"><label style="padding-top:20px;">States</label></td>
+                                <td rowspan="2" class="text-center"><label style="padding-top:20px;">Total no. of Grievances</label></td>
+                                <td colspan="3" class="text-center"><label>Type of Grievances</label></td>
+                                <td colspan="3" class="text-center"><label>Mode of Disposal (Nos)</label></td>
+                                <td colspan="2" class="text-center"><label>Status</label></td>
+                            </tr>
+                            <tr class="success">
+                                <td colspan="1" class="text-center"><label>Online</label></td>
+                                <td colspan="1" class="text-center"><label>Offline</label> </td>
+                                <td colspan="1" class="text-center"><label>Toll Free</label></td>
+
+                                <td colspan="1" class="text-center"><label>Verbal</label></td>
+                                <td colspan="1" class="text-center"><label>Through Email</label> </td>
+                                <td colspan="1" class="text-center"><label>Through Letter</label></td>
+
+                                <td colspan="1" class="text-center"><label>No. of Grievances Resolved</label></td>
+                                <td colspan="1" class="text-center"><label>No. of Pending Grievances </label></td>
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><label>1</label></td>
+                                <td><label>NPMU</label></td>
+                                <td class="text-center" id="npmu_a"></td>
+                                <td class="text-center" id="npmu_b"></td>
+                                <td class="text-center" id="npmu_c"></td>
+                                <td class="text-center" id="npmu_d"></td>
+                                <td class="text-center" id="npmu_e"></td>
+                                <td class="text-center" id="npmu_f"></td>
+                                <td class="text-center" id="npmu_g"></td>
+                                <td class="text-center" id="npmu_h"></td>
+                                <td class="text-center" id="npmu_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label>2</label></td>
+                                <td><label>Gujarat</label></td>
+                                <td class="text-center" id="guj_a"></td>
+                                <td class="text-center" id="guj_b"></td>
+                                <td class="text-center" id="guj_c"></td>
+                                <td class="text-center" id="guj_d"></td>
+                                <td class="text-center" id="guj_e"></td>
+                                <td class="text-center" id="guj_f"></td>
+                                <td class="text-center" id="guj_g"></td>
+                                <td class="text-center" id="guj_h"></td>
+                                <td class="text-center" id="guj_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label>3</label></td>
+                                <td><label>Haryana</label></td>
+                                <td class="text-center" id="har_a"></td>
+                                <td class="text-center" id="har_b"></td>
+                                <td class="text-center" id="har_c"></td>
+                                <td class="text-center" id="har_d"></td>
+                                <td class="text-center" id="har_e"></td>
+                                <td class="text-center" id="har_f"></td>
+                                <td class="text-center" id="har_g"></td>
+                                <td class="text-center" id="har_h"></td>
+                                <td class="text-center" id="har_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label>4</label></td>
+                                <td><label>Karnataka</label></td>
+                                <td class="text-center" id="kar_a"></td>
+                                <td class="text-center" id="kar_b"></td>
+                                <td class="text-center" id="kar_c"></td>
+                                <td class="text-center" id="kar_d"></td>
+                                <td class="text-center" id="kar_e"></td>
+                                <td class="text-center" id="kar_f"></td>
+                                <td class="text-center" id="kar_g"></td>
+                                <td class="text-center" id="kar_h"></td>
+                                <td class="text-center" id="kar_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label>5</label></td>
+                                <td><label>Madhya Pradesh</label></td>
+                                <td class="text-center" id="mad_a"></td>
+                                <td class="text-center" id="mad_b"></td>
+                                <td class="text-center" id="mad_c"></td>
+                                <td class="text-center" id="mad_d"></td>
+                                <td class="text-center" id="mad_e"></td>
+                                <td class="text-center" id="mad_f"></td>
+                                <td class="text-center" id="mad_g"></td>
+                                <td class="text-center" id="mad_h"></td>
+                                <td class="text-center" id="mad_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label>6</label></td>
+                                <td><label>Maharashtra</label></td>
+                                <td class="text-center" id="maha_a"></td>
+                                <td class="text-center" id="maha_b"></td>
+                                <td class="text-center" id="maha_c"></td>
+                                <td class="text-center" id="maha_d"></td>
+                                <td class="text-center" id="maha_e"></td>
+                                <td class="text-center" id="maha_f"></td>
+                                <td class="text-center" id="maha_g"></td>
+                                <td class="text-center" id="maha_h"></td>
+                                <td class="text-center" id="maha_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label>7</label></td>
+                                <td><label>Rajasthan</label></td>
+                                <td class="text-center" id="raj_a"></td>
+                                <td class="text-center" id="raj_b"></td>
+                                <td class="text-center" id="raj_c"></td>
+                                <td class="text-center" id="raj_d"></td>
+                                <td class="text-center" id="raj_e"></td>
+                                <td class="text-center" id="raj_f"></td>
+                                <td class="text-center" id="raj_g"></td>
+                                <td class="text-center" id="raj_h"></td>
+                                <td class="text-center" id="raj_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label>8</label></td>
+                                <td><label>Uttar Pradesh</label></td>
+                                <td class="text-center" id="uttar_a"></td>
+                                <td class="text-center" id="uttar_b"></td>
+                                <td class="text-center" id="uttar_c"></td>
+                                <td class="text-center" id="uttar_d"></td>
+                                <td class="text-center" id="uttar_e"></td>
+                                <td class="text-center" id="uttar_f"></td>
+                                <td class="text-center" id="uttar_g"></td>
+                                <td class="text-center" id="uttar_h"></td>
+                                <td class="text-center" id="uttar_i"></td>
+                            </tr>
+                            <tr>
+                                <td><label></label></td>
+                                <td class="text-center"><label>Total</label></td>
+                                <td class="text-center"><label id="total_a"></label></td>
+                                <td class="text-center"><label id="total_b"></label></td>
+                                <td class="text-center"><label id="total_c"></label></td>
+                                <td class="text-center"><label id="total_d"></label></td>
+                                <td class="text-center"><label id="total_e"></label></td>
+                                <td class="text-center"><label id="total_f"></label></td>
+                                <td class="text-center"><label id="total_g"></label></td>
+                                <td class="text-center"><label id="total_h"></label></td>
+                                <td class="text-center"><label id="total_i"></label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12" style="margin-bottom:15px;">
+                    <div class="container  hidediv" id="btnExport1">
+                        <div class="col-md-12 text-center">
+                            <a href="~/GRM/Grm_daseboard" class="btn btn-danger">
+                                Back
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function ReportPdf() {
+        $("#Data1").width(2000);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'GRM Status by Grievances Type.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A2', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
+    }
+
+</script>
+<script>
+
+    $(document).ready(function () {
+
+        $('#Finacial_Month').prop('disabled', true);
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "") {
+              window.location = "/Home/LogOut";
+        }
+        if (StateOfficer == "State Level Nodal Officer") {
+
+        }
+        else if (StateOfficer == "District Level Nodal Officer") {
+              window.location = "/Home/LogOut";
+        }
+        else if (StateOfficer == "Block Level Nodal Officer") {
+              window.location = "/Home/LogOut";
+        }
+        else if (StateOfficer == "Gram Panchyat Nodal Officer") {
+              window.location = "/Home/LogOut";
+        }
+        SessionInfo();
+
+    });
+
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demobalance2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/ ' + mm + '/ ' + yyyy;
+    document.getElementById("demobalance").innerHTML = today;
+</script>
+
+<script>
+
+    function Year() {
+        
+        $('#npmu_a').text("");
+        $('#guj_a').text("");
+        $('#har_a').text("");
+        $('#kar_a').text("");
+        $('#mad_a').text("");
+        $('#maha_a').text("");
+        $('#raj_a').text("");
+        $('#uttar_a').text("");
+
+        $('#npmu_b').text("");
+        $('#guj_b').text("");
+        $('#har_b').text("");
+        $('#kar_b').text("");
+        $('#mad_b').text("");
+        $('#maha_b').text("");
+        $('#raj_b').text("");
+        $('#uttar_b').text("");
+
+        $('#npmu_c').text("");
+        $('#guj_c').text("");
+        $('#har_c').text("");
+        $('#kar_c').text("");
+        $('#mad_c').text("");
+        $('#maha_c').text("");
+        $('#raj_c').text("");
+        $('#uttar_c').text("");
+
+        $('#npmu_d').text("");
+        $('#guj_d').text("");
+        $('#har_d').text("");
+        $('#kar_d').text("");
+        $('#mad_d').text("");
+        $('#maha_d').text("");
+        $('#raj_d').text("");
+        $('#uttar_d').text("");
+
+        $('#npmu_e').text("");
+        $('#guj_e').text("");
+        $('#har_e').text("");
+        $('#kar_e').text("");
+        $('#mad_e').text("");
+        $('#maha_e').text("");
+        $('#raj_e').text("");
+        $('#uttar_e').text("");
+
+        $('#npmu_f').text("");
+        $('#guj_f').text("");
+        $('#har_f').text("");
+        $('#kar_f').text("");
+        $('#mad_f').text("");
+        $('#maha_f').text("");
+        $('#raj_f').text("");
+        $('#uttar_f').text("");
+
+        $('#npmu_g').text("");
+        $('#guj_g').text("");
+        $('#har_g').text("");
+        $('#kar_g').text("");
+        $('#mad_g').text("");
+        $('#maha_g').text("");
+        $('#raj_g').text("");
+        $('#uttar_g').text("");
+
+        $('#npmu_h').text("");
+        $('#guj_h').text("");
+        $('#har_h').text("");
+        $('#kar_h').text("");
+        $('#mad_h').text("");
+        $('#maha_h').text("");
+        $('#raj_h').text("");
+        $('#uttar_h').text("");
+
+        $('#npmu_i').text("");
+        $('#guj_i').text("");
+        $('#har_i').text("");
+        $('#kar_i').text("");
+        $('#mad_i').text("");
+        $('#maha_i').text("");
+        $('#raj_i').text("");
+        $('#uttar_i').text("");
+
+        $('#total_a').text("");
+        $('#total_b').text("");
+        $('#total_c').text("");
+        $('#total_d').text("");
+        $('#total_e').text("");
+        $('#total_f').text("");
+        $('#total_g').text("");
+        $('#total_h').text("");
+        $('#total_i').text("");
+        $('#year_fill').text("");
+
+        var year = $('#Finacial_Year').val();
+        if (year == "ALL") {
+            $('#year_fill').text("5 year (2020-2025)");
+        }
+        else {
+            $('#year_fill').text(year);
+        }
+        var month = $('#Finacial_Month').val();
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance_new/Grievance_Report_type',
+            data: { 'year': year, 'month': month, 'state': StateName },
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                var npmu_total = 0;
+                var guj_total = 0;
+                var har_total = 0;
+                var kar_total = 0;
+                var mad_total = 0;
+                var maha_total = 0;
+                var raj_total = 0;
+                var up_total = 0;
+
+                var npmu_online = 0;
+                var guj_online = 0;
+                var har_online = 0;
+                var kar_online = 0;
+                var mad_online = 0;
+                var maha_online = 0;
+                var raj_online = 0;
+                var up_online = 0;
+
+                var npmu_offline = 0;
+                var guj_offline = 0;
+                var har_offline = 0;
+                var kar_offline = 0;
+                var mad_offline = 0;
+                var maha_offline = 0;
+                var raj_offline = 0;
+                var up_offline = 0;
+
+                var npmu_tfree = 0;
+                var guj_tfree = 0;
+                var har_tfree = 0;
+                var kar_tfree = 0;
+                var mad_tfree = 0;
+                var maha_tfree = 0;
+                var raj_tfree = 0;
+                var up_tfree = 0;
+
+                var npmu_verbal = 0;
+                var guj_verbal = 0;
+                var har_verbal = 0;
+                var kar_verbal = 0;
+                var mad_verbal = 0;
+                var maha_verbal = 0;
+                var raj_verbal = 0;
+                var up_verbal = 0;
+
+                var npmu_email = 0;
+                var guj_email = 0;
+                var har_email = 0;
+                var kar_email = 0;
+                var mad_email = 0;
+                var maha_email = 0;
+                var raj_email = 0;
+                var up_email = 0;
+
+                var npmu_letter = 0;
+                var guj_letter = 0;
+                var har_letter = 0;
+                var kar_letter = 0;
+                var mad_letter = 0;
+                var maha_letter = 0;
+                var raj_letter = 0;
+                var up_letter = 0;
+
+                var npmu_resolve = 0;
+                var guj_resolve = 0;
+                var har_resolve = 0;
+                var kar_resolve = 0;
+                var mad_resolve = 0;
+                var maha_resolve = 0;
+                var raj_resolve = 0;
+                var up_resolve = 0;
+
+                var npmu_unresolve = 0;
+                var guj_unresolve = 0;
+                var har_unresolve = 0;
+                var kar_unresolve = 0;
+                var mad_unresolve = 0;
+                var maha_unresolve = 0;
+                var raj_unresolve = 0;
+                var up_unresolve = 0;
+
+                if (data.length != 0) {
+                    if (year == "ALL") {
+                        $('#Finacial_Month').prop('disabled', true);
+                        for (var i = 0; i < data.length; i++) {
+                            var accept = data[i].accept
+                            if (accept == null) {
+                                accept = "";
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU") {
+                                npmu_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24") {
+                                guj_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6") {
+                                har_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29") {
+                                kar_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23") {
+                                mad_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27") {
+                                maha_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8") {
+                                raj_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9") {
+                                up_total += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].status == "Online") {
+                                npmu_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].status == "Online") {
+                                guj_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].status == "Online") {
+                                har_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].status == "Online") {
+                                kar_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].status == "Online") {
+                                mad_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].status == "Online") {
+                                maha_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].status == "Online") {
+                                raj_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].status == "Online") {
+                                up_online += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].status == "Offline") {
+                                npmu_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].status == "Offline") {
+                                guj_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].status == "Offline") {
+                                har_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].status == "Offline") {
+                                kar_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].status == "Offline") {
+                                mad_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].status == "Offline") {
+                                maha_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].status == "Offline") {
+                                raj_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].status == "Offline") {
+                                up_offline += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].status == "Toll Free No") {
+                                npmu_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].status == "Toll Free No") {
+                                guj_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].status == "Toll Free No") {
+                                har_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].status == "Toll Free No") {
+                                kar_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].status == "Toll Free No") {
+                                mad_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].status == "Toll Free No") {
+                                maha_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].status == "Toll Free No") {
+                                raj_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].status == "Toll Free No") {
+                                up_tfree += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].District_name == "Verbal") {
+                                npmu_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].District_name == "Verbal") {
+                                guj_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].District_name == "Verbal") {
+                                har_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].District_name == "Verbal") {
+                                kar_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].District_name == "Verbal") {
+                                mad_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].District_name == "Verbal") {
+                                maha_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].District_name == "Verbal") {
+                                raj_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].District_name == "Verbal") {
+                                up_verbal += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].District_name == "Through Email") {
+                                npmu_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].District_name == "Through Email") {
+                                guj_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].District_name == "Through Email") {
+                                har_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].District_name == "Through Email") {
+                                kar_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].District_name == "Through Email") {
+                                mad_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].District_name == "Through Email") {
+                                maha_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].District_name == "Through Email") {
+                                raj_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].District_name == "Through Email") {
+                                up_email += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].District_name == "Through Letter") {
+                                npmu_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].District_name == "Through Letter") {
+                                guj_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].District_name == "Through Letter") {
+                                har_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].District_name == "Through Letter") {
+                                kar_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].District_name == "Through Letter") {
+                                mad_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].District_name == "Through Letter") {
+                                maha_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].District_name == "Through Letter") {
+                                raj_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].District_name == "Through Letter") {
+                                up_letter += 1;
+
+                            }
+
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].accept == "Approved") {
+                                npmu_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].accept == "Approved") {
+                                guj_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].accept == "Approved") {
+                                har_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].accept == "Approved") {
+                                kar_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].accept == "Approved") {
+                                mad_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].accept == "Approved") {
+                                maha_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].accept == "Approved") {
+                                raj_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].accept == "Approved") {
+                                up_resolve += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && accept == "") {
+                                npmu_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && accept == "") {
+                                guj_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && accept == "") {
+                                har_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && accept == "") {
+                                kar_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && accept == "") {
+                                mad_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && accept == "") {
+                                maha_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && accept == "") {
+                                raj_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && accept == "") {
+                                up_unresolve += 1;
+
+                            }
+
+
+
+                        }
+                    }
+                    else {
+                        $('#Finacial_Month').prop('disabled', false);
+                        for (var i = 0; i < data.length; i++) {
+                            var accept = data[i].accept
+                            if (accept == null) {
+                                accept = "";
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU") {
+                                npmu_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24") {
+                                guj_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6") {
+                                har_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29") {
+                                kar_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23") {
+                                mad_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27") {
+                                maha_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8") {
+                                raj_total += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9") {
+                                up_total += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].status == "Online") {
+                                npmu_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].status == "Online") {
+                                guj_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].status == "Online") {
+                                har_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].status == "Online") {
+                                kar_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].status == "Online") {
+                                mad_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].status == "Online") {
+                                maha_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].status == "Online") {
+                                raj_online += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].status == "Online") {
+                                up_online += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].status == "Offline") {
+                                npmu_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].status == "Offline") {
+                                guj_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].status == "Offline") {
+                                har_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].status == "Offline") {
+                                kar_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].status == "Offline") {
+                                mad_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].status == "Offline") {
+                                maha_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].status == "Offline") {
+                                raj_offline += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].status == "Offline") {
+                                up_offline += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].status == "Toll Free No") {
+                                npmu_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].status == "Toll Free No") {
+                                guj_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].status == "Toll Free No") {
+                                har_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].status == "Toll Free No") {
+                                kar_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].status == "Toll Free No") {
+                                mad_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].status == "Toll Free No") {
+                                maha_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].status == "Toll Free No") {
+                                raj_tfree += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].status == "Toll Free No") {
+                                up_tfree += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].District_name == "Verbal") {
+                                npmu_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].District_name == "Verbal") {
+                                guj_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].District_name == "Verbal") {
+                                har_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].District_name == "Verbal") {
+                                kar_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].District_name == "Verbal") {
+                                mad_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].District_name == "Verbal") {
+                                maha_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].District_name == "Verbal") {
+                                raj_verbal += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].District_name == "Verbal") {
+                                up_verbal += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].District_name == "Through Email") {
+                                npmu_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].District_name == "Through Email") {
+                                guj_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].District_name == "Through Email") {
+                                har_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].District_name == "Through Email") {
+                                kar_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].District_name == "Through Email") {
+                                mad_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].District_name == "Through Email") {
+                                maha_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].District_name == "Through Email") {
+                                raj_email += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].District_name == "Through Email") {
+                                up_email += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].District_name == "Through Letter") {
+                                npmu_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].District_name == "Through Letter") {
+                                guj_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].District_name == "Through Letter") {
+                                har_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].District_name == "Through Letter") {
+                                kar_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].District_name == "Through Letter") {
+                                mad_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].District_name == "Through Letter") {
+                                maha_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].District_name == "Through Letter") {
+                                raj_letter += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].District_name == "Through Letter") {
+                                up_letter += 1;
+
+                            }
+
+
+                            if (data[i].grievance_address_to == "NPMU" && data[i].accept == "Approved") {
+                                npmu_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && data[i].accept == "Approved") {
+                                guj_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && data[i].accept == "Approved") {
+                                har_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && data[i].accept == "Approved") {
+                                kar_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && data[i].accept == "Approved") {
+                                mad_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && data[i].accept == "Approved") {
+                                maha_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && data[i].accept == "Approved") {
+                                raj_resolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && data[i].accept == "Approved") {
+                                up_resolve += 1;
+
+                            }
+
+                            if (data[i].grievance_address_to == "NPMU" && accept == "") {
+                                npmu_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Gujarat_24" && accept == "") {
+                                guj_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Haryana_6" && accept == "") {
+                                har_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Karnataka_29" && accept == "") {
+                                kar_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Madhya Pradesh_23" && accept == "") {
+                                mad_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Maharashtra_27" && accept == "") {
+                                maha_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Rajasthan_8" && accept == "") {
+                                raj_unresolve += 1;
+
+                            }
+                            if (data[i].grievance_address_to == "Uttar Pradesh_9" && accept == "") {
+                                up_unresolve += 1;
+
+                            }
+
+
+
+                        }
+                    }
+
+                    $('#npmu_a').text(npmu_total);
+                    $('#guj_a').text(guj_total);
+                    $('#har_a').text(har_total);
+                    $('#kar_a').text(kar_total);
+                    $('#mad_a').text(mad_total);
+                    $('#maha_a').text(maha_total);
+                    $('#raj_a').text(raj_total);
+                    $('#uttar_a').text(up_total);
+
+                    $('#npmu_b').text(npmu_online);
+                    $('#guj_b').text(guj_online);
+                    $('#har_b').text(har_online);
+                    $('#kar_b').text(kar_online);
+                    $('#mad_b').text(mad_online);
+                    $('#maha_b').text(maha_online);
+                    $('#raj_b').text(raj_online);
+                    $('#uttar_b').text(up_online);
+
+                    $('#npmu_c').text(npmu_offline);
+                    $('#guj_c').text(guj_offline);
+                    $('#har_c').text(har_offline);
+                    $('#kar_c').text(kar_offline);
+                    $('#mad_c').text(mad_offline);
+                    $('#maha_c').text(maha_offline);
+                    $('#raj_c').text(raj_offline);
+                    $('#uttar_c').text(up_offline);
+
+                    $('#npmu_d').text(npmu_tfree);
+                    $('#guj_d').text(guj_tfree);
+                    $('#har_d').text(har_tfree);
+                    $('#kar_d').text(kar_tfree);
+                    $('#mad_d').text(mad_tfree);
+                    $('#maha_d').text(maha_tfree);
+                    $('#raj_d').text(raj_tfree);
+                    $('#uttar_d').text(up_tfree);
+
+                    $('#npmu_e').text(npmu_verbal);
+                    $('#guj_e').text(guj_verbal);
+                    $('#har_e').text(har_verbal);
+                    $('#kar_e').text(kar_verbal);
+                    $('#mad_e').text(mad_verbal);
+                    $('#maha_e').text(maha_verbal);
+                    $('#raj_e').text(raj_verbal);
+                    $('#uttar_e').text(up_verbal);
+
+                    $('#npmu_f').text(npmu_email);
+                    $('#guj_f').text(guj_email);
+                    $('#har_f').text(har_email);
+                    $('#kar_f').text(kar_email);
+                    $('#mad_f').text(mad_email);
+                    $('#maha_f').text(maha_email);
+                    $('#raj_f').text(raj_email);
+                    $('#uttar_f').text(up_email);
+
+                    $('#npmu_g').text(npmu_letter);
+                    $('#guj_g').text(guj_letter);
+                    $('#har_g').text(har_letter);
+                    $('#kar_g').text(kar_letter);
+                    $('#mad_g').text(mad_letter);
+                    $('#maha_g').text(maha_letter);
+                    $('#raj_g').text(raj_letter);
+                    $('#uttar_g').text(up_letter);
+
+                    $('#npmu_h').text(npmu_resolve);
+                    $('#guj_h').text(guj_resolve);
+                    $('#har_h').text(har_resolve);
+                    $('#kar_h').text(kar_resolve);
+                    $('#mad_h').text(mad_resolve);
+                    $('#maha_h').text(maha_resolve);
+                    $('#raj_h').text(raj_resolve);
+                    $('#uttar_h').text(up_resolve);
+
+                    $('#npmu_i').text(npmu_unresolve);
+                    $('#guj_i').text(guj_unresolve);
+                    $('#har_i').text(har_unresolve);
+                    $('#kar_i').text(kar_unresolve);
+                    $('#mad_i').text(mad_unresolve);
+                    $('#maha_i').text(maha_unresolve);
+                    $('#raj_i').text(raj_unresolve);
+                    $('#uttar_i').text(up_unresolve);
+
+                    var total_a = npmu_total + guj_total + har_total + kar_total + mad_total + maha_total + raj_total + up_total;
+                    var total_b = npmu_online + guj_online + har_online + kar_online + mad_online + maha_online + raj_online + up_online;
+                    var total_c = npmu_offline + guj_offline + har_offline + kar_offline + mad_offline + maha_offline + raj_offline + up_offline;
+                    var total_d = npmu_tfree + guj_tfree + har_tfree + kar_tfree + mad_tfree + maha_tfree + raj_tfree + up_tfree;
+                    var total_e = npmu_verbal + guj_verbal + har_verbal + kar_verbal + mad_verbal + maha_verbal + raj_verbal + up_verbal;
+                    var total_f = npmu_email + guj_email + har_email + kar_email + mad_email + maha_email + raj_email + up_email;
+                    var total_g = npmu_letter + guj_letter + har_letter + kar_letter + mad_letter + maha_letter + raj_letter + up_letter;
+                    var total_h = npmu_resolve + guj_resolve + har_resolve + kar_resolve + mad_resolve + maha_resolve + raj_resolve + up_resolve;
+                    var total_i = npmu_unresolve + guj_unresolve + har_unresolve + kar_unresolve + mad_unresolve + maha_unresolve + raj_unresolve + up_unresolve;
+
+                    $('#total_a').text(total_a);
+                    $('#total_b').text(total_b);
+                    $('#total_c').text(total_c);
+                    $('#total_d').text(total_d);
+                    $('#total_e').text(total_e);
+                    $('#total_f').text(total_f);
+                    $('#total_g').text(total_g);
+                    $('#total_h').text(total_h);
+                    $('#total_i').text(total_i);
+
+                }
+                else {
+                    $('#npmu_a').text("");
+                    $('#guj_a').text("");
+                    $('#har_a').text("");
+                    $('#kar_a').text("");
+                    $('#mad_a').text("");
+                    $('#maha_a').text("");
+                    $('#raj_a').text("");
+                    $('#uttar_a').text("");
+
+                    $('#npmu_b').text("");
+                    $('#guj_b').text("");
+                    $('#har_b').text("");
+                    $('#kar_b').text("");
+                    $('#mad_b').text("");
+                    $('#maha_b').text("");
+                    $('#raj_b').text("");
+                    $('#uttar_b').text("");
+
+                    $('#npmu_c').text("");
+                    $('#guj_c').text("");
+                    $('#har_c').text("");
+                    $('#kar_c').text("");
+                    $('#mad_c').text("");
+                    $('#maha_c').text("");
+                    $('#raj_c').text("");
+                    $('#uttar_c').text("");
+
+                    $('#npmu_d').text("");
+                    $('#guj_d').text("");
+                    $('#har_d').text("");
+                    $('#kar_d').text("");
+                    $('#mad_d').text("");
+                    $('#maha_d').text("");
+                    $('#raj_d').text("");
+                    $('#uttar_d').text("");
+
+                    $('#npmu_e').text("");
+                    $('#guj_e').text("");
+                    $('#har_e').text("");
+                    $('#kar_e').text("");
+                    $('#mad_e').text("");
+                    $('#maha_e').text("");
+                    $('#raj_e').text("");
+                    $('#uttar_e').text("");
+
+                    $('#npmu_f').text("");
+                    $('#guj_f').text("");
+                    $('#har_f').text("");
+                    $('#kar_f').text("");
+                    $('#mad_f').text("");
+                    $('#maha_f').text("");
+                    $('#raj_f').text("");
+                    $('#uttar_f').text("");
+
+                    $('#npmu_g').text("");
+                    $('#guj_g').text("");
+                    $('#har_g').text("");
+                    $('#kar_g').text("");
+                    $('#mad_g').text("");
+                    $('#maha_g').text("");
+                    $('#raj_g').text("");
+                    $('#uttar_g').text("");
+
+                    $('#npmu_h').text("");
+                    $('#guj_h').text("");
+                    $('#har_h').text("");
+                    $('#kar_h').text("");
+                    $('#mad_h').text("");
+                    $('#maha_h').text("");
+                    $('#raj_h').text("");
+                    $('#uttar_h').text("");
+
+                    $('#npmu_i').text("");
+                    $('#guj_i').text("");
+                    $('#har_i').text("");
+                    $('#kar_i').text("");
+                    $('#mad_i').text("");
+                    $('#maha_i').text("");
+                    $('#raj_i').text("");
+                    $('#uttar_i').text("");
+
+                    $('#total_a').text("");
+                    $('#total_b').text("");
+                    $('#total_c').text("");
+                    $('#total_d').text("");
+                    $('#total_e').text("");
+                    $('#total_f').text("");
+                    $('#total_g').text("");
+                    $('#total_h').text("");
+                    $('#total_i').text("");
+                }
+
+            }
+        });
+    }
+
+    var StateName = "";
+    function SessionInfo() {
+        
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/mis_new/State_SessionInfo',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (data == "Admin") {
+                    StateName = "All";
+
+                }
+                else {
+                    StateName = data;
+
+
+                }
+
+
+
+            }
+
+        });
+    }
+
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnexcel").click(function () {
+
+            $("#tblreport").table2excel({
+                filename: "GRM Status by Grievances Type.xls"
+            });
+        });
+    });
+</script>

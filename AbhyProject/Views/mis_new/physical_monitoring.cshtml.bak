@@ -1,0 +1,601 @@
+﻿
+@{
+    ViewBag.Title = "physical_monitoring";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+<script src="~/Content/JS_Files/Physical_monitoring_JS.js?ver<%=DateTime.Now.Ticks.ToString()%>" type="text/javascript"></script>
+<script src="~/Scripts/validations.js"></script>
+<style>
+    .list_of_firstpanel {
+        list-style: none;
+    }
+
+    ul.list_of_firstpanel > li {
+        display: inline-block
+    }
+
+    .total_label {
+        color: red;
+    }
+
+    .name_label {
+        color: #000;
+    }
+</style>
+
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-primary padding-bottom text-uppercase">Physical Progress Monitoring  </h4>
+
+                </div>
+            </div>
+            <div class="row" id="">
+                <div class="col-lg-12 col-sm-12 col-md-12" style="">
+                    <div class="hpanel horange" style="margin-bottom:0px;">
+                        <div class="panel-body">
+                            <div class="form-group" id="Agency_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li> Agency : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <select name="" class="form-control" id="awp_agency_state_name_1" onchange="PHP_Agency_StateInfo_B()"></select>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title text-center">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name">Name of IA/ Nodal Agency </label></h5>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    @*abhishek*@
+                                    <li style="float:right!important;">
+                                        <label>Category</label>  @*abhi0704*@
+                                        <select id="serviceselector" class="form-control" onchange="Nameofsupport1()">
+                                            <option value="0">Name of Support Service</option>
+                                            <option value="Support">Support Service</option>
+                                            <option value="Goods">Goods</option>
+                                            <option value="Work">Work</option>
+                                            <option value="Training">Training</option>
+                                            <option value="Procurements Of Equipments">Procurements of Equipments</option>
+                                            <option value="IEC/Awareness">IEC/Awareness</option>
+                                            <option value="Other Key Activities">Other Key Activities</option>
+                                            <option value="Social Outreach">Social Outreach</option> @*Abhishek2*@
+                                        </select>
+                                    </li>
+                                    <li></li>
+                                </ul>
+
+                            </div>
+                            <div class="form-group" id="State_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>  StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <label id="pip_dropdown_state_name">
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title text-center">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name1">Agency Name </label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @*abhishek*@
+                                    <li style="float:right!important;">
+                                        <label>Category</label>  @*abhi0704*@
+                                        <select id="serviceselector1" class="form-control" onchange="Nameofsupport2()">
+                                            <option value="0">Name of Support Service</option>
+                                            <option value="Support">Support Service</option>
+                                            <option value="Goods">Goods</option>
+                                            <option value="Work">Work</option>
+                                            <option value="Training">Training</option>
+                                            <option value="Procurements Of Equipments">Procurements of Equipments</option>
+                                            <option value="IEC/Awareness">IEC/Awareness</option>
+                                            <option value="Other Key Activities">Other Key Activities</option>
+                                            <option value="Social Outreach">Social Outreach</option> @*Abhishek2*@
+                                        </select>
+                                    </li>
+
+                                    <li></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" id="div_form_insert">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical Progress Monitoring </span><span id="PH_Dropdown_value"></span> </h5>
+                                        <div class="content">
+                                            <div id="Support" class="Services">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="hpanel hblue">
+                                                            <div class="panel-body">
+                                                                <div class="form-group col-md-4 col-sm-6">
+                                                                    <span class="name_label">Type of Support Service :</span>
+                                                                    <select name="" id="Support_Service" class="form-control" onchange="Support_Service_onchange()" onclick="CheckCategory('@Session["Officer"]')"></select>
+                                                                </div>
+
+                                                                @*abhishek*@
+                                                                <div id="divssb" class="form-group col-md-3 col-sm-6">
+                                                                    <span class="name_label">Sub Support Service :</span>
+                                                                    <select name="" id="Sub_Support_Service" class="form-control" onchange="Sub_Support_Service_onchange()"></select>
+                                                                </div>
+                                                                <div id="divssb_sb" class="form-group col-md-3 col-sm-6">
+                                                                    <span class="name_label">Type of Material :</span>
+                                                                    <select name="" id="material_type" class="form-control">
+                                                                        <option value="0">Select type of Material</option>
+                                                                        <option value="Hoardings">Hoardings</option>
+                                                                        <option value="Posters">Posters</option>
+                                                                        <option value="Paintings / Wall Writing">Paintings / Wall Writing</option>
+                                                                        <option value="Signages">Signages</option>
+                                                                    </select>
+                                                                </div>
+                                                                @*Abhishek2*@
+
+                                                                @*abhi0704*@
+                                                                <div id="divsbdata" class="form-group col-md-3 col-sm-6">
+                                                                    <span class="name_label">Sub Data :</span>
+                                                                    <select name="" id="Sub_Data" class="form-control" onchange="Sub_Data_onchange()"></select>
+                                                                </div>
+
+                                                                @*<div id="divsdyear" class="form-group col-md-3 col-sm-6">
+                                                                        <span class="name_label"> Sub Data Year :</span>
+                                                                        <select name="" id="Sub_Data_Year" class="form-control" onchange="Sub_Data_Year_onchange()"></select>
+                                                                    </div>*@
+                                                                @*abhi00704*@
+                                                                <div class="form-group col-md-8 col-sm-6">
+                                                                    <span class="name_label">Description:</span>
+                                                                    <input type="text" id="Support_Description" class="form-control" readonly></input>
+                                                                    @*<input type="text" id="Support_Description" class="form-control" readonly />*@
+                                                                </div>
+
+                                                                <div class="form-group col-md-4 col-sm-4">
+                                                                    <span class="name_label">Item Code:</span>
+                                                                    <input type="text" id="Support_Item_code" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="form-group col-md-4 col-sm-4">
+                                                                    <span class="name_label"> Month:</span>
+                                                                    <select name="" class="form-control" id="Support_Month" onchange="validate_month('@Session["Email"]');">
+                                                                        <option value="0">Select Month</option>
+                                                                        <option value="January">January</option>
+                                                                        <option value="February">February</option>
+                                                                        <option value="March">March</option>
+                                                                        <option value="April">April</option>
+                                                                        <option value="May">May</option>
+                                                                        <option value="June">June</option>
+                                                                        <option value="July">July</option>
+                                                                        <option value="August">August</option>
+                                                                        <option value="September">September</option>
+                                                                        <option value="October">October</option>
+                                                                        <option value="November">November</option>
+                                                                        <option value="December">December</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-4 col-sm-4">
+                                                                    <span class="name_label">Year:</span>    @*abhi1204*@
+                                                                    <select name="" onchange="Support_Year_onchange('@Session["Email"]')" class="form-control" id="Support_Year">
+                                                                        <option value="0">Select Year</option>
+                                                                        <option value="2020-21">2020-21</option>
+                                                                        <option value="2021-22">2021-22</option>
+                                                                        <option value="2022-23">2022-23</option>
+                                                                        <option value="2023-24">2023-24</option>
+                                                                        <option value="2024-25">2024-25</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group col-md-6 col-sm-6">
+                                                                    <span class="name_label">Targeted Numbers as per AWP(No):</span>
+                                                                    <input type="text" id="Support_Targeted_Numbers_as_per_AWP" class="form-control decimal" readonly />  @*abhi0605*@
+                                                                </div>
+                                                                @*//new*@
+                                                                @*<div id="divEC" class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Estimated Cost (per year):
+                                                                        </span>*
+                                                                        <input type="text" id="Support_Estimated_Cost" class="form-control decimal" />
+                                                                    </div>*@
+                                                                <div id="divIP" class="form-group col-md-6 col-sm-6">
+                                                                    @*Abhishek2*@
+                                                                    <span class="name_label">
+                                                                        Monthly Achievement: <var class="txt_cum"></var>
+                                                                    </span>
+                                                                    <input type="text" id="Support_Item_Procured" onpaste="return false" class="form-control decimal" maxlength="5" oninput="Sum_cumm(event)" />
+                                                                </div>
+                                                                @*abhishek
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                     <span class="name_label">Total (No):</span>
+                                                                     <input type="text" id="Support_Total" class="form-control decimal decimal" />
+                                                                    </div>*@
+                                                                <div id="divCT" class="form-group col-md-6 col-sm-6">
+                                                                    <span class="name_label">Cumulative Achievement:</span><var class="txt_cum1"></var>
+                                                                    <input type="text" id="Support_Cumulative_Total" class="form-control decimal" disabled />
+                                                                </div>
+                                                                <div class="form-group col-md-6 col-sm-6">
+                                                                    <span class="name_label">Remark:</span>
+                                                                    <input type="text" id="Support_Remark" class="form-control" />
+                                                                </div>
+
+                                                                <div class="form-group col-md-12 text-center">
+                                                                    <button type="button" onclick="Save_Support_Service()" class="btn btn-sm  btn-success btn_disabled" id="physical_savebtn"> Submit</button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*abhishek*@
+                                            @*<div id="Goods" class="Services">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="hpanel hblue">
+                                                                <div class="panel-body">
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Brief Description of  Goods :</span>
+                                                                        <select name="" onchange="Brif_description_of_good_onchange()" id="Brif_description_of_good" class="form-control">
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Description:</span>
+                                                                        <input type="text" id="Goods_Description" class="form-control" readonly />
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label">Item Code:</span>
+                                                                        <input type="text" id="Goods_ItemCode" class="form-control" readonly />
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label"> Month:</span>
+                                                                        <select name="" id="Goods_Month" class="form-control">
+                                                                            <option value="0">Select Month</option>
+                                                                            <option value="January">January</option>
+                                                                            <option value="February">February</option>
+                                                                            <option value="March">March</option>
+                                                                            <option value="April">April</option>
+                                                                            <option value="May">May</option>
+                                                                            <option value="June">June</option>
+                                                                            <option value="July">July</option>
+                                                                            <option value="August">August</option>
+                                                                            <option value="September">September</option>
+                                                                            <option value="October">October</option>
+                                                                            <option value="November">November</option>
+                                                                            <option value="December">December</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label">Year:</span>
+                                                                        <select name="" id="Goods_Year" class="form-control">
+                                                                            <option value="0">Select Year</option>
+                                                                            <option value="2020-21">2020-21</option>
+                                                                            <option value="2021-22">2021-22</option>
+                                                                            <option value="2022-23">2022-23</option>
+                                                                            <option value="2023-24">2023-24</option>
+                                                                            <option value="2024-25">2024-25</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Targeted Numbers as per AWP:</span>
+                                                                        <input type="text" id="Goods_Targeted_Numbers_as_per_AWP" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Estimated Cost (per year):
+                                                                        </span>
+                                                                        <input type="text" id="Goods_Estimated_Cost" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Item Procured/ Actual Achieved (No):
+                                                                        </span>
+                                                                        <input type="text" id="Goods_Item_Procured" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Total (No):
+                                                                        </span>
+                                                                        <input type="text" id="Goods_Total" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Cumulative Total (No):</span>
+                                                                        <input type="text" id="Goods_Cumulative_Total" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Remark:</span>
+                                                                        <input type="text" id="Goods_Remark" class="form-control" />
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-12 text-center">
+                                                                        <button type="button" onclick="Save_Goods_Info()" class="btn btn-sm  btn-success"> Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="Work" class="Services">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="hpanel hblue">
+                                                                <div class="panel-body">
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Type of the Work  :</span>
+                                                                        <select name="Type_Of_Work" onchange="Type_Of_Work_onchange()" id="Type_Of_Work" class="form-control">
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Description:</span>
+                                                                        <input type="text" id="Work_Description" class="form-control" readonly />
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label">Item Code:</span>
+                                                                        <input type="text" id="Work_ItemCode" class="form-control" readonly />
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label"> Month:</span>
+                                                                        <select id="Work_Month" name="" class="form-control">
+                                                                            <option value="0">Select Month</option>
+                                                                            <option value="January">January</option>
+                                                                            <option value="February">February</option>
+                                                                            <option value="March">March</option>
+                                                                            <option value="April">April</option>
+                                                                            <option value="May">May</option>
+                                                                            <option value="June">June</option>
+                                                                            <option value="July">July</option>
+                                                                            <option value="August">August</option>
+                                                                            <option value="September">September</option>
+                                                                            <option value="October">October</option>
+                                                                            <option value="November">November</option>
+                                                                            <option value="December">December</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label">Year:</span>
+                                                                        <select name="" id="Work_Year" class="form-control">
+                                                                            <option value="0">Select Year</option>
+                                                                            <option value="2020">2020</option>
+                                                                            <option value="2021">2021</option>
+                                                                            <option value="2022">2022</option>
+                                                                            <option value="2023">2023</option>
+                                                                            <option value="2024">2024</option>
+                                                                            <option value="2025">2025</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Targeted Numbers as per AWP:</span>
+                                                                        <input type="text" id="Work_Targeted_Numbers_as_per_AWP" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Estimated Cost (per year):
+                                                                        </span>
+                                                                        <input type="text" id="Work_Estimated_Cost" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Item Procured/ Actual Achieved (No):
+                                                                        </span>
+                                                                        <input type="text" id="Work_Item_Procured" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Total (No):
+                                                                        </span>
+                                                                        <input type="text" id="Work_Total" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Cumulative Total (No):</span>
+                                                                        <input type="text" id="Work_Cumulative_Total" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Remark:</span>
+                                                                        <input type="text" id="Work_Remark" class="form-control" />
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-12 text-center">
+                                                                        <button type="button" onclick="Save_Work_Info()" class="btn btn-sm  btn-success"> Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="Training" class="Services">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="hpanel hblue">
+                                                                <div class="panel-body">
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Name of Support Service :</span>
+                                                                        <select name="" onchange="Name_Of_Support_Service_onchange()" id="Name_Of_Support_Service" class="form-control">
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Description:</span>
+                                                                        <input type="text" id="Training_Description" class="form-control" readonly />
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label">Item Code:</span>
+                                                                        <input type="text" id="Training_ItemCode" class="form-control" readonly />
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label"> Month:</span>
+                                                                        <select name="" id="Traning_Month" class="form-control">
+                                                                            <option value="0">Select Month</option>
+                                                                            <option value="January">January</option>
+                                                                            <option value="February">February</option>
+                                                                            <option value="March">March</option>
+                                                                            <option value="April">April</option>
+                                                                            <option value="May">May</option>
+                                                                            <option value="June">June</option>
+                                                                            <option value="July">July</option>
+                                                                            <option value="August">August</option>
+                                                                            <option value="September">September</option>
+                                                                            <option value="October">October</option>
+                                                                            <option value="November">November</option>
+                                                                            <option value="December">December</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-4 col-sm-4">
+                                                                        <span class="name_label">Year:</span>
+                                                                        <select name="" id="Traning_Year" class="form-control">
+                                                                            <option value="0">Select Year</option>
+                                                                            <option value="2020">2020</option>
+                                                                            <option value="2021">2021</option>
+                                                                            <option value="2022">2022</option>
+                                                                            <option value="2023">2023</option>
+                                                                            <option value="2024">2024</option>
+                                                                            <option value="2025">2025</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Targeted Numbers as per AWP:</span>
+                                                                        <input type="text" id="Training_Targeted_Numbers_as_per_AWP" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Estimated Cost (per year):
+                                                                        </span>
+                                                                        <input type="text" id="Training_Estimated_Cost" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Item Procured/ Actual Achieved (No):
+                                                                        </span>
+                                                                        <input type="text" id="Training_Item_Procured" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">
+                                                                            Total (No):
+                                                                        </span>
+                                                                        <input type="text" id="Training_Total" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Cumulative Total (No):</span>
+                                                                        <input type="text" id="Traning_Cumulative_Total" class="form-control decimal" />
+                                                                    </div>
+                                                                    <div class="form-group col-md-6 col-sm-6">
+                                                                        <span class="name_label">Remark:</span>
+                                                                        <input type="text" id="Training_Remark" class="form-control" />
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-12 text-center">
+                                                                        <button type="button" onclick="Save_Training_Info()" class="btn btn-sm  btn-success"> Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright .Kreate Technologies 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+@*abhishek*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var Access_Auth = '';
+    $(document).ready(function () {
+        getCurrentFinancialYear();
+        $('#Goods').hide();
+        $('#Work').hide();
+        $('#Training').hide();
+        $('#divssb').hide();
+        $('#divssb_sb').hide();
+        $('#divsbdata').hide();    /*abhi0704*/
+        $('#divsdyear').hide();    /*abhi0704*/
+        $("#div_form_insert").hide();
+        isForm('true');
+        Access_Auth = '@Session["Access_Auth"]';
+        if (Access_Auth == 'readonly') {
+            $('input[type=text]').prop("disabled", true);
+            $('.btn_disabled').prop("disabled", true);
+            $('input[type=file]').prop("disabled", true);
+        }
+
+        //document.getElementById("Support_Item_Procured").onkeyup = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input <= 0 || input >= 100)
+        //        alert('Input Value should be Between 0 - 100');
+        //    return;
+        //}
+
+    });
+    $(function () {
+        //$('#serviceselector').change(function () {
+        //    $('.Services').hide();
+        //    //$('#' + $(this).val()).show();
+        //});
+    });
+
+    function CheckCategory(aa) {
+        if (aa == "State Level Nodal Officer") {
+            var cat = $("#serviceselector1").val();
+
+            if (cat == '0') {
+                alert('Please Select Category');
+            }
+        }
+        else {
+            var cat = $("#serviceselector").val();
+
+            if (cat == '0') {
+                alert('Please Select Category');
+            }
+        }
+    }
+    //$('#serviceselector1').change(function () {
+    //    $('.Services').hide();
+    //    $('#' + $(this).val()).show();
+    //});
+</script>
+
+<script>
+    $(document).ready(function () {
+        SessionInfo1();
+    });
+    $('body').on('keypress', ".decimal", function (event) {
+
+        if (event.which === 8 || event.keyCode === 39)
+            return true;
+
+        else if ((event.which !== 46 || $(this).val().indexOf('.') !== -1) && (event.which < 48 || event.which > 57))
+            event.preventDefault();
+
+    });
+</script>

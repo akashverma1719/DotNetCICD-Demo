@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Awp_b_component_Report";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<script src="~/Content/JS_Files/Pip_js.js"></script>
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-success"> B Component Report</h4>
+                    <h4 class="text-primary padding-bottom">ANNUAL WORK PLAN (AWP)</h4>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-12" style="">
+                    <div class="hpanel hgreen contact-panel">
+                        <div class="panel-body">
+                            <div class="stats-title pull-left">
+                                <h5 class="font-extra-bold no-margins text-success">  INSTITUTIONAL STRENGTHENING & CAPACITY BUILDING </h5>
+                            </div>
+
+                            <div class="stats-title pull-right">
+                                <i class=" fa fa-bar-chart fa-4x text-success"></i>
+                            </div>
+                            <div class="cle"></div>
+
+                            <h5 class="m-top15"><span id="" class="font-bold count">00.00</span></h5>
+                            <h4>
+                                <div class="text-muted font-bold m-b-xs left"></div>
+                                <div class="right"> </div>
+                            </h4><h4></h4>
+                            <h4></h4>
+                            <h4></h4>
+
+
+
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1 </div> <strong> <span id="" class="font-bold">00.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A2 </div> <strong><span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A3 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A4 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A5 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2" style=""> <div class="contact-stat font-extra-bold"><div>A6 </div> <strong> <span id="">0.00</span></strong></div> </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12" style="">
+                    <div class="hpanel hblue contact-panel">
+                        <div class="panel-body">
+                            <div class="stats-title pull-left">
+                                <h5 class="font-extra-bold no-margins text-info"> INCENTIVE </h5>
+                            </div>
+                            <div class="stats-title pull-right"><i class="fa fa-area-chart fa-4x text-info"></i></div>
+                            <div class="cle"></div>
+                            <h5 class="m-top15"> <span id="" class="font-bold count">00.00</span></h5>
+                            <h4>
+                                <div class="text-muted font-bold m-b-xs left"> </div>
+                                <div class="text-muted font-bold m-b-xs right"></div>
+                            </h4><h4></h4>
+                            <h4></h4>
+                            <h4></h4>
+
+
+
+                        </div>
+                        <div class="panel-footer contact-footer">
+                            <div class="row">
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B1 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B2 </div> <strong> <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B3 </div> <strong>  <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B4 </div> <strong>   <span id="">0.00</span></strong></div> </div>
+                                <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>B5 </div> <strong>   <span id="">0.00</span></strong></div> </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget row no-gutter p-lg">
+                        <div class="col-md-12 col-sm-12">
+                            <div>
+                                <div class="text-right">
+
+                                    <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="tableToExcel('abccc', 'AWP_Data')"> Export To Excel</i></div>
+
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="tbl-responsive" style="overflow-x:scroll">
+                                    <table id="abccc" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                        <thead>
+                                            <tr class="info text-center">
+                                                <th colspan="10" class="text-center">ANNUAL WORK PLAN (AWP)</th>
+                                            </tr>
+                                            <tr class="info">
+                                                <th rowspan="2">S.No</th>
+
+                                                <th rowspan="2">AWPID</th>
+                                                <th rowspan="2">UID</th>
+                                                <th rowspan="2">Activity Name</th>
+                                                <th rowspan="2">Total Target (no.)</th>
+                                                <th rowspan="2">Estimated cost for 5 years:</th>
+                                                <th colspan="3" class="text-center">Financial Year (2020-21)</th>
+                                            </tr>
+                                            <tr class="info">
+
+                                                <th colspan="2" class="text-center">Physical</th>
+                                                <th colspan="2" class="text-center">Financial</th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="tbody_AWP_B_Data">
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright GCRS 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        AWP_B_Info();
+    });
+
+</script>
+
+<script>
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>
+

@@ -1,0 +1,1859 @@
+﻿
+@{
+
+    Layout = null;
+}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/Master_DRP.js"></script>
+
+
+
+<title>Efficient Water Report</title>
+
+<style>
+    .database_trainer_row > h3 {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+    .font-bold {
+        font-weight: bold;
+    }
+
+    /*ends here*/
+    .second_heading {
+        background-color: #337ab7;
+        color: #fff;
+        list-style: none;
+        padding: 12px 10px;
+        font-size: 18px;
+        font-weight: bold
+    }
+
+    .main_div {
+        padding-bottom: 30px;
+    }
+
+    .btn-success {
+        margin: 5px 0px !important;
+    }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    .selectdistshowoption select {
+        border-radius: 25px;
+        width: 180px;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    .card {
+        margin-top: 25px;
+    }
+
+    .card-body {
+        border: 1px solid#ccc;
+        /*padding: 5px;*/
+    }
+
+    .headings_border {
+        position: relative;
+        color: #fff;
+        font-size: 35px;
+        text-align: center;
+        font-family: raleway;
+        font-weight: 900;
+        display: inline-block;
+    }
+
+    /*.headings_border::after {
+            content: '';
+            position: absolute;
+            top: 45px;
+            left: 13%;
+            width: 168px;
+            height: 2px;
+            background: #5cb85c;
+        }*/
+    .box_shadow {
+        box-shadow: 0px 3px 46px rgb(0 0 0 / 7%);
+        padding: 15px 15px;
+        background: #f2f2f2;
+    }
+
+    ul.Select_option {
+        padding-left: 0;
+        text-align: initial;
+        padding-top: 24px;
+    }
+
+    #border {
+        border-spacing: 2px;
+        /* border: 2px solid green;*/
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 15px;
+        background: #f2f2f2;
+    }
+
+        #border select {
+            width: 100%;
+            border-radius: 5px !important;
+        }
+
+        #border input {
+            width: 100%;
+            border-radius: 5px !important;
+        }
+
+    .ul.Select_option > li {
+        padding: 0 0 0 11px !important;
+    }
+
+    #demandside::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #demandside::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .cust_center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .cust_center h6 {
+            font-size: 15px;
+        }
+
+    .text-center {
+        background-color: #337ab7 !important;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<main>
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a target="_blank" href="http://ataljal.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="Javascript:;" style="color:#fff;font-size:14px;" role="link">Ministry of Jal Shakti</a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">River Development & Ganga Rejuvenation</a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                            <label>DLI 4 Report</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+            DLI 4 Report
+        </div>
+    </center>
+    <div>
+        <ul style="color:white;">
+            <li style=" text-align: right; margin-top: 10px; margin-right: 25px;">
+                <a href="~/EfficientWater/main_page" class="btn btn-danger">
+                    Back To Module
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="container-fluid">
+            <div class="content">
+                <div class="col-lg-12" style="background-color:#fff;">
+                    <div id="border">
+                        <div class="row container-fluid main_div">
+                            <div class="col-md-12 col-sm-12">
+                                <div>
+                                    <div class="">
+                                        <div class="selectdistshowoption">
+                                            <ul class="Select_option col-md-12 col-sm-12  text-left">
+                                                <li class="">
+                                                    <select name="" id="year" class="form-control" onchange="HideShowPhase()">
+                                                        <option value="2022-23">2022-23</option>
+                                                        <option value="2023-24" selected>2023-24</option>
+                                                    </select>
+                                                </li>
+                                                <li>
+                                                    <select class="form-control" id="fy_phase" disabled>
+                                                        <option value="0">---Select---</option>
+                                                        <option value="Phase-1" selected>Phase-1[Apr 2023 - Sep 2023]</option>
+                                                        <option value="Phase-2">Phase-2</option>
+                                                    </select>
+                                                </li>
+                                                <li id="StateLabel">
+                                                    <label id="lblstate">State:</label>
+                                                    <span id="spnstate1">@Session["gstate"]</span>
+                                                </li>
+                                                <li id="StateDropdownLabel">
+
+                                                    <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
+                                                    </select>
+                                                </li>
+
+                                                <li id="DistLabel">
+                                                    <i class="fas fa fa-angle-double-right"></i>
+                                                    <label id="lbldistrict">District:</label>
+                                                    <span id="spndistrict">@Session["gdist"]</span>
+                                                </li>
+
+                                                <li id="DistDropdownLabel">
+
+                                                    <select class="form-control" id="dist11" onchange="Dist_fun()">
+                                                    </select>
+                                                </li>
+
+                                                <li id="BlockLabel">
+                                                    <i class="fas fa fa-angle-double-right"></i>
+                                                    <label>Block:</label>
+                                                    <span>@Session["gblock"] </span>
+                                                </li>
+
+                                                <li id="BlockDropdownLabel">
+
+                                                    <select class="form-control" id="block1" onchange="Block_fun()">
+                                                    </select>
+                                                </li>
+                                                <li id="GramLabel">
+                                                    <i class="fas fa fa-angle-double-right"></i>
+                                                    <label>Gram panchayat:</label>
+                                                    <span>@Session["ggram"]</span>
+                                                </li>
+
+                                                <li id="GramDropdownLabel">
+                                                    <select class="form-control" id="gram" onchange="Gram_change()">
+                                                    </select>
+                                                </li>
+
+
+                                                <li id="DropdownSearch_btn">
+                                                    <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <main>
+
+        <div id="border">
+            <div class="row container-fluid main_div">
+                <div class="col-md-12 col-sm-12">
+                    <div>
+                        <ul style="color:white;">
+                            <li style=" text-align: right; margin-top:10px;">
+                                <button class="btn btn-success download1" id="btnexcel_a" onclick="Excel_a()">Export To Excel</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tbl-responsive" id="demandside" style=" overflow-x:scroll;overflow-y:scroll; height:600px;">
+                        <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                            <thead style="color: #fff;">
+                                <tr class="tableheader1"></tr>
+                                <tr class="success">
+                                    <th rowspan="3" class="text-center">Sr.No</th>
+                                    <th rowspan="3" class="text-center">State Name</th>
+                                    <th rowspan="3" class="text-center">District Name</th>
+                                    <th rowspan="3" class="text-center">Block Name</th>
+                                    <th rowspan="3" class="text-center">Gram Panchayat Name </th>
+                                    <th rowspan="3" class="text-center">Financial Year </th>
+                                    <th colspan="13" class="text-center"><label>Increase in Area (in Ha) with Efficient Irrigation System </label></th>
+
+                                    <th colspan="3" class="text-center">Total Beneficiary</th>
+
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Data Validation</th>
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Remark</th>
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Status</th>
+
+                                </tr>
+                                <tr class="success">
+                                    <th colspan="4" class="text-center">Increase in area through convergence</th>
+                                    <th colspan="4" class="text-center">Increase in area exclusively through Incentive fund</th>
+                                    <th colspan="4" class="text-center">Increase in area through self/  private financing</th>
+                                    <th rowspan="2" class="text-center"> Total</th>
+                                    <th rowspan="3" class="text-center">Total Sprinkler</th>
+                                    <th rowspan="3" class="text-center">Total Drip</th>
+                                    <th rowspan="3" class="text-center">Total Pipelines</th>
+                                </tr>
+                                <tr class="success">
+                                    <th rowspan="1" class="text-center">Area under Sprinkler Irrigation</th>
+                                    <th rowspan="1" class="text-center">Area under Drip Irrigation</th>
+                                    <th rowspan="1" class="text-center">Irrigation through  Pipelines</th>
+                                    <th rowspan="1" class="text-center">Total</th>
+
+                                    <th rowspan="1" class="text-center">Area under Sprinkler Irrigation</th>
+                                    <th rowspan="1" class="text-center">Area under Drip Irrigation</th>
+                                    <th rowspan="1" class="text-center">Irrigation through  Pipelines</th>
+                                    <th rowspan="1" class="text-center">Total</th>
+
+                                    <th rowspan="1" class="text-center">Area under Sprinkler Irrigation</th>
+                                    <th rowspan="1" class="text-center">Area under Drip Irrigation</th>
+                                    <th rowspan="1" class="text-center">Irrigation through  Pipelines</th>
+                                    <th rowspan="1" class="text-center">Total</th>
+
+                                </tr>
+                                
+                            </thead>
+                            <tbody id="tbl_details"></tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <div>
+                        <ul style="color:white;">
+                            <li style=" text-align: right; margin-top:10px;">
+                                <button class="btn btn-success download1" id="btnexcel_b" onclick="Excel_b()">Export To Excel</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tbl-responsive" id="demandside" style=" overflow-x:scroll;overflow-y:scroll; height:600px;">
+                        <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                            <thead style="color: #fff;">
+                                <tr class="tableheader1"></tr>
+                                <tr class="success">
+                                    <th rowspan="3" class="text-center">Sr.No</th>
+                                    <th rowspan="3" class="text-center">State Name</th>
+                                    <th rowspan="3" class="text-center">District Name</th>
+                                    <th rowspan="3" class="text-center">Block Name</th>
+                                    <th rowspan="3" class="text-center">Gram Panchayat Name </th>
+                                    <th rowspan="3" class="text-center">Financial Year </th>
+                                    <th colspan="5" class="text-center"><label>Increase in area with shift in cropping pattern </label></th>
+                                    <th rowspan="3" class="text-center">Total Beneficiary</th>
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Data Validation</th>
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Remark</th>
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Status</th>
+
+                                </tr>
+                                <tr class="success">
+                                    <th rowspan="1" class="text-center">Name of existing High water consuming Crop</th>
+                                    <th rowspan="1" class="text-center">Name of replacing low water consuming crop</th>
+                                    <th rowspan="1" class="text-center">Area with crop shifting  (Ha)</th>
+                                    <th rowspan="1" class="text-center" style="padding: 80px; padding-bottom: 10px;">Name of Department</th>
+                                    <th rowspan="1" class="text-center" style="padding: 80px; padding-bottom: 10px;">Name of Scheme</th>
+                                </tr>
+
+
+                            </thead>
+                            <tbody id="tbl_details_a"></tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <div>
+                        <ul style="color:white;">
+                            <li style=" text-align: right; margin-top:10px;">
+                                <button class="btn btn-success download1" id="btnexcel_c" onclick="Excel_c()">Export To Excel</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tbl-responsive" id="demandside" style=" overflow-x:scroll;overflow-y:scroll; height:600px;">
+                        <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                            <thead style="color: #fff;">
+                                <tr class="tableheader1"></tr>
+                                <tr class="success">
+                                    <th rowspan="3" class="text-center">Sr.No</th>
+                                    <th rowspan="3" class="text-center">State Name</th>
+                                    <th rowspan="3" class="text-center">District Name</th>
+                                    <th rowspan="3" class="text-center">Block Name</th>
+                                    <th rowspan="3" class="text-center">Gram Panchayat Name </th>
+                                    <th rowspan="3" class="text-center">Financial Year </th>
+                                    <th colspan="31" class="text-center"><label>Increase in area under other water saving method ( Ha) used for agriculture</label></th>
+                                    <th colspan="8" class="text-center"><label>Total Beneficiary</label></th>
+
+
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Data Validation</th>
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Remark</th>
+                                    <th rowspan="3" class="text-center" style="padding:8px 70px;">Status</th>
+
+                                </tr>
+                                <tr class="success">
+                                    <th colspan="9" class="text-center">Increase in area through convergence</th>
+                                    <th colspan="9" class="text-center">Increase in area through Incentive fund</th>
+                                    <th colspan="9" class="text-center">Increase in area through self/private financing</th>
+                                    <th rowspan="3" class="text-center">All Total</th>
+                                    <th rowspan="3" class="text-center"> Other Type 1</th>
+                                    <th rowspan="3" class="text-center"> Other Type 2</th>
+                                    <th rowspan="3" class="text-center"> Other Type 3</th>
+
+                                    <th rowspan="3" class="text-center"> Super seeder /happy seeder/zero tillage</th>
+                                    <th rowspan="3" class="text-center"> Polyhouse /net house</th>
+                                    <th rowspan="3" class="text-center"> Mulching</th>
+                                    <th rowspan="3" class="text-center"> Hydrogel</th>
+                                    <th rowspan="3" class="text-center"> DSR</th>
+                                    <th rowspan="3" class="text-center"> Other 1</th>
+                                    <th rowspan="3" class="text-center"> Other 2</th>
+                                    <th rowspan="3" class="text-center"> Other 3</th>
+
+                                </tr>
+                                <tr class="success">
+                                    <th rowspan="1" class="text-center">Super seeder /happy seeder/zero tillage</th>
+                                    <th rowspan="1" class="text-center">Polyhouse /net house</th>
+                                    <th rowspan="1" class="text-center">Mulching</th>
+                                    <th rowspan="1" class="text-center">Hydrogel</th>
+                                    <th rowspan="1" class="text-center">DSR</th>
+                                    <th rowspan="1" class="text-center">Other 1</th>
+                                    <th rowspan="1" class="text-center">Other 2</th>
+                                    <th rowspan="1" class="text-center">Other 3</th>
+                                    <th rowspan="1" class="text-center">Total</th>
+
+                                    <th rowspan="1" class="text-center">Super seeder /happy seeder/zero tillage</th>
+                                    <th rowspan="1" class="text-center">Polyhouse /net house</th>
+                                    <th rowspan="1" class="text-center">Mulching</th>
+                                    <th rowspan="1" class="text-center">Hydrogel</th>
+                                    <th rowspan="1" class="text-center">DSR</th>
+                                    <th rowspan="1" class="text-center">Other 1</th>
+                                    <th rowspan="1" class="text-center">Other 2</th>
+                                    <th rowspan="1" class="text-center">Other 3</th>
+                                    <th rowspan="1" class="text-center">Total</th>
+
+                                    <th rowspan="1" class="text-center">Super seeder /happy seeder/zero tillage</th>
+                                    <th rowspan="1" class="text-center">Polyhouse /net house</th>
+                                    <th rowspan="1" class="text-center">Mulching</th>
+                                    <th rowspan="1" class="text-center">Hydrogel</th>
+                                    <th rowspan="1" class="text-center">DSR</th>
+                                    <th rowspan="1" class="text-center">Other 1</th>
+                                    <th rowspan="1" class="text-center">Other 2</th>
+                                    <th rowspan="1" class="text-center">Other 3</th>
+                                    <th rowspan="1" class="text-center">Total</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody id="tbl_details_b"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <br />
+
+</main>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/training_workshop.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<script>
+
+    var Jsondata = "";
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var off_1 = "";
+    var Gram = "0";
+    var YearForDropDown = "";
+    var StateOfficer = "";
+    $(document).ready(function () {
+        
+        StateOfficer = '@Session["Officer"]';
+        //if (StateOfficer == "") {
+        //    window.location = "/WspNew/WSP_GWM_HOME";
+        //}
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $('.loader').hide();
+        DropDownInfo();
+
+
+    });
+
+    function DropDownInfo() {
+        if ($("#year").val() == "2023-24") {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/EfficientWater/DropdownInfoDli4",
+                data: "{ }",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    if (response.length != 0) {
+                        Jsondata = response;
+                        $("#spnstate").empty();
+                        var opstate = '<option value="0">Select StateName</option>';
+                        $("#spnstate").append(opstate);
+                        $("#dist11").empty();
+                        var opdist = '<option value="0">Select District</option>';
+                        $("#dist11").append(opdist);
+                        $("#block1").empty();
+                        var opblock = '<option value="0">Select Block</option>';
+                        $("#block1").append(opblock);
+                        $("#gram").empty();
+                        var opgram = '<option value="0">Select GramPanchayat</option>';
+                        $("#gram").append(opgram);
+
+                        if (Jsondata.length != 0) {
+                            var ddlst = {};
+                            var all_dists = [];
+                            var optionState = '';
+
+                            for (var i = 0; i < Jsondata.length; i++) {
+
+                                if (!ddlst[Jsondata[i].state_name]) {
+                                    all_dists.push(Jsondata[i].state_name);
+                                    ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                                }
+                            }
+                            var DistArray = [];
+                            DistArray = all_dists.sort(function (a, b) {
+                                if (a < b) return -1;
+                                else if (a > b) return 1;
+                                return 0;
+                            });
+                            optionState = '<option value="0">Select StateName</option>';
+
+                            for (var i = 0; i < DistArray.length; i++) {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+
+                                }
+                            }
+                            $("#spnstate").html(optionState);
+
+                        }
+
+                    }
+                    $(".loader").hide();
+                    SessionInfo();
+
+
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Home/Sign_Up_DropdownInfo",
+                data: "{ }",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    if (response.length != 0) {
+                        Jsondata = response;
+                        $("#spnstate").empty();
+                        var opstate = '<option value="0">Select StateName</option>';
+                        $("#spnstate").append(opstate);
+                        $("#dist11").empty();
+                        var opdist = '<option value="0">Select District</option>';
+                        $("#dist11").append(opdist);
+                        $("#block1").empty();
+                        var opblock = '<option value="0">Select Block</option>';
+                        $("#block1").append(opblock);
+                        $("#gram").empty();
+                        var opgram = '<option value="0">Select GramPanchayat</option>';
+                        $("#gram").append(opgram);
+
+                        if (Jsondata.length != 0) {
+                            var ddlst = {};
+                            var all_dists = [];
+                            var optionState = '';
+
+                            for (var i = 0; i < Jsondata.length; i++) {
+
+                                if (!ddlst[Jsondata[i].state_name]) {
+                                    all_dists.push(Jsondata[i].state_name);
+                                    ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                                }
+                            }
+                            var DistArray = [];
+                            DistArray = all_dists.sort(function (a, b) {
+                                if (a < b) return -1;
+                                else if (a > b) return 1;
+                                return 0;
+                            });
+                            optionState = '<option value="0">Select StateName</option>';
+
+                            for (var i = 0; i < DistArray.length; i++) {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+
+                                }
+                            }
+                            $("#spnstate").html(optionState);
+
+                        }
+
+                    }
+
+                    SessionInfo();
+
+
+                }
+            });
+        }
+        
+    }
+    function State_Dropdown_Function() {
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+                    if ($("#year").val() == "2023-24") {
+                        if (!ddlst[Jsondata[i].gp_name]) {
+                            ddlst[Jsondata[i].gp_name] = Jsondata[i].gp_name;
+                            all_grams.push(Jsondata[i].gp_name);
+                            //   $("#gram").append(optionDist);
+                        }
+                    } else {
+                        if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                            ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                            all_grams.push(Jsondata[i].gram_panchayat_name);
+                            //   $("#gram").append(optionDist);
+                        }
+                    }
+                    
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+    function Gram_change() {
+
+         Gram = $("#gram").val();
+        if (Gram == "0") {
+            /* alert("Please Select Grampanchayat");*/
+        }
+        else {
+            Gram = $('#gram').val();
+
+        }
+    }
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Demand_new/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $('.loader').hide();
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        State_Dropdown_Function();
+                        State_Dropdown_Function();
+                        $('.loader').hide();
+
+
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Dist_fun();
+                        Dist_fun();
+                        $('.loader').hide();
+
+
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Block_fun();
+                        Block_fun();
+                        $('.loader').hide();
+
+
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+                        Data_get();
+                        $('.loader').hide();
+
+
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function Dropdown_Search() {
+        
+        /*$('.loader').show();*/
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select State Name");
+            $('.loader').hide();
+        }
+        if (xx == 0) {
+
+            $.ajax({
+                type: "Post",
+                url: "/Home/StateLevel_Dropdown",
+                contentType: "application/json;charset=utf-8",
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+                dataType: "json",
+                success: function (results) {
+                    Data_get();
+                }
+            });
+        }
+    }
+
+    function Excel_a() {
+        
+        var year = $("#year").val();
+        var fy_phase = $("#fy_phase").val();
+
+        if (State == "0") {
+            alert("Please Select State");
+            return false;
+        } {
+            window.location.href = "/EfficientWater/DLI4_excel_a?state=" + State + "&district=" + Dist + "&block=" + Block + "&gram=" + Gram + "&year=" + year + "&fy_phase=" + fy_phase;
+        }
+    }
+    function Excel_b() {
+        
+        var year = $("#year").val();
+        var fy_phase = $("#fy_phase").val();
+
+        if (State == "0") {
+            alert("Please Select State");
+            return false;
+        } {
+            window.location.href = "/EfficientWater/DLI4_excel_b?state=" + State + "&district=" + Dist + "&block=" + Block + "&gram=" + Gram + "&year=" + year + "&fy_phase=" + fy_phase;
+        }
+    }
+    function Excel_c() {
+
+        var year = $("#year").val();
+        var fy_phase = $("#fy_phase").val();
+
+        if (State == "0") {
+            alert("Please Select State");
+            return false;
+        } {
+            window.location.href = "/EfficientWater/DLI4_excel_c?state=" + State + "&district=" + Dist + "&block=" + Block + "&gram=" + Gram + "&year=" + year + "&fy_phase=" + fy_phase;
+        }
+    }
+
+
+    function Data_get() {
+
+        
+        var year = $('#year').val();
+        var fy_phase = $('#fy_phase').val();
+        var obj = {};
+        obj.statename = State;
+        obj.districtname = Dist;
+        obj.blockname = Block;
+        obj.gpname = Gram;
+        obj.year = year;
+        obj.fy_phase = fy_phase;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/EfficientWater/Data_DLI4_report',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                var tr = '';
+                var sno = 0;
+                if (data == 'No Data') {
+                    tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbl_details').html(tr);
+                }
+                else {
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            var reject = data[i].reject;
+                            if (reject == null) {
+                                reject = "";
+                            }
+                            if (StateOfficer == "State Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td> <button type="button" class="btn btn-primary disable_btn"  onclick="approve_state(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status' + i + '"  class=" form-control" rows="" cols="40" placeholder="Remarks"  name="push_title"></textarea></td></tr> ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+                                }
+                            }
+                            if (StateOfficer == "District Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: green;">Submitted To SPMU</label></td></tr> ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+                                }
+                            }
+                            if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: green;">Submitted To SPMU</label></td></tr> ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + data[i].tot_spr_ben + '</td><td>' + data[i].tot_drip_ben + '</td><td>' + data[i].tot_pipe_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+                                }
+                            }
+                        }
+                    }
+                    $('#tbl_details').html(tr);
+
+                }
+                Data_get_a();
+
+            }
+        });
+    }
+
+    function Data_get_a() {
+
+        
+        var year = $('#year').val();
+        var fy_phase = $('#fy_phase').val();
+        var obj = {};
+        obj.statename = State;
+        obj.districtname = Dist;
+        obj.blockname = Block;
+        obj.gpname = Gram;
+        obj.year = year;
+        obj.fy_phase = fy_phase;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/EfficientWater/Data_DLI4_report2',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                var tr = '';
+                var sno = 0;
+                if (data == 'No Data') {
+                    tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbl_details_a').html(tr);
+                }
+                else {
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            var total_ben = "";
+                            var reject = data[i].reject;
+                            if (reject == null) {
+                                reject = "";
+                            }
+                            if (data[i].total_ben == null || data[i].total_ben == "NULL") {
+                                total_ben = "";
+                            } else {
+                                total_ben = data[i].total_ben;
+                            }
+                            
+                            if (StateOfficer == "State Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td> <button type="button" class="btn btn-primary disable_btn"  onclick="approve_state_a(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram_a(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status_a' + i + '"  class=" form-control" rows="" cols="40" placeholder="Remarks"  name="push_title"></textarea></td></tr> ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+                                }
+                            }
+                            if (StateOfficer == "District Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: green;">Submitted To SPMU</label></td></tr> ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+                                }
+                            }
+                            if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: green;">Submitted To SPMU</label></td></tr> ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + data[i].scheme + '</td><td>' + total_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr> ';
+                                }
+                            }
+                        }
+                    }
+                    $('#tbl_details_a').html(tr);
+                }
+                Data_get_b();
+                $('.loader').hide();
+            }
+        });
+    }
+
+    function Data_get_b() {
+
+        
+        var year = $('#year').val();
+        var fy_phase = $('#fy_phase').val();
+        var obj = {};
+        obj.statename = State;
+        obj.districtname = Dist;
+        obj.blockname = Block;
+        obj.gpname = Gram;
+        obj.year = year;
+        obj.fy_phase = fy_phase;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/EfficientWater/Data_DLI4_report3',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                var tr = '';
+                var sno = 0;
+                if (data == 'No Data') {
+                    tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbl_details_b').html(tr);
+                }
+                else {
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            var reject = data[i].reject;
+                            if (reject == null) {
+                                reject = "";
+                            }
+                            if (StateOfficer == "State Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr > ';
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td>' + reject +'</td><td><label style="color: red;">Rejected</label></td></tr > ';
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td><button type="button" class="btn btn-primary disable_btn"  onclick="approve_state_b(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram_b(' + data[i].id + ',' + i + ')">Reject</button></td > <td><textarea id="remarks_status_b' + i + '" class=" form-control" rows="" cols="40" placeholder="Remarks" name="push_title"></textarea></td></tr > ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr > ';
+                                }
+                            }
+                            if (StateOfficer == "District Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr > ';
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td>' + reject +'</td><td><label style="color: red;">Rejected</label></td></tr > ';
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: green;">Submitted To SPMU</label></td></tr > ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr > ';
+                                }
+                            }
+                            if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                                if (data[i].approve == "State") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr > ';
+                                }
+                                else if (data[i].approve == "Reject") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td>' + reject +'</td><td><label style="color: red;">Rejected</label></td></tr > ';
+                                }
+                                else if (data[i].approve == "Dist") {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: green;">Submitted To SPMU</label></td></tr > ';
+                                }
+                                else {
+                                    sno += 1;
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + data[i].super_total_ben + '</td><td>' + data[i].polyhouse_total_ben + '</td><td>' + data[i].mulching_total_ben + '</td><td>' + data[i].hydrogel_total_ben + '</td><td>' + data[i].dsr_total_ben + '</td><td>' + data[i].other1_total_ben + '</td><td>' + data[i].other2_total_ben + '</td><td>' + data[i].other3_total_ben + '</td><td></td><td></td><td><label style="color: Black;">At DPMU</label></td></tr > ';
+                                }
+                            }
+                        }
+                    }
+                    $('#tbl_details_b').html(tr);
+                }
+                /*Data_get_b();*/
+                debugger;
+                
+                //if (State == "Haryana_6") {
+                //    if (StateOfficer != "Admin" || StateOfficer != "National Level Nodal Officer") {
+                //        $(".disable_btn").prop("disabled", false);
+                //    } else {
+                //        $(".disable_btn").prop("disabled", true);
+                //        $("input[type='text']").prop("disabled", true);
+                //    }
+                //} else {
+                //    $(".disable_btn").prop("disabled", true);
+                //    $("input[type='text']").prop("disabled", true);
+                //}
+                $(".disable_btn").prop("disabled", true);
+                $("input[type='text']").prop("disabled", true);
+                $('.loader').hide();
+            }
+        });
+    }
+
+
+
+    function approve_state(id, RowNo) {
+        
+        var i = 0;
+        var id = id;
+
+        if (i == 0) {
+
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            $.ajax({
+                url: '/EfficientWater/approve_data_state',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+    function reject_gram(id, RowNo) {
+        /*$('.loader').show();*/
+        var i = 0;
+        var id = id;
+        var reject = $('#remarks_status' + RowNo).val();
+        if (reject == "") {
+            alert("Please Enter Reject Remark ");
+            $('.loader').hide();
+            i = 1;
+        }
+        if (i == 0) {
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            formdata.append("reject", reject);
+            $.ajax({
+                url: '/EfficientWater/reject_data',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+
+    function approve_state_a(id, RowNo) {
+        
+        var i = 0;
+        var id = id;
+
+        if (i == 0) {
+
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            $.ajax({
+                url: '/EfficientWater/approve_data_state_a',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+    function reject_gram_a(id, RowNo) {
+        /*$('.loader').show();*/
+        var i = 0;
+        var id = id;
+        var reject = $('#remarks_status_a' + RowNo).val();
+        if (reject == "") {
+            alert("Please Enter Reject Remark ");
+            $('.loader').hide();
+            i = 1;
+        }
+        if (i == 0) {
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            formdata.append("reject", reject);
+            $.ajax({
+                url: '/EfficientWater/reject_data_a',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+
+    function approve_state_b(id, RowNo) {
+        
+        var i = 0;
+        var id = id;
+
+        if (i == 0) {
+
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            $.ajax({
+                url: '/EfficientWater/approve_data_state_b',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+    function reject_gram_b(id, RowNo) {
+        /*$('.loader').show();*/
+        var i = 0;
+        var id = id;
+        var reject = $('#remarks_status_b' + RowNo).val();
+        if (reject == "") {
+            alert("Please Enter Reject Remark ");
+            $('.loader').hide();
+            i = 1;
+        }
+        if (i == 0) {
+
+            var formdata = new FormData();
+            formdata.append("id", id);
+            formdata.append("reject", reject);
+            $.ajax({
+                url: '/EfficientWater/reject_data_b',
+                data: formdata,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    Data_get();
+                },
+                error: function () {
+                    alert('Approved Failed');
+                }
+            });
+        }
+
+
+    }
+    function HideShowPhase() {
+        $(".loader").show();
+        YearForDropDown = $("#year").val();
+        if (YearForDropDown == "2023-24") {
+            $("#fy_phase").show();
+        } else {
+            $("#fy_phase").hide();
+        }
+        DropDownInfo();
+    }
+
+</script>
+
+

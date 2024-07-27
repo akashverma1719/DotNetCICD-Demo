@@ -1,0 +1,558 @@
+﻿
+
+@{
+    ViewBag.Title = "WspBalance";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<meta name="viewport" content="width=device-width" />
+<title>Balance</title>
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<link href="~/Content/wsptotal.css" rel="stylesheet" />
+
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/WSPNEW.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<div class="clearfix mainclearfix">
+    <div class="clearfix">
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                }
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-9" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                    </span>
+                                    <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="~/WaterSecurityPlan/Wsp_Water_Availability">
+                                    <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                    <label>WSP Availablity <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/WaterSecurityPlan/Water_Utilization">
+                                    <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                    <label>Water Utilization</label>
+                                </a>
+                            </li>
+                            <li>
+                                <span><img src="~/Content/WspImages/Water Budgeting 2.png" title="GWB"></span>
+                                <label>Balance</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul id="myTabs" class="nav nav-pills nav-justified">
+                            <li class="active" onclick="GetbalanceData()"><a href="javascript:;"><span><img src="~/Content/WspImages/balance new 1.png" /></span>Balance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="col-md-12">
+            <div class="clearfix" id="Select_dist_level">
+                <ul class="Select_option selectbackhome text-center">
+                    <li>
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate">@Session["gstate"]</span>
+                    </li>
+                    <li>
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+                    <li>
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+                    <li>
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>
+                    <li>
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Year:</label>
+                        <span id="Year">@Session["Year"]</span>
+                    </li>
+                    @*<li>
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>month:</label>
+                        <span id="month">@Session["month"]</span>
+                    </li>*@
+                </ul>
+                <ul class="selectbackhome" style="float:right;">
+                    <li>
+                        <a href="~/WaterSecurityPlan/WSP_HOME">
+                            <button class="btn btn-success">Back To WSP Home</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in active" id="Events">
+            <div class="clearfix ">
+                <div class="clearfix">
+                    <div class="container-fluid">
+                        <div class="col-lg-offset-1 col-md-12 col-sm-12 col-lg-10 col-lg-offset-1 form-body1">
+                            <div class="form-div">
+                                <div class="col-md-12 background-border-Database background-border-Database1">
+                                    <div class="row database_trainer_row">
+                                        <h2>
+                                            Water Balance
+                                        </h2>
+                                    </div>
+                                    <div class="row database_trainer_row database_trainer_row1">
+                                        <h3>
+                                            Water Availability (ha m)
+                                        </h3>
+                                    </div>
+
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">
+                                                Total Ground Water Available:  <a href="javascript:;" data-toggle="tooltip" title="Auto Fetched From Water Availability Module From Point no. 2 Ground Water f. Total Ground Water Available (ha m)">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" id="wb_gw_avail" class="form-control" name="" placeholder="Enter ground water.." readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">
+                                                Total Surface Water Available :<a href="javascript:;" data-toggle="tooltip" title="Auto Fetched From Water Availability Module From Point no. 3 Surface Water c. Total Surface Water Available (ha m)">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="text" id="wb_sw_avail" class="form-control" name="" placeholder="Enter surface water.." readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">
+                                                Total Water Availability: <a href="javascript:;" data-toggle="tooltip" title="(Total Water Availability = Total Ground Water Available + Total Surface Water Available)">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </label>
+
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="number" id="wb_total_avail" class="form-control" name="" placeholder="Total Availability" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row database_trainer_row1">
+                                        <h3>
+                                            Water Utilization (ha m)
+                                        </h3>
+                                    </div>
+
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">Total Ground Water Utilization:</label>
+                                            <a href="javascript:;" data-toggle="tooltip" title="Auto Fetched From Water Utilization Module = {[Drinking/Domestic- fetched from table column Name- Water Demand Met From Ground Water (ha m)]+[irrigation- fetched from Utilization From Ground Water (ha m)]+[Industrial-fetched from table column Name- total of Water Demand met from Ground water (ha m)]+[Other- fetched from table column Name- total of Water Demand met from Ground Water (ha m)]}">
+                                                <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="number" id="wb_gw_utili" class="form-control" name="" placeholder="Ground Water " readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">
+                                                Total Surface Water Utilization:<a href="javascript:;" data-toggle="tooltip" title="Auto Fetched From Water Utilization Module = {[Drinking/Domestic- fetched from table column Name- Water Demand Met From Surface Water (ha m)]+[irrigation- fetched from Utilization From Surface Water (ha m)]+[Industrial-fetched from table column Name- total of Water Demand met from Surface water (ha m)]+[Other- fetched from table column Name- total of Water Demand met from Surface Water (ha m)]}">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </label>
+
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="number" id="wb_sw_utili" class="form-control" name="" placeholder="Surface Water.." readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">
+                                                Total Water Utilization : <a href="javascript:;" data-toggle="tooltip" title="Utilization Surface Water + Utilization Ground Water ">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </label>
+
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="number" id="wb_total_utili" class="form-control" name="" placeholder="Total Utilization" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="row database_trainer_row database_trainer_row1">
+                                        <h3>
+                                            Balance [Surplus (+) / Deficit (-)] (ha m)
+                                        </h3>
+                                    </div>
+
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">Total Ground Water Balance:</label>
+                                            <a href="javascript:;" data-toggle="tooltip" title="(Total Ground Water Balance = Total Ground Water Available - Total Ground Water Utilization )">
+                                                <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="number" id="wb_gw_balance" class="form-control" name="" placeholder="Ground Water " readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">Total Surface Water Balance:</label>
+                                            <a href="javascript:;" data-toggle="tooltip" title="(Total Surface Water Balance = Total Surface Water Available -  Total Surface Water Utilization)">
+                                                <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="number" id="wb_sw_balance" class="form-control" name="" placeholder="Surface Water.." readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <label for="lname">Total Water Balance:</label>
+                                            <a href="javascript:;" data-toggle="tooltip" title=" (Total Water Balance = Total Ground Water Balance + Total Surface Water Balance) ">
+                                                <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-7 col-sm-8">
+                                            <input type="number" id="wb_total_balance" class="form-control" name="" placeholder="Total value" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div id="Wsp_gram_checkbox" style="text-align:center"><input type="checkbox" id="WspTacker_Verification_CheckBox" /><span>The data entered has been checked and verified by DPMU</span></div>
+
+                                    <div class="row database_trainer_row_button">
+                                        <div class="col-md-12 col-sm-12 text-center">
+                                            <div>
+                                                <span style="color:red;font-size:15px;">Before going to the summary page or next, click on the save button</span>
+                                            </div>
+                                            <a href="~/WaterSecurityPlan/Water_Draft_report" class="btn btn-danger">
+                                                Back
+                                            </a>
+                                            <button class="btn btn-success btn_disabled" id="SAVE_BTN" onclick="SaveInfo()">Save</button>
+                                            <button class="btn btn-danger" id="Wsp_gram_submit" onclick="Save_Full_Info()">Submit</button>
+
+
+                                            <a href="javascript:void(0);" onclick="SaveInfoSummary()" class="btn btn-primary">Summary</a>
+                                        </div>
+                                    </div>
+
+                                    <div style="color:red;text-align:center;"><label id="ERRor1"></label></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="progress">
+            <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+                <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                    <span class="progress-group-label" data-target="#music" data-toggle="tab">Water Balance</span>
+                    <div class="tri shadow"></div>
+                    <div class="tri"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/JS_Files/Water_Balance.js"></script>
+
+<script>
+    var access_auth = '';
+    $(document).ready(function () {
+        access_auth = '@Session["access_auth"]';
+
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+
+
+</script>
+
+
+<script>
+    var StateOfficer = '';
+    $(document).ready(function () {
+        //get_approved_status();
+        $('#Wsp_gram_submit').hide();
+        $('#Wsp_gram_checkbox').hide();
+        AutoSavedData();
+        StateOfficer = '@Session["Officer"]';
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            $('input[type=text]').prop("disabled", true)
+            $('select').prop("disabled", true);
+            $('input[type=file]').prop("disabled", true)
+            $('.btn_disabled').prop("disabled", true);
+        }
+         else if (StateOfficer != "" && StateOfficer != null) {
+
+        } else {
+              window.location = "/Home/LogOut";
+        }
+    });
+
+
+    function AutoSavedData() {
+        $(".loader").show();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterSecurityPlan/WaterBalanceAutoSaved",
+            data: "",
+            dataType: 'JSON',
+            success: function (response) {
+                if (response == "1") {
+                    $(".loader").hide();
+                    alert("You didn't saved the data, Please click on save button in Water Availability");
+                    window.location = "/WaterSecurityPlan/Wsp_Water_Availability";
+                } else if (response == "2") {
+                    $(".loader").hide();
+                    alert("You didn't saved the data, Please click on save button in Drinking/Domestic");
+                    window.location = "/WaterSecurityPlan/Water_Utilization";
+                } else if (response == "3") {
+                    $(".loader").hide();
+                    alert("You didn't saved the data, Please click on save button in Irrigation");
+                    window.location = "/WaterSecurityPlan/Water_Utilization";
+                }
+                Info();
+            }
+        });
+    }
+
+    var DPMU_Level_Count = 0;
+    function Save_Full_Info() {
+
+        DPMU_Submission();
+
+    }
+
+
+    function DPMU_Submission() {
+        DPMU_Level_Count = 1;
+
+        var verification_val = 0;
+        var lfckv = document.getElementById("WspTacker_Verification_CheckBox").checked;
+
+        if (lfckv == true) {
+            verification_val = 1;
+            DPMU_Level_Count += 1;
+        } else {
+            verification_val = 0;
+            alert("Please Check The data entered has been checked and verified by DPMU");
+        }
+        var obj = {};
+        obj.latitude = lat;
+        obj.longitude = long;
+
+
+            obj.wb_sw_avail = $('#wb_sw_avail').val();
+
+
+            obj.wb_gw_avail = $('#wb_gw_avail').val();
+
+        obj.wb_sw_utili = $('#wb_sw_utili').val();
+
+        obj.wb_total_avail = $('#wb_total_avail').val();
+
+        obj.wb_gw_utili = $('#wb_gw_utili').val();
+
+
+        obj.wb_total_utili = $('#wb_total_utili').val();
+
+
+
+        obj.wb_sw_balance = $('#wb_sw_balance').val();
+
+
+
+        obj.wb_gw_balance= $('#wb_gw_balance').val();
+
+
+        obj.wb_total_balance = $('#wb_total_balance').val();
+
+        
+
+        if (verification_val == 1 && DPMU_Level_Count == 2) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/WaterSecurityPlan/WaterBalanceInfo__InsertData",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert("Verified Successfully");
+
+                    if (response != "Successfully Saved") {
+                        window.location = "/Error/DefaultError";
+                    }
+
+                }
+            });
+        }
+        else {
+            DPMU_Level_Count = 1;
+            Info();
+        }
+    }
+
+
+
+    function get_approved_status() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterSecurityPlan/get_approved_status",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data > 1) {
+                    //$('input[type=text]').prop("disabled", true)
+                    //$('select').prop("disabled", true);
+                    //$('input[type=file]').prop("disabled", true)
+                    $('.btn_disabled').prop("disabled", true);
+                }
+                if (access_auth == "admin") {
+                    $('.btn_disabled').prop("disabled", false);
+                } else {
+                    $('.btn_disabled').prop("disabled", true);
+                }
+            }
+        });
+    }
+
+
+    function SaveInfoSummary() {
+        
+        $('#SAVE_BTN').prop('disabled', true);
+        var obj = {};
+        obj.latitude = lat;
+        obj.longitude = long;
+
+        var wb_sw_avail = $('#wb_sw_avail').val();
+        obj.wb_sw_avail = wb_sw_avail;
+
+        var wb_gw_avail = $('#wb_gw_avail').val();
+        obj.wb_gw_avail = wb_gw_avail;
+
+        var wb_sw_utili = $('#wb_sw_utili').val();
+        obj.wb_sw_utili = wb_sw_utili;
+
+        var wb_total_avail = $('#wb_total_avail').val();
+        obj.wb_total_avail = wb_total_avail;
+
+        var wb_gw_utili = $('#wb_gw_utili').val();
+        obj.wb_gw_utili = wb_gw_utili;
+
+        var wb_total_utili = $('#wb_total_utili').val();
+        obj.wb_total_utili = wb_total_utili;
+
+
+        var wb_sw_balance = $('#wb_sw_balance').val();
+        obj.wb_sw_balance = wb_sw_balance;
+
+
+        var wb_gw_balance = $('#wb_gw_balance').val();
+        obj.wb_gw_balance = wb_gw_balance;
+
+        var wb_total_balance = $('#wb_total_balance').val();
+        obj.wb_total_balance = wb_total_balance;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterSecurityPlan/WaterBalanceInfo__InsertData_new",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                $('#SAVE_BTN').prop('disabled', false);
+                $('#ERRor1').text(response);
+                window.location = '/WaterSecurityPlan/Balance_Report'
+            }
+        });
+    }
+</script>
+
+
+
+

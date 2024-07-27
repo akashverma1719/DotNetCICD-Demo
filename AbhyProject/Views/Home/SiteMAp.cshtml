@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "SiteMAp";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>Site Map</title>
+<style>
+
+    .bol {
+        font-weight: bolder !important;
+    }
+
+    .bol400 {
+        font-weight: 600 !important;
+    }
+
+    .btn {
+        position: relative;
+        transition: .2s ease;
+        cursor: pointer;
+    }
+
+    .btn-link {
+        font-weight: 400;
+        color: #007bff;
+        background-color: transparent;
+    }
+
+    .btn {
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+    }
+
+    *, *:before, *:after {
+        padding: 0px;
+    }
+
+    ul.inner-container > li {
+        position: relative;
+        margin-left: 30px;
+        font-size: 16px;
+        list-style-type: disc;
+        color: #007bff;
+    }
+
+        ul.inner-container > li > a {
+            font-size: 16px;
+        }
+
+    body {
+        font-family: 'Raleway';
+    }
+
+    ul.modulenames > li {
+        list-style-type: decimal;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style=" padding: 10px;   color:#337ab7; font-size: 25px;font-weight:bold; font-family:Raleway;margin-top:20px;">Site Map</div>
+    </div>
+</div>
+<div class="container-fluid">
+    <ul class="inner-container modulenames">
+        <li>
+            <a href="~/Home/Index" class="btn btn-link bol">Home</a>
+        </li>
+        <li>
+            <a href="javascript:;" class="btn btn-link bol">About</a>
+            <ul class="inner-container">
+                <li><a href="~/About/About" class="btn btn-link bol400">About Atal Jal</a></li>
+                <li>
+                    <a href="#" class="btn btn-link bol400">Program Components</a>
+                    <ul class="inner-container">
+                        <li><a href="~/About/Project_Components_A_WRMS" class="btn btn-link">Institutional Strengthening and capacity building</a></li>
+                        <li><a href="~/About/Project_Components_B_WRMS" class="btn btn-link">Incentive component</a></li>
+                    </ul>
+                </li>
+                <li><a href="~/About/Project_Management_Units" class="btn btn-link bol400">Institutional Framework</a></li>
+                <li><a href="~/About/Safeguard" class="btn btn-link bol400">Assessment Summary</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="btn btn-link  bol">Tenders</a>
+            <ul class="inner-container">
+                <li><a href="~/Tenders/Tender_Announcements" class="btn btn-link bol400">Tender Announcements</a></li>
+                <li><a href="~/Tenders/Tender_Awarded" class="btn btn-link bol400">Tender Awarded</a></li>
+                <li><a href="~/Tenders/E_Tender" class="btn btn-link bol400">E-Tender</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="btn btn-link bol">Resource</a>
+            <ul class="inner-container">
+                <li><a href="~/Content/Pdf_files/ABHY_Content_Revised Program Guidelines_05052020.pdf" class="btn btn-link bol400" target="_blank">Program Guidelines</a></li>
+                <li>
+                    <a href="#" class="btn btn-link bol400">Manuals</a>
+                    <ul class="inner-container">
+                        <li><a href="javascript:;" class="btn btn-link">Training Manuals</a></li>
+                        <li><a href="javascript:;" class="btn btn-link">SOPs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="btn btn-link bol400">Fiduciary manuals </a>
+                    <ul class="inner-container">
+                        <li><a href="javascript:;" class="btn btn-link"> NPMU</a></li>
+                        <li><a href="javascript:;" class="btn btn-link"> Gujarat</a></li>
+                        <li><a href="javascript:;" class="btn btn-link"> Haryana</a></li>
+                        <li><a href="javascript:;" class="btn btn-link"> Madhya Pradesh</a></li>
+                        <li><a href="javascript:;" class="btn btn-link"> Maharashtra</a></li>
+                        <li><a href="javascript:;" class="btn btn-link"> Rajasthan  </a></li>
+                        <li><a href="javascript:;" class="btn btn-link"> Uttar Pradesh  </a></li>
+                        <li><a href="javascript:;" class="btn btn-link"> Karnataka</a></li>
+                    </ul>
+                </li>
+                <li> <a href="~/Resources/Project_Documents_Abhy" class="btn btn-link bol400">Program Documents</a></li>
+                <li><a href="javascript:;" class="btn btn-link bol400">Orders/ Notice/ Circulars</a></li>
+                <li><a href="javascript:;" class="btn btn-link bol400">Audio Visual</a></li>
+                <li><a href="javascript:;" class="btn btn-link bol400">Gallery</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="btn btn-link bol">Training and Workshop</a>
+            <ul class="inner-container">
+                <li><a href="~/Vendors/workshop_Training_form" class="btn btn-link bol400">Event Calendar</a></li>
+                <li>
+                    <a href="#" class="btn btn-link bol400">Register for Training & Capacity Building</a>
+                    <ul class="inner-container">
+                        @*<li><a href="~/Vendors/workshop_Training" class="btn btn-link">Training/Workshop</a></li>*@
+                        <li><a href="~/Vendors/Upload_Docs_for_raining" class="btn btn-link">Training/workshop Enquiry</a></li>
+                        <li><a href="~/Vendors/Add_info_Training" class="btn btn-link">New Training Registration Form</a></li>
+                    </ul>
+                </li>
+                <li><a href="~/Contact/FeedBack" class="btn btn-link bol400">Feedback</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="btn btn-link bol">Grievance</a>
+            <ul class="inner-container">
+                <li><a href="~/Grievance/Index" class="btn btn-link bol400">New Grievance Registration</a></li>
+                <li><a href="~/Grievance/Appeal_Registration" class="btn btn-link bol400">New Appeal Registration</a></li>
+                <li><a href="~/Grievance/Grievance_Tracking" class="btn btn-link bol400">Grievance Status</a></li>
+            </ul>
+        </li>
+        <li><a href="~/Dashboard/Dashboard" class="btn btn-link bol">Dashboard</a></li>
+        <li>
+            <a href="#" class="btn btn-link bol">Program Indicators</a>
+            <ul class="inner-container">
+                <li><a href="/Project/Framework_Matrix" class="btn btn-link bol400"> Framework Matrix</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="http://ataljal-mapdata.mowr.gov.in/index.php" class="btn btn-link bol" target="_blank">Map View</a>
+        </li>
+        <li>
+            <a href="#" class="btn btn-link bol">Data Disclosure</a>
+            <ul class="inner-container">
+                <li><a href="~/Home/Water_level" class="btn btn-link bol400">Water Level</a></li>
+                <li><a href="~/Home/Water_quality" class="btn btn-link bol400">Water Quality</a></li>
+                <li><a href="~/Home/Hydrogeological_reports" class="btn btn-link bol400">Hydrogeological Reports</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="btn btn-link bol">Contact</a>
+            <ul class="inner-container">
+                <li><a href="~/Home/Contact" class="btn btn-link bol400">Contact Us</a></li>
+                <li>
+                    <a href="~/Contact/Implementing_Agencies" class="btn btn-link bol400">Contacts</a>
+                    <ul class="inner-container">
+                        <li><a href="~/Contact/contact_npmu" class="btn btn-link">NPMU</a></li>
+                        <li><a href="~/Contact/contact_spmu" class="btn btn-link">SPMU</a></li>
+                        <li><a href="~/Contact/contact_cgwb" class="btn btn-link">CGWB</a></li>
+                        <li><a href="~/Contact/contact_others" class="btn btn-link">Others</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+    </ul>
+</div>

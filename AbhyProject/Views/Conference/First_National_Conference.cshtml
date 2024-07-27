@@ -1,0 +1,122 @@
+﻿@model IEnumerable<AbhyProject.Models.Conference>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+    var i = 1;
+}
+
+
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+
+        $('#example').DataTable();
+    });
+</script>
+<style>
+    .Training2 {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        border: 2px solid orange;
+    }
+
+    .upload2 {
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    thead {
+        background-color: #499BC9;
+        color: #fff;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">1<sup>st</sup> International Conference on Sustainable Water Management  Details </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-top:20px;">
+
+
+
+    <!--End drop down row-->
+    <!--Start datatable row-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tbl-responsive">
+                <table id="example" class=" display  table stripe row-border order-column" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>S No</th>
+                            <th>Conference Name</th>
+                            <th>Start Date</th>
+                            <th>
+                                Time
+                            </th>
+                            <th>Location</th>
+                            <th>Image</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        @item.conference_name
+                                    </td>
+                                    <td>
+                                        @item.start_date
+                                    </td>
+                                    <td>@item.Time</td>
+                                    <td>
+                                        @item.location
+                                    </td>
+
+
+                                    <td>
+                                        @if (item.Image != null)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Image);
+
+                                            <img src="data:image/jpg;base64, @base64" style="max-width:100px;max-height:100px;" alt="abc.jpg" />
+                                        }
+
+                                    </td>
+
+
+
+                                </tr>
+                                i = i + 1;
+                            }
+
+
+
+                        }
+                        <!--Rows here-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+

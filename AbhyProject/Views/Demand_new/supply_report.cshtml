@@ -1,0 +1,1154 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Content/css/baseline_gp_js.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/table2excel.js"></script>
+
+<style>
+    body {
+        font-family: Calibri !important;
+    }
+
+    .page2el2 {
+        margin-top: 50px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .table_img {
+        width: 200px !important;
+    }
+
+    .demandside_text > tbody > tr > td {
+        text-align: right;
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .demanside_padding_heading1 {
+        padding: 0px !important;
+    }
+
+    .supplyside_demandside_space1 > .reportheading > p {
+        margin: 0px 0 6px !important;
+    }
+
+    .gramReport_div_start.col-md-12 {
+        padding: 0px;
+    }
+
+    .demandside_text_123 > tbody > tr > th {
+        font-size: 14px !important;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+
+        .dateandtime_ul > li {
+            display: inline-block;
+            color: #000;
+            font-size: 18px;
+            padding: 0px 15px;
+        }
+
+    .table-striped tbody tr td:last-child {
+        /*text-align: right;*/
+    }
+
+    .pgwmtable tbody tr td:last-child,
+    .demandsidetable tr td:last-child {
+        text-align: left !important;
+    }
+
+    .wateratextiablity_space {
+        margin-top: 186px;
+    }
+
+    .waterdrft_space {
+        margin-top: 18px;
+    }
+
+    .waterdrft_balance {
+        margin-top: 180px;
+    }
+
+    .waterdrft_Budgeting_space {
+        margin-top: 280px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .singnatire_table tbody tr td {
+        height: 100px;
+    }
+
+    .supplyside_demandside_space {
+        margin-top: 340px;
+    }
+
+    .pgwmCommiteee_space {
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .pgwm_range {
+        margin-top: 280px;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+
+
+    .secondtable {
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    .totatal_textue_label {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    .table-condensed {
+        font-weight: 100;
+        text-shadow: none;
+    }
+
+    .tolat_report_color {
+        color: #6FB11D !important;
+    }
+
+    .wateratextiablity_table > thead > tr > td,
+    .wateratextiablity_table > tbody > tr > td {
+        padding: 0px 3px;
+    }
+
+    table > tbody > tr > td {
+        color: #337ab7 !important;
+        font-weight: 500;
+    }
+
+    table > tbody > tr > th {
+        color: #337ab7 !important;
+    }
+
+    table > tbody > tr > td > label {
+        color: #000 !important;
+    }
+
+    table > tbody > tr > td > span {
+        color: #000 !important;
+    }
+
+    .pgwmtable > tbody > tr > td {
+        color: #000 !important;
+    }
+
+    .text_left_left {
+        text-align: left !important;
+        color: #000 !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>
+                    DLI 3 Convergence Claim
+                </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+                <button class="btn btn-success download1" id="btnexcel">Excel</button>
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demo"></span></li>
+                    <li>Time : <span id="demo2"></span></li>
+                    <li>
+                        User Name:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/Demand_new/Supply_New" class="btn btn-danger"> Back</a>
+
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat:</label>
+                            <span id="spngram">@Session["ggram"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["year"] != null && Session["year"].ToString() != "null" && Session["year"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Year:</label>
+                            <span id="Year">@Session["year"]</span>
+
+                        </li>
+                    }
+                    @if (Session["month"] != null && Session["month"].ToString() != "null" && Session["month"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Month:</label>
+                            <span id="spnmonth"></span>
+
+                        </li>
+                    }
+
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="gramReport_div_start col-md-12">
+            <div class="text-center reportheading">
+                <p>
+                    DLI 3 Convergence Claim (Supply Side)
+
+                </p>
+            </div>
+
+            <div class="col-md-12">
+                <div id="resetinfo" class="tbl-responsive" style="padding:5px">
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+
+                            <tr>
+                                <td>State:</td>
+                                <td>
+                                    <span id="spnstate">@Session["gstate"]</span>
+                                    @*<span id="state_name"></span>*@
+                                </td>
+                                <td>District:</td>
+                                <td>
+                                    <span id="spndistrict">@Session["gdist"]</span>
+                                    @*<span id="district_name"></span>*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Block / Taluk :</td>
+                                <td>
+                                    <span id="spnblock">@Session["gblock"]</span>
+                                    @*<span id="block_name"></span>*@
+                                </td>
+                                <td>GP Name :</td>
+                                <td>
+                                    <span id="spngram">@Session["ggram"]</span>
+                                    @*<span id="gram_panchayat_name"></span>*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Year :</td>
+                                <td>
+                                    <span id="spnblock">@Session["yea"]</span>
+                                    @*<span id="block_name"></span>*@
+                                </td>
+                                <!--<td>Month:</td>
+                                <td>
+                                    <span id="spnmonth1"></span>-->
+                                @*<span id="gram_panchayat_name"></span>*@
+                                <!--</td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>
+                        <label class="bg-light text-left display_flex">
+                            Total Rows   :  <label id="existing_well_total"></label>
+                        </label>
+                    </h3>
+                </div>
+
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table id="tbldemand" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border: 1px solid #dddddd; margin-top: 10px; width: 100%;">
+                        <thead style="color: #fff;">
+                            <tr class="tableheader1"></tr>
+                            <tr class="success">
+                                <td rowspan="2" class="text-center">Sr.No</td>
+                                <td rowspan="2" class="text-center">State Name</td>
+                                <td rowspan="2" class="text-center">District Name</td>
+                                <td rowspan="2" class="text-center">Block Name</td>
+                                <td rowspan="2" class="text-center">Gram Panchyat Name </td>
+                                <td rowspan="2" class="text-center">GP Center Point (Latitude)</td>
+                                <td rowspan="2" class="text-center">GP Center Point (Longitude)</td>
+                                <td rowspan="2" class="text-center">Village Name </td>
+                                <td rowspan="2" class="text-center">Financial Year </td>
+                                <td colspan="7" class="text-center"><label>Supply Side proposed under WSP</label></td>
+                                <td colspan="10" class="text-center">Convergence Expenditure Claim Other than Atal Bhujal Yojana Share    </td>
+                                <td rowspan="2" class="text-center" style="padding-right: 70px;">Remark</td>
+                                <td rowspan="2" class="text-center" style="padding-right: 55px;">Submit to</td>
+                            </tr>
+                            <tr class="success">
+                                <td rowspan="1" class="text-center">Supply Side</td>
+                                <td rowspan="1" class="text-center">Department Name</td>
+                                <td rowspan="1" class="text-center">Scheme Name / Possible Funding Source </td>
+                                <td rowspan="1" class="text-center">Name of Structure (Proposed)</td>
+                                <td rowspan="1" class="text-center">Latitude of proposed structure</td>
+                                <td rowspan="1" class="text-center">Longitude of proposed structure</td>
+                                <td rowspan="1" class="text-center">Total Approximate Estimated Cost(in lakh)</td>
+                                <td rowspan="1" class="text-center">Work Start Date</td>
+                                <td rowspan="1" class="text-center">Work Completion Date</td>
+                                <td rowspan="1" class="text-center">Type of Work</td>
+                                <td rowspan="1" class="text-center">Latitude of structure</td>
+                                <td rowspan="1" class="text-center"> Longitude of structure </td>
+                                <td rowspan="1" class="text-center">Department Name</td>
+                                <td rowspan="1" class="text-center">Scheme Name </td>
+                                <td rowspan="1" class="text-center">Scheme Name Other</td>
+                                <td rowspan="1" class="text-center">Expenditure incurred other than Atal Jal (lakhs) </td>
+                                <td rowspan="1" class="text-center">Remark, if any</td>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="tbl_details"></tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/Demand_new/Supply_New" class="btn btn-danger"> Back</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    function ReportPdf() {
+        $("#Data1").width(3000);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'DLI 3 Convergence Claim (Supply Side).pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A1', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 3000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
+    }
+
+</script>
+
+<script>
+    //Code for print page
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("print");
+        //Set the print button visibility to 'hidden'
+        //printButton.style.visibility = 'hidden';
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        //Print the page content
+        window.print()
+        $('div#btnExport').removeClass('hideDownload');
+        $('div#btnExport1').removeClass('hideDownload');
+        //printButton.style.visibility = 'visible';
+    }
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+<script>
+    var StateOfficer = "";
+    $(document).ready(function () {
+        
+         StateOfficer = '@Session["Officer"]';
+        var year = '@Session["yea"]';
+        var year_name = Get_year_Number(year)
+        $('#spnmonth').text(year_name);
+        //$('#spnmonth1').text(month_name);
+        if (StateOfficer == "") {
+              window.location = "/Home/LogOut";
+        }
+        else if (StateOfficer == "Gram Panchyat Nodal Officer") {
+              window.location = "/Home/LogOut";
+        }
+
+        report_getting();
+        sarpanch_getting();
+
+
+    });
+
+    function report_getting() {
+
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/exesting_getting',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var month_num = data[0].fymonth;
+                
+
+                $("#state_name").text(data[0].state);
+                $("#district_name").text(data[0].district);
+                $("#block_name").text(data[0].block);
+                $("#gram_panchayat_name").text(data[0].grampanchayat);
+                if (data[0].length != 0) {
+
+                } else {
+
+                    $('#state_name').text('');
+                    $('#district_name').text('');
+                    $('#block_name').text('');
+                    $('#gram_panchayat_name').text('');
+
+                }
+            }
+        });
+
+        sarpanch_getting();
+
+    }
+
+    function Get_year_Number(year) {
+        
+        var month_num = "";
+        switch (year) {
+            case "":
+                month_num = 'April';
+                break;
+            case "2":
+                month_num = 'May';
+                break;
+            case "3":
+                month_num = "June";
+                break;
+            case "4":
+                month_num = "July";
+                break;
+        }
+        return month_num;
+    }
+    function sarpanch_getting() {
+        
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Demand_new/Data_get_supply_report',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var tr = '';
+                var sno = 0;
+                var data = data;
+                if (data == 'No Data') {
+                    tr = '<tr colspan="11"><td colspan="11" style="text-align: center;"></td></tr>';
+                    $('#existing_well_total').text(0);
+                }
+                else {
+                    if (data.length != 0) {
+                        if (StateOfficer == "District Level Nodal Officer") {
+                            for (var i = 0; i < data.length; i++) {
+
+                                var new_table_entry_a = data[i].new_table_entry_a;
+                                if (new_table_entry_a == null) {
+                                    new_table_entry_a = "";
+                                }
+                                var new_table_entry_b = data[i].new_table_entry_b;
+                                if (new_table_entry_b == null) {
+                                    new_table_entry_b = "";
+                                }
+                                var new_table_entry_c = data[i].new_table_entry_c;
+                                if (new_table_entry_c == null) {
+                                    new_table_entry_c = "";
+                                }
+                                var new_row = data[i].new_row;
+                                if (new_row == null) {
+                                    new_row = "";
+                                }
+
+                                var reject = data[i].reject;
+                                if (reject == null) {
+                                    reject = "";
+                                }
+                                var approval = data[i].approval;
+                                if (approval == null) {
+                                    approval = "";
+                                }
+
+                                if (approval == "District") {
+                                    if (data[i].new_row == "1") {
+
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: green;">Submited To SPMU</label></td> </tr> ';
+                                    }
+
+
+                                }
+                                else if (approval == "State") {
+                                    if (data[i].new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: green;">Approved</label></td> </tr> ';
+                                    }
+
+                                }
+                                else if (approval == "Reject") {
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td> </tr> ';
+
+                                    }
+
+                                }
+                                else {
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemeother != null) {
+                                            schemeother = data[i].schemeother;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: black;">At DPMU</label></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_c == "0") {
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_c' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].any_year + '</td><td><label>Any Other Intervention</label></td><td>' + data[i].other_department_name + '</td><td>' + data[i].possible_funding_source + '</td><td>' + data[i].other_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].anyother_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_b == "0") {
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_b' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].wc_year + '</td><td><label>Water Conservation Structures</label></td><td>' + data[i].wc_department_name + '</td><td>' + data[i].possiable_funding_source + '</td><td>' + data[i].type_wc_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].wc_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_a == "0") {
+                                        sno += 1;
+
+                                        tr += '<tr id="AWP1_TR_a' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].sp_year + '</td><td><label>Artificial Recharge Structures</label></td><td>' + data[i].ar_department_name + '</td><td>' + data[i].possible_funding_source + '</td><td>' + data[i].type_ar_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].ar_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                }
+                            }
+                        }
+                        if (StateOfficer == "State Level Nodal Officer") {
+                            
+                            for (var i = 0; i < data.length; i++) {
+                                var new_table_entry_a = data[i].new_table_entry_a;
+                                if (new_table_entry_a == null) {
+                                    new_table_entry_a = "";
+                                }
+                                var new_table_entry_b = data[i].new_table_entry_b;
+                                if (new_table_entry_b == null) {
+                                    new_table_entry_b = "";
+                                }
+                                var new_table_entry_c = data[i].new_table_entry_c;
+                                if (new_table_entry_c == null) {
+                                    new_table_entry_c = "";
+                                }
+                                var new_row = data[i].new_row;
+                                if (new_row == null) {
+                                    new_row = "";
+                                }
+
+                                var reject = data[i].reject;
+                                if (reject == null) {
+                                    reject = "";
+                                }
+                                var approval = data[i].approval;
+                                if (approval == null) {
+                                    approval = "";
+                                }
+
+                                if (approval == "Reject") {
+                                    
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td> </tr> ';
+
+                                    }
+
+                                }
+                                else if (approval == "District") {
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: green;">Submited To SPMU</label></td></tr> ';
+
+                                    }
+                                }
+                                else if (approval == "State") {
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: blue;">Approved</label></td> </tr> ';
+
+                                    }
+                                }
+                                else {
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: black;">At DPMU</label></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_c == "0") {
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_c' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].any_year + '</td><td><label>Any Other Intervention</label></td><td>' + data[i].other_department_name + '</td><td>' + data[i].possible_funding_source + '</td><td>' + data[i].other_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].anyother_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_b == "0") {
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_b' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].wc_year + '</td><td><label>Water Conservation Structures</label></td><td>' + data[i].wc_department_name + '</td><td>' + data[i].possiable_funding_source + '</td><td>' + data[i].type_wc_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].wc_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_a == "0") {
+                                        sno += 1;
+
+                                        tr += '<tr id="AWP1_TR_a' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].sp_year + '</td><td><label>Artificial Recharge Structures</label></td><td>' + data[i].ar_department_name + '</td><td>' + data[i].possible_funding_source + '</td><td>' + data[i].type_ar_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].ar_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                }
+                            }
+                        }
+                        if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                            for (var i = 0; i < data.length; i++) {
+                                var new_table_entry_a = data[i].new_table_entry_a;
+                                if (new_table_entry_a == null) {
+                                    new_table_entry_a = "";
+                                }
+                                var new_table_entry_b = data[i].new_table_entry_b;
+                                if (new_table_entry_b == null) {
+                                    new_table_entry_b = "";
+                                }
+                                var new_table_entry_c = data[i].new_table_entry_c;
+                                if (new_table_entry_c == null) {
+                                    new_table_entry_c = "";
+                                }
+                                var new_row = data[i].new_row;
+                                if (new_row == null) {
+                                    new_row = "";
+                                }
+                                var reject = data[i].reject;
+                                if (reject == null) {
+                                    reject = "";
+                                }
+                                var approval = data[i].approval;
+                                if (approval == null) {
+                                    approval = "";
+                                }
+
+
+                                if (approval == "District") {
+                                    if (data[i].new_row == "1") {
+
+                                        var schemeother = "";
+                                        if (data[i].schemeother != null) {
+                                            schemeother = data[i].schemeother;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: green;">Submited To SPMU</label></td> </tr> ';
+                                    }
+                                }
+                                else if (data[i].approval == "State") {
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: blue;">Approved</label></td> </tr> ';
+
+                                    }
+
+
+                                }
+                                else if (data[i].approval == "Reject") {
+                                    
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td> </tr> ';
+
+                                    }
+                                }
+                                else {
+                                    if (new_row == "1") {
+                                        var schemeother = "";
+                                        if (data[i].schemename_other != null) {
+                                            schemeother = data[i].schemename_other;
+                                        }
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td></td><td></td><td>' + data[i].village + '</td><td>' + data[i].year + '</td><td><label>' + data[i].supply_side + ' </label></td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].latitude_of_proposed + '</td><td>' + data[i].longitude_of_proposed + '</td><td>' + data[i].total_approximate + '</td><td>' + data[i].work_start_date + '</td><td>' + data[i].work_completion_date + '</td><td>' + data[i].ddlnew + '</td><td>' + data[i].latitude_of_structure + '</td><td>' + data[i].longitude_of_structure + '</td><td>' + data[i].department_name_new + '</td><td>' + data[i].scheme_name_new + '</td><td>' + schemeother + '</td><td>' + data[i].expenditure_incurred + '</td><td>' + data[i].remark + '</td><td></td><td><label style="color: black;">At DPMU</label></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_c == "0") {
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_c' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].any_year + '</td><td><label>Any Other Intervention</label></td><td>' + data[i].other_department_name + '</td><td>' + data[i].possible_funding_source + '</td><td>' + data[i].other_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].anyother_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_b == "0") {
+                                        sno += 1;
+                                        tr += '<tr id="AWP1_TR_b' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].wc_year + '</td><td><label>Water Conservation Structures</label></td><td>' + data[i].wc_department_name + '</td><td>' + data[i].possiable_funding_source + '</td><td>' + data[i].type_wc_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].wc_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                    else if (new_table_entry_a == "0") {
+                                        sno += 1;
+
+                                        tr += '<tr id="AWP1_TR_a' + i + '"><td>' + (sno) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gpname + '</td><td></td><td></td><td>' + data[i].village_name + '</td><td>' + data[i].sp_year + '</td><td><label>Artificial Recharge Structures</label></td><td>' + data[i].ar_department_name + '</td><td>' + data[i].possible_funding_source + '</td><td>' + data[i].type_ar_structure + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].ar_approx_estimated_cost + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td> </tr> ';
+
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                    
+                    $('#tbl_details').html(tr);
+                    $('#existing_well_total').html(sno);
+
+                }
+                $('.loader').hide();
+            }
+        });
+    }
+
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnexcel").click(function () {
+
+            $("#tbldemand").table2excel({
+                filename: "DLI3_Supply_side.xls"
+            });
+        });
+    });
+</script>

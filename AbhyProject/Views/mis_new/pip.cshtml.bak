@@ -1,0 +1,741 @@
+﻿@{
+    ViewBag.Title = "pip";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+
+}
+<style>
+    .pl-0 {
+        padding-left: 0;
+    }
+
+    .pr-0 {
+        padding-right: 0
+    }
+
+    .nav-tabs > li > a {
+        padding: 14px 0px;
+    }
+
+    .grid-css {
+        display: grid;
+        grid-template-columns: repeat(4, 4fr );
+        column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+</style>
+<style>
+
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+
+
+    /*ends here*/
+
+</style>
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/Pip_js.js"></script>
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-primary padding-bottom">PROJECT IMPLEMENTATION PLAN (PIP)</h4>
+                </div>
+            </div>
+            <div class="row" id="">
+                <div class="col-lg-12 col-sm-12 col-md-12" style="">
+                    <div class="hpanel horange" style="margin-bottom:0px;">
+                        <div class="panel-body">
+                            <div class="form-group" id="Agency_Pip_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>Agency : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <select name="" class="form-control" id="pip_agency_state_name" onchange="PIP_Agency_StateInfo()"></select>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name">Name of IA/ Nodal Agency</label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Allocated </label></h5>
+                                                @*<span id="Pip_Total_value1"></span>*@
+                                                <h5><span id="Pip_Total_value1">000</span></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="form-group" id="State_Pip_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <label id="pip_dropdown_state_name">
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name1">  Name of IA/ Nodal Agency</label></h5>
+
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Allocated : </label></h5>
+                                                <span id="Pip_Total_value"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav nav-tabs">
+                    <li class="active col-lg-8 col-md-8 col-sm-12">
+                        <a data-toggle="tab" href="#home">
+                            <div class="hpanel hgreen contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-success"></h5>
+                                        <h5 class="font-extra-bold no-margins text-success">Component A:   INSTITUTIONAL STRENGTHENING & CAPACITY BUILDING <span id=""></span>  </h5>
+                                        @*<h5> <span id="Pip_A_Total_Value">0000</span></h5>*@
+                                        <h5><span id="Pip_A_Total_Value">000</span></h5>
+                                    </div>
+                                    <div class="grid-css">
+                                        <div class="" id="div_A1">
+                                            <div class="panel-body">
+                                                <div class="stats-title pull-left">
+                                                    <h5 class="font-extra-bold no-margins text-info add_fontsize"> A1: IS & CB </h5>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer contact-footer">
+                                                <div class="row">
+                                                    <div class="col-md-4 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1.1 </div> <strong> <span id="pip_A1_1">0.00</span></strong></div> </div>
+                                                    <div class="col-md-4 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1.2 </div> <strong> <span id="pip_A1_2">0.00</span></strong></div> </div>
+                                                    <div class="col-md-4 " style=""> <div class="contact-stat font-extra-bold"><div>A1.3 </div> <strong> <span id="pip_A1_3">0.00</span></strong></div> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="" id="div_A2">
+                                            <div class="panel-body">
+                                                <div class="stats-title pull-left">
+                                                    <h5 class="font-extra-bold no-margins text-info add_fontsize"> A2: Equipment</h5>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer contact-footer">
+                                                <div class="row">
+                                                    <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A2.1</div> <strong> <span id="pip_A2">0.00</span></strong></div> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="" id="div_A3">
+                                            <div class="panel-body">
+                                                <div class="stats-title pull-left">
+                                                    <h5 class="font-extra-bold no-margins text-info add_fontsize"> A3: Works </h5>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer contact-footer">
+                                                <div class="row">
+                                                    <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A3.1</div> <strong> <span id="pip_A3">0.00</span></strong></div> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="" id="div_A4">
+                                            <div class="panel-body">
+                                                <div class="stats-title pull-left">
+                                                    <h5 class="font-extra-bold no-margins text-info add_fontsize"> A4: IEC </h5>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer contact-footer">
+                                                <div class="row">
+                                                    <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A4.1</div> <strong> <span id="pip_A4">0.00</span></strong></div> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="" id="div_A5">
+                                            <div class="panel-body">
+                                                <div class="stats-title pull-left">
+                                                    <h6 class="font-extra-bold no-margins text-info add_fontsize"> A5: TRAINING </h6>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer contact-footer">
+                                                <div class="row">
+                                                    <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A5.1</div> <strong> <span id="pip_A5">0.00</span></strong></div> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="" id="div_A6">
+                                            <div class="panel-body">
+                                                <div class="stats-title pull-left">
+                                                    <h5 class="font-extra-bold no-margins text-info add_fontsize"> A6: Lab & data center </h5>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer contact-footer">
+                                                <div class="row">
+                                                    <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A6.1</div> <strong> <span id="pip_A6">0.00</span></strong></div> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*akash*@
+                                        <div class="" id="div_npmu">
+                                            <div class="panel-body">
+                                                <div class="stats-title pull-left">
+                                                    <h5 class="font-extra-bold no-margins text-info add_fontsize"> 26: NPMU </h5>
+                                                </div>
+                                            </div>
+                                            <div class="panel-footer contact-footer">
+                                                <div class="row">
+                                                    <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>26.02</div> <strong> <span id="pip_26">0.00</span></strong></div> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="col-lg-4 col-md-4 col-sm-12" id="Div_comP_b">
+                        <a data-toggle="tab" href="#menu1">
+                            <div class="hpanel hblue contact-panel">
+                                <div class="panel-body" style="height:200px;">
+                                    <div class="stats-title pull-left">
+
+                                        <h5 class="font-extra-bold no-margins text-info">Component B: INCENTIVE </h5>
+                                    </div>
+                                    <div class="stats-title pull-right"><i class="fa fa-area-chart fa-4x text-info"></i></div>
+                                    <div class="cle"></div>
+                                    <h5 class="m-top15"> <span id="Pip_B_total" class="font-bold count"></span></h5>
+                                    <h4>
+                                        <div class="text-muted font-bold m-b-xs left"> </div>
+                                        <div class="text-muted font-bold m-b-xs right"></div>
+                                    </h4><h4></h4>
+                                    <h4></h4>
+                                    <h4></h4>
+
+                                </div>
+                                <div class="panel-footer contact-footer">
+                                    <div class="row">
+                                        <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI1 </div> <strong> <span id="pip_B1">0.00</span></strong></div> </div>
+                                        <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI2 </div> <strong> <span id="pip_B2">0.00</span></strong></div> </div>
+                                        <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI3 </div> <strong>  <span id="pip_B3">0.00</span></strong></div> </div>
+                                        <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI4 </div> <strong>   <span id="pip_B4">0.00</span></strong></div> </div>
+                                        <div class="col-md-2 " style=""> <div class="contact-stat font-extra-bold"><div>DLI5 </div> <strong>   <span id="pip_B5">0.00</span></strong></div> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="text-right">
+
+                                        <div class="text-right">
+                                            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="tableToExcel('PIP_tbl', 'PIP_Data')"> Export To Excel</i></div>
+                                            <input type="button" id="AComponent_Id" hidden />
+                                            <br />
+                                            <br />
+                                            @*@using (Html.BeginForm("Export", "mis_new", FormMethod.Post))
+                                                {
+                                                    <input type="hidden" name="StateName" />
+                                                    <input type="hidden" name="TbleName" value="tbla" />
+                                                    <input type="submit" class="btn btn-success btn_export" id="btnSubmit" value="Export" />
+                                                }*@
+                                        </div>
+
+
+                                        @*<div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_a_Table()"> Export To Excel</i></div>
+                                            <input type="button" id="AComponent_Id" onclick="tableToExcel('PIP_tbl', 'PIP_Data')" hidden />*@
+                                    </div>
+
+                                    @*modal edit button start code (akash)*@
+
+                                    <div class="modal fade" id="Pip_A" role="dialog" aria-labelledby="Modelledby" aria-hidden="true">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Edit Data</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="" method="POST" enctype="multipart/form-data" id="ModalForm">
+
+                                                        <input type="hidden" id="editId" value="">
+
+                                                        <div class="form-group">
+                                                            <label for="pip_StateName">StateName</label>
+                                                            <input type="text" name="pip_StateName" class="form-control" id="pip_StateName" placeholder="StateName" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_UID">UID</label>
+                                                            <input type="text" name="pip_UID" class="form-control" id="pip_UID" placeholder="UID" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Component">Component</label>
+                                                            <input type="text" name="pip_Component" class="form-control" id="pip_Component" placeholder="Component" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Activity_Id">Activity_Id</label>
+                                                            <input type="text" name="pip_Activity_Id" class="form-control" id="pip_Activity_Id" placeholder="Activity_Id" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Item_Code">Item_Code</label>
+                                                            <input type="text" name="pip_Item_Code" class="form-control" id="pip_Item_Code" placeholder="Item_Code" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Activity_Name">Activity_Name</label>
+                                                            <input type="text" name="Type of structure" class="form-control" id="pip_Activity_Name" placeholder="Activity_Name" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Total_Target">Total_Target</label>
+                                                            <input type="text" name="pip_Total_Target" class="form-control" id="pip_Total_Target" placeholder="Total_Target" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Estimated">Estimated</label>
+                                                            <input type="text" name="pip_Estimated" class="form-control" id="pip_Estimated" placeholder="Estimated" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 1 (2020-21)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Physical_year1">Physical_year1</label>
+                                                            <input type="text" name="Water Level" class="form-control" id="pip_Physical_year1" placeholder="Physical_year1" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Financial_year1">Financial_year1</label>
+                                                            <input type="text" class="form-control" id="pip_Financial_year1" placeholder="Financial_year1" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 2 (2020-21)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Physical_year2">Physical_year2</label>
+                                                            <input type="text" name="Water Level" class="form-control" id="pip_Physical_year2" placeholder="Physical_year2" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Financial_year2">Financial_year2</label>
+                                                            <input type="text" class="form-control" id="pip_Financial_year2" placeholder="Financial_year2" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 3 (2020-21)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Physical_year3">Physical_year3</label>
+                                                            <input type="text" name="Water Level" class="form-control" id="pip_Physical_year3" placeholder="Physical_year3" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Financial_year3">Financial_year3</label>
+                                                            <input type="text" class="form-control" id="pip_Financial_year3" placeholder="Financial_year3" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 4 (2020-21)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Physical_year4">Physical_year4</label>
+                                                            <input type="text" name="Water Level" class="form-control" id="pip_Physical_year4" placeholder="Physical_year4" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Financial_year4">Financial_year4</label>
+                                                            <input type="text" class="form-control" id="pip_Financial_year4" placeholder="Financial_year4" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 5 (2020-21)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Physical_year5">Physical_year5</label>
+                                                            <input type="text" name="Water Level" class="form-control" id="pip_Physical_year5" placeholder="Physical_year5" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Financial_year5">Financial_year5</label>
+                                                            <input type="text" class="form-control" id="pip_Financial_year5" placeholder="Financial_year5" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="pip_Remarks">Remarks</label>
+                                                            <input type="text" class="form-control" id="pip_Remarks" placeholder="Remarks" required>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button type="button" id="updateButton_A" class="btn btn-primary" Rowid="" onclick="update_A()" data-dismiss="modal">update</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    @*modal end code*@
+
+
+                                    <div class="">
+                                        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                            <table id="PIP_tbl" class="table pip_report_table table-hover row-border order-column table-striped table-bordered  no-footer">
+                                                <thead>
+                                                    <tr class="info text-center">
+                                                        <th colspan="21" class="text-center text-capitalize">PROJECT IMPLEMENTATION PLAN (PIP)Component A</th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th rowspan="3">S.No</th>
+                                                        <th rowspan="3">State Name</th>
+                                                        <th rowspan="3">Component Id</th>
+                                                        <th rowspan="3">Activity Id</th>
+                                                        <th rowspan="3">Item Code</th>
+                                                        <th rowspan="3">Activity Name</th>
+                                                        <th rowspan="3">Total Target (no.)</th>
+                                                        <th rowspan="3"> Estimated cost for 5 years</th>
+                                                        <th colspan="10" class="text-center">Common Reserve Pool</th>
+                                                        <th rowspan="3">Remarks</th>
+                                                        <th rowspan="3">Edit</th>
+                                                        <th rowspan="3">Delete</th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th colspan="2" class="text-center">Year 1 (2020-21)</th>
+                                                        <th colspan="2" class="text-center">Year 2 (2021-22)</th>
+                                                        <th colspan="2" class="text-center">Year 3 (2022-23)</th>
+                                                        <th colspan="2" class="text-center">Year 4 (2023-24)</th>
+                                                        <th colspan="2" class="text-center">Year 5 (2024-25)</th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody id="tbody_PIP_Data"></tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="text-right">
+                                        <div class="text-right">
+                                            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="tableToExcel('PIP_b_tbl', 'PIP_Data')"> Export To Excel</i></div>
+                                            <input type="button" id="BComponent_Id" hidden />
+
+                                            @*@using (Html.BeginForm("Export", "mis_new", FormMethod.Post))
+                                                {
+                                                    <input type="hidden" name="StateName" />
+                                                    <input type="hidden" name="TbleName" value="tblb" />
+                                                    <input type="submit" class="btn btn-success btn_export" id="btnSubmit1" value="Export" />
+                                                }*@
+                                        </div>
+                                        @*<div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_b_Table()"> Export To Excel</i></div>
+                                            <input type="button" id="BComponent_Id" onclick="tableToExcel('PIP_b_tbl', 'PIP_Data')" hidden />*@
+
+                                    </div>
+
+
+                                    @*modal edit button start code (akash)*@
+
+                                    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="Modelledby" aria-hidden="true">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Edit Data</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="" method="POST" enctype="multipart/form-data" id="ModalForm">
+
+                                                        <input type="hidden" id="editId" value="">
+
+                                                        <div class="form-group">
+                                                            <label for="StateName">StateName</label>
+                                                            <input type="text" name="StateName" class="form-control" id="StateName" placeholder="StateName" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="UID">UID</label>
+                                                            <input type="text" name="UID" class="form-control" id="UID" placeholder="UID" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Component">Component Id</label>
+                                                            <input type="text" name="Component" class="form-control" id="Component" placeholder="Component Id" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Activity Id">Activity Id</label>
+                                                            <input type="text" name="Activity Id" class="form-control" id="Activity_Id" placeholder="Activity Id" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Item Code">Item Code</label>
+                                                            <input type="text" name="Item Code" class="form-control" id="Item_Code" placeholder="Item Code" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Activity Name">Activity Name</label>
+                                                            <input type="text" name="Activity Name" class="form-control" id="Activity_Name" placeholder="Activity Name" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Total Target (no.)">Total Target (no.)</label>
+                                                            <input type="text" name="Total Target (no.)" class="form-control" id="Total_Target" placeholder="Total Target (no.)" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Estimated cost for 5 years">Estimated cost for 5 years</label>
+                                                            <input type="text" name="Estimated cost for 5 years" class="form-control" id="Estimated" placeholder="Estimated cost for 5 years" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 1 (2020-21)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="Physical">Physical</label>
+                                                            <input type="text" name="Physical" class="form-control" id="Physical_year1" placeholder="Physical year 2020-21" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Financial">Financial</label>
+                                                            <input type="text" name="Financial" class="form-control" id="Financial_year1" placeholder="Financial year 2020_21" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 2 (2021-22)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="Physical">Physical</label>
+                                                            <input type="text" name="Physical" class="form-control" id="Physical_year2" placeholder="Physical year 2021-22" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Financial">Financial</label>
+                                                            <input type="text" name="Financial" class="form-control" id="Financial_year2" placeholder="Financial year 2021_22" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 3 (2022-23)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="Physical">Physical</label>
+                                                            <input type="text" name="Physical" class="form-control" id="Physical_year3" placeholder="Physical year 2022-23" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Financial">Financial</label>
+                                                            <input type="text" name="Financial" class="form-control" id="Financial_year3" placeholder="Financial year 2022_23" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 4 (2023-24)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="Physical">Physical</label>
+                                                            <input type="text" name="Physical" class="form-control" id="Physical_year4" placeholder="Physical year 2023-24" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Financial">Financial</label>
+                                                            <input type="text" name="Financial" class="form-control" id="Financial_year4" placeholder="Financial year 2023-24" required>
+                                                        </div>
+                                                        <div class="pt-4 bg-success"><h4>Year 5 (2024-25)</h4></div>
+                                                        <div class="form-group">
+                                                            <label for="Physical">Physical</label>
+                                                            <input type="text" name="Physical" class="form-control" id="Physical_year5" placeholder="Physical year 2024-25" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Financial">Financial</label>
+                                                            <input type="text" name="Financial" class="form-control" id="Financial_year5" placeholder="Financial year 2024-25" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="Remarks">Remarks</label>
+                                                            <input type="text" name="Remarks" class="form-control" id="Remarks" placeholder="Remarks" required>
+                                                        </div>
+
+
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                    <button type="button" id="updateModalButton" class="btn btn-primary" rowid="" onclick="update()" data-dismiss="modal">Update</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    @*modal end code*@
+
+
+
+
+                                    <div class="">
+                                        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:600px;">
+                                            <table id="PIP_b_tbl" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                <thead>
+                                                    <tr class="info text-center">
+                                                        <th colspan="22" class="text-center text-capitalize">PROJECT IMPLEMENTATION PLAN (PIP)Component B </th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th rowspan="3">S.No</th>
+                                                        <th rowspan="3">StateName</th>
+                                                        <th rowspan="3">UID</th>
+                                                        <th rowspan="3">Component Id</th>
+                                                        <th rowspan="3">Activity Id</th>
+                                                        <th rowspan="3">Item Code</th>
+                                                        <th rowspan="3">Activity Name</th>
+                                                        <th rowspan="3">Total Target (no.)</th>
+                                                        <th rowspan="3"> Estimated cost for 5 years</th>
+                                                        <th colspan="10" class="text-center">Common Reserve Pool</th>
+                                                        <th rowspan="3">Remarks</th>
+                                                        <th rowspan="3">Edit</th>
+                                                        <th rowspan="3">Delete</th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th colspan="2" class="text-center">Year 1 (2020-21)</th>
+                                                        <th colspan="2" class="text-center">Year 2 (2021-22)</th>
+                                                        <th colspan="2" class="text-center">Year 3 (2022-23)</th>
+                                                        <th colspan="2" class="text-center">Year 4 (2023-24)</th>
+                                                        <th colspan="2" class="text-center">Year 5 (2024-25)</th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody id="tbody_PIP_B_Data"></tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright .Kreate Technologies 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+@*
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="http://www.fixedheadertable.com/js/jquery.fixedheadertable.js"></script>
+    <script src="http://www.fixedheadertable.com/js/fixedheadertable.js"></script>*@
+<script>
+    $(document).ready(function () {
+        SessionInfo();
+
+
+    });
+</script>
+@*
+    <script type="text/javascript">
+        setTimeout(function () {
+            $('[id^="menu-"][class*="-info"]').hide();
+        }, 500);
+        $('#').fixedHeaderTable({
+            footer: false,
+            //cloneHeadToFoot: true,
+            altClass: 'odd',
+            //autoShow: false
+        });
+
+    </script>*@
+<script>
+    $("#btnSubmit").hide();
+    $("#btnSubmit").click(function () {
+        $("input[name='StateName']").val($("#pip_agency_state_name").val());
+    });
+    $("#btnSubmit1").hide();
+    $("#btnSubmit1").click(function () {
+        $("input[name='StateName']").val($("#pip_agency_state_name").val());
+    });
+
+    function Export_a_Table() {
+        debugger;
+        if (pip_a_component != 0) {
+            for (var i = 0; i < pip_a_component; i++) {
+                var ss = "#trAO" + i;
+                $(ss).remove();
+            }
+        }
+
+        $('#AComponent_Id').click();
+        PIP_Info();
+    }
+    function Export_b_Table() {
+        debugger;
+        if (pip_b_component != 0) {
+            for (var i = 0; i < pip_b_component; i++) {
+                var ss = "#trAO1" + i;
+                $(ss).remove();
+            }
+        }
+        $('#BComponent_Id').click();
+        PIP_B_Info();
+    }
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>
+
+<script>
+
+
+    var tableToExcel = (function () {
+
+        
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+
+        return function (table, name) {
+            debugger;
+
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+
+        }
+
+    })()
+</script>

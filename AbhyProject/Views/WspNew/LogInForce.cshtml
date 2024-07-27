@@ -1,0 +1,278 @@
+﻿@model IEnumerable<AbhyProject.Models.abhy_villages>
+@{
+    ViewBag.Title = "Logout";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<title>MIS Login</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+@*
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+<!-- Google Fonts
+
+   ============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
+<style>
+    .password-eyeicon {
+        right: 9px;
+        top: 15px;
+        cursor: pointer;
+    }
+
+    .notice-ribbon {
+        font-size: 14px;
+        background: #fff;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+
+        .notice-ribbon p {
+            font-size: 14px;
+            color: #f30606;
+            /*animation: blinker 10s linear infinite;*/
+        }
+
+    @@keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
+</style>
+
+<div class="allcontent">
+    <div class="row">
+
+        <div class="col-md-7 mis_module_section pb-4">
+
+            <div class="card border-0 mis_module_section_card mt-1 blockBoxWhite mt-4">
+                <div class="card-body" style=" min-height: 138px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 iconImg">
+                            <img src="~/DashboardStyles/images/grampanchayat_icon.png" />
+                        </div>
+                        <div class="col-md-8">
+                            <h4 class="text-info pb-3">Gram Panchayat Modules</h4>
+                            <p class="m-0 text-secondary">
+                                This module offers features and forms to capture micro-level data at the Gram Panchayat level through various in-built modules including preparation of Water Security Plans.
+
+                            </p>
+                            <p class="m-0 pt-1 text-secondary">(User rights- NPMU, SPMU, DPMU & GP)</p>
+                        </div>
+                        <div class="sideImg">
+                            <img src="~/DashboardStyles/images/grampanchayat_module.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 mis_module_section_card mt-1 blockBoxWhite">
+                <div class="card-body" style=" min-height: 138px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 iconImg">
+                            <img src="~/DashboardStyles/images/Monitoring.png" />
+                        </div>
+                        <div class="col-md-8">
+                            <h4 class="text-info pb-3">
+                                Monitoring And Evaluation Modules
+                            </h4>
+                            <p class="m-0 text-secondary">
+                                This module captures all details related to physical and financial monitoring of the scheme at National, State and District level including data submission for the Disbursement Linked Indicators (DLIs)
+
+
+
+                            </p>
+                            <p class="m-0 pt-1 text-secondary">(User rights- NPMU, SPMU & DPMU)</p>
+                        </div>
+                        <div class="sideImg">
+                            <img src="~/DashboardStyles/images/monitoring_module.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-0 mis_module_section_card mt-1 blockBoxWhite">
+                <div class="card-body" style=" min-height: 138px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 iconImg">
+                            <img src="~/DashboardStyles/images/training.png" />
+                        </div>
+                        <div class="col-md-8">
+                            <h4 class="text-info pb-3">
+                                Training And Workshop
+                            </h4>
+                            <p class="m-0 text-secondary">
+                                This module showcases state wise Training and Workshop events, registration, feedback forms and resources. Trainings at the national, state, district, block, and GP levels can be registered and viewed for analysis.
+
+
+
+
+                            </p>
+                            <p class="m-0 pt-1 text-secondary">(User rights- NPMU, SPMU, DPMU & GP)</p>
+                        </div>
+                        <div class="sideImg">
+                            <img src="~/DashboardStyles/images/workshop_module.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-0 mis_module_section_card mt-1 blockBoxWhite">
+                <div class="card-body" style=" min-height: 138px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 iconImg">
+                            <img src="~/DashboardStyles/images/gis_portal.png" />
+                        </div>
+                        <div class="col-md-8">
+                            <h4 class="text-info pb-3">
+                                GIS Web Portal
+                            </h4>
+                            <p class="m-0 text-secondary">
+                                The portal serves as a repository of geospatial data related to groundwater resources, providing stakeholders with valuable information, maps, and analysis tools to take informed decisions regarding groundwater management and planning.
+
+
+
+                            </p>
+                            <p class="m-0 pt-1 text-secondary"> (User rights- NPMU, SPMU, DPMU & GP)</p>
+                        </div>
+                        <div class="sideImg">
+                            <img src="~/DashboardStyles/images/gis_module.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-5 border p-0 mis_login_register_section">
+            @*<label id="randomnumber" hidden>@ViewBag.RandomNumber</label>*@
+
+            <!-- start-->
+            <div class="mis_logout_screen">
+                @*@using (Html.BeginForm("LogInForce", "WspNew", FormMethod.Post))
+                    {*@
+                <div class="row justify-content-center ">
+                    <div class="col-md-12 p-3">
+                        @*<a href="../../WspNew/WSP_GWM_HOME" class="ml-3 pl-2" id="backto_login"><img src="~/DashboardStyles/images/left-arrows.png" class="mx-2" /> Back to Login</a>*@
+                    </div>
+                    <div class="col-md-10  p-2">
+                        <ul class="pb-4">
+                            <li class="text-black d-flex align-items-center"><span class="text-info mx-2">Alert - You are already login from another device. Are you sure you want to logout from that device and login here?</span> </li>
+                        </ul>
+                        <form class="mis_register_form">
+                            <div class="row mt-0 mb-4">
+                                @*<button class="btn btn-primary w-100 mt-4 register lemon" id="logoutbtn" type="button">Force LogOut</button>*@
+                                <button class="btn btn-primary w-100 mt-4 register lemon" id="loginbtn" type="button">Yes</button>
+                                <a href="../../WspNew/WSP_GWM_HOME" class="btn btn-primary w-100 mt-4 register lemon" id="backto_login">No</a>
+                                <div class="col-md-7 p-0">
+                                    <p id="status11" class="error_captch" style="font-weight:bold;color:red;"></p>
+                                    <p id="AlertInfo11" class="error_captch" style="font-weight:bold;color:red;"></p>
+                                </div>
+                                <input type="submit" id="login_btn" hidden />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @*}*@
+            </div>
+
+            <!-- end-->
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        var SessionTabName = "WSP_HOME_WSP";
+
+        $(document).ready(function () {
+
+            //$("#logout_session").show();
+            $("#Change").css("display", "none");
+        });
+
+        function Error() {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/WspNew/Error_Info",
+                data: '',
+                dataType: 'JSON',
+                success: function (response) {
+                    $('#status').text('');
+                    $('#status1').text('');
+                    $('#status3').text('');
+                    if (response.length != 0) {
+                        //if (response[0].user_type == "ForgetPassword") {
+
+                        //    // $('#myModal').modal('show');
+                        //    // $('#myModal').show();
+                        //    $('#FPassword')[0].click();
+                        //    $('#status3').text(response[0].error_test);
+                        //    $('#forget_password_email').val(response[0].user_email);
+                        //}
+                        //else if (response[0].user_type == "login") {
+                        //    $('#userpassword').val(response[0].user_password);
+                        //    $('#status').text(response[0].error_test);
+                        //    $('#useremail').val(response[0].user_email);
+                        //}
+
+                    }
+                }
+            });
+        }
+</script>
+@*<script src="~/Content/JS_Files/login_js.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+<script src="~/Scripts/bootstrap.min.js"></script>
+@*<script src="~/Content/JS_Files/core.js"></script>
+    <script src="~/Content/JS_Files/sha256.js"></script>
+    <script src="~/DashboardStyles/js/custom-script.js"></script>*@
+@*<script src="~/Content/JS_Files/WSP_GWM_HOME.js"></script>*@
+<script>
+    $(function () {
+
+        $("#logoutbtn").click(function () {
+            let text = "Are you sure you want to force logout from previous login?";
+            if (confirm(text) == true) {
+                logout_btn();
+            } else {
+                console.log("You rejected.");
+                return false;
+            }
+        });
+        $("#loginbtn").click(function () {
+            let text = "Are you sure you want to force logout from previous and login here?";
+            if (confirm(text) == true) {
+                login_btn();
+            } else {
+                console.log("You rejected.");
+                return false;
+            }
+        });
+    });
+
+    function logout_btn() {
+        $.get("@Url.Action("LogOutForceP", "WspNew")",
+            function (data) {
+                window.location = "/WspNew/WSP_GWM_HOME_New";
+                //if (data == 0) {
+                //    console.log("not success");  // Log success message to console
+                //}
+                //    else {
+                //    console.log("success");  // Log success message to console
+                //    }
+            });
+    }
+
+    function login_btn() {
+        $.get("@Url.Action("LogInForceP", "WspNew")",
+            function (data) {
+               window.location = "/WspNew/WSP_GRM_HOMEF";
+            });
+    }
+</script>

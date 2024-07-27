@@ -1,0 +1,2644 @@
+﻿
+@{
+    ViewBag.Title = "WSPgram";
+    Layout = null;
+}
+<title></title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<style>
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+
+                        <li>
+                            <span>
+                                <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                   style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                        <span style="color:#fff;">:@Session["UserName"]</span>
+                    </li>
+                    <li>
+
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/WspNew/WSP_GWM_HOME">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                            </span>
+                            <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+                    <li>
+                        <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                        <label>Demand Side</label>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</header>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <style>
+        [name="push_title"] {
+            height: 70px;
+            width: 200px;
+        }
+
+        .database_trainer_row > h3 {
+            background-color: #72a230;
+            color: #fff;
+            padding: 7px 15px;
+            font-size: 18px;
+            margin: 6px 0px;
+        }
+        /*table fix code*/
+        .d-flex {
+            display: flex;
+        }
+
+            .d-flex .c {
+                margin-right: 5px;
+            }
+
+        .select_width_set {
+            width: 166px !important;
+        }
+
+        table {
+            text-align: left;
+            position: relative;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+
+
+        /*ends here*/
+        .second_heading {
+            background-color: #72a230;
+            color: #fff;
+            list-style: none;
+            padding: 3px 40px;
+            font-size: 15px;
+            font-weight: bold
+        }
+
+        .main_div {
+            padding-bottom: 0px;
+        }
+
+        .btn-success_1 {
+            color: #000;
+            background: #e7e7e7;
+        }
+
+
+        table#TblData_b_part tr.info > th,
+        table#TblData_c_part tr.info > th,
+        table#TblData_d_part tr.info > th,
+        table#TblData_e_part tr.info > th,
+        table#TblData_abc_part1 tr.info > th,
+        table#TblData_jj_part1 tr.info > th,
+        table.GWL_deviation_table tr.info > th,
+        table#TblData_g_part tr.info > th {
+            background-color: #337ab7;
+            color: #fff;
+            vertical-align: middle;
+        }
+
+            table#TblData_abc_part1 tr.info > th.background_color {
+                background-color: #fff !important;
+                color: #000;
+            }
+
+        .E_table_header > h4 {
+            color: #337ab7;
+            padding: 10px 0px;
+        }
+
+        .text-center {
+            background-color: #337ab7 !important;
+        }
+
+        .alertshowingdiv {
+            height: 25px;
+        }
+
+            .alertshowingdiv > label {
+                color: red;
+                font-size: 16px;
+            }
+
+        #breadcrumb {
+            color: #0000ff;
+            font-size: 15px;
+            margin: 0;
+            height: 15px;
+            margin-bottom: 10px;
+        }
+
+            #breadcrumb a {
+                color: #0000ff;
+                text-decoration: underline;
+            }
+
+        ul#myTabs > li > a > span > img {
+            height: 26px;
+            width: 26px;
+        }
+
+        ul.ReRecharge_list > li > span {
+            width: 70%;
+        }
+
+        ul#submenu1 > li > span {
+            font-size: 17px;
+        }
+
+        ul.imgHome > li > a > span {
+            font-size: 17px;
+            text-decoration: none;
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+        }
+
+            ul.imgHome > li > a > span :hover {
+                text-decoration: none;
+            }
+
+        ul.imgHome > li > a > label {
+            font-size: 13px;
+            text-decoration: underline;
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+            margin: 0;
+            height: 15px;
+        }
+
+        ul.imgHome > li > label {
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+        }
+
+        ul.imgHome > li > a > span > img,
+        ul.imgHome > li > span > img {
+            width: 25px;
+        }
+
+        ul.imgHome > li > a > label {
+            padding: 5px 0px 0px 0px;
+        }
+
+        .nav-justified {
+            padding-bottom: 0em;
+        }
+
+        ul.imgHome > li > img,
+        ul.imgHome > li > a > img {
+            width: 25px !important;
+        }
+
+        .highcharts-background {
+            /*width: 100% !important;*/
+        }
+
+        .highcharts-title {
+            display: none;
+        }
+
+        span.marqueegwr {
+            font-weight: 700;
+            margin-top: 10px;
+            /*font-family: raleway;*/
+            color: #333;
+            font-size: 1vw;
+        }
+
+        .modal-backdrop.in {
+            z-index: 0px !important;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.95;
+            visibility: visible;
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+
+        .loading-inactive {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+
+        ul.btnall > li {
+            display: inline-block;
+        }
+
+        .backgroundtr {
+            background-color: lightgray !important;
+        }
+
+            .backgroundtr:hover {
+                background-color: #fff !important;
+            }
+
+        .backgroundtr1 {
+            background-color: lightgoldenrodyellow !important;
+        }
+
+            .backgroundtr1:hover {
+                background-color: #fff !important;
+            }
+
+        table .input {
+            width: 150px !important;
+        }
+
+        .c1_count_displ {
+            display: flex;
+            gap: 5px;
+        }
+    </style>
+    <style>
+        .under_list > li {
+            list-style: none;
+            padding: 5px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+            .under_list > li > span > input {
+                width: 500px;
+                height: 30px;
+                padding: 3px 10px;
+                display: inline;
+            }
+
+            .under_list > li > span > select {
+                width: 500px;
+                height: 30px;
+                padding: 3px 10px;
+                display: inline;
+            }
+
+        @@media (max-width:1200px) and (min-width: 360px) {
+            .panelbodyheading {
+                background: none !important;
+                color: #fff !important;
+            }
+        }
+
+        #border {
+            border-spacing: 2px;
+            /* border: 2px solid green;*/
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 15px;
+            background: #f2f2f2;
+        }
+
+        .selectdistshowoption .Select_option li {
+            width: 14%;
+        }
+
+        #border select {
+            width: 100% !important;
+            border-radius: 4px !important;
+        }
+
+        .Select_option.selectbackhome li select {
+            border-radius: 25px;
+            width: 200px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            font-size: 13px;
+            padding-left: 0;
+        }
+
+        .selectdistshowoption {
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-bottom: 20px !important;
+            margin-top: 30px !important;
+        }
+
+        #style-4::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-4::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        #style-5::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-5::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        #style-6::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-6::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        #style-7::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #style-7::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        .box-shadow {
+            box-shadow: 0px 3px 46px rgb(0 0 0 / 7%);
+            padding: 15px 15px;
+            background: #f2f2f2;
+        }
+
+        .card {
+            margin-top: 25px;
+        }
+
+        .card-body {
+            border: 1px solid#ccc;
+            padding: 5px;
+        }
+
+        .headings_border {
+            position: relative;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            font-family: raleway;
+            font-weight: 900;
+            display: inline-block;
+            padding-left: 15px;
+        }
+
+            .headings_border::after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                left: 13%;
+                width: 168px;
+                height: 2px;
+                /*background: #5cb85c;*/
+            }
+
+        .headings_border_gram {
+            position: relative;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            font-family: raleway;
+            font-weight: 900;
+            display: inline-block;
+            padding-left: 15px;
+        }
+
+            .headings_border_gram::after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                left: 33%;
+                width: 168px;
+                height: 2px;
+                /*background: #5cb85c;*/
+            }
+
+        .w-100 {
+            width: 100% !important
+        }
+
+        #demandside::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F5F5;
+            border-radius: 25px;
+        }
+
+        #demandside::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+        }
+
+        .Select_option_div {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 17px 0px;
+            padding: 20px;
+            border: 1px solid #dfdbdb;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+        }
+
+        .tbl-responsive {
+            box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px !important;
+            background: #f2f2f2 !important;
+            overflow: auto;
+            height: 500px;
+        }
+
+        .comn_table {
+            background: #f2f2f2;
+        }
+
+        #border {
+            border-spacing: 2px;
+            /* border: 2px solid green;*/
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 15px;
+            background: #f2f2f2;
+        }
+
+            #border select {
+                width: 70%;
+                border-radius: 25px !important;
+            }
+
+            #border input {
+                width: 70%;
+                border-radius: 25px !important;
+            }
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+</head>
+
+<body>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+            Demand Side Incentive Fund Utilization (Physical & Financial Progress)
+        </div>
+
+    </center>
+    <div class="container-fluid">
+        <ul style="color:white;display:flex; justify-content:end;">
+            <li style=" text-align: right; margin-top: 10px; width: 10%;">
+                @*<a href="~/incentive_phy_fin/viewpage" class="btn btn-danger">
+                    Back To Module
+                </a>*@
+                <select class="form-control" id="gopage" onchange="gopage()">
+                    <option value="0">Go To Page </option>
+                    <option value="Supply">Supply Side</option>
+                    <option value="Other">Other Intervantion</option>
+                    <option value="Back">Back To Module</option>
+
+                </select>
+                
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+    <div id="border">
+        <div class="row container-fluid main_div">
+            <div class="col-md-12 col-sm-12">
+                <div>
+                    <div class="">
+                        <div class="selectdistshowoption">
+                            <ul class="Select_option col-md-12 col-sm-12  text-left">
+                                <li id="StateLabel">
+                                    <label id="lblstate">State:</label>
+                                    <span id="spnstate1">@Session["gstate"]</span>
+                                </li>
+                                <li id="StateDropdownLabel">
+
+                                    <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
+                                    </select>
+                                </li>
+
+                                <li id="DistLabel">
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label id="lbldistrict">District:</label>
+                                    <span id="spndistrict">@Session["gdist"]</span>
+                                </li>
+
+                                <li id="DistDropdownLabel">
+
+                                    <select class="form-control" id="dist11" onchange="Dist_fun()">
+                                    </select>
+                                </li>
+
+                                <li id="BlockLabel">
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Block:</label>
+                                    <span>@Session["gblock"] </span>
+                                </li>
+
+                                <li id="BlockDropdownLabel">
+
+                                    <select class="form-control" id="block1" onchange="Block_fun()">
+                                    </select>
+                                </li>
+                                <li id="GramLabel">
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Gram panchayat:</label>
+                                    <span>@Session["ggram"]</span>
+                                </li>
+
+                                <li id="GramDropdownLabel">
+                                    <select class="form-control" id="gram" onchange="Gram_change()">
+                                    </select>
+                                </li>
+                                <li id="lblyear">
+                                    <select class="form-control" id="year" onchange="validate_month()">
+                                        <option value="0">Select Financial Year</option>
+                                        <option value="2022-23">2022-23</option>
+                                        <option value="2023-24">2023-24</option>
+                                        @*<option value="2024-25">2024-25</option>
+                                            <option value="2025-26">2025-26</option>*@
+
+                                    </select>
+                                </li>
+                                <li id="lblmonth">
+
+                                    <select class="form-control" id="month" onchange="validate_month()" style="width:150px;">
+                                        <option value="0">Select Month</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                    </select>
+                                </li>
+                                <li id="DropdownSearch_btn">
+                                    <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <br /><br />
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="border">
+        <div id="hide_npmu" class="row container-fluid main_div">
+            <div class="col-md-12 col-sm-12">
+                <br />
+                <center>
+                    <div class="text-h g-mb-20" style="font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+                        Demand Side
+                    </div>
+                </center>
+                <br />
+                <br />
+                <div class="row">
+
+                    <div id="divsa" class="form-group col-md-4">
+                        <label> Name of Department : </label>
+                        <select class="form-control" id="txtdepartment" onchange="Other()">
+                        </select>
+                    </div>
+                    <div id="div_other" class="form-group col-md-4">
+                        <label>Other Name of Department :</label>
+                        <input type="text" class="form-control decimal" id="txtotherdepartment" maxlength="100" placeholder="Enter Other Name of Department" />
+
+                    </div>
+
+                    <div id="txtother" class="form-group col-md-4">
+                        <label>Name of Activity :</label>
+                        <select class="form-control" id="txtactivity" onchange="Otheractivity()">
+                            <option value="0">Select Name of Activity </option>
+                            <option value="Sprinkler">Sprinkler</option>
+                            <option value="Drip">Drip</option>
+                            <option value="UG Pipelines">UG Pipelines</option>
+                            <option value="Crop Diversification">Crop Diversification</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div id="div_otheractivity" class="form-group col-md-4">
+                        <label>Other Name of Activity :</label>
+                        <input type="text" class="form-control decimal" id="txtotheractivity" maxlength="100" placeholder="Enter Other Name of Activity" />
+
+                    </div>
+
+                    <div id="txtother" class="form-group col-md-4">
+                        <label>Cost (Incentive Fund Utilization) Lakhs :</label>
+                        <input type="text" class="form-control decimal" name="numonlydecimal" id="txtcost" maxlength="6" placeholder="Enter the numeric value" />
+
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Area covered utilizing Atal Jal Incentive fund (Ha):</label>
+                        <input type="text" class="form-control decimal" name="numonlydecimal" id="txtarea_under" maxlength="6" placeholder="Enter the numeric value" />
+
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Remark:</label>
+                        <input type="text" class="form-control decimal" id="remark" maxlength="150" placeholder="Enter the Remark" />
+
+                    </div>
+                </div>
+
+                <br />
+                <center>
+                    <div class="text-h g-mb-20" style="font-size: 20px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+                        No of Beneficiary
+                    </div>
+                </center>
+                <br />
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label style="font-weight:bold">Total Beneficiary:</label>
+                        <input type="text" class="form-control w-100" id="txttotalbeneficiary" name="numonly" maxlength="6" placeholder="Enter the numeric value" oninput="zero()" onkeyup="hide_show()" onkeydown="hide_show()" />
+                    </div>
+                </div>
+                <div id="div_category">
+                    <label style="font-size: 15px; color:Black; font-family: raleway; margin-top: 10px; font-weight: 900;">
+                        i . Male
+                    </label>
+                    <br />
+                    <br />
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> SC:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtsc" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> ST:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtst" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> OBC:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtobc" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> General:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtmother" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <label style="font-size: 15px; color:Black; font-family: raleway; margin-top: 10px; font-weight: 900;">
+                        i . Female
+                    </label>
+                    <br />
+                    <br />
+                    <div class="row">
+
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> SC:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtfsc" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> ST:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtfst" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> OBC:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtfobc" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-weight:bold"> General:</label>
+                            <input type="text" class="form-control w-100" onkeyup="total_count()" onkeydown="total_count()" id="txtfother" name="numonly" maxlength="5" placeholder="Enter the numeric value" />
+                        </div>
+
+
+                    </div>
+                </div>
+                <br />
+                <br />
+
+                <div class="form-group col-md-12">
+                    <center>
+                        <button type="button" id="btn1" name="btn1" value="Save" style=" width:100px" onclick="Save_Info_Data()" class="btn btn-success btn-md ">Save</button>
+                    </center>
+                </div>
+            </div>
+
+
+            <br /><br />
+
+
+
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div>
+        <ul style="color:white;">
+            <li style=" text-align: right; margin-top:10px;">
+                <button class="btn btn-danger download1" id="btnsummery" onclick="demand_summery_all()">Summary All State</button>
+                <button class="btn btn-danger download1" id="btnsummery_state" onclick="demand_summery_state()">Summary District</button>
+                <button class="btn btn-danger download1" id="btnsummery_district" onclick="demand_summery_district()">Summary Block</button>
+                <button class="btn btn-success download1" id="btnexcel" onclick="Excel_demand()">Export To Excel</button>
+                <button class="btn btn-success download1" id="pdf" onclick="Report_PDF_demand()">Export To PDF</button>
+                @*<button type="button" id="pdf" onclick="()" class="btn btn-success btn-sm"> Export To PDF</button>*@
+
+            </li>
+        </ul>
+    </div>
+    <div style="padding: 30px;padding-bottom: 0px;" class="text-left">
+        <label class="bg-light  display_flex">
+            Total Number of  Demand Side Entries  :  <label id="total_no"></label>
+        </label>
+        <br />
+        <label class="bg-light  display_flex">
+            Total Number of  Gram Panchayat Filled  :  <label id="total_gp"></label>
+        </label>
+        <br />
+        <label class="bg-light  display_flex">
+            Total Area covered utilizing Atal Jal Incentive fund (Ha)   :  <label id="total_area"></label>
+        </label>
+        <br />
+        <label class="bg-light  display_flex">
+            Total Cost (Incentive Fund Utilization) Lakhs   :  <label id="total_cost"></label>
+        </label>
+        <br />
+        <label class="bg-light  display_flex">
+            Total Number of  Beneficiary   :  <label id="total_beneficiary"></label>
+        </label>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="tbl-responsive" id="demandside" style="overflow-x:scroll;overflow-y:scroll; height:600px;">
+            <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                <thead style="color: #fff;">
+                    <tr class="tableheader1"></tr>
+                    <tr class="success">
+                        <th rowspan="3" style=" vertical-align: middle; padding-top: 46px;" class="text-center">Sr.No</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align:middle;" rowspan="3" class="text-center">State</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">District</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Block</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Grampanchayat</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Year</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Month</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Updated Month</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Name of Department</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Other Name of Department</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Name of Activity</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Cost (Incentive Fund Utilization) Lakhs</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="3" class="text-center">Area covered utilizing Atal Jal Incentive fund (Ha)</th>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" colspan="9" class="text-center">No of Beneficiary</th>
+                        <th rowspan="3" style=" vertical-align: middle;" class="text-center">Remark (If Any)</th>
+                        <th rowspan="3" style=" vertical-align: middle;" class="text-center">Edit</th>
+                        <th rowspan="3" style=" vertical-align: middle;" class="text-center">Delete</th>
+
+
+                    </tr>
+                    <tr>
+                        <th style="padding: 50px; padding-bottom: 10px; vertical-align: middle;" rowspan="2" class="text-center">Total Beneficiary</th>
+                        <th colspan="4" class="text-center">Male</th>
+                        <th colspan="4" class="text-center">Female</th>
+
+                    </tr>
+                    <tr>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">SC</th>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">ST</th>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">OBC</th>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">General</th>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">SC</th>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">ST</th>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">OBC</th>
+                        <th style="padding: 50px; padding-bottom: 10px;" class="text-center">General</th>
+
+
+                    </tr>
+
+
+                </thead>
+                <tbody id="tbl_details"></tbody>
+            </table>
+        </div>
+
+    </div>
+    <br />
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true,
+            });
+        });
+    </script>
+    <style>
+        form {
+            margin: 0px;
+        }
+    </style>
+
+    <script>
+
+   var Jsondata = "";
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+        var Block = "0";
+        var year = "";
+        var off_1 = "";
+        var Gram = "0";
+        var StateOfficer = '';
+        let MonthName = "";
+        var year = "";
+        var email = "";
+        $(document).ready(function () {
+         StateOfficer = '@Session["Officer"]';
+            email = '@Session["Email"]';
+            if (StateOfficer == "") {
+                window.location = "/WspNew/WSP_GWM_HOME";
+            }
+            else if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                window.location = "/WspNew/WSP_GWM_HOME";
+            }
+
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+            $('#DropdownSearch_btn').hide();
+            $('#pdf').prop('disabled', true);
+            $('#div_category').hide();
+            $('#div_other').hide();
+            $('#div_otheractivity').hide();
+            $('#btnsummery').hide();
+            $('#btnsummery_state').hide();
+            $('#btnsummery').prop('disabled', true);
+            $('#btnsummery_state').prop('disabled', true);
+            $('#btnsummery_district').hide();
+            $('#btnsummery_district').prop('disabled', true);
+
+            DropDownInfo();
+            Department_name();
+
+            var fin_year = getCurrentFiscalYear();
+            if (fin_year == "2021-22") {
+                year = "2021-22"
+            } else if (fin_year == "2022-23") {
+                year = "2022-23";
+            } else if (fin_year == "2023-24") {
+                year = "2023-24"
+            }
+            $("#year").val(year);
+
+            const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const m = new Date()
+            MonthName = month[m.getUTCMonth()];
+            $("#month").val(MonthName);
+
+
+
+        });
+
+        const today = new Date();
+        let mm = today.getMonth() + 1;
+        let dd = today.getDate();
+        const fix_Date = 15;
+        const month_numbers = Get_month_order(mm);
+        var fiscalyear = "";
+        var fincalyear = 0;
+
+        function getCurrentFinancialYear() {
+
+            var today = new Date();
+            if ((today.getMonth() + 1) <= 3) {
+                fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+            } else {
+                fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+            }
+
+            if (fiscalyear == "2020-2021") {
+                fincalyear = 2020;
+            } else if (fiscalyear == "2021-2022") {
+                fincalyear = 2021;
+            } else if (fiscalyear == "2022-2023") {
+                fincalyear = 2022;
+            } else if (fiscalyear == "2023-2024") {
+                fincalyear = 2023;
+            } else if (fiscalyear == "2024-2025") {
+                fincalyear = 2024;
+            }
+
+            if (fiscalyear == "2020-2021") {
+                fiscalyear = "2020-21";
+            } else if (fiscalyear == "2021-2022") {
+                fiscalyear = "2021-22";
+            } else if (fiscalyear == "2022-2023") {
+                fiscalyear = "2022-23";
+            } else if (fiscalyear == "2023-2024") {
+                fiscalyear = "2023-24";
+            } else if (fiscalyear == "2024-2025") {
+                fiscalyear = "2024-25";
+            }
+
+
+            //alert(fincalyear);
+        }
+        function Get_month_order(month_num) {
+
+            if (month_num == 4) {
+                month_order = 1;
+            }
+            if (month_num == 5) {
+                month_order = 2;
+            }
+            if (month_num == 6) {
+                month_order = 3;
+            }
+            if (month_num == 7) {
+                month_order = 4;
+            }
+            if (month_num == 8) {
+                month_order = 5;
+            }
+            if (month_num == 9) {
+                month_order = 6;
+            }
+            if (month_num == 10) {
+                month_order = 7;
+            }
+            if (month_num == 11) {
+                month_order = 8;
+            }
+            if (month_num == 12) {
+                month_order = 9;
+            }
+            if (month_num == 01) {
+                month_order = 10;
+            }
+            if (month_num == 02) {
+                month_order = 11;
+            }
+            if (month_num == 03) {
+                month_order = 12;
+            }
+            return month_order;
+        }
+        function Get_Month_Number(month) {
+
+            var month_num = 0;
+            switch (month) {
+                case "April":
+                    month_num = 4;
+                    break;
+                case "May":
+                    month_num = 5;
+                    break;
+                case "June":
+                    month_num = 6;
+                    break;
+                case "July":
+                    month_num = 7;
+                    break;
+                case "August":
+                    month_num = 8;
+                    break;
+                case "September":
+                    month_num = 9;
+                    break;
+                case "October":
+                    month_num = 10;
+                    break;
+                case "November":
+                    month_num = 11;
+                    break;
+                case "December":
+                    month_num = 12;
+                    break;
+                case "January":
+                    month_num = 1;
+                    break;
+                case "February":
+                    month_num = 2;
+                    break;
+                case "March":
+                    month_num = 3;
+                    break;
+            }
+            return month_num;
+        }
+        function validate_month() {
+            
+            var select_month = $('#month').val();
+            var select_month_num = Get_Month_Number(select_month)
+            var select_Year = $("#year").val();
+            
+            if (fiscalyear == select_Year) {
+                
+                if (select_month_num == mm && select_Year == fiscalyear) {
+                    $('#btn1').prop('disabled', false);
+                }
+                else if (dd <= fix_Date && select_month_num == mm - 1 && select_Year == fiscalyear) {
+                    $('#btn1').prop('disabled', false);
+                }
+                else {
+                    $('#btn1').prop('disabled', true);
+                }
+
+                if (mm == 1) {
+                    mn = 13;
+                    if (dd <= fix_Date && select_month_num == mn - 1 && select_Year == fiscalyear) {
+                        $('#btn1').prop('disabled', false);
+                    }
+                }
+
+            }
+            else {
+                $('#btn1').prop('disabled', false);
+                return false;
+            }
+        }
+        function getCurrentFiscalYear() {
+            //get current date
+            var today = new Date();
+            if ((today.getMonth() + 1) <= 3) {
+                fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+            } else {
+                fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+            }
+
+            if (fiscalyear == "2020-2021") {
+                fincalyear = 2020;
+            } else if (fiscalyear == "2021-2022") {
+                fincalyear = 2021;
+            } else if (fiscalyear == "2022-2023") {
+                fincalyear = 2022;
+            } else if (fiscalyear == "2023-2024") {
+                fincalyear = 2023;
+            } else if (fiscalyear == "2024-2025") {
+                fincalyear = 2024;
+            }
+
+            if (fiscalyear == "2020-2021") {
+                fiscalyear = "2020-21";
+            } else if (fiscalyear == "2021-2022") {
+                fiscalyear = "2021-22";
+            } else if (fiscalyear == "2022-2023") {
+                fiscalyear = "2022-23";
+            } else if (fiscalyear == "2023-2024") {
+                fiscalyear = "2023-24";
+            } else if (fiscalyear == "2024-2025") {
+                fiscalyear = "2024-25";
+            }
+
+            return (fiscalyear);
+        }
+
+        var Total = 0;
+        function total_count() {
+            var msc = $('#txtsc').val();
+            if (msc == "") {
+                msc = "0";
+            }
+            else {
+                msc = $('#txtsc').val();
+            }
+            var mst = $('#txtst').val();
+            if (mst == "") {
+                mst = "0";
+            }
+            else {
+                mst = $('#txtst').val();
+            }
+            var mobc = $('#txtobc').val();
+            if (mobc == "") {
+                mobc = "0";
+            }
+            else {
+                mobc = $('#txtobc').val();
+            }
+            var mother = $('#txtmother').val();
+            if (mother == "") {
+                mother = "0";
+            }
+            else {
+                mother = $('#txtmother').val();
+            }
+            var fsc = $('#txtfsc').val();
+            if (fsc == "") {
+                fsc = "0";
+            }
+            else {
+                fsc = $('#txtfsc').val();
+            }
+            var fst = $('#txtfst').val();
+            if (fst == "") {
+                fst = "0";
+            }
+            else {
+                fst = $('#txtfst').val();
+            }
+            var fobc = $('#txtfobc').val();
+            if (fobc == "") {
+                fobc = "0";
+            }
+            else {
+                fobc = $('#txtfobc').val();
+            }
+            var fother = $('#txtfother').val();
+            if (fother == "") {
+                fother = "0";
+            }
+            else {
+                fother = $('#txtfother').val();
+            }
+
+            Total = parseFloat(msc) + parseFloat(mst) + parseFloat(mobc) + parseFloat(mother) + parseFloat(fsc) + parseFloat(fst) + parseFloat(fobc) + parseFloat(fother);
+
+        }
+        function Other() {
+            var department = $('#txtdepartment').val();
+            if (department =="Other") {
+                $('#div_other').show();
+            }
+            else {
+                $('#div_other').hide();
+            }
+        }
+        function Otheractivity() {
+            var departmentactivity = $('#txtactivity').val();
+            if (departmentactivity =="Other") {
+                $('#div_otheractivity').show();
+            }
+            else {
+                $('#div_otheractivity').hide();
+            }
+        }
+
+        function gopage() {
+            var ddlvalue = $('#gopage').val();
+            if (ddlvalue =="Demand") {
+                window.location = "/incentive_phy_fin/demandside";
+            }
+            if (ddlvalue =="Supply") {
+                window.location = "/incentive_phy_fin/suppyside";
+            }
+            if (ddlvalue =="Other") {
+                window.location = "/incentive_phy_fin/other";
+            }
+            if (ddlvalue == "Back") {
+                window.location = "/incentive_phy_fin/viewpage";
+            }
+        }
+        
+
+        $(function () {
+
+            $("input[name='numonly']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+        $(function () {
+
+            $("input[name='numonlydecimal']").on('input', function (f) {
+                $(this).val($(this).val().replace(/[^0-9.]/g, ''));
+            });
+        });
+        function zero() {
+            var number = $('#txttotalbeneficiary').val();
+            if (number == "0") {
+                alert("Zero is Not Allowed as a Value")
+                $('#txttotalbeneficiary').val("");
+                return false;
+            }
+        }
+        function zero_update(RowNo) {
+            var number = $('#total_beneficiary' + RowNo).val();
+            if (number == "0") {
+                alert("Zero is Not Allowed as a Value")
+                $('#total_beneficiary' + RowNo).val("");
+                return false;
+            }
+        }
+        function Save_Info_Data() {
+
+            var obj = {};
+            var xx = 0;
+            var year = $('#year').val();
+            var month = $('#month').val();
+            var department = $('#txtdepartment').val();
+            var otherdepartment = $('#txtotherdepartment').val();
+            var activity = $('#txtactivity').val();
+            var txtotheractivity = $('#txtotheractivity').val();
+            var cost = $('#txtcost').val();
+            var area_under = $('#txtarea_under').val();
+            var remark = $('#remark').val();
+            var totalbeneficiary = $('#txttotalbeneficiary').val();
+            var msc = $('#txtsc').val();
+            if (msc == "") {
+                msc = 0;
+            }
+            else {
+                msc = $('#txtsc').val();
+            }
+            var mst = $('#txtst').val();
+            if (mst == "") {
+                mst = 0;
+            }
+            else {
+                mst = $('#txtst').val();
+            }
+            var mobc = $('#txtobc').val();
+            if (mobc == "") {
+                mobc = 0;
+            }
+            else {
+                mobc = $('#txtobc').val();
+            }
+            var mother = $('#txtmother').val();
+            if (mother == "") {
+                mother = 0;
+            }
+            else {
+                mother = $('#txtmother').val();
+            }
+            var fsc = $('#txtfsc').val();
+            if (fsc == "") {
+                fsc = 0;
+            }
+            else {
+                fsc = $('#txtfsc').val();
+            }
+            var fst = $('#txtfst').val();
+            if (fst == "") {
+                fst = 0;
+            }
+            else {
+                fst = $('#txtfst').val();
+            }
+            var fobc = $('#txtfobc').val();
+            if (fobc == "") {
+                fobc = 0;
+            }
+            else {
+                fobc = $('#txtfobc').val();
+            }
+            var fother = $('#txtfother').val();
+            if (fother == "") {
+                fother = 0;
+            }
+            else {
+                fother = $('#txtfother').val();
+            }
+
+            var Total = parseFloat(msc) + parseFloat(mst) + parseFloat(mobc) + parseFloat(mother) + parseFloat(fsc) + parseFloat(fst) + parseFloat(fobc) + parseFloat(fother);
+            var Totalbeneficiary = parseFloat(totalbeneficiary);
+
+            if (State == "0") {
+                xx = 1;
+                alert("Please Select State Name");
+                $('.loader').hide();
+            }
+            else if (Dist == "0") {
+                xx = 1;
+                alert("Please Select District Name");
+                $('.loader').hide();
+            }
+            else if (Block == "0") {
+                xx = 1;
+                alert("Please Select Block Name");
+                $('.loader').hide();
+            }
+            else if (Gram == "0") {
+                xx = 1;
+                alert("Please Select Grampanchayat Name");
+                $('.loader').hide();
+            }
+            else if (year == "0") {
+                xx = 1;
+                alert("Please Select Year ");
+                $('.loader').hide();
+            }
+            else if (fiscalyear != year) {
+                alert("Please Select Current Year and Month")
+                $('#year').val("0");
+                $('#month').val("0");
+                $('.loader').hide();
+                return false;
+            }
+            else if (month == "0") {
+                xx = 1;
+                alert("Please Select Month ");
+                $('.loader').hide();
+            }
+            else if (department == "0") {
+                xx = 1;
+                alert("Please Select Name of Department ");
+                $('.loader').hide();
+            }
+            else if (department != "0") {
+                if (department == "Other") {
+                    if (otherdepartment == "") {
+                        xx = 1;
+                        alert("Please Enter Other Name of Department ");
+                        $('.loader').hide();
+                    }
+                }
+            }
+            else if (activity == "0") {
+                xx = 1;
+                alert("Please Select Name of Activity ");
+                $('.loader').hide();
+            }
+            else if (activity != "0") {
+                if (activity == "Other") {
+                    if (txtotheractivity == "") {
+                        xx = 1;
+                        alert("Please Enter Other Name of Activity ");
+                        $('.loader').hide();
+                    }
+                }
+            }
+            else if (cost == "") {
+                xx = 1;
+                alert("Please Enter Cost (Incentive Fund Utilization) Lakhs ");
+                $('.loader').hide();
+            }
+            else if (area_under == "") {
+                xx = 1;
+                alert("Please Enter Area under Full Subsidy ( Ha) ");
+                $('.loader').hide();
+            }
+            else if (totalbeneficiary == "") {
+                xx = 1;
+                alert("Please Enter Total Beneficiary");
+                $('.loader').hide();
+            }
+            var activityname = "";
+            if (activity == "Other") {
+                var activity = $('#txtactivity').val();
+                var other = $('#txtotheractivity').val();
+                activityname = activity + ' - ' + other;
+            }
+            else {
+                var activity = $('#txtactivity').val();
+                activityname = activity;
+            }
+             if (totalbeneficiary != "") {
+                debugger;
+                if (Total!=0) {
+                    if (Total != Totalbeneficiary) {
+                        xx = 1;
+                        alert("Total Beneficiary is Not Equal to Male and Female Beneficiary");
+                        $('.loader').hide();
+                        return false;
+                    }
+                }
+            }
+           
+
+            if (xx == 0) {
+                    obj.state = State;
+                    obj.district = Dist;
+                    obj.block = Block;
+                    obj.gp = Gram;
+                    obj.year = year;
+                    obj.month = month;
+                    obj.department = department;
+                obj.otherdepartment = otherdepartment;
+                obj.activity = activityname;
+                    obj.cost = cost;
+                    obj.area_under = area_under;
+                    obj.msc = msc;
+                    obj.mst = mst;
+                    obj.mobc = mobc;
+                    obj.mother = mother;
+                    obj.fsc = fsc;
+                    obj.fst = fst;
+                    obj.fobc = fobc;
+                    obj.fother = fother;
+                    obj.total_beneficiary = totalbeneficiary;
+                    obj.remark = remark;
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        url: "/incentive_phy_fin/Save_demand",
+                        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                        dataType: 'JSON',
+                        success: function (response) {
+                            alert(response);
+                            if (response == "Logout") {
+                                window.location = "/WspNew/WSP_GWM_HOME";
+                            }
+                            total_gp();
+                             $('#txtdepartment').val("0");
+                            $('#txtactivity').val("0");
+                            $('#txtcost').val("");
+                            $('#txtarea').val("");
+                            $('#txttotalbeneficiary').val("");
+                            $('#txtsc').val("");
+                            $('#txtst').val("");
+                            $('#txtobc').val("");
+                            $('#txtmother').val("");
+                            $('#txtfsc').val("");
+                            $('#txtfst').val("");
+                            $('#txtfobc').val("");
+                            $('#txtfother').val("");
+                            $('#txtarea_under').val("");
+                            $('#remark').val("");
+                            $('#txtotherdepartment').val("");
+                            $('#div_other').hide();
+                            $('#div_otheractivity').hide();
+                            location.reload();
+                        }
+                    });
+
+            }
+        }
+
+        var area = 0;
+        var cost = 0;
+        var benificery = 0;
+        function Data_get() {
+            var year = $('#year').val();
+            var month = $('#month').val();
+
+            $('#total_no').text(0);
+            area = 0;
+             cost = 0;
+             benificery = 0;
+
+            var obj = {};
+            obj.state = State;
+            obj.district = Dist;
+            obj.block = Block;
+            obj.gp = Gram;
+            obj.year = year;
+            obj.month = month;
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/incentive_phy_fin/Data_get',
+                data: "{'Data': '" + JSON.stringify(obj) + "' }",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    if (data == "Logout") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+
+                    var tr = '';
+                    var j = 0;
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].area_under != null && data[i].area_under != "") {
+                                area += parseFloat(data[i].area_under);
+                            }
+                            if (data[i].cost != null && data[i].cost != "") {
+                                cost += parseFloat(data[i].cost);
+                            }
+                            if (data[i].total_beneficiary != null && data[i].total_beneficiary != "") {
+                                benificery += parseFloat(data[i].total_beneficiary);
+                            }
+                            
+
+                            var remark = data[i].remark;
+                            if (remark == null) {
+                                remark = "";
+                            }
+                            var update_month = data[i].update_month;
+                            if (update_month == null) {
+                                update_month = "";
+                            }
+                            var otherdepartment = data[i].otherdepartment;
+                            if (otherdepartment == null) {
+                                otherdepartment = "";
+                            }
+                            if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                                if (email == "akash.verma@kreatetechnologies.com" || email == "akanshakushwah-cgwb@gov.in") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + update_month + '</td><td>' + data[i].department + '</td><td>' + otherdepartment + '</td><td>' + data[i].activity + '</td> <td>' + data[i].cost + '</td><td>' + data[i].area_under + '</td><td>' + data[i].total_beneficiary + '</td><td>' + data[i].msc + '</td><td>' + data[i].mst + '</td><td>' + data[i].mobc + '</td><td>' + data[i].mother + '</td><td>' + data[i].fsc + '</td><td>' + data[i].fst + '</td><td>' + data[i].fobc + '</td><td>' + data[i].fother + '</td><td>' + remark + '</td><td></td><td><button class="btn btn-danger" onclick="Delete_data(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><tr>';
+
+                                }
+                                else {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + update_month + '</td><td>' + data[i].department + '</td><td>' + otherdepartment + '</td><td>' + data[i].activity + '</td> <td>' + data[i].cost + '</td><td>' + data[i].area_under + '</td><td>' + data[i].total_beneficiary + '</td><td>' + data[i].msc + '</td><td>' + data[i].mst + '</td><td>' + data[i].mobc + '</td><td>' + data[i].mother + '</td><td>' + data[i].fsc + '</td><td>' + data[i].fst + '</td><td>' + data[i].fobc + '</td><td>' + data[i].fother + '</td><td>' + remark + '</td></tr>';
+                                }
+                            }
+                            else {
+                                tr += '<tr id="AWP1_TR' + i + '"><td>' + (++j) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + update_month + '</td><td>' + data[i].department + '</td><td>' + otherdepartment + '</td><td>' + data[i].activity + '</td> <td>' + data[i].cost + '</td><td>' + data[i].area_under + '</td><td>' + data[i].total_beneficiary + '</td><td>' + data[i].msc + '</td><td>' + data[i].mst + '</td><td>' + data[i].mobc + '</td><td>' + data[i].mother + '</td><td>' + data[i].fsc + '</td><td>' + data[i].fst + '</td><td>' + data[i].fobc + '</td><td>' + data[i].fother + '</td><td>' + remark + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good4(' + i + ')"> <i class="fa fa-edit"></i></button ></td><td></td>' +
+
+                                    '<tr id="Hide_AWP1_TR' + i + '" style="display:none;"> <td></td><td><input type="text" class="form-control" id="state' + i + '" value="' + data[i].state + '" disabled /></td><td><input type="text" class="form-control" id="dist' + i + '" value="' + data[i].district + '" disabled /></td><td><input type="text" class="form-control" id="block' + i + '" value="' + data[i].block + '" disabled /></td><td><input type="text" class="form-control" id="gp' + i + '" value="' + data[i].gp + '" disabled /></td><td><input type="text" class="form-control" id="year' + i + '" value="' + data[i].year + '" disabled /></td><td><input type="text" class="form-control" id="month' + i + '" value="' + data[i].month + '" disabled /></td><td></td><td><input type="text" class="form-control" id="department' + i + '" value="' + data[i].department + '" disabled /></td><td><input type="text" class="form-control" id="otherdepartment' + i + '" value="' + otherdepartment + '" disabled /></td><td><input type="text" class="form-control" id="activity' + i + '" value="' + data[i].activity + '" disabled /></td>';
+
+                                tr += '<td><input type="text"  onkeypress="return /[0-9.]/i.test(event.key)" maxlength="7" class="form-control decimal"  id="cost' + i + '" value = "' + data[i].cost + '" /></td ><td><input type="text"  maxlength="7" onkeypress="return /[0-9.]/i.test(event.key)"   class="form-control" id="area' + i + '" value="' + data[i].area_under + '"/></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" oninput="zero_update(' + i + ')" class="form-control" id = "total_beneficiary' + i + '"  value = "' + data[i].total_beneficiary + '" /></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" class="form-control" id="msc' + i + '" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" value="' + data[i].msc + '" /></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" class="form-control" id="mst' + i + '" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" value="' + data[i].mst + '" /></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" class="form-control" id="mobc' + i + '" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" value="' + data[i].mobc + '" /></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" class="form-control" id="mother' + i + '" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" value="' + data[i].mother + '" /></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" class="form-control" id="fsc' + i + '" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" value="' + data[i].fsc + '" /></td><td> <input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" class="form-control" id="fst' + i + '" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" value="' + data[i].fst + '" /></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" class="form-control" id="fobc' + i + '" value="' + data[i].fobc + '" /></td><td><input type="text" maxlength="5" onkeypress="return isNumberKey(this, event);" class="form-control"  id="fother' + i + '" onkeyup="total_update(' + i + ')" onkeydown="total_update(' + i + ')" value="' + data[i].fother + '" /></td><td><input type="text" maxlength="150" class="form-control" id="remark' + i + '" value="' + remark + '" /></td><td><button type="button" class="btn btn-primary" onclick="Update_data(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+                            }
+                        }
+
+                    }
+                    if (tr == '') {
+                        tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                        $('#tbl_details').html(tr);
+                        $('#total_no').text(0);
+                        $('#total_area').text(area);
+                        $('#total_cost').text(cost);
+                        $('#total_beneficiary').text(benificery);
+                        $('.loader').hide();
+                    }
+                    else {
+                $('#tbl_details').html(tr);
+                        $('#total_no').text(data.length);
+                        $('#total_area').text(area.toFixed(2));
+                        $('#total_cost').text(cost.toFixed(2));
+                        $('#total_beneficiary').text(benificery);
+                        $('.loader').hide();
+                    }
+
+                }
+            });
+        }
+        function editrowcomp_A_Good4(i) {
+
+
+            $('#AWP1_TR' + i).hide();
+            $('#Hide_AWP1_TR' + i).show();
+        }
+        function cancelcomp_A_Support_NEW(i) {
+            $('#AWP1_TR' + i).show();
+            $('#Hide_AWP1_TR' + i).hide();
+
+        }
+        function Delete_data(ss) {
+            var obj = {};
+            obj.id = ss;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                url: "/incentive_phy_fin/Delete_data",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    Data_get();
+                    if (response == "Logout") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                        window.location = "/Error/DefaultError";
+                    }
+
+
+                }
+            });
+        }
+        function isNumberKey(txt, evt) {
+
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 46) {
+
+                //Check if the text already contains the . character
+                if (txt.value.indexOf('.') === -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (charCode > 31 &&
+                    (charCode < 48 || charCode > 57))
+                    return false;
+            }
+            return true;
+        }
+        function validate(e) {
+
+            var c = 0;
+            var { value } = event.target;
+            var count1 = 0;
+
+            for (var i = 0; i < value.length; i++) {
+                count1++;
+                if (value[i] != '.') {
+                    if (count1 == 6 && value[i] != '.') {
+
+                        e.preventDefault();
+                    }
+                } else {
+                    var count = 0, point = false;
+                    for (var i = 0; i < value.length; i++) {
+
+                        if (value[i] == '.' || point) {
+                            count++;
+                            point = true;
+                        }
+                        if (count > 2) {
+                            e.preventDefault();
+                        }
+                    }
+                }
+
+            }
+        }
+        function hide_show() {
+            var totalbeneficiary = $('#txttotalbeneficiary').val();
+            if (totalbeneficiary == "") {
+                $('#div_category').hide();
+            }
+            else {
+                $('#div_category').show();
+            }
+        }
+
+        var Total_update = 0;
+        function total_update(RowNo) {
+            var msc = $('#msc' + RowNo).val();
+            if (msc == "") {
+                msc = "0";
+            }
+            else {
+                msc = $('#msc' + RowNo).val();
+            }
+            var mst = $('#mst' + RowNo).val();
+            if (mst == "") {
+                mst = "0";
+            }
+            else {
+                mst = $('#mst' + RowNo).val();
+            }
+            var mobc = $('#mobc' + RowNo).val();
+            if (mobc == "") {
+                mobc = "0";
+            }
+            else {
+                mobc = $('#mobc' + RowNo).val();
+            }
+            var mother = $('#mother' + RowNo).val();
+            if (mother == "") {
+                mother = "0";
+            }
+            else {
+                mother = $('#mother' + RowNo).val();
+            }
+            var fsc = $('#fsc' + RowNo).val();
+            if (fsc == "") {
+                fsc = "0";
+            }
+            else {
+                fsc = $('#fsc' + RowNo).val();
+            }
+            var fst = $('#fst' + RowNo).val();
+            if (fst == "") {
+                fst = "0";
+            }
+            else {
+                fst = $('#fst' + RowNo).val();
+            }
+            var fobc = $('#fobc' + RowNo).val();
+            if (fobc == "") {
+                fobc = "0";
+            }
+            else {
+                fobc = $('#fobc' + RowNo).val();
+            }
+            var fother = $('#fother' + RowNo).val();
+            if (fother == "") {
+                fother = "0";
+            }
+            else {
+                fother = $('#fother' + RowNo).val();
+            }
+            
+            Total_update = parseFloat(msc) + parseFloat(mst) + parseFloat(mobc) + parseFloat(mother) + parseFloat(fsc) + parseFloat(fst) + parseFloat(fobc) + parseFloat(fother);
+
+        }
+        function Update_data(id, RowNo) {
+
+            var obj = {};
+            var xx = 0;
+            var id = id;
+
+            var cost = $('#cost' + RowNo).val();
+            var area_under = $('#area' + RowNo).val();
+            var total_beneficiary = $('#total_beneficiary' + RowNo).val();
+            var remark = $('#remark' + RowNo).val();
+
+
+            if (cost == "") {
+                alert("Please Enter Cost (Incentive Fund Utilization) Lakhs");
+                xx = 1;
+            }
+            else if (area_under == "") {
+
+                alert("Please Enter Area covered utilizing Atal Jal Incentive fund (Ha)");
+                xx = 1;
+            }
+            if (total_beneficiary == "") {
+                xx = 1;
+                alert("Please Enter Total Beneficiary");
+                $('.loader').hide();
+            }
+            else {
+                total_beneficiary = total_beneficiary;
+            }
+            var msc = $('#msc' + RowNo).val();
+            if (msc == "") {
+                msc = 0;
+            }
+            else {
+                msc = $('#msc' + RowNo).val();
+            }
+            var mst = $('#mst' + RowNo).val();
+            if (mst == "") {
+                mst = 0;
+            }
+            else {
+                mst = $('#mst' + RowNo).val();
+            }
+            var mobc = $('#mobc' + RowNo).val();
+            if (mobc == "") {
+                mobc = 0;
+            }
+            else {
+                mobc = $('#mobc' + RowNo).val();
+            }
+            var mother = $('#mother' + RowNo).val();
+            if (mother == "") {
+                mother = 0;
+            }
+            else {
+                mother = $('#mother' + RowNo).val();
+            }
+            var fsc = $('#fsc' + RowNo).val();
+            if (fsc == "") {
+                fsc = 0;
+            }
+            else {
+                fsc = $('#fsc' + RowNo).val();
+            }
+            var fst = $('#fst' + RowNo).val();
+            if (fst == "") {
+                fst = 0;
+            }
+            else {
+                fst = $('#fst' + RowNo).val();
+            }
+            var fobc = $('#fobc' + RowNo).val();
+            if (fobc == "") {
+                fobc = 0;
+            }
+            else {
+                fobc = $('#fobc' + RowNo).val();
+            }
+            var fother = $('#fother' + RowNo).val();
+            if (fother == "") {
+                fother = 0;
+            }
+            else {
+                fother = $('#fother' + RowNo).val();
+            }
+            
+            var Total = parseFloat(msc) + parseFloat(mst) + parseFloat(mobc) + parseFloat(mother) + parseFloat(fsc) + parseFloat(fst) + parseFloat(fobc) + parseFloat(fother);
+            var Totalbeneficiary = parseFloat(total_beneficiary);
+
+            
+            if (total_beneficiary != "") {
+                if (Total!=0) {
+                    if (Total != Totalbeneficiary) {
+                        xx = 1;
+                        alert("Total Beneficiary is Not Equal to Male and Female Beneficiary");
+                        xx = 1;
+                    }
+                }
+            }
+
+            if (xx == 0) {
+
+                obj.id = id;
+                obj.cost = cost;
+                obj.area_under = area_under;
+                obj.total_beneficiary = total_beneficiary;
+                obj.msc = msc;
+                obj.mst = mst;
+                obj.mobc = mobc;
+                obj.mother = mother;
+                obj.fsc = fsc;
+                obj.fst = fst;
+                obj.fobc = fobc;
+                obj.fother = fother;
+                obj.remark = remark;
+                obj.update_month = MonthName;
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/incentive_phy_fin/update_demand",
+                    data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert(response);
+                        if (response == "Logout") {
+                            window.location = "/WspNew/WSP_GWM_HOME";
+                        }
+
+                        Data_get();
+                    }
+                });
+
+            }
+        }
+        function Excel_demand() {
+            var year = $('#year').val();
+            var month = $('#month').val();
+                if (State == "0") {
+                    alert("Please Select State");
+                    return false;
+                }
+            {
+                window.location.href = "/incentive_phy_fin/Demand_excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&month1=" + month;
+            }
+
+        }
+        function Report_PDF_demand() {
+
+            var year = $('#year').val();
+            var month = $('#month').val();
+
+                if (State == "0") {
+                    alert("Please Select State");
+                    return false;
+                }
+             {
+                window.location.href = "/incentive_phy_fin/demandside_pdf";
+            }
+
+        }
+        function demand_summery_all() {
+
+            if (State == "0") {
+                alert("Please Select State");
+                return false;
+            }
+            {
+                window.location.href = "/incentive_phy_fin/all_report";
+            }
+
+        }
+        function demand_summery_state() {
+
+            if (State == "0") {
+                alert("Please Select State");
+                return false;
+            }
+            {
+                window.location.href = "/incentive_phy_fin/state_report_demand";
+            }
+
+        }
+        function demand_summery_district() {
+
+            if (State == "0") {
+                alert("Please Select State");
+                return false;
+            }
+            {
+                window.location.href = "/incentive_phy_fin/district_report_demand";
+            }
+
+        }
+        function Department_name() {
+            
+            $.ajax({
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                url: "/incentive_phy_fin/Department_name",
+                data: '',
+                dataType: 'JSON',
+                success: function (response) {
+                    
+                    if (response == "Logout") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    $("#txtdepartment").empty();
+
+
+                    var optionhtml = "<option value='0'>--Select Department  Name --</option>";
+                    if (response.length != 0) {
+                        allstate = [];
+                        FullData = response;
+                        var ddlSourse = {};
+                        for (var i = 0; i < response.length; i++) {
+                            if (response[i].department_name != null && response[i].department_name != "") {
+                                if (!ddlSourse[response[i].department_name]) {
+                                    optionhtml += '<option value="' + response[i].department_name + '">' + response[i].department_name + '</option>';
+                                    allstate.push(response[i].department_name);
+                                    ddlSourse[response[i].department_name] = response[i].department_name;
+
+                                }
+                            }
+                        }
+                        optionhtml += "<option value='Other'>Other</option>";
+                        $("#txtdepartment").append(optionhtml);
+
+
+                    }
+
+
+                }
+
+            });
+        }
+        function total_gp() {
+
+            $('.loader').show();
+            var year = $('#year').val();
+            var month = $('#month').val();
+
+            var obj = {};
+            obj.statename = State;
+            obj.districtname = Dist;
+            obj.blockname = Block;
+            obj.gpname = Gram;
+            obj.year = year;
+            obj.month = month;
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/incentive_phy_fin/total_gp_demand',
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    var data = data;
+
+                    if (data == 'No Data') {
+                        $('#total_gp').text(0);
+
+                    }
+                    else {
+                        $('#total_gp').text(data);
+                    }
+                    Data_get();
+                },
+                error: function () {
+
+                }
+            });
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function SessionInfo() {
+
+            var obj = {};
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Demand_new/State_SessionInfo_1",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    if (data == "Logout") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    else {
+                        $('#Error_').text("");
+
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+                        $('#btnsummery').hide();
+                        $('#btnsummery_state').hide();
+                        $('#btnsummery_district').hide();
+
+                        var Str = data.split(',');
+                        if (Str[0] == "Admin") {
+                            $('#StateLabel').hide();
+                            $('#StateDropdownLabel').show();
+                            $('#DistLabel').hide();
+                            $('#DistDropdownLabel').show();
+                            $('#BlockLabel').hide();
+                            $('#BlockDropdownLabel').show();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            $('.loader').hide();
+                            $('#hide_npmu').hide();
+                            $('#year').val("0");
+                            $('#month').val("0");
+                            $('#btnsummery').hide();
+                            $('#btnsummery_state').hide();
+                            $('#btnsummery').prop('disabled', true);
+                            $('#btnsummery_state').prop('disabled', true);
+                            $('#year').prop('disabled', false);
+                            $('#btnsummery_district').hide();
+                            $('#btnsummery_district').prop('disabled', true);
+                            
+                        }
+                        else if (Str[0] == "State Level Nodal Officer") {
+                            State = Str[1];
+                            off_1 = "state";
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').hide();
+                            $('#DistDropdownLabel').show();
+                            $('#BlockLabel').hide();
+                            $('#BlockDropdownLabel').show();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            State_Dropdown_Function();
+                            State_Dropdown_Function();
+                            $('.loader').hide();
+                            $('#hide_npmu').show();
+                            $('#year').val("0");
+                            $('#month').val("0");
+                            $('#year').prop('disabled', false);
+                            $('#btnsummery').hide();
+                            $('#btnsummery').prop('disabled', true);
+                            $('#btnsummery_state').show();
+                            $('#btnsummery_state').prop('disabled', true);
+                            $('#btnsummery_district').show();
+                            $('#btnsummery_district').prop('disabled', true);
+                            total_gp();
+
+                        }
+                        else if (Str[0] == "District Level Nodal Officer") {
+                            off_1 = "dist";
+                            State = Str[1];
+                            Dist = Str[2];
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').show();
+                            $('#DistDropdownLabel').hide();
+                            $('#BlockLabel').hide();
+                            $('#BlockDropdownLabel').show();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            $('#year').prop('disabled', true);
+                            $('#btnsummery').hide();
+                            $('#btnsummery').prop('disabled', true);
+                            $('#btnsummery_state').hide();
+                            $('#btnsummery_state').prop('disabled', true);
+                            $('#btnsummery_district').hide();
+                            $('#btnsummery_district').prop('disabled', true);
+                            Dist_fun();
+                            Dist_fun();
+                            $('.loader').hide();
+                            $('#hide_npmu').hide();
+
+                        }
+                        else if (Str[0] == "Block Level Nodal Officer") {
+                            off_1 = "block";
+                            State = Str[1];
+                            Dist = Str[2];
+                            Block = Str[3];
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').show();
+                            $('#DistDropdownLabel').hide();
+                            $('#BlockLabel').show();
+                            $('#BlockDropdownLabel').hide();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            $('#year').prop('disabled', true);
+                            $('#btnsummery').hide();
+                            $('#btnsummery').prop('disabled', true);
+                            $('#btnsummery_state').hide();
+                            $('#btnsummery_state').prop('disabled', true);
+                            $('#btnsummery_district').hide();
+                            $('#btnsummery_district').prop('disabled', true);
+                            Block_fun();
+                            Block_fun();
+                            $('.loader').hide();
+                            $('#hide_npmu').hide();
+
+
+                        }
+                        else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                            State = Str[1];
+                            Dist = Str[2];
+                            Block = Str[3];
+                            Gram = Str[4];
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').show();
+                            $('#DistDropdownLabel').hide();
+                            $('#BlockLabel').show();
+                            $('#BlockDropdownLabel').hide();
+                            $('#GramLabel').show();
+                            $('#GramDropdownLabel').hide();
+                            $('#DropdownSearch_btn').show();
+                            $('#year').prop('disabled', true);
+                            $('#btnsummery').hide();
+                            $('#btnsummery').prop('disabled', true);
+                            $('#btnsummery_state').hide();
+                            $('#btnsummery_state').prop('disabled', true);
+                            $('#btnsummery_district').hide();
+                            $('#btnsummery_district').prop('disabled', true);
+                            $('.loader').hide();
+                            $('#hide_npmu').hide();
+
+
+
+                        }
+
+
+                    }
+                }
+
+            });
+
+        }
+        function DropDownInfo() {
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Home/Sign_Up_DropdownInfo",
+                data: "{ }",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    if (response.length != 0) {
+                        Jsondata = response;
+                        $("#spnstate").empty();
+                        var opstate = '<option value="0">Select StateName</option>';
+                        $("#spnstate").append(opstate);
+                        $("#dist11").empty();
+                        var opdist = '<option value="0">Select District</option>';
+                        $("#dist11").append(opdist);
+                        $("#block1").empty();
+                        var opblock = '<option value="0">Select Block</option>';
+                        $("#block1").append(opblock);
+                        $("#gram").empty();
+                        var opgram = '<option value="0">Select GramPanchayat</option>';
+                        $("#gram").append(opgram);
+                        //var StateName = $("#spnstate").text();
+                        if (Jsondata.length != 0) {
+                            var ddlst = {};
+                            var all_dists = [];
+                            var optionState = '';
+
+                            for (var i = 0; i < Jsondata.length; i++) {
+
+                                if (!ddlst[Jsondata[i].state_name]) {
+                                    all_dists.push(Jsondata[i].state_name);
+                                    ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                                }
+                            }
+                            var DistArray = [];
+                            DistArray = all_dists.sort(function (a, b) {
+                                if (a < b) return -1;
+                                else if (a > b) return 1;
+                                return 0;
+                            });
+                            optionState = '<option value="0">Select StateName</option>';
+                            optionState += '<option value="All">ALL</option>';
+
+                            for (var i = 0; i < DistArray.length; i++) {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+
+                                }
+                            }
+                            $("#spnstate").html(optionState);
+
+                        }
+
+                    }
+
+                    SessionInfo();
+
+
+                }
+            });
+        }
+        function State_Dropdown_Function() {
+            var state = $("#spnstate").val();
+            if (state == "All") {
+                var StateName = $("#spnstate").val();
+                if (off_1 == "state") {
+                    StateName = State;
+                } else {
+                    State = StateName;
+                }
+                $("#dist11").prop("disabled", true);
+                $("#block1").prop("disabled", true);
+                $("#gram").prop("disabled", true);
+                $('#btnsummery').show();
+                $('#btnsummery').prop('disabled', true);
+                $('#btnsummery_state').hide();
+                $('#btnsummery_state').prop('disabled', true);
+                $('#btnsummery_district').hide();
+                $('#btnsummery_district').prop('disabled', true);
+            }
+            else {
+                $("#dist11").prop("disabled", false);
+                $("#block1").prop("disabled", false);
+                $("#gram").prop("disabled", false);
+                $('#btnsummery').hide();
+                $('#btnsummery').prop('disabled', true);
+                $('#btnsummery_state').show();
+                $('#btnsummery_state').prop('disabled', true);
+                $('#btnsummery_district').show();
+                $('#btnsummery_district').prop('disabled', true);
+                $("#dist11").empty();
+                var opdist = '<option value="0">Select District</option>';
+                $("#dist11").append(opdist);
+                $("#block1").empty();
+                var opblock = '<option value="0">Select Block</option>';
+                $("#block1").append(opblock);
+                $("#gram").empty();
+                var opgram = '<option value="0">Select GramPanchayat</option>';
+                $("#gram").append(opgram);
+
+                var StateName = $("#spnstate").val();
+                if (off_1 == "state") {
+                    StateName = State;
+                } else {
+                    State = StateName;
+                }
+
+                if (StateName != "0" && Jsondata.length != 0) {
+                    var ddlst = {};
+                    var all_dists = [];
+                    var optionDist = '';
+                    for (var i = 0; i < Jsondata.length; i++) {
+                        if (StateName == Jsondata[i].state_name) {
+
+                            if (!ddlst[Jsondata[i].district_name]) {
+                                all_dists.push(Jsondata[i].district_name);
+                                ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                            }
+                        }
+                    }
+
+
+                    var DistArray = [];
+                    DistArray = all_dists.sort(function (a, b) {
+                        if (a < b) return -1;
+                        else if (a > b) return 1;
+                        return 0;
+                    });
+                    for (var i = 0; i < DistArray.length; i++) {
+                        if (DistArray[i] != null && DistArray[i] != "") {
+                            optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                        }
+                    }
+                    $("#dist11").append(optionDist);
+                }
+            }
+
+        }
+        function Dist_fun() {
+            var dist = $("#dist11").val();
+            if (dist == 0) {
+                $('#btnsummery_state').show();
+                $('#btnsummery_state').prop('disabled', true);
+                $('#btnsummery_district').show();
+                $('#btnsummery_district').prop('disabled', true);
+            }
+            else {
+                $('#btnsummery_state').hide();
+                $('#btnsummery_state').prop('disabled', true);
+                $('#btnsummery_district').hide();
+                $('#btnsummery_district').prop('disabled', true);
+            }
+            $("#block1").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block1").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+
+            
+            if (off_1 == "dist") {
+                dist = Dist;
+            } else {
+                Dist = dist;
+            }
+
+            if (dist != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_blocks = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata.length; i++) {
+
+
+                    if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                        if (!ddlst[Jsondata[i].block_name]) {
+                            all_blocks.push(Jsondata[i].block_name);
+                            ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                            //  $("#block").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var BlockArray = [];
+                BlockArray = all_blocks.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < BlockArray.length; i++) {
+                    if (BlockArray[i] != null && BlockArray[i] != "") {
+                        optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                    }
+                }
+                $("#block1").append(optionDist);
+
+            }
+        }
+        function Block_fun() {
+            $('#btnsummery_district').hide();
+            $('#btnsummery_district').prop('disabled', true);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var block = $("#block1").val();
+
+            if (off_1 == "block") {
+                block = Block;
+            } else {
+                Block = block;
+            }
+
+
+            if (block != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_grams = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                        if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                            ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                            all_grams.push(Jsondata[i].gram_panchayat_name);
+                            //   $("#gram").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var GramArray = [];
+                GramArray = all_grams.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < GramArray.length; i++) {
+                    if (GramArray[i] != null && GramArray[i] != "") {
+
+                        optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                    }
+                }
+                $("#gram").append(optionDist);
+            }
+        }
+        function Gram_change() {
+
+            Gram = $("#gram").val();
+            if (Gram == "0") {
+            }
+            else {
+                Gram = $('#gram').val();
+
+            }
+            //Dropdown_Search();
+        }
+        function Dropdown_Search() {
+            debugger;
+            Gram = $('#gram').val();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            var xx = 0;
+            if (State == "0") {
+                xx = 1;
+                alert("Please Select State Name");
+                $('.loader').hide();
+            }
+            if (xx == 0) {
+
+                $.ajax({
+                    type: "Post",
+                   url: "/incentive_phy_fin/StateLevel_Dropdown",
+                    contentType: "application/json;charset=utf-8",
+                    data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','year':'" + year + "','Month':'" + month + "'}",
+                    dataType: "json",
+                    success: function (results) {
+                        $('#pdf').prop('disabled', false);
+                        $('#btnsummery').prop('disabled', false);
+                        $('#btnsummery_state').prop('disabled', false);
+                        $('#btnsummery_district').prop('disabled', false);
+                        total_gp();
+
+
+                    }
+                });
+            }
+        }
+        function isNumberKey(txt, evt) {
+
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 46) {
+                //Check if the text already contains the . character
+                if (txt.value.indexOf('.') === -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (charCode > 31 &&
+                    (charCode < 48 || charCode > 57))
+                    return false;
+            }
+            return true;
+        }
+    </script>
+    <script src="~/Content/JS_Files/table2excel.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

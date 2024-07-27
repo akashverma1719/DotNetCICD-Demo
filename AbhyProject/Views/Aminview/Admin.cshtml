@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/css/admin_css.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<div id="maincontainer">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/Home/index">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                </span>
+                                <label>Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+
+
+
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" /></span>
+                            <label>Admin</label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="body">
+        <div class="">
+            <ul id="myTabs" class="nav nav-pills" role="tablist" data-tabs="tabs">
+                <li class=" box-layout" id="block1">
+                    <a href="~/Aminview/atal_jal_overview" data-toggle="tab">
+                        <img src="~/Images/User admin white.png" id="image1" />
+                        <span class="categories" id="title1">Atal Jal Overview </span>
+                    </a>
+                </li>
+                <li class=" box-layout" id="block2">
+                    <a href="#Tenders" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" />
+                        <span class="categories" id="title2">
+                            PIP/AWP/FIN/Procurement
+                        </span>
+                    </a>
+                </li>
+
+                <li class=" box-layout" id="block2">
+                    <a href="#Grievance" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" />
+                        <span class="categories" id="title2">
+                            Document Management
+                        </span>
+                    </a>
+                </li>
+                <li class=" box-layout" id="block2">
+                    <a href="#Conference" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" />
+                        <span class="categories" id="title2">
+                            Training/Workshops
+                        </span>
+                    </a>
+                </li>
+
+                <li class=" box-layout" id="block3">
+                    <a href="#Events" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" />
+                        <span class="categories" id="title3">
+                            PMU Staff Management
+                        </span>
+                    </a>
+                </li>
+                <li class=" box-layout" id="block4">
+                    <a href="#Events1" data-toggle="tab">
+                        <img src="~/Images/delete user white.png" id="image4" />
+                        <span class="categories" id="title4">
+                            Audit
+                        </span>
+                    </a>
+                </li>
+                <li class="box-layout" id="block3">
+                    <a href="#groundwr" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" />
+                        <span class="categories" id="title3">
+                            Event & Gallery Management
+                        </span>
+                    </a>
+                </li>
+                <li class="box-layout" id="block3">
+                    <a href="#groundGwm" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" />
+                        <span class="categories" id="title3">Grievance</span>
+                    </a>
+                </li>
+                <li class=" box-layout" id="block3">
+                    <a href="#groundWSP" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" />
+                        <span class="categories" id="title3">Reports</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

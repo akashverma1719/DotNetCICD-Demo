@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'RobotoSlab-Medium';
+  src: url('RobotoSlab-Medium.eot');
+  src: url('RobotoSlab-Medium.eot?#iefix') format('embedded-opentype'),
+       url('RobotoSlab-Medium.svg#RobotoSlab-Medium') format('svg'),
+       url('RobotoSlab-Medium.ttf') format('truetype'),
+       url('RobotoSlab-Medium.woff') format('woff'),
+       url('RobotoSlab-Medium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

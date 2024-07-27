@@ -1,0 +1,480 @@
+﻿@model IEnumerable<AbhyProject.Models.abhy_villages>
+@using AbhyProject.Models;
+@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+
+<title>WSP Location</title>
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+<!-- Google Fonts
+    ============================================ -->
+
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<!-- All css files are included here
+============================================ -->
+<!-- Bootstrap CSS
+============================================ -->
+<link href="~/Content/Website/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- This core.css file contents all plugins css file
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/core.css">
+
+<!-- Theme shortcodes/elements style
+============================================ -->
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="~/Content/Website/css/shortcode/shortcodes.css">
+
+
+<!-- Latest compiled JavaScript -->
+
+<script src="~/Scripts/all_scripts/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+@*<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgurNrZ8JU8NiUs9bleClqbVul6VR5u4s&callback=initMap">
+</script>
+<script>
+    function initMap() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                // The location of Uluru
+                var uluru = { lat: position.coords.latitude, lng: position.coords.longitude };
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 4, center: uluru });
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({ position: uluru, map: map });
+
+            });
+        }
+    }
+
+</script>*@
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.loading').show();
+        $('.Allcontent').hide();
+        $('#myModal_Map').modal('hide');
+    });
+</script>
+
+<style>
+    .clearfix > h1 {
+        text-align: center;
+        /* height: 75px; */
+        background-color: #258adb;
+        padding: 7px;
+        color: #fff;
+        font-family: -webkit-body;
+    }
+    .modal-body > select {
+        margin-bottom: 10px;
+        margin-top:10px;
+        text-transform:capitalize;
+    }
+        .modal-body > b
+        {
+            font-weight:800;
+            font-size:17px;
+        }
+
+    .btn-success {
+        border-radius: 10px;
+    }
+
+    #myModal_Map {
+        top: 100px !important;
+        right: 100px !important;
+        bottom: 0;
+        left: 0px !important;
+    }
+    /*footer css*/
+    .mapRow {
+        padding: 0px;
+    }
+
+    .btnrow {
+        position: absolute;
+    }
+    /*.modal-content {
+        background-color: lightseagreen;
+    }*/
+    @@media (max-width:1460px) {
+        .coll5 > img {
+            height: 626px;
+        }
+
+        .coll7 > #map {
+            height: 630px;
+        }
+    }
+
+    .coll5 > img {
+        height: 646px !important;
+        width: 100% !important;
+    }
+
+    .mapRow {
+        padding: 0px;
+    }
+
+    section {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .coll5 {
+        padding: 5px;
+    }
+
+    .coll7 {
+        padding: 5px;
+    }
+
+    .row {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    .col-md-12 {
+        padding: 0px;
+    }
+    
+        @@media (max-width:992px) {
+            body {
+                height: 100%;
+                background-size: 100% 100%;
+            }
+
+            html {
+                height: 100%;
+            }
+        }
+
+</style>
+
+<style type="text/css">
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+    body {
+        background-image: url('../../Content/WspImages/WSPplan/Abhy Map replaced img.png');
+        background-repeat: no-repeat;
+            background-size: cover;
+    }
+  
+     @@media (max-width:992px) {
+            body {
+                height: 100%;
+                background-size: 100% 100%;
+            }
+
+            html {
+                height: 100%;
+            }
+        }
+    @@media (min-width:1300px) {
+        body {
+            height: 100%;
+            background-size: 100% 100%;
+        }
+         html {
+                height: 100%;
+            }
+    }
+</style>
+
+
+<div class="loading-container loading" >
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="300" width="300" />
+    </div>
+</div>
+
+<div class="Allcontent">
+    <div class="clearfix">
+        <h1>Water Security Plan</h1>
+
+        <div class="row mapRow">
+
+            <section class="btnrow">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal_Map"><i class="fa fa-plus-circle" style="padding: 8px;font-size: 20px;"></i><b>Select State,District,Block and Gram Panchayat</b></button>
+            </section>
+            <section>
+                
+            </section>
+
+        </div>
+
+
+    </div>
+    <div class="modal fade" id="myModal_Map" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title" id="Gram1">Select State,District,Block and Gram Panchayat</h5>
+
+
+                </div>
+                <div class="modal-body">
+                    <b class="">State</b>
+                    <select name="state" id="state" class="state form-control" required>
+                        @*<option value="Select State">Select State</option>*@
+                    </select>
+                    <b class="">District</b>
+                    <select name="dist" id="dist" class="dist form-control" required>
+                        <option value="Select District">Select District</option>
+                    </select>
+                    <b class="">Block </b>
+                    <select name="block" id="block" class="block form-control" required>
+                        <option value="Select Block">Select Block</option>
+                    </select>
+                    <b class="">Gram Panchayat </b>
+                    <select name="gram" id="gram" class="gram form-control" required>
+                        <option value="Select Panchayati">Select Gram Panchayat</option>
+                    </select>
+                    
+
+                </div>
+                <div class="button-box mt-20 modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnsubmit" name="btnsubmit" class="btn btn-success pull_right" onclick="GetDDLNames();">Submit</button>
+                </div>
+                <input type="text" name="state" hidden />
+                <input type="text" name="dist" hidden />
+                <input type="text" name="block" hidden />
+                <input type="text" name="gram" hidden />
+                <input type="text" name="village" hidden />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var Jsondata = "";
+    $(document).ready(function () {
+        $("#Change").css("display", "none");
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/DashboardJsondata',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                $('.Allcontent').show();
+                $('.loading').hide();
+
+                $('#myModal_Map').modal('show');
+
+                Jsondata = JSON.parse(data);
+                $.each(Jsondata, function (i, stateval) {
+                    $("#state").append($('<option></option>').val(stateval.sid).html(stateval.statename));
+                });
+                $("#state").prepend($('<option></option>').val("").html("Select State"));
+                $("#state").val("");
+
+                $("#state").change(function () {
+                    if (this.value != "") {
+                        var distid = this.value;
+                        var distjsondata = Jsondata.filter(m => m.sid == distid);
+                        $("#dist").html("");
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(distjsondata, function (i, dist) {
+                            $.each(dist.abhy_districts, function (j, distval) {
+                                $("#dist").append($('<option></option>').val(distval.did).html(distval.district_name));
+                            });
+                        });
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#dist").val("");
+                    }
+                    else {
+                        $("#dist").html("");
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#dist").change(function () {
+                    if (this.value != "" && $("#state").val() != "") {
+                        var distjsondata2 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata = distjsondata2[0].abhy_districts.filter(m => m.did == this.value);
+                        $("#block").html("");
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(mandjsondata, function (j, mandval) {
+                            $.each(mandval.abhy_blocks, function (k, mandval2) {
+                                $("#block").append($('<option></option>').val(mandval2.bid).html(mandval2.block_name));
+                            });
+                        });
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#block").val("");
+                    }
+                    else {
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#block").change(function () {
+                    if (this.value != "" && $("#state").val() != "" && $("#dist").val() != "") {
+                        var distjsondata3 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata2 = distjsondata3[0].abhy_districts.filter(m => m.did == $("#dist").val());
+                        var gramjsonata = mandjsondata2[0].abhy_blocks.filter(m => m.bid == this.value);
+                        $("#gram").html("");
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(gramjsonata, function (j, gramval) {
+                            $.each(gramval.abhy_grampanchayat, function (k, gramval2) {
+                                $("#gram").append($('<option></option>').val(gramval2.gpid).html(gramval2.gpname));
+                            });
+                        });
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#gram").val("");
+                    }
+                    else {
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+                $("#gram").change(function () {
+                    if (this.value != "" && $("#state").val() != "" && $("#dist").val() != "" && $("#block").val() != "") {
+                        var distjsondata4 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata3 = distjsondata4[0].abhy_districts.filter(m => m.did == $("#dist").val());
+                        var gramjsonata2 = mandjsondata3[0].abhy_blocks.filter(m => m.bid == $("#block").val());
+                        var villagejsondata = data.filter(m => m.sid == $("#state").val() && m.did == $("#dist").val() && m.bid == $("#block").val() && m.gpid == this.value);
+                        //var villagejsondata = gramjsonata2[0].abhy_grampanchayat.filter(m => m.gpid == this.value);
+                        $("#village").html("");
+                        $.each(villagejsondata, function (j, villageval) {
+                            //$.each(villageval.abhy_villages, function (k, villageval2) {
+                            $("#village").append($('<option></option>').val(villageval.vid).html(villageval.viname));
+                           // });
+                        });
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $("#village").val("");
+                    }
+                    else {
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+
+<script>
+    function GetDDLNames() {
+        if ($("#state option:selected").text() != "Select State") {
+            var state = $("#state option:selected").text();
+        }
+        else {
+            var state = "";
+        }
+        if ($("#dist option:selected").text() != "Select District") {
+            var district = $("#dist option:selected").text();
+        }
+        else {
+            var district = "";
+        }
+        if ($("#block option:selected").text() != "Select Block") {
+            var block = $("#block option:selected").text();
+        }
+        else {
+            var block = "";
+        }
+        if ($("#gram option:selected").text() != "Select Gram Panchayat") {
+            var gram = $("#gram option:selected").text();
+        }
+        else {
+            var gram = "";
+        }
+        if ($("#village option:selected").text() != "Select Village") {
+            var village = $("#village option:selected").text();
+        }
+        else {
+            var village = "";
+        }
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP/Login_After",
+            data: "{'state':'" + state + "','dist':'" + district + "','block':'" + block + "','gram':'" + gram + "','village':'" + village + "','Adminid':'" + 1 + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                
+                document.location = "/WSP/WspFirst_page";
+            },
+            error: function (a) { }
+        });
+    }
+</script>

@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "getstartpage";
+           Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Water Security Plan</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+    <style>
+            .imagediv > img {
+                background-repeat: no-repeat;
+                background-size: cover;
+                /*background-image: url('../../Images/Abhy_Flow_diagram_1.png');*/
+                background-size: 100% 100%;
+                margin: 0;
+                position: fixed;
+                /*top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);*/
+                height: 100%;
+                width: 100%;
+            }
+
+            @@media (max-width:992px) {
+                body {
+                    height: 100%;
+                    background-size: 100% 100%;
+                }
+
+                html {
+                    height: 100%;
+                }
+            }
+
+            ul.Start_button {
+                position: absolute;
+                bottom: 60px;
+                right: 100px;
+            }
+
+                ul.Start_button > li {
+                    list-style: none;
+                }
+
+                    ul.Start_button > li > a > button {
+                        font-size: 20px;
+                        width: 150px;
+                        border-radius: 20px;
+                        height: 50px;
+                    }
+
+            blink {
+                animation: blinker 1.2s linear infinite;
+                color: #1c87c9;
+            }
+
+            @@keyframes blinker {
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            .blink-one {
+                animation: blinker-one 12s linear infinite;
+            }
+
+            @@keyframes blinker-one {
+                0% {
+                    opacity: 0;
+                }
+            }
+
+            .blink-two {
+                animation: blinker-two 1.4s linear infinite;
+            }
+
+            @@keyframes blinker-two {
+                100% {
+                    opacity: 0;
+                }
+            }
+    </style>
+</head>
+<body>
+    <div class="clearfix">
+        <div class="imagediv">
+            <img src="~/Images/Abhy_Flow_diagram_1.png" />
+            <blink>
+                <ul class="Start_button">
+                    <li>
+                        <a href="~/WspNew/WspWaterAvailability">
+                            <button class="btn btn-success">Get Started</button>
+                        </a>
+                    </li>
+                </ul>
+            </blink>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,1432 @@
+body {
+    font-family: sans-serif;
+}
+
+html,
+body,
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.map_view {
+    position: fixed;
+    right: 0;
+    width: 80% !important;
+    transition: 0.3s linear;
+}
+
+    .map_view.toggled {
+        width: 100% !important;
+    }
+
+.container {
+    height: 35%;
+    width: 100%;
+}
+
+.styled-select {
+    height: 32px;
+    font-size: 14px;
+    width: 300px;
+}
+
+h2 {
+    margin: 0 0 10px;
+}
+
+/* 
+  #tablediv {
+    background: #0099cc;
+    width: 300px;
+    height: 300px;
+    height: 160px;
+    padding: 5px;
+    display: none;
+  }
+  
+  #tablediv1 {
+    background: #0099cc;
+    width: 300px;
+    height: 300px;
+    height: 160px;
+    padding: 5px;
+    display: none;
+  }
+  
+  #tablediv2 {
+    background: #0099cc;
+    width: 300px;
+    height: 300px;
+    height: 160px;
+    padding: 5px;
+    display: none;
+  }
+  
+  #tablediv3 {
+    background: #0099cc;
+    width: 300px;
+    height: 300px;
+    height: 160px;
+    padding: 5px;
+    display: none;
+  }
+  
+  #tablediv4 {
+    background: #0099cc;
+    width: 300px;
+    height: 300px;
+    height: 160px;
+    padding: 5px;
+    display: none;
+  } */
+
+/* Header Styling Start */
+
+.header {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: #195c9f;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    border-bottom: 1px solid #ffffff;
+    z-index: 999;
+}
+
+    .header .logo img {
+        height: 40px;
+    }
+
+    .header .navbar a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .header .icons {
+        font-size: 17px;
+        background: #ffffff;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+.imgBox {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    height: 550px;
+    z-index: 10000;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: 0.3s linear;
+}
+
+    .imgBox.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .imgBox img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 1px solid #195c9f;
+        border-radius: 5px;
+        position: relative;
+    }
+
+.header .icons img {
+    height: 25px;
+}
+
+/* Header Styling End */
+.item1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+    .item1 img {
+        height: 60px;
+    }
+
+.esri-view .esri-view-user-storage {
+    display: none;
+}
+
+.form_container {
+    width: 100%;
+    /* min-height: 100px; */
+    /* z-index: 1000; */
+    /* padding: 0 20px; */
+}
+
+    .form_container form {
+        border-radius: 0 0 3px 3px;
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #0099cc;
+        border-radius: 0 0 3px 3px;
+    }
+
+    .form_container h5 {
+        border-top: 1px solid #fff;
+        background: #0099cc;
+        margin-bottom: 0px;
+        padding: 10px;
+        color: #fff;
+        position: relative;
+    }
+
+.fa-times {
+    position: absolute;
+    top: 12px;
+    right: 30px;
+    font-size: 22px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.custom_sec_con {
+    height: 270px;
+    overflow: scroll;
+    margin-top: 20px;
+}
+
+.sec_tabs_section {
+    width: 100%;
+    min-height: 350px;
+}
+
+.tabs_section {
+    width: 100%;
+    /* background: #fff; */
+    min-height: 350px;
+    /* padding: 10px;
+  border: 1px solid #0099cc;
+  border-radius: 0 0 3px 3px; */
+}
+
+/* .tab-menu {
+  } */
+.tab-menu ul,
+.tab_sec_menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+    .tab-menu ul li,
+    .tab_sec_menu ul li {
+        list-style-type: none;
+        display: inline-block;
+        margin-top: 15px;
+    }
+
+        .tab-menu ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #6e6e6e;
+            padding: 7px 25px;
+            border-radius: 4px;
+        }
+
+        .tab_sec_menu ul li a {
+            padding: 7px 20px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #6e6e6e;
+            border-radius: 4px;
+        }
+
+            .tab-menu ul li a.active-a,
+            .tab_sec_menu ul li a.tab_sec_active {
+                background-color: #0099cc;
+                color: #ffffff;
+            }
+
+.tab,
+.tab_sec {
+    display: none;
+}
+
+.tab-active,
+.tab-active-sec {
+    display: block;
+}
+
+.custom_cont {
+    height: 300px !important;
+}
+
+.data_box {
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    z-index: 100;
+    padding: 20px;
+}
+
+    .data_box h6 {
+        border-bottom: 1px solid #dadfe4;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+td {
+    padding: 4px;
+}
+
+#info {
+    background-color: black;
+    opacity: 0.75;
+    color: orange;
+    font-size: 18pt;
+    padding: 8px;
+    visibility: hidden;
+}
+
+.custom_flex {
+    width: 100%;
+    padding: 0 10px;
+}
+
+#gf_aar-filter {
+    height: 480px;
+    width: 100%;
+    visibility: hidden;
+}
+
+.gf_aar-item {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    vertical-align: baseline;
+    cursor: pointer;
+    height: 40px;
+}
+
+    .gf_aar-item:focus {
+        background-color: dimgrey;
+    }
+
+    .gf_aar-item:hover {
+        background-color: dimgrey;
+    }
+
+#titleText {
+    font-size: 20pt;
+    font-weight: 60;
+    padding-bottom: 10px;
+}
+
+td:nth-child(1) {
+    text-align: center;
+}
+
+th {
+    color: #0099cc;
+    border: 1px solid gray;
+    background: #f5f5f5;
+}
+
+td {
+    border: 1px solid gray;
+    text-align: right;
+    padding-right: 5px;
+}
+
+#effectsDiv {
+    padding: 10px;
+}
+
+.esri-feature-form__input {
+    border-radius: 5px 5px 0 0 !important;
+}
+
+button#applyAttributeFilter {
+    margin-top: 0px;
+}
+
+.sec_esri_button {
+    margin-top: -10px;
+}
+
+/* Sidebar Start */
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(10deg);
+    }
+
+    30% {
+        transform: rotate(0deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    70% {
+        transform: rotate(0deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes sonar {
+    0% {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+body {
+    font-size: 0.9rem;
+}
+
+.page-wrapper .sidebar-wrapper,
+.sidebar-wrapper .sidebar-brand > a,
+.sidebar-wrapper .sidebar-dropdown > a:after,
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before,
+.sidebar-wrapper ul li a i,
+.page-wrapper .page-content,
+.sidebar-wrapper .sidebar-search input.search-menu,
+.sidebar-wrapper .sidebar-search .input-group-text,
+.sidebar-wrapper .sidebar-menu ul li a,
+#show-sidebar,
+#close-sidebar {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+/*----------------page-wrapper----------------*/
+
+.page-wrapper {
+    height: 100vh;
+}
+
+    .page-wrapper .theme {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        border-radius: 4px;
+        margin: 2px;
+    }
+
+        .page-wrapper .theme.chiller-theme {
+            background: #1e2229;
+        }
+
+    /*----------------toggeled sidebar----------------*/
+
+    .page-wrapper.toggled .sidebar-wrapper {
+        left: 0px;
+    }
+
+@media screen and (min-width: 768px) {
+    .page-wrapper.toggled .page-content {
+        padding-left: 300px;
+    }
+}
+
+/*----------------show sidebar button----------------*/
+#show-sidebar {
+    position: fixed;
+    left: 0;
+    top: 5px;
+    border-radius: 0 4px 4px 0px;
+    width: 35px;
+    transition-delay: 0.3s;
+    z-index: 999;
+}
+
+.page-wrapper.toggled #show-sidebar {
+    left: -40px;
+}
+
+/*----------------sidebar-wrapper----------------*/
+
+.sidebar-wrapper {
+    width: 20%;
+    height: 100%;
+    max-height: 100%;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    z-index: 9999;
+}
+
+    .sidebar-wrapper ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-wrapper a {
+        text-decoration: none;
+    }
+
+/*----------------sidebar-content----------------*/
+
+.sidebar-content {
+    max-height: calc(100% - 30px);
+    height: calc(100% - 30px);
+    overflow-y: auto;
+    position: relative;
+}
+
+    .sidebar-content.desktop {
+        overflow-y: hidden;
+    }
+
+/*--------------------sidebar-brand----------------------*/
+
+.sidebar-wrapper .sidebar-brand {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+    .sidebar-wrapper .sidebar-brand > a {
+        text-transform: uppercase;
+        font-weight: bold;
+        flex-grow: 1;
+    }
+
+.header .sidebar-brand {
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .header .sidebar-brand > a img,
+    .sidebar-wrapper .sidebar-brand > a img {
+        height: 30px;
+    }
+
+    .header .sidebar-brand > a span {
+        font-size: 18px;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+.sidebar-wrapper .sidebar-brand > a span {
+    margin-left: 5px;
+}
+
+.sidebar-wrapper .sidebar-brand > a:hover {
+    text-decoration: none;
+}
+
+.sidebar-wrapper .sidebar-brand #close-sidebar {
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 13px;
+}
+
+.sidebar-wrapper .sidebar-search > div {
+    padding: 10px 20px;
+}
+
+/*----------------------sidebar-menu-------------------------*/
+
+.sidebar-wrapper .sidebar-menu {
+    padding-bottom: 10px;
+}
+
+    .sidebar-wrapper .sidebar-menu .header-menu {
+        margin-bottom: 10px;
+    }
+
+        .sidebar-wrapper .sidebar-menu .header-menu span {
+            font-weight: bold;
+            font-size: 14px;
+            padding: 15px 20px 5px 20px;
+            display: inline-block;
+        }
+
+    .sidebar-wrapper .sidebar-menu ul li a {
+        display: inline-block;
+        width: 100%;
+        text-decoration: none;
+        position: relative;
+        padding: 8px 25px 8px 20px;
+    }
+
+        .sidebar-wrapper .sidebar-menu ul li a i {
+            margin-right: 10px;
+            font-size: 12px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .sidebar-wrapper .sidebar-menu ul li a:hover > i::before {
+            display: inline-block;
+            animation: swing ease-in-out 0.5s 1 alternate;
+        }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown:nth-child(4) > a:after,
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown:nth-child(5) > a:after {
+        content: none;
+    }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f105";
+        font-style: normal;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        background: 0 0;
+        position: absolute;
+        right: 15px;
+        top: 14px;
+    }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
+        padding: 5px 0;
+    }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
+        /* padding-left: 25px; */
+        font-size: 13px;
+    }
+
+    /* .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
+  content: "\f111";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  font-style: normal;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-right: 10px;
+  font-size: 8px;
+} */
+
+    .sidebar-wrapper .sidebar-menu ul li a span.label,
+    .sidebar-wrapper .sidebar-menu ul li a span.badge {
+        float: right;
+        margin-top: 8px;
+        margin-left: 5px;
+    }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .badge,
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .label {
+        float: right;
+        margin-top: 0px;
+    }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-submenu {
+        display: none;
+    }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
+        transform: rotate(90deg);
+        right: 17px;
+    }
+
+/*------scroll bar---------------------*/
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f0f0f0;
+    border: 0px none #ffffff;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ffffff;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: #ffffff;
+    }
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+
+    ::-webkit-scrollbar-track:hover {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-track:active {
+        background: transparent;
+    }
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/*-----------------------------chiller-theme-------------------------------------------------*/
+
+.chiller-theme .sidebar-wrapper {
+    background: #195c9f;
+}
+
+    .chiller-theme .sidebar-wrapper .sidebar-menu {
+        border-top: 1px solid #f0f0f0;
+    }
+
+        .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
+        .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status,
+        .chiller-theme .sidebar-wrapper .sidebar-brand > a,
+        .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
+        .chiller-theme .sidebar-footer > a {
+            color: #ffffff;
+        }
+
+            .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a,
+            .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a,
+            .chiller-theme .sidebar-wrapper .sidebar-header .user-info,
+            .chiller-theme .sidebar-wrapper .sidebar-brand > a:hover,
+            .chiller-theme .sidebar-footer > a:hover i {
+                color: #ffffff;
+            }
+
+.page-wrapper.chiller-theme.toggled #close-sidebar {
+    color: #ffffff;
+}
+
+    .page-wrapper.chiller-theme.toggled #close-sidebar:hover {
+        color: #ffffff;
+    }
+
+.chiller-theme .sidebar-wrapper ul li:hover a i,
+.chiller-theme
+.sidebar-wrapper
+.sidebar-dropdown
+.sidebar-submenu
+li
+a:hover:before,
+.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 10px rgba(22, 199, 255, 0.5);
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li a i {
+    background: #5983d1;
+}
+
+.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
+    color: #6c7b88;
+}
+
+.chiller-theme .sidebar-footer > a:first-child {
+    border-left: none;
+}
+
+.chiller-theme .sidebar-footer > a:last-child {
+    border-right: none;
+}
+
+iframe.map {
+    width: 100%;
+    height: 100vh;
+}
+
+/* Sidebar End */
+/* Modal Add */
+
+.modal_view,
+.sec_modal_view {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    z-index: 1000;
+}
+
+.modal_content_view,
+.sec_modal_content_view {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    width: 50rem;
+    border-radius: 0.5rem;
+}
+
+.close-button,
+.sec_close-button {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+    .close-button:hover,
+    .sec_close-button:hover {
+        color: #ff0000;
+    }
+
+.modal_view.active,
+.sec_modal_view.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+#infoDiv {
+    padding: 10px;
+}
+
+#tabledata {
+    display: none;
+}
+
+#tabledatarg {
+    display: none;
+}
+
+#tabledatawl {
+    display: none;
+}
+
+#tabledatawf {
+    display: none;
+}
+
+#tabledatawq {
+    display: none;
+}
+
+#joke {
+    display: block;
+}
+
+
+.box_shadow2,
+.box_shadow3,
+.box_shadow4,
+.box_shadow5
+{
+    position: absolute;
+    bottom: 5px;
+    background: var(--lumo-base-color);
+    z-index: 10;
+    padding: 10px;
+    border-radius: 5px;
+    width: 1000px;
+    height: 200px;
+    transform: translateX(-50%);
+    left: 61%;
+    overflow-y: scroll;
+}
+
+    .box_shadow2 .flex_box_raing_tbl,
+    .box_shadow3 .flex_box_wl_tbl,
+    .box_shadow4 .flex_box_wf_tbl,
+    .box_shadow5 .flex_box_wf_tbl {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+        .box_shadow2 .flex_box_raing_tbl .rain_close,
+        .box_shadow3 .flex_box_wl_tbl .wl_close,
+        .box_shadow4 .flex_box_wf_tbl .wf_close,
+        .box_shadow5 .flex_box_wq_tbl .wq_close
+        {
+            color: #1e2229;
+            font-size: 22px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+/* 
+
+.tabledata {
+  border-collapse: collapse;
+  display: -webkit-flex;
+  /* border: 3px solid red; */
+/* padding: 5px;
+  width: 100%;
+  position: relative;
+  left: 100px;
+  top: 20px;
+  background-color: yellowgreen;
+} */
+.heading {
+    font-size: 35px;
+    font-weight: 200;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 5px 5px 2px rgba(0,0,0, 0.3);
+    letter-spacing: 2px;
+}
+
+
+
+.btn {
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0,0,0, 0.6);
+    text-transform: uppercase;
+    width: 300px;
+    color: darkgreen;
+}
+
+    .btn:hover {
+        background-color: rgba(0,0,0, 0.6);
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+        transition: all 300ms ease;
+    }
+
+
+/* #exportButton
+ {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 26px;
+  cursor: pointer;
+} */
+
+
+.btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+    /* Darker background on mouse-over */
+    .btn:hover {
+        background-color: RoyalBlue;
+    }
+
+
+
+#mainWidget {
+    max-width: 200px;
+}
+
+    #mainWidget.esri-widget {
+        padding: 10px;
+    }
+
+    #mainWidget .btn {
+        width: 100%;
+    }
+
+#instructions {
+    width: 300px;
+    background: #fff;
+    padding: 20px;
+}
+
+/* Only disable the popup for the specific layer we want. This would allow other layers to work as norml. */
+.esri-component.esri-popup[data-layer-title="USA Counties Generalized"] {
+    display: none !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#infoPanel {
+    position: fixed;
+    right: 10px;
+    top: 450px;
+    bottom: 10px;
+    background-color: gray;
+    z-index: 2;
+    padding: 10px;
+    color: white;
+    max-width: 300px;
+    overflow: scroll;
+}
+
+#infoPanelCloseButton {
+    font-size: 10px;
+    float: right;
+}
+
+#infoPanelButtons {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+    #infoPanelButtons,
+    #infoPanelButtons > button {
+        width: 100%;
+    }
+
+
+#infoPaneld {
+    position: fixed;
+    right: 10px;
+    top: 450px;
+    bottom: 10px;
+    background-color: green;
+    z-index: 2;
+    padding: 10px;
+    color: white;
+    max-width: 300px;
+    overflow: scroll;
+}
+
+#infoPanelCloseButtond {
+    font-size: 10px;
+    float: right;
+}
+
+#infoPanelButtonsd {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+    #infoPanelButtonsd,
+    #infoPanelButtonsd > button {
+        width: 100%;
+    }
+
+
+#infoPanelb {
+    position: fixed;
+    right: 10px;
+    top: 450px;
+    bottom: 10px;
+    background-color: gray;
+    z-index: 2;
+    padding: 10px;
+    color: white;
+    max-width: 300px;
+    overflow: scroll;
+}
+
+#infoPanelCloseButtonb {
+    font-size: 10px;
+    float: right;
+}
+
+#infoPanelButtonsb {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+    #infoPanelButtonsb,
+    #infoPanelButtonsb > button {
+        width: 100%;
+    }
+
+#infoPanelg {
+    position: fixed;
+    right: 10px;
+    top: 450px;
+    bottom: 10px;
+    background-color: blue;
+    z-index: 2;
+    padding: 10px;
+    color: white;
+    max-width: 300px;
+    overflow: scroll;
+}
+
+#infoPanelCloseButtong {
+    font-size: 10px;
+    float: right;
+}
+
+#infoPanelButtonsg {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+    #infoPanelButtonsg,
+    #infoPanelButtonsg > button {
+        width: 100%;
+    }
+
+
+
+/* CSS to style the new popup */
+.popup {
+    display: none; 
+    position: fixed; 
+    left: 50%; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 400px; 
+    height: 250px; 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+    overflow-y: auto; 
+}
+
+
+
+.popupWF {
+    display: none;
+    position: fixed; 
+    left: 50%; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 400px; 
+    height: 250px; 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+    overflow-y: auto; /* Add a vertical scrollbar when content overflows */
+}
+
+
+
+.popupR {
+    display: none; /* Initially hide the popup */
+    position: fixed; /* Use "fixed" for positioning relative to the viewport */
+    left: 50%; /* Move the popup 50% to the right (horizontal center) */
+    top: 50%; /* Move the popup 50% down (vertical center) */
+    transform: translate(-50%, -50%); /* Center the popup using translation */
+    width: 400px; /* Set a fixed width for the popup */
+    height: 250px; /* Set a fixed height for the popup */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure it appears above other content */
+    overflow-y: auto; /* Add a vertical scrollbar when content overflows */
+}
+
+
+.popupwq {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 250px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+
+#closePopupwq {
+    position: absolute;
+    top: 10px; /* Adjust the top position to your preference */
+    right: 10px; /* Adjust the right position to your preference */
+    background-color: #ccc;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+    /* Style for the close button on hover (optional) */
+    #closePopupwq:hover {
+        background-color: #aaa;
+    }
+
+/* Style for the close button */
+#closePopup {
+    position: absolute;
+    top: 10px; /* Adjust the top position to your preference */
+    right: 10px; /* Adjust the right position to your preference */
+    background-color: #ccc;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+    /* Style for the close button on hover (optional) */
+    #closePopup:hover {
+        background-color: #aaa;
+    }
+
+
+#closePopupWF {
+    position: absolute;
+    top: 10px; /* Adjust the top position to your preference */
+    right: 10px; /* Adjust the right position to your preference */
+    background-color: #ccc;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+    /* Style for the close button on hover (optional) */
+    #closePopupWF:hover {
+        background-color: #aaa;
+    }
+
+#closePopupR {
+    position: absolute;
+    top: 10px; /* Adjust the top position to your preference */
+    right: 10px; /* Adjust the right position to your preference */
+    background-color: #ccc;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+    /* Style for the close button on hover (optional) */
+    #closePopupR:hover {
+        background-color: #aaa;
+    }
+
+
+#closePopupwq {
+    position: absolute;
+    top: 10px; /* Adjust the top position to your preference */
+    right: 10px; /* Adjust the right position to your preference */
+    background-color: #ccc;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+    /* Style for the close button on hover (optional) */
+    #closePopupwq:hover {
+        background-color: #aaa;
+    }
+/* Style for the search button */
+/* Style for the search button */
+.custom-search-button {
+    padding: 5px 10px;
+    background-color: #0079c1;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+    .custom-search-button:hover {
+        background-color: #005a91;
+    }
+
+
+#searchDiv {
+    position: absolute;
+    bottom: 10px; 
+    left: 1150px; 
+    display: flex; 
+    align-items: center; 
+}
+
+#searchInput {
+    margin-right: 10px; 
+}
+#coordinates {
+    position: absolute;
+    bottom: 10px;
+    left: 820px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+}
+
+.coordinates .latitude {
+    color: blue; /* Green color for latitude */
+}
+
+.coordinates .longitude {
+    color: blue; /* Blue color for longitude */
+}
+
+/* Style the legend container */
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: block; /* Initially show loader */
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #333; /* Change color as needed */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#errorMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none; /* Initially hide error message */
+    color: blue;
+    font-size: 18px;
+}
+
+
+
+/* Export File*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    max-height: 200px; /* Set a max height for the dropdown */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+    background-color: #555;
+}
+
+
+
+
+
+    .dropdown-content a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropbtn {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+    /* Hover effect */
+    .dropbtn:hover {
+        background-color: #005f6b;
+    }

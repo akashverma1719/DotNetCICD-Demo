@@ -1,0 +1,244 @@
+﻿@model AbhyProject.Models.Conference
+
+@{
+    ViewBag.Title = "Conference_Form";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+@*<h2>Conference_Form</h2>
+
+    @using (Html.BeginForm("Conference_Form", "Conference"))
+    {
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.conference_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.conference_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.conference_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.start_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.start_date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.location, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-3">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    }*@
+
+
+
+
+
+
+<style type="text/css">
+    .form-style-7 {
+        border: 2px solid;
+        max-width: 400px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 2px;
+        padding: 20px;
+        font-family: Georgia, "Times New Roman", Times, serif;
+    }
+
+        .form-style-7 h1 {
+            display: block;
+            text-align: center;
+            padding: 0;
+            margin: 0px 0px 20px 0px;
+            color: #5C5C5C;
+            font-size: x-large;
+        }
+
+        .form-style-7 ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .form-style-7 li {
+            display: block;
+            padding: 9px;
+            border: 1px solid #DDDDDD;
+            margin-bottom: 30px;
+            border-radius: 3px;
+        }
+
+            .form-style-7 li:last-child {
+                border: none;
+                margin-bottom: 0px;
+                text-align: center;
+            }
+
+            .form-style-7 li > label {
+                display: block;
+                float: left;
+                margin-top: -19px;
+                background: #FFFFFF;
+                height: 14px;
+                padding: 2px 5px 2px 5px;
+                color: #000;
+                font-size: 14px;
+                overflow: hidden;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+        .form-style-7 input[type="text"],
+        .form-style-7 input[type="date"],
+        .form-style-7 input[type="datetime"],
+        .form-style-7 input[type="email"],
+        .form-style-7 input[type="number"],
+        .form-style-7 input[type="search"],
+        .form-style-7 input[type="time"],
+        .form-style-7 input[type="url"],
+        .form-style-7 input[type="password"],
+        .form-style-7 textarea,
+        .form-style-7 select {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            width: 100%;
+            display: block;
+            outline: none;
+            border: none;
+            height: 25px;
+            line-height: 25px;
+            font-size: 16px;
+            padding: 0;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+
+            .form-style-7 input[type="text"]:focus,
+            .form-style-7 input[type="date"]:focus,
+            .form-style-7 input[type="datetime"]:focus,
+            .form-style-7 input[type="email"]:focus,
+            .form-style-7 input[type="number"]:focus,
+            .form-style-7 input[type="search"]:focus,
+            .form-style-7 input[type="time"]:focus,
+            .form-style-7 input[type="url"]:focus,
+            .form-style-7 input[type="password"]:focus,
+            .form-style-7 textarea:focus,
+            .form-style-7 select:focus {
+            }
+
+        .form-style-7 li > span {
+            background: #F3F3F3;
+            display: block;
+            padding: 3px;
+            margin: 0 -9px -9px -9px;
+            text-align: center;
+            color: #C0C0C0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+
+        .form-style-7 textarea {
+            resize: none;
+        }
+
+
+    button {
+        background: #2471FF;
+        border: none;
+        padding: 2px 20px 10px 20px;
+        border-bottom: 3px solid #5994FF;
+        border-radius: 3px;
+        color: #D2E2FF;
+        width: 100%;
+        height: 45px;
+    }
+
+        button:hover,
+        button:hover {
+            width: 100%;
+            background: #6B9FFF;
+            color: #fff;
+        }
+
+    input {
+        background: none !important;
+    }
+
+    textarea {
+        background: none !important;
+    }
+</style>
+<script type="text/javascript">
+    //auto expand textarea
+    function adjust_textarea(h) {
+        h.style.height = "20px";
+        h.style.height = (h.scrollHeight) + "px";
+    }
+</script>
+<!--Heading-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">1<sup>st</sup> International Conference on Sustainable Water Management Form </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Conference_Form", "Conference", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-style-7" }))
+{
+    <input type="text" value="1st International Conference" name="type" id="type" style="display:none" />
+    @*<form class="form-style-7">*@
+    <ul>
+
+        <li>
+            <label for="name">Conference Name</label>
+            <input type="text" name="conference_name" maxlength="100" required>
+            <span>Enter Conference Name</span>
+        </li>
+        <li>
+            <label for="name">Start Date</label>
+            <input type="text" name="start_date" maxlength="100" required>
+            <span>Enter Start Date</span>
+        </li>
+        <li>
+            <label for="name">Start-to-End Time</label>
+            <input type="text" name="time" maxlength="100" required>
+            <span>Enter From-to-End Time</span>
+        </li>
+        <li>
+            <label for="name">Location</label>
+            <input type="text" name="location" maxlength="100">
+            <span>Enter Location</span>
+        </li>
+        <li>
+            <label for="name">Icon Image</label>
+            <input type="file" id="file" name="file" />
+            <span>Choose Icon</span>
+        </li>
+
+        <li>
+            <button type="submit" value="Send This">Submit</button>
+        </li>
+    </ul>
+}
+@*</form>*@

@@ -1,0 +1,1771 @@
+﻿
+
+@{
+    ViewBag.Title = "Social_management";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .database_trainer_row > h3 {
+        background-color: #72a230;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+
+    .second_heading {
+        background-color: #72a230;
+        color: #fff;
+        list-style: none;
+        padding: 3px 40px;
+        font-size: 15px;
+        font-weight: bold
+    }
+
+    .main_div {
+        padding-bottom: 30px;
+    }
+
+    .btn-success {
+        margin: 5px 0px !important;
+    }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+    .notice-ribbon {
+        font-size: 14px;
+        background: #3585dc;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+
+        .notice-ribbon p {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 0px;
+        }
+</style>
+
+<main>
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a target="_blank" href="http://ataljal.mowr.gov.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="Javascript:;" style="color:#fff;font-size:14px;" role="link">Ministry of Jal Shakti</a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">River Development & Ganga Rejuvenation</a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                            <label>Social Management</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid notice-ribbon">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mb-0">To clear cache, please refresh this page by pressing Ctrl + F5.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row container-fluid main_div">
+        <div class="col-md-12 col-sm-12">
+            <div class="selectdistshowoption">
+                <label style="text-align:center;color:red;" id="Error_"></label>
+                <ul class="Select_option selectbackhome">
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+                    <li id="StateDropdownLabel">
+
+                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                    </li>
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+                    <li id="DistDropdownLabel">
+
+                        <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                    </li>
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+                    <li id="BlockDropdownLabel">
+
+                        <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                    </li>
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>
+
+                    <li id="GramDropdownLabel">
+
+                        <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
+                    </li>
+
+                    <li style="float:right" class="btn_disabled">
+                        <button class="btn btn-success" onclick="Report_BTN()">
+                            Report
+                        </button>
+                    </li>
+                    <li style="float:right">
+                        <a href="~/WSPHome/Gp_information" class="btn btn-success">
+                            Back To GP Modules
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <div class="A_part_div">
+                <div class="panelbodyheading">
+                    <h4 class="mb-0">Details of Members of various Committees / Agencies</h4>
+
+                </div>
+                <div class="second_heading">
+                    (A) GRAM PANCHAYAT DATABASE
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:350px;">
+                    <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_a_part()"> New </button></th>
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+                                <th class="text-center">Category</th>
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_GRAM_PANCHAYAT_DATABASE"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="b_part_div">
+                <div class="second_heading">
+                    1. Water User Association/ Village Water and Sanitation Committee (VWSC)
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:300px; font-size:12px;">
+                    <table id="TblData_b_part" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_b_part()"> New </button></th>
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+                                <th class="text-center">Category</th>
+                                <th class="text-center">Select</th>
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="TblData_VWSC"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="C_part_div">
+                <div class="second_heading">
+                    2. Support Agency/ DIP
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:300px; font-size:12px;">
+                    <table id="TblData_c_part" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_c_part()"> New </button></th>
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_DIP"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="d_part_div">
+                <div class="second_heading">
+                    3. Others local institutions or citizen leaders/Influential
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:300px; font-size:12px;">
+                    <table id="TblData_d_part" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_d_part()"> New </button></th>
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_Others_local_instituions_citizen_leaders_Info"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="panelbodyheading">
+                    (B). PROGRAM BENEFICIARIES
+                </div>
+                <div class="">
+                    <ul class="second_heading">
+                        <li>  1. Total Population of the GP</li>
+                    </ul>
+
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:300px; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+
+                                <th class="text-center">S.No.</th>
+                                @*<th class="text-center">Total Population </th>*@
+                                <th class="text-center">Census Year(2011)</th>
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>1</td>
+                                @*<td><input type="text" id="tol_population" class="decimal form-control" placeholder="Enter Total Population of the GP" /></td>*@
+                                <td><input type="text" id="basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave" onclick="Save_Total_Population_of_the_GP_Info()">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="">
+                    <ul class="second_heading">
+                        <li>  2. Socio-economic demographic profile                                                                                                        </li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">Based on Gender</th>
+                                <th class="text-center">Census Year(2011)</th>
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>Male</td>
+                                <td><input type="text" id="male_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="male_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="male_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="male_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="male_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="male_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                            </tr>
+                            <tr>
+                                <td>Female</td>
+
+                                <td><input type="text" id="female_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="female_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="female_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="female_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="female_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="female_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Others<a href="javascript:;" data-toggle="tooltip" data-original-title="Transgender" title="Transgender">
+                                        <span class="glyphicon fa fa-star" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+
+                                <td><input type="text" id="other_basic_year" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="other_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="other_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="other_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="other_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="other_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sex Ratio(Women per 1000)<a href="javascript:;" data-toggle="tooltip" data-original-title="(Female Population/ Male Population) *1000" title="(Female Population/ Male Population) *1000">
+                                        <span class="glyphicon fa fa-info-circle" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+
+                                <td><input type="text" id="sexratio_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sexratio_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sexratio_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sexratio_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sexratio_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sexratio_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave1" onclick="Save_Socio_economic_demographic_profile_Info()">Save</button>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">Based On Vulnerable Communities</th>
+                                <th class="text-center">Census Year(2011)</th>
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>General</td>
+                                <td><input type="text" id="bpl_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="bpl_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="bpl_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="bpl_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="bpl_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="bpl_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+                            <tr>
+                                <td>Scheduled Castes</td>
+                                <td><input type="text" id="sc_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sc_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sc_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sc_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sc_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="sc_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+                            <tr>
+                                <td>Scheduled Tribes</td>
+                                <td><input type="text" id="st_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="st_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="st_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="st_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="st_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="st_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+                            <tr>
+                                <td>OBC</td>
+                                <td><input type="text" id="obc_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="obc_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="obc_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="obc_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="obc_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="obc_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+                            <tr>
+                                <td>Religious minorities</td>
+                                <td><input type="text" id="minorities_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="minorities_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="minorities_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="minorities_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="minorities_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="minorities_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+                            <tr>
+                                <td>Persons with Disabilities (PWD)</td>
+                                <td><input type="text" id="pwd_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pwd_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pwd_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pwd_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pwd_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="pwd_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+                            <tr>
+                                <td>Women headed HH( No. of Households)</td>
+                                <td><input type="text" id="women_hh_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="women_hh_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="women_hh_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="women_hh_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="women_hh_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="women_hh_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave2" onclick="Save_abhy_socialmgt_vulnerable_communities_Info()">Save</button>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">No. of Farmers (Landholding Size)</th>
+                                <th class="text-center">Census Year(2011)</th>
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>Large</td>
+
+                                <td><input type="text" id="large_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="large_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="large_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="large_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="large_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="large_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+
+                                <td><input type="text" id="medium_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="medium_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="medium_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="medium_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="medium_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="medium_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                            </tr>
+                            <tr>
+                                <td>Small</td>
+
+                                <td><input type="text" id="small_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="small_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="small_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="small_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="small_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="small_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Marginal</td>
+
+                                <td><input type="text" id="marginal_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="marginal_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="marginal_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="marginal_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="marginal_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                <td><input type="text" id="marginal_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                            </tr>
+                            @*<tr>
+                                    <td>Landless</td>
+
+                                    <td><input type="text" id="landless_basic_data" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                    <td><input type="text" id="landless_pop_20_21" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                    <td><input type="text" id="landless_pop_21_22" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                    <td><input type="text" id="landless_pop_22_23" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                    <td><input type="text" id="landless_pop_23_24" class="decimal form-control" placeholder="Enter numeric value" /></td>
+                                    <td><input type="text" id="landless_pop_24_25" class="decimal form-control" placeholder="Enter numeric value" /></td>
+
+                                </tr>*@
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave3" onclick="Save_abhy_socialmgt_farmers_Info()">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="panelbodyheading">
+                    (C). COMMUNITY PARTICIPATION
+                </div>
+                <div class="">
+                    <ul class="second_heading">
+                        <li>  1.IEC Activities (suggestive list) </li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:400px; font-size:12px;">
+                    <table id="TblData_e_part" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_e_part()"> New </button></th>
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">IEC Activities</th>
+                                <th class="text-center">Yes/No</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_e_part"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="">
+                    <ul class="second_heading">
+                        <li>  2. Village/Ward/Community Meetings     </li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="">Name of the Meeting </th>
+                                <th><input type="text" class="form-control" placeholder="Name of the Meeting" id="name_of_meeting" /></th>
+                                <th><label><input type="date" id="demogram" class="form-control" />   </label></th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td colspan="2">Location </td>
+                                <td>
+                                    <input type="text" class="form-control" id="location" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Prior information </td>
+                                <td>
+                                    <input type="text" class=" form-control" id="prior_info" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Number of attendees </td>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="noof_attendees" placeholder="Enter numeric value" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Male</td>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="male_v" placeholder="Enter numeric value" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Female</td>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="female_v" placeholder="Enter numeric value" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Others</td>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="other_v" placeholder="Enter numeric value" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Total</td>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="total_v" placeholder="Enter numeric value" readonly />
+                                </td>
+                            </tr>
+                            @*<tr>
+                                    <td colspan="2">Disaggregated data on participants (gender, socio-economic groups) </td>
+                                    <td>
+                                        <input type="text" class="decimal form-control" id="disaggregated_data" placeholder="Enter numeric value" />
+                                    </td>
+                                </tr>*@
+                            <tr>
+                                <td colspan="2">Key issues </td>
+                                <td>
+                                    <input type="text" class=" form-control" id="key_issues" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">MoM (Minutes of Meeting)</td>
+                                <td>
+                                    <input type="file" class="form-control" id="mom" accept=".pdf,.doc,.jpeg,.jpg" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Photographs</td>
+                                <td>
+                                    <input type="file" class="form-control" id="photographs" accept=".jpeg,.jpg" />
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave4" onclick="Save_abhy_socialmgt_village_meetings_Info()">Save</button>
+                </div>
+                <div id="">
+                    <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:400px;">
+                        <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                            <thead>
+                                <tr class="info">
+                                    <th class="text-center">S.No.</th>
+                                    <th class="text-center">Meeting Name</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Location</th>
+                                    <th class="text-center">Prior information</th>
+                                    <th class="text-center">Number of attendees</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Others</th>
+                                    <th class="text-center">Total</th>
+                                    @*<th class="text-center">Participants </th>*@
+                                    <th class="text-center">Key issues</th>
+                                    <th class="text-center">MoM </th>
+                                    <th class="text-center">Photographs</th>
+                                </tr>
+                            </thead>
+                            <tbody id="village_meeting_Info"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="">
+                    <ul class="second_heading">
+                        <li>  3. Community Feedback</li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center" colspan="2">Community Feedback<span style="color:red !important"> Only pdf, doc</span>  </th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>Community Feedback</td>
+                                <td>
+                                    <input type="file" id="community_feedback" accept=".pdf,.doc" class="form-control" />
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <tbody id="DivFile"></tbody>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave5" onclick="Save_abhy_socialmgt_community_feedback_Info()">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+
+                <div class="">
+                    <ul class="second_heading">
+                        <li>  4. Social Audit </li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <tbody id="">
+                            <tr>
+                                <td>Toolkit prepared </td>
+                                <td>
+                                    <select class="form-control" id="toolkit">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pilot undertaken </td>
+                                <td>
+                                    <select class="form-control" id="pilot_under">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Roll-out calendar </td>
+                                <td>
+                                    <select class="form-control" id="rollout_cal">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Report </td>
+                                <td>
+                                    <select class="form-control" id="audit_report">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Analysis and summary of findings</td>
+                                <td>
+                                    <select class="form-control" id="analysis_summary">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave6" onclick="Save_Social_Audit()">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="">
+                    <ul class="second_heading">
+                        <li> 5. GRM</li>                                                                                                                                 </li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <tbody id="">
+                            <tr>
+                                <td>Systems available</td>
+                                <td>
+                                    <select class="form-control" id="sys_aval">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> NO</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Toll-free number </td>
+                                <td>
+                                    <select class="form-control" id="tollfreeno">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> NO</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Advertisement and dissemination of toll free number</td>
+                                <td>
+                                    <select class="form-control" id="adds_dissemination">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> NO</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Number of complaints </td>
+                                <td>
+                                    <label id="noof_complaints"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Number resolved</td>
+                                <td>
+                                    <label id="noof_resolved"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Number pending</td>
+                                <td>
+                                    <label id="noof_pending"></label>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave7" onclick="Save_GRM()">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="panelbodyheading">
+                    (D). CAPACITY BUILDING & TRAINING
+                </div>
+
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <tbody id="">
+                            <tr>
+                                <td>1</td>
+                                <td>Name Of Training </td>
+                                <td>
+                                    <input type="text" id="name_of_training" class="form-control alpha" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Location</td>
+                                <td>
+                                    <input type="text" id="training_location" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Date</td>
+                                <td>
+                                    <input type="date" id="training_date" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Training Schedule and plan including topics, date, duration, targeted number of attendees and designation </td>
+                                <td>
+                                    <input type="file" id="training_schedule" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Training Material - Resources prepared for all topics identified for trainings (Number)   </td>
+                                <td>
+                                    <input type="file" id="training_materials" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Number of trainings conducted, date, location, photograph, topics, details, feedback, attendance (gender disaggregated)  </td>
+                                <td>
+                                    <input type="file" id="noof_trainings" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Training report covering the above  </td>
+                                <td>
+                                    <input type="file" id="training_report" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Achievement of learning objectives - Value and use of trainings (Feedback from participants) (Number)  </td>
+                                <td>
+                                    <input type="file" id="achievements" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Findings of surveys used to review and improve service delivery (Number)  </td>
+                                <td>
+                                    <input type="file" id="findings_of_survey" class="form-control" />
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success btn_disabled" id="btnFinalSave8" onclick="Save_abhy_socialmgt_capacity_building_Info()">Save</button>
+                </div>
+                <div id="">
+                    <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:400px;">
+                        <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                            <thead>
+                                <tr class="info">
+                                    <th class="text-center">S.No.</th>
+                                    <th class="text-center"> Name</th>
+                                    <th class="text-center">Location</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">4</th>
+                                    <th class="text-center">5</th>
+                                    <th class="text-center">6</th>
+                                    <th class="text-center">7</th>
+                                    <th class="text-center">8</th>
+                                    <th class="text-center">9</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="capacity_building_Info"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+<script src="~/Scripts/jquery.min.js"></script>
+
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/css/social_management_js.js"></script>
+
+<script>
+
+    var Jsondata = "";
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var Access_Auth = '';
+    $(document).ready(function () {
+        Access_Auth = '@Session["Access_Auth"]';
+        $('input[type=text]').prop("disabled", true);
+        $('.btn_disabled').prop("disabled", true);
+        $('input[type=file]').prop("disabled", true)
+        //if (Access_Auth == 'readonly') {
+        //    $('input[type=text]').prop("disabled", true);
+        //    $('.btn_disabled').prop("disabled", true);
+        //    $('input[type=file]').prop("disabled", true)
+        //}
+
+         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+
+
+
+        DropDownInfo();
+
+
+    });
+
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        State_Dropdown_Function();
+
+                        GramPanchayatDataBase_Info();
+                        Support_Agency_DIP_Info();
+                        vwms_Info();
+                        Others_local_instituions_citizen_leaders_Info();
+                        ee_table_part_data_geting();
+                        Social_Audit_Info();
+                        Total_Population_of_the_GP_Info();
+                        Socio_economic_demographic_profile_Info();
+                        abhy_socialmgt_vulnerable_communities_Info();
+                        abhy_socialmgt_farmers_Info();
+                        abhy_socialmgt_village_meetings_Info();
+                        abhy_socialmgt_GRM_Info();
+                        Grievance_Info_statewise();
+                        abhy_socialmgt_capacity_building_Info();
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Dist_fun();
+
+                        GramPanchayatDataBase_Info();
+                        Support_Agency_DIP_Info();
+                        vwms_Info();
+                        Others_local_instituions_citizen_leaders_Info();
+                        ee_table_part_data_geting();
+                        Social_Audit_Info();
+                        Total_Population_of_the_GP_Info();
+                        Socio_economic_demographic_profile_Info();
+                        abhy_socialmgt_vulnerable_communities_Info();
+                        abhy_socialmgt_farmers_Info();
+                        abhy_socialmgt_village_meetings_Info();
+                        abhy_socialmgt_GRM_Info();
+                        Grievance_Info_statewise();
+                        abhy_socialmgt_capacity_building_Info();
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Block_fun();
+
+                        GramPanchayatDataBase_Info();
+                        Support_Agency_DIP_Info();
+                        vwms_Info();
+                        Others_local_instituions_citizen_leaders_Info();
+                        ee_table_part_data_geting();
+                        Social_Audit_Info();
+                        Total_Population_of_the_GP_Info();
+                        Socio_economic_demographic_profile_Info();
+                        abhy_socialmgt_vulnerable_communities_Info();
+                        abhy_socialmgt_farmers_Info();
+                        abhy_socialmgt_village_meetings_Info();
+                        abhy_socialmgt_GRM_Info();
+                        Grievance_Info_statewise();
+                        abhy_socialmgt_capacity_building_Info();
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+                        GramPanchayatDataBase_Info();
+                        Support_Agency_DIP_Info();
+                        vwms_Info();
+                        Others_local_instituions_citizen_leaders_Info();
+                        ee_table_part_data_geting();
+                        Social_Audit_Info();
+                        Total_Population_of_the_GP_Info();
+                        Socio_economic_demographic_profile_Info();
+                        abhy_socialmgt_vulnerable_communities_Info();
+                        abhy_socialmgt_farmers_Info();
+                        abhy_socialmgt_village_meetings_Info();
+                        abhy_socialmgt_GRM_Info();
+                        Grievance_Info_statewise();
+                        abhy_socialmgt_capacity_building_Info();
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+
+
+    function DropDownInfo() {
+
+
+
+        if (Jsondata.length != 0) {
+
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select StateName</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+                            if (Jsondata[i].state_name != "Delhi_7") {
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                                }
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select StateName</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+
+                SessionInfo();
+
+    }
+
+    function State_Dropdown_Function() {
+
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+
+
+
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+
+
+
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name &&block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+
+
+    function Gram_Fun() {
+        var gram_pa = $("#gram").val();
+        if (gram_pa == "0") {
+            alert("Please Select Grampanchayat");
+        } else {
+            Gram = gram_pa;
+            Dropdown_Search();
+        }
+    }
+
+
+    function Dropdown_Search() {
+        
+
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        } else if (Dist == "0") {
+            xx = 1;
+            alert("Please Select District");
+        }
+        else if (Block == "0") {
+            xx = 1;
+            alert("Please Select Block");
+        } else if (Gram == "0") {
+            xx = 1;
+            alert("Please Select Gram Panchayat");
+        }
+        if (xx == 0) {
+
+            $.ajax({
+                type: "Post",
+                url: "/Home/StateLevel_Dropdown",
+                contentType: "application/json;charset=utf-8",
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+                dataType: "json",
+                success: function (results) {
+
+                    GramPanchayatDataBase_Info();
+                    Support_Agency_DIP_Info();
+                    vwms_Info();
+                    Others_local_instituions_citizen_leaders_Info();
+                    ee_table_part_data_geting();
+                    Social_Audit_Info();
+                    Total_Population_of_the_GP_Info();
+                    Socio_economic_demographic_profile_Info();
+                    abhy_socialmgt_vulnerable_communities_Info();
+                    abhy_socialmgt_farmers_Info();
+                    abhy_socialmgt_village_meetings_Info();
+                    abhy_socialmgt_GRM_Info();
+                    Grievance_Info_statewise();
+                    abhy_socialmgt_capacity_building_Info();
+                }
+            });
+        }
+    }
+
+    function Report_BTN() {
+        var xx = 0;
+        if (State != "0" && State != "") {
+            if (Dist != "0" && Dist != "") {
+                if (Block != "0" && Block != "") {
+                    if (Gram != "0" && Gram != "") {
+
+                    } else {
+                        xx = 1;
+                        alert("Please Select Gram Panchayat");
+                    }
+                } else {
+                    xx = 1;
+                    alert("Please Select Block");
+                }
+            } else {
+                xx = 1;
+                alert("Please Select District");
+            }
+        } else {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+
+
+
+        if (xx == 0) {
+            window.location = "/SocialMointoring/Social_management_report";
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<script type="text/javascript">
+    var Access_Auth = '';
+   $(document).ready(function () {
+       StateOfficer = '@Session["Officer"]';
+       Access_Auth = '@Session["Access_Auth"]';
+        if (Access_Auth == 'readonly') {
+            $('.btn_disabled').hide();
+        }
+        //if (StateOfficer != "Gram Panchyat Nodal Officer") {
+        //    $("input[type='text']").prop("disabled", true);
+        //    $("input[type='file']").prop("disabled", true);
+        //    $("#btnFinalSave").prop("disabled", true);
+        //    $("#btnFinalSave1").prop("disabled", true);
+        //    $("#btnFinalSave2").prop("disabled", true);
+        //    $("#btnFinalSave3").prop("disabled", true);
+        //    $("#btnFinalSave4").prop("disabled", true);
+        //    $("#btnFinalSave5").prop("disabled", true);
+        //    $("#btnFinalSave6").prop("disabled", true);
+        //    $("#btnFinalSave7").prop("disabled", true);
+        //    $("#btnFinalSave8").prop("disabled", true);
+        //    //$("#tblDelete").prop("disabled", true);
+        //}
+		});
+</script>

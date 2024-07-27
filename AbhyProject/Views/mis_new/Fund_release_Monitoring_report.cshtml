@@ -1,0 +1,394 @@
+﻿@{
+    ViewBag.Title = "Fund_release_Monitoring_report";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+
+<style>
+    .list_of_firstpanel {
+        list-style: none;
+    }
+
+    ul.list_of_firstpanel > li {
+        display: inline-block
+    }
+
+    .total_label {
+        color: red;
+    }
+
+    .name_label {
+        color: #000;
+    }
+
+    .hviolet {
+    }
+
+    .hpanel.hviolet .panel-body {
+        border-top: 2px solid #9b59b6;
+    }
+
+    .hpanel.hnavyblue .panel-body {
+        border-top: 2px solid #34495e;
+    }
+</style>
+<style>
+
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+
+
+    /*ends here*/
+
+</style>
+<script src="~/Content/JS_Files/Fund_release.js"></script>
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-primary padding-bottom text-uppercase">Fund Release Monitoring  </h4>
+                </div>
+            </div>
+            <div class="row" id="">
+                <div class="col-lg-12 col-sm-12 col-md-12" style="">
+                    <div class="hpanel horange" style="margin-bottom:0px;">
+                        <div class="panel-body">
+
+                            <div class="form-group" id="Agency_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>  StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <select name="" class="form-control" id="awp_agency_state_name_1" onchange="PHP_Agency_StateInfo_B()"></select>
+                                    </li>
+
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name">Agency Name </label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @*<li class="pull-right">*@
+                                    <li>
+                                        <select class="form-control" id="ddl_fy_year" onchange="Select_yearwise()">
+                                            <option value="0">select Year</option>
+                                            <option value="ALL">ALL</option>
+                                            <option value="2020-21">2020-21</option>
+                                            <option value="2021-22">2021-22</option>
+                                            <option value="2022-23">2022-23</option>
+                                            <option value="2023-24">2023-24</option>
+                                            <option value="2024-25">2024-25</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Release(Crore): </label></h5>
+                                                <span id="AWP_Total_value11"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="form-group" id="State_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>  StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <label id="pip_dropdown_state_name">
+                                        </label>
+                                    </li>
+
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name1">Agency Name </label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Release(Crore): </label></h5>
+                                                <span id="AWP_Total_value1"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav nav-tabs">
+                    <li class="col-lg-6 col-md-6 col-sm-12">
+                        <a href="javascript:;">
+                            <div class="hpanel hgreen contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-success">Component A (IS&CB) (Crore)</h5>
+                                        <h5><span id="component_A_Sum">00</span></h5>
+                                    </div>
+                                    <div class="col-md-3 compA">
+                                        <div class="panel-body">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-success add_fontsize"> Grant in Aid (General)  </h5>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer contact-footer">
+                                            <div class="row">
+                                                <div class="col-md-4" style=""> <div class="contact-stat font-extra-bold"><strong> <span id="grant_in_aid_general_sum">0.00</span></strong></div> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3 compA">
+                                        <div class="panel-body">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-success add_fontsize"> Grant in Aid (Capital)</h5>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer contact-footer">
+                                            <div class="row">
+                                                <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><strong> <span id="grant_in_aid_capital_sum">0.00</span></strong></div> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 compNpmu">
+                                        <div class="panel-body">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-success add_fontsize"> NPMU</h5>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer contact-footer">
+                                            <div class="row">
+                                                <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><strong> <span id="npmuSum">0.00</span></strong></div> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="col-lg-6 col-md-6 col-sm-12" id="div_b">
+                        <a href="javascript:;">
+                            <div class="hpanel hblue contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center">
+                                        <h5 class="font-extra-bold no-margins text-info"> Component B (Incentives) (Crore)</h5>
+                                        <h5><span id="component_B_Sum">00</span></h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="panel-body">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> EAP-Grant in Aid (General)  </h5>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer contact-footer">
+                                            <div class="row">
+                                                <div class="col-md-4" style=""> <div class="contact-stat font-extra-bold"><strong> <span id="grant_in_aid_general_sum_b">0.00</span></strong></div> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 compA">
+                                        <div class="panel-body">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-success add_fontsize">Program Component GIA(General-Incentive)  </h5>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer contact-footer">
+                                            <div class="row">
+                                                <div class="col-md-4" style=""> <div class="contact-stat font-extra-bold"><strong> <span id="gia_dli_sum">0.00</span></strong></div> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-6 ">
+            <div class="panel-body">
+                <div class="stats-title pull-left">
+                    <h5 class="font-extra-bold no-margins text-info add_fontsize"> Grant in Aid (Capital)</h5>
+                </div>
+            </div>
+            <div class="panel-footer contact-footer">
+                <div class="row">
+                    <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><strong> <span id="grant_in_aid_capital_sum_b">0.00</span></strong></div> </div>
+                </div>
+            </div>
+        </div>*@
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="row">
+                <div id="" class=" ">
+                    <div class="col-md-12">
+                        <div class="widget row no-gutter p-lg border-top-form">
+                            <div class="col-md-12  col-sm-12">
+                                <div>
+                                    <h5 class="widget-title fz-md text-primary m-b-lg"><span>Fund Release Monitoring </span></h5>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="text-right">
+                                            <div class="btn btn-success btn_export btn_hide"><i class="fa fa-file-excel-o" onclick="tableToExcel('PIP_b_tbl', 'PIP_Data' , 'Fund Release Monitoring.xls')"> Export To Excel</i></div>
+                                            <input type="button" id="AComponent_Id" hidden />
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:600px;">
+                                                    <table id="PIP_b_tbl" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="28" class="text-center">Fund Release Monitoring</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th rowspan="4">S.No</th>
+                                                                <th rowspan="4">Year</th>
+                                                                <th rowspan="4">State</th>
+                                                                <th rowspan="4">SPMU</th>
+                                                                <th rowspan="4">Tranche No</th>
+                                                                <th rowspan="4"> File No/ Sanction Letter No</th>
+                                                                <th rowspan="4">Date of Sanction</th>
+                                                                <th rowspan="4">Utilization Certificate submitted (Yes/ No)</th>
+                                                                <th rowspan="4">If Yes, Date of submission of UC</th>
+                                                                <th colspan="14" class="text-center">Amount sanctioned for release (Crore)</th>
+                                                                <th rowspan="4"> Timeline</th>
+                                                                <th rowspan="4"> Grant Total(A+B)</th>
+                                                                <th rowspan="4">Cumulative amount released (Crore)</th>
+                                                                <th rowspan="4">Edit</th>
+                                                                <th rowspan="4">Delete</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th colspan="8" class="text-center">Grant in Aid (General)(Program Component)</th>
+
+                                                                <th colspan="6" class="text-center">EAP Component </th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th class="text-center">GIA(General-IS&CB)</th>
+                                                                <th class="text-center" colspan="5">GIA(General-Incentive)</th>
+                                                                <th class="text-center">Grant in Aid (Capital)(Program Component)</th>
+                                                                <th></th>
+                                                                <th class="text-center" colspan="6">Grant in Aid (General)(Crore)</th>
+
+
+                                                            </tr>
+                                                            <tr class="info">
+
+
+                                                                <th></th>
+                                                                <th class="text-center">DLI1</th>
+                                                                <th class="text-center">DLI2</th>
+                                                                <th class="text-center">DLI3</th>
+                                                                <th class="text-center">DLI4</th>
+                                                                <th class="text-center">DLI5</th>
+                                                                <th></th>
+                                                                <th class="text-center">Total</th>
+
+
+                                                                <th class="text-center">DLI1</th>
+                                                                <th class="text-center">DLI2</th>
+                                                                <th class="text-center">DLI3</th>
+                                                                <th class="text-center">DLI4</th>
+                                                                <th class="text-center">DLI5</th>
+                                                                <th class="text-center">Total</th>
+
+                                                                @*
+                                                                    <th class="text-center">Total</th>*@
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="tbody_Fund_Data"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+                <ul class="footer-menu pull-right">
+                    <li><a href="javascript:void(0)">Careers</a></li>
+                    <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0)">Feedback <i class="fa fa-angle-up m-l-md"></i></a></li>
+                </ul>
+                <div class="copyright pull-left">Copyright .Kreate Technologies 2020 &copy;</div>
+            </div>
+        </footer>
+    </div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    var Email = '';
+    var Access_Auth = '';
+    $(document).ready(function () {
+        SessionInfo1();
+        Access_Auth = '@Session["Access_Auth"]';
+        if (Access_Auth == 'readonly') {
+            $('.btn_hide').hide();
+        }
+        Email = '@Session["Email"]';
+    });
+</script>
+
+<script>
+
+
+    //var tableToExcel = (function () {
+    //    var uri = 'data:application/vnd.ms-excel;base64,'
+    //        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+    //        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    //        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+    //    return function (table, name) {
+    //        if (!table.nodeType) table = document.getElementById(table)
+    //        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+    //        window.location.href = uri + base64(format(template, ctx))
+    //    }
+    //})()
+
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            var link = document.createElement('a');
+            link.href = uri + base64(format(template, ctx));
+            link.download = filename || 'download.xls';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    })();
+
+
+</script>

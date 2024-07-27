@@ -1,0 +1,445 @@
+﻿body {
+}
+
+input[type="checkbox"] {
+    height: 16px !important;
+}
+
+.box-layout {
+    /*margin: 21% 20% -16% -16%;*/
+    box-sizing: content-box;
+    padding: 0px;
+    border-radius: 0.3em;
+    /*width: 107px;*/
+}
+
+    .box-layout > ul > li > a {
+        padding: 40px 40px;
+    }
+
+
+span.categories {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    /*text-align: left;
+        float:left;
+            */
+}
+
+.box-layout:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+    border-radius: 0.3em;
+    color: darkgreen;
+}
+
+.glyphicon-eye-open, glyphicon-remove {
+    height: 20px;
+    width: 20px;
+}
+
+img#profile {
+    height: auto;
+    /* max-width: 79%; */
+    /* padding: 8px 0px 0px 15px; */
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 100px;
+    background-color: #fff;
+}
+
+td {
+    font-weight: bold;
+}
+
+.upddeleteicon {
+    max-width: 70%;
+}
+
+.modal-footer {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: -20px;
+}
+
+input[type=text], select {
+    /*margin-left: 29%;*/
+    background: none;
+    border: none;
+    border-bottom: ridge;
+}
+
+.underline {
+    background-color: dodgerblue;
+    display: inline-block;
+    height: 2px;
+    left: 50px;
+    margin-top: -4px;
+    position: absolute;
+    top: 185px;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    width: 202px;
+}
+
+.box-layout:active::after {
+    background-color: #191970;
+}
+
+ul.adminhead {
+    display: flex;
+    margin: 0% 0% 0% 0%;
+    background-color: #f5f5f5;
+    border-color: lavender;
+    border-radius: 0.6em
+}
+
+    ul.adminhead > li > label {
+        display: inline-block;
+    }
+
+ul.adminhead1 > li > label > h4 {
+    font-size: 21px;
+}
+
+ul.adminhead1 {
+    display: inline-flex;
+}
+
+    ul.adminhead1 > li {
+        padding: 6px 10px 0px 9px;
+    }
+
+ul.adminhead > li {
+    padding: 5px 10px 0px 10px;
+}
+
+h4#profilename {
+    margin-top: 10px;
+}
+
+.nav-pills > li + li {
+    margin-left: 0px;
+}
+
+ul#myTabs {
+    margin: 40px 0px 0px 44px;
+}
+
+    ul#myTabs > li {
+        margin: 10px 10px 10px 10px;
+        text-align: center;
+        width: 250px;
+        color:#fff;
+        background-color:#337ab7;
+    }
+
+/*.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #000088;
+}*/
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 26px 26px;
+}
+
+    .nav > li > a:hover, .nav > li > a:focus {
+        text-decoration: none;
+        background-color: darkgreen;
+    }
+
+img {
+    vertical-align: bottom;
+}
+
+@@media screen and (max-width: 1200px) {
+    ul#myTabs > li {
+        width: 167px;
+        height: 136px;
+    }
+}
+
+.form-inline .form-control {
+    margin: 0px 0px 0px 0px;
+}
+
+.tab-pane {
+    margin: 40px 0px 0px 0px;
+}
+
+
+ul.myTabs1 {
+    background-color: #ddd;
+}
+
+ul#myTabs1 > li.active::after {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #2E578C;
+    content: " ";
+    position: absolute;
+    bottom: -15px;
+    margin-left: -15px;
+    left: 50%;
+}
+
+ul#myTabs1 > li {
+    background-color: #3A99ED;
+    padding: 0px;
+}
+
+    ul#myTabs1 > li > a {
+        color: white;
+        padding: 15px;
+    }
+
+    ul#myTabs1 > li.active > a,
+    ul#myTabs1 > li.active > a:focus,
+    ul#myTabs1 > li.active > a:hover {
+        color: #fff !important;
+        background-color: #2E578C !important;
+    }
+
+.tbl-responsive {
+    overflow-x: inherit;
+}
+
+body:not(.modal-open) {
+    padding-right: 0 !important
+}
+
+.sss {
+    margin-top: 11px !important;
+}
+
+.login, .register {
+    line-height: 24px;
+}
+
+/*input[type=text], select {
+        margin-left: 2%;
+    }*/
+
+
+table {
+    width: 100%;
+}
+
+.groundwatertable,
+.groundwatertable > tbody > tr > th,
+.groundwatertable > tbody > tr > td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+input[type=text].gwtable {
+    margin-left: 0px;
+    border: none;
+}
+
+th.waterhead {
+    width: 400px;
+    /*padding-left: 20px;*/
+    padding: 10px;
+}
+
+.groundwatertable > tbody > tr > td > span {
+    padding-left: 5px;
+}
+
+.pheading {
+    font-size: 18px;
+    font-weight: bold;
+    color: #337ab7;
+}
+
+#breadcrumb {
+    color: #0000ff;
+    font-size: 15px;
+    margin: 0;
+    height: 15px;
+    margin-bottom: 10px;
+}
+
+    #breadcrumb a {
+        color: #0000ff;
+        text-decoration: underline;
+    }
+
+ul#myTabs > li > a > span > img {
+    height: 26px;
+    width: 26px;
+}
+
+ul.ReRecharge_list > li > span {
+    width: 70%;
+}
+
+ul#submenu1 > li > span {
+    font-size: 17px;
+}
+
+ul.imgHome > li > a > span {
+    font-size: 17px;
+    text-decoration: none;
+    color: #fff;
+    padding: 0px 0px 0px 5px;
+}
+
+    ul.imgHome > li > a > span :hover {
+        text-decoration: none;
+    }
+
+ul.imgHome > li > a > label {
+    font-size: 13px;
+    text-decoration: underline;
+    color: #fff;
+    padding: 0px 0px 0px 5px;
+    margin: 0;
+    height: 15px;
+}
+
+ul.imgHome > li > label {
+    color: #fff;
+    padding: 0px 0px 0px 5px;
+}
+
+ul.imgHome > li > a > span > img,
+ul.imgHome > li > span > img {
+    width: 25px;
+}
+
+ul.imgHome > li > a > label {
+    padding: 5px 0px 0px 0px;
+}
+
+.nav-justified {
+    padding-bottom: 0em;
+}
+
+ul.imgHome > li > img,
+ul.imgHome > li > a > img {
+    width: 25px !important;
+}
+
+.highcharts-background {
+    /*width: 100% !important;*/
+}
+
+.highcharts-title {
+    display: none;
+}
+
+span.marqueegwr {
+    font-weight: 700;
+    margin-top: 10px;
+    /*font-family: raleway;*/
+    color: #333;
+    font-size: 1vw;
+}
+
+.modal-backdrop.in {
+    z-index: 0px !important;
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.95;
+    visibility: visible;
+    background-color: #fff;
+    z-index: 9999;
+    text-align: center;
+}
+
+
+.loading-inactive {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader > img {
+    top: 45%;
+    left: 45%;
+    position: fixed;
+    height: 150px;
+    width: 150px;
+}
+
+ul.btnall > li {
+    display: inline-block;
+}
+
+.backgroundtr {
+    background-color: lightgray !important;
+}
+
+    .backgroundtr:hover {
+        background-color: #fff !important;
+    }
+
+.backgroundtr1 {
+    background-color: lightgoldenrodyellow !important;
+}
+
+    .backgroundtr1:hover {
+        background-color: #fff !important;
+    }
+
+.login_tender_wsp_div {
+    /*padding: 30px;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #ddd;*/
+}
+
+.login_tender_wsp_Main_div .box-content {
+    text-align: center;
+}
+
+.login_tender_wsp_Main_div {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+}
+
+.backbutton_div {
+    text-align: right;
+    margin-top: 20px;
+}
+
+    .backbutton_div > ul {
+        list-style: none;
+    }
+
+        .backbutton_div > ul > li {
+            display: inline-block;
+            padding-right: 10px;
+        }
+
+            .backbutton_div > ul > li > a > i {
+                padding-right: 5px;
+            }
+
+.login_tender_wsp_Main_div > .col-md-12 > .col-md-4 > .card_img > a > img {
+    width: 100%
+}
+
+.card_img:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+    border-radius: 0.7em;
+}
+
+

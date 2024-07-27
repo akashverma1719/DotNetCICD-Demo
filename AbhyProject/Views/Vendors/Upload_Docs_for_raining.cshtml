@@ -1,0 +1,243 @@
+﻿@model IEnumerable<AbhyProject.Models.TrainingSearchModel>
+
+
+@{
+    ViewBag.Title = "Upload_Docs_for_raining";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+    var i = 1;
+}
+
+
+<title>Training/Workshop Enquiry</title>
+<style>
+    .Training {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        border: 2px solid #81dd81;
+    }
+
+    .upload {
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+    }
+</style>
+
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:last-child ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:last-child ").siblings().removeClass('active');
+</script>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Training/Workshop Enquiry</div>
+    </div>
+</div>
+
+
+
+
+<div class="container-fluid" style="margin-top:30px;">
+
+    <div class="container" style="margin-bottom: 15px;">
+        <div class="col-md-12 Training upload">
+
+
+            <div class="form-group">
+
+                <div class="col-md-2 col-sm-6 text-center" style="margin-top: 9px;  margin-bottom: 10px;">
+                    <span id="" class="control-label">Search by Name of Event/Training:</span>
+                </div>
+                <div class="col-md-3 col-sm-6 ">
+                    <div class=" input-group">
+                        @*<span class="input-group-addon">
+                                <img src="/Content/WspImages/Pancard 24_24.png" style="max-width:9px !important;">
+                            </span>*@
+                        <select id="training_name" name="training_name" class="form-control" style="width: 100%!important"></select>
+                        @*<input name="training_name" type="text" id="training_name" placeholder="Search by Name of Event/training" class="form-control pan" style="width: 100%!important">*@
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6 text-center" style="margin-top: 9px;  margin-bottom: 10px;">
+                    <span id="" class="control-label">Search by Registration NO:</span>
+                </div>
+                <div class="col-md-3 col-sm-6 ">
+                    <div class=" input-group">
+                        <span class="input-group-addon">
+                            <img src="/Content/WspImages/Pancard 24_24.png" style="max-width:9px !important;">
+                        </span>
+                        <input name="participant_name" type="text" id="participant_name" placeholder="Search by Registration NO" class="form-control " style="width: 100%!important">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 pull-left">
+
+                <button type="button" name="btnSearch" id="" onclick="Search_Info()" class="btn btn-primary" style="margin-top: -13px;">Search</button>
+                <input type="submit" id="BTN_SUBMIT" hidden />
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+
+<hr />
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tbl-responsive">
+            <table id="example" class=" display  table stripe row-border order-column  table-striped table-bordered dataTable no-footer" style="width:100%">
+                <thead>
+
+                    <tr>
+                        <th class="text-center">S.No</th>
+                        <th class="text-center">Event/training</th>
+                        <th class="text-center">Name of the participant</th>
+                        <th class="text-center">Gender </th>
+                        <th class="text-center">Age </th>
+                        <th class="text-center">Occupation</th>
+                        <th class="text-center">Qualification</th>
+                        <th class="text-center">Phone no. </th>
+                        <th class="text-center">Email id </th>
+                        <th class="text-center">Address</th>
+                        <th class="text-center">From Date</th>
+                        <th class="text-center">To Date</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">State</th>
+                    </tr>
+                </thead>
+                <tbody id="TBL_INfo">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+
+<script>
+    var ABC = "";
+    $(document).ready(function () {
+        
+        Get_Training_Working_Events_Info();
+        $.noConflict();
+        $('#example').hide();
+        $('#example').DataTable();
+
+    })
+
+
+    function Get_Training_Working_Events_Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Vendors/Get_Training_Working_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (response) {
+                
+
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                var option = '<option value="0">Select Event/Training</option>';
+                var ddlst = {};
+                var ddlst_array = [];
+                if (response.length != 0) {
+
+                    for (var j = 0; j < response.length; j++) {
+
+                        if (!ddlst[response[j].p_training_name]) {
+                            ddlst_array.push(response[j].p_training_name);
+                            ddlst[response[j].p_training_name] = response[j].p_training_name;
+
+                        }
+
+                    }
+
+                }
+
+                if (ddlst_array.length != 0) {
+                    for (var i = 0; i < ddlst_array.length; i++) {
+                        option += '<option value="' + ddlst_array[i] + '">' + ddlst_array[i] + '</option>';
+                    }
+                }
+
+                $('#training_name').html(option);
+
+            }
+        });
+    }
+
+    function Search_Info() {
+        
+        var training_name = $('#training_name').val();
+        var participant_name = $('#participant_name').val();
+        var i = 0;
+        if (training_name == "0" && participant_name != "") {
+            i = 0;
+        } else if (training_name != "0" && participant_name == "") {
+            i = 0;
+        } else {
+            i = 1;
+        }
+       
+        
+        if (i == 0) {
+            // $('#BTN_SUBMIT').click();
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Vendors/Upload_Docs_for_raining1',
+                data: { 'training_name': training_name, 'participant_name': participant_name },
+                dataType: 'JSON',
+                success: function (data) {
+                    
+                    $('#example').show();
+                    $('#TBL_INfo').html('');
+                    var tr = '';
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            tr += '<tr><td>' + (i + 1) + '</td><td>' + data[i].newregsvm.p_training_name + '</td>' +
+                                '<td>' + data[i].newregsvm.p_name + '</td><td>' + data[i].newregsvm.p_gender + '</td>' +
+                                '<td>' + data[i].newregsvm.p_age + '</td><td>' + data[i].newregsvm.p_occupation + '</td>' +
+                                '<td>' + data[i].newregsvm.p_qual + '</td><td>' + data[i].newregsvm.p_phoneno + '</td>' +
+                                '<td>' + data[i].newregsvm.p_emailid + '</td><td>' + data[i].newregsvm.p_address + '</td>' +
+                                '<td>' + data[i].eventsvm.from_date + '</td><td>' + data[i].eventsvm.to_date + '</td>' +
+                                '<td>' + data[i].eventsvm.training_status + '</td><td>' + data[i].eventsvm.state_name + '</td></tr>';
+                        }
+
+                    }
+
+                    if (data == "NoData") {
+                        tr += '<tr rowspan="14" style="text-align:center;"><td colspan="14">No data</td></tr>';
+                    }
+
+                    if (tr == '') {
+                        tr += '<tr rowspan="14" style="text-align:center;"><td colspan="14">No data</td></tr>';
+                    }
+
+                    $('#TBL_INfo').html(tr);
+                    $('#example').DataTable();
+                }
+            });
+        }
+        else {
+            alert("Please Select/Enter both Event/Training and Registration Number");
+        }
+    }
+</script>

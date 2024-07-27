@@ -1,0 +1,220 @@
+﻿
+@{
+    ViewBag.Title = "wsp_admin";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<meta name="viewport" content="width=device-width" />
+<title>Admin</title>
+<title></title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<link href="~/Content/css/Dli_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    ul.admin_ul_dropdown > li {
+        list-style: none;
+        padding: 3px 0px;
+    }
+
+        ul.admin_ul_dropdown > li label {
+            text-align: left !important;
+        }
+
+    div.form {
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 600px;
+        margin: 0 auto 100px;
+        padding: 40px;
+        /*text-align: center;*/
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+
+    .col-red {
+        color: red;
+    }
+</style>
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+                        <li>
+                            <span>
+                                <a href="http://ataljal.mowr.gov.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                        @if (Session["UserName"] != null)
+                        {
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                        }
+
+                    </li>
+                    <li>
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                            </span>
+                            <label>Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                        <label>Admin</label>
+
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul id="myTabs" class="nav nav-pills nav-justified">
+                    <li class="active">
+                        <a href="javascript:;">
+                            <span> @*<img src="~/Content/WspImages/draft new 1.png" />*@</span>Admin Selection
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<section style="padding-bottom:40px;">
+    <div class="tab-content">
+        <!--Rainfail_menu Start-->
+        <div role="tabpanel" class="tab-pane fade in active" id="music">
+            <div class="container-fluid">
+                <!--images Row Started-->
+                <div class="clearfix">
+                    <div class="selectdistshowoption">
+                        <ul class="Select_option selectbackhome">
+                            <li>
+                                <label id="lblstate">State:</label>
+                                <span id="spnstate">@Session["gstate"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Block:</label>
+                                <span id="spnblock">@Session["gblock"] </span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Gram panchayat:</label>
+                                <span id="spngram">@Session["ggram"]</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="clearfix tabfirst">
+                    <div class="col-md-12">
+                        <div class=" ">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                                <div><h4 id="" style="margin-top:20px;color:darkblue;text-align:center">Admin Selection</h4></div>
+                                <div class="form">
+                                    <ul class="admin_ul_dropdown">
+                                        <li>
+                                            <label>Select State <span class="col-red"> *</span></label>
+                                            <select class="form-control" required="">
+                                                <option value="0">Select State</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <label>Select District <span class="col-red"> *</span></label>
+                                            <select class="form-control" required="">
+                                                <option value="0">Select District</option>
+                                            </select>
+                                        </li>
+
+                                        <li>
+                                            <label>Select Block <span class="col-red"> *</span></label>
+                                            <select class="form-control" required="">
+                                                <option value="0">Select Block</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <label>Select Gram Panchayt <span class="col-red"> *</span></label>
+                                            <select class="form-control" required="">
+                                                <option value="0">Select Gram Panchayt</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <button type="submit" class="form-control sm-btn btn btn-success">Create</button>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</section>
+<section>
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab"> Admin Selection</span>
+
+            </li>
+        </ul>
+
+    </div>
+</section>
+
+
+
+
+

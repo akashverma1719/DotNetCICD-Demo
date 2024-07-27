@@ -1,0 +1,2055 @@
+﻿
+@{
+    ViewBag.Title = "wsp_View";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<html>
+<head>
+
+    <!-- favicon
+    ============================================ -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+    <!-- jQuery library -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/wspView.css" rel="stylesheet" />
+    <script src="~/Scripts/all_scripts/core.js"></script>
+    <script src="~/Scripts/all_scripts/charts.js"></script>
+    <script src="~/Scripts/all_scripts/animated.js"></script>
+    <link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+            integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <script src="~/Scripts/Wsp_Gwb.js"></script>
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+    
+    <style>
+
+        #breadcrumb {
+            color: #0000ff;
+            font-size: 15px;
+            margin: 0;
+            height: 15px;
+            margin-bottom: 10px;
+        }
+
+            #breadcrumb a {
+                color: #0000ff;
+                text-decoration: underline;
+            }
+
+        ul#myTabs > li > a > span > img {
+            height: 26px;
+            width: 26px;
+        }
+
+        ul.ReRecharge_list > li > span {
+            width: 70%;
+        }
+
+        ul#submenu1 > li > span {
+            font-size: 17px;
+        }
+
+        ul.imgHome > li > a > span {
+            font-size: 17px;
+            text-decoration: none;
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+        }
+
+            ul.imgHome > li > a > span :hover {
+                text-decoration: none;
+            }
+
+        ul.imgHome > li > a > label {
+            font-size: 13px;
+            text-decoration: underline;
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+            margin: 0;
+            height: 15px;
+        }
+
+        ul.imgHome > li > label {
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+        }
+
+        ul.imgHome > li > a > span > img,
+        ul.imgHome > li > span > img {
+            width: 25px;
+        }
+
+        ul.imgHome > li > a > label {
+            padding: 5px 0px 0px 0px;
+        }
+
+        .nav-justified {
+            padding-bottom: 0em;
+        }
+
+        ul.imgHome > li > img,
+        ul.imgHome > li > a > img {
+            width: 25px !important;
+        }
+
+        .highcharts-background {
+            /*width: 100% !important;*/
+        }
+
+        .highcharts-title {
+            display: none;
+        }
+
+        span.marqueegwr {
+            font-weight: 700;
+            margin-top: 10px;
+            /*font-family: raleway;*/
+            color: #333;
+            font-size: 1vw;
+        }
+
+        .modal-backdrop.in {
+            z-index: 0px !important;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.95;
+            visibility: visible;
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+
+        .loading-inactive {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+
+        ul.btnall > li {
+            display: inline-block;
+        }
+
+        .backgroundtr {
+            background-color: lightgray !important;
+        }
+
+            .backgroundtr:hover {
+                background-color: #fff !important;
+            }
+
+        .backgroundtr1 {
+            background-color: lightgoldenrodyellow !important;
+        }
+
+            .backgroundtr1:hover {
+                background-color: #fff !important;
+            }
+    </style>
+    <style>
+        .under_list > li {
+            list-style: none;
+            padding: 5px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+            .under_list > li > span > input {
+                width: 500px;
+                height: 30px;
+                padding: 3px 10px;
+                display: inline;
+            }
+
+            .under_list > li > span > select {
+                width: 500px;
+                height: 30px;
+                padding: 3px 10px;
+                display: inline;
+            }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .ullistdiv_menu {
+            margin: 10px 0px;
+        }
+
+        .firstformtable > thead > tr > td {
+            padding: 5px;
+            font-weight: 600;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        panel-group .panel {
+            border-radius: 0;
+            box-shadow: none;
+            border-color: #EEEEEE;
+        }
+
+        .panel-default > .panel-heading {
+            padding: 0;
+            border-radius: 0;
+            color: #212121;
+            /*background-color: #FAFAFA;
+            border-color: #EEEEEE;*/
+        }
+
+
+
+
+        .panel-title > a {
+            display: block;
+            padding: 7px;
+            text-decoration: none;
+        }
+
+        .more-less {
+            float: right;
+            color: #212121;
+        }
+
+        .panel-default > .panel-heading + .panel-collapse > .panel-body {
+            border-top-color: #EEEEEE;
+        }
+
+
+
+        .demo-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: #212121;
+            text-align: center;
+        }
+
+            .demo-footer > a {
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 14px;
+                color: #fff;
+            }
+
+        .panel-heading {
+            text-align: left;
+            font-size: 19PX;
+        }
+
+        .panel-body {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="loading-container">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="300" width="300" />
+        </div>
+    </div>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                    <h3 class="modal-title text-center"><b>Location</b></h3>
+                </div>
+                <div class="modal-body modelcss">
+
+                    <b class="">State :</b>
+                    <select name="state" id="wspstate" class="state form-control" style="text-transform:capitalize">
+                    </select>
+                    <b class="">District :</b>
+                    <select name="dist" id="wspdist" class="dist form-control" style="text-transform:capitalize">
+                    </select>
+                    <b class="">Block :</b>
+                    <select name="block" id="wspblock" class="block form-control" style="text-transform:capitalize">
+                    </select>
+                    <b class="">Gram Panchayat :</b>
+                    <select name="gram" id="wspgram" class="gram form-control" style="text-transform:capitalize">
+                    </select>
+
+
+
+                </div>
+                <div class="button-box mt-20 modal-footer">
+                    <div class="text-center btngo">
+                        <button class=" btn btn-primary" id="btnWtrBudgetReport" onclick="getgpleveldata(),getgplevelsecuritydata();"> <img src="~/Content/WspImages/WSPplan/start_1.png" width="25" /> Start Generating Security Plan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="row" id="headerdiv">
+            <header class="header hederImage">
+
+                <div class="clearfix">
+                    <div class="clearfix">
+                        <div class="col-lg-8">
+                            <div class="header-top-info">
+                                <ul class="clearfix">
+                                    <li style="margin-top:10px;"><img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:70px ;width: 45px;"></li>
+                                    <li>
+                                        <span><a target="_blank" href="http://mowr.gov.in/" title="ATAL BHUJAL YOJANA" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA</a></span>
+                                        <span>
+                                            <a target="_blank" href="http://mowr.gov.in/" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">Ministry of Jal Shakti</a>
+                                        </span>
+                                        <span class="li_eng responsive_go_eng"><a target="_blank" href="https://india.gov.in/" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                        <span style="text-align:center;">
+                                            <a target="_blank" href="http://mowr.gov.in/" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">
+                                                River Development & Ganga Rejuvenation
+                                            </a>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <ul class="imgHome clearfix">
+                                <li>
+                                    <a href="/Home/index">
+                                        
+                                            <img src="/Content/WspImages/home-icon-silhouette.png" title="Home">
+                                      
+                                        <label>Home</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                    @if (Session["UserName"] != null)
+                                    {
+
+                                        <span style="color:#fff;">:@Session["UserName"]</span>
+                                    }
+
+                                </li>
+                                <li>
+                                    <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="row" id="uldiv">
+            <ul id="myTabsss" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+                <li class="active"><a href="javascript:;" data-target="#WaterbudgetingformWBF" id="m1" data-toggle="tab">Water Budget Form</a></li>
+                <li><a href="javascript:;" data-target="#WaterbudgetingWB" id="m3" data-toggle="tab">Water Budgeting</a></li>
+                <li><a href="javascript:;" data-target="#WatersecurityplanWSP" data-toggle="tab">Water Security plan</a></li>
+                @*<li><a href="javascript:;" data-target="#GroundwaterGWM" id="m2" data-toggle="tab">Ground Water Monitoring</a></li>*@
+            </ul>
+        </div>
+        <div class="row" id="tablediv">
+            <div class="tab-content">
+                <!--2nd Water Budget Form-->
+                <div role="tabpanel" class="tab-pane fade in active" id="WaterbudgetingformWBF">
+                  
+                        @*<div class="col-md-12 scrollform">*@
+                        <div class="col-md-12">
+                            <!-- Accordion -->
+                            <div class="" id="">
+                               
+                                <div class="" style="padding:0px;overflow-x:scroll;">
+                                    <div class="panelbodyheading">
+                                        Gram Panchayat Information and Water Budget
+                                    </div>
+                                    <!--bodyof panel-->
+                                    <div class="selectdistshowoption">
+                                        <ul class="Select_option">
+                                            <li id="listate">
+                                                <label id="lblWtrBstate">State:</label>
+                                                <span id="spnWtrBstate" style="text-transform:capitalize">State</span>
+                                            </li>
+                                            <li id="lidistrict">
+                                                <i class="fas fa fa-angle-double-right"></i>
+                                                <label id="lblWtrBdistrict">District:</label>
+                                                <span id="spnWtrBdistrict" style="text-transform:capitalize">District</span>
+                                            </li>
+                                            <li id="liblock">
+                                                <i class="fas fa fa-angle-double-right"></i>
+                                                <label id="lblWtrBblock">Block:</label>
+                                                <span id="spnWtrBblock" style="text-transform:capitalize">block</span>
+                                            </li>
+                                            <li id="lipanchayat">
+                                                <i class="fas fa fa-angle-double-right"></i>
+                                                <label id="lblWtrBpanchayar">Gram panchayat:</label>
+                                                <span id="spnWtrBpanchayat" style="text-transform:capitalize">gram</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="container demo">
+                                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading " role="tab" id="headingOne">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                1.Population
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Total Population :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="tol_population" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Male Population : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="male_population" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Female Population :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="female_population" placeholder="Enter the numeric value" /></span>  </td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                2.Occupational Information
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Total Farmers/Cultivators :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="tol_farmers" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Total Agricultural Labourers : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="tol_agri_labours" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Total Artisans/Household Activities :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="tol_household_activities" placeholder="Enter the numeric value" /></span>  </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Others including Govt. & Private Employees :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="others_govt_private_employees" placeholder="Enter the numeric value" /></span>  </td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingThree">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                3.Village Area (ha)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Forest Area : </td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="forest_area" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Fallow Land :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="fallow_land" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Barrren Land :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="barrren_land" placeholder="Enter the numeric value" /></span>  </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Culturable Waste Land :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="cult_waste_land" placeholder="Enter the numeric value" /></span>  </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Area Under Non Agricultural Use : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="area_non_agri" placeholder="Enter the numeric value" /></span>  </td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingfour">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                4.Irrigation Type (area in ha)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapsefour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfour">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Canals :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="irri_canals" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Tanks : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="irri_tanks" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Dugwells : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="irri_dugwells" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Dug cum borewells :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="irri_dug_borewells" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingfive">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefive" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                5.Water Lifting Sources
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapsefive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfive">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Bullock Drawn :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="bullock_drawn" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Diesel Pump : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="diesel_pump" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Centrifugal Pump : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="centrifugal_pump" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Pump :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="water_pump" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingsix">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsesix" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                6.Water Related Issues
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapsesix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsix">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>No. of working borewells :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="working_borewells" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>No. of defunct borewells : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="defunt_borewells" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading8">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                7.Principle Kharif Crops under Cultivation (area in ha)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Rice :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="kharif_rice" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Sugarcane : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="kharif_sugarcane" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Cotton : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="kharif_cotton" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Maize :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="kharif_maize" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Others :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="kharif_others" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading9">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                8.Principle Rabi Crops under Cultivation (area in ha)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Wheat :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="rabi_wheat" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Mustard : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="rabi_mustard" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Gram : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="rabi_gram" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Barley :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="rabi_barley" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Others :</td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="rabi_others" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading10">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse10" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                9.Principle Kharif and Rabi  Crops under Cultivation (area in ha)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading10">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Tomato :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="kharif_rabi_tomoto" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Others : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="kharif_rabi_others" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading11">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                10.Livestock  Population
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading11">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Cows/Buffaloes :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="livestock_cows_buffaloes" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Bullocks : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="livestock_bullocks" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Sheeps/Goats : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="livestock_sheeps_goates" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading12">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse12" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                11.Rainfall (mm)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading12">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Monsoon Rainfall :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="monsoon_rainfall" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Non-Monsoon Rainfall : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="non_monsoon_rainfall" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading13">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                12.Ground Water Level (m)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading13">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Monsoon GW Level :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="monsoon_gw_level" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Non-Monsoon GW Level : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="non_monsoon_gw_level" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading16">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                13.Water Usage (Liters)
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading16">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Water Usage for Drinking Purpose :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="water_drinking_purpose" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Water Usage for Agricultural Purpose : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="water_agriculture_purpose" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Water Usage for Industrial Purpose :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="water_industrial_purpose" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Water Usage for Domestic Purpose : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="water_domestic_purpose" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading17">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                14.Power supply
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading17">
+                                                        <div class="panel-body">
+
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Availability of electricity connectivity :</td>
+                                                                        <td>
+                                                                            <span id="">
+                                                                                <select class="form-control" id="power_availbility" name="">
+                                                                                    <option>Select one</option>
+                                                                                    <option value="No">No</option>
+                                                                                    <option value="yes"> Yes</option>
+                                                                                </select>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>No. of HHs with electricity connectivity : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="power_hhs" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>No. of electricity connections for irrigation :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="power_iirigation" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Average hours of electricity supply in a day for Irrigation : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="power_avg_hours_connectivity" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading18">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse18" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                15.Social Organisations
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse18" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading18">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td>No. of Self-Help Groups : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="social_self_help" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>No. of Youth Clubs :</td>
+                                                                        <td><span id=""> <input type="text" class="form-control decimal" id="social_youth_clubs" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>No. of Cooperative Societies : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="social_cooperative" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Others : </td>
+                                                                        <td><span id=""><input type="text" class="form-control decimal" id="social_others" placeholder="Enter the numeric value" /></span></td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="heading19">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse19" aria-expanded="false" aria-controls="collapseThree">
+                                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                                16.Road Connectivity
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading19">
+                                                        <div class="panel-body">
+                                                            <table class="firstformtable">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td>Pucca Road : </td>
+                                                                        <td>
+                                                                            <span id="">
+                                                                                <select class="form-control" id="pucca_road" name="">
+                                                                                    <option>Select one</option>
+                                                                                    <option value="No">No</option>
+                                                                                    <option value="yes"> Yes</option>
+                                                                                </select>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="tableheadertr2">
+                                                                        <td>Kuchha Road :</td>
+                                                                        <td>
+                                                                            <span id="">
+                                                                                <select class="form-control" id="kuchha_road" name="">
+                                                                                    <option>Select one</option>
+                                                                                    <option value="No">No</option>
+                                                                                    <option value="yes"> Yes</option>
+                                                                                </select>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </thead>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- panel-group -->
+                                        </div><!-- container -->
+                                    </div>
+                                    <table id="tdata1111" class="display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100% !important">
+                                        <thead>
+                                            <tr>
+                                                <td><button type="button" class="btn btn-info" onclick="adddonordetails();">New</button></td>
+                                                <td>Delete</td>
+                                                <td>Category</td>
+                                                <td>Total Households</td>
+                                                <td>SC (M)</td>
+                                                <td>SC (F)</td>
+                                                <td>ST (M)</td>
+                                                <td>ST (F)</td>
+                                                <td>OBC (M)</td>
+                                                <td>OBC (F)</td>
+                                                <td>Minority (M)</td>
+                                                <td>Minority (F)</td>
+                                                <td>Others (M)</td>
+                                                <td>Others (F)</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblHouseholdsDetails"></tbody>
+                                    </table>
+                                    <div class=" col-md-12">
+
+
+                                        <div class="text-center" style="margin-bottom:10px;">
+                                            <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                                                <li>
+
+                                                    <button type="button" class=" btn btn-success" onclick="saveAllData()"><i class="fa fa-save"></i>Save</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="btn btn-danger reset" onclick="deleteAllData()" id="resetdata"> <i class="fa fa-trash"></i>Delete</button>
+                                                </li>
+
+                                                <li class=" leftbtnnext">
+                                                    <button class="btn btn-info btnprocess1">Next<i class="fa fa-arrow-right"></i></button>
+                                                </li>
+                                            </ul>
+
+
+
+
+
+                                        </div>
+
+                                        <div class="text-center"><label id="AlertError" style="color:red;text-align:center;"></label></div>
+                                    </div>
+                                </div>
+                             </div>
+                              
+                        </div>
+                
+                </div>
+                <!--2nd Water Budget Form closed-->
+                <!--3rd Water Budgeting page-->
+                <div role="tabpanel" class="tab-pane fade" id="WaterbudgetingWB">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Accordion -->
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div id="collapse-one" class="panel-collapse in">
+                                        <div class="panel-body" style="padding:0px; overflow-x:scroll;">
+                                            @*<div class="panelbodyheading text-center">
+                                                    Water Budgeting
+                                                </div>*@
+                                            <!--bodyof panel-->
+                                            <div class="selectdistshowoption" id="selectiondisplay">
+                                                <ul class="Select_option">
+                                                    <li id="listate1">
+                                                        <label id="lblWtrBstate1">State:</label>
+                                                        <span id="spnWtrBstate1" style="text-transform:capitalize"></span>
+                                                    </li>
+                                                    <li id="lidistrict1">
+                                                        <i class="fas fa fa-angle-double-right"></i>
+                                                        <label id="lblWtrBdistrict1">District:</label>
+                                                        <span id="spnWtrBdistrict1" style="text-transform:capitalize">District</span>
+                                                    </li>
+                                                    <li id="liblock1">
+                                                        <i class="fas fa fa-angle-double-right"></i>
+                                                        <label id="lblWtrBblock1">Block:</label>
+                                                        <span id="spnWtrBblock1" style="text-transform:capitalize">block</span>
+                                                    </li>
+                                                    <li id="lipanchayat1">
+                                                        <i class="fas fa fa-angle-double-right"></i>
+                                                        <label id="lblWtrBpanchayar1">Gram panchayat:</label>
+                                                        <span id="spnWtrBpanchayat1" style="text-transform:capitalize">gram</span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <div id="downloadpdfdiv">
+                                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd;" id="tblGwbReport">
+                                                    <tbody class="tablebaody">
+                                                        <tr class="">
+                                                            <th style="padding:5px;font-weight:900" colspan="6" class="tableheadingbg text-center">
+                                                                <b> Surface Water Availability</b>
+                                                            </th>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Availability from Rainfall</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Rainfall(mm)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurrainafall" placeholder="Enter the numeric value" onkeyup="getsurfaceWaterRainfall()" /></td>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurValume" readonly /></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Availability from Springs</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Number of springs</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurnoofsprings" placeholder="Enter the numeric value" /></td>
+                                                            <td>Area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurspringsarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Average depth(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsuravgdepth" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Discharge(m<sup>3</sup>/s)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurspringsdischarge" placeholder="Enter the numeric value" onkeyup="getSufacewatersprings();" /></td>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurspringsvalume" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Availability from Check Dams</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Number of Check dams</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcheckdams" placeholder="Enter the numeric value" /></td>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcheckdamsvalume" placeholder="Enter the numeric value" /></td>
+                                                            <td>Discharge(m<sup>3</sup>/s)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcheckdamsdischarge" placeholder="Enter the numeric value" onkeyup="getSurwtrCheckdams()" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Average depth(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="" placeholder="Enter the numeric value" /></td>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcheckdamsRead" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Availability from Canals</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Number of canals</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurnoofcanals" placeholder="Enter the numeric value" /></td>
+                                                            <td>Area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcanalsarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Average depth(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcanalsavgdepth" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Discharge(m<sup>3</sup>/s)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcanalsdischarge" placeholder="Enter the numeric value" onkeyup="getsurwtrcanals();" /></td>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurcanalsvolume" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Availability from Reservoirs</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Number of reservoirs</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurnoofreservoirs" placeholder="Enter the numeric value" /></td>
+                                                            <td>Volume(m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurreservoirsvolume" placeholder="Enter the numeric value" /></td>
+                                                            <td>Discharge(m<sup>3</sup>/s)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurreservoirsdischarge" placeholder="Enter the numeric value" onkeyup="getsurwtrReservoirs();" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurreservoirsvolumeread" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Availability from Lakes/Ponds/Tanks</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Number of lakes/ponds/tanks</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurLPT" placeholder="Enter the numeric value" /></td>
+                                                            <td>Area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurLPTatrea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Average depth(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurLPTAvgdepth" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Discharge(m<sup>3</sup>/s)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurLPTDischarge" placeholder="Enter the numeric value" onkeyup="getsurwtrLPT();" /></td>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurLPTvolume" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Availability from Rivers</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Number of rivers</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurnoofrivers" placeholder="Enter the numeric value" /></td>
+                                                            <td>Area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurriversarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Average depth(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurriveravgdepth" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Discharge(m<sup>3</sup>/s)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurriverdischarge" placeholder="Enter the numeric value" onkeyup="getsurwtrRivers();" /></td>
+                                                            <td>Volume (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtsurriverVolume" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+                                                        <!--Recharge-->
+
+                                                        <tr class="">
+                                                            <th style="padding:5px;" colspan="6" class="tableheadingbg text-center">
+                                                                <b> Ground Water Recharge</b>
+                                                            </th>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Recharge from Rainfall</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Rainfall(mm)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrrainfall" placeholder="Enter the numeric value" /></td>
+                                                            <td>Area underlined by</td>
+                                                            <td>
+                                                                @if (ViewBag.Ddl != null)
+                                                                {
+                                                                    @Html.DropDownList("Ddl", (IEnumerable<SelectListItem>)ViewBag.Ddl, "Select Area UnderLined By", new { id = "ddlgwrareaUBY", @class = "form-control" })
+                                                                }
+                                                                else
+                                                                {
+                                                                    <select id="ddlgwrareaUBY">
+                                                                        <option value="">Select Area UnderLined By</option>
+                                                                    </select>
+                                                                }
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Recharge factor(%)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrRechargefactor" placeholder="Enter the numeric value" onkeyup="getgwrrainfall();" /></td>
+                                                            <td>Recharge (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrrecharge" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Recharge from Harvesting Structures</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Net area under wells/tube <br />wells(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrHSnetUWTW" placeholder="Enter the numeric value" /></td>
+                                                            <td>Net area under canals(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrHSnetareaUcanals" placeholder="Enter the numeric value" /></td>
+                                                            <td>Net area under lakes/ponds/<br />tanks(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrHSnetareaULPT" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Net area under check dams
+                                                                <br />and nala bunds(ha)
+                                                            </td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrHSnetareaUchkdamsnalabunds" placeholder="Enter the numeric value" onkeyup="getHarvestingStructure();" /></td>
+                                                            <td>Recharge (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrHSRecharge" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Recharge from Irrigation Tanks/Ponds</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Maximum submergence area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrITPmSarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Recharge rate(m/day)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrITPrechargerate" placeholder="Enter the numeric value" /></td>
+                                                            <td>Days of submergence</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtITPdaysofsubmergence" placeholder="Enter the numeric value" onkeyup="getgwrirrigation();" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Recharge (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrITPrecharge" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Recharge from Check Dams</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Maximum submergence <br />area(ha)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrChkdamsMsArea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Average depth of water(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrChkdamsavgdepthofwater" placeholder="Enter the numeric value" /></td>
+                                                            <td>Number of fillings</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrChkdamsnooffillings" placeholder="Enter the numeric value" onkeyup="getgwrcheckdams();" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Recharge (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrChkdamsrecharge" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Recharge from Seepage through Canals</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Length of the canal(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSTCanalsLofthecansl" placeholder="Enter the numeric value" /></td>
+                                                            <td>Canal type</td>
+                                                            <td>
+                                                                <select class="form-control" id="ddlgwrSTCanalsType">
+                                                                    <option value="0">Select Canal Type</option>
+                                                                    <option value="1">Lined</option>
+                                                                    <option value="2">Unlined</option>
+                                                                    <option value="3">Both Lined & Unlined</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td>Discharge(m<sup>3</sup>/s)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSTCanalsDischarge" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Soil type</td>
+                                                            <td>
+                                                                <select class="form-control" id="ddlgwrSTCanalsSoilType">
+                                                                    <option value="0">Select Soil type</option>
+                                                                    <option value="1">Clay</option>
+                                                                    <option value="1">Sand</option>
+                                                                    <option value="2">Silt</option>
+                                                                    <option value="2">Sand</option>
+                                                                    <option value="3">Clay</option>
+                                                                    <option value="3">Sand</option>
+                                                                    <option value="3">Silt</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>Seepage factor(ha m/day)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSTCanalsSeepageFactor" placeholder="" readonly /></td>
+                                                            <td>Flowing days</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSTCanalsFlowingdays" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Average wetted perimeter(m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSTCanalsAvgWtPerimeter" placeholder="Enter the numeric value" onkeyup="getgwrSeepagecanel();" /></td>
+                                                            <td> Recharge (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSTCanalsRechargeread" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Recharge from Surface Water Irrigation</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Designed discharge at<br /> outlet(ha m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSWIDDatOutlet" placeholder="Enter the numeric value" /></td>
+                                                            <td>No.of days water is <br />released from the outlet</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSWInoofdayswtrisrelOutlet" placeholder="Enter the numeric value" /></td>
+                                                            <td>Water released from <br />outlet(ha m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSWIwtrReleasedOutlet" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>GWL (m bgl) for command<br /> area</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSWIcommandarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Irrigated area(ha) under<br /> paddy</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSWIunderpaddy" placeholder="Enter the numeric value" /></td>
+                                                            <td>Irrigated area(ha) under<br /> non-paddy</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSWIundernonpaddy" placeholder="Enter the numeric value" onkeyup="getgwrsurfacewater();" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Recharge (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrSWIRechargeRead" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Recharge from Ground Water Irrigation</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Gross ground water draft<br /> for irrigation (ha m)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrGWIgrossgwrdraftirrigation" placeholder="Enter the numeric value" /></td>
+                                                            <td>GWL (m bgl) for <br />non-command area</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrGWIgwlnoncommandarea" placeholder="Enter the numeric value" /></td>
+                                                            <td>Irrigated area(ha) unde paddy</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrGWIirriareaunderpaddy" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Irrigated area(ha) under non-paddy</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrGWIirriareaundernonpaddy" placeholder="Enter the numeric value" onkeyup="getgwrGroundWater();" /></td>
+                                                            <td> Recharge (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtgwrGWIrechargeread1" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <!--Draft-->
+                                                        <tr class="">
+                                                            <th style="padding:5px;" colspan="6" class="tableheadingbg text-center">
+                                                                <b> Water Draft</b>
+                                                            </th>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Draft for Irrigation</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Daily pumping hours/days</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtdriDpHoursordays" placeholder="Enter the numeric value" /></td>
+                                                            <td>Total no.of wells/tanks/ <br />ponds/lakes/canals/rivers</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDritotnoofPLCR" placeholder="Enter the numeric value" /></td>
+                                                            <td>Total number of pumping days</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDritotnoofPumpingdays" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Average pumping rate<br /> in m³/hour</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDriAvgpumpingRate" placeholder="Enter the numeric value" onkeyup="getdraftirrigation();" /></td>
+                                                            <td> Draft (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDriDraft" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Draft for Domestic Purpose</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Total population</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDomPurtotpopulation" placeholder="Enter the numeric value" /></td>
+                                                            <td>Total number of cattle</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDomPurtotnoofcattle" placeholder="Enter the numeric value" /></td>
+                                                            <td>Total number of buffalos</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDomPurtotnoofbuffalos" placeholder="Enter the numeric value" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total number of goats & sheeps</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDomPurtotnoofGoatsSheeps" placeholder="Enter the numeric value" onkeyup="getDraftDrinking();" /></td>
+                                                            <td> Draft (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDomPurRead" readonly /></td>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+                                                            <th style="" colspan="6" class="tableheadingbg">Draft for Industry</th>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>Surface water intake (m³/day)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDrForindustrySwtIntake" placeholder="Enter the numeric value" /></td>
+                                                            <td>Ground water intake (m³/day)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDrForindustryGwtrintake" placeholder="Enter the numeric value" /></td>
+                                                            <td>Total number of production days</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDrForindustrytotnoofprodudays" placeholder="Enter the numeric value" onkeyup="getDraftIndustries();" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Draft (m<sup>3</sup>)</td>
+                                                            <td><input type="text" class="form-control decimal" id="txtDrForindustryRead" readonly /></td>
+                                                            <td colspan="4"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-12" id="btndiv">
+                                                <div class="text-center" style="margin-bottom:10px;">
+                                                    <button type="button" class=" btn btn-success" id="btnsave" onclick="getsavedata();"><i class="fa fa-save"></i>Save</button>
+                                                    <button type="button" class="btn btn-danger" id="btndelete" onclick="getdelete();"> <i class="fa fa-trash"></i>Delete</button>
+                                                    <button type="button" class="btn btn-primary" id="btngeneratereport"> <i class="fa fa-print"></i>Generate Report</button>
+                                                    <button type="button" class="btn btn-info btnprocess2" id="btnNext">Next<i class="fa fa-arrow-right"></i> </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--3rd Water Budgeting page closed-->
+                <div role="tabpanel" class="tab-pane fade" id="WatersecurityplanWSP">
+                    <div class="clearfix" style="overflow-x:scroll;">
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="selectdistshowoption">
+                                    <ul class="Select_option" id="ulsecurity">
+                                        <li id="lisecuritystate">
+                                            <label id="lblsecuritystate">State:</label>
+                                            <span id="spnsecuritystate" style="text-transform:capitalize">State</span>
+                                        </li>
+                                        <li id="lisecurityDistrict">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label id="lblsecuritydistrict">District:</label>
+                                            <span id="spnsecuritydistrict" style="text-transform:capitalize">District</span>
+                                        </li>
+                                        <li id="lisecurityBlock">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label id="lblsecurityBlock">Block:</label>
+                                            <span id="spnsecurityBlock" style="text-transform:capitalize">block</span>
+                                        </li>
+                                        <li id="lisecurityGram">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label id="lblsecuritygram">Gram panchayat:</label>
+                                            <span id="spnsecuritygram" style="text-transform:capitalize">gram</span>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="generatesecurityreport">
+                            <div class="row">
+                                <div class="panel-group" id="accordion">
+
+                                    <!-- Start Accordion 1 -->
+                                    <div class="panel panel-default">
+                                        <!-- Toggle Heading -->
+                                        <!-- Toggle Content -->
+                                        <div id="collapse-one" class="panel-collapse in" style="background-color:lightgoldenrodyellow;">
+                                            <div class="panel-body" style="padding:0px;">
+                                                <div class="text-center panaelbodayheading">
+                                                    <b> Supply Side Interventions</b>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12 col12">
+                                                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:3px; height: 355px;">
+                                                            <tbody class="tablebaody">
+
+                                                                <tr class="backgroundtr1">
+                                                                    @*<th style="padding:5px;">Unit Cost(Lakhs) :</th>
+                                                                        <td><input type="text" id="" name="" class="form-control decimal" placeholder="Enter the numeric value" /></td>*@
+                                                                    <td style="padding:5px;" colspan="2">Unit Cost(Lakhs) :</td>
+                                                                    <td>
+                                                                        @if (ViewBag.supply != null)
+                                                                        {
+                                                                            @Html.DropDownList("supply", (IEnumerable<SelectListItem>)ViewBag.supply, "Select Supply Activity", new { id = "ddlsupply", @class = "form-control" })
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <select id="ddlsupply">
+                                                                                <option value="">Select Supply Activity</option>
+                                                                            </select>
+                                                                        }
+                                                                    </td>
+                                                                    <td colspan="2"></td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Year: 2019</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2019" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2019" name="gw_modelers_fp" /></td>
+                                                                </tr>
+
+                                                                <tr class="backgroundtr1">
+                                                                    <th>Year: 2020</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2020" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2020" name="gw_modelers_fp" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Year: 2021</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2021" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2021" name="gw_modelers_fp" /></td>
+                                                                </tr>
+                                                                <tr class="backgroundtr1">
+                                                                    <th>Year: 2022</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2022" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2022" name="gw_modelers_fp" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Year: 2023</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2023" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control  decimal" placeholder="Enter the numeric value" id="finval2023" name="gw_modelers_fp" /></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- End Accordion 1 -->
+
+                                    </div>
+                                    <!-- End Accordion -->
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="panel-group" id="accordion">
+
+                                    <!-- Start Accordion 1 -->
+                                    <div class="panel panel-default">
+                                        <!-- Toggle Heading -->
+                                        <!-- Toggle Content -->
+                                        <div id="collapse-one" class="panel-collapse in" style="background-color:lightgray;">
+                                            <div class="panel-body" style="padding:0px;">
+                                                <div class="text-center panaelbodayheading">
+                                                    <b> Demand Side Interventions</b>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12 col12">
+                                                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px; height: 355px;">
+                                                            <tbody class="tablebaody">
+
+                                                                <tr class="backgroundtr">
+                                                                    @*<th style="padding:5px;">Unit Cost(Lakhs) :</th>
+                                                                        <td><input type="text" id="" name="" class="form-control decimal" placeholder="Enter the numeric value" /></td>*@
+                                                                    <td style="padding:5px;" colspan="2">Unit Cost(Lakhs) :</td>
+                                                                    <td>
+                                                                        @if (ViewBag.demand != null)
+                                                                        {
+                                                                            @Html.DropDownList("demand", (IEnumerable<SelectListItem>)ViewBag.demand, "Select Demand Activity", new { id = "ddldemand", @class = "form-control" })
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <select id="ddldemand" name="parent">
+                                                                                <option value="">Select Demand Activity</option>
+                                                                            </select>
+                                                                        }
+                                                                    </td>
+                                                                    <td colspan="2"></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th>Year: 2019</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2019y" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2019y" name="gw_modelers_fp" /></td>
+                                                                </tr>
+
+                                                                <tr class="backgroundtr">
+                                                                    <th>Year: 2020</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2020y" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2020y" name="gw_modelers_fp" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Year: 2021</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2021y" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2021y" name="gw_modelers_fp" /></td>
+                                                                </tr>
+
+                                                                <tr class="backgroundtr">
+                                                                    <th>Year: 2022</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2022y" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2022y" name="gw_modelers_fp" /></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Year: 2023</th>
+                                                                    <td>Physical Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="phval2023y" name="gw_modelers_fp" /></td>
+                                                                    <td>Financial Value :</td>
+                                                                    <td><input type="text" class="form-control decimal" placeholder="Enter the numeric value" id="finval2023y" name="gw_modelers_fp" /></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- End Accordion 1 -->
+
+                                    </div>
+                                    <!-- End Accordion -->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top:10px;">
+                            <div class="text-center" style="margin-bottom:10px;">
+                                <button type="button" class=" btn btn-success" onclick="getsecuritysavedata();"><i class="fa fa-save"></i>Save</button>
+                                <button type="button" class="btn btn-danger" onclick="getsecuritydatadelete();"> <i class="fa fa-trash"></i>Delete</button>
+                                <button type="button" class="btn btn-primary" id="btnsecurityreport"> <i class="fa fa-print"></i>Generate Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div role="tabpanel" class="tab-pane fade in" id="GroundwaterGWM">sankar1</div>*@
+            </div>
+            <div>
+                <a href="#" class="scrollup" style="display: inline;"><i class="fa fa-angle-up"></i></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="~/Scripts/validations.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    var n = 1;
+    var ddd = 0;
+    function adddonordetails() {
+        
+        $('#DUError').text("");
+        if (ddd == 0) {
+            ddd = 1;
+            //$('#tdata1111 tbody tr').length;
+            for (var a = 0; a < n; a++) {
+                $('#tdata1111 tr:first').after('<tr id="abc_' + a + '"><tr class="trbordercolor"><td colspan="1">Category:</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">Total Households:</td><td colspan="6"><input type="text" class="form-control" /></td></tr><tr class="trbordercolor"><td colspan="1">SC (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">SC (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr><tr class="trbordercolor"><td colspan="1">ST (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">ST (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr>    <tr class="trbordercolor"><td colspan="1">OBC (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">OBC (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr>   <tr class="trbordercolor"><td colspan="1">Minority (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">Minority (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr><tr class="trbordercolor"><td colspan="1">Others (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">Others (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr> <tr class="trbordercolor"><td><button type="button" class=" btn btn-primary" onclick="SaveDonarDetails(' + a + ')">Save</button></td><td><button type="button" class=" btn btn-danger" onclick="cancel();">Cancel</button></td></tr></tr>');
+                //$('.donarclass').first().show();
+            }
+        }
+        //a = a + 1;
+        //DonarDetails();
+    }
+    function cancel() {
+
+        $('.trbordercolor').remove();
+    }
+    var Data;
+</script>
+<script>
+    function cancelonedit(i) {
+        $('#hiderowonedit_' + i).show();
+        $('#trn' + i).hide();
+    }
+    function editrow(i) {
+        $('#DUError').text("");
+        $('#trn' + i).show();
+        $('#hiderowonedit_' + i).hide();
+    }
+</script>
+<script>
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+</script>
+<!--WB-->
+<!--selection script-->
+<script type="text/javascript">
+
+    $('li.leftbtnnext > button.btnprocess1').click(function () {
+
+
+        $('ul#myTabsss.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#WaterbudgetingWB' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $('button.btnprocess2').click(function () {
+
+
+        $('ul#myTabsss.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#WatersecurityplanWSP' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $("ul#myTabsss > li > a").on("show.bs.tab", function () {
+
+        $('ul.tabs_menu > li:first-child').trigger('click');
+    });
+</script>
+<script>
+    var WSPFORMID = "";
+    var statename = "";
+    var distname = "";
+    var blockname = "";
+    var gramname = "";
+    function HouseholdsDetails(s, d, b, g) {
+        statename = s;
+        distname = d;
+        blockname = b;
+        gramname = g;
+
+       
+
+        cancel();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_total/HouseholdDetails',
+            data: '{"state": "' + s + '","dist": "' + d + '","block": "' + b + '","gram": "' + g + '"}',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var tr = "";
+
+                if (data != null) {
+                    var count = data.length;
+                    for (var i = 0; i < data.length; i++) {
+                        tr +=
+                            '<tr id="trn' + i + '" class="donarclass"  role="row" style="display:none">' +
+                            '<tr class="trhideclass' + i + '" style="display:none" ><td colspan="2">Category</td><td colspan="5" class="tdborder"><input type="text" id="Category' + i + '" value="' + data[i].category + '" /></td>' +
+                            '<td colspan="2">Total_Households</td><td colspan="5" class="tdborder"><input type="text" id="Total_Households' + i + '" value="' + data[i].tol_households + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">SC(M)</td><td colspan="5" class="tdborder"><input type="text" id="sc_m' + i + '" value="' + data[i].sc_m + '" /></td>' +
+                            '<td colspan="2">SC(F)</td><td colspan="5" class="tdborder"><input type="text" id="sc_f' + i + '" value="' + data[i].sc_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">ST(M)</td><td colspan="5" class="tdborder"><input type="text" id="st_m' + i + '" value="' + data[i].st_m + '" /></td>' +
+                            '<td colspan="2">ST(F)</td><td colspan="5" class="tdborder"><input type="text" id="st_f' + i + '" value="' + data[i].st_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">OBC(M)</td><td colspan="5" class="tdborder"><input type="text" id="obc_m' + i + '" value="' + data[i].obc_m + '" /></td>' +
+                            '<td colspan="2">OBC(F)</td><td colspan="5" class="tdborder"><input type="text" id="obc_f' + i + '" value="' + data[i].obc_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">Minority(M)</td><td colspan="5" class="tdborder"><input type="text" id="minority_m' + i + '" value="' + data[i].minority_m + '" /></td>' +
+                            '<td colspan="2">Minority(F)</td><td colspan="5" class="tdborder"><input type="text" id="minority_f' + i + '" value="' + data[i].minority_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">Others(M)</td><td colspan="5" class="tdborder"><input type="text" id="others_m' + i + '" value="' + data[i].others_m + '" /></td>' +
+                            '<td colspan="2">Others(F)</td><td colspan="5" class="tdborder"><input type="text" id="others_f' + i + '" value="' + data[i].others_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td><button type="button" class="btn btn-success" onclick="update_detail(' + data[i].hlid + ',' + i + ')">Update</button>' + '</td><td><button type="button" class="btn btn-danger" onclick="cancelonedit(' + i + ');">Cancel</button>' + '</td>' +
+                            '</tr>' + '</tr>' +
+                            '<tr role="row"  id="hiderowonedit_' + i + '"><td><button type="submit" class="btn btn-primary" onclick=editrow(' + i + ');> Edit </button></td>' + '<td><button type="button"  class="btn btn-danger" onclick = "delete_detail(' + data[i].hlid + ',' + i + ')" > Delete</button ></td> ' + ' <td > ' + data[i].category + '</td> <td>' + data[i].tol_households + '</td> <td>' + data[i].sc_m + '</td> <td>' + data[i].sc_f + '</td><td>' + data[i].st_m + '</td> <td>' + data[i].st_f + '</td> <td>' + data[i].obc_m + '</td> <td>' + data[i].obc_f + '</td> <td>' + data[i].minority_m + '</td> <td>' + data[i].minority_f + '</td> <td>' + data[i].others_m + '</td> <td>' + data[i].others_f + '</td></tr>'
+                    }
+
+                }
+                else {
+                    tr += '<tr  role="row"><td colspan="2">No Data</td></tr>';
+                }
+
+                $("#tblHouseholdsDetails").html(tr);
+
+
+            }
+        });
+    }
+    function cancel() {
+         ddd = 0;
+        $('.trbordercolor').remove();
+    }
+    function SaveHDetails() {
+        ddd = 0;
+        var obj = {};
+        obj.category = $("#gpicat").val();
+        obj.tol_households = $("#gpith").val();
+        obj.sc_m = $("#gpiscm").val();
+        obj.sc_f = $("#gpiscf").val();
+        obj.st_m = $("#gpistm").val();
+        obj.st_f = $("#gpistf").val();
+        obj.obc_m = $("#gpiobcm").val();
+        obj.obc_f = $("#gpiobcf").val();
+        obj.minority_m = $("#minorm").val();
+        obj.minority_f = $("#minorf").val();
+        obj.others_m = $("#gpiothersm").val();
+        obj.others_f = $("#gpiothersf").val();
+
+        obj.state_name = statename;
+        obj.district_name = distname;
+        obj.block = blockname;
+        obj.gname = gramname;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Wsp_total/SaveHouseHolds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                HouseholdsDetails();
+                document.getElementById('AlertError').innerHTML = response;
+            }
+        });
+    }
+    function delete_detail(IDD, i) {
+        $('.trhideclass' + i).hide();
+        var obj = {};
+        obj.hlid = IDD;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP/DeleteHouseholds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                document.getElementById('AlertError').innerHTML = response;
+                HouseholdsDetails();
+            }
+        });
+    }
+    function update_detail(Id, i) {
+
+        var obj = {};
+        obj.category = $('#Category' + i).val();
+        obj.tol_households = $('#Total_Households' + i).val();
+        obj.sc_m = $('#sc_m' + i).val();
+        obj.sc_f = $('#sc_f' + i).val();
+        obj.st_m = $('#st_m' + i).val();
+        obj.st_f = $('#st_f' + i).val();
+        obj.obc_m = $('#obc_m' + i).val();
+        obj.obc_f = $('#obc_f' + i).val();
+        obj.minority_m = $('#minority_m' + i).val();
+        obj.minority_f = $('#minority_f' + i).val();
+        obj.others_m = $('#others_m' + i).val();
+        obj.others_f = $('#others_f' + i).val();
+        obj.hlid = Id;
+        //obj.ttkid = DID;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/WSP/UpdateHouseholds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                document.getElementById('AlertError').innerHTML = response;
+                $('.trhideclass' + i).hide();
+                HouseholdsDetails();
+            }
+        });
+
+
+    }
+    function cancelonedit(i) {
+        $('.trhideclass' + i).hide();
+        $('#hiderowonedit_' + i).show();
+        $('#trn' + i).hide();
+    }
+    function editrow(i) {
+        $('#DUError').text("");
+        $('#trn' + i).show();
+        $('#hiderowonedit_' + i).hide();
+        $('.trhideclass' + i).show();
+
+
+    }
+    function Getting_water_budget_info(s, d, b, g) {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_total/Getting_Data_Wsp_budget_form',
+            data: '{"state": "' + s + '","dist": "' + d + '","block": "' + b + '","gram": "' + g + '"}',
+            dataType: 'JSON',
+             success: function (response) {                var tol_population = 0,male_population=0, female_population=0,tol_farmers=0,tol_agri_labours=0,tol_household_activities=0;                 var others_govt_private_employees = 0,forest_area=0, fallow_land=0,barrren_land=0,area_non_agri=0,irri_canals=0;                var irri_tanks = 0, irri_dugwells = 0, irri_dug_borewells = 0, irri_bore_tube_wells = 0, bullock_drawn = 0, diesel_pump = 0;                var centrifugal_pump = 0,water_pump=0,working_borewells=0,kharif_rice=0,kharif_sugarcane=0,kharif_cotton=0,kharif_maize=0,kharif_others=0;                     var rabi_wheat = 0,rabi_mustard=0,rabi_gram=0,rabi_barley=0,rabi_others=0,kharif_rabi_tomoto=0,kharif_rabi_others=0,livestock_cows_buffaloes=0;                     var livestock_bullocks = 0,livestock_sheeps_goates=0,monsoon_rainfall=0,non_monsoon_rainfall=0,monsoon_gw_level=0,non_monsoon_gw_level=0,water_drinking_purpose=0,water_agriculture_purpose=0;                     var water_industrial_purpose = 0,water_domestic_purpose=0,power_availbility=0,power_hhs=0,power_iirigation=0,power_avg_hours_connectivity=0,social_self_help=0,social_youth_clubs=0;                    var social_cooperative = 0, social_others = 0, pucca_road = 0, cult_waste_land = 0,defunt_borewells=0;                                if (response.length != 0) {                    WSPFORMID = parseInt(response[0].wspid);                                       for (var i = 0; i < response.length; i++) {                                               tol_population += parseFloat(response[i].tol_population);                        male_population+=parseFloat(response[i].male_population);                       female_population+=parseFloat(response[i].female_population);                       tol_farmers+=parseFloat(response[i].tol_farmers);                        tol_agri_labours+=parseFloat(response[i].tol_agri_labours);                        tol_household_activities+=parseFloat(response[i].tol_household_activities);                        others_govt_private_employees+=parseFloat(response[i].others_govt_private_employees);                       forest_area+=parseFloat(response[i].forest_area);                       fallow_land+=parseFloat(response[i].fallow_land);                    barrren_land+=parseFloat(response[i].barrren_land);                       area_non_agri+=parseFloat(response[i].area_non_agri);                        irri_canals+=parseFloat(response[i].irri_canals);                       irri_tanks+=parseFloat(response[i].irri_tanks);                        irri_dugwells+=parseFloat(response[i].irri_dugwells);                        irri_dug_borewells+=parseFloat(response[i].irri_dug_borewells);                        irri_bore_tube_wells+=parseFloat(response[i].irri_bore_tube_wells);                        bullock_drawn+=parseFloat(response[i].bullock_drawn);                        diesel_pump+=parseFloat(response[i].diesel_pump);                        centrifugal_pump+=parseFloat(response[i].centrifugal_pump);                       water_pump+=parseFloat(response[i].water_pump);                        working_borewells+=parseFloat(response[i].working_borewells);                        defunt_borewells+=parseFloat(response[i].defunt_borewells);                        kharif_rice+=parseFloat(response[i].kharif_rice);                        kharif_sugarcane+=parseFloat(response[i].kharif_sugarcane);                       kharif_cotton+=parseFloat(response[i].kharif_cotton);                       kharif_maize+=parseFloat(response[i].kharif_maize);                        kharif_others+=parseFloat(response[i].kharif_others);                        rabi_wheat+=parseFloat(response[i].rabi_wheat);                        rabi_mustard+=parseFloat(response[i].rabi_mustard);                      rabi_gram+=parseFloat(response[i].rabi_gram);                        rabi_barley+=parseFloat(response[i].rabi_barley);                       rabi_others+=parseFloat(response[i].rabi_others);                       kharif_rabi_tomoto+=parseFloat(response[i].kharif_rabi_tomoto);                       kharif_rabi_others+=parseFloat(response[i].kharif_rabi_others);                        livestock_cows_buffaloes+=parseFloat(response[i].livestock_cows_buffaloes);                        livestock_bullocks+=parseFloat(response[i].livestock_bullocks);                        livestock_sheeps_goates+=parseFloat(response[i].livestock_sheeps_goates);                        monsoon_rainfall+=parseFloat(response[i].monsoon_rainfall);                        non_monsoon_rainfall+=parseFloat(response[i].non_monsoon_rainfall);                        monsoon_gw_level+=parseFloat(response[i].monsoon_gw_level);                        non_monsoon_gw_level+=parseFloat(response[i].non_monsoon_gw_level);                       water_drinking_purpose+=parseFloat(response[i].water_drinking_purpose);                        water_agriculture_purpose+=parseFloat(response[i].water_agriculture_purpose);                      water_industrial_purpose+=parseFloat(response[i].water_industrial_purpose);                        water_domestic_purpose+=parseFloat(response[i].water_domestic_purpose);                       // power_availbility+=parseFloat(response[i].power_availbility);                       power_hhs+=parseFloat(response[i].power_hhs);                       power_iirigation+=parseFloat(response[i].power_iirigation);                      power_avg_hours_connectivity+=parseFloat(response[i].power_avg_hours_connectivity);                        social_self_help+=parseFloat(response[i].social_self_help);                        social_youth_clubs+=parseFloat(response[i].social_youth_clubs);                        social_cooperative+=parseFloat(response[i].social_cooperative);                        social_others+=parseFloat(response[i].social_others);                       // pucca_road+=parseFloat(response[i].pucca_road);                       // kuchha_road+=parseFloat(response[i].kuchha_road);                        cult_waste_land+=parseFloat(response[i].cult_waste_land);                    }                     $("input#tol_population").val(tol_population);                    $("input#male_population").val(male_population);                    $("input#female_population").val(female_population);                    $("input#tol_farmers").val(tol_farmers);                    $("input#tol_agri_labours").val(tol_agri_labours);                    $("input#tol_household_activities").val(tol_household_activities);                    $("input#others_govt_private_employees").val(others_govt_private_employees);                                        $("input#forest_area").val(forest_area.toFixed(3));                    $("input#fallow_land").val(fallow_land.toFixed(3));                    $("input#barrren_land").val(barrren_land.toFixed(3));                    $("input#area_non_agri").val(area_non_agri.toFixed(3));                    $("input#irri_canals").val(irri_canals.toFixed(3));                    $("input#irri_tanks").val(irri_tanks.toFixed(3));                    $("input#irri_dugwells").val(irri_dugwells.toFixed(3));                    $("input#irri_dug_borewells").val(irri_dug_borewells.toFixed(3));                    $("input#irri_bore_tube_wells").val(irri_bore_tube_wells.toFixed(3));                    $("input#bullock_drawn").val(bullock_drawn.toFixed(3));                    $("input#diesel_pump").val(diesel_pump.toFixed(3));                    $("input#centrifugal_pump").val(centrifugal_pump.toFixed(3));                    $("input#water_pump").val(water_pump.toFixed(3));                    $("input#working_borewells").val(working_borewells.toFixed(3));                    $("input#defunt_borewells").val(defunt_borewells.toFixed(3));                    $("input#kharif_rice").val(kharif_rice.toFixed(3));                    $("input#kharif_sugarcane").val(kharif_sugarcane.toFixed(3));                    $("input#kharif_cotton").val(kharif_cotton.toFixed(3));                    $("input#kharif_maize").val(kharif_maize.toFixed(3));                    $("input#kharif_others").val(kharif_others.toFixed(3));                    $("input#rabi_wheat").val(rabi_wheat.toFixed(3));                    $("input#rabi_mustard").val(rabi_mustard.toFixed(3));                    $("input#rabi_gram").val(rabi_gram.toFixed(3));                    $("input#rabi_barley").val(rabi_barley.toFixed(3));                    $("input#rabi_others").val(rabi_others.toFixed(3));                    $("input#kharif_rabi_tomoto").val(kharif_rabi_tomoto.toFixed(3));                    $("input#kharif_rabi_others").val(kharif_rabi_others.toFixed(3));                    $("input#livestock_cows_buffaloes").val(livestock_cows_buffaloes.toFixed(3));                                     $("input#livestock_bullocks").val(livestock_bullocks.toFixed(3));                    $("input#livestock_sheeps_goates").val(livestock_sheeps_goates.toFixed(3));                    $("input#monsoon_rainfall").val(monsoon_rainfall.toFixed(3));                    $("input#non_monsoon_rainfall").val(non_monsoon_rainfall.toFixed(3));                    $("input#monsoon_gw_level").val(monsoon_gw_level.toFixed(3));                    $("input#non_monsoon_gw_level").val(non_monsoon_gw_level.toFixed(3));                    $("input#water_drinking_purpose").val(water_drinking_purpose.toFixed(3));                    $("input#water_agriculture_purpose").val(water_agriculture_purpose.toFixed(3));                                                               $("input#water_industrial_purpose").val(water_industrial_purpose.toFixed(3));                    $("input#water_domestic_purpose").val(water_domestic_purpose.toFixed(3));                    //$("input#power_availbility").val(power_availbility);                    $("input#power_hhs").val(power_hhs.toFixed(3));                    $("input#power_iirigation").val(power_iirigation.toFixed(3));                    $("input#power_avg_hours_connectivity").val(power_avg_hours_connectivity.toFixed(3));                    $("input#social_self_help").val(social_self_help.toFixed(3));                    $("input#social_youth_clubs").val(social_youth_clubs.toFixed(3));                    $("input#social_cooperative").val(social_cooperative.toFixed(3));                    $("input#social_others").val(social_others.toFixed(3));                   // $("input#pucca_road").val(pucca_road);                  // $("input#kuchha_road").val(kuchha_road);                    $("input#cult_waste_land").val(cult_waste_land.toFixed(3));                               }            }
+        });
+    }
+    function saveAllData() {
+    
+        var obj = {};
+        // wspstate
+        obj.state_name = statename;
+        obj.district_name = distname;
+        obj.block = blockname;
+        obj.gname = gramname;
+
+        obj.tol_population = $("#tol_population").val();
+        obj.male_population = $("#male_population").val();
+        obj.female_population = $("#female_population").val();
+        obj.tol_farmers = $("#tol_farmers").val();
+        obj.tol_agri_labours = $("#tol_agri_labours").val();
+        obj.tol_household_activities = $("#tol_household_activities").val();
+        obj.others_govt_private_employees = $("#others_govt_private_employees").val();
+        obj.forest_area = $("#forest_area").val();
+        obj.fallow_land = $("#fallow_land").val();
+        obj.barrren_land = $("#barrren_land").val();
+        obj.area_non_agri = $("#area_non_agri").val();
+        obj.irri_canals = $("#irri_canals").val();
+        obj.irri_tanks = $("#irri_tanks").val();
+        obj.irri_dugwells = $("#irri_dugwells").val();
+        obj.irri_dug_borewells = $("#irri_dug_borewells").val();
+        obj.irri_bore_tube_wells = $("#irri_bore_tube_wells").val();
+        obj.bullock_drawn = $("#bullock_drawn").val();
+        obj.diesel_pump = $("#diesel_pump").val();
+        obj.centrifugal_pump = $("#centrifugal_pump").val();
+        obj.water_pump = $("#water_pump").val();
+        obj.working_borewells = $("#working_borewells").val();
+        obj.defunt_borewells = $("#defunt_borewells").val();
+        obj.kharif_rice = $("#kharif_rice").val();
+        obj.kharif_sugarcane = $("#kharif_sugarcane").val();
+        obj.kharif_cotton = $("#kharif_cotton").val();
+        obj.kharif_maize = $("#kharif_maize").val();
+        obj.kharif_others = $("#kharif_others").val();
+        obj.rabi_wheat = $("#rabi_wheat").val();
+        obj.rabi_mustard = $("#rabi_mustard").val();
+        obj.rabi_gram = $("#rabi_gram").val();
+        obj.rabi_barley = $("#rabi_barley").val();
+        obj.rabi_others = $("#rabi_others").val();
+        obj.kharif_rabi_tomoto = $("#kharif_rabi_tomoto").val();
+        obj.kharif_rabi_others = $("#kharif_rabi_others").val();
+        obj.livestock_cows_buffaloes = $("#livestock_cows_buffaloes").val();
+        obj.livestock_bullocks = $("#livestock_bullocks").val();
+        obj.livestock_sheeps_goates = $("#livestock_sheeps_goates").val();
+        obj.monsoon_rainfall = $("#monsoon_rainfall").val();
+        obj.non_monsoon_rainfall = $("#non_monsoon_rainfall").val();
+        obj.monsoon_gw_level = $("#monsoon_gw_level").val();
+        obj.non_monsoon_gw_level = $("#non_monsoon_gw_level").val();
+
+        obj.water_drinking_purpose = $("#water_drinking_purpose").val();
+        obj.water_agriculture_purpose = $("#water_agriculture_purpose").val();
+        obj.water_industrial_purpose = $("#water_industrial_purpose").val();
+        obj.water_domestic_purpose = $("#water_domestic_purpose").val();
+        obj.power_availbility = $("#power_availbility").val();
+        obj.power_hhs = $("#power_hhs").val();
+        obj.power_iirigation = $("#power_iirigation").val();
+        obj.power_avg_hours_connectivity = $("#power_avg_hours_connectivity").val();
+        obj.social_self_help = $("#social_self_help").val();
+        obj.social_youth_clubs = $("#social_youth_clubs").val();
+        obj.social_cooperative = $("#social_cooperative").val();
+        obj.social_others = $("#social_others").val();
+        obj.pucca_road = $("#pucca_road").val();
+        obj.kuchha_road = $("#kuchha_road").val();
+        obj.cult_waste_land= $("#cult_waste_land").val();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Wsp_total/Wsp_budget_form",
+            data: "{'Data': '" + JSON.stringify(obj) + "','Idd':'" + WSPFORMID +"'}",
+            dataType: 'JSON',
+            success: function (response) {
+
+                document.getElementById('AlertError').innerHTML = response;
+                Getting_water_budget_info();
+            }
+        });
+
+    }
+    $('#resetdata').click(function () {
+        if (confirm("You want to Delete the data ?")) {
+            /*Clear all input type="text" box*/
+            $('#resetinfo input[type="text"]').val('');
+            /*Clear textarea using id */
+            $('#resetinfo #txtAddress').val('');
+            document.getElementById('AlertError').innerHTML = "Deleted Successfully";
+        }
+    });
+
+    //   $("#reset").bind("click", function () {
+    //    $("input[type=text], textarea").val("");
+    //    document.getElementById('AlertError').innerHTML = "Deleted Successfully";
+    //});
+
+</script>
+<script>
+    function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find(".more-less")
+            .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+</script>

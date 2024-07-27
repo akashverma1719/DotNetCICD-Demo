@@ -1,0 +1,271 @@
+﻿<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>WSP</title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        html,
+        body,
+        #viewDiv1 {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css" />
+    <script src="https://jsdev.arcgis.com/4.27/"></script>
+    
+    <script type="text/plain" id="labeid">
+        var field = $feature.GP_NAME;
+        var queryArc = Trim(First(Split(DomainName($feature, 'GP_NAME'),'_')));
+
+        return queryArc ;
+    </script>
+
+    @*---------Water Level Map View-----------*@
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/widgets/Home",
+            "esri/layers/FeatureLayer",
+            "esri/rest/support/Query",
+            "esri/layers/support/FeatureEffect",
+            "esri/layers/support/FeatureFilter",
+
+
+        ], function (Map, MapView, Home, FeatureLayer, Query, FeatureEffect, FeatureFilter) {
+
+            var map = new Map({
+                basemap: "gray-vector"
+            });
+
+            const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [78, 22],
+
+                zoom: 16,
+                highlightOptions: {
+                    color: "orange"
+                },
+                popup: {
+                    dockEnabled: true,
+                    dockOptions: {
+                        buttonEnabled: false,
+                        breakpoint: false
+                    }
+                },
+                // minScale: 900000,
+                // maxScale: 900000,
+
+            });
+            //const homeBtn = new Home({
+            //    view: view
+            //});
+            //view.ui.add(homeBtn, "top-left");
+            view.when(disableZooming);
+
+        function disableZooming(view) {
+          // Removes the zoom action on the popup
+          view.popup.actions = [];
+
+          // stops propagation of default behavior when an event fires
+          function stopEvtPropagation(event) {
+            event.stopPropagation();
+          }
+
+          // exlude the zoom widget from the default UI
+          view.ui.components = ["attribution"];
+
+          // disable mouse wheel scroll zooming on the view
+          view.on("mouse-wheel", stopEvtPropagation);
+
+          // disable zooming via double-click on the view
+          view.on("double-click", stopEvtPropagation);
+
+          // disable zooming out via double-click + Control on the view
+          view.on("double-click", ["Control"], stopEvtPropagation);
+
+          // disables pinch-zoom and panning on the view
+          view.on("drag", stopEvtPropagation);
+
+          // disable the view's zoom box to prevent the Shift + drag
+          // and Shift + Control + drag zoom gestures.
+          view.on("drag", ["Shift"], stopEvtPropagation);
+          view.on("drag", ["Shift", "Control"], stopEvtPropagation);
+
+          // prevents zooming with the + and - keys
+          view.on("key-down", (event) => {
+            const prohibitedKeys = [
+              "+",
+              "-",
+              "Shift",
+              "_",
+              "=",
+              "ArrowUp",
+              "ArrowDown",
+              "ArrowRight",
+              "ArrowLeft"
+            ];
+            const keyPressed = event.key;
+            if (prohibitedKeys.indexOf(keyPressed) !== -1) {
+              event.stopPropagation();
+            }
+          });
+
+          return view;
+        }
+
+            const excludedEffect = "grayscale(100%) opacity(10%)";
+            const gwlLabel = {
+                type: "simple", // autocasts as new SimpleRenderer()
+                symbol: {
+                    type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                    size: 5,
+                    color: "green",
+                    outline: null
+                }
+            };
+
+            const labellingID = document.getElementById("labeid").text;
+            const labelClass = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",  // autocasts as new TextSymbol()
+                    color: "blue",
+                    //   haloColor: "black",
+                    //   haloSize: 1,
+                    font: {  // autocast as new Font()
+                        "family": "Avenir Next LT Pro Medium",
+                        "style": "normal",
+                        "weight": "bold",
+                        size: 9,
+                    }
+                },
+                labelPlacement: "always-horizontal",
+                labelExpressionInfo: {
+                    expression: labellingID
+                },
+            };
+            const labelClassgwl = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",  // autocasts as new TextSymbol()
+                    color: "green",
+                    //   haloColor: "black",
+                    //   haloSize: 1,
+                    font: {  // autocast as new Font()
+                        "family": "Avenir Next LT Pro Medium",
+                        "style": "normal",
+                        size: 7,
+                    }
+                },
+                labelPlacement: "above-right",
+                labelExpressionInfo: {
+                    expression: "$feature.wellid"
+                },
+            };
+            var gramPan = new FeatureLayer({
+                url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Gram_Panchayat/MapServer/0",
+
+                title: "Gram Panchayat",
+                labelingInfo: [labelClass],
+                renderer: {
+                    type: "simple",
+                    symbol: {
+                        type: "simple-fill",
+                        color: null,
+                        outline: {
+                            width: 1,
+                            color: "blue"
+                        }
+                    }
+                },
+
+                popupTemplate: {
+                    title: "Gram Panchayat :- {GP_NAME}",
+                    content: [
+                        {
+                            type: "fields",
+                            fieldInfos: [
+                                {
+                                    fieldName: "GP_NAME",
+                                    visible: true,
+                                    label: "Gram Panchayat",
+                                    format: {
+                                        places: 0,
+                                        digitSeparator: true
+                                    }
+                                },
+                                {
+                                    fieldName: "bloc_name",
+                                    visible: true,
+                                    label: "Block Name"
+                                },
+                                {
+                                    fieldName: "dist_name",
+                                    visible: true,
+                                    label: "District Name"
+                                },
+                                {
+                                    fieldName: "st_name",
+                                    visible: true,
+                                    label: "State Name"
+                                },
+                                {
+                                    fieldName: "count_vill",
+                                    visible: true,
+                                    label: "Count_of_Villages_Under_GPs"
+                                },
+                            ]
+                        },
+                    ]
+                },
+                outFields: ["*"],
+            });
+
+            map.add(gramPan);
+            var gp = '@Session["ggram"]';
+
+            view.whenLayerView(gramPan).then(function (layerView) {
+                var query = gramPan.createQuery();
+                query.where = "GP_NAME = '" + gp + "'";
+                gramPan.queryExtent(query).then(function (results) {
+                    view.goTo(results.extent);  // go to the extent of all the graphics in the layer view
+                });
+            });
+            gramPan.featureEffect = new FeatureEffect({
+                filter: new FeatureFilter({
+                    where: "GP_NAME = '" + gp + "'"
+                }),
+                excludedEffect: excludedEffect
+
+            });
+            var gwl = new FeatureLayer({
+                url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/WaterLevelNew/MapServer/0",
+                renderer: gwlLabel,
+                labelingInfo: [labelClassgwl],
+            });
+            map.add(gwl);
+            gwl.featureEffect = new FeatureEffect({
+                filter: new FeatureFilter({
+                    where: "grampanchayat  = '" + gp + "'"
+                }),
+                excludedEffect: excludedEffect
+            });
+
+        });
+    </script>
+</head>
+</html>

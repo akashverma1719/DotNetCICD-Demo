@@ -1,0 +1,111 @@
+﻿.origin {
+    width: 1em;
+    height: 1em;
+    font-size: 11vmin;
+    position: relative;
+    background: #fff;
+    -webkit-animation: spin 6s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+    animation: spin 6s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+    border-radius: 50px;
+    margin-top:350px;
+    float:left;
+}
+
+@-webkit-keyframes spin {
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.origin:before, .origin:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: solid 1px red;
+    -webkit-transform-origin: inherit;
+    transform-origin: inherit;
+
+
+}
+
+.origin:before {
+    -webkit-animation: inherit;
+    animation: inherit;
+    animation-direction: reverse;
+    font-size: .12em;
+    content: attr(style);
+    display: flex;
+    text-align: center;
+    word-break: keep-all;
+    align-items: center;
+    z-index: 2;
+}
+
+.origin:after {
+    background: red;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+}
+
+/* ---------------------------------- */
+html, body {
+    background: #39AAF5;
+}
+
+.origin {
+    background: #3b2c85;
+    background: #fff;
+}
+
+    .origin:before {
+        border: solid 1px #db3951;
+        color: #7A3806;
+        z-index: 5;
+        border-radius: 50px;
+    }
+
+    .origin:after {
+        background: #db3951;
+    }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    grid-template: repeat(3, auto)/repeat(3, auto);
+    grid-gap: 1em;
+}

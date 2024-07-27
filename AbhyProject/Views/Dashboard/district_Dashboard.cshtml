@@ -1,0 +1,1230 @@
+﻿@{
+    ViewBag.Title = "District Dashboard";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Location Dashboard</title>
+    <link href="~/Content/DashboardSheet1.css" rel="stylesheet" />
+ 
+    <style type="text/css">
+        .comp_layout {
+            height: 150px !important;
+        }
+
+        .comp_layout1 {
+            background-color: lightslategray;
+        }
+
+        .comp_layout22 {
+            background-color: lightgray;
+        }
+
+        .comp_layout33 {
+            background-color: darkgray;
+        }
+
+        .comp_layout .content {
+            line-height: 1.7em !important;
+            color: #000;
+        }
+
+        .content:hover {
+            color: #fff;
+        }
+
+        .dept_head_bg > h4:hover {
+            color: #fff;
+        }
+
+        .comp_layout h1, .comp_layout h4 {
+            color: #000;
+        }
+
+            .comp_layout h4 :focus,
+            .comp_layout h4 :hover {
+                color: #fff;
+            }
+
+        .totalcontentrow {
+            margin-top: 12px;
+        }
+
+        .comp_lightblueall {
+            background-color: #E2cf31;
+        }
+
+            .comp_lightblueall:hover {
+                background-color: gray;
+                color: #fff;
+            }
+
+        .bgcolorline {
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            background-color: #999;
+            border-radius: 10px;
+        }
+
+        .content_logo > img {
+            width: 50px;
+        }
+
+        .dept_head_bg > h4 {
+            font-size: 18px;
+            margin-top: 3px;
+        }
+
+        .card-body {
+            -webkit-box-flex: 1;
+            flex: 1 1 auto;
+            padding: 1.25rem;
+        }
+
+
+        .dib {
+            display: inline-block;
+        }
+
+        .stat-widget-one .stat-icon i {
+            font-size: 30px;
+            border-width: 3px;
+            border-style: solid;
+            border-radius: 100px;
+            padding: 15px;
+            font-weight: 900;
+            display: inline-block;
+        }
+
+        [class^="ti-"], [class*=" ti-"] {
+            font-family: 'themify';
+            speak: none;
+            font-style: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dept_no_bg1 {
+            padding: 19px !important;
+        }
+
+        .twt-feed.blue-bg {
+            background: #58C9F3;
+        }
+
+        .twt-feed {
+            -webkit-border-radius: 4px 4px 0 0;
+            color: #FFFFFF;
+            padding: 40px 10px 10px;
+            position: relative;
+            min-height: 150px;
+        }
+
+        .black-ribon {
+            background: url(../../images/3d_images/twitter_corner_black.png) no-repeat;
+        }
+
+        .corner-ribon {
+            text-align: center;
+            width: 71px;
+            height: 71px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 20px;
+        }
+
+        .twt-feed .wtt-mark {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 120px;
+            position: absolute;
+            top: 10px;
+            left: 40%;
+        }
+
+        .corner-ribon i {
+            padding: 10px 0 0 35px;
+            color: #fff;
+        }
+
+        .twt-footer, .twt-footer a {
+            color: #d2d2d2;
+        }
+
+        .twt-footer {
+            padding: 12px 15px;
+        }
+
+        .card .card-footer ul {
+            margin-top: 10px;
+        }
+
+            .card .card-footer ul li {
+                display: table-cell;
+                padding: 0 1rem;
+                text-align: center;
+                line-height: 1.8em;
+            }
+
+        .pg1 {
+            background-color: #28a745;
+        }
+
+        .pg2 {
+            background-color: #17a2b8;
+        }
+
+        .pg2 {
+            background-color: #ffc107;
+        }
+
+        .pg2 {
+            background-color: #dc3545;
+        }
+
+        .stat-widget-one {
+            margin-top: 20px;
+        }
+
+        .stat-icon {
+            padding-right: 10px;
+        }
+
+        .stat-content {
+            line-height: 1.6em;
+        }
+
+        .ti-layout-grid2:before {
+            content: "\e709";
+        }
+
+        .text-warning {
+            color: #ffc107 !important;
+        }
+
+        .border-warning {
+            border-color: #ffc107 !important;
+        }
+
+        .text-muted,
+        .text-muted1 {
+            color: #fff !important;
+        }
+
+        .hidden-sm-down > strong {
+            color: #fff;
+        }
+
+        ul.selctingoption {
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.5em;
+            padding: 4px;
+        }
+
+            ul.selctingoption > li {
+                display: inline-block;
+                padding: 0px 10px;
+            }
+            .btn-success {
+    width: 190px;
+    float:none;
+}
+            .fa-hand-o-left
+            {
+                padding:0px 10px;
+            }
+    </style>
+    <style type="text/css">
+        .modal-backdrop.in {
+            z-index: 0px !important;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.95;
+            visibility: visible;
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+
+        .loading-inactive {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            font-size: 13px;
+            margin: 0px;
+        }
+
+            ul.Select_option > li {
+                display: inline-block;
+                padding: 0px 0px 0px 5px;
+            }
+
+                ul.Select_option > li > span > i {
+                    padding: 0px 0px 0px 10px;
+                }
+
+        .selectdistshowoption {
+            margin-top: 5px;
+        }
+
+        .selctingoption > li > div > select {
+            text-transform: capitalize;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="300" width="300" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="selctingoption">
+
+                <li>
+                    <div class="" style="color:#000;">
+                        Select District:
+                        <select class="form-control" style="width:auto" id="Dashdist" required>
+                            <option value="0">Select District</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+
+                    <div class="" style="color:#000;">
+                        Select Block:
+                        <select class="form-control" style="width:auto" id="Dashblock" required>
+                            <option value="0">Select Block</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+
+                    <div class="" style="color:#000;">
+                        Select Gram  panchayat:
+                        <select class="form-control" style="width:auto" id="Dashgram" required>
+                            <option value="0">Select Gram  Panchayat</option>
+                        </select>
+                    </div>
+                </li>
+                @*<li>
+
+                    <div class="" style="color:#000;">
+                        Select Village:
+                        <select class="form-control" style="width:auto" id="Dashvillage">
+                            <option value="0">Select Village</option>
+                        </select>
+                    </div>
+                </li>*@
+                <li>
+                    <button class="form-control btn btn-primary" name="" id="btnfilterdata" onclick="getfilterdata();">SEARCH</button>
+                </li>
+            </ul>
+
+            <div class="body_content_style_new">
+
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible" role="alert">
+                        <div class="selectdistshowoption">
+                            <ul class="Select_option">
+                                <li>
+                                    <span class="badge badge-pill badge-success">Project Updates and Trends</span>
+                                </li>
+                                <li>
+                                    <span id="spnViewLatestPrUpAcrossstate">View latest project updates across India</span>
+                                </li>
+                                <li id="listate">
+                                    @*<label id="lblstate">State:</label>*@
+                                    <span id="spnstate" style="text-transform:capitalize"></span>
+                                </li>
+                                <li id="lidistrict">
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label id="lbldistrict">District:</label>
+                                    <span id="spndistrict1" style="text-transform:capitalize"></span>
+                                </li>
+                                <li id="liblock">
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Block:</label>
+                                    <span id="spnblock1" style="text-transform:capitalize"></span>
+                                </li>
+                                <li id="lipanchayat">
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Gram panchayat:</label>
+                                    <span id="spnpanchayat1" style="text-transform:capitalize"></span>
+                                </li>
+                                @*<li id="livillage">
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label>Village:</label>
+                            <span id="spnvillage1" style="text-transform:capitalize"></span>
+                        </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Groundwater Level Trends</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/gwl_trends.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total Wells</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwltotwells">0</label></div>
+                                    <div class="col-xs-7"><b>Improved Wells</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwlimprovedwells">0</label></div>
+                                    <div class="col-xs-7"><b>Declined Wells</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwldeclinedwells">0</label></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Water Budgets</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/Water Budgets.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwb_totalgps">0</label></div>
+                                    <div class="col-xs-7"><b>Improved GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwb_improvedgps">0</label></div>
+                                    <div class="col-xs-7"><b>Declined GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwb_diclinedgps">0</label></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Water Security Plan Prepared</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/wsp_prepand.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="wsppreparedGps">0</label></div>
+                                    <div class="col-xs-7"><b>Completed GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="wsppreparedcompletedgps">0</label></div>
+                                    <div class="col-xs-7"><b>Working GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="wsppreaparedworkinggps">0</label></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Water Security Plan Implemented</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/wsp_implemented.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="wspimplementedgps">0</label></div>
+                                    <div class="col-xs-7"><b>Completed GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="wspimplementedcompletedgps">0</label></div>
+                                    <div class="col-xs-7"><b>Working GPs</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="wspimplementedworkinggps">0</label></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Groundwater Level from Piezometer</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/GWL from Piezometer.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total </b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwlPiezometertotal">0</label></div>
+                                    <div class="col-xs-7"><b>Working </b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="gwlPiezometerworking">0</label></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Rainfall from Weather Stations</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/Rainfall from Weather Stations.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total AWS</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="rainfallweatherstationstotaws">0</label></div>
+                                    <div class="col-xs-7"><b>Working AWS</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="rainfallweatherstationsworkingaws">0</label></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Supply Side Interventions</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/Supply Side Interventions.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total Planned</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="supplysideinterventiontotplanned">0</label></div>
+                                    <div class="col-xs-7"><b>Completed:</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="supplysideinterventioncompleted">0</label></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <div class="comp_layout text-center comp_lightblueall">
+                            <div>
+                                <div class="dept_head_bg"><h4>Demand Side Interventions</h4></div>
+                                <div class="dept_no_bg1"></div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <hr>
+                            <div class="content_logo">
+
+                                <img src="~/Images/3d_images/gwl_trends.png" />
+                            </div>
+                            @*background: linear-gradient(to bottom ,#DBE6F6, #3FADA8);*@
+                            <div class="content text-justify">
+                                <div class="row totalcontentrow">
+                                    <div class="col-xs-7"><b>Total Planned</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="demandsideintenventiontotpalanned">0</label></div>
+                                    <div class="col-xs-7"><b>Completed:</b></div>
+                                    <div class="col-xs-5">: <label class="bgcolorline" id="demandsideintenventioncompleted">0</label></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-4">
+                        <section class="card comp_layout" style="height:150px !important">
+                            <div class="twt-feed blue-bg">
+                                <div class="corner-ribon black-ribon">
+                                    <i class="fa fa-twitter"></i>
+                                </div>
+                                <div class="fa fa-twitter wtt-mark"></div>
+
+                                <div class="media">
+
+                                    <div class="media-body">
+                                        <h4 id="gpname" class="text-white" style="font-size:15px; font-weight:300;">Bira</h4>
+                                        <p class="text-light">Top Performing Gram panchayat</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-6" style="padding:0px 15px;">
+                        <div class="card comp_layout comp_layout1" style="padding:10px;">
+
+                            <div class="card-footer" onmouseout="this.style.backgroundColor='LIGHTSLATEGRAY';" style="background-color:LIGHTSLATEGRAY;">
+                                <ul>
+                                    <li>
+                                        <div class="text-muted" style="color:red;">Total</div>
+                                        <strong class="text-muted1"><label id="lbltotalsites">0</label> Sites</strong>
+
+                                        <div class="progress" style="height:5px;">
+                                            <div id="divtotalsitespogressbar" style="width:100%" class="progress-bar bg-success pg1" role="progressbar" aria-valuenow="100" aria-valuemin="50" aria-valuemax="100"></div>
+                                        </div>
+                                    </li>
+                                    <li class="hidden-sm-down">
+                                        <div class="text-muted">Planning</div>
+                                        <strong><label id="lblcreatedsites">0</label> Sites created WSP (<label id="lblcreatedsitesprogressbarper">0</label>%)</strong>
+                                        <div class="progress" style="height:5px;">
+                                            <div id="divcreatedsitesprogressbar" class="progress-bar bg-danger pg2" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="text-muted">Implementation</div>
+                                        <strong class="text-muted1"><label id="lblimplementsites">0</label> Sites implemented WSP (<label id="lblimplementsitesprogressbarper">0</label>%)</strong>
+                                        <div class="progress" style="height:5px;">
+                                            <div id="divimplementsitesprogressbar" class="progress-bar bg-warning pg3" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </li>
+                                    <li class="hidden-sm-down">
+                                        <div class="text-muted">Results</div>
+                                        <strong><label id="lblresultsites">0</label> GWL improved (<label id="lblresultsitesprogressbarper">0</label>%)</strong>
+                                        <div class="progress" style="height:5px;">
+                                            <div id="divresultprogressbar" class="progress-bar bg-info pg4" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-3">
+                        <div class="card-body comp_layout22 comp_layout">
+                            <div class="stat-widget-one">
+                                <div class="stat-icon dib">
+                                    <i class="ti-money text-success border-success">?</i>
+                                </div>
+                                <div class="stat-content dib">
+                                    <div class="stat-text">Total Investment</div>
+                                    <div class="stat-digit"><font size="4"><label id="lblTotalInvestment">255.2606</label> Lakhs</font></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:;">
+                    <div class="col-md-3">
+                        <div class="card bggray comp_layout33 comp_layout">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib">
+                                       
+                                        <i class=" text-warning border-warning">
+                                            <img src="~/Content/WspImages/Dashboard/Active_projects.png" width="18px;" />
+                                        </i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Active Projects</div>
+                                        <div class="stat-digit">770</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div style="clear:both"></div>
+                <div class="col-md-12 text-center">
+                    <a href="~/Dashboard/Dashboard" class="btn btn-success"><i class="fa fa-hand-o-left"></i>Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    var state_name = "";
+    var state_id = "";
+    var Jsondata = "";
+    $(document).ready(function () {
+        $('#listate').hide();
+            $('#lidistrict').hide();
+            $('#liblock').hide();
+            $('#lipanchayat').hide();
+             $('#livillage').hide();
+        let searchParams = new URLSearchParams(window.location.search)
+        var param = searchParams.get('distname');
+         state_name = param.split(',')[0];
+        state_id = param.split(',')[1];
+        if (state_name==="national" && state_id==="0") {
+            $(".selctingoption").hide();
+            getnationalwisedata();
+        }
+        getdistrictdata();
+        getstatewiseStartdata(state_name, state_id);
+        if (state_name === "national" && state_id === "0") {
+            $('#spnViewLatestPrUpAcrossstate').text('View latest project updates across India.');
+            $('#listate').hide();
+            $('#lidistrict').hide();
+            $('#liblock').hide();
+            $('#lipanchayat').hide();
+             $('#livillage').hide();
+        }
+        else {
+            $('#spnViewLatestPrUpAcrossstate').text('View latest project updates across State.');
+            $('#listate').show();
+            $('#spnstate').text(state_name);
+            $('#lidistrict').hide();
+            $('#liblock').hide();
+            $('#lipanchayat').hide();
+             $('#livillage').hide();
+        }
+    });
+
+    function getstatewiseStartdata(name, sid) {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/gostatedata',
+            data: '{"statename":"' + name + '","stateid":"' + sid + '"}',
+            dataType: 'JSON',
+            success: function (data) {
+               var Jsondata1 = data;
+                getvillagewisefilter(Jsondata1);
+
+                $(".loading-container").hide();
+            }
+        });
+    }
+
+
+    function getdistrictdata() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/dashboardDistrictJsondata',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+               Jsondata = JSON.parse(data);
+                GetStateWiseData();
+                $(".loading-container").hide();
+            }
+        });
+    }
+
+
+    function GetStateWiseData() {
+        var stname = state_name;
+        statevalue = state_id;
+        //$("#lbldisplaystatename").html(stname);
+        if (statevalue != "") {
+            var distid = statevalue;
+            var distjsondata = Jsondata.filter(m => m.sid == distid);
+            $("#Dashdist").html("");
+            $("#Dashblock").html("");
+            $("#Dashblock").prepend($('<option></option>').val("").html("Select Block"));
+            $("#Dashgram").html("");
+            $("#Dashgram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+            $("#Dashvillage").html("");
+            $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+            $.each(distjsondata, function (i, dist) {
+                $.each(dist.abhy_districts, function (j, distval) {
+                    $("#Dashdist").append($('<option></option>').val(distval.did).html(distval.district_name));
+                });
+            });
+            $("#Dashdist").prepend($('<option></option>').val("").html("Select District"));
+            $("#Dashdist").val("");
+        }
+        else {
+            $("#Dashdist").html("");
+            $("#Dashdist").prepend($('<option></option>').val("").html("Select District"));
+            $("#Dashblock").html("");
+            $("#Dashblock").prepend($('<option></option>').val("").html("Select Block"));
+            $("#Dashgram").html("");
+            $("#Dashgram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+            $("#Dashvillage").html("");
+            $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+        }
+    }
+    $("#Dashdist").change(function () {
+        if (this.value != "" && statevalue != "") {
+            var distjsondata2 = Jsondata.filter(m => m.sid == statevalue);
+            var mandjsondata = distjsondata2[0].abhy_districts.filter(m => m.did == this.value);
+            $("#Dashblock").html("");
+            $("#Dashgram").html("");
+            $("#Dashgram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+            $("#Dashvillage").html("");
+            $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+            $.each(mandjsondata, function (j, mandval) {
+                $.each(mandval.abhy_blocks, function (k, mandval2) {
+                    $("#Dashblock").append($('<option></option>').val(mandval2.bid).html(mandval2.block_name));
+                });
+            });
+            $("#Dashblock").prepend($('<option></option>').val("").html("Select Block"));
+            $("#Dashblock").val("");
+        }
+        else {
+            $("#Dashblock").html("");
+            $("#Dashblock").prepend($('<option></option>').val("").html("Select Block"));
+            $("#Dashgram").html("");
+            $("#Dashgram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+            $("#Dashvillage").html("");
+            $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+        }
+    });
+    $("#Dashblock").change(function () {
+        if (this.value != "" && statevalue != "" && $("#Dashdist").val() != "") {
+            var distjsondata3 = Jsondata.filter(m => m.sid == statevalue);
+            var mandjsondata2 = distjsondata3[0].abhy_districts.filter(m => m.did == $("#Dashdist").val());
+            var gramjsonata = mandjsondata2[0].abhy_blocks.filter(m => m.bid == this.value);
+            $("#Dashgram").html("");
+            $("#Dashvillage").html("");
+            $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+            $.each(gramjsonata, function (j, gramval) {
+                $.each(gramval.abhy_grampanchayat, function (k, gramval2) {
+                    $("#Dashgram").append($('<option></option>').val(gramval2.gpid).html(gramval2.gpname));
+                });
+            });
+            $("#Dashgram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+            $("#Dashgram").val("");
+        }
+        else {
+            $("#Dashgram").html("");
+            $("#Dashgram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+            $("#Dashvillage").html("");
+            $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+        }
+    });
+    var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+    $("#Dashgram").change(function () {
+        if (this.value != "" && statevalue != "" && $("#Dashdist").val() != "" && $("#Dashblock").val() != "") {
+            var distjsondata4 = Jsondata.filter(m => m.sid == statevalue);
+        var mandjsondata3 = distjsondata4[0].abhy_districts.filter(m => m.did == $("#Dashdist").val());
+            var gramjsonata2 = mandjsondata3[0].abhy_blocks.filter(m => m.bid == $("#Dashblock").val());
+            var villagejsondata = data.filter(m => m.sid == statevalue && m.did == $("#Dashdist").val() && m.bid == $("#Dashblock").val() && m.gpid == this.value);
+        $("#Dashvillage").html("");
+            $.each(villagejsondata, function (j, villageval) {
+                $("#Dashvillage").append($('<option></option>').val(villageval.vid).html(villageval.viname));
+        });
+            $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+        $("#Dashvillage").val("");
+    }
+        else {
+            $("#Dashvillage").html("");
+        $("#Dashvillage").prepend($('<option></option>').val("").html("Select Village"));
+        }
+
+    });
+
+
+
+</script>
+<script>
+    function getfilterdata() {
+        var ddldistrict = "";
+        var ddlblock = "";
+        var ddlgp = "";
+        var ddldistid = "";
+        var ddlblockid = "";
+        var ddlgpid = "";
+        var ddlvillage = "";
+        if ($("#Dashdist option:selected").text() != "Select District") {
+            ddldistrict = $("#Dashdist option:selected").text();
+            ddldistid = $("#Dashdist").val();
+            $('#lidistrict').show();
+            $('#spndistrict1').text(ddldistrict);
+        }
+        else {
+            alert('Please Select District Name');
+            $("#Dashdist").focus();
+            return false();
+        }
+        if ($("#Dashblock option:selected").text() != "Select Block") {
+            ddlblock = $("#Dashblock option:selected").text();
+            ddlblockid = $("#Dashblock").val();
+            $('#liblock').show();
+            $('#spnblock1').text(ddlblock);
+        }
+        else {
+            alert('Please Select Block Name');
+            $("#Dashblock").focus();
+            return false();
+        }
+        if ($("#Dashgram option:selected").text() != "Select Gram Panchayat") {
+            ddlgp = $("#Dashgram option:selected").text();
+            ddlgpid = $("#Dashgram").val();
+            $('#lipanchayat').show();
+            $('#spnpanchayat1').text(ddlgp);
+        }
+        else {
+            alert('Please Select Gram Panchayat Name');
+            $("#Dashgram").focus();
+            return false();
+        }
+        if ($("#Dashvillage option:selected").text() != "Select Village") {
+            ddlvillage = $("#Dashvillage option:selected").text();
+            $('#livillage').show();
+            $('#spnvillage1').text(ddlvillage);
+        }
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/gofillterdata',
+            data: '{"district":"' + ddldistrict + '","block":"' + ddlblock + '","gp":"' + ddlgp + '","statename":"' + state_name + '","stateid":"' + state_id + '","distid":"' + ddldistid + '","blockid":"' + ddlblockid + '","gpid":"' + ddlgpid + '"}',
+            dataType: 'JSON',
+            success: function (data) {
+                getvillagewisefilter(data);
+
+            }
+        });
+    }
+    function getvillagewisefilter(result1) {
+
+        var result = "";
+        if (result1 != null) {
+
+            result = result1;
+            var gwl_totwells_count = 0;
+            var gwl_improvedwells_count = 0;
+            var implementationsites_count = 0;
+
+            var gwl_totwells = result.Abhy_groundwater_levels;
+            var gwl_improvedwells = result.Abhy_WaterUtilization_Approvals;
+            for (var g = 0; g < gwl_totwells.length; g++) {
+                gwl_totwells_count = (g + 1);
+                for (var f = 0; f < gwl_improvedwells.length; f++) {
+                    if (gwl_totwells[g]["site_type"] === gwl_improvedwells[f]["site_type"]) {
+                        gwl_improvedwells_count = (f + 1);
+                    }
+                    if (gwl_totwells[g]["site_type"] === gwl_improvedwells[f]["site_type"] && gwl_improvedwells[f]["accept"] === "1") {
+                        implementationsites_count = (f + 1);
+                    }
+                }
+            }
+            $('#gwltotwells').html(gwl_totwells_count);
+            $('#gwlimprovedwells').html(gwl_improvedwells_count);
+            var gwl_declined = parseFloat(parseFloat(gwl_totwells_count) - parseFloat(gwl_improvedwells_count));
+            $('#gwldeclinedwells').html(gwl_declined);
+
+
+            //sir is told me the above mentioned details sowing here.
+            $('#gwlPiezometertotal').html(gwl_totwells_count);
+            $('#gwlPiezometerworking').html(gwl_improvedwells_count);
+
+
+
+
+            var gps_Count1 = 0;
+            var improvedgps_Count1 = 0;
+            var gps_count = result.abhy_grampanchayas;
+            var gwb_Budget = result.abhystates_completecensusdata_Inserts;
+            for (var j = 0; j < gps_count.length; j++) {
+                gps_Count1 = (j + 1);
+                for (var d = 0; d < gwb_Budget.length; d++) {
+                    if (gps_count[j]["gpname"] === gwb_Budget[d]["gram_panchayat_name"] && gwb_Budget[d]["approvedorreject"] === "2") {
+                        improvedgps_Count1 = (d + 1);
+                    }
+                }
+            }
+            $('#gwb_totalgps').html(gps_Count1);
+            $('#gwb_improvedgps').html(improvedgps_Count1);
+            var declined_gps = parseFloat(parseFloat(gps_Count1) - parseFloat(improvedgps_Count1));
+            $('#gwb_diclinedgps').html(declined_gps);
+
+            var wspprepared_Count1 = 0;
+            var wsppreparedcompleted_Count1 = 0;
+            var wspimplementedcompleted_Count1 = 0;
+            var wspprepared_data = result.abhy_grampanchayas;
+            var wspsupply_data = result.abhy_supplys;
+            var wspdemand_data = result.abhy_demands;
+            var finalObj = wspsupply_data.concat(wspdemand_data);
+            var wsppreparedcompleted_data = finalObj;
+            for (var s = 0; s < wspprepared_data.length; s++) {
+                wspprepared_Count1 = (s + 1);
+                for (var a = 0; a < wsppreparedcompleted_data.length; a++) {
+                    // if (gps_count[s]["gpname"] === wsppreparedcompleted_data[a]["gname"]) {
+                    wsppreparedcompleted_Count1 = (a + 1);
+                    // }
+                    if (gps_count[s]["gpname"] === wsppreparedcompleted_data[a]["gname"] && wsppreparedcompleted_data[a]["accept"]) {
+                        wspimplementedcompleted_Count1 = (a + 1);
+                    }
+                }
+            }
+            $('#wsppreparedGps').html(wspprepared_Count1);
+            $('#wsppreparedcompletedgps').html(wsppreparedcompleted_Count1);
+            var wsppreparedworking = parseFloat(parseFloat(wspprepared_Count1) - parseFloat(wsppreparedcompleted_Count1));
+            $('#wsppreaparedworkinggps').html(wsppreparedworking);
+
+
+            $('#wspimplementedgps').html(wspprepared_Count1);
+            $('#wspimplementedcompletedgps').html(wspimplementedcompleted_Count1);
+            var wspimplementedworking = parseFloat(parseFloat(wspprepared_Count1) - parseFloat(wspimplementedcompleted_Count1));
+            $('#wspimplementedworkinggps').html(wspimplementedworking);
+
+            //total sites
+            $('#lbltotalsites').html(gwl_totwells_count);
+            $('#lblcreatedsites').html(wsppreparedcompleted_Count1);
+            $('#lblimplementsites').html(wspimplementedcompleted_Count1);
+            var gwlresultsites_count = parseFloat(parseFloat(wsppreparedcompleted_Count1) - parseFloat(wspimplementedcompleted_Count1));
+            $('#lblresultsites').html(gwlresultsites_count);
+
+            var wspsupplyside_Count1 = 0;
+            var wspsupplyside_acceptCount1 = 0;
+            for (var w = 0; w < wspsupply_data.length; w++) {
+                wspsupplyside_Count1 = (w + 1);
+                if (wspsupply_data[w]["accept"] === "1") {
+                    wspsupplyside_acceptCount1 = (w + 1);
+                }
+            }
+
+            $('#supplysideinterventiontotplanned').html(wspsupplyside_Count1);
+            $('#supplysideinterventioncompleted').html(wspsupplyside_acceptCount1);
+
+
+            var wspdemandside_Count1 = 0;
+            var wspdemandside_acceptCount1 = 0;
+            for (var y = 0; y < wspdemand_data.length; y++) {
+                wspdemandside_Count1 = (y + 1);
+                if (wspsupply_data[y]["accept"] === "1") {
+                    wspdemandside_acceptCount1 = (y + 1);
+                }
+            }
+
+            $('#demandsideintenventiontotpalanned').html(wspdemandside_Count1);
+            $('#demandsideintenventioncompleted').html(wspdemandside_acceptCount1);
+        }
+
+    }
+
+
+
+    function getnationalwisedata() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/goNationaldata',
+            data: '{}',
+            dataType: 'JSON',
+            success: function (data) {
+                getnationaldata(data);
+            }
+        });
+    }
+
+    function getnationaldata(result1) {
+
+        var result = "";
+        if (result1 != null) {
+            //loader
+            //$(window).load(function () { setTimeout(function () { $(".loading-container").addClass(".loading-inactive") }, 10) });
+            $(".loading-container").hide();
+            result = result1;
+            var gwl_totwells_count = 0;
+            var gwl_improvedwells_count = 0;
+            var implementationsites_count = 0;
+            var gwl_totwells = result.Abhy_groundwater_levels;
+            var gwl_improvedwells = result.Abhy_WaterUtilization_Approvals;
+            for (var g = 0; g < gwl_totwells.length; g++) {
+                gwl_totwells_count = (g + 1);
+                for (var f = 0; f < gwl_improvedwells.length; f++) {
+                    if (gwl_totwells[g]["site_type"] === gwl_improvedwells[f]["site_type"]) {
+                        gwl_improvedwells_count = (f + 1);
+                    }
+                    if (gwl_totwells[g]["site_type"] === gwl_improvedwells[f]["site_type"] && gwl_improvedwells[f]["accept"] === "1") {
+                        implementationsites_count = (f + 1);
+                    }
+                }
+            }
+            $('#gwltotwells').html(gwl_totwells_count);
+            $('#gwlimprovedwells').html(gwl_improvedwells_count);
+            var gwl_declined = parseFloat(parseFloat(gwl_totwells_count) - parseFloat(gwl_improvedwells_count));
+            $('#gwldeclinedwells').html(gwl_declined);
+
+            //sir is told me the above mentioned details sowing here.
+            $('#gwlPiezometertotal').html(gwl_totwells_count);
+            $('#gwlPiezometerworking').html(gwl_improvedwells_count);
+
+
+            var gps_Count1 = 0;
+            var improvedgps_Count1 = 0;
+            var gps_count = result.abhy_grampanchayas;
+            var gwb_Budget = result.abhystates_completecensusdata_Inserts;
+            for (var j = 0; j < gps_count.length; j++) {
+                gps_Count1 = (j + 1);
+                for (var d = 0; d < gwb_Budget.length; d++) {
+                    if (gps_count[j]["gpname"] === gwb_Budget[d]["gram_panchayat_name"] && gwb_Budget[d]["approvedorreject"] === "2") {
+                        improvedgps_Count1 = (d + 1);
+                    }
+                }
+            }
+            $('#gwb_totalgps').html(gps_Count1);
+            $('#gwb_improvedgps').html(improvedgps_Count1);
+            var declined_gps = parseFloat(parseFloat(gps_Count1) - parseFloat(improvedgps_Count1));
+            $('#gwb_diclinedgps').html(declined_gps);
+
+            var wspprepared_Count1 = 0;
+            var wsppreparedcompleted_Count1 = 0;
+            var wspimplementedcompleted_Count1 = 0;
+            var wspprepared_data = result.abhy_grampanchayas;
+            var wspsupply_data = result.abhy_supplys;
+            var wspdemand_data = result.abhy_demands;
+            var finalObj = wspsupply_data.concat(wspdemand_data);
+            var wsppreparedcompleted_data = finalObj;
+            for (var s = 0; s < wspprepared_data.length; s++) {
+                wspprepared_Count1 = (s + 1);
+                for (var a = 0; a < wsppreparedcompleted_data.length; a++) {
+                    // if (gps_count[s]["gpname"] === wsppreparedcompleted_data[a]["gname"]) {
+                    wsppreparedcompleted_Count1 = (a + 1);
+                    // }
+                    if (gps_count[s]["gpname"] === wsppreparedcompleted_data[a]["gname"] && wsppreparedcompleted_data[a]["accept"]) {
+                        wspimplementedcompleted_Count1 = (a + 1);
+                    }
+                }
+            }
+            $('#wsppreparedGps').html(wspprepared_Count1);
+            $('#wsppreparedcompletedgps').html(wsppreparedcompleted_Count1);
+            var wsppreparedworking = parseFloat(parseFloat(wspprepared_Count1) - parseFloat(wsppreparedcompleted_Count1));
+            $('#wsppreaparedworkinggps').html(wsppreparedworking);
+
+
+            $('#wspimplementedgps').html(wspprepared_Count1);
+            $('#wspimplementedcompletedgps').html(wspimplementedcompleted_Count1);
+            var wspimplementedworking = parseFloat(parseFloat(wspprepared_Count1) - parseFloat(wspimplementedcompleted_Count1));
+            $('#wspimplementedworkinggps').html(wspimplementedworking);
+
+            //total sites
+            $('#lbltotalsites').html(gwl_totwells_count);
+            $('#lblcreatedsites').html(wsppreparedcompleted_Count1);
+            $('#lblimplementsites').html(wspimplementedcompleted_Count1);
+            var gwlresultsites_count = parseFloat(parseFloat(wsppreparedcompleted_Count1) - parseFloat(wspimplementedcompleted_Count1));
+            $('#lblresultsites').html(gwlresultsites_count);
+
+            //$('#divtotalsitespogressbar').css('width', gwl_totwells_count);
+            var perceplanning = parseFloat((parseFloat(wsppreparedcompleted_Count1) / parseFloat(gwl_totwells_count)) * 100).toFixed(2);
+            $('#divcreatedsitesprogressbar').css('width', perceplanning + '%');
+            $('#lblcreatedsitesprogressbarper').html(perceplanning);
+            var perceimplement = parseFloat((parseFloat(wspimplementedcompleted_Count1) / parseFloat(gwl_totwells_count)) * 100).toFixed(2);
+            $('#divimplementsitesprogressbar').css('width', perceimplement + '%');
+            $('#lblimplementsitesprogressbarper').html(perceimplement);
+            var perceresults = parseFloat((parseFloat(gwlresultsites_count) / parseFloat(gwl_totwells_count)) * 100).toFixed(2);
+            $('#divresultprogressbar').css('width', perceresults + '%');
+            $('#lblresultsitesprogressbarper').html(perceresults);
+
+            var wspsupplyside_Count1 = 0;
+            var wspsupplyside_acceptCount1 = 0;
+            for (var w = 0; w < wspsupply_data.length; w++) {
+                wspsupplyside_Count1 = (w + 1);
+                if (wspsupply_data[w]["accept"] === "1") {
+                    wspsupplyside_acceptCount1 = (w + 1);
+                }
+            }
+
+            $('#supplysideinterventiontotplanned').html(wspsupplyside_Count1);
+            $('#supplysideinterventioncompleted').html(wspsupplyside_acceptCount1);
+
+
+            var wspdemandside_Count1 = 0;
+            var wspdemandside_acceptCount1 = 0;
+            for (var y = 0; y < wspdemand_data.length; y++) {
+                wspdemandside_Count1 = (y + 1);
+                if (wspdemand_data[y]["accept"] === "1") {
+                    wspdemandside_acceptCount1 = (y + 1);
+                }
+            }
+
+            $('#demandsideintenventiontotpalanned').html(wspdemandside_Count1);
+            $('#demandsideintenventioncompleted').html(wspdemandside_acceptCount1);
+        }
+
+
+    }
+</script>
+<script>
+      $("nav#primary-menu > ul.main-menu > li:nth-child(6)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(6)").siblings().removeClass('active');
+</script>

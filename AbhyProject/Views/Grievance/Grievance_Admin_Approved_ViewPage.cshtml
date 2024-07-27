@@ -1,0 +1,127 @@
+﻿@model IEnumerable<AbhyProject.Models.New_Grievance>
+
+@{
+    ViewBag.Title = "Grievance_Admin_Approved_ViewPage";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<h2>Grievance_Admin_Approved_ViewPage</h2>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grievance_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grievance_address_to)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentificationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grivance_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supported_document)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accept)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.file_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.complaint_name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grievance_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grievance_address_to)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentificationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grivance_description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.supported_document)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.accept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.file_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.complaint_name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.agid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.agid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.agid })
+            </td>
+        </tr>
+    }
+
+</table>

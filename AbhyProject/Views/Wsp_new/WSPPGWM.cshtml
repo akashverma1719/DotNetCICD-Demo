@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "WSPPGWM";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<title>Training Manuals</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .color_database {
+        color: green !important;
+    }
+
+    tr.info th {
+        background-color: #337ab7 !important;
+        color: #fff;
+        text-align: center;
+    }
+</style>
+
+
+<div class="clearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                            <span style="color:#fff;">:@Session["UserName"]</span>
+                        </li>
+                        <li>
+
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" /></span>
+                            <label>Training Manual</label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="clearfix">
+            <div class="container-fluid">
+                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding:10px 15px">
+                    <div class="form-div background-border-Database">
+                        <div class="table-responsive">
+                            <table class="Table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                <thead>
+                                    <tr class="info">
+                                        <th>S.No.</th>
+                                        <th>Manual Name</th>
+                                        <th>Downoload The Manuals </th>
+                                        <th>Upload The Manuals</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Website Manual</td>
+                                        <td><a href="javascript:;">Website Manual</a></td>
+                                        <td>
+                                            <form enctype="multipart/form-data">
+                                                Select Manual to upload:
+                                                <input type="file" name="" id="">
+                                                <input type="submit" value="Upload " class="btn btn-primary" name="submit">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Mobile Application Manual</td>
+                                        <td><a href="javascript:;">Mobile Application Manual</a></td>
+                                        <td>
+                                            <form enctype="multipart/form-data">
+                                                Select Manual to upload:
+                                                <input type="file" name="" id="">
+                                                <input type="submit" value="Upload " class="btn btn-primary" name="submit">
+                                            </form>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Map View Manual</td>
+                                        <td><a href="javascript:;">Map View Manual</a></td>
+                                        <td>
+
+                                            <form enctype="multipart/form-data">
+                                                Select Manual to upload:
+                                                <input type="file" name="" id="">
+                                                <input type="submit" value="Upload " class="btn btn-primary" name="submit">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Training Manuals</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+

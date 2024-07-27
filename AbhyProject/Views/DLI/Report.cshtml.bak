@@ -1,0 +1,826 @@
+﻿
+@{
+    ViewBag.Title = "physical_monitoring";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<style>
+    .database_trainer_row > h3 {
+        background-color: #72a230;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+
+
+    /*ends here*/
+    .second_heading {
+        background-color: #72a230;
+        color: #fff;
+        list-style: none;
+        padding: 3px 40px;
+        font-size: 15px;
+        font-weight: bold
+    }
+
+    .main_div {
+        padding-bottom: 30px;
+    }
+
+    .btn-success {
+        margin: 5px 0px !important;
+    }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+</style>
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <center>
+                <h2 class="text-primary">DLIs Data</h2>
+            </center>
+
+            <br />
+
+            @*dropdown start*@
+
+            <div class="row" id="div_filters">
+                <div class="col-lg-4 col-sm-4 col-md-4" style="">
+                    <select class="form-control" id="Sstate_check" onchange="FetchData()">
+                        <option value="0">Select State</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-sm-4 col-md-4" style="">
+                    <select class="form-control" id="Syear_check" onchange="FetchData()">
+                        <option value="0">Select Year</option>
+                        <option value="ALL">All 5 Years</option>
+                        <option value="2020-21">2020-2021</option>
+                        <option value="2021-22">2021-2022</option>
+                        <option value="2022-23">2022-2023</option>
+                        <option value="2023-24">2023-2024</option>
+                        <option value="2024-25">2024-2025</option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-sm-4 col-md-4" style="">
+                    <select class="form-control" id="Stype_check" onchange="FetchData()">
+                        <option value="0">Select DLI</option>
+                        <option value="DLI1">DLI1</option>
+                        <option value="DLI2">DLI2</option>
+                        <option value="DLI3">DLI3</option>
+                        <option value="DLI4">DLI4</option>
+                        <option value="DLI5">DLI5</option>
+                    </select>
+                    <br />
+                    <br />
+
+                    <div class="col-md-12 bg-light btn_hide" style="text-align:right; width:100%; padding:0;">
+                        <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_Table()"> Export To Excel</i></div>
+                        <input type="button" id="dli_report_excel" onclick="tableToExcel('DliTable' , 'DLI_Data')" hidden />
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="myModal" role="dialog" aria-labelledby="Modelledby" aria-hidden="true">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    @*<div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Data</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="POST" enctype="multipart/form-data" id="ModalForm">
+
+                            <input type="hidden" id="editId" value="">
+
+                            <div class="form-group">
+                                <label for="year">Year</label>
+                                <input type="text" name="year" class="form-control" id="year" placeholder="year" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="State">State</label>
+                                <input type="text" name="State" class="form-control" id="State" placeholder="State" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Type">Type</label>
+                                <input type="text" name="Type" class="form-control" id="Type" placeholder="Type" required readonly>
+                            </div>
+                            <div class="form-group" id="WQT">
+                                <label for="Target">Water Quality Target</label>
+                                <input type="number" name="WQTarget" class="form-control number" id="WQTarget" placeholder="Target" required>
+                            </div>
+                            <div class="form-group" id="WQA">
+                                <label for="Achievement">Water Quality Achievement</label>
+                                <input type="number" name="WQAchievement" class="form-control number" id="WQAchievement" placeholder="Achievement" required>
+                            </div>
+                            <div class="form-group" id="HGRT">
+                                <label for="Target">HGR Target</label>
+                                <input type="number" name="HGRTarget" class="form-control number" id="HGRTarget" placeholder="Target" required>
+                            </div>
+                            <div class="form-group" id="HGRA">
+                                <label for="Achievement">HGR Achievement</label>
+                                <input type="number" name="HGRAchievement" class="form-control number" id="HGRAchievement" placeholder="Achievement" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Target">Target</label>
+                                <input type="number" name="Target" class="form-control number" id="Target" placeholder="Target" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Achievement">Achievement</label>
+                                <input type="number" name="Achievement" class="form-control number" id="Achievement" placeholder="Achievement" required>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <button type="button" id="updateModalButton" class="btn btn-primary" rowid="" onclick="update()" data-dismiss="modal">Update</button>
+                    </div>
+                </div>*@
+
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="tbl-responsive" id="DLI1_div" style="overflow-x:scroll;overflow-y:scroll; height:500px; ">
+                <table id="DliTable" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                    <thead>
+                        <tr class="info red">
+
+                            <th class="text-center">Sr.No</th>
+                            <th class="text-center">States</th>
+                            <th class="text-center">Fy Year</th>
+                            <th class="text-center">DLI Type</th>
+                            <th class="text-center">Target</th>
+                            <th class="text-center">Water Level Achievement</th>
+                            <th class="text-center">Water Quality Achievement</th>
+                            <th class="text-center">HGR Achievement</th>
+                            <th class="text-center">Achievement</th>
+                            <th class="text-center state-disabled">Edit</th>
+                            <th class="text-center state-disabled">Delete</th>
+                        </tr>
+
+
+                    </thead>
+                    <tbody id="Tbody"></tbody>
+                </table>
+            </div>
+            <div class="tbl-responsive" id="hide_div_DLI" style="overflow-x:scroll;overflow-y:scroll; height:500px; ">
+                <table id="DliTable" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                    <thead>
+                        <tr class="info red">
+
+                            <th class="text-center">Sr.No</th>
+                            <th class="text-center">States</th>
+                            <th class="text-center">Fy Year</th>
+                            <th class="text-center">DLI Type</th>
+                            <th class="text-center">Target</th>
+                            <th class="text-center">Achievement</th>
+                            <th class="text-center state-disabled">Edit</th>
+                            <th class="text-center state-disabled">Delete</th>
+                        </tr>
+
+
+                    </thead>
+                    <tbody id="Tbody1"></tbody>
+                </table>
+            </div>
+            <br />
+            <br />
+
+
+
+
+        </section>
+    </div>
+</main>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Content/JS_Files/DLI.js"></script>
+<script type="text/javascript">
+    var Email = "";
+    var Access_Auth = "";
+    $(document).ready(function () {
+        $("#btnSave").text("Save");
+        Email = '@Session["Email"]';
+        $('#hide_div_DLI').hide();
+        State();
+        Access_Auth = '@Session["Access_Auth"]';
+        if (Access_Auth == 'readonly') {
+            $('.btn_hide').hide();
+        }
+        //FetchData();
+
+    });
+
+    function Export_Table() {
+        //if (component != 0) {
+        //    for (var i = 0; i < component; i++) {
+        //        var ss = "TRA01" + i;
+        //        $(ss).remove();
+        //    }
+        //}
+
+        $('#dli_report_excel').click();
+        Dli_1_Details();
+
+    }
+
+    var tableToExcel = (function () {
+
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+
+    function State() { //add value to state dropdown
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/DLI/Get_States',
+            dataType: 'JSON',
+            success: function (data) {
+
+
+                var html = '';
+                html += '<option id="' + "0" + '" value="0" id="lblstates"> ' + "Select state" + ' </option>';
+                html += '<option id="' + "ALL" + '" value="ALL" id="lblstates"> ' + "ALL states" + ' </option>';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<option stateid="' + data[i].state_name + '" id="lblstates"> ' + data[i].state_name + ' </option>';
+
+                }
+                var html1 = '';
+                html1 += '<option id="' + "0" + '" value="0" id="lblstates"> ' + "Select state" + ' </option>';
+                for (var i = 0; i < data.length; i++) {
+                    html1 += '<option stateid="' + data[i].state_name + '" id="lblstates"> ' + data[i].state_name + ' </option>';
+
+                }
+                $('#Sstate').html(html1);
+                //html += '<option stateid="ALL" id="lblstates">ALL </option>';
+                $('#Sstate_check').html(html);
+
+                var StateOfficer = '@Session["gstate"]';
+                if (StateOfficer != '') {
+                    $('#Sstate_check').val(StateOfficer);
+                    $('#Sstate_check').prop('disabled', true);
+                }
+            }
+        });
+
+    }
+
+    function Check_Data() {      //check whether the data exist or not
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/DLI/Get_Data",
+            dataType: 'JSON',
+            success: function (data) {
+
+
+                var state_s = $("#Sstate").val();
+                var year_s = $("#Syear").val();
+                var type_s = $("#Stype").val();
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].Year == year_s && data[i].State == state_s && data[i].Type == type_s) {
+                        //if data exists
+                        $("#btnSave").text("Update");
+                        $("#DLTarget").val(data[i].Target);
+                        $("#DLAchievement").val(data[i].Achievement);
+                        $('#DLTarget').attr('RowId', data[i].Id);
+                        return;
+                    } else {
+                        $("#DLTarget").val('');
+                        $("#DLAchievement").val('');
+
+                    }
+
+
+                }
+                FetchData();
+
+            }
+
+        });
+    }
+
+    function FetchData() {      //check whether the data exist or not
+
+        /*var html = "";*/
+        var state_s = $("#Sstate_check").val();
+        var year_s = $("#Syear_check").val();
+        var type_s = $("#Stype_check").val();
+        if (type_s != "0") {
+            if (type_s == 'DLI1') {
+                $('#DLI1_div').show();
+                $('#hide_div_DLI').hide();
+            } else {
+                $('#DLI1_div').hide();
+                $('#hide_div_DLI').show();
+            }
+        }
+
+        var StateOfficer = '@Session["gstate"]';
+        if (StateOfficer != '') {
+            state_s = StateOfficer;
+            $('.state-disabled').hide();
+        }
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/DLI/Get_Data",
+            data: { 'State': state_s, 'year': year_s, 'type': type_s },
+            //data: '{state:' + state_s + ',year:' + year_s + ',type:' + type_s +'}',
+            dataType: 'JSON',
+            success: function (data) {
+
+                //for (var i = 0; i < data.length; i++) {
+                //    html += '<tr><td><label id="srNo" rowId = ' + data[i].Id + '>' + (i + 1) + '</label></td>';
+                //    html += '<td><label id="year">' + data[i].Year + '</label></td>';
+                //    html += '<td><label id="State">' + data[i].State + '</label></td>';
+                //    html += '<td><label id="Type">' + data[i].Type + '</label></td>';
+                //    html += '<td><label id="Target">' + data[i].Target + '</label></td>';
+                //    html += '<td><label id="Achievement">' + data[i].Achievement + '</label></td>';
+                //    html += '<td><label id="WaterQuality_Target">' + data[i].WaterQuality_Target + '</label></td>';
+                //    html += '<td><label id="WaterQuality_Achievement">' + data[i].WaterQuality_Achievement + '</label></td>';
+                //    html += '<td><label id="HGR_Target">' + data[i].HGR_Target + '</label></td>';
+                //    html += '<td><label id="HGR_Achievement">' + data[i].HGR_Achievement + '</label></td>';
+                //    if (StateOfficer == '') {
+                //        html += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="edit(this)" > <i class="fa fa-edit"></i></button ></td><td><button class="btn btn-danger" onclick="deletecomp_release(' + data[i].Id + ')"><i class="fa fa-trash"></i></button></td></tr> '
+
+                //    }
+
+                //}
+                //$('#DliTable tbody').html(html);
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                var tr = '';
+                var tr1 = '';
+                if (data.length != 0) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        debugger;
+                        if (data[i].Type == "DLI1") {
+                            tr += '<tr id="AWP1_TR_Meeting' + i + '"><td>' + (parseInt(i) + 1) + '</td><td>' + data[i].State + '</td><td>' + data[i].Year + '</td><td>' + data[i].Type + '</td><td>' + data[i].Target + '</td><td>' + data[i].WaterLevel_Achievement + '</td><td>' + data[i].WaterQuality_Achievement + '</td>';
+                            tr += '<td>' + data[i].HGR_Achievement + '</td><td>' + data[i].Achievement + '</td> <td><button class="btn btn-primary disable_btn" onclick="editrowcomp_A_Good2(' + i + ')" disabled> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger disable_btn" onclick="Delete_SocMan(' + data[i].Id + ')" disabled><i class="fa fa-trash"></i></button></td>' +
+                                '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td>' + (i + 1) + '</td>' +
+
+                                '<td> <input type="text" class="form-control" id="state1' + i + '" value="' + data[i].State + '" readonly/></td>' +
+                                '<td> <input type="text" class="form-control" id="year1' + i + '" value="' + data[i].Year + '" readonly/></td>' +
+                                '<td> <input type="text" class="form-control" id="type1' + i + '" value="' + data[i].Type + '" readonly /></td>' +
+
+                                '<td> <input type="tel" maxlength="5" class="form-control" id="tar1' + i + '" value="' + data[i].Target + '"  /></td>' +
+                                '<td> <input type="tel" maxlength="5" class="form-control" id="wla1' + i + '" value="' + data[i].WaterLevel_Achievement + '" onkeyup="Total_Numbers_update(' + i + ')"  onkeydown="Total_Numbers_update(' + i + ')" /></td>' +
+
+                                '<td> <input type="tel" maxlength="5" class="form-control" id="wqa1' + i + '" value="' + data[i].WaterQuality_Achievement + '" onkeyup="Total_Numbers_update(' + i + ')"  onkeydown="Total_Numbers_update(' + i + ')" /></td>' +
+                                '<td> <input type="tel" maxlength="5" class="form-control" id="hgra1' + i + '" value="' + data[i].HGR_Achievement + '" onkeyup="Total_Numbers_update(' + i + ')"  onkeydown="Total_Numbers_update(' + i + ')" /></td>' +
+
+                                '<td id="ACH1' + i + '"> <input type="tel" maxlength="5" class="form-control" id="ach1' + i + '" value="' + data[i].Achievement + '"  /></td>' +
+                                '<td id="ACH_DLI1' + i + '"> <input type="tel" class="form-control" id="ach_dli1' + i + '" value="' + data[i].Achievement + '" readonly /></td>' +
+
+                                '<td> <button type="button" class="btn btn-primary" onclick="Update_AWP1(' + data[i].Id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger " type="button" onclick="cancelcomp_A_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+
+                        } else {
+                            tr1 += '<tr id="AWP1_TR_Meeting' + i + '"><td>' + (parseInt(i) + 1) + '</td><td>' + data[i].State + '</td><td>' + data[i].Year + '</td><td>' + data[i].Type + '</td><td>' + data[i].Target + '</td>';
+                            tr1 += '<td>' + data[i].Achievement + '</td> <td><button class="btn btn-primary disable_btn" onclick="editrowcomp_A_Good2(' + i + ')" disabled> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger disable_btn" onclick="Delete_SocMan(' + data[i].Id + ')" disabled><i class="fa fa-trash"></i></button></td>' +
+                                '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td>' + (i + 1) + '</td>' +
+
+                                '<td> <input type="text" class="form-control" id="state1' + i + '" value="' + data[i].State + '" readonly/></td>' +
+                                '<td> <input type="text" class="form-control" id="year1' + i + '" value="' + data[i].Year + '" readonly/></td>' +
+                                '<td> <input type="text" class="form-control" id="type1' + i + '" value="' + data[i].Type + '" readonly /></td>' +
+
+                                '<td> <input type="tel" maxlength="5" class="form-control" id="tar1' + i + '" value="' + data[i].Target + '"  /></td>' +
+
+                                '<td id="ACH1' + i + '"> <input type="tel" maxlength="5" class="form-control" id="ach1' + i + '" value="' + data[i].Achievement + '"  /></td>' +
+                                '<td id="ACH_DLI1' + i + '"> <input type="tel" class="form-control" id="ach_dli1' + i + '" value="' + data[i].Achievement + '" readonly /></td>' +
+
+                                '<td> <button type="button" class="btn btn-primary" onclick="Update_AWP1(' + data[i].Id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger " type="button" onclick="cancelcomp_A_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+
+                        }
+
+                    }
+                }
+                if (tr == '') {
+                    tr = '<tr colspan="19"><td colspan="19" style="text-align: center;">No Data</td></tr>';
+                }
+                if (tr1 == '') {
+                    tr1 = '<tr colspan="19"><td colspan="19" style="text-align: center;">No Data</td></tr>';
+                }
+                $('#Tbody1').html(tr1);
+                $('#Tbody').html(tr);
+                debugger;
+
+                if (Email == 'neetynagi@gmail.com') {
+                    $('.disable_btn').prop('disabled', false);
+                }
+
+            }
+
+
+        });
+    }
+
+    /*Akash*/
+    function Delete_SocMan(Id) {
+        debugger;
+        var obj = {};
+        obj.Id = Id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/DLI/delete_DLI',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                FetchData();
+                //  Get_Fund_Form_Info();
+
+
+            }
+        });
+    }
+
+    function editrowcomp_A_Good2(i) {
+          debugger;
+        $('#AWP1_TR_Meeting' + i).hide();
+        $('#hide_AWP1_TR_Meeting' + i).show();
+
+        var Type = $('#type1' + i).val();
+        if (Type == "DLI1") {
+            $('#tar1' + i).show();
+            $('#wla1' + i).show();
+            $('#wqa1' + i).show();
+            $('#hgra1' + i).show();
+            $('#ACH_DLI1' + i).show();
+            $('#ACH1' + i).hide();
+
+        }
+        else {
+            $('#tar1' + i).show();
+            $('#wla1' + i).hide();
+            $('#wqa1' + i).hide();
+            $('#hgra1' + i).hide();
+            $('#ach_dli1' + i).hide();
+            $('#ACH_DLI1' + i).hide();
+            $('#ach1' + i).show();
+        }
+
+    }
+
+    function cancelcomp_A_Support(i) {
+        /*  debugger;*/
+        $('#AWP1_TR_Meeting' + i).show();
+        $('#hide_AWP1_TR_Meeting' + i).hide();
+    }
+
+    function Total_Numbers_update(RowNo) {
+        /*alert('ok');*/
+        /* debugger;*/
+        var total = 0;
+        var wla = $('#wla1' + RowNo).val();
+        var wqa = $('#wqa1' + RowNo).val();
+        var hgra = $('#hgra1' + RowNo).val();
+
+        if (wla == "") {
+
+            wla = 0;
+        }
+
+        if (wqa == "") {
+
+            wqa = 0;
+        }
+        if (hgra == "") {
+
+            hgra = 0;
+        }
+
+        total = parseFloat(wla) + parseFloat(wqa) + parseFloat(hgra);
+
+        $('#ach_dli1' + RowNo).val(total);
+
+
+    }
+
+
+    function Update_AWP1(Id, RowNo) {
+        /*alert('ok');*/
+        debugger;
+        var xx = 0;
+        var Id = Id;
+
+        var State = $('#state1' + RowNo).val();
+        var Year = $('#year1' + RowNo).val();
+        var Type = $('#type1' + RowNo).val();
+        var TAR = $('#tar1' + RowNo).val();
+
+        var WLA = $('#wla1' + RowNo).val();
+        var WQA = $('#wqa1' + RowNo).val();
+        var HGRA = $('#hgra1' + RowNo).val();
+
+        if (Type == "DLI1") {
+            var ACH = $('#ach_dli1' + RowNo).val();
+        }
+        else {
+            var ACH = $('#ach1' + RowNo).val();
+        }
+
+        if (Type == "DLI1") {
+            if (WLA == "") {
+                xx = 1;
+                alert("Please Enter Water Level Achievement");
+            }
+            else if (WQA == "") {
+                xx = 1;
+                alert("Please Enter Water Quality Achievement");
+            }
+            else if (HGRA == "") {
+                xx = 1;
+                alert("Please Enter HGR Achievement");
+            }
+            else if (TAR == "") {
+                xx = 1;
+                alert("Please Enter Target");
+            }
+
+        }
+        if (Type !== "DLI1") {
+
+             if (TAR == "") {
+                xx = 1;
+                alert("Please Enter Target");
+            }
+            if (ACH == "") {
+                xx = 1;
+                alert("Please Enter Achievement");
+            }
+
+        }
+
+        if (xx == 0) {
+            var formData = new FormData();
+
+            formData.append("Id", Id);
+            formData.append("State", State);
+            formData.append("Year", Year);
+            formData.append("Type", Type);
+            formData.append('TAR', TAR);
+            formData.append("WLA", WLA);
+            formData.append("WQA", WQA);
+            formData.append('HGRA', HGRA);
+            formData.append('ACH', ACH);
+
+            $.ajax({
+                url: '/DLI/Update',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+
+                    FetchData();
+
+                },
+                error: function () {
+                    alert('Update Failed');
+                }
+            });
+        }
+    }
+
+</script>

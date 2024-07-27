@@ -1,0 +1,3175 @@
+﻿@{
+    ViewBag.Title = "Administration";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+
+<title>Administration</title>
+
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<style>
+    input[type="checkbox"] {
+        height: 16px !important;
+    }
+
+    .box-layout {
+        /*margin: 21% 20% -16% -16%;*/
+        box-sizing: content-box;
+        padding: 0px;
+        border-radius: 0.3em;
+        /*width: 107px;*/
+    }
+
+        .box-layout > ul > li > a {
+            padding: 40px 40px;
+        }
+
+
+    span.categories {
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+        /*text-align: left;
+        float:left;
+            */
+    }
+
+    .box-layout:hover {
+        transition: all .2s ease-in-out;
+        transform: scale(1.1);
+        border-radius: 0.3em;
+        color: darkgreen;
+    }
+
+    .glyphicon-eye-open, glyphicon-remove {
+        height: 20px;
+        width: 20px;
+    }
+
+    img#profile {
+        height: auto;
+        /* max-width: 79%; */
+        /* padding: 8px 0px 0px 15px; */
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 100px;
+        background-color: #fff;
+    }
+
+    td {
+        font-weight: bold;
+    }
+
+    .upddeleteicon {
+        max-width: 70%;
+    }
+
+    .modal-footer {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: -20px;
+    }
+
+    input[type=text], select {
+        /*margin-left: 29%;*/
+        background: none;
+        border: none;
+        border-bottom: ridge;
+    }
+
+    .underline {
+        background-color: dodgerblue;
+        display: inline-block;
+        height: 2px;
+        left: 50px;
+        margin-top: -4px;
+        position: absolute;
+        top: 185px;
+        -webkit-transform: scale(0, 1);
+        transform: scale(0, 1);
+        -webkit-transition: all 0.5s linear;
+        transition: all 0.5s linear;
+        width: 202px;
+    }
+
+    .box-layout:active::after {
+        background-color: #191970;
+    }
+
+    ul.adminhead {
+        display: flex;
+        margin: 0% 0% 0% 0%;
+        background-color: #f5f5f5;
+        border-color: lavender;
+        border-radius: 0.6em
+    }
+
+        ul.adminhead > li > label {
+            display: inline-block;
+        }
+
+    ul.adminhead1 > li > label > h4 {
+        font-size: 21px;
+    }
+
+    ul.adminhead1 {
+        display: inline-flex;
+    }
+
+        ul.adminhead1 > li {
+            padding: 6px 10px 0px 9px;
+        }
+
+    ul.adminhead > li {
+        padding: 5px 10px 0px 10px;
+    }
+
+    h4#profilename {
+        margin-top: 10px;
+    }
+
+    .nav-pills > li + li {
+        margin-left: 0px;
+    }
+
+    ul#myTabs {
+        margin: 40px 0px 0px 44px;
+    }
+
+        ul#myTabs > li {
+            margin: 10px 10px 10px 10px;
+        }
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: #fff;
+        background-color: #000088;
+    }
+
+    .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 26px 26px;
+    }
+
+        .nav > li > a:hover, .nav > li > a:focus {
+            text-decoration: none;
+            background-color: darkgreen;
+        }
+
+    img {
+        vertical-align: bottom;
+    }
+
+    @@media screen and (max-width: 1200px) {
+        ul#myTabs > li {
+            width: 167px;
+            height: 136px;
+        }
+    }
+
+    .form-inline .form-control {
+        margin: 0px 0px 0px 0px;
+    }
+
+    .tab-pane {
+        margin: 40px 0px 0px 0px;
+    }
+
+
+    ul.myTabs1 {
+        background-color: #ddd;
+    }
+
+    ul#myTabs1 > li.active::after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -15px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    ul#myTabs1 > li {
+        background-color: #3A99ED;
+        padding: 0px;
+    }
+
+        ul#myTabs1 > li > a {
+            color: white;
+            padding: 15px;
+        }
+
+        ul#myTabs1 > li.active > a,
+        ul#myTabs1 > li.active > a:focus,
+        ul#myTabs1 > li.active > a:hover {
+            color: #fff !important;
+            background-color: #2E578C !important;
+        }
+
+    .tbl-responsive {
+        overflow-x: inherit;
+    }
+
+    body:not(.modal-open) {
+        padding-right: 0 !important
+    }
+
+    .sss {
+        margin-top: 11px !important;
+    }
+
+    .login, .register {
+        line-height: 24px;
+    }
+
+    /*input[type=text], select {
+        margin-left: 2%;
+    }*/
+
+
+    table {
+        width: 100%;
+    }
+
+    .groundwatertable,
+    .groundwatertable > tbody > tr > th,
+    .groundwatertable > tbody > tr > td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    input[type=text].gwtable {
+        margin-left: 0px;
+        border: none;
+    }
+
+    th.waterhead {
+        width: 400px;
+        /*padding-left: 20px;*/
+        padding: 10px;
+    }
+
+    .groundwatertable > tbody > tr > td > span {
+        padding-left: 5px;
+    }
+
+    .pheading {
+        font-size: 18px;
+        font-weight: bold;
+        color: #337ab7;
+    }
+</style>
+
+<div id="maincontainer">
+    <div class="header">
+        <ul class="adminhead clearfix">
+            <li>
+                <ul class="adminhead1">
+                    <li>
+
+                        <span><img id="profile" src="~/Images/profile black.png" /></span>
+                    </li>
+                    <li>
+                        <h4 id="profilename"><b><label id="unamese" style="font-size: 15px;font-weight: unset;"></label></b><b> <label id="unamese1" style="display:none;font-size: 15px;position: absolute;font-weight: unset;"></label></b><br /><span style="font-weight:bold">Admin</span></h4>
+                    </li>
+                </ul>
+            </li>
+            <li style="margin-top:3%">
+                <label>
+                    <a data-toggle="modal" data-target="#UpdateProfile" onclick="EditProfile()"> <img src="~/Images/edit black.png" /><span style="font-weight:bold">Edit profile</span></a>
+                </label>
+            </li>
+            <li style="margin-top:3%">
+                <label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="~/Home/LogOut"><img style="width:20px;height:20px;" src="~/Images/logout black.png" /> <span style="font-weight:bold"> Logout</span></a>
+                </label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <div class="col-lg-4">
+            <ul id="myTabs" class="nav nav-pills" role="tablist" data-tabs="tabs">
+                <li class="active col-lg-4 box-layout" id="block1" style="background-color:cornflowerblue;color:white">
+                    <a href="#Commentary" data-toggle="tab">
+                        <img src="~/Images/User admin white.png" id="image1" />
+                        <span class="categories" id="title1">User Administration</span>
+                    </a>
+                </li>
+                <li class=" col-lg-4 box-layout" id="block2" style="background-color:cornflowerblue;">
+                    <a href="#Tenders" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" onclick="TenderDetails1()" />
+                        <span class="categories" id="title2">Tender Approval</span>
+                    </a>
+                </li>
+
+                <li class=" col-lg-4 box-layout" id="block2" style="background-color:cornflowerblue;">
+                    <a href="#Grievance" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" onclick="GrievanceData()" />
+                        <span class="categories" id="title2">Grievance Approval</span>
+                    </a>
+                </li>
+                <li class=" col-lg-4 box-layout" id="block2" style="background-color:cornflowerblue;">
+                    <a href="#Conference" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" onclick="ConferenceDeatils()" />
+                        <span class="categories" id="title2">Conference Approval</span>
+                    </a>
+                </li>
+
+                <li class="col-lg-4 box-layout" id="block3" style="background-color:cornflowerblue;">
+                    <a href="#Events" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" onclick="UsersUpdate()" />
+                        <span class="categories" id="title3">Update User</span>
+                    </a>
+                </li>
+                <li class="col-lg-4 box-layout" id="block4" style="background-color:cornflowerblue;">
+                    <a href="#Events1" data-toggle="tab">
+                        <img src="~/Images/delete user white.png" id="image4" onclick="UsersDelete()" />
+                        <span class="categories" id="title4">Delete User</span>
+                    </a>
+                </li>
+                <li class="col-lg-4 box-layout" id="block3" style="background-color:cornflowerblue;">
+                    <a href="#groundwr" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" onclick="WaterBudget()" />
+                        <span class="categories" id="title3">Water Budgeting</span>
+                    </a>
+                </li>
+                <li class="col-lg-4 box-layout" id="block3" style="background-color:cornflowerblue;">
+                    <a href="#groundGwm" data-toggle="tab" onclick="GroundWaterLevelsData()">
+                        <img src="~/Images/update user.png" id="image3" />
+                        <span class="categories" id="title3">Groundwater monitoring</span>
+                    </a>
+                </li>
+                <li class="col-lg-4 box-layout" id="block3" style="background-color:cornflowerblue;">
+                    <a href="#groundWSP" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" onclick="Demand_Data()" />
+                        <span class="categories" id="title3">Water Security Plan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="tab-content">
+                <!--Rainfail_menu Start-->
+                <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">User Administration</h4></div>
+                    <div class="row" @*id="useradministration"*@ style="margin-top:25px;">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="useradmindata"*@ id="users" class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue">
+                                            <th>S.No</th>
+                                            <th>User Name</th>
+                                            <th>Email</th>
+                                            <th>Admin</th>
+                                            <th>Super Admin</th>
+                                            <th>User</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbldata"></tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Videos">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Title Administration</h4></div>
+                    <div class="row" @*id="titleadministration"*@>
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="titleadmindata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue;text-align:center">
+                                            <th>Role</th>
+                                            <th>Resources</th>
+                                            <th>Greivances</th>
+                                            <th>Tenders</th>
+                                            <th>Newsletter</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Admin</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Managers</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Supervisors</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Users</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Events">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Update User</h4></div>
+                    <div class="row" style="margin-top:25px;">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table id="users" class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue">
+                                            <th>S.No</th>
+                                            <th>User Name</th>
+                                            <th>Department</th>
+                                            <th>Email Id</th>
+                                            <th>View</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblUserdata1"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Events1">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Delete User</h4></div>
+                    <div class="row" @*id="deleteuser"*@ style="margin-top:25px;">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="deleteuserdata"*@ class="data2 display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue">
+                                            <th>S.No</th>
+                                            <th>User Name</th>
+                                            <th>Department</th>
+                                            <th>Email Id</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblUserdata"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="Tenders">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Tender Approval</h4></div>
+
+                    <div class="panel-body" style="padding-bottom: 10px !important;">
+                        <ul id="myTabs1" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                            <li class="active col-md-2"><a href="javascript:;" data-target="#Commentary111" data-toggle="tab" onclick="TenderDetails1()">Tender Announcements</a></li>
+                            <li class="col-md-2"><a href="javascript:;" data-target="#Videos111" data-toggle="tab" onclick="TenderAwardDetails()">Tender Awarded</a></li>
+                            <li class="col-md-2"><a href="javascript:;" data-target="#Events111" data-toggle="tab" onclick="TenderETenderDetails()">E-Tender</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary111">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+                                                        <th>Bid Ref No</th>
+                                                        <th>Office Email Id</th>
+                                                        <th>Tender Ref No</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblTenderDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Videos111">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+                                                        <th>Package No</th>
+                                                        <th>Package Name</th>
+                                                        <th>Amount</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblTenderAwardedDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Events111">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+                                                        <th>E-Tender Name</th>
+                                                        <th>Website URL</th>
+                                                        <th>Accept</th>
+                                                        <th>Reject</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblETenderDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="Grievance">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Grievance Approval</h4></div>
+
+                    <div class="panel-body" style="padding-bottom: 10px !important;">
+                        <ul id="myTabs1" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                            <li class="active col-md-2"><a href="javascript:;" data-target="#Commentary222" data-toggle="tab" onclick="GrievanceData()">Grievance Approval</a></li>
+                            <li class="col-md-2"><a href="javascript:;" data-target="#Videos222" data-toggle="tab" onclick="Appeal_Reg_Data()">Appeal Approval</a></li>
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary222">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+                                                        <th>Grievance Type</th>
+                                                        <th>Grievance Addressed To</th>
+                                                        <th>Email Id</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblGrivience"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Videos222">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+                                                        <th>Grievance Type</th>
+                                                        <th>Grievance Addressed To</th>
+                                                        <th>Email Id</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblGrivience_Appeal"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="Conference">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Conference Approval</h4></div>
+
+                    <div class="panel-body" style="padding-bottom: 10px !important;">
+
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="National_Conference">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+                                                        <th>Conference Name</th>
+                                                        <th>Start Date</th>
+                                                        <th>Location</th>
+                                                        <th>Accept</th>
+                                                        <th>Reject</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblnationalConference"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                @*// Wsp related*@
+                <div role="tabpanel" class="tab-pane fade" id="groundwr">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Water Budgeting</h4></div>
+
+                    <div class="panel-body" style="padding-bottom: 10px !important;">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Surfacewater">
+
+                                <div class="row" style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>Gmail</th>
+                                                        <th>Officer Name</th>
+
+                                                        <th>State</th>
+                                                        <th>District</th>
+                                                        <th>Block</th>
+                                                        <th>Gp name </th>
+                                                        <th>View</th>
+
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody id="tbodyWaterBudgetDetails">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="groundGwm">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Ground Water Monitoring</h4></div>
+                    <div class="panel-body" style="padding-bottom: 10px !important;">
+                        @*<ul id="myTabs1" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                                <li class="active col-md-2"><a href="javascript:;" data-target="#Surfacewater" data-toggle="tab">Ground Water Level (m bgl)</a></li>
+                                <li class="col-md-2"><a href="javascript:;" data-target="#waterrecharge" data-toggle="tab">Rainfall (mm)</a></li>
+
+                            </ul>*@
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Surfacewater">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table id="users" class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>Gmail</th>
+                                                        <th>Officer Name</th>
+                                                        <th>User name</th>
+                                                        <th>State</th>
+                                                        <th>District</th>
+                                                        <th>Block</th>
+
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblgwldata">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="modal fade" id="myModalwateravailability12" role="dialog">
+                                <div class="modal-dialog" style="width: 700px;">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title" style="font-size:20px">Ground Water Level (m bgl)</h4>
+                                        </div>
+                                        <div class="modal-body ">
+                                            <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;font-size:12px;">
+                                                <table id="TblData" class="table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                                                    <thead>
+                                                        <tr class="info">
+                                                            <th rowspan="3">Source</th>
+                                                            <th rowspan="3">Site Type </th>
+
+                                                            <th rowspan="3">Site Name </th>
+                                                            <th rowspan="3">Depth</th>
+                                                            @*<th rowspan="2">Date</th>
+                                                                <th rowspan="2">Month</th>*@
+                                                            <th colspan="24" class="text-center">Ground Water Level (m bgl)</th>
+
+
+                                                            <th rowspan="3">Average (2014-2019)</th>
+
+
+                                                            <th rowspan="3">GWL Deviation</th>
+
+                                                            <th rowspan="3">Progress</th>
+                                                        </tr>
+                                                        <tr class="info">
+                                                            <th colspan="4" class="text-center">2014</th>
+                                                            <th colspan="4" class="text-center">2015</th>
+                                                            <th colspan="4" class="text-center">2016</th>
+                                                            <th colspan="4" class="text-center">2017</th>
+                                                            <th colspan="4" class="text-center">2018</th>
+                                                            <th colspan="4" class="text-center">2019</th>
+                                                        </tr>
+                                                        <tr class="info">
+                                                            <th>Jan</th>
+                                                            <th>May</th>
+                                                            <th>Aug</th>
+                                                            <th>Nov</th>
+
+                                                            <th>Jan</th>
+                                                            <th>May</th>
+                                                            <th>Aug</th>
+                                                            <th>Nov</th>
+                                                            <th>Jan</th>
+                                                            <th>May</th>
+                                                            <th>Aug</th>
+                                                            <th>Nov</th>
+                                                            <th>Jan</th>
+                                                            <th>May</th>
+                                                            <th>Aug</th>
+                                                            <th>Nov</th>
+                                                            <th>Jan</th>
+                                                            <th>May</th>
+                                                            <th>Aug</th>
+                                                            <th>Nov</th>
+                                                            <th>Jan</th>
+                                                            <th>May</th>
+                                                            <th>Aug</th>
+                                                            <th>Nov</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody_BindData">
+
+
+                                                        <tr>
+                                                            <td>CGWB</td>
+
+                                                            <td class="month">2</td>
+                                                            <td class="month">3</td>
+                                                            <td class="month">4</td>
+
+
+
+                                                            <td class="month">1</td>
+                                                            <td class="month">2</td>
+                                                            <td class="month">3</td>
+                                                            <td class="month">4</td>
+
+
+                                                            <td class="month">1</td>
+                                                            <td class="month">2</td>
+                                                            <td class="month">3</td>
+                                                            <td class="month">4</td>
+
+
+                                                            <td class="month">1</td>
+                                                            <td class="month">2</td>
+                                                            <td class="month">3</td>
+                                                            <td class="month">4</td>
+
+                                                            <td class="month">1</td>
+                                                            <td class="month">2</td>
+                                                            <td class="month">3</td>
+                                                            <td class="month">4</td>
+
+
+                                                            <td class="month">1</td>
+                                                            <td class="month">2</td>
+                                                            <td class="month">3</td>
+                                                            <td class="month">4</td>
+
+                                                            <td class="month"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+
+
+                                                            <td id="avg1">
+                                                                <label class='label label-default' name='avg' for='avg'></label>
+                                                            </td>
+
+
+
+                                                            <td id="Utilization">
+                                                                @*<label class='label label-default' name='lblprosess' for='lblprosess'></label>*@
+                                                                <input type="text" id="utilization" name="utilization" />
+                                                            </td>
+
+                                                            <td><img src='~/Images/unknown.png' /></td>
+                                                        </tr>
+
+                                                        <tr>
+
+                                                            <td colspan="32">
+
+                                                                No Data Display
+                                                            </td>
+                                                        </tr>
+
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="waterrecharge">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table id="users" class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+
+                                                        <th>Email Id</th>
+                                                        <th>View</th>
+                                                        <th>Reject</th>
+                                                        <th>Approve1</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Gcrs</td>
+                                                        <td>Gcrs@gmail.com</td>
+                                                        <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModalwateravailability1234"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                        <td> <button type="button" title="" class="btn btn-danger">Reject</button></td>
+                                                        <td> <button type="button" title="" class="btn btn-success" style="position: static; float: none;">Approve</button></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>User</td>
+                                                        <td>User@gmail.com</td>
+                                                        <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModalwateravailability1234"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                        <td> <button type="button" title="" class="btn btn-danger">Reject</button></td>
+                                                        <td> <button type="button" title="" class="btn btn-success" style="position: static; float: none;">Approve</button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="modal fade" id="myModalwateravailability1234" role="dialog">
+                                <div class="modal-dialog" style="width: 700px;">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title" style="font-size:20px">Rainfall (mm)</h4>
+                                        </div>
+                                        <div class="modal-body ">
+                                            <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;font-size:12px;">
+                                                <table id="TblData1" class="table table-bordered table-responsive table-hover">
+                                                    <thead>
+                                                        <tr class="info">
+                                                            <th colspan="66" class="text-center">Rainfall (mm)</th>
+                                                        </tr>
+                                                        <tr class="info">
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th colspan="12" class="text-center">2014</th>
+                                                            <th colspan="12" class="text-center">2015</th>
+                                                            <th colspan="12" class="text-center">2016</th>
+                                                            <th colspan="12" class="text-center">2017</th>
+                                                            <th colspan="12" class="text-center">2018</th>
+                                                            <th>Actual Rainfall(2018)</th>
+                                                            <th>Normal Rainfall(2018)</th>
+                                                            <th>Deviation(%)</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                        <tr class="info">
+                                                            <th>Source</th>
+                                                            <th>Station</th>
+                                                            <th>Jan</th>
+                                                            <th>Feb</th>
+                                                            <th>March</th>
+                                                            <th>April</th>
+                                                            <th>May</th>
+                                                            <th>June</th>
+                                                            <th>July</th>
+                                                            <th>Aug</th>
+                                                            <th>Sep</th>
+                                                            <th>Oct</th>
+                                                            <th>Nov</th>
+                                                            <th>Dec</th>
+
+
+                                                            <th>Jan</th>
+                                                            <th>Feb</th>
+                                                            <th>March</th>
+                                                            <th>April</th>
+                                                            <th>May</th>
+                                                            <th>June</th>
+                                                            <th>July</th>
+                                                            <th>Aug</th>
+                                                            <th>Sep</th>
+                                                            <th>Oct</th>
+                                                            <th>Nov</th>
+                                                            <th>Dec</th>
+
+
+                                                            <th>Jan</th>
+                                                            <th>Feb</th>
+                                                            <th>March</th>
+                                                            <th>April</th>
+                                                            <th>May</th>
+                                                            <th>June</th>
+                                                            <th>July</th>
+                                                            <th>Aug</th>
+                                                            <th>Sep</th>
+                                                            <th>Oct</th>
+                                                            <th>Nov</th>
+                                                            <th>Dec</th>
+
+
+                                                            <th>Jan</th>
+                                                            <th>Feb</th>
+                                                            <th>March</th>
+                                                            <th>April</th>
+                                                            <th>May</th>
+                                                            <th>June</th>
+                                                            <th>July</th>
+                                                            <th>Aug</th>
+                                                            <th>Sep</th>
+                                                            <th>Oct</th>
+                                                            <th>Nov</th>
+                                                            <th>Dec</th>
+
+
+                                                            <th>Jan</th>
+                                                            <th>Feb</th>
+                                                            <th>March</th>
+                                                            <th>April</th>
+                                                            <th>May</th>
+                                                            <th>June</th>
+                                                            <th>July</th>
+                                                            <th>Aug</th>
+                                                            <th>Sep</th>
+                                                            <th>Oct</th>
+                                                            <th>Nov</th>
+                                                            <th>Dec</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+
+
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!---->
+
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="groundWSP">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Water Security plan</h4></div>
+
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="demandside">
+
+                            <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                <div class="col-md-12">
+                                    <div class="tbl-responsive">
+                                        <table id="users" class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                            <thead>
+                                                <tr style="color:darkslateblue">
+                                                    <th>S.No</th>
+                                                    <th>Gmail</th>
+                                                    <th>Officer Name</th>
+                                                    <th>User name</th>
+                                                    <th>State</th>
+                                                    <th>District</th>
+                                                    <th>Block</th>
+                                                    <th>Gp name </th>
+                                                    <th>View</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblDemandSide">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div role="tabpanel" class="tab-pane fade" id="supplyside">
+
+                            <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                <div class="col-md-12">
+                                    <div class="tbl-responsive">
+                                        <table id="users" class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                            <thead>
+                                                <tr style="color:darkslateblue">
+                                                    <th>User ID</th>
+                                                    <th>User Name</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Email Id</th>
+                                                    <th>View</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Gcrs</td>
+
+                                                    <td>30-08-2019</td>
+                                                    <td>31-08-2019</td>
+                                                    <td>Gcrs@gmail.com</td>
+                                                    <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#supplysidepopup"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Gcrs</td>
+
+                                                    <td>30-08-2019</td>
+                                                    <td>31-08-2019</td>
+                                                    <td>Gcrs@gmail.com</td>
+                                                    <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#supplysidepopup"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        @*For Update model popup*@
+        <div class="container">
+
+            <!-- Trigger the modal with a button -->
+            <!-- Modal -->
+            <div class="modal fade" id="UpdateProfile" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">User Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table style="width:85%">
+                                <tr>
+                                    <td><input type="text" id="UserId" name="UserId" hidden /></td>
+                                </tr>
+                                <tr>
+                                    <td>User Name</td>
+                                    <td><input type="text" id="Aname" maxlength="30" class="alpha" style="background-color:none;" disabled /><span class="underline"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><input type="text" id="Aemail" class="mail" disabled /><span class="underline"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Department Name</td>
+                                    <td><input id="Adepartment" maxlength="30" class="alphanum" type="text" disabled /><span class="underline"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>State</td>
+                                    <td>
+                                        <select id="state" name="state" disabled></select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>District</td>
+                                    <td>
+                                        <select name="dist1" id="dist" disabled></select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Block</td>
+                                    <td>
+                                        <select name="block" id="block" disabled></select><span class="underline"></span>
+                                    </td>
+                                <tr>
+                                    <td>Gram Panchayat</td>
+                                    <td>
+                                        <select name="gram" id="gram" disabled></select><span class="underline"></span>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="visableUserdetails()">Edit</button>
+                            <button type="button" class="btn btn-success" onclick="Update()" id="updateusers1" data-dismiss="modal">Update</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">User Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table style="width:85%">
+                                <tr><td>User Name</td><td><input type="text" id="UUname" maxlength="30" class="alpha" style="background-color:none;" disabled /><span class="underline"></span></td></tr>
+                                <tr><td>Email</td><td><input type="text" id="UEmail" class="mail" disabled /><span class="underline"></span></td></tr>
+                                <tr><td>Department Name</td><td><input id="UDepartment" type="text" class="alpha" maxlength="30" disabled /><span class="underline"></span></td></tr>
+                                <tr>
+                                    <td>State</td>
+                                    <td>
+                                        <select id="state1" name="state" disabled></select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>District</td>
+                                    <td>
+                                        <select name="dist" id="dist1" disabled></select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Block</td>
+                                    <td>
+                                        <select name="block" id="block1" disabled></select><span class="underline"></span>
+                                    </td>
+                                <tr>
+                                    <td>Gram Panchayat</td>
+                                    <td>
+                                        <select name="gram" id="gram1" disabled></select><span class="underline"></span>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="visableUserdetails()">Edit</button>
+                            <button type="button" class="btn btn-success" id="updateusers" onclick="UpdateAllUsersInfo()" data-dismiss="modal">Update</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal1" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Tender Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table style="width:85%">
+
+                                <tr><td>Bid_ref_no</td><td><input type="text" maxlength="30" class="alphanum" id="tabid_ref_no" style="background-color:none;" /></td></tr>
+                                <tr><td>Description</td><td><input type="text" id="description" /><span class="underline"></span></td></tr>
+                                <tr><td>Office_inviting_tender</td><td><input class="alphanum" maxlength="30" type="text" id="inviting_tender" /><span class="underline"></span></td></tr>
+                                <tr><td>Office_emailid</td><td><input type="text" class="mail" id="email" /><span class="underline"></span></td></tr>
+                                <tr><td>Publish_date</td><td><input type="date" id="published_date" /><span class="underline"></span></td></tr>
+                                <tr><td>Tender_ref_no</td><td><input type="text" class="alphanum" maxlength="30" id="ta_ref_num" /><span class="underline"></span></td></tr>
+                                <tr><td>URL</td><td><input type="text" id="url" /><span class="underline"></span></td></tr>
+                                <tr><td>Sale_start_datetime</td><td><input type="text" id="start_date" /><span class="underline"></span></td></tr>
+                                <tr><td>Sale_end_datetime</td><td><input type="text" id="end_date" /><span class="underline"></span></td></tr>
+                                <tr><td>Last_submission_datetime</td><td><input type="text" id="last_date" /><span class="underline"></span></td></tr>
+                                <tr><td>Opening_start_datetime</td><td><input type="text" id="opening_start_date" /><span class="underline"></span></td></tr>
+
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="updatetdetails" onclick="UpdateTender_Details()" data-dismiss="modal">Approve</button>
+                            <button type="button" class="btn btn-danger" id="deletetdetails" onclick="DeleteTender_Details()" data-dismiss="modal">Reject</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal2" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Grievance Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr><td>Subject</td><td><input type="text" id="Gsubject" style="background-color:none;" /></td></tr>
+                                <tr>
+                                    <td>Grievance Type</td>
+                                    <td>
+                                        <select id="type">
+                                            <option>--Select Grievance Type--</option>
+                                            <option>All administrative and finacial matter of TAMC</option>
+                                            <option>Development of eSWISH and India-WARIS</option>
+                                            <option>Development of MIS</option>
+                                            <option>NWIC/ Parliament Questions/ VIP Reference/ RTI</option>
+                                            <option>Other </option>
+                                            <option>PIP/ AWP/ PP/ Hydromet Network/ Physical &amp; Finacial Progress/ Bid related issues</option>
+                                            <option>Release of Payment/ Funds</option>
+                                            <option>Training/ Workshop/ Seminar</option>
+                                        </select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Grievance to</td>
+                                    <td id="to">
+                                        <select>
+                                            <option>--Select Grievance Addressed To--</option>
+                                            <option>Andhra Pradesh GW</option>
+                                            <option>Andhra Pradesh SW</option>
+                                            <option>Assam</option>
+                                            <option>BBMB</option>
+                                            <option>Bihar GW</option>
+                                            <option>Bihar SW</option>
+                                            <option>CGWB</option>
+                                            <option>Chhattisgarh GW</option>
+                                            <option>Chhattisgarh SW</option>
+                                            <option>CPCB</option>
+                                            <option>CWC</option>
+                                            <option>CWPRS</option>
+                                            <option>Delhi</option>
+                                            <option>DVC</option>
+                                            <option>Goa</option>
+                                            <option>Gujarat GW</option>
+                                            <option>Gujarat SW</option>
+                                            <option>Haryana</option>
+                                            <option>Himachal Pradesh</option>
+                                            <option>Jharkhand</option>
+                                            <option>Karnataka SW</option>
+                                            <option>Kerala GW</option>
+                                            <option>Kerala SW</option>
+                                            <option>Madhya Pradesh</option>
+                                            <option>Maharashtra GW</option>
+                                            <option>Maharashtra SW</option>
+                                            <option>Manipur</option>
+                                            <option>Meghalaya</option>
+                                            <option>Mizoram</option>
+                                            <option>MOWR</option>
+                                            <option>Nagaland</option>
+                                            <option>NIH</option>
+                                            <option>NRSC</option>
+                                            <option>Odisha GW</option>
+                                            <option>Odisha SW</option>
+                                            <option>Puducherry</option>
+                                            <option>Punjab</option>
+                                            <option>Rajasthan</option>
+                                            <option>Sikkim</option>
+                                            <option>SOI</option>
+                                            <option>Tamil Nadu</option>
+                                            <option>Telengana GW</option>
+                                            <option>Telengana SW</option>
+                                            <option>Tripura</option>
+                                            <option>Uttar Pradesh GW</option>
+                                            <option>Uttar Pradesh SW</option>
+                                            <option>Uttarakhand</option>
+                                            <option>West Bengal GW</option>
+                                            <option>West Bengal SW</option>
+                                        </select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+                                <tr><td>Full Name</td><td><input type="text" id="Gname" /><span class="underline"></span></td></tr>
+                                <tr><td>Email</td><td><input type="text" id="Gemail" /><span class="underline"></span></td></tr>
+                                <tr><td>Mobile</td><td><input type="text" id="Gmobile" /><span class="underline"></span></td></tr>
+                                <tr><td>Phone</td><td><input type="text" id="Gphone" /><span class="underline"></span></td></tr>
+                                <tr><td>Address</td><td><input type="text" id="Gaddress" /><span class="underline"></span></td></tr>
+                                <tr><td>Grievance Description</td><td><input type="text" id="Gdescription" /><span class="underline"></span></td></tr>
+
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="grivanceArrove" onclick="UpdateGrivance_Details()" data-dismiss="modal">Accept</button>
+                            <button type="button" class="btn btn-danger" id="grivancereject" onclick="DeleteGrivanceDetails()" data-dismiss="modal">Reject</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="tendertab2" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Tender Award Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr><td>Package Number</td><td><input type="text" id="package_no" style="background-color:none;text-decoration:underline" /></td></tr>
+                                <tr><td>Package Name</td><td><input type="text" id="package_name" /><span class="underline"></span></td></tr>
+                                <tr><td>Tender Awarded Date</td><td><input type="text" id="tender_award_date" /><span class="underline"></span></td></tr>
+                                <tr><td>Tender Amount(in Rs)</td><td><input type="text" id="tender_amount" /><span class="underline"></span></td></tr>
+                                <tr><td>Name of the Consultant/Supplier/Contractor</td><td><input type="text" id="Name_of_the_Consultant" /><span class="underline"></span></td></tr>
+
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="approve_TenderAwardDetails()" data-dismiss="modal">Approve</button>
+                            <button type="button" class="btn btn-danger" onclick="delete_TenderAwardDetails()" data-dismiss="modal">Reject</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="Appealtab" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Appeal Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table>
+                                <tr><td>Previous Grievance ID</td><td><input type="text" id="AGID" style="background-color:none;text-decoration:underline" /></td></tr>
+                                <tr><td>Subject</td><td><input type="text" id="AGSubject" /><span class="underline"></span></td></tr>
+                                <tr>
+                                    <td>Appeal Type</td>
+                                    <td>
+                                        <select>
+                                            <option>--Select Appeal Type--</option>
+                                            <option>All administrative and finacial matter of TAMC</option>
+                                            <option>Development of eSWISH and India-WARIS</option>
+                                            <option>Development of MIS</option>
+                                            <option>NWIC/ Parliament Questions/ VIP Reference/ RTI</option>
+                                            <option>Other </option>
+                                            <option>PIP/ AWP/ PP/ Hydromet Network/ Physical &amp; Finacial Progress/ Bid related issues</option>
+                                            <option>Release of Payment/ Funds</option>
+                                            <option>Training/ Workshop/ Seminar</option>
+                                        </select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Appeal Addressed to</td>
+                                    <td>
+                                        <select>
+                                            <option>--Select Appeal Addressed To--</option>
+                                            <option>Andhra Pradesh GW</option>
+                                            <option>Andhra Pradesh SW</option>
+                                            <option>Assam</option>
+                                            <option>BBMB</option>
+                                            <option>Bihar GW</option>
+                                            <option>Bihar SW</option>
+                                            <option>CGWB</option>
+                                            <option>Chhattisgarh GW</option>
+                                            <option>Chhattisgarh SW</option>
+                                            <option>CPCB</option>
+                                            <option>CWC</option>
+                                            <option>CWPRS</option>
+                                            <option>Delhi</option>
+                                            <option>DVC</option>
+                                            <option>Goa</option>
+                                            <option>Gujarat GW</option>
+                                            <option>Gujarat SW</option>
+                                            <option>Haryana</option>
+                                            <option>Himachal Pradesh</option>
+                                            <option>Jharkhand</option>
+                                            <option>Karnataka SW</option>
+                                            <option>Kerala GW</option>
+                                            <option>Kerala SW</option>
+                                            <option>Madhya Pradesh</option>
+                                            <option>Maharashtra GW</option>
+                                            <option>Maharashtra SW</option>
+                                            <option>Manipur</option>
+                                            <option>Meghalaya</option>
+                                            <option>Mizoram</option>
+                                            <option>MOWR</option>
+                                            <option>Nagaland</option>
+                                            <option>NIH</option>
+                                            <option>NRSC</option>
+                                            <option>Odisha GW</option>
+                                            <option>Odisha SW</option>
+                                            <option>Puducherry</option>
+                                            <option>Punjab</option>
+                                            <option>Rajasthan</option>
+                                            <option>Sikkim</option>
+                                            <option>SOI</option>
+                                            <option>Tamil Nadu</option>
+                                            <option>Telengana GW</option>
+                                            <option>Telengana SW</option>
+                                            <option>Tripura</option>
+                                            <option>Uttar Pradesh GW</option>
+                                            <option>Uttar Pradesh SW</option>
+                                            <option>Uttarakhand</option>
+                                            <option>West Bengal GW</option>
+                                            <option>West Bengal SW</option>
+                                        </select>
+                                        <span class="underline"></span>
+                                    </td>
+                                </tr>
+                                <tr><td>Full Name </td><td><input type="text" id="AGName" /><span class="underline"></span></td></tr>
+                                <tr><td>Email </td><td><input type="text" id="AGEmail" /><span class="underline"></span></td></tr>
+                                <tr><td>Mobile</td><td><input type="text" id="AGMobile" /><span class="underline"></span></td></tr>
+                                <tr><td>Phone</td><td><input type="text" id="AGPhone" /><span class="underline"></span></td></tr>
+                                <tr><td>Address</td><td><input type="text" id="AGAddress" /><span class="underline"></span></td></tr>
+                                <tr><td>Reason for Appeal/ Appeal Description</td><td><input type="text" id="AGdescription" /><span class="underline"></span></td></tr>
+
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="ApproveAppeal" onclick="ApproveAppeal_Details()" data-dismiss="modal">Accept</button>
+                            <button type="button" class="btn btn-danger" id="RejectAppeal" onclick="DeleteAppeal_Details()" data-dismiss="modal">Reject</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" role="dialog" id="deletemodal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="font-size:15px;">Are you sure you want to delete this user?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="btnyes" onclick="ConfirmDeleteUser()" style="bottom:0%">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" style="bottom:0%">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert" role="alert" id="result"></div>
+<script src="~/Scripts/jquery.min.js"></script>
+@*<script src="~/Content/onlinelinks/jquery3.3.1.min.js"></script>*@
+@*<script src="~/Content/onlinelinks/bootstrap_3.4.0.min.js"></script>*@
+
+@*<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>*@
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*<script src="~/Content/onlinelinks/dataTables.bootstrap.min.js"></script>*@
+@*<script src="~/Content/onlinelinks/bootstrap_3.3.7.min.js"></script>*@
+<script src="~/Scripts/validations.js"></script>
+
+<script>
+    var jsondata22 = "";
+        var UserId = "";
+        var RollId = "";
+        var s1 = "";
+        var DeleteUserId = "";
+        $(document).ready(function () {
+
+            var tr = "";
+            var jsondata = JSON.parse('@Html.Raw(ViewBag.Data1)');
+            jsondata22 = jsondata;
+            if (jsondata != null) {
+                for (var i = 0; i < jsondata.length; i++) {
+                    var str = jsondata[i]["RollId"];
+                    var res = str.split(",");
+
+                    var Admin = "";
+                    var SAdmin = "";
+                    var User = "";
+                   s1 = "check_class" + jsondata[i]["RollId"];
+
+                    if (res[0] == "1" || res[1] == "1" || res[2] == "1") {
+                        UserId = jsondata[i]["UserId"];
+                        RollId = "1";
+                        Admin = '<input type="checkbox" class="s1" id="admin" onclick="UsersData1(' + UserId + ',' + RollId +')" name="sport" checked="true"/>';
+                    }
+                    else {
+                        UserId = jsondata[i]["UserId"];
+                        RollId = "1";
+                        Admin = '<input type="checkbox" class="s1" id="admin" name="sport" onclick="UsersData('+UserId+','+RollId+')" />';
+
+                    }
+                    if (res[0] == "2" || res[1] == "2" || res[2] == "2") {
+                        UserId = jsondata[i]["UserId"];
+                        RollId = "2";
+                        SAdmin = '<input type="checkbox" class="s2" id="Supadmin" onclick="UsersData1(' + UserId + ',' + RollId +')"  name="sport" checked="true"/>';
+                    }
+                    else {
+                        UserId = jsondata[i]["UserId"];
+                        RollId = "2";
+                        SAdmin = '<input type="checkbox" id="Supadmin" name="sport" class="s2" onclick="UsersData(' + UserId + ',' + RollId +')" />';
+
+                    }
+
+                    if (res[0] == "3" || res[1] == "3" || res[2] == "3") {
+                        UserId = jsondata[i]["UserId"];
+                        RollId = "3";
+                        User = '<input type="checkbox" id="user" name="sport" onclick="UsersData1(' + UserId + ',' + RollId +')" class="s3" checked="true"/>';
+
+                    }
+                    else {
+
+                        UserId = jsondata[i]["UserId"];
+                        RollId = "3";
+                        User = '<input type="checkbox" id="user" name="sport" class="s3" onclick="UsersData(' + UserId + ',' + RollId +')" />';
+
+                    }
+
+
+                    tr += '<tr><td>' + (i+1) + '</td><td>' + jsondata[i]["UserName"] + '</td><td> ' + jsondata[i]["Email"] + '</td><td> ' + Admin + ' </td><td>' + SAdmin + '</td > <td>' + User +'</td ></tr>';
+
+                }
+
+
+
+            }
+
+            else {
+                tr += '<tr><td colspan="2">No Data</td></tr>';
+            }
+
+            $("#tbldata").html(tr);
+            getGroundWatertblData();
+
+        });
+
+
+     function GroundWaterLevelsData() {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/GetGwlInfo',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+
+                    var tr = "";
+                    if (data.length != 0) {
+                        var jsondata = data;
+                        if (jsondata != null) {
+                            for (var i = 0; i < jsondata.length; i++) {
+                                if (jsondata[i][0].UserId != "" && jsondata[i][0].UserId!=null) {
+                                    var UserId = parseInt(jsondata[i][0].UserId);
+                                    for (var j = 0; j < jsondata22.length; j++) {
+                                        if (UserId == jsondata22[j].UserId) {
+                                            var Email = jsondata22[j].Email;
+
+                                            if (jsondata[i][0].ApprovedBy != null && jsondata[i][0].ApprovedBy != "" && jsondata[i][0].ApprovedBy!="0") {
+                                                var OfficerName = jsondata[i][0].ApprovedBy;
+                                                 var UserName = jsondata22[j].UserName;
+                                              tr += `<tr><td>${(i + 1)}</td><td>${Email} </td><td>${OfficerName}</td><th>${UserName}</th><td>${jsondata[i][0]["state"]}</td><td>${jsondata[i][0]["dist"]}</td><td>${jsondata[i][0]["block"]}</td><td ><a href="#"> <button style="background-color:green;" type="button" title="View &amp; Update" class="btn btn-default btn-md" data-toggle="" ><img class="upddeleteicon" src="../Images/view black.png" onclick="UpdateGwlData(${UserId},'${jsondata[i][0]["state"]}','${jsondata[i][0]["dist"]}','${jsondata[i][0]["block"]}')"></button></a></td></tr>`;
+
+                                            }
+                                            else {
+                                                var OfficerName = "";
+                                                 var UserName = jsondata22[j].UserName;
+                                                tr += `<tr><td>${(i + 1)}</td><td>${Email} </td><td>${OfficerName}</td><th>${UserName}</th><td>${jsondata[i][0]["state"]}</td><td>${jsondata[i][0]["dist"]}</td><td>${jsondata[i][0]["block"]}</td><td><a href="#"> <button type="button" title="View &amp; Update" class="btn btn-default btn-md" data-toggle="" ><img class="upddeleteicon" src="../Images/view black.png" onclick="UpdateGwlData(${UserId},'${jsondata[i][0]["state"]}','${jsondata[i][0]["dist"]}','${jsondata[i][0]["block"]}')"></button></a></td></tr>`;
+
+                                            }
+                                            }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    else {
+                        tr += `<tr style="text-align:center;"><td colspan="8">No Data</td></tr>`;
+                    }
+                    if (tr == "") {
+               tr += `<tr style="text-align:center;"><td colspan="8">No Data</td></tr>`;
+                    }
+                    $("#tblgwldata").html(tr);
+                }
+                });
+        }
+
+
+
+          // Delete Users Table
+        function UsersDelete() {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/UpdateUsersData',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    var tr = "";
+                    if (data.length != 0) {
+                        var jsondata = data;
+                        if (jsondata != null) {
+                            for (var i = 0; i < jsondata.length; i++) {
+
+                                tr += '<tr><td>' + (i + 1) + '</td><td>' + jsondata[i]["UserName"] + '</td><td> ' + jsondata[i]["DepartmentName"] + '</td><td> ' + jsondata[i]["Email"] + '</td><td><button onclick="getdeleteid(' + jsondata[i]["UserId"] + ',' + i + ');" title="Delete User" class="btn btn-default btn-confirm" data-toggle="modal" data-target="#deletemodal"><img class="upddeleteicon" src="../Images/delete colour_1.png" /></button></td></tr>';
+                            }
+                        }
+                    }
+
+                    else {
+                        tr += '<tr><td colspan="2">No Data</td></tr>';
+                    }
+                    $("#tblUserdata").html(tr);
+                }
+                });
+        }
+
+        // Update Users Table
+        function UsersUpdate() {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/UpdateUsersData',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    var tr = "";
+                    if (data.length != 0) {
+                        var jsondata = data;
+                        if (jsondata != null) {
+                            for (var i = 0; i < jsondata.length; i++) {
+
+                                tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='uname'> ${jsondata[i]["UserName"]} </td><td class='udept'>  ${jsondata[i]["DepartmentName"]} </td><td class='uemail'>  ${jsondata[i]["Email"]} </td><td><button type="button" title="View & Update" onclick="getupdateid('${jsondata[i]["UserId"]} ',' ${jsondata[i]["UserName"]}',' ${jsondata[i]["Email"]} ',' ${jsondata[i]["DepartmentName"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                            }
+
+
+                        }
+                        else {
+                            tr += '<tr><td colspan="2">No Data</td></tr>';
+                        }
+                        $("#tblUserdata1").html(tr);
+                    }
+                }
+            });
+        }
+           //E-Tender Table
+        function TenderETenderDetails() {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/TenderETenderDetails',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    var tr = "";
+                    if (data.length != 0) {
+                        var jsondata = data;
+                        if (jsondata != null) {
+                            for (var i = 0; i < jsondata.length; i++) {
+                                if (jsondata[i].accept == "True") {
+                               tr += '<tr><td>' + i + '</td><td>' + jsondata[i]["UserName"] + '</td><td> ' + jsondata[i]["title"] + '</td><td>' + jsondata[i]["url"] + '</td><td> <button style="background-color:green;" type="button" title="Accept"  onclick="ApproveEtenderData(' + jsondata[i]["aetid"] + ')" class="btn btn-primary btn-md"><img class="upddeleteicon" src="../Images/right black 20px.png" /></button></td><td> <button style="background-color:red;" type="button" title="Reject" onclick="DeleteEtenderData(' + jsondata[i]["aetid"] + ')" class="btn btn-danger btn-md"><img class="upddeleteicon" src="../Images/cross black 20px.png" /></button></td></tr>';
+                                }
+                                else {
+                                tr += '<tr><td>' + i + '</td><td>' + jsondata[i]["UserName"] + '</td><td> ' + jsondata[i]["title"] + '</td><td>' + jsondata[i]["url"] + '</td><td> <button type="button" title="Accept"  onclick="ApproveEtenderData(' + jsondata[i]["aetid"] + ')" class="btn btn-primary btn-md"><img class="upddeleteicon" src="../Images/right black 20px.png" /></button></td><td> <button type="button" title="Reject" onclick="DeleteEtenderData(' + jsondata[i]["aetid"] + ')" class="btn btn-danger btn-md"><img class="upddeleteicon" src="../Images/cross black 20px.png" /></button></td></tr>';
+                                      }
+                            }
+
+                        }
+                        else {
+                            tr += '<tr><td colspan="2">No Data</td></tr>';
+                        }
+
+                        $("#tblETenderDetails").html(tr);
+                    }
+                }
+            });
+        }
+        //Tenders Awarded Table
+        function TenderAwardDetails() {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/TenderAwardDetails',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.length != 0) {
+                        var tr = "";
+                        var jsondata = data;
+                        if (jsondata != null) {
+                            for (var i = 0; i < jsondata.length; i++) {
+                                if (jsondata[i].accept == "True") {
+                            tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["UserName"]} </td><td class='tapno'>  ${jsondata[i]["package_no"]} </td><td class='tapname'>  ${jsondata[i]["packagename"]} </td><td class='taamount'>  ${jsondata[i]["contract_amount"]} </td><td><button style="background-color:green;" type="button" title="View & Update" onclick="getTAupdateid('${jsondata[i]["taid"]} ',' ${jsondata[i]["package_no"]} ',' ${jsondata[i]["packagename"]}',' ${jsondata[i]["contract_award_date"]}','${jsondata[i]["contract_amount"]}',' ${jsondata[i]["name_of_consultant"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#tendertab2"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                }
+                                else {
+                                    tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["UserName"]} </td><td class='tapno'>  ${jsondata[i]["package_no"]} </td><td class='tapname'>  ${jsondata[i]["packagename"]} </td><td class='taamount'>  ${jsondata[i]["contract_amount"]} </td><td><button type="button" title="View & Update" onclick="getTAupdateid('${jsondata[i]["taid"]} ',' ${jsondata[i]["package_no"]} ',' ${jsondata[i]["packagename"]}',' ${jsondata[i]["contract_award_date"]}','${jsondata[i]["contract_amount"]}',' ${jsondata[i]["name_of_consultant"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#tendertab2"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                }
+                            }
+
+                        }
+                        else {
+                            tr += '<tr><td colspan="2">No Data</td></tr>';
+                        }
+                        $("#tblTenderAwardedDetails").html(tr);
+                    }
+                }
+            });
+        }
+
+
+
+        function Appeal_Reg_Data() {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/AppealRegistrationData',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    var tr = "";
+                    if (data.length != 0) {
+                        var jsondata = data;
+                        if (jsondata != null) {
+                            for (var i = 0; i < jsondata.length; i++) {
+                                if (jsondata[i].accept == "True") {
+                    tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["fullname"]} </td><td class='tapno'>  ${jsondata[i]["appeal_type"]} </td><td class='tapname'>  ${jsondata[i]["appeal_address_to"]} </td><td class='taamount'>  ${jsondata[i]["email"]} </td><td><button style="background-color:green;" type="button" title="View & Update" onclick="getAUpdateid('${jsondata[i]["CreatedBy"]} ','${jsondata[i]["aarid"]} ',' ${jsondata[i]["agid"]} ','${jsondata[i]["subject"]} ','${jsondata[i]["fullname"]} ','${jsondata[i]["email"]} ',' ${jsondata[i]["mobile"]}',' ${jsondata[i]["phone"]}',' ${jsondata[i]["address"]}',' ${jsondata[i]["description"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#Appealtab"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                }
+                                else {
+                     tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["fullname"]} </td><td class='tapno'>  ${jsondata[i]["appeal_type"]} </td><td class='tapname'>  ${jsondata[i]["appeal_address_to"]} </td><td class='taamount'>  ${jsondata[i]["email"]} </td><td><button type="button" title="View & Update" onclick="getAUpdateid('${jsondata[i]["CreatedBy"]} ','${jsondata[i]["aarid"]} ',' ${jsondata[i]["agid"]} ','${jsondata[i]["subject"]} ','${jsondata[i]["fullname"]} ','${jsondata[i]["email"]} ',' ${jsondata[i]["mobile"]}',' ${jsondata[i]["phone"]}',' ${jsondata[i]["address"]}',' ${jsondata[i]["description"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#Appealtab"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                }
+
+
+
+                            }
+
+                        }
+                        else {
+                            tr += '<tr><td colspan="2">No Data</td></tr>';
+                        }
+
+                        $("#tblGrivience_Appeal").html(tr);
+                    }
+                }
+
+                });
+
+        }
+
+
+        function ConferenceDeatils() {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/ConferenceDetails',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    var tr = "";
+                    if (data.length != 0) {
+                        var jsondata = data;
+                        if (jsondata != null) {
+
+                            for (var i = 0; i < jsondata.length; i++) {
+
+                                if (jsondata[i].accept = "True") {
+ tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["UserName"]} </td><td class='tapno'>  ${jsondata[i]["conference_name"]} </td><td class='tapname'>  ${jsondata[i]["start_date"]} </td><td class='taamount'>  ${jsondata[i]["location"]} </td><td><button style="background-color:green;" type="button" title="View & Update" onclick="ApproveNationalConference('${jsondata[i]["acid"]}');" class="btn btn-primary btn-md"><img class="upddeleteicon" src="../Images/right black 20px.png" /></button></td><td> <button type="button" title="Reject" onclick="RejectNationalConference('${jsondata[i]["acid"]}')" class="btn btn-danger btn-md"><img class="upddeleteicon" src="../Images/cross black 20px.png" /></button></td></tr>`;
+                                }
+                                else {
+                                     tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["UserName"]} </td><td class='tapno'>  ${jsondata[i]["conference_name"]} </td><td class='tapname'>  ${jsondata[i]["start_date"]} </td><td class='taamount'>  ${jsondata[i]["location"]} </td><td><button type="button" title="View & Update" onclick="ApproveNationalConference('${jsondata[i]["acid"]}');" class="btn btn-primary btn-md"><img class="upddeleteicon" src="../Images/right black 20px.png" /></button></td><td> <button type="button" title="Reject" onclick="RejectNationalConference('${jsondata[i]["acid"]}')" class="btn btn-danger btn-md"><img class="upddeleteicon" src="../Images/cross black 20px.png" /></button></td></tr>`;
+                                }
+
+                            }
+
+                        }
+                        else {
+                            tr += '<tr><td colspan="2">No Data</td></tr>';
+                        }
+
+                        $("#tblnationalConference").html(tr);
+                    }
+                }
+            });
+        }
+
+        function GrievanceData() {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/GrievanceDetails',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.length != 0) {
+                        var tr = "";
+                        var jsondata = data;
+                        if (jsondata != null) {
+                            for (var i = 0; i < jsondata.length; i++) {
+
+                                if (jsondata[i].accept == "True") {
+  tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["fullname"]} </td><td class='tapno'>  ${jsondata[i]["grievance_type"]} </td><td class='tapname'>  ${jsondata[i]["grievance_address_to"]} </td><td class='taamount'>  ${jsondata[i]["email"]} </td><td><button style="background-color:green;" type="button" title="View & Update" onclick="getGrpdateid('${jsondata[i]["CreatedBy"]} ','${jsondata[i]["agid"]} ',' ${jsondata[i]["fullname"]} ','${jsondata[i]["email"]} ',' ${jsondata[i]["mobile"]}',' ${jsondata[i]["phone"]}',' ${jsondata[i]["address"]}',' ${jsondata[i]["grivance_description"]}','${jsondata[i]["subject"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal2"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                }
+                                else {
+                                    tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["fullname"]} </td><td class='tapno'>  ${jsondata[i]["grievance_type"]} </td><td class='tapname'>  ${jsondata[i]["grievance_address_to"]} </td><td class='taamount'>  ${jsondata[i]["email"]} </td><td><button type="button" title="View & Update" onclick="getGrpdateid('${jsondata[i]["CreatedBy"]} ','${jsondata[i]["agid"]} ',' ${jsondata[i]["fullname"]} ','${jsondata[i]["email"]} ',' ${jsondata[i]["mobile"]}',' ${jsondata[i]["phone"]}',' ${jsondata[i]["address"]}',' ${jsondata[i]["grivance_description"]}','${jsondata[i]["subject"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal2"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                }
+
+                            }
+
+                        }
+                        else {
+                            tr += '<tr><td colspan="2">No Data</td></tr>';
+                        }
+
+                        $("#tblGrivience").html(tr);
+                    }
+
+                }
+                });
+
+        }
+        function TenderDetails1() {
+             $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Admin/TendersData',
+                data: '',
+                dataType: 'JSON',
+                 success: function (data) {
+                     if (data != null && data.length != 0) {
+                         var tr = "";
+                         var jsondata = data;
+                         if (jsondata != null) {
+                             for (var i = 0; i < jsondata.length; i++) {
+                                 if (jsondata[i].accept == "True") {
+                                      tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["UserName"]} </td><td class='tapno'>  ${jsondata[i]["bid_ref_no"]} </td><td class='tapname'>  ${jsondata[i]["office_emailid"]} </td><td class='taamount'>  ${jsondata[i]["tender_ref_no"]} </td><td><button style="background-color:green;" type="button" title="View & Update" onclick="getTupdateid('${jsondata[i]["UserId"]} ','${jsondata[i]["tid"]} ',' ${jsondata[i]["bid_ref_no"]} ','${jsondata[i]["description"]} ',' ${jsondata[i]["office_inviting_tender"]}',' ${jsondata[i]["office_emailid"]}',' ${jsondata[i]["publish_date"]}',' ${jsondata[i]["tender_ref_no"]}',' ${jsondata[i]["url"]}',' ${jsondata[i]["sale_start_datetime"]}',' ${jsondata[i]["sale_end_datetime"]}',' ${jsondata[i]["last_submission_datetime"]}',' ${jsondata[i]["opening_start_datetime"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal1"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                 }
+                                 else {
+                                     //tr += '<tr><td>' + (i+1) + '</td><td>' + jsondata[i]["UserName"] + '</td><td> ' + jsondata[i]["bid_ref_no"] + '</td><td>' + jsondata[i]["office_emailid"] + '</td><td> ' + jsondata[i]["tender_ref_no"] + '</td><td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal1"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>';
+                                     tr += `<tr id="row-${i + 1}"><td>  ${(i + 1)}  </td><td class='taname'> ${jsondata[i]["UserName"]} </td><td class='tapno'>  ${jsondata[i]["bid_ref_no"]} </td><td class='tapname'>  ${jsondata[i]["office_emailid"]} </td><td class='taamount'>  ${jsondata[i]["tender_ref_no"]} </td><td><button type="button" title="View & Update" onclick="getTupdateid('${jsondata[i]["UserId"]} ','${jsondata[i]["tid"]} ',' ${jsondata[i]["bid_ref_no"]} ','${jsondata[i]["description"]} ',' ${jsondata[i]["office_inviting_tender"]}',' ${jsondata[i]["office_emailid"]}',' ${jsondata[i]["publish_date"]}',' ${jsondata[i]["tender_ref_no"]}',' ${jsondata[i]["url"]}',' ${jsondata[i]["sale_start_datetime"]}',' ${jsondata[i]["sale_end_datetime"]}',' ${jsondata[i]["last_submission_datetime"]}',' ${jsondata[i]["opening_start_datetime"]}',${i});" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal1"><img class="upddeleteicon" src="../Images/view black.png" /></button></td></tr>`;
+                                 }
+
+                             }
+
+                         }
+                         else {
+                             tr += '<tr><td colspan="2">No Data</td></tr>';
+                         }
+                         $("#tblTenderDetails").html(tr);
+                     }
+
+                }
+            });
+        }
+
+
+
+
+
+        //Approve National Conference Details
+
+    function ApproveNationalConference(id) {
+        var obj = {};
+        obj.acid = id;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/ApproveNationalConference",
+                contentType: "application/json;charset=utf-8",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    ConferenceDeatils();
+
+                }
+            });
+
+            document.getElementById("tblnationalConference").deleteRow(i);
+        }
+
+        //Delete National Conference Details
+
+        function RejectNationalConference(id) {
+            var obj = {};
+        obj.acid = id;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteNationalConference",
+                contentType: "application/json;charset=utf-8",
+                 data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    ConferenceDeatils();
+
+                }
+            });
+
+        }
+
+
+
+
+
+    var DEUserId = "";
+        //Delete  UserData Passing other Method code
+    function getdeleteid(Did, i) {
+        
+        DEUserId = Did;
+
+    }
+
+
+    function ConfirmDeleteUser() {
+         var obj11 = {};
+        obj11.UserId = DEUserId;
+             $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteUsers",
+                contentType: "application/json;charset=utf-8",
+                data: "{'Data': '" + JSON.stringify(obj11) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    UsersDelete();
+
+                }
+            });
+    }
+
+    var UPUserIDD = "";
+      var UPUserIndex = "";
+        // Update UserData Passing other Method code
+        function getupdateid(userid, username, email, department, i) {
+
+            SateWiseData1();
+
+            if (userid != 0 && userid != null) {
+                UPUserIDD = userid;
+                UPUserIndex = i;
+                document.getElementById('UUname').value = username;
+                document.getElementById('UDepartment').value = department;
+                document.getElementById('UEmail').value = email;
+
+            }
+
+    }
+
+    var TenderAnnoncementId = "";
+    var TenderAnnoncementIndex = "";
+        // Update Tender Details Passing other Method code
+        function getTupdateid(UserId,tid, tabid_ref_no, description, Office_inviting_tender, Office_emailid, Publish_date, Tender_ref_no, URL, Sale_start_datetime, Sale_end_datetime, Last_submission_datetime, Opening_start_datetime, i) {
+
+            TenderAnnoncementIndex = UserId;
+            TenderAnnoncementId =tid;
+            if (tid != 0 && tid != null) {
+
+                document.getElementById('tabid_ref_no').value = tabid_ref_no;
+                document.getElementById('description').value = description;
+                document.getElementById('inviting_tender').value = Office_inviting_tender;
+                document.getElementById('email').value = Office_emailid;
+
+                document.getElementById('published_date').value = Publish_date;
+                document.getElementById('ta_ref_num').value = Tender_ref_no;
+                document.getElementById('url').value = URL;
+                document.getElementById('start_date').value = Sale_start_datetime;
+
+                document.getElementById('end_date').value = Sale_end_datetime;
+                document.getElementById('last_date').value = Last_submission_datetime;
+                document.getElementById('opening_start_date').value = Opening_start_datetime;
+
+            }
+
+        }
+
+
+        //Approve Tender Details
+
+    function UpdateTender_Details() {
+        var Iddd = parseInt(TenderAnnoncementId);
+         var obj = {};
+        obj.tid = Iddd;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/ApprovetenderDetails",
+                contentType: "application/json;charset=utf-8",
+               data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    TenderDetails1();
+                }
+            });
+
+        }
+
+        //Delete  Tender Details
+
+    function DeleteTender_Details() {
+        
+        var i = parseInt(TenderAnnoncementIndex);
+
+            //document.getElementById("tblTenderDetails").deleteRow(i);
+        var Iddd = parseInt(TenderAnnoncementId);
+        var obj = {};
+        obj.tid = Iddd;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeletetenderDetails",
+                contentType: "application/json;charset=utf-8",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    TenderDetails1();
+                }
+            });
+
+        }
+
+
+
+
+        //Approve Tender Award Details
+
+        function approve_TenderAwardDetails() {
+           var obj = {};
+        obj.taid = TenderAwardId;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/ApprovetenderAwardDetails",
+                contentType: "application/json;charset=utf-8",
+               data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    TenderAwardDetails();
+                }
+            });
+
+        }
+
+        //Delete  Tender Award Details
+
+        function delete_TenderAwardDetails() {
+
+        var obj = {};
+        obj.taid = TenderAwardId;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeletetenderAwardDetails",
+                contentType: "application/json;charset=utf-8",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    TenderAwardDetails();
+                }
+            });
+
+        }
+
+    var TenderAwardId=""
+        // Update Tender Details Passing other Method code
+        function getTAupdateid(taid, package_no, package_name, tender_award_date, tender_amount, Name_of_the_Consultant, i) {
+
+
+            TenderAwardId = taid;
+            if (taid != 0 && taid != null) {
+
+                document.getElementById('package_no').value = package_no;
+                document.getElementById('package_name').value = package_name;
+                document.getElementById('tender_award_date').value = tender_award_date;
+                document.getElementById('tender_amount').value = tender_amount;
+
+                document.getElementById('Name_of_the_Consultant').value = Name_of_the_Consultant;
+            }
+
+
+        }
+
+
+
+        //Delete E Tender Details
+
+    function DeleteEtenderData(EID1) {
+        
+            var obj1 = {};
+            obj1.aetid = EID1;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteEtenderDetails",
+               contentType: "application/json;charset=utf-8",
+            data: "{'Data': '" + JSON.stringify(obj1) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    TenderETenderDetails();
+                }
+            });
+
+        }
+
+        //Approve E Tender Details
+
+    function ApproveEtenderData(EID) {
+             var obj = {};
+            obj.aetid = EID;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/ApproveEtenderDetails",
+                contentType: "application/json;charset=utf-8",
+contentType: "application/json;charset=utf-8",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    TenderETenderDetails();
+                }
+            });
+
+        }
+
+
+
+    var GrievanceID = "";
+        // Update Grivance Details Passing other Method code
+        function getGrpdateid(UserId, UpdateGid, fullname, email, mobile, phone, address,grivance_description,subject,i) {
+
+            GrievanceID = UpdateGid;
+            if (UpdateGid != 0 && UpdateGid != null) {
+                document.getElementById('Gname').value = fullname;
+                document.getElementById('Gsubject').value = subject;
+                document.getElementById('Gemail').value = email;
+                document.getElementById('Gmobile').value = mobile;
+                document.getElementById('Gphone').value = phone;
+                document.getElementById('Gaddress').value = address;
+                document.getElementById('Gdescription').value = grivance_description;
+
+            }
+        }
+
+        //Approve Grivance Details
+
+    function UpdateGrivance_Details() {
+        
+        var obj1 = {};
+        obj1.agid = GrievanceID;
+
+            $.ajax({
+                type: "POST",
+                url: "/Admin/ApproveGrivanceDetails",
+                contentType: "application/json;charset=utf-8",
+            data: "{'Data': '" + JSON.stringify(obj1) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    GrievanceData();
+                }
+            });
+
+        }
+
+        //Delete Grivance Details
+
+        function DeleteGrivanceDetails() {
+
+            var obj1 = {};
+        obj1.agid = GrievanceID;
+
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteGrivanceDetails",
+              contentType: "application/json;charset=utf-8",
+            data: "{'Data': '" + JSON.stringify(obj1) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    GrievanceData();
+
+                }
+            });
+
+        }
+
+
+
+
+
+    var APPleId = "";
+        // Update Appeal Details Passing other Method code
+        function getAUpdateid(UserId, aarid, agid, subject, fullname, email, mobile, phone, address, description, i) {
+            APPleId = aarid;
+
+            if (aarid != 0 && aarid != null) {
+
+                userid = UserId;
+                document.getElementById('AGID').value = agid;
+                document.getElementById('AGSubject').value = subject;
+
+                document.getElementById('AGName').value = fullname;
+                document.getElementById('AGEmail').value = email;
+                document.getElementById('AGMobile').value = mobile;
+                document.getElementById('AGPhone').value = phone;
+
+                document.getElementById('AGAddress').value = address;
+                document.getElementById('AGdescription').value = description;
+
+            }
+
+
+        }
+
+
+        //Approve Appeal Details
+
+        function ApproveAppeal_Details() {
+            var obj1 = {};
+            obj1.aarid = APPleId;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/ApproveAppeal_Details",
+                 contentType: "application/json;charset=utf-8",
+                data: "{'Data': '" + JSON.stringify(obj1) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    Appeal_Reg_Data();
+                }
+            });
+
+        }
+
+        //Delete Appeal Details
+
+        function DeleteAppeal_Details() {
+
+            var obj1 = {};
+            obj1.aarid = APPleId;
+            $.ajax({
+                type: "POST",
+                url: "/Admin/DeleteAppeal_Details",
+                 contentType: "application/json;charset=utf-8",
+                data: "{'Data': '" + JSON.stringify(obj1) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+                    Appeal_Reg_Data();
+                }
+            });
+
+        }
+        //cheked  Users Roles Ajax Method
+        function UsersData(UserId, RollId)
+        {
+           // alert(RollId);
+
+
+                        $.ajax({
+                        type: "GET",
+                            url: "/Admin/AdminPannel1",
+                          contentType: "application/json;charset=utf-8",
+
+                           data: { 'userid': UserId, 'rollid': RollId },
+                            dataType: 'text',
+                            cache: true,
+                        success: function (data) {
+                            alert("success");
+
+                        }
+            });
+
+        }
+
+     function UpdateAllUsersInfo() {
+            var state = document.getElementById("state").value;
+            var dist = document.getElementById("dist").value;
+            var block = document.getElementById("block").value;
+            var gram = document.getElementById("gram").value;
+
+            var Username = document.getElementById("UUname").value;
+            var Department = document.getElementById("UDepartment").value;
+            var email = document.getElementById("UEmail").value;
+         var UserId = UPUserIDD;
+
+            var obj = {};
+            obj.StateName = state;
+            obj.DistrictName = dist;
+            obj.BlockName = block;
+            obj.GramPanchayatName = gram;
+            obj.UserName = Username;
+            obj.DepartmentName = Department;
+         obj.Email = email;
+         obj.UserId = UserId;
+
+            $.ajax({
+             type: "POST",
+            contentType: "application/json;charset=utf-8",
+                url: "/Admin/UpdateALLUsers",
+                 data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    alert(data);
+
+                    var i = parseInt(UPUserIndex);
+                const row = document.getElementById(`row-${i + 1}`);
+
+            row.getElementsByClassName('uname')[0].innerText = Username;
+            row.getElementsByClassName('udept')[0].innerText = Department;
+            row.getElementsByClassName('uemail')[0].innerText = email;
+                    UsersUpdate();
+
+                }
+            });
+
+        }
+        function Update() {
+
+
+            var state = document.getElementById("state1").value;
+            var dist = document.getElementById("dist1").value;
+            var block = document.getElementById("block1").value;
+            var gram = document.getElementById("gram1").value;
+
+            var Username = document.getElementById("Aname").value;
+            var Department = document.getElementById("Adepartment").value;
+            var email = document.getElementById("Aemail").value;
+
+            var obj = {};
+            obj.StateName = state;
+            obj.DistrictName = dist;
+            obj.BlockName = block;
+            obj.GramPanchayatName = gram;
+            obj.UserName = Username;
+            obj.DepartmentName = Department;
+            obj.Email = email;
+            $.ajax({
+             type: "POST",
+            contentType: "application/json;charset=utf-8",
+                url: "/Admin/UpdateUsers",
+                 data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    EditProfile();
+
+
+
+                }
+            });
+
+        }
+
+            //Uncheked  Users Roles Ajax Method
+        function UsersData1(UserId, RollId) {
+
+            $.ajax({
+                type: "GET",
+                url: "/Admin/AdminPannelRemove",
+                contentType: "application/json;charset=utf-8",
+
+                data: { 'userid': UserId, 'rollid': RollId },
+                dataType: 'text',
+                cache: true,
+                success: function (data) {
+                    alert("success");
+
+                }
+            });
+
+        }
+
+</script>
+<script>
+    $(document).ready(function () {
+        EditProfile();
+    });
+    function EditProfile() {
+
+        $.ajax({
+            type: "GET",
+            url: "/Admin/AdminProfile",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (results) {
+
+                for (var i = 0; i < results.length; i++) {
+                    document.getElementById('unamese').innerHTML = results[i].UserName;
+                    // document.getElementById("profilename").innerHTML = results[i].UserName;
+                    document.getElementById("Aname").value = results[i].UserName;
+                    document.getElementById("Aemail").value = results[i].Email;
+                    document.getElementById("Adepartment").value = results[i].DepartmentName;
+
+                    document.getElementById("UserId").value = results[i].UserId;
+                }
+
+            }
+        });
+        SateWiseData();
+    }
+</script>
+<script>
+    function gotologin() {
+        window.location.reload(true);
+        //window.location = url("~/Home/MisLogin");
+    }
+    $(document).ready(function () {
+        $.noConflict();
+        $('table.data2').DataTable();
+        $('div#useradministration').show();
+        $('div#titleadministration').hide();
+        $('div#updateuser').hide();
+        $('div#deleteuser').hide();
+    });
+
+
+</script>
+
+<script>
+    var modalConfirm = function (callback) {
+
+        $(".btn-confirm").on("click", function () {
+            $("#mi-modal").modal('show');
+        });
+
+        $("#modal-btn-si").on("click", function () {
+            callback(true);
+            $("#mi-modal").modal('hide');
+        });
+
+        $("#modal-btn-no").on("click", function () {
+            callback(false);
+            $("#mi-modal").modal('hide');
+        });
+    };
+
+    modalConfirm(function (confirm) {
+        if (confirm) {
+            //Acciones si el usuario confirma
+            $("#result").html("CONFIRMADO");
+        } else {
+            //Acciones si el usuario no confirma
+            $("#result").html("NO CONFIRMADO");
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    function visableUserdetails() {
+        document.getElementById("UDepartment").disabled = false;
+        document.getElementById("UUname").disabled = false;
+        document.getElementById("UEmail").disabled = false;
+        document.getElementById("state").disabled = false;
+        document.getElementById("dist").disabled = false;
+        document.getElementById("block").disabled = false;
+        document.getElementById("gram").disabled = false;
+       document.getElementById("state1").disabled = false;
+        document.getElementById("dist1").disabled = false;
+        document.getElementById("block1").disabled = false;
+        document.getElementById("gram1").disabled = false;
+        document.getElementById("Aname").disabled = false;
+        document.getElementById("Aemail").disabled = false;
+        document.getElementById("Adepartment").disabled = false;
+    }
+    var Jsondata = "";
+    function SateWiseData() {
+
+         $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/DashboardJsondata',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                Jsondata = JSON.parse(data);
+                $.each(Jsondata, function (i, stateval) {
+                    $("#state").append($('<option></option>').val(stateval.sid).html(stateval.statename));
+                });
+                $("#state").prepend($('<option></option>').val("").html("Select State"));
+                $("#state").val("");
+
+                $("#state").change(function () {
+                    if (this.value != "") {
+                        var distid = this.value;
+                        var distjsondata = Jsondata.filter(m => m.sid == distid);
+                        $("#dist").html("");
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(distjsondata, function (i, dist) {
+                            $.each(dist.abhy_districts, function (j, distval) {
+                                $("#dist").append($('<option></option>').val(distval.did).html(distval.district_name));
+                            });
+                        });
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#dist").val("");
+                    }
+                    else {
+                        $("#dist").html("");
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#dist").change(function () {
+                    if (this.value != "" && $("#state").val() != "") {
+                        var distjsondata2 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata = distjsondata2[0].abhy_districts.filter(m => m.did == this.value);
+                        $("#block").html("");
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(mandjsondata, function (j, mandval) {
+                            $.each(mandval.abhy_blocks, function (k, mandval2) {
+                                $("#block").append($('<option></option>').val(mandval2.bid).html(mandval2.block_name));
+                            });
+                        });
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#block").val("");
+                    }
+                    else {
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#block").change(function () {
+                    if (this.value != "" && $("#state").val() != "" && $("#dist").val() != "") {
+                        var distjsondata3 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata2 = distjsondata3[0].abhy_districts.filter(m => m.did == $("#dist").val());
+                        var gramjsonata = mandjsondata2[0].abhy_blocks.filter(m => m.bid == this.value);
+                        $("#gram").html("");
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(gramjsonata, function (j, gramval) {
+                            $.each(gramval.abhy_grampanchayat, function (k, gramval2) {
+                                $("#gram").append($('<option></option>').val(gramval2.gpid).html(gramval2.gpname));
+                            });
+                        });
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#gram").val("");
+                    }
+                    else {
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+                $("#gram").change(function () {
+                    if (this.value != "" && $("#state").val() != "" && $("#dist").val() != "" && $("#block").val() != "") {
+                        var distjsondata4 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata3 = distjsondata4[0].abhy_districts.filter(m => m.did == $("#dist").val());
+                        var gramjsonata2 = mandjsondata3[0].abhy_blocks.filter(m => m.bid == $("#block").val());
+                        var villagejsondata = data.filter(m => m.sid == $("#state").val() && m.did == $("#dist").val() && m.bid == $("#block").val() && m.gpid == this.value);
+                        //var villagejsondata = gramjsonata2[0].abhy_grampanchayat.filter(m => m.gpid == this.value);
+                        $("#village").html("");
+                        $.each(villagejsondata, function (j, villageval) {
+                            //$.each(villageval.abhy_villages, function (k, villageval2) {
+                            $("#village").append($('<option></option>').val(villageval.vid).html(villageval.viname));
+                           // });
+                        });
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $("#village").val("");
+                    }
+                    else {
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+            }
+        });
+    }
+
+
+
+
+     var Jsondata1 = "";
+    function SateWiseData1() {
+
+         $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/DashboardJsondata',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                Jsondata1 = JSON.parse(data);
+                $.each(Jsondata1, function (i, stateval) {
+                    $("#state1").append($('<option></option>').val(stateval.sid).html(stateval.statename));
+                });
+                $("#state1").prepend($('<option></option>').val("").html("Select State"));
+                $("#state1").val("");
+
+                $("#state1").change(function () {
+                    if (this.value != "") {
+                        var distid = this.value;
+                        var distjsondata = Jsondata1.filter(m => m.sid == distid);
+                        $("#dist1").html("");
+                        $("#block1").html("");
+                        $("#block1").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram1").html("");
+                        $("#gram1").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                          $.each(distjsondata, function (i, dist) {
+                            $.each(dist.abhy_districts, function (j, distval) {
+                                $("#dist1").append($('<option></option>').val(distval.did).html(distval.district_name));
+                            });
+                        });
+                        $("#dist1").prepend($('<option></option>').val("").html("Select District"));
+                        $("#dist1").val("");
+                    }
+                    else {
+                        $("#dist1").html("");
+                        $("#dist1").prepend($('<option></option>').val("").html("Select District"));
+                        $("#block1").html("");
+                        $("#block1").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram1").html("");
+                        $("#gram1").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+
+                    }
+                });
+                $("#dist1").change(function () {
+                    if (this.value != "" && $("#state1").val() != "") {
+                        var distjsondata2 = Jsondata1.filter(m => m.sid == $("#state1").val());
+                        var mandjsondata = distjsondata2[0].abhy_districts.filter(m => m.did == this.value);
+                        $("#block1").html("");
+                        $("#gram1").html("");
+                        $("#gram1").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+
+                        $.each(mandjsondata, function (j, mandval) {
+                            $.each(mandval.abhy_blocks, function (k, mandval2) {
+                                $("#block1").append($('<option></option>').val(mandval2.bid).html(mandval2.block_name));
+                            });
+                        });
+                        $("#block1").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#block1").val("");
+                    }
+                    else {
+                        $("#block1").html("");
+                        $("#block1").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram1").html("");
+                        $("#gram1").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+
+                    }
+                });
+                $("#block1").change(function () {
+                    if (this.value != "" && $("#state1").val() != "" && $("#dist1").val() != "") {
+                        var distjsondata3 = Jsondata1.filter(m => m.sid == $("#state1").val());
+                        var mandjsondata2 = distjsondata3[0].abhy_districts.filter(m => m.did == $("#dist1").val());
+                        var gramjsonata = mandjsondata2[0].abhy_blocks.filter(m => m.bid == this.value);
+                        $("#gram1").html("");
+
+                        $.each(gramjsonata, function (j, gramval) {
+                            $.each(gramval.abhy_grampanchayat, function (k, gramval2) {
+                                $("#gram1").append($('<option></option>').val(gramval2.gpid).html(gramval2.gpname));
+                            });
+                        });
+                        $("#gram1").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#gram1").val("");
+                    }
+                    else {
+                        $("#gram1").html("");
+                        $("#gram1").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+
+                    }
+                });
+
+            }
+        });
+    }
+</script>
+
+<script>
+//Ground Water Table
+    function getGroundWatertblData() {
+            var tr = "";
+            var gWBData = @Html.Raw(ViewBag.tbluser);
+            var jsonGwbdata = gWBData;
+                 if (jsonGwbdata != null) {
+                for (var i = 0; i < jsonGwbdata.length; i++) {
+                    tr += `<tr id="row-${i + 1}"><td>  ${jsonGwbdata[i]["UserName"]}  </td><td class='taname'> ${jsonGwbdata[i]["NodalOfficer"]} </td><td class='tapno'> ${jsonGwbdata[i]["DepartmentName"]} </td><td class='tapname'>  ${jsonGwbdata[i]["StateName"]} </td><td class='taamount'> <a href="/Report/ReportGWB" target="_blank"> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="" data-target="#"><img class="upddeleteicon" src="../Images/view black.png" onclick="getfillGwbData(${jsonGwbdata[i]["UserId"]})" /></button></a></td></tr>`;
+                     }
+                 }
+            else {
+                tr += '<tr><td colspan="3">No Data</td></tr>';
+                 }
+                 $("#tbodyWaterBudget").html(tr);
+    }
+    function getfillGwbData(uid) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/getfillGwbData",
+            data: "{'Userid': '" + uid + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                var resp = response;
+                $('#spnsurarea').html(resp[0]["Springs_Total_Geographical_Area_in_Hectares"]);
+                $('#spnsurraifall').html(resp[0]["AvgOfSurfaceWaterRainfall"]);
+
+                $('#spnnoofsprings').html(resp[0]["Spring_Functioning_All_round_the_year"]);
+                $('#spnspringarea').html(resp[0]["Waterfall_Area_in_Hectares"]);
+                $('#spnspringdepth').html(resp[0]["Springs_Depth"]);
+
+                $('#spnsurcd').html(resp[0]["No_Of_CheckDams"]);
+                $('#spnsurcapacity').html(resp[0]["CheckDams_Capacity"]);
+
+                 $('#spnnoofcanals').html(resp[0]["Canals_River_Canal_Functioning_All_round_the_year"]);
+                $('#spncanalarea').html(resp[0]["Canals_Area_in_Hectares"]);
+                $('#spncanaldepth').html(resp[0]["Canals_Depth"]);
+
+                $('#spnnoofreservoir').html(resp[0]["Reservoir_Name"]);
+                $('#spnreservoirval').html(resp[0]["Current_Live_Storage"]);
+
+                 $('#spnsurnooflakesponds').html(resp[0]["Tank_Pond_Lake_Functioning_All_round_the_year"]);
+                $('#spnsurlakespondsarea').html(resp[0]["Tanks_Lakes_Area_in_Hectares"]);
+                $('#spnsurlakespondsdepth').html(resp[0]["Tanks_Depth"]);
+
+                $('#spnsurriver').html(resp[0]["River_Canal_Functioning_All_round_the_year"]);
+                $('#spnsurriverarea').html(resp[0]["River_Canals_Area_in_Hectares"]);
+                $('#spnsurriverdepth').html(resp[0]["River_Depth"]);
+
+                $('#spngwarea').html(resp[0]["Gwr_Rainfall_Area"]);
+                $('#spngwrainfall').html(resp[0]["Gwr_Rainfall_Rainfall"]);
+                //$('#spngwrechrgefactor').html(resp[0]["River_Depth"]);
+
+                $('#spngwhsnauwtubwells').html(resp[0]["Wells_Tube_Wells_Area_in_Hectares"]);
+                $('#spngwhsnaucanals').html(resp[0]["Harvesting_Canals_Area_in_Hectares"]);
+                $('#spngwnauitanks').html(resp[0]["Harvesting_Tanks_Lakes_Area_in_Hectares"]);
+                $('#spngwnaucdandnalabunds').html(resp[0]["NetArea_Under_CheckDams_and_NalaBunds"]);
+
+                $('#spngwmsarea').html(resp[0]["Gwr_IT_maximum_SubmergenceArea"]);
+                $('#spngwrrate').html(resp[0]["Gwr_IT_Reacharge_Rate"]);
+                $('#spndaysofsubmergence').html(resp[0]["Gwr_IT_DaysOfSubmergence"]);
+
+                $('#spnmaxsubarea').html(resp[0]["Gwr_CD_maximumSubmergence_Area"]);
+                $('#spnavgdepthwater').html(resp[0]["Gwr_CD_AverageDepthOf_Water"]);
+                $('#spnnooffilling').html(resp[0]["Gwr_CD_NoOfFillings"]);
+
+                $('#spnlengthofthecanals').html(resp[0]["Gwr_STC_LengthOfthe_Canals"]);
+                $('#spnseepagefactor').html(resp[0]["Gwr_STC_Seepage_Factor"]);
+                $('#spnflowingdays').html(resp[0]["Gwr_STC_Flowing_Days"]);
+                $('#spnavgwetperimeter').html(resp[0]["Gwr_STC_Avg_Wetted_Perimeter"]);
+
+                $('#spnareairrigated').html(resp[0]["Gwr_SWI_AreaIrrigated"]);
+                $('#spndesidisatoutlet').html(resp[0]["Gwr_SWI_DesignedDischarge_At_Outlet"]);
+                $('#spnseepagef').html(resp[0]["Gwr_SWI_Seepage_Factor"]);
+                $('#spnwreleasedatoutlet').html(resp[0]["Gwr_SWI_WaterReleased_At_OutLet"]);
+
+                $('#spncareairrigation').html(resp[0]["Gwr_GwI_CommndArea_Irrigation"]);
+                $('#spncareareturnflow').html(resp[0]["Gwr_GwI_CommandArea_ReturnFlow"]);
+                $('#spnnoncareairrigation').html(resp[0]["Gwr_GwI_NonCommand_Area_Irrigation"]);
+                $('#spnnoncareareturnflow').html(resp[0]["Gwr_GwI_NonCommand_Area_ReturnFlow"]);
+
+                $('#spndailypupinghours').html(resp[0]["Draft_Irrigation_DailyPumping_Hours"]);
+                $('#spntotnooffunwells').html(resp[0]["Tube_Wells_Borehole_Functioning_All_round_the_year"]);
+                $('#spntotnoofpumpdays').html(resp[0]["Draft_Irrigation_Total_NoOf_Pumping_Days"]);
+                $('#spnavgpumpratein').html(resp[0]["Draft_Irrigation_Avg_Pumping_Rate"]);
+
+                 $('#spntotwreqforpeople').html(resp[0]["Draft_Drink_Tot_Water_Requirement_For_People"]);
+                $('#spntotwreqforcowabuf').html(resp[0]["Draft_Drink_Tot_Water_Requirement_For_CowsBufalos"]);
+                $('#spntotwatreqforbullocks').html(resp[0]["Draft_Drink_Tot_Water_Requirement_For_Bullocks"]);
+
+                 $('#spngwintanks').html(resp[0]["Draft_Industry_GW_In_Take"]);
+                $('#spntotnoofprdays').html(resp[0]["Draft_Industry_Tot_Noof_Production_Days"]);
+
+                var finalSurrainfallCount = 0;
+                var finalSurharvestingstructurecCount = 0;
+                var finalsurcheckdamsCount = 0;
+                var finalsurcanalsCount = 0;
+                var finalirsurreservoirsCount = 0;
+                var finalSurlakespondstanksCount = 0;
+                var finalSurRiversCount = 0;
+
+                finalSurrainfallCount = parseFloat(parseFloat($('#spnsurarea').html()) + parseFloat($('#spnsurraifall').html())).toFixed(2);
+                finalSurharvestingstructurecCount = parseFloat(parseFloat($('#spnnoofsprings').html()) + parseFloat($('#spnspringarea').html())+ parseFloat($('#spnspringdepth').html())).toFixed(2);
+                finalsurcheckdamsCount = parseFloat(parseFloat($('#spnsurcd').html()) + parseFloat($('#spnsurcapacity').html())).toFixed(2);
+                finalsurcanalsCount = parseFloat(parseFloat($('#spnnoofcanals').html()) + parseFloat($('#spncanalarea').html())+ parseFloat($('#spncanaldepth').html())).toFixed(2);
+                finalirsurreservoirsCount = parseFloat(parseFloat($('#spnnoofreservoir').html()) + parseFloat($('#spnreservoirval').html())).toFixed(2);
+                finalSurlakespondstanksCount = parseFloat(parseFloat($('#spnsurnooflakesponds').html()) + parseFloat($('#spnsurlakespondsarea').html())+ parseFloat($('#spnsurlakespondsdepth').html())).toFixed(2);
+                finalSurRiversCount = parseFloat(parseFloat($('#spnsurriver').html()) + parseFloat($('#spnsurriverarea').html())+ parseFloat($('#spnsurriverdepth').html())).toFixed(2);
+
+                var finalTotalsurfaceWaterCount = parseFloat(parseFloat(finalSurrainfallCount) + parseFloat(finalSurharvestingstructurecCount) + parseFloat(finalsurcheckdamsCount) + parseFloat(finalsurcanalsCount) + parseFloat(finalirsurreservoirsCount) + parseFloat(finalSurlakespondstanksCount) + parseFloat(finalSurRiversCount)).toFixed(2);
+
+                $('#spnfinalSurrainfall').html(finalSurrainfallCount);
+                $('#spnfinalSurSprings').html(finalSurharvestingstructurecCount);
+                $('#spnfinalSurcheckdams').html(finalsurcheckdamsCount);
+                $('#spnfinalSurCanals').html(finalsurcanalsCount);
+                $('#spnfinalSurReservoirs').html(finalirsurreservoirsCount);
+                $('#spnfinalSurLakesPondsTanks').html(finalSurlakespondstanksCount);
+                $('#spnfinalSurRevers').html(finalSurRiversCount);
+
+                $('#spnTotalSurwRecharge').html(finalTotalsurfaceWaterCount);
+
+                 var finalGwrainfallCount = parseFloat(parseFloat($('#spngwarea').html()) + parseFloat($('#spngwrainfall').html())).toFixed(2);
+                var finalGwharvestingstructurecCount = parseFloat(parseFloat($('#spngwhsnauwtubwells').html()) + parseFloat($('#spngwhsnaucanals').html())+ parseFloat($('#spngwnauitanks').html())+ parseFloat($('#spngwnaucdandnalabunds').html())).toFixed(2);
+                var finalGwirritanks = parseFloat(parseFloat($('#spngwmsarea').html()) + parseFloat($('#spngwrrate').html())+ parseFloat($('#spndaysofsubmergence').html())).toFixed(2);
+                var finalGwcheckdamsCount = parseFloat(parseFloat($('#spnmaxsubarea').html()) + parseFloat($('#spnavgdepthwater').html())+ parseFloat($('#spnnooffilling').html())).toFixed(2);
+                var finalGwcanalsCount = parseFloat(parseFloat($('#spnlengthofthecanals').html()) + parseFloat($('#spnseepagefactor').html()) + parseFloat($('#spnflowingdays').html())+ parseFloat($('#spnwreleasedatoutlet').html())).toFixed(2);
+                var finalGwSurfWaterIrrigationCount = parseFloat(parseFloat($('#spnareairrigated').html()) + parseFloat($('#spndesidisatoutlet').html())+ parseFloat($('#spnseepagef').html()) + parseFloat($('#spnwreleasedatoutlet').html())).toFixed(2);
+                var finalGwGroundWaterIrrigationCount = parseFloat(parseFloat($('#spncareairrigation').html()) + parseFloat($('#spncareareturnflow').html())+ parseFloat($('#spnnoncareairrigation').html()) + parseFloat($('#spnnoncareareturnflow').html())).toFixed(2);
+
+
+                var finalTotalGwCount = parseFloat(parseFloat(finalGwrainfallCount) + parseFloat(finalGwharvestingstructurecCount) + parseFloat(finalGwirritanks) + parseFloat(finalGwcheckdamsCount) + parseFloat(finalGwcanalsCount)+ parseFloat(finalGwSurfWaterIrrigationCount)+ parseFloat(finalGwGroundWaterIrrigationCount)).toFixed(2);
+
+                $('#spngwfinalrainfall').html(finalGwrainfallCount);
+                $('#spngwfinalhs').html(finalGwharvestingstructurecCount);
+                $('#spngwfinalirritanks').html(finalGwirritanks);
+                $('#spngwfinalcdnalabunds').html(finalGwcheckdamsCount);
+                $('#spngwfinalsepgetcan').html(finalGwcanalsCount);
+                $('#spngwfinalswater').html(finalGwSurfWaterIrrigationCount);
+                $('#spngwfinalirrigation').html(finalGwGroundWaterIrrigationCount);
+
+                $('#spngwtotGwRecha').html(finalTotalGwCount);
+
+                var finalDraftirrigationCount = parseFloat(parseFloat($('#spndailypupinghours').html()) + parseFloat($('#spntotnooffunwells').html()) + parseFloat($('#spntotnoofpumpdays').html()) + parseFloat($('#spnavgpumpratein').html())).toFixed(2);
+                var finalDraftDrinkingCount = parseFloat(parseFloat($('#spntotwreqforpeople').html()) + parseFloat($('#spntotwreqforcowabuf').html()) + parseFloat($('#spntotwatreqforbullocks').html())).toFixed(2);
+                var finalDraftindustryCount = parseFloat(parseFloat($('#spngwintanks').html()) + parseFloat($('#spntotnoofprdays').html()) ).toFixed(2);
+
+                var finalTotalDraftCount = parseFloat(parseFloat(finalDraftirrigationCount) + parseFloat(finalDraftDrinkingCount)+ parseFloat(finalDraftindustryCount)).toFixed(2);
+
+                $('#spnfinalirrigation1').html(finalDraftirrigationCount);
+                $('#spnfinaldrinkpur').html(finalDraftDrinkingCount);
+                $('#spnfinalindustry1').html(finalDraftindustryCount);
+
+                $('#spnfinaltotGwdraft').html(finalTotalDraftCount);
+
+            }
+        });
+    }
+    function getapprovedorrejected(ApporRej) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/getapprovedorRejected",
+            data: "{'AprorRej': '" + ApporRej + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                var resp = response;
+                alert("Success");
+            }
+        });
+    }
+    function UpdateGwlData(UserID, State, Dist, Block) {
+
+        var obj = {};
+        obj.state = State;
+        obj.dist = Dist;
+        obj.block = Block;
+        obj.UserID = UserID;
+          $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/DataGWLApproval",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+              success: function (response) {
+
+                  alert(response);
+                  if (response == "Save") {
+                    //  window.location = "/Report/ReportGWm#reportgroundwatermonitoring";
+                     {window.open("/Report/ReportGWm", "_blank");}
+
+                }
+            }
+        });
+    }
+
+
+</script>
+
+<script>
+    function WaterBudget() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Admin/GettingWaterBudgetDetails',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                let tr = "";
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        
+                        var MyDate_String_Value = data[i].currdate;
+                        var value = new Date
+                            (
+                                parseInt(MyDate_String_Value.replace(/(^.*\()|([+-].*$)/g, ''))
+                            );
+                        var getdate = value.getDate().toString();
+                        if (getdate.length == 1) {
+                            getdate = "0" + value.getDate();
+                        }
+                        var dat = value.getFullYear() + "/" + value.getMonth() + 1 + "/" + getdate;
+
+                        var Officername = data[i].approvedby;
+                        if (Officername != null) {
+                            Officername = data[i].approvedby;
+                        }
+                        else {
+                            Officername = "";
+                        }
+                        if (data[i].approvedby != null) {
+                            tr += `<tr> <td>${(i + 1)} </td><td>${data[i].email}</td><td>${Officername}</td><td>${data[i].state_name}</td><td>${data[i].district_name}</td><td>${data[i].block}</td><td>${data[i].gname}</td><td><a href="#"><button type="button" title="View &amp; Update" class="btn btn-default btn-md" data-toggle="" data-target="#" style="background-color:green;"><img class="upddeleteicon" src="../Images/view black.png" onclick="W_BudgetAPProve('${data[i].email}','${dat}','${data[i].state_name}','${data[i].district_name}','${data[i].block}','${data[i].gname}')"></button></a></td><tr>`;
+                        }
+                        else {
+                            tr += `<tr> <td>${(i + 1)} </td><td>${data[i].email}</td><td>${Officername}</td><td>${data[i].state_name}</td><td>${data[i].district_name}</td><td>${data[i].block}</td><td>${data[i].gname}</td><td><a href="#"><button type="button" title="View &amp; Update" class="btn btn-default btn-md" data-toggle="" data-target="#"><img class="upddeleteicon" src="../Images/view black.png" onclick="W_BudgetAPProve('${data[i].email}','${dat}','${data[i].state_name}','${data[i].district_name}','${data[i].block}','${data[i].gname}')"></button></a></td><tr>`;
+                        }
+
+                    }
+
+                }
+                else {
+                    tr += '<tr><td colspan="7">No Data</td></tr>';
+                }
+                if (tr == "") {
+                    tr += '<tr style="text-align:center;"><td colspan="8">No Data</td></tr>';
+                }
+                $("#tbodyWaterBudgetDetails").html(tr);
+            }
+        });
+    }
+
+
+    function W_BudgetAPProve(email, datee, state, dist, block, gram) {
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/WaterBudgetId",
+            data: "{'UserEmail': '" + email + "','SDate': '" + datee + "','state': '" + state + "','dist': '" + dist + "','block': '" + block + "','gram': '" + gram + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                if (response == "Save") {
+
+                    { window.open("/Report/ReportGWB", "_blank"); }
+                }
+            }
+        });
+    }
+    //demand side json script for retrive data
+    function Demand_Data() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Admin/APPDemandSide',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                console.log(data);
+
+                let tr = "";
+
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        var MyDate_String_Value = data[i].todaydate;
+                        var value = new Date
+                            (
+                                parseInt(MyDate_String_Value.replace(/(^.*\()|([+-].*$)/g, ''))
+                            );
+                        var getdate = value.getDate().toString();
+                        if (getdate.length == 1) {
+                            getdate = "0" + value.getDate();
+                        }
+                        var dat = value.getFullYear() + "/" + value.getMonth() + 1 + "/" + getdate;
+
+                        var Officername = data[i].accept;
+                        if (Officername != null) {
+                            Officername = data[i].accept;
+                        }
+                        else {
+                            Officername = "";
+                        }
+                        if (data[i].accept != null) {
+                            tr += `<tr> <td>${(i + 1)} </td><td>${data[i].emailid}</td><td>${Officername}</td><th>${data[i].username}</th><td>${data[i].state_name}</td><td>${data[i].district_name}</td><td>${data[i].block}</td><td>${data[i].gname}</td><td><a href="#"><button type="button" title="View &amp; Update" class="btn btn-default btn-md" data-toggle="" data-target="#" style="background-color:green;"><img class="upddeleteicon" src="../Images/view black.png" onclick="DemandSideData(${data[i].userid},'${dat}')"></button></a></td><tr>`;
+                        }
+                        else {
+                            tr += `<tr> <td>${(i + 1)} </td><td>${data[i].emailid}</td><td>${Officername}</td><th>${data[i].username}</th><td>${data[i].state_name}</td><td>${data[i].district_name}</td><td>${data[i].block}</td><td>${data[i].gname}</td><td><a href="#"><button type="button" title="View &amp; Update" class="btn btn-default btn-md" data-toggle="" data-target="#"><img class="upddeleteicon" src="../Images/view black.png" onclick="DemandSideData(${data[i].userid},'${dat}')"></button></a></td><tr>`;
+                        }
+
+                    }
+
+                }
+                else {
+                    tr += '<tr><td colspan="7">No Data</td></tr>';
+                }
+
+                $("#tblDemandSide").html(tr);
+
+            }
+        });
+
+    }
+
+    function DemandSideData(Idddd, datee) {
+
+        var Vid = Idddd;
+        var Date1 = datee;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/DemandId",
+            data: "{'UserId': '" + Vid + "','SDate': '" + Date1 + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response == "Save") {
+                    // window.location = "/Report/ReportWSp";
+
+                    { window.open("/Report/ReportWSp", "_blank"); }
+                }
+            }
+        });
+    }
+
+</script>

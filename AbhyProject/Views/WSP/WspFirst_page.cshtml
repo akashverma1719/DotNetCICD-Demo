@@ -1,0 +1,1349 @@
+﻿@model IEnumerable<AbhyProject.Models.AbhyModelClass>
+
+@{
+    ViewBag.Title = "WspFirst_page";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+    string query = (ViewData["state"] ?? string.Empty) as string;
+    string query1 = (ViewData["Dname"] ?? string.Empty) as string;
+    string query2 = (ViewData["Mname"] ?? string.Empty) as string;
+    string query3 = (ViewData["Gpname"] ?? string.Empty) as string;
+    string query4 = (ViewData["Vname"] ?? string.Empty) as string;
+
+}
+<!-- Latest compiled and minified CSS -->
+<title>WSP Home Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+@*<link rel="shortcut icon" type="image/x-icon" href="~/Content/Website/images/favicon.ico">*@
+
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .logo {
+        float: right;
+        padding: 54px 125px 1px 103px;
+        /* background-color: white; */
+        text-transform: uppercase;
+    }
+
+    img[id$="Hover"] {
+        margin: auto;
+        display: block;
+        height: 130px;
+        max-width: 100%;
+        /*box-shadow: inset 0 0 50px #76c5f5, 0 0 0px #43a0d8;*/
+        transition: all 0.4s ease-in;
+        border-radius: 50%;
+        --color: #ef6eae;
+        --hover: #ef8f6e;
+        border: 1px solid #ddd;
+    }
+        /*img[id$="Hover"] + span{
+            display:block;
+        }
+
+        img[id$="Hover"] + span:after {
+            content: '';
+            background-color: #d2e3fc;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            -webkit-transform: scale(0.001, 0.001);
+            transform: scale(0.001, 0.001);
+        }
+
+        img[id$="Hover"]:hover + span:after,
+        img[id$="Hover"]:focus + span:after,
+        img[id$="Hover"]:active + span:after {
+            -webkit-animation: hover1 0.8s ease-in;
+            animation: hover1 0.8s ease-in;
+        }*/
+
+        /*img[id$="Hover"]:hover,
+        img[id$="Hover"]:focus{
+            outline: none;
+            box-shadow: 0 0 0 0.25em rgba(0, 0, 0, 0.1);
+            transition: all .1s;
+        }*/
+
+        img[id$="Hover"]:hover,
+        img[id$="Hover"]:focus {
+            /*-webkit-animation: pulse 1s;
+            animation: pulse 1s;*/
+            box-shadow: inset 0 0 0px #76c5f5, 0 0 300px #2e86bb;
+            /*box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);*/
+        }
+
+    @@-webkit-keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 var(--hover);
+        }
+    }
+
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 var(--hover);
+        }
+    }
+
+    @@-webkit-keyframes hover1 {
+        50% {
+            -webkit-transform: scale(1.5, 1.5);
+            transform: scale(1.5, 1.5);
+            opacity: 0;
+        }
+
+        99% {
+            -webkit-transform: scale(0.001, 0.001);
+            transform: scale(0.001, 0.001);
+            opacity: 0;
+        }
+
+        100% {
+            -webkit-transform: scale(0.001, 0.001);
+            transform: scale(0.001, 0.001);
+            opacity: 1;
+        }
+    }
+
+    @@keyframes hover1 {
+        50% {
+            -webkit-transform: scale(1.5, 1.5);
+            transform: scale(1.5, 1.5);
+            opacity: 0;
+        }
+
+        99% {
+            -webkit-transform: scale(0.001, 0.001);
+            transform: scale(0.001, 0.001);
+            opacity: 0;
+        }
+
+        100% {
+            -webkit-transform: scale(0.001, 0.001);
+            transform: scale(0.001, 0.001);
+            opacity: 1;
+        }
+    }
+</style>
+<style>
+    .clearfix > img {
+        float: right;
+        padding: 10px 10px 0px 0px
+    }
+
+    ul.Main_page_list {
+        padding: 0;
+        display: flex;
+    }
+
+        ul.Main_page_list > li {
+            list-style: none;
+            display: inline-block;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+    @@media (min-width:992px) {
+        ul.Main_page_list {
+            display: flex;
+        }
+        /*ul.Main_page_list > li {
+                width: 70%;
+            }*/
+        .clearfix:nth-child(3) {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    ul.Main_page_list > li > a > label {
+        text-align: center;
+        font-size: 22px;
+        /*padding: 10px 0px 0px 37px;*/
+    }
+
+    ul.Main_page_list > li > a > span > img {
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: table;
+        font-size: 13px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: table-cell;
+            padding: 0px 0px 0px 5px;
+            text-transform:capitalize;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        /*border-bottom: 1px solid black;*/
+    }
+
+    .mySlides {
+        display: none;
+    }
+</style>
+
+<style>
+    header.hederImage {
+        background-image: url(../../Content/WspImages/irrigation1.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        padding: 1em 0 0;
+    }
+
+    .header-top-info > ul > li {
+        float: left;
+        text-align: right;
+        line-height: 20px;
+        list-style: none;
+    }
+
+        /*.header-top-info > ul > li:not(:first-child) {
+                padding-top: 13px;
+            }*/
+
+        .header-top-info > ul > li:not(:last-child) {
+            padding-right: 10px;
+        }
+
+        .header-top-info > ul > li:last-child {
+            text-align: left;
+        }
+
+        .header-top-info > ul > li > span {
+            display: block;
+        }
+
+            .header-top-info > ul > li > span:first-child > a,
+            .header-top-info > ul > li > span:first-child > a:hover,
+            .header-top-info > ul > li > span:first-child > a:focus {
+                font-weight: 600;
+                color: #fff;
+            }
+
+            .header-top-info > ul > li > span:last-child > a,
+            .header-top-info > ul > li > span:last-child > a:hover,
+            .header-top-info > ul > li > span:last-child > a:focus {
+                color: #fff;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+
+            .header-top-info > ul > li > span > i {
+                margin-left: 5px;
+            }
+
+
+
+    header.hederImage:before {
+        position: absolute;
+        content: "";
+        background-color: rgba(0, 0, 0, 0.36);
+        height: 100%;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .header-top-info > ul > li {
+        float: left;
+        text-align: right;
+        line-height: 20px;
+        list-style: none;
+    }
+
+
+
+
+
+
+    ul.imgHome {
+        display: inline-flex;
+    }
+
+        ul.imgHome > li {
+            list-style: none;
+            padding: 0px 0px 0px 10px;
+        }
+
+            ul.imgHome > li > img,
+            ul.imgHome > li > a > img {
+                width: 30px;
+            }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        padding: 0px 0px 0px 20px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        font-size: 13px;
+    }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+</style>
+<style>
+    .mySlides {
+        display: none;
+    }
+
+    .SideImage {
+        width: 100%;
+        height: 450px;
+    }
+
+    .w3-content > #btnLeft {
+        border-radius: 25px;
+    }
+
+    .w3-content > #btnRight {
+        border-radius: 25px;
+    }
+
+    /*#Select_dist_level {
+        padding: 20px 0px 0px 0px;
+    }*/
+
+    .bg-footer {
+        background-color: #33383c;
+       color:#fff;
+    }
+
+        .bg-footer
+        {
+
+        }
+        .footer-heading {
+            letter-spacing: 2px;
+        }
+
+    .footer-link a {
+        color: #acacac;
+        line-height: 40px;
+        font-size: 14px;
+        transition: all 0.5s;
+    }
+
+        .footer-link a:hover {
+            color: #1bbc9b;
+        }
+
+    .contact-info {
+        color: #acacac;
+        font-size: 14px;
+    }
+
+    .footer-social-icon {
+        font-size: 15px;
+        height: 34px;
+        width: 34px;
+        line-height: 34px;
+        border-radius: 3px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .facebook {
+        background-color: #4e71a8;
+        color: #ffffff;
+    }
+
+    .twitter {
+        background-color: #55acee;
+        color: #ffffff;
+    }
+
+    .google {
+        background-color: #d6492f;
+        color: #ffffff;
+    }
+
+    .apple {
+        background-color: #0077B5;
+        color: #ffffff;
+    }
+
+    .footer-alt {
+        color: #acacac;
+    }
+
+    .footer-heading {
+        position: relative;
+        padding-bottom: 12px;
+        font-size: 15px;
+    }
+
+        .footer-heading:after {
+            content: '';
+            width: 25px;
+            border-bottom: 1px solid #FFF;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            display: block;
+            border-bottom: 1px solid #1bbc9b;
+        }
+
+    ul.list-unstyled > li {
+        padding: 5px;
+    }
+
+    form > div.input-group {
+        width: 80%;
+    }
+
+
+
+    .fade {
+        opacity: 99 !important;
+    }
+</style>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Verdana, sans-serif;
+    }
+
+    .mySlides {
+        display: none;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+        /*max-width: 1000px;*/
+        position: relative;
+        margin: auto;
+    }
+
+    /* Caption text */
+    .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #b7b7b7;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active {
+        background-color: #fff;
+    }
+
+    /* Fading animation */
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @@-webkit-keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @@keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    /* On smaller screens, decrease text size */
+    @@media only screen and (max-width: 300px) {
+        .text {
+            font-size: 11px
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+
+        ul.Main_page_list {
+            flex-flow: column;
+        }
+    }
+</style>
+<style>
+
+    ul.imgHome > li > a > span > img {
+        width: 30px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    ul.imgHome {
+        font-size: 13px;
+    }
+
+
+    p.sometext {
+        text-align: justify;
+        line-height: 1.9em;
+    }
+
+    ul.Main_page_list {
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .time_date {
+        font-size: 12px;
+        margin-top: 5px;
+        color: blue;
+    }
+
+        .time_date p {
+            display: inline-block;
+            margin: 0px;
+            padding: 0px 0px 0px 5px;
+        }
+
+    .scrollup {
+        width: 40px;
+        height: 40px;
+        opacity: 1;
+        position: fixed;
+        bottom: 22px;
+        right: 20px;
+        display: none;
+        text-indent: -9999px;
+        /*background-image: url('../../Content/WspImages/WSPplan/Smooth Scroll 1.png');*/
+        background: url('../../Content/WspImages/scroll3.png') no-repeat left top;
+        /*background-image: url('../../Content/WspImages/WSPplan/scroll2.png');*/
+        /*background-image: url('../../Content/WspImages/WSPplan/scroll up.png');*/
+        z-index: 999;
+    }
+
+    ul.list-group {
+        display: inline-flex;
+        width: 100%;
+        text-align: center;
+    }
+
+    ul#ulTopics > li:focus,
+    ul#ulTopics > li:hover {
+        color: #23527c;
+        text-decoration: underline;
+        background-color: #ddd;
+    }
+
+    a:focus, a:hover {
+        color: #23527c;
+        text-decoration: underline;
+    }
+    /*ul[id$="_menu"] > li.active >*/
+    ul#ulTopics > li.active:after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -16px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    /*ul#ulTopics > li:focus,
+    ul#ulTopics > li:hover {
+        color: #23527c;
+        text-decoration: underline;
+        background-color: #ddd
+    }
+    .list-group-item.active,
+    .list-group-item.active:focus,
+    .list-group-item.active:hover {
+        z-index: 2;
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }*/
+    ul.myTabs {
+        background-color: #ddd;
+    }
+
+    ul#myTabs > li.active::after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -15px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    ul#myTabs > li {
+        background-color: #3A99ED;
+        padding: 0px;
+    }
+
+        ul#myTabs > li.active > a,
+        ul#myTabs > li.active > a:focus,
+        ul#myTabs > li.active > a:hover {
+            color: #fff !important;
+            background-color: #2E578C !important;
+        }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        text-decoration: none;
+        background-color: #6FB11D;
+    }
+
+    #accordion {
+        padding: 10px;
+    }
+
+    .panel-body {
+        padding: 0px;
+    }
+
+    .rightbootombutton {
+        position: absolute;
+        bottom: 5px;
+        right: 50px;
+    }
+
+    .w3-black,
+    .w3-hover-black:hover {
+        color: #000 !important;
+        background-color: #fff !important;
+        border-radius: 50px;
+        font-size: 18px;
+        right: 10px;
+    }
+
+    .w3-button:hover {
+        color: #fff !important;
+        background-color: #337ab7 !important;
+    }
+
+    .statebackground {
+        /*background: linear-gradient(45deg,#3699ea,#0a6dbe, #146eb7,#146eb7);*/
+        background-color: #f9f9f9;
+        color: #000;
+        padding: 5px;
+    }
+
+    .list-unstyled {
+        color: #acacac;
+    }
+
+    .addresslabel {
+        font-weight: 500;
+    }
+
+    ul#myTabs > li > a {
+        color: #fff;
+    }
+
+    .atlaligan {
+        border-bottom: 1px solid #fff;
+        text-decoration: none;
+    }
+
+        .atlaligan:focus,
+        .atlaligan:hover {
+            text-decoration: none;
+        }
+        hr
+        {
+            margin-top:0px;
+            margin-bottom:12px;
+        }
+</style>
+<div class="clearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a target="_blank" href="http://abhy.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a target="_blank"
+                                       href="http://mowr.gov.in/" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a target="_blank" href="https://india.gov.in/" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a target="_blank"
+                                       href="http://mowr.gov.in/" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png"  title="Username"/>
+                            <span style="color:#fff;">:@Session["UserName"]</span>
+                        </li>
+                        <li>
+
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png"title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-6" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/Home/index">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                </span>
+                                <label>Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/home/LogOut">
+                                <span><img src="~/Content/WspImages/log in.png" /></span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+
+
+                        </li>
+                        <li>
+                            <a href="~/WSP/Login_After">
+                                <span><img src="~/Content/WspImages/log in.png" /></span>
+                                <label>WSP Location <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+
+
+                        </li>
+                        <li>
+
+                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                            <label>Water Security Plan</label>
+
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+    </header>
+
+    <div class="clearfix statebackground">
+
+        <div class="col-md-12">
+            <div class="clearfix" id="Select_dist_level">
+
+                <ul class="Select_option">
+
+
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                        </li>
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+
+                        <li>
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label>Block:</label>
+                            <span>@Session["gblock"] </span>
+                        </li>
+                    }
+
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label>Gram panchayat:</label>
+                            <span>@Session["ggram"]</span>
+                        </li>
+                    }
+
+
+                    @*@if (Session["gvill"] != null && Session["gvill"].ToString() != "null" && Session["gvill"].ToString() != "")
+                    {
+                        <li>
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label>Village:</label>
+                            <span>@Session["gvill"]</span>
+                        </li>
+                    }*@
+
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="clearfix">
+        <div class="col-md-12">
+            @using (Html.BeginForm("WspFirst_Page", "WSP"))
+            {
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="col-md-12">
+
+                            <div class="panel-group" id="accordion">
+
+                                <!-- Start Accordion 1 -->
+                                <div class="panel panel-default">
+                                    <!-- Toggle Heading -->
+                                    <!-- Toggle Content -->
+                                    <div id="collapse-one" class="panel-collapse in">
+                                        <div class="panel-body" style="padding-bottom: 10px !important;">
+                                            <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                                                <li class="active  col-md-4">
+                                                    <a href="javascript:;" data-target="#Commentary" data-toggle="tab">
+                                                        Ground Water Monitoring
+                                                    </a>
+                                                </li>
+                                                <li class="col-md-4"><a href="javascript:;" data-target="#Videos" data-toggle="tab">Water Budgeting</a></li>
+                                                <li class="col-md-4"><a href="javascript:;" data-target="#Events" data-toggle="tab">Water Security</a></li>
+                                            </ul>
+
+
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                                                    <ul class="Main_page_list">
+                                                        <li class="col-md-4">
+                                                            <a href="~/WSP/ReWsp_gm">
+                                                                <span><img src="~/Content/WspImages/ground water monitering.jpg" id="img1Hover" /></span>
+                                                                <label> Ground Water Monitoring</label>
+                                                            </a>
+                                                        </li>
+                                                        <li class="col-md-8">
+                                                            <p class="sometext">
+                                                                Ground water is being depleted at a rapid rate and over
+                                                                exploitation of ground water is happening across the world. There is an urgent need
+                                                                to monitor and assess ground water resources. Monitoring helps in understanding
+                                                                the changing water storage conditions at a particular place. The data collected by
+                                                                monitoring ground water can be used to determine its availability, usage, interaction
+                                                                with local surface water sources, and understanding how surface development has
+                                                                impacted the aquifer.
+                                                            </p>
+
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="Videos">
+                                                    <ul class="Main_page_list">
+                                                        <li class="col-md-4">
+                                                            <a href="~/WSP/Wsp_form">
+                                                                <span> <img src="~/Content/WspImages/water balancing.jpg" id="img2Hover" /></span>
+                                                                <label>Water Budgeting </label>
+                                                            </a>
+                                                        </li>
+                                                        <li class="col-md-8">
+                                                            <p class="sometext">
+                                                                Water budgeting helps to quantify the hydrologic cycle. A water
+                                                                budget is an accounting of the rates of water movement and the change in water
+                                                                storage in all or parts of the atmosphere, land surface, and sub-surface. It gives an
+                                                                account of all the water that flows into and out of an area. The main function of water
+                                                                budgeting tool is to estimate the amount of water a landscape will have, based on its
+                                                                recharge and draft capacity. Water budget takes into account reference rainfall data,
+                                                                irrigated landscape area, water sources data and, the purpose and functionality of
+                                                                the landscape. It can be calculated for daily, monthly and annual irrigation event.
+                                                            </p>
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="Events">
+                                                    <ul class="Main_page_list tab-pane fade text-justify" id="Tname3">
+                                                        <li class="col-md-4">
+                                                            <a href="~/WSP/Water_Security_plans">
+
+                                                                <span> <img src="~/Content/WspImages/waterdrop.jpg" id="img2Hover" /></span>
+                                                                <label>Water Security</label>
+                                                            </a>
+                                                        </li>
+                                                        <li class="col-md-8">
+                                                            <p class="sometext">
+                                                                Water security is the capacity of a population to safeguard
+                                                                adequate quantities of quality water for sustaining livelihoods, human well-being, and
+                                                                socio-economic development. The main purpose of water security tool is to estimate
+                                                                the total water budget required for managing adequate quantities of water resources
+                                                                based on its demand and supply..
+                                                            </p>
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- End Accordion 1 -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-md-12">
+                        <ul class="Main_page_list">
+                            <li>
+                                <a href="~/WSP/ReWsp_gm">
+                                    <span><img src="~/Content/WspImages/ground water monitering.jpg" id="img1Hover" /></span>
+                                    <label> Ground Water Monitoring</label>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Accordion -->
+                                <div class="panel-group" id="accordion">
+
+                                    <!-- Start Accordion 1 -->
+                                    <div class="panel panel-default">
+                                        <!-- Toggle Heading -->
+                                        <!-- Toggle Content -->
+                                        <div id="collapse-one" class="panel-collapse in">
+                                            <div class="panel-body" style="padding-bottom: 10px !important;">
+                                                <div style="line-height: 40px; background: #53a6f5; height: 40px; font-weight: 600; margin: -3px -14px; padding-left: 10px;">
+                                                    Ground Water Monitoring:
+                                                </div>
+                                                <hr style="margin: 10px 0px;">
+                                                <p class="sometext">
+                                                    Law of law enforcement rules determine when use of force by police or
+                                                    prison officers will be lawful. International human rights law adds the
+                                                    principles of legality and precaution.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- End Accordion 1 -->
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12">
+                        <ul class="Main_page_list">
+                            <li>
+                                <!-- Accordion -->
+                                <div class="panel-group" id="accordion">
+
+                                    <!-- Start Accordion 1 -->
+                                    <div class="panel panel-default">
+                                        <!-- Toggle Heading -->
+                                        <!-- Toggle Content -->
+                                        <div id="collapse-one" class="panel-collapse in">
+                                            <div class="panel-body" style="padding-bottom: 10px !important;">
+                                                <div style="line-height: 40px; background: #53a6f5; height: 40px; font-weight: 600; margin: -3px -14px; padding-left: 10px;">
+                                                    Water Budgeting:
+                                                </div>
+                                                <hr style="margin: 10px 0px;">
+                                                <p class="sometext">
+                                                    Law of law enforcement rules determine when use of force by police or
+                                                    prison officers will be lawful. International human rights law adds the
+                                                    principles of legality and precaution.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- End Accordion 1 -->
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="~/WSP/Ground_Water_Recharge">
+                                    <span> <img src="~/Content/WspImages/water balancing.jpg" id="img2Hover" /></span>
+                                    <label>Water Budgeting </label>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-12">
+                        <ul class="Main_page_list">
+                            <li>
+                                <a href="~/WSP/Water_Security_plans">
+
+                                    <span> <img src="~/Content/WspImages/waterdrop.jpg" id="img2Hover" /></span>
+                                    <label>Water Security</label>
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Accordion -->
+                                <div class="panel-group" id="accordion">
+
+                                    <!-- Start Accordion 1 -->
+                                    <div class="panel panel-default">
+                                        <!-- Toggle Heading -->
+                                        <!-- Toggle Content -->
+                                        <div id="collapse-one" class="panel-collapse in">
+                                            <div class="panel-body" style="padding-bottom: 10px !important;">
+                                                <div style="line-height: 40px; background: #53a6f5; height: 40px; font-weight: 600; margin: -3px -14px; padding-left: 10px;">
+                                                    Water Security:
+                                                </div>
+                                                <hr style="margin: 10px 0px;">
+                                                <p class="sometext">
+                                                    Law of law enforcement rules determine when use of force by police or
+                                                    prison officers will be lawful. International human rights law adds the
+                                                    principles of legality and precaution.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- End Accordion 1 -->
+
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>*@
+
+
+            }
+        </div>
+        @*<div class="col-md-6">
+                <div class="slideshow-container">
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 3</div>
+                        <img src="~/Content/WspImages/main image 1.png" class="SideImage">
+                        <div class="text">Caption Text</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 3</div>
+                        <img src="~/Content/WspImages/main image 2.png" class="SideImage">
+                        <div class="text">Caption Two</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">3 / 3</div>
+                        <img src="~/Content/WspImages/main image 3.png" class="SideImage">
+                        <div class="text">Caption Three</div>
+                    </div>
+                    <button class="w3-button w3-black w3-display-left" id="btnLeft" onclick="plusDivs(-1)">&#10094;</button>
+                    <button class="w3-button w3-black w3-display-right" id="btnRight" onclick="plusDivs(1)">&#10095;</button>
+
+                </div>
+                <div style="position: absolute;bottom: 0;z-index: 9999;left: 50%;margin-left: -30px;">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                @*<div class="w3-content w3-display-container">
+
+                <img class="mySlides" src="~/Content/WspImages/1.jfif">
+
+                <img class="mySlides" src="~/Content/WspImages/2.jfif">
+                <img class="mySlides" src="~/Content/WspImages/3.jfif">
+
+
+                <button class="w3-button w3-black w3-display-left" id="btnLeft" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-black w3-display-right" id="btnRight" onclick="plusDivs(1)">&#10095;</button>
+            </div>*@
+        @*</div>*@
+    </div>
+
+    <footer class="section bg-footer">
+        <div class="clearfix">
+            <div class="col-lg-4">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">Contact US</h6>
+                    @using (Html.BeginForm("WSPContact", "WSP"))
+                    {
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><input type="text" class="form-control" name="name" placeholder="Enter your name" /></li>
+                            <li><input type="text" class="form-control" name="email" placeholder="Enter your email ID" /></li>
+                            <li><textarea class="form-control" name="message" placeholder="Enter your message"></textarea></li>
+                            <li><button class="btn btn-success" type="submit">Submit</button></li>
+                        </ul>
+                    }
+                </div>
+                <h4 style="color:red;"> @ViewBag.Error</h4>
+            </div>
+
+
+
+            <div class="col-lg-2">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">Help</h6>
+                    <ul class="list-unstyled footer-link mt-4">
+                        <li><a href="~/Home/FAQs" target="_blank">FAQ </a></li>
+                        <li><a href="~/Contact/FeedBack" target="_blank">Feedback</a></li>
+                        <li><a href="~/Home/Terms_Conditions" target="_blank">Terms of Services</a></li>
+                        <li><a href="~/Home/Privacy_Policy" target="_blank">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">Information</h6>
+                    @*<ul class="list-unstyled footer-link mt-4">
+            <li><span>Subscribe to know more or join our initiatve</span></li>
+            <li>
+                <form role="form">
+                    <div class="input-group">
+                        <input type="text" class="form-control " autocomplete="off" placeholder="Enter your email ID" required="">
+                        <span class="input-group-btn">
+                            <button class="btn  btn-primary " type="button">Ok</button>
+                        </span>
+                    </div>
+                </form>
+            </li>
+        </ul>*@
+
+                    <div class="mt-5">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="https://www.facebook.com/abhy.gcrs" target="_blank"><i class="fa facebook footer-social-icon fa-facebook-f"></i></a></li>
+                            <li class="list-inline-item"><a href="https://twitter.com/abhy39743912" target="_blank"><i class="fa twitter footer-social-icon fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCAIIQXYdAsFsPTMRHYwcqQA?view_as=subscriber" target="_blank"><i class="fa google footer-social-icon fa-youtube-play"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.linkedin.com/in/abhy-yojana-792b43186/" target="_blank"><i class="fa apple footer-social-icon fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="">
+                    <h6 class="footer-heading text-uppercase text-white">ADDRESS </h6>
+                    <p class="contact-info mt-4"><label class="addresslabel">Ministry of Jal Shakti Department of Water Resources, River Development & Ganga Rejuvenation, Shram Shakti bhawan, Rafi Marg, New Delhi - 110001</label></p>
+                </div>
+            </div>
+
+        </div>
+
+        <hr />
+        <div class=" mt-5">
+            <ul class="list-inline text-center" style="margin-bottom:0;">
+                <li>
+                    <p class="footer-alt mb-0 f-14">Developed and Maintained by .Kreate Technologies © 2019 ATAL BHUJAL YOJANA (ATAL JAL), All Rights Reserved</p>
+                </li>
+                
+            </ul>
+
+
+        </div>
+    </footer>
+    <a href="#" class="scrollup" style="display: inline;">Scroll</a>
+</div>
+
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+
+    }
+
+
+
+    //}
+
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 5000); // Change image every 2 seconds
+    }
+
+</script>
+<script>
+    (function ($) {
+        "use strict";
+
+        $(document).ready(function () {
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollup').fadeIn();
+                } else {
+                    $('.scrollup').fadeOut();
+                }
+            });
+
+            $('.scrollup').click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 500);
+                return false;
+            });
+
+        });
+
+    })(jQuery);
+</script>

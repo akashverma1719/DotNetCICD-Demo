@@ -1,0 +1,2137 @@
+﻿
+
+@{
+    ViewBag.Title = "Water_security_plan";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Water Security Plan</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+    <!--favicon end-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/datecss.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+    
+    <script>
+
+        function valueChange(a) {
+
+            alert("Hiii");
+        }
+        var Data = "";
+        var CheckedValue = ""
+        function Supplysidedata() {
+
+            Data = "Supplysidedata";
+
+        }
+        function Demandsidedata() {
+            Data = "Demandsidedata";
+
+        }
+        var EDITIDDD = 0;
+        var EDITMETHOD1 = "";
+        function Edit(Editid, Editactivity, Editsdate, Editedate, Editnumber, Editeunicost, Editarea, Editfunding, EditImplementing, Edittotalbudget, EDITMETHOD) {
+            EDITIDDD = Editid;
+
+            $('#EDITactivity').val(Editactivity);
+            $('#datetimepicker5').val(Editsdate);
+            $('#datetimepicker6').val(Editedate);
+            $('#EDITnumber').val(Editnumber);
+            $('#EDITunitcost').val(Editeunicost);
+
+            $('#EDITarea').val(Editarea);
+            $('#EDITfunding').val(Editfunding);
+            $('#EDITimplementing').val(EditImplementing);
+            $('#EDITTotal_Budget').val(Edittotalbudget);
+            EDITMETHOD1 = EDITMETHOD;
+            $('#EditModal').modal('show');
+        }
+
+
+
+        var DELETEIDDD = 0;
+        var DelMethod = "";
+        function Delete(DELETEid, DELETEMETHOD) {
+
+            DELETEIDDD = DELETEid;
+            DelMethod = DELETEMETHOD;
+            var i = 0;
+            var obj1 = {};
+            if (DELETEIDDD == "") {
+                i = 1;
+                $('#Alert123').text("Id Not Sending");
+            }
+            if (DelMethod == "") {
+                i = 1;
+                $('#Alert123').text("Data Not Sending");
+            }
+            if (i == 0) {
+                obj1.category = DelMethod;
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/WSP/DeleteWaterSecurityPlan",
+                    data: "{'Data': '" + JSON.stringify(obj1) + "','IDD': '" + DELETEid + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        DELETEIDDD = 0;
+                        DelMethod = "";
+                        $('#Alert123').text(response);
+                        // setTimeout(function(){ document.getElementById("Alert123").innerHTML =response;}, 2000);
+                        Demand_Data();
+                        Supply_Data();
+
+                    }
+
+
+                });
+            }
+        }
+        function Update() {
+            var i = 0;
+            var startdate = $('#datetimepicker5').val();
+            var enddate = $('#datetimepicker6').val();
+            var number = $('#EDITnumber').val();
+            var unitcost = $('#EDITunitcost').val();
+            var area = $('#EDITarea').val();
+            var funding = $('#EDITfunding').val();
+            var Department = $('#EDITimplementing').val();
+            var totalbudget = $('#EDITTotal_Budget').val();
+            var activity = $('#EDITactivity').val();
+            if (activity == "") {
+                i = 1;
+                $('#alert21').text("Please Enter Activity");
+            }
+            if (Department == "0") {
+                i = 1;
+                $('#alert21').text("Please Select Department");
+            }
+            if (funding == "") {
+                i = 1;
+                $('#alert21').text("Please Enter Atal Jal Funding");
+            }
+
+            if (area == "") {
+                i = 1;
+                $('#alert21').text("Please Enter Area Capacity");
+            }
+            if (unitcost == "") {
+                i = 1;
+                $('#alert21').text("Please Enter Unit cost");
+            }
+            if (number == "") {
+                i = 1;
+                $('#alert21').text("Please Enter Number of units");
+            }
+            if (enddate == "") {
+                i = 1;
+                $('#alert21').text("Please Select End Date");
+            }
+            if (startdate == "") {
+                i = 1;
+                $('#alert21').text("Please Select Start Date");
+            }
+
+
+            if (i == 0) {
+                var obj = {};
+                obj.startdate = startdate;
+                obj.enddate = enddate;
+                obj.activity = activity;
+                obj.number = number;
+                obj.unitcost = unitcost;
+                obj.area = area;
+                obj.funding = funding;
+                obj.implementing = Department;
+                obj.totalbudget = totalbudget;
+
+                //obj.dateandtime = Date.now();
+                obj.category = EDITMETHOD1;
+                if (EDITMETHOD1 == "DemandSide") {
+                    obj.did = parseInt(EDITIDDD);
+                } else {
+                    obj.supplyid = parseInt(EDITIDDD);
+                }
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/WSP/UpdateWaterSecurityPlan",
+                    data: "{'Data': '" + JSON.stringify(obj) + "','IDD': '" + EDITIDDD + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        $("#EditModal").modal("hide");
+                        EDITIDDD = 0;
+                        EDITMETHOD1 = "";
+                        $('#Alert123').text(response);
+                        //setTimeout(function(){ document.getElementById("Alert123").innerHTML =response;}, 2000);
+                        Demand_Data();
+                        Supply_Data();
+
+                    }
+
+
+                });
+            }
+        }
+
+        function DemandSideSavedData() {
+
+            $('#alert11').text("");
+            var i = 0;
+
+            var startdate = $('#datetimepicker1').val();
+            var enddate = $('#datetimepicker2').val();
+            var number = $('#number').val();
+            var unitcost = $('#unitcost').val();
+            var area = $('#area').val();
+            var funding = $('#funding').val();
+            var Department = $('#implementing').val();
+            var totalbudget = $('#Total_Budget').val();
+            var activity = $('#activity').val();
+            if (activity == "") {
+                i = 1;
+                $('#alert11').text("Please Enter Activity");
+            }
+            if (Department == "0") {
+                i = 1;
+                $('#alert11').text("Please Select Department");
+            }
+            if (funding == "") {
+                i = 1;
+                $('#alert11').text("Please Enter Atal Jal Funding");
+            }
+
+            if (area == "") {
+                i = 1;
+                $('#alert11').text("Please Enter Area Capacity");
+            }
+            if (unitcost == "") {
+                i = 1;
+                $('#alert11').text("Please Enter Unit cost");
+            }
+            if (number == "") {
+                i = 1;
+                $('#alert11').text("Please Enter Number of units");
+            }
+            if (enddate == "") {
+                i = 1;
+                $('#alert11').text("Please Select End Date");
+            }
+            if (startdate == "") {
+                i = 1;
+                $('#alert11').text("Please Select Start Date");
+            }
+
+
+            if (i == 0) {
+                var obj = {};
+                obj.startdate = document.getElementById('datetimepicker1').value;
+                obj.enddate = document.getElementById('datetimepicker2').value;
+                obj.activity = document.getElementById('activity').value;
+                obj.number = document.getElementById('number').value;
+                obj.unitcost = document.getElementById('unitcost').value;
+                obj.area = document.getElementById('area').value;
+                obj.funding = document.getElementById('funding').value;
+                obj.implementing = Department;
+                obj.totalbudget = totalbudget;
+
+                //obj.dateandtime = Date.now();
+                obj.category = "DemandSide";
+
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/WSP/DemandSideSavedData",
+                    data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+
+                        document.getElementById('datetimepicker1').value = "";
+                        document.getElementById('datetimepicker2').value = "";
+                        document.getElementById('activity').value = "";
+                        document.getElementById('number').value = "";
+                        document.getElementById('unitcost').value = "";
+                        document.getElementById('area').value = "";
+                        document.getElementById('funding').value = "";
+                        document.getElementById('implementing').value = "0";
+                        document.getElementById('Total_Budget').value = "";
+                        $("#myModal").modal("hide");
+                        //document.getElementById('NewUser').innerHTML = response;
+                    }
+
+
+                });
+            }
+        }
+
+
+
+        function SupplaysideSaveData() {
+            $('#alert1').text("");
+            var i = 0;
+
+            var startdate = $('#datetimepicker3').val();
+            var enddate = $('#datetimepicker4').val();
+            var number = $('#number1').val();
+            var unitcost = $('#unitcost1').val();
+
+
+            var area = $('#area1').val();
+            var funding = $('#funding1').val();
+            var Department = $('#implementing1').val();
+            var totalbudget = $('#Total_Budget1').val();
+            var activity = $('#activity1').val();
+
+            if (activity == "") {
+                i = 1;
+                $('#alert1').text("Please Enter Activity");
+            }
+            if (Department == "0") {
+                i = 1;
+                $('#alert1').text("Please Select Department");
+            }
+            if (funding == "") {
+                i = 1;
+                $('#alert1').text("Please Enter Atal Jal Funding");
+            }
+
+            if (area == "") {
+                i = 1;
+                $('#alert1').text("Please Enter Area Capacity");
+            }
+            if (unitcost == "") {
+                i = 1;
+                $('#alert1').text("Please Enter Unit cost");
+            }
+            if (number == "") {
+                i = 1;
+                $('#alert1').text("Please Enter Number of units");
+            }
+            if (enddate == "") {
+                i = 1;
+                $('#alert1').text("Please Select End Date");
+            }
+            if (startdate == "") {
+                i = 1;
+                $('#alert1').text("Please Select Start Date");
+            }
+
+
+
+            if (i == 0) {
+                var obj = {};
+                obj.startdate = document.getElementById('datetimepicker3').value;
+                obj.enddate = document.getElementById('datetimepicker4').value;
+                obj.activity = document.getElementById('activity1').value;
+                obj.number = document.getElementById('number1').value;
+                obj.unitcost = document.getElementById('unitcost1').value;
+                obj.area = document.getElementById('area1').value;
+                obj.funding = document.getElementById('funding1').value;
+                obj.implementing = Department;
+                obj.totalbudget = totalbudget;
+                //obj.dateandtime = Date.now();
+                obj.category = "SupplySide";
+
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/WSP/SupplaysideSaveData",
+                    data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+
+                        document.getElementById('datetimepicker3').value = "";
+                        document.getElementById('datetimepicker4').value = "";
+                        document.getElementById('activity1').value = "";
+                        document.getElementById('number1').value = "";
+                        document.getElementById('unitcost1').value = "";
+                        document.getElementById('area1').value = "";
+                        document.getElementById('funding1').value = "";
+                        document.getElementById('implementing1').value = "0";
+                        document.getElementById('Total_Budget1').value = "";
+                        $("#myModal1").modal("hide");
+                        //document.getElementById('NewUser').innerHTML = response;
+                    }
+
+
+                });
+            }
+        }
+
+
+
+    </script>
+
+
+    <script>
+        //demand side json script for retrive data
+        function Demand_Data() {
+            Supply_Data();
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/WSP/demandsidedetails',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+                    $('#Alert123').text("");
+
+                    console.log(data);
+
+                    let tr = "";
+                    FullData = data;
+                    if (data != null) {
+                        for (var i = 0; i < data.length; i++) {
+                            tr += `<tr><td>  ${data[i]["activity"]}  </td><td> ${data[i]["startdate"]} </td><td>  ${data[i]["enddate"]} </td><td>  ${data[i]["number"]} </td><td>  ${data[i]["unitcost"]} </td><td> ${data[i]["area"]} </td><td>${data[i]["funding"]} </td><td>${data[i]["implementing"]}</td><td>${data[i]["totalbudget"]}</td><td><button type="button" title="View & Update" onclick="Edit('${data[i]["did"]}','${data[i]["activity"]}','${data[i]["startdate"]}','${data[i]["enddate"]}','${data[i]["number"]}','${data[i]["unitcost"]}','${data[i]["area"]}','${data[i]["funding"]} ','${data[i]["implementing"]}','${data[i]["totalbudget"]}','${"DemandSide"}')" class="btn btn-default btn-md"><img class="upddeleteicon" src="../Images/view black.png" /></button></td><td><button style="background-color:red;" type="button" title="View & Update" onclick="Delete('${data[i]["did"]}','${"DemandSide"}')" class="btn btn-default btn-md"><img class="upddeleteicon" src="../Images/cross black 20px.png" /></button></td></tr>`;
+
+                        }
+
+                    }
+                    else {
+                        tr += '<tr><td colspan="7">No Data</td></tr>';
+                    }
+
+                    $("#tblddata").html(tr);
+
+                }
+            });
+
+        }
+    </script>
+    <script>
+        function Supply_Data() {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/WSP/supplysidedetails',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+
+                    console.log(data);
+
+                    let tr = "";
+                    FullData = data;
+                    if (data != null) {
+                        for (var i = 0; i < data.length; i++) {
+
+                            tr += `<tr><td>  ${data[i]["activity"]}  </td><td> ${data[i]["startdate"]} </td><td>  ${data[i]["enddate"]} </td><td>  ${data[i]["number"]} </td><td>  ${data[i]["unitcost"]} </td><td> ${data[i]["area"]} </td><td>${data[i]["funding"]} </td><td>${data[i]["implementing"]}</td><td>${data[i]["totalbudget"]}</td><td><button type="button" title="View & Update" onclick="Edit('${data[i]["supplyid"]}','${data[i]["activity"]}','${data[i]["startdate"]}','${data[i]["enddate"]}','${data[i]["number"]}','${data[i]["unitcost"]}','${data[i]["area"]}','${data[i]["funding"]} ','${data[i]["implementing"]}','${data[i]["totalbudget"]}','${"SupplaySide"}')" class="btn btn-default btn-md"><img class="upddeleteicon" src="../Images/view black.png" /></button></td><td><button style="background-color:red;" type="button" title="View & Update" onclick="Delete('${data[i]["supplyid"]}','${"SupplaySide"}')" class="btn btn-default btn-md"><img class="upddeleteicon" src="../Images/cross black 20px.png" /></button></td></tr>`;
+
+                        }
+
+                    }
+                    else {
+                        tr += '<tr><td colspan="7">No Data</td></tr>';
+                    }
+
+                    $("#tblsdata").html(tr);
+
+                }
+            });
+
+        }
+    </script>
+    <script>
+
+    var selectedProject = "";
+    var project = $('#tolProjects').val();
+
+    $("#tolProjects").change(function () {
+        selectedProject = $(this).children("option:selected").val();
+
+        $('#ToolKitError').text("");
+        $('#TFError').text("");
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Admin/ToolKitFullDetails',
+            data: { 'Project': selectedProject },
+            dataType: 'JSON',
+            success: function (data) {
+
+                var tr = "";
+                Data = data;
+                if (Data.length!=0) {
+                    // var count = data.length;
+
+                    for (var i = 0; i < data.length; i++) {
+                        tr +=
+                            '<tr id="TKD' + i + '"  style="display:none">' +
+                       // '<td class="tdborder"><input type="text" id="ToolKitType' + i + '" value="' + data[i].toolkittype + '" /></td>' +
+                        '<td class="tdborder"><select id="ToolKitsListcopy"></select></td>' +
+                        '<td class="tdborder"><input type="text" id="Item' + i + '" value="' + data[i].item + '" /></td>' +
+                        '<td class="tdborder"><input type="text" id="Quantity' + i + '" value="' + data[i].quantity + '" /></td>' +
+                        '<td><button type="button" onclick="update_toolkifulldetail(' + data[i].ttkdid + ',' + i + ')">Update</button>' + '</td><td><button type="button" onclick="canceltoolkitdeta(' + i + ');">Cancel</button>' + '</td>' +
+                            '</tr>' + '<tr id="thiderowoneditdeta_' + i + '">' + '<td class="tdborder">' + data[i].toolkittype + '</td><td class="tdborder">' + data[i].item + '</td><td class="tdborder">' + data[i].quantity + '</td>'+'<td><button type="submit" onclick=editrowtkDeta(' + i + ');> Edit </button></td>' + '<td><button type="button" onclick="delete_toolkitfulldetail(' + data[i].ttkdid + ',' + i + ')">Delete</button></td></tr>'
+
+                    }
+                }
+                else {
+                    tr += '<tr><td colspan="5" style="text-align:center;">No Data</td></tr>';
+
+                }
+               // trntable2
+                $('#trntable20').hide();
+
+                $("#ToolKitFullData").html(tr);
+
+                $('#tdata212').DataTable();
+
+            }
+        });
+
+
+    });
+
+    @*function addrowtoolkitDetail() {
+
+        var project = $('#tolProjects').val();
+        var Abc = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.objtoolkitdata));
+        if (project != null && project != "") {
+            for (var a = 0; a < n; a++) {
+                $('#tdata212 tr:first').after('<tr id="trntable2' + a + '"><td class="tdborder" rowspan="3"><select id="ToolKitsList"></select></td><td class="tdborder"><input type="text" id="toolkititem" /></td><td class="tdborder"><input type="text"  id="toolkitquantity"/></td><td><button type="button" onclick="SaveToolKitFullDetails(' + a + ')">Update</button></td><td><button type="button" onclick="cancel1234(' + a + ');">Cancel</button></td><td></td></tr>');
+            } a = a + 1;
+            for (var i = 0; i < Abc.length; i++) {
+                var optionhtml = '<option value="' + Abc[i].toolkitname + '">' + Abc[i].toolkitname + '</option>';
+                $("#ToolKitsList").append(optionhtml);
+            }
+        }
+        else {
+            document.getElementById('ToolKitError').innerHTML = "Please Select Project";
+        }
+
+    }*@
+     var n = 1;
+    function addrowtoolkitDetail() {
+
+        var project = $('#tolProjects').val();
+        if ((project != null && project != "") && (project != "0" )) {
+
+            for (var a = 0; a < n; a++) {
+
+                $('#tdata212 tr:first').after('<tr id="trntable2' + a + '"><td class="tdborder" rowspan="3"><select id="ToolKitsList"></select></td><td class="tdborder"><input type="text" id="toolkititem" /></td><td class="tdborder"><input type="text"  id="toolkitquantity"/></td><td><button type="button" onclick="SaveToolKitFullDetails(' + a + ')">Update</button></td><td><button type="button" onclick="cancel1234(' + a + ');">Cancel</button></td><td></td></tr>');
+            }
+            a = a + 1;
+            $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Admin/ToolKitDetails',
+            data: '',
+            dataType: 'JSON',
+                 success: function (data)
+                 {
+                     var optionhtml = "";
+                     Data = data;
+                     if (data != null) {
+                         // var count = data.length;
+
+                         for (var i = 0; i < data.length; i++) {
+                             var optionhtml = '<option value="' + data[i].toolkitname + '">' + data[i].toolkitname + '</option>';
+                             $("#ToolKitsList").append(optionhtml);
+                             $("#tdata2").DataTable();
+                         }
+                         i = i + 1;
+                     }
+                     else { }
+                 }
+            });
+        }
+        else {
+            document.getElementById('ToolKitError').innerHTML = "Please Select Project";
+        }
+
+    }
+
+
+
+    function cancel1234(a) {
+          $('#trntable2' + a).remove();
+    }
+
+    function canceltoolkitdeta(i) {
+        $('#thiderowoneditdeta_' + i).show();
+        $('#TKD' + i).hide();
+    }
+    function editrowtkDeta(i) {
+
+        $('#thiderowoneditdeta_' + i).hide();
+        $('#TKD' + i).show();
+        bindtooldropdown();
+    }
+
+
+
+    function update_toolkifulldetail(DID, i) {
+
+        document.getElementById('TError').innerHTML = "";
+        document.getElementById('TFError').innerHTML = "";
+        var obj = {};
+
+        obj.toolkittype = $('#ToolKitsListcopy').val();
+        obj.item = $('#Item' + i).val();
+        obj.quantity = $('#Quantity' + i).val();
+        obj.ttkdid = DID;
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Admin/UpdateToolKitFullDetail",
+            data: "{'ToolKitFullDetails': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                var dropDown = document.getElementById("tolProjects");
+                dropDown.selectedIndex = 0;
+                document.getElementById('TFError').innerHTML = response;
+                $('#TKD' + i).hide();
+            }
+        });
+
+
+    }
+
+    function delete_toolkitfulldetail(DID, i) {
+
+        document.getElementById('TError').innerHTML = "";
+        document.getElementById('TFError').innerHTML = "";
+        var obj = {};
+
+        obj.ttkdid = DID;
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Admin/DeleteToolKitFullDetail",
+            data: "{'ToolKitFullDetails': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                var dropDown = document.getElementById("tolProjects");
+                dropDown.selectedIndex = 0;
+
+                document.getElementById('TFError').innerHTML = response;
+                $('#thiderowoneditdeta_' + i).remove();
+            }
+        });
+
+
+    }
+
+
+    function SaveToolKitFullDetails(a) {
+
+        var project1 = $('#tolProjects :selected').text();
+        var ToolKitName = $('#ToolKitsList :selected').text();
+
+        if (project1 != undefined && project1 != "") {
+            document.getElementById('TFError').innerHTML = "";
+            var obj = {};
+
+            obj.item = $('#toolkititem').val();
+            obj.quantity = $('#toolkitquantity').val();
+            obj.projectname = project1;
+            obj.toolkittype = ToolKitName;
+
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                url: "/Admin/InsertToolKitFullDetails",
+                data: "{'ToolKitFullDetails': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    var dropDown = document.getElementById("tolProjects");
+                    dropDown.selectedIndex = 0;
+                    document.getElementById('TFError').innerHTML = response;
+                    $('#trntable2' + a).remove();
+
+                }
+            });
+        }
+        else {
+            var dropDown = document.getElementById("tolProjects");
+            dropDown.selectedIndex = 0;
+            document.getElementById('TFError').innerHTML = "Please Select Project";
+            $('#trntable2' + a).remove();
+        }
+    }
+
+
+
+    </script>
+    <style>
+        ul.Select_option {
+            list-style: none;
+            display: table;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+            ul.Select_option > li {
+                display: table-cell;
+                padding: 0px 0px 0px 5px;
+                text-transform: capitalize;
+            }
+
+                ul.Select_option > li > span > i {
+                    padding: 0px 0px 0px 10px;
+                }
+
+        /*ul.nav-justified > li {
+            vertical-align: middle;
+            background-color: #175076;
+        }
+
+        #myTabs.nav-pills > li > a {
+            border-radius: 0;
+            background-color: transparent;
+            color: #fff;
+            position: relative;
+            padding: 35px 20px;
+            font-size: 25px;
+            height: 90px;
+        }
+
+        #myTabs.nav-pills > li:first-child > a {
+            padding: 20px;
+        }
+
+            #myTabs.nav-pills > li:first-child > a > i {
+                font-size: 30px;
+                border-radius: 50%;
+                background-color: #fff;
+                color: #555;
+                padding: 9px;
+            }*/
+
+
+        #myTabs.nav-pills > li.active > a:before {
+            content: "";
+            /*height: 2px;*/
+            position: absolute;
+            bottom: 6px;
+            display: inline-block;
+            width: 98%;
+            z-index: 99;
+            left: 2%;
+            background-color: #fff;
+        }
+
+        /*tbody > tr > td {
+            padding: 7px 15px !important;
+        }*/
+    </style>
+    <style>
+        #datetimepicker1, #datetimepicker2, #datetimepicker3, #datetimepicker4 {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+        #Select_dist_level > .selectbackhome {
+            display: inline-block;
+            list-style: none;
+        }
+
+        ul.form-edit {
+            display: table;
+            width: 100%;
+            padding: 0;
+            margin: auto;
+            table-layout: fixed;
+        }
+
+            ul.form-edit > li {
+                display: table-row;
+                list-style: none;
+            }
+
+                ul.form-edit > li > label,
+                ul.form-edit > li > span {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 5px 10px;
+                }
+
+                ul.form-edit > li > label {
+                    text-align: right;
+                }
+
+        ul.nav-justified {
+            display: table;
+            font-size: 14px !important;
+        }
+
+            ul.nav-justified > li {
+                width: auto;
+            }
+
+                ul.nav-justified > li:first-child {
+                    /*width: 2%;*/
+                }
+
+        /*ul.Demands_list {
+            margin-top: 32px;
+        }*/
+
+        ul.Demands_list > li {
+            list-style-type: none;
+            font-size: 18px;
+            line-height: 2.0em;
+        }
+
+            ul.Demands_list > li > span > img {
+                width: 21px;
+                height: 21px;
+            }
+
+
+            ul.Demands_list > li > input {
+                width: 20px;
+                height: 20px;
+            }
+
+        @@media (min-width:992px) {
+            ul.form-edit > li > label {
+                width: 22%;
+            }
+        }
+
+        ul.Total_bugeting {
+            position: absolute;
+            bottom: 50px;
+            right: 100px;
+        }
+
+            ul.Total_bugeting > li {
+                list-style: none;
+                display: inline-block;
+            }
+
+                ul.Total_bugeting > li > .btn-primary {
+                    border-radius: 10px;
+                    width: 268px;
+                    height: 67px;
+                    font-size: 30px;
+                }
+
+        #Events > h3 {
+            padding: 15px 1px 0px 50px;
+            color: #337ab7;
+        }
+
+        .checkGap {
+            padding: 10px;
+        }
+
+        .Water_Quantity_table {
+            width: 100%;
+            border-spacing: 10px;
+            border-collapse: separate;
+        }
+
+        table.Water_Quantity_table > thead > tr > th,
+        table.Water_Quantity_table > tbody > tr > td {
+            border: 1px solid #ddd;
+            padding: 3px 15px;
+            vertical-align: middle;
+            line-height: 1;
+            margin: auto;
+            /*background-color: ghostwhite;*/
+        }
+        /*table.Water_Quantity_table > tbody > tr > :nth-child(odd)
+            {
+                background-color:aqua;
+            }
+            table.Water_Quantity_table > tbody > tr > th:nth-child(even) {
+                background-color: ghostwhite;
+            }*/
+
+        /*table.Water_Quantity_table > thead > tr > th:first-child{
+                background-color:none;
+            }*/
+
+        table.Water_Quantity_table > tbody > tr > th {
+            /*display: table-row;*/
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+
+        table.Water_Quantity_table > thead > tr > th {
+            background-color: #175076;
+            color: #fff;
+            line-height: 2;
+        }
+
+        table.Ground Water Quality in your locality > thead > tr > th:first-child {
+            /*border: none;*/
+            background-color: #175076;
+            color: #fff;
+            text-align: center;
+        }
+
+
+
+        #header-fixed {
+            position: fixed;
+            top: 0px;
+            display: none;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #ddd;
+            border: 0px;
+            color: #000;
+        }
+
+        tbody tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        body {
+            font-size: 12px !important;
+        }
+    </style>
+    <style>
+        header.hederImage {
+            background-image: url(../../Content/WspImages/irrigation1.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+            padding: 1em 0 0;
+        }
+
+        .header-top-info > ul > li {
+            float: left;
+            text-align: right;
+            line-height: 20px;
+            list-style: none;
+        }
+
+            /*.header-top-info > ul > li:not(:first-child) {
+                padding-top: 13px;
+            }*/
+
+            .header-top-info > ul > li:not(:last-child) {
+                padding-right: 20px;
+            }
+
+            .header-top-info > ul > li:last-child {
+                text-align: left;
+            }
+
+            .header-top-info > ul > li > span {
+                display: block;
+            }
+
+                .header-top-info > ul > li > span:first-child > a,
+                .header-top-info > ul > li > span:first-child > a:hover,
+                .header-top-info > ul > li > span:first-child > a:focus {
+                    font-weight: 600;
+                    color: #fff;
+                }
+
+                .header-top-info > ul > li > span:last-child > a,
+                .header-top-info > ul > li > span:last-child > a:hover,
+                .header-top-info > ul > li > span:last-child > a:focus {
+                    color: #fff;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+
+                .header-top-info > ul > li > span > i {
+                    margin-left: 5px;
+                }
+
+        .nav-justified {
+            padding-top: 0;
+        }
+
+        .nav-justified {
+            /*padding-top: 3em;*/
+            text-align: right;
+            /*padding-bottom: 1em;*/
+            margin-bottom: 1em;
+        }
+
+        nav-pills > li > a {
+            border-radius: 0px !important;
+        }
+
+        @@media (min-width: 768px) {
+            .nav-justified {
+                padding-right: 10%;
+            }
+
+                .nav-justified > li {
+                    display: inline-block;
+                    width: auto;
+                }
+        }
+
+        @@media (min-width: 768px) {
+            .nav-justified {
+                padding-right: 0% !important;
+            }
+        }
+
+        .nav-justified > li > a,
+        .nav-justified > li > a:hover,
+        .nav-justified > li > a:focus {
+            background-color: transparent;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 0;
+        }
+
+        .nav-pills > li.active > a,
+        .nav-pills > li.active > a:focus,
+        .nav-pills > li.active > a:hover {
+            color: #b38236 !important;
+            border-bottom: 2px solid #fff !important;
+            background-color: transparent !important;
+        }
+
+        header.hederImage:before {
+            position: absolute;
+            content: "";
+            background-color: rgba(0, 0, 0, 0.36);
+            height: 100%;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .header-top-info > ul > li {
+            float: left;
+            text-align: right;
+            line-height: 20px;
+            list-style: none;
+        }
+
+        .nav-justified > li > a, .nav-justified > li > a:hover, .nav-justified > li > a:focus {
+            background-color: transparent !important;
+            color: #fff !important;
+            font-weight: 600 !important;
+            border-radius: 0 !important;
+        }
+
+        .arrowcss {
+            font-size: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #555;
+            padding: 10px;
+        }
+
+        ul.imgHome {
+            display: inline-flex;
+        }
+
+            ul.imgHome > li {
+                list-style: none;
+                padding: 0px 15px 0px 10px;
+            }
+
+                ul.imgHome > li > img,
+                ul.imgHome > li > a > img {
+                    width: 30px;
+                }
+
+        #breadcrumb {
+            color: #0000ff;
+            font-size: 15px;
+            margin: 0;
+            height: 15px;
+            padding: 0px 0px 0px 20px;
+        }
+
+            #breadcrumb a {
+                color: #0000ff;
+                text-decoration: underline;
+            }
+
+        ul#myTabs > li > a > span > img {
+            height: 26px;
+            width: 26px;
+        }
+
+        ul.imgHome > li > a > span > img,
+        ul.imgHome > li > span > img {
+            width: 25px;
+        }
+
+        ul.imgHome > li > label {
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+            font-size: 13px;
+        }
+
+        ul.imgHome > li > a > label {
+            font-size: 13px;
+            text-decoration: underline;
+            color: #fff;
+            padding: 0px 0px 0px 5px;
+            margin: 0;
+            height: 15px;
+        }
+
+        ul.imgHome > li > img,
+        ul.imgHome > li > a > img {
+            width: 25px !important;
+        }
+
+        ul.Demands_list > li > span input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .checkGap1 {
+            padding: 5px !important;
+        }
+
+        .atlaligan {
+            border-bottom: 1px solid #fff;
+            text-decoration: none;
+        }
+
+            .atlaligan:focus,
+            .atlaligan:hover {
+                text-decoration: none;
+            }
+
+        ul.Select_option {
+            list-style: none;
+            padding-top: 10px;
+        }
+
+            ul.Select_option > li {
+                padding-left: 17px;
+                font-size: 14px
+            }
+
+        .btnresize {
+            padding-left: 10px;
+        }
+
+        .someinput {
+            position: relative;
+            top: 5px;
+        }
+
+        /*background green*/
+        /*.green
+        {
+            background-color: green;
+        }*/
+    </style>
+    <script type="text/javascript">
+
+        //tabs functionality
+        function activaTab(tab) {
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+        };
+
+        activaTab('bbb');
+
+        //checkbox functionlity
+        $("#Register").click(function (e) {
+            if ($(this).is(':checked')) {
+                var m = confirm("your message");
+                if (m != true) {
+                    $(this).removeAttr('checked');
+                    e.preventDefault();
+                }
+            }
+
+        });
+
+        //auto calculation functionality demend
+        $(document).ready(function () {
+            //this calculates values automatically
+            sum();
+            sum2();
+            $("#number, #unitcost").on("keydown keyup", function () {
+                sum();
+            });
+            $("#EDITnumber, #EDITunitcost").on("keydown keyup", function () {
+                sum2();
+            });
+        });
+
+        function sum() {
+            var number = document.getElementById('number').value;
+            var unitcost = document.getElementById('unitcost').value;
+            //var area = document.getElementById('area').value;
+            //var funding = document.getElementById('funding').value;
+            var result = parseInt(number) * parseInt(unitcost);
+
+            if (!isNaN(result)) {
+                document.getElementById('Total_Budget').value = result;
+
+            }
+        }
+
+        function sum2() {
+            var number = document.getElementById('EDITnumber').value;
+            var unitcost = document.getElementById('EDITunitcost').value;
+
+            if (number != "" && unitcost != "") {
+                var result = parseInt(number) * parseInt(unitcost);
+
+                if (!isNaN(result)) {
+
+                    document.getElementById('EDITTotal_Budget').value = result;
+                }
+            }
+        }
+        //auto calculation functionality supply
+        $(document).ready(function () {
+            //this calculates values automatically
+            sum1();
+            $("#number1, #unitcost1").on("keydown keyup", function () {
+                sum1();
+            });
+        });
+
+        function sum1() {
+            var number1 = document.getElementById('number1').value;
+            var unitcost1 = document.getElementById('unitcost1').value;
+            //var area1 = document.getElementById('area1').value;
+            //var funding1 = document.getElementById('funding1').value;
+            var result1 = parseInt(number1) * parseInt(unitcost1);
+
+            if (!isNaN(result1)) {
+                document.getElementById('Total_Budget1').value = result1;
+
+            }
+        }
+
+        //multiple checkbox of demend and suppliers will open model pop up
+        $(function () {
+            //demends popups
+            $('.abc').click(function () {
+                if ($('.abc').is(":checked")) {
+                    //$('.abc').parent().addClass("green");
+                    $('#myModal').modal('show');
+
+                } else {
+                    $('#myModal').modal('hide');
+                }
+            });
+            //supliers popups
+            $('.abc1').click(function () {
+                if ($('.abc1').is(":checked")) {
+                    $('#myModal1').modal('show');
+                } else {
+                    $('#myModal1').modal('hide');
+                }
+            });
+        });
+
+        //checked values of demends and suppliers  displaying in popup header
+        valueChange = function (item) {
+
+            //demend titles
+            document.getElementById('activity').value = item.value;
+            //suppliers titles
+            document.getElementById('activity1').value = item.value;
+            CheckedValue = item.value;
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <div class="clearfix" onload="myFunction()">
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height: 60px;width: 40px;">
+                                </li>
+
+                                <li>
+                                    <span>
+                                        <a target="_blank" href="http://mowr.gov.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a target="_blank"
+                                           href="http://mowr.gov.in/" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a target="_blank" href="https://india.gov.in/" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a target="_blank"
+                                           href="http://mowr.gov.in/" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                <span style="color:#fff;">:@Session["UserName"]</span>
+                            </li>
+                            <li>
+
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-6" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/Home/index">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>Home <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/Wsp_new/WSPHOME">
+                                    <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" title="Wsp Home" /></span>
+                                    <label>WSP Home<i class="fa fa-angle-double-right"></i></label>
+                                </a>
+
+
+                            </li>
+                            <li>
+
+                                <span><img src="~/Content/WspImages/WSPplan/water security (1).png" title="WSP"></span>
+                                <label>Water Security Plan</label>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                            <li class="active">
+                                <a href="#Commentary" data-toggle="tab" onclick="Demandsidedata()">
+                                    <span><img src="~/Content/WspImages/new 1 icon.png" /></span>
+                                    Demand Side
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#Videos" data-toggle="tab" onclick="Supplysidedata()">
+                                    <span><img src="~/Content/WspImages/supply side new1.png" /></span>Supply Side
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#Events" data-toggle="tab" onclick="Demand_Data()">
+                                    <span><img src="~/Content/WspImages/total budget new.png" /></span>
+                                    Total Budget
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </header>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix" id="Select_dist_level">
+
+                    <ul class="Select_option selectbackhome">
+                        @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                        {
+                            <li>
+                                <label id="lblstate">State:</label>
+                                <span id="spnstate">@Session["gstate"]</span>
+                            </li>
+                        }
+                        else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                        {
+                            <li>
+                                <label id="lblstate">Admin</label>
+
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <label id="lblstate">National Level Nodal Officer</label>
+
+                            </li>
+                        }
+
+
+                        @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                        {
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                            </li>
+                        }
+
+                        @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                        {
+
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Block:</label>
+                                <span>@Session["gblock"] </span>
+                            </li>
+                        }
+
+                        @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                        {
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Gram panchayat:</label>
+                                <span>@Session["ggram"]</span>
+                            </li>
+                        }
+
+
+                        @if (Session["gvill"] != null && Session["gvill"].ToString() != "null" && Session["gvill"].ToString() != "")
+                        {
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Village:</label>
+                                <span>@Session["gvill"]</span>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="selectbackhome" style="float:right;">
+                        <li>
+                            <a href="~/Wsp_new/WSPHOME">
+                                <button class="btn btn-success">Back To WSP Home</button>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <!--Rainfail_menu Start-->
+            <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+
+
+
+                <!-- Trigger the modal with a button -->
+
+
+                <div class="clearfix">
+                    <div class="col-md-6">
+                        <ul class="Demands_list">
+                            <li id="abcd">
+                                <span> <img src="~/Content/WspImages/WSPplan/climate smart practice 2.png" /> </span>
+                                <span class="someinput">
+                                    <input onChange="MyFunction(abcd,this)" type="checkbox" class="abc" id="d13" name="d13" value="Climate smart practices such as agro-forestry community" />
+                                </span>
+                                <span class="checkGap">01.Climate smart practices such as agro-forestry community</span>
+                            </li>
+                            <li id="abcd1">
+                                <span>  <img src="~/Content/WspImages/WSPplan/Community-level ground water 2.png" /></span> <span class="someinput"> <input onChange="MyFunction(abcd1,this)" type="checkbox" class="abc" id="d22" name="d22" value="Community level ground water quality monitoring" /></span><span class="checkGap">02.Community level ground water quality monitoring</span>
+                            </li>
+                            <li id="abcd2">
+                                <span>   <img src="~/Content/WspImages/WSPplan/community self-governance 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd2,this)" type="checkbox" class="abc" id="d18" name="d18" value="Community self-governance and regulation (for example, water quotas)" /></span><span class="checkGap">03.Community self-governance and regulation (for example, water quotas)</span>
+                            </li>
+                            <li id="abcd3">
+                                <span><img src="~/Content/WspImages/WSPplan/Crop cultivation practices 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd3,this)" type="checkbox" class="abc" id="d15" name="d15" value="Crop cultivation practices, for example, delayed sowing of monsoon paddy, alternate wetting and drying" /></span><span class="checkGap">04.Crop cultivation practices, for example, delayed sowing of monsoon paddy,&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alternate wetting and drying</span>
+                            </li>
+                            <li id="abcd4">
+                                <span>  <img src="~/Content/WspImages/WSPplan/Cultivation of low water 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd4,this)" type="checkbox" class="abc" id="d14" name="d14" value="Cultivation of low water intensive crops" /></span><span class="checkGap">05.Cultivation of low water intensive crops</span>
+                            </li>
+
+
+                            <li id="abcd5">
+                                <span> <img src="~/Content/WspImages/WSPplan/Drip & sprinkler 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd5,this)" type="checkbox" class="abc" id="d1" name="d1" value="Drip and Sprinkler irrigation" /></span> <span class="checkGap checkGap1">06.Drip and sprinkler irrigation</span>
+                            </li>
+                            <li id="abcd6">
+                                <span> <img src="~/Content/WspImages/electricity metering 2 (1).png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd6,this)" type="checkbox" class="abc" id="d5" name="d5" value="Electricity metering" /></span><span class="checkGap">07.Electricity metering</span>
+                            </li>
+
+                            <li id="abcd7">
+                                <span>  <img src="~/Content/WspImages/WSPplan/Farmer field schools 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd7,this)" type="checkbox" class="abc" id="d16" name="d16" value="Farmer Field Schools (FFSs)/IEC" /></span><span class="checkGap">08.Farmer Field Schools (FFSs)/IEC</span>
+                            </li>
+                            <li id="abcd8">
+                                <span> <img src="~/Content/WspImages/WSPplan/Feeder Separation 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd8,this)" type="checkbox" class="abc" id="d3" name="d3" value="Feeder separation" /></span> <span class="checkGap checkGap1">09.Feeder separation</span>
+                            </li>
+                            <li id="abcd9">
+                                <span> <img src="~/Content/WspImages/WSPplan/Grid connectedsolar-pumps 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd9,this)" type="checkbox" class="abc" id="d6" name="d6" value="Grid connected solar pumps" /></span><span class="checkGap">10.Grid connected solar pumps</span>
+                            </li>
+                            <li id="abcd10">
+                                <span> <img src="~/Content/WspImages/WSPplan/groundwater metering 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd10,this)" type="checkbox" class="abc" id="d8" name="d8" value="Ground water metering   in target areas and/or for target users" /></span><span class="checkGap">11.Ground water metering   in target areas and/or for target users</span>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6">
+                        <ul class="Demands_list">
+                            <li id="abcd11">
+                                <span> <img src="~/Content/WspImages/WSPplan/groundWater regulation 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd11,this)" type="checkbox" class="abc" id="d9" name="d9" value="Ground water regulation in target areas and/or for target users" /></span><span class="checkGap">12.Ground water regulation in target areas and/or for target users</span>
+                            </li>
+                            <li id="abcd12">
+                                <span> <img src="~/Content/WspImages/WSPplan/Improved ground quality 2.png" /></span>
+                                <span class="someinput"> <input onChange="MyFunction(abcd12,this)" type="checkbox" class="abc" id="d21" name="d21" value="Improved ground water quality" /></span><span class="checkGap">13.Improved ground water quality</span>
+                            </li>
+                            <li id="abcd13">
+                                <span>  <img src="~/Content/WspImages/WSPplan/Intellligent rationing 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd13,this)" type="checkbox" class="abc" id="d4" name="d4" value="Intelligent rationing of farm power supply" /></span><span class="checkGap">14.Intelligent rationing of farm power supply</span>
+                            </li>
+
+                            <li id="abcd14">
+                                <span> <img src="~/Content/WspImages/WSPplan/land leveling community 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd14,this)" type="checkbox" class="abc" id="d10" name="d10" value="Land levelling " /></span><span class="checkGap">15.Land levelling </span>
+                            </li>
+                            <li id="abcd15">
+                                <span> <img src="~/Content/WspImages/WSPplan/Mulcing, vermi compost 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd15,this)" type="checkbox" class="abc" id="d12" name="d12" value="Mulching, vermi compost and other field based soil conservation techniques" /></span><span class="checkGap">16.Mulching, vermi compost and other field based soil conservation techniques</span>
+                            </li>
+
+                            <li id="abcd16">
+                                <span><img src="~/Content/WspImages/WSPplan/Piped irrigation 3.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd16,this)" type="checkbox" class="abc" id="d0" name="d0" value="Piped irrigation networks in canal command areas"></span><span class="checkGap ">17.Piped irrigation networks in canal command areas</span>
+                            </li>
+                            <li id="abcd17">
+                                <span>  <img src="~/Content/WspImages/WSPplan/recycling and reuse of wastewater 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd17,this)" type="checkbox" class="abc" id="d7" name="d7" value="Recyling and reuse of waste water" /></span><span class="checkGap">18.Recyling and reuse of waste water</span>
+                            </li>
+                            <li id="abcd18">
+                                <span><img src="~/Content/WspImages/WSPplan/UnderGround pipeline 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd18,this)" type="checkbox" class="abc" id="d2" name="d2" value="Underground pipeline distribution" /></span> <span class="checkGap checkGap1">19.Underground pipeline distribution </span>
+                            </li>
+
+
+                            <li id="abcd19">
+                                <span>   <img src="~/Content/WspImages/WSPplan/User monitoring of groundwater 2.png" /></span>
+                                <span class="someinput"> <input onChange="MyFunction(abcd19,this)" type="checkbox" class="abc" id="d17" name="d17" value="User monitoring of ground water data for water budgets" /></span><span class="checkGap">20.User monitoring of ground water data for water budgets</span>
+                            </li>
+
+
+                            @*<li>
+                                    <span>  <img src="~/Content/WspImages/water interventions.png"  /></span>
+                                    <span class="someinput">
+                                    <input onChange="MyFunction(abc,this)" type="checkbox" class="abc" id="d20" name="d20" value="Water quality interventions" /></span> <span class="checkGap checkGap1">Water quality interventions</span>
+                                </li>*@
+
+                            <li id="abcd20">
+                                <span> <img src="~/Content/WspImages/WSPplan/water quota license 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd20,this)" type="checkbox" class="abc" id="d11" name="d11" value="Water quota licenses" /></span><span class="checkGap">21.Water quota licenses</span>
+                            </li>
+
+
+
+
+
+
+
+                            <li id="abcd21">
+                                <span><img src="~/Content/WspImages/WSPplan/well spacing-community 2.png" /></span>
+                                <span class="someinput"><input onChange="MyFunction(abcd21,this)" type="checkbox" class="abc" id="d19" name="d19" value="Well spacing/community wells" /></span><span class="checkGap">22.Well spacing/community wells</span>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">
+
+                                    @*<label id="activity" name="activity">
+
+
+                                        </label>*@
+
+                                    <input type="text" name="activity" id="activity" style="border:none;width:100%;" readonly />
+
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="clearfix">
+
+                                    <div class="col-md-12">
+
+
+                                        <ul class="Demands_list_popup form-edit ">
+                                            <li>
+                                                <label>Start Date</label>
+                                                <span>
+                                                    <div class='input-group date'>
+                                                        @*<input type="text" id="datepicker">*@
+                                                        <input type='text' class="" id="datetimepicker1" name="datetimepicker1" required placeholder="Enter date" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                                <label>End Date</label>
+                                                <span>
+                                                    <div class='input-group date'>
+
+                                                        <input type='text' class="" id="datetimepicker2" name="datetimepicker2" required placeholder="Enter date" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                            </li>
+                                        </ul>
+
+                                        <ul class="form-edit">
+                                            
+                                            <li>
+                                                <label>Number of Units:</label>
+                                                <span class="someinput"><input id="number" name="number" type="text" class="form-control integer" maxlength="10" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Unit Cost:</label>
+                                                <span class="someinput"><input id="unitcost" name="unitcost" type="text" class="form-control integer" maxlength="10" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Area/Capacity: (ha)</label>
+                                                <span class="someinput"><input id="area" name="area" type="text" class="form-control integer" maxlength="10" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Atal Jal Funding:</label>
+                                                <span class="someinput"><input id="funding" name="funding" type="text" class="form-control integer" maxlength="10" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Department:</label>
+                                                <span class="someinput">
+                                                    <select id="implementing" name="implementing" class="form-control" required>
+                                                        <option value="0">Select Department</option>
+                                                        <option value="Department of Agriculture and Farmers Welfare">Department of Agriculture and Farmers Welfare</option>
+                                                        <option value="Department of Water Resources, River Development and Ganga Rejuvenation">Department of Water Resources, River Development and Ganga Rejuvenation</option>
+                                                        <option value="Department of Environment, Forest and Climate Change">Department of Environment, Forest and Climate Change</option>
+                                                        <option value="Department of Panchayati Raj">Department of Panchayati Raj</option>
+                                                        <option value="Department of Rural Development">Department of Rural Development</option>
+                                                        </select>
+                                                    @*<input id="implementing" name="implementing" type="text" class="form-control alpha" maxlength="50" required placeholder="Enter department name" />*@
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Total Budget:</label>
+
+                                                <span><input id="Total_Budget" name="Total_Budget" type="text" readonly class="form-control " maxlength="10" /></span>
+                                            </li>
+                                        </ul>
+                                        <div class="text-center">
+                                            <label id="alert11" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" id="btnSave" onclick="DemandSideSavedData()">ADD</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Videos">
+
+                <ul class="Demands_list">
+                    <li id="def">
+                        <span> <img src="~/Content/WspImages/WSPplan/Farm ponds- farm ditches 2.png" /></span>
+                        <span class="someinput"><input onChange="MyFunction1(def,this)" type="checkbox" class="abc1" id="sup6" name="sup6" value="Farm ponds/farm ditches" /></span><span class="checkGap">01.Farm ponds/farm ditches</span>
+                    </li>
+
+                    <li id="def1">
+                        <span><img src="~/Content/WspImages/WSPplan/percolation tank 2.png" /></span>
+                        <span class="someinput"><input onChange="MyFunction1(def1,this)" type="checkbox" class="abc1" id="sup1" name="sup1" value="Percolation tanks and desilting tanks" /></span><span class="checkGap">02.Percolation tanks and desilting tanks</span>
+                    </li>
+                    <li id="def2">
+                        <span><img src="~/Content/WspImages/WSPplan/recharge shafts-wells 2.png" /></span>
+                        <span class="someinput"><input onChange="MyFunction1(def2,this)" type="checkbox" class="abc1" id="sup2" name="sup2" value="Recharge shafts/wells/trenches/bunds" /></span><span class="checkGap">03.Recharge shafts/wells/trenches/bunds</span>
+                    </li>
+                    <li id="def3">
+                        <span><img src="~/Content/WspImages/WSPplan/rooftop water 2.png" /></span>
+                        <span class="someinput"><input onChange="MyFunction1(def3,this)" type="checkbox" class="abc1" id="sup3" name="sup3" value="Rooftop water harvesting structures" /></span><span class="checkGap">04.Rooftop water harvesting structures</span>
+                    </li>
+                    <li id="def4">
+                        <span><img src="~/Content/WspImages/WSPplan/strom water 2.png" /></span>
+                        <span class="someinput"><input onChange="MyFunction1(def4,this)" type="checkbox" class="abc1" id="sup4" name="sup4" value="Storm water harvesting structures" /></span><span class="checkGap">05.Storm water harvesting structures</span>
+                    </li>
+                    <li id="def5">
+                        <span> <img src="~/Content/WspImages/WSPplan/village water bodies and ponds 2.png" /></span>
+                        <span class="someinput"><input onChange="MyFunction1(def5,this)" type="checkbox" class="abc1" id="sup5" name="sup5" value="Village water bodies and ponds" /></span><span class="checkGap">06.Village water bodies and ponds</span>
+                    </li>
+                    <li id="def6">
+                        <span><img src="~/Content/WspImages/WSPplan/Water Harvesting structures 2.png" /></span>
+                        <span class="someinput"><input onChange="MyFunction1(def6,this)" type="checkbox" class="abc1" id="sup0" name="sup0" value="Water harvesting structures: check dams"></span><span class="checkGap">07.Water harvesting structures: check dams</span>
+                    </li>
+
+                </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">
+
+                                    <input type="text" name="activity1" id="activity1" style="border:none;width:100%;" readonly />
+
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="clearfix">
+
+                                    <div class="col-md-12">
+
+
+                                        <ul class="Demands_list_popup form-edit ">
+                                            <li>
+                                                <label>Start Date</label>
+                                                <span>
+                                                    <div class='input-group date'>
+
+                                                        <input type='text' class="" id="datetimepicker3" name="datetimepicker3" required placeholder="Enter date" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                                <label>End Date</label>
+                                                <span>
+                                                    <div class='input-group date'>
+
+                                                        <input type='text' class="" id="datetimepicker4" name="datetimepicker4" required placeholder="Enter date" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </span>
+                                            </li>
+                                        </ul>
+
+                                        <ul class="form-edit">
+                                            <li>
+                                                <label>Number of Units:</label>
+                                                <span><input id="number1" name="number1" type="text" class="form-control integer" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Unit Cost:</label>
+                                                <span><input id="unitcost1" name="unitcost1" type="text" class="form-control integer" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Area/Capacity: (ha)</label>
+                                                <span><input id="area1" name="area1" type="text" class="form-control integer" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Atal Jal Funding:</label>
+                                                <span><input id="funding1" name="funding1" type="text" class="form-control integer" required placeholder="Enter numeric value" /></span>
+                                            </li>
+                                            <li>
+                                                <label>Department:</label>
+                                                <span>
+                                                    <select id="implementing1" name="implementing1" class="form-control" required>
+                                                        <option value="0">Select Department</option>
+                                                        <option value="Department of Agriculture and Farmers Welfare">Department of Agriculture and Farmers Welfare</option>
+                                                        <option value="Department of Water Resources, River Development and Ganga Rejuvenation">Department of Water Resources, River Development and Ganga Rejuvenation</option>
+                                                        <option value="Department of Environment, Forest and Climate Change">Department of Environment, Forest and Climate Change</option>
+                                                        <option value="Department of Panchayati Raj">Department of Panchayati Raj</option>
+                                                        <option value="Department of Rural Development">Department of Rural Development</option>
+                                                      </select>
+                                                    @*<input id="implementing1" name="implementing1" type="text" class="form-control alpha" required placeholder="Enter department name" />*@
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <label>Total Budget:</label>
+                                                <span><input id="Total_Budget1" name="Total_Budget1" type="text" readonly class="form-control" /></span>
+                                            </li>
+                                        </ul>
+                                        <div class="text-center">
+                                            <label id="alert1" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" onclick="SupplaysideSaveData()">ADD</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="Events">
+
+                <div style="text-align:center;color:red;font-size:20px;"><label id="Alert123"></label></div>
+
+                <div class="clearfix">
+                    <div class="btnresize">
+                        <button class="btn btn-primary">Demand Side</button>
+                    </div>
+                    <table class=" Water_Quantity_table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Different Methods</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date </th>
+                                <th scope="col">Number of Units</th>
+                                <th scope="col">Unit Cost</th>
+                                <th scope="col">Area/Capacity </th>
+                                <th scope="col">Funding  </th>
+                                <th scope="col">Department</th>
+
+                                <th scope="col">Total Budget</th>
+                                <th scope="col">Edit</th>
+
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+
+
+
+
+
+                        <tbody id="tblddata"></tbody>
+                    </table>
+                    <div class="btnresize">
+                        <button class="btn btn-primary">Supply Side</button>
+                    </div>
+                    <table class=" Water_Quantity_table" id="tblSupply">
+                        <thead>
+                            <tr>
+                                <th scope="col">Different Methods</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date </th>
+                                <th scope="col">Number of Units</th>
+                                <th scope="col">Unit Cost</th>
+                                <th scope="col">Area/Capacity</th>
+                                <th scope="col">Funding  </th>
+                                <th scope="col">Department</th>
+
+                                <th scope="col">Total Budget</th>
+                                <th scope="col">Edit</th>
+
+                                <th scope="col">Delete</th>
+
+                            </tr>
+                        </thead>
+
+
+
+
+
+                        <tbody id="tblsdata"></tbody>
+                    </table>
+                    
+                </div>
+
+                <center>
+                    <ul>
+                        <li style="list-style:none;">
+                            <input type="button" id="btnExport" value="Download" class="btn btn-primary" />
+                            <a href="~/Wsp_New/ReportWSP"> <input type="button" id="" value="Generate WSP Report" class="btn btn-success" /></a>
+                            <a href="~/Wsp_new/WSPHOME">
+                                <button class="btn btn-primary">Back to WSP Home</button>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </center>
+            </div>
+
+        </div>
+
+
+
+        <div class="modal fade" id="EditModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">
+
+
+                            <input type="text" name="activity" id="EDITactivity" style="border:none;width:100%;" readonly />
+
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="clearfix">
+
+                            <div class="col-md-12">
+
+
+                                <ul class="Demands_list_popup form-edit ">
+                                    <li>
+                                        <label>Start Date</label>
+                                        <span>
+                                            <div class='input-group date'>
+                                                <input type='text' class="form-control" id="datetimepicker5" name="datetimepicker1" required placeholder="Enter date" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+
+                                        </span>
+                                        <label>End Date</label>
+                                        <span>
+                                            <div class='input-group date'>
+
+                                                <input type='text' class="form-control" id="datetimepicker6" name="datetimepicker2" required placeholder="Enter date" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <ul class="form-edit">
+                                    <li>
+                                       
+                                    </li>
+                                    <li>
+                                        <label>Number of Units:</label>
+                                        <span class="someinput"><input id="EDITnumber" name="number" type="text" class="form-control integer" maxlength="10" onchange="sum1()" required placeholder="Enter numeric value" /></span>
+                                    </li>
+                                    <li>
+                                        <label>Unit Cost:</label>
+                                        <span class="someinput"><input id="EDITunitcost" name="unitcost" type="text" class="form-control integer" maxlength="10" onchange="sum1()" required placeholder="Enter numeric value" /></span>
+                                    </li>
+                                    <li>
+                                        <label>Area/Capacity: (ha)</label>
+                                        <span class="someinput"><input id="EDITarea" name="area" type="text" class="form-control integer" maxlength="10" required placeholder="Enter numeric value" /></span>
+                                    </li>
+                                    <li>
+                                        <label>Atal Jal Funding:</label>
+                                        <span class="someinput"><input id="EDITfunding" name="funding" type="text" class="form-control integer" maxlength="10" required placeholder="Enter numeric value" /></span>
+                                    </li>
+                                    <li>
+                                        <label>Department:</label>
+                                        <span class="someinput">
+                                            <select id="EDITimplementing" name="implementing" class="form-control" required>
+                                                <option value="0">Select Department</option>
+                                                <option value="Department of Agriculture and Farmers Welfare">Department of Agriculture and Farmers Welfare</option>
+                                                <option value="Department of Water Resources, River Development and Ganga Rejuvenation">Department of Water Resources, River Development and Ganga Rejuvenation</option>
+                                                <option value="Department of Environment, Forest and Climate Change">Department of Environment, Forest and Climate Change</option>
+                                                <option value="Department of Panchayati Raj">Department of Panchayati Raj</option>
+                                                <option value="Department of Rural Development">Department of Rural Development</option>
+                                              </select>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <label>Total Budget:</label>
+
+                                        <span><input id="EDITTotal_Budget" name="Total_Budget" type="text" readonly class="form-control " maxlength="10" /></span>
+                                    </li>
+                                    <li>
+                                       
+                                    </li>
+                                </ul>
+                                <div class="text-center">
+                                    <label id="alert11" style="color:red;"></label>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-success" id="btnSave" onclick="Update()">Update</button>
+                    </div>
+                    <div style="text-align:center;color:red;"> <label id="alert21" style="text-align:center;color:red;"></label></div>
+                </div>
+
+            </div>
+          
+        </div>
+
+    </div>
+    <script>
+        $(function () {
+
+            $('#datetimepicker1').datetimepicker();
+
+        });
+        $(function () {
+
+            $('#datetimepicker2').datetimepicker();
+
+        });
+        $(function () {
+
+            $('#datetimepicker3').datetimepicker();
+
+        });
+        $(function () {
+
+            $('#datetimepicker4').datetimepicker();
+
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#btnExport", function () {
+            html2canvas($('#Events')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("TotalBudget.pdf");
+                }
+            });
+        });
+
+
+        function MyFunction(x, _this) {
+            
+            $('#activity').val(_this.defaultValue);
+            if (_this.checked) {
+                x.style.color = '#0000FF';
+            } else {
+                x.style.color = 'black';
+            }
+        }
+
+        function MyFunction1(y, _this) {
+            
+            $('#activity1').val(_this.defaultValue);
+            if (_this.checked) {
+                y.style.color = '#0000FF';
+            } else {
+                y.style.color = 'black';
+            }
+        }
+    </script>
+
+   
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datetimepicker1").datepicker();
+        });
+         $(function () {
+            $("#datetimepicker2").datepicker();
+         });
+         $(function () {
+             $("#datetimepicker3").datepicker();
+
+         });
+         $(function () {
+            $("#datetimepicker4").datepicker();
+        });
+    </script>
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.14/jquery.datetimepicker.full.js"></script>*@
+    <script src="~/Scripts/validations.js"></script>
+</body>
+</html>  

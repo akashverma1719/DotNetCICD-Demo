@@ -1,0 +1,395 @@
+﻿
+@{
+    ViewBag.Title = "Agency_reports_1";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<meta name="viewport" content="width=device-width" />
+
+
+<style>
+    .color_red {
+        color: red;
+    }
+
+    .dashbord_admin_ul > li {
+        display: inline-block;
+    }
+    /*.fht-tbody > .table {
+        top: -18px;
+        position: relative;
+    }*/
+    .fht-table-wrapper .fht-fixed-body .fht-tbody, .fht-table-wrapper .fht-tbody {
+        /*margin-right: -15px;*/
+    }
+
+    .fht-table,
+    .fht-table thead,
+    .fht-table tfoot,
+    .fht-table tbody,
+    .fht-table tr,
+    .fht-table th,
+    .fht-table td {
+        /* position */
+        margin: 0;
+        /* size */
+        padding: 0;
+        /* text */
+        font-size: 100%;
+        font: inherit;
+        vertical-align: top;
+    }
+
+    .fht-table {
+        /* appearance */
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+
+    .fht-table-wrapper,
+    .fht-table-wrapper .fht-thead,
+    .fht-table-wrapper .fht-tfoot,
+    .fht-table-wrapper .fht-fixed-column .fht-tbody,
+    .fht-table-wrapper .fht-fixed-body .fht-tbody,
+    .fht-table-wrapper .fht-tbody {
+        /* appearance */
+        overflow: hidden;
+        /* position */
+        position: relative;
+    }
+
+        .fht-table-wrapper .fht-fixed-body .fht-tbody,
+        .fht-table-wrapper .fht-tbody {
+            /* appearance */
+            overflow: auto;
+        }
+
+        .fht-table-wrapper .fht-table .fht-cell {
+            /* appearance */
+            overflow: hidden;
+            /* size */
+            height: 1px;
+        }
+
+        .fht-table-wrapper .fht-fixed-column,
+        .fht-table-wrapper .fht-fixed-body {
+            /* position */
+            top: 0;
+            left: 0;
+            position: absolute;
+        }
+
+        .fht-table-wrapper .fht-fixed-column {
+            /* position */
+            z-index: 1;
+        }
+
+    .fht-table .tableheader1 > th {
+        background-color: #337ab7;
+        color: #fff !important;
+        border: 1px solid #ddd;
+        padding: 8px !important;
+        line-height: 1.42857143 !important;
+        border-bottom-width: 2px;
+        font-weight: bold;
+    }
+
+    .fht-table, .fht-table thead, .fht-table tfoot, .fht-table tbody, .fht-table tr, .fht-table th, .fht-table td {
+        font-size: 14px;
+    }
+
+        .fht-table > tbody > tr > td,
+        .fht-table > tbody > tr > th,
+        .fht-table > tfoot > tr > td,
+        .fht-table > tfoot > tr > th,
+        .fht-table > thead > tr > td,
+        .fht-table > thead > tr > th {
+            font-size: 14px;
+        }
+
+    .tbl-responsive {
+        height: 500px;
+        overflow-x: auto !important;
+        overflow-y: auto;
+    }
+
+    .fht-table-wrapper.fht-default {
+        /*overflow-x:auto;*/
+    }
+</style>
+
+
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="widget">
+                        <header class="widget-header">
+                            <ul class="dashbord_admin_ul">
+                                <li class="widget-title">State:</li>
+
+                                <li id="agency_state_dropdown_list">
+
+                                    <select class="form-control" id="PIP_Info_State" onchange="PIP_StateWise_Info()">
+                                        <option value="0">Select State</option>
+                                    </select>
+                                </li>
+                                <li id="agency_state_dropdown_list_1">
+                                    <lable id="State_Name"></lable>
+                                </li>
+                            </ul>
+                        </header>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="widget google-chart">
+                        <header class="widget-header">
+                            <h4 class="widget-title">
+                                State wise - PIP Item Wise Year Wise Expenditure Report
+                            </h4>
+                        </header>
+                        <hr class="widget-separator">
+                        <div class="widget-body">
+                            <div>
+                                <div class="text-right">
+                                    <ul class="dashbord_admin_ul">
+
+                                        <li id="agency_state_dropdown_list">
+
+                                            <select class="form-control" onchange="State_wise_PIP_Item_Wise_Year_Wise_Expenditure_Report_ItemCode_dropdown()" id="Agency_item_code">
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <select class="form-control" onchange="State_wise_PIP_Item_Wise_Year_Wise_Expenditure_ReportYear_Wise_Info()" id="State_wise_PIP_Item_Wise_Year_Wise_Expenditure_ReportYear_Financial_Year">
+                                                <option value="0">Select Financial Year</option>
+                                                <option value="2020-21">2020-2021</option>
+                                                <option value="2021-22">2021-2022</option>
+                                                <option value="2022-23">2022-2023</option>
+                                                <option value="2023-24">2023-2024</option>
+                                                <option value="2024-25">2024-2025</option>
+                                            </select>
+                                        </li>
+
+                                        <li><div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="tableToExcel('myTable04', 'AWP_Data')"> Export To Excel</i></div></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="tbl-responsive">
+                                <table class="table  FrameWork_Matrix_table  table-hover row-border order-column table-striped table-bordered  no-footer" id="myTable04" style="border: 1px solid #dddddd;margin-top: 10px;">
+                                    <thead id="pip_state_wise_alert_data">
+                                        <tr class="color_red"><th colspan="7" class="text-center">Please Wait Some time data is Loading ...</th></tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="widget google-chart">
+                        <header class="widget-header">
+                            <h4 class="widget-title">
+                                Statewise - Activity wise Year wise Expenditure Report
+                            </h4>
+                        </header>
+                        <hr class="widget-separator">
+                        <div class="widget-body">
+                            <div>
+                                <div class="text-right">
+                                    <ul class="dashbord_admin_ul">
+
+                                        <li id="agency_state_dropdown_list">
+
+                                            <select class="form-control" id="Statewise_Activity_wise_Year_wise_Expenditure_Report_Activity" onchange="Statewise_Activity_wise_Year_wise_Expenditure_Activity_Report()">
+                                                <option value="0">Select Activity Name</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <select class="form-control" onchange="Statewise_Activity_wise_Year_wise_Expenditure_Financial_Year_Info()" id="Statewise_Activity_wise_Year_wise_Expenditure_Financial_Year">
+                                                <option value="0">Select Financial Year</option>
+                                                <option value="2020-21">2020-2021</option>
+                                                <option value="2021-22">2021-2022</option>
+                                                <option value="2022-23">2022-2023</option>
+                                                <option value="2023-24">2023-2024</option>
+                                                <option value="2024-25">2024-2025</option>
+                                            </select>
+                                        </li>
+
+                                        <li><div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="tableToExcel('myTable05', 'AWP_Data')"> Export To Excel</i></div></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="tbl-responsive">
+                                <table class="table  FrameWork_Matrix_table  table-hover row-border order-column table-striped table-bordered  no-footer" id="myTable05" style="border: 1px solid #dddddd;margin-top: 10px;">
+                                    <thead id="activity_state_wise_alert_data">
+                                        <tr class="color_red"><th colspan="7" class="text-center">Please Wait Some time data is Loading ...</th></tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="widget google-chart">
+                        <header class="widget-header">
+                            <h4 class="widget-title">
+                                State Wise Agency Wise PIP vs Release vs AWP vs Expenditure
+                            </h4>
+                        </header>
+                        <hr class="widget-separator">
+                        <div class="widget-body">
+                            <div>
+                                <div class="text-right">
+                                    <ul class="dashbord_admin_ul">
+
+                                        <li id="agency_state_dropdown_list">
+
+                                            <select class="form-control" id="State_wise_Agencywise_Wise_PIP_vs_Release_vs_AWP_vs_Expenditure_Activity" onchange="State_wise_Agencywise_Wise_PIP_vs_Release_vs_AWP_vs_Expenditure_StateWise__Activity()">
+                                                <option value="0">Select Activity Name</option>
+                                            </select>
+                                        </li>
+
+                                        <li><div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="tableToExcel('myTable06', 'AWP_Data')"> Export To Excel</i></div></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="tbl-responsive">
+                                <table class="table  FrameWork_Matrix_table  table-hover row-border order-column table-striped table-bordered  no-footer" id="myTable06" style="border: 1px solid #dddddd;margin-top: 10px;">
+                                    <thead id="pip_awp_agency_alert_data">
+                                        <tr class="color_red"><th colspan="7" class="text-center">Please Wait Some time data is Loading ...</th></tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="widget google-chart">
+                        <header class="widget-header">
+                            <h4 class="widget-title">
+                                State wise PIP vs Year wise Expenditure
+                            </h4>
+                        </header>
+                        <hr class="widget-separator">
+                        <div class="widget-body">
+                            <div>
+                                <div class="text-right">
+                                    <ul class="dashbord_admin_ul">
+
+                                        <li><div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="tableToExcel('myTable07', 'AWP_Data')"> Export To Excel</i></div></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="tbl-responsive">
+                                <table class="table  FrameWork_Matrix_table  table-hover row-border order-column table-striped table-bordered  no-footer" id="myTable07" style="border: 1px solid #dddddd;margin-top: 10px;">
+                                    <thead id="State_wise_pip_vs_Year_wise_alert_data">
+                                        <tr class="color_red"><th colspan="7" class="text-center">Please Wait Some time data is Loading ...</th></tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="btn-danger" href="~/mis_new/Agency_reports"> Previous Page</span>
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright GCRS 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+<script src="~/Content/JS_Files/Agency_reports_1.js"></script>
+
+<script src="~/Content/JS_Files/jquery.fixedheadertable.js"></script>
+<script src="~/Content/JS_Files/fixedheadertable.js"></script>
+
+
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('[id^="menu-"][class*="-info"]').hide();
+    }, 500);
+    $('#myTable01').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+    $('#myTable02').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+    $('#myTable03').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+    $('#myTable04').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+    $('#myTable05').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+    $('#myTable06').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+    $('#myTable07').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+
+</script>
+<script>
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>

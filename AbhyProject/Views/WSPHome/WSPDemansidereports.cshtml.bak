@@ -1,0 +1,2290 @@
+﻿
+@{
+    ViewBag.Title = "WSPDemansidereports";
+    Layout = null;
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+
+<script src="~/Scripts/all_scripts/data.js"></script>
+
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+
+
+<!--Pie Chart-->
+
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+
+
+<!--pie chart-->
+@*<script src="https://code.highcharts.com/modules/variable-pie.js"></script>*@
+
+
+<meta name="viewport" content="width=device-width" />
+<title>Water Security Plan Report</title>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .demandside_text > tbody > tr > td {
+        text-align: right;
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .demandsidesupplyside_space {
+        margin-top: 70px;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .dateandtime_ul > li {
+        display: inline-block;
+        color: #000;
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+
+    .heding_demandindside {
+        padding: 0px 20px;
+        color: #337ab7
+    }
+
+        .heding_demandindside > #resetinfo {
+            padding: 5px;
+        }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-xs-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            text-transform: uppercase;
+            word-spacing: 1px;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    /*.firsttable {
+        display: block;
+    }
+        */
+    .secondtable {
+        text-align: right;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .demandsidesupplyside_space1_121 {
+        margin-top: 300px;
+    }
+    /*  .firsttable
+    {
+        margin-bottom:10px;
+    }*/
+    /*    .report_heading_div
+    {
+        margin-bottom:15px;
+    }*/
+</style>
+<div class="container" id="Data1">
+    <div class="col-md-12">
+        <div class="firsttable col-md-12" style="margin-bottom:15px;">
+            <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+        </div>
+    </div>
+    <div class="col-md-12 report_heading_div">
+        <div class="col-md-9">
+            <h1>Water Security Plan Report </h1>
+
+        </div>
+        <div class="col-md-3 text-right btn_hide" id="btnExport">
+            <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+        </div>
+        <div class="col-md-12">
+            <ul class="dateandtime_ul">
+                <li>Date : <span id="demodemandsupply"></span></li>
+                <li>Time : <span id="demodemandsupply2"></span></li>
+                <li>
+                    User Name :
+                    @if (Session["UserName"] != null)
+                    {
+                        <span>@Session["UserName"].ToString()</span>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-12 state_dist_level">
+        <div class="row" id="Select_dist_level">
+            <ul class="Select_option">
+                @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                {
+
+                    <li>
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate">@Session["gstate"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                }
+                else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                {
+                    <li>
+                        <label id="lblstate">Admin</label>
+
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <label id="lblstate">National Level Nodal Officer</label>
+
+                    </li>
+                }
+
+
+                @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                {
+                    <li>
+
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+
+                }
+
+                @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Block:</label>
+                        <span id="spnblock">@Session["gblock"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                }
+                @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Gram panchayat:</label>
+                        <span id="spngram">@Session["ggram"]</span>
+
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="col-md-12 text-center heding_demandindside">
+        <div id="resetinfo">
+            <h2>Demand Side</h2>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div id="resetinfo" style="padding:5px;">
+            <div id="container_demand_side" style="height:400px"></div>
+        </div>
+    </div>
+    <div class="col-md-12 demandsidesupplyside_space1">
+        <div class="col-md-12 ">
+            <div tbl-responsive" style="overflow:scroll">
+                <table class="table demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;height: 340px;">
+                    <tbody>
+                        <tr>
+                            <th colspan="10" style="background-color:#337ab7;color:#fff">
+                                Demand Side
+                            </th>
+                        </tr>
+                        <tr class="tableheader1">
+                            <th></th>
+                            <th>Area Under Measures (ha)</th>
+                            <th>Standard Water Demand (Ha.m)</th>
+                            <th>Kharif Season(ha.m)</th>
+                            <th>Rabi Season(ha.m)</th>
+                            <th>Summer Season(ha.m)</th>
+
+                            <th>Total Water Demand (ha.m)</th>
+                            <th>Reduction in Water Demand(Ha.m)</th>
+                            <th>Possible Funding Source</th>
+                            <th>Approx Cost</th>
+                        </tr>
+                        @*<tr>
+                                <th>Standard Water Demand(ha.m)</th>
+                                <td><span id="swd_Kharif"></span></td>
+                                <td><span id="swd_rabi"></span></td>
+                                <td><span id="swd_summer"></span></td>
+                                <td><span id=""></span></td>
+                                <td><span id=""></span></td>
+                                <td><span id=""></span></td>
+                                <td><span id=""></span></td>
+
+                            </tr>*@
+                        <tr>
+                            <th>Micro-Irrigation  <br />(Sprinkler)</th>
+                            <td><span id="all_area_spinkler"></span></td>
+                            <td><span id="sprinkler_TotalStandardDemand"></span></td>
+                            <td><span id="sprinkler_kharif"></span></td>
+                            <td><span id="sprinkler_rabi"></span></td>
+                            <td><span id="sprinkler_summer"></span></td>
+
+                            <td><span id="sprinkler_TotalDemand"></span></td>
+                            <td><span id="sprinkler_TotalReduction"></span></td>
+                            <td><span id="sprinkler_FundingSource"></span></td>
+                            <td><span id="sprinkler_approx_cost"></span><span id="sprinkler_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Micro-Irrigation<br /> (Drip)</th>
+                            <td><span id="all_area_drip"></span></td>
+                            <td><span id="drip_TotalStandardDemand"></span></td>
+                            <td><span id="drip_kharif"></span></td>
+                            <td><span id="drip_rabi"></span></td>
+                            <td><span id="drip_summer"></span></td>
+                            <td><span id="drip_TotalWaterdDemand"></span></td>
+                            <td><span id="drip_TotalReduction"></span></td>
+                            <td><span id="drip_FundingSource"></span></td>
+                            <td><span id="drip_approx_cost"> </span><span id="drip_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Irrigation Through Underground Pipelines</th>
+                            <td><span id="all_area_ug_pipeline"></span></td>
+                            <td><span id="pipeline_TotalStandardDemand"></span></td>
+                            <td><span id="pipeline_kharif"></span></td>
+                            <td><span id="pipeline_rabi"></span></td>
+                            <td><span id="pipeline_summer"></span></td>
+
+                            <td><span id="pipeline_TotalWaterDemand"></span></td>
+                            <td><span id="pipeline_TotalReduction"></span></td>
+                            <td><span id="pipeline_FundingSource"></span></td>
+                            <td><span id="pipeline_approx_cost"></span><span id="pipeline_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Crop<br /> Diversification</th>
+                            <td><span id="all_area_Crop_diversification"></span></td>
+                            <td><span id="crop_total_Standard"></span></td>
+                            <td><span id="crop_kharif"></span></td>
+                            <td><span id="crop_rabi"></span></td>
+                            <td><span id="crop_summer"></span></td>
+
+                            <td><span id="crop_TotalDemand"></span></td>
+                            <td><span id="crop_TotalReduction"></span></td>
+                            <td><span id="crop_FundingSource"></span></td>
+                            <td><span id="crop_approx_cost"> </span><span id="crop_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Reduction in GW by Added Use of  SW</th>
+                            <td><span id="all_area_Reduction_in_GW_SW"></span></td>
+                            <td><span id="reduction_TotalStandardDemand"></span></td>
+                            <td><span id="reduction_kharif"></span></td>
+                            <td><span id="reduction_rabi"></span></td>
+                            <td><span id="reduction_summer"></span></td>
+
+                            <td><span id="reduction_TotalWaterDemand"></span></td>
+                            <td><span id="reduction_TotalReduction"></span></td>
+                            <td><span id="reduction_FundingSource"></span></td>
+                            <td><span id="reduction_approx_cost"> </span><span id="reduction_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Other Measures for Saving Water</th>
+                            <td><span id="all_area_other_measures"></span></td>
+                            <td><span id="other_TotalStandardDemand"></span></td>
+                            <td><span id="other_kharif"></span></td>
+                            <td><span id="other_rabi"></span></td>
+                            <td><span id="other_summer"></span></td>
+
+                            <td><span id="other_TotalWaterDemand"></span></td>
+                            <td><span id="other_TotalReduction"></span></td>
+                            <td><span id="other_FundingSource"></span></td>
+                            <td><span id="other_approx_cost"> </span><span id="other_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td><span id="total_of_Area_Proposed_under_various_Measures_value_sum"></span></td>
+                            <td colspan="7"></td>
+                            <td><span id="DemandSide_Approx_mate_Cost_Total"></span> </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center heding_demandindside demandsidesupplyside_space1_12">
+        <div id="resetinfo">
+            <h2>Supply Side</h2>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div id="resetinfo" style="padding:5px;">
+            <div id="container_supply_side" style="height:350px"></div>
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-12 ">
+            <div class="tbl-responsive" style="overflow-x:scroll">
+                <table class="table demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    <tbody>
+                        <tr>
+                            <th colspan="6" style="background-color:#337ab7;color:#fff">
+                                Supply Side
+                            </th>
+                        </tr>
+                        <tr class="tableheader1">
+                            <th></th>
+                            <th>Kharif Season(ha.m)</th>
+                            <th>Rabi Season(ha.m)</th>
+                            <th>Annual (ha.m)</th>
+                            <th>Possible Funding Source</th>
+                            <th>Approx Cost</th>
+                        </tr>
+                        <tr>
+                            <th>Artificial Recharge Structures</th>
+                            <td><span id="ar_kharif"></span></td>
+                            <td><span id="ar_rabi"></span></td>
+                            <td><span id="ar_annual"></span></td>
+                            <td><span id="AR_PossibleFundingSource"></span></td>
+                            <td><span id="ar_approx_cost"></span><span id="ar_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Water Conservation Structures</th>
+                            <td><span id="wc_kharif"></span></td>
+                            <td><span id="wc_rabi"></span></td>
+                            <td><span id="wc_annual"></span></td>
+                            <td><span id="WC_PossibleFundingSource"></span></td>
+                            <td><span id="wc_approx_cost"></span><span id="wc_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Any Other Intervention</th>
+                            <td><span id="aoi_kharif"></span></td>
+                            <td><span id="aoi_rabi"></span></td>
+                            <td><span id="aoi_annual"></span></td>
+                            <td><span id="Other_PossibleFundingSource"></span></td>
+                            <td><span id="aoi_approx_cost"></span><span id="aoi_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td colspan="4"></td>
+                            <td id="supply_side_approx_cost_total"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="tbl-responsive">
+        <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+            <thead>
+                <tr>
+                    <th colspan="9" style="background-color:#337ab7;color:#fff">
+                        Demand Side New
+                    </th>
+                </tr>
+                <tr class="info">
+                    @*<th rowspan="3" class="text-center"><button class="updatenew btn btn-success" onclick="addrow_a_part()"> New </button></th>*@
+
+                    <th class="text-center">S.No.</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">Financial Year</th>
+                    <th class="text-center">Other Measures Type</th>
+                    <th class="text-center">Deparment Name</th>
+                    <th class="text-center">Scheme Name</th>
+                    <th class="text-center">Area Proposed (in ha)</th>
+                    <th class="text-center">
+                        Approximate Cost (in Lakhs)
+                    </th>
+
+                </tr>
+
+
+            </thead>
+            <tbody id="sprinkler_data"></tbody>
+        </table>
+    </div>
+
+    <div class="tbl-responsive">
+        <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+            <thead>
+                <tr>
+                    <th colspan="12" style="background-color:#337ab7;color:#fff">
+                        Supply Side New
+                    </th>
+                </tr>
+                <tr class="info">
+                    @*<th rowspan="3" class="text-center"><button class="updatenew btn btn-success" onclick="addrow_a_part()"> New </button></th>*@
+
+                    <th class="text-center">S.No.</th>
+                    <th class="text-center">Categories</th>
+                    <th class="text-center">Type of Structure</th>
+                    <th class="text-center">Latitude</th>
+                    <th class="text-center">Longitude</th>
+                    <th class="text-center">Financial Year</th>
+                    <th class="text-center">Deparment Name</th>
+                    <th class="text-center">Scheme Name</th>
+
+                    <th class="text-center">
+                        Approximate Cost (in Lakhs)
+                    </th>
+
+                </tr>
+
+
+            </thead>
+            <tbody id="supply_data"></tbody>
+        </table>
+    </div>
+    <div class="col-md-12" style="margin-bottom:15px;">
+        <div class="col-md-12">
+            <p class="text-center">
+                .............................
+            </p>
+            <p class="text-justify">
+                The results and analysis contained within the Water Security Plan Report are generated with the help of inputs given by the
+                user as well as existing database. Each component of water budgeting is designed to make understand the users about
+                the processes, parameters and equations involved in the system. The overall goal of water budgeting is therefore to
+                improve the management of ground water resources in priority areas of the country.
+            </p>
+            <p class="text-center">
+                .............................
+            </p>
+        </div>
+
+        <div class="container hidediv " id="btnExport1">
+            <div class="col-md-12 text-center">
+                <a href=""></a>
+                <a href="~/WSPHOME/Wspsuppyside" class="btn btn-danger">
+                    Back
+                </a>
+
+                @*<button type="button" class="btn btn-success" onclick="ReportPdf();">Download</button>*@
+
+                <a href="~/WspNew/report_declaration" class=" btn btn-primary">Go to Total Report</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+    var Access_Auth = "";
+    $(document).ready(function () {
+        Access_Auth = '@Session["Access_Auth"]';
+        if (Access_Auth == 'readonly') {
+            $('.btn_hide').hide();
+        }
+        DemandSideDetails();
+    });
+    //DemandSide and Suppaly side Reports
+    var AR_Kharif = 0, AR_Rabi = 0, AR_Annual = 0;
+    var WC_Kharif = 0, WC_Rabi = 0, WC_Annual = 0;
+    var AOI_Kharif = 0, AOI_Rabi = 0, AOI_Annual = 0;
+    var KharifArray = [];
+    var RabiArray = [];
+    var AOIArray = [];
+    var DemandSide_KharifArray = [];
+    var DemandSide_RabiArray = [];
+    var DemandSide_SummerArray = [];
+    function DemandSideDetails() {
+        Sprinkler_Info();
+        get_demandside_fund();
+    }
+
+
+
+    var DemandSide_Approx_mate_Cost_Total = 0;
+    var supply_side_approx_cost_total = 0;
+
+    function Sprinkler_Info() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/Sprinkler_Info1',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                debugger;
+                if (data.length != 0) {
+
+                    if (data.sprinkler_approx_estimated_cost != "" && data.sprinkler_approx_estimated_cost != null) {
+                        //$('#sprinkler_approx_cost').text(data.sprinkler_approx_estimated_cost);
+                        var ss1 = parseFloat(data.sprinkler_approx_estimated_cost).toFixed(2) + " " + "Lakhs";
+                        $('#sprinkler_approx_cost_type').text(ss1);
+                        DemandSide_Approx_mate_Cost_Total += parseFloat(data.sprinkler_approx_estimated_cost);
+                        //alert(DemandSide_Approx_mate_Cost_Total + 'sprinkler_info');
+
+                        //if (data.sprinkler_cost_type != "0" && data.sprinkler_cost_type != "" && data.sprinkler_cost_type != null) {
+                        //    var ss1 = parseFloat(data.sprinkler_approx_estimated_cost).toFixed(2) + " " + data.sprinkler_cost_type;
+                        //    $('#sprinkler_approx_cost_type').text(ss1);
+                        //}
+                    }
+
+
+
+                    var swd_total = 0;
+                    var Sprinkeler_Kharif = 0;
+                    if (data.sprinkler_kharif_total_sprinkler_waterdemand != null && data.sprinkler_kharif_total_sprinkler_waterdemand != "") {
+                        Sprinkeler_Kharif = parseFloat(data.sprinkler_kharif_total_sprinkler_waterdemand);
+                    }
+
+
+                    var Sprinkeler_Rabi = 0;
+                    if (data.sprinkler_rabi_total_rabi_waterdemand != null && data.sprinkler_rabi_total_rabi_waterdemand != "") {
+                        Sprinkeler_Rabi = parseFloat(data.sprinkler_rabi_total_rabi_waterdemand);
+                    }
+
+                    var Sprinkeler_Summer = 0;
+                    if (data.sprinkler_summer_total_summer_waterdemand != null && data.sprinkler_summer_total_summer_waterdemand != "") {
+                        Sprinkeler_Summer = parseFloat(data.sprinkler_summer_total_summer_waterdemand);
+                    }
+                    var swd_total_WaterDemand = 0;
+
+
+                    var Sprinkeler_Kharif_WaterDemand = 0;
+                    if (data.sprinkler_kharif_total_waterdemand != null && data.sprinkler_kharif_total_waterdemand != "") {
+                        Sprinkeler_Kharif_WaterDemand = parseFloat(data.sprinkler_kharif_total_waterdemand);
+                    }
+
+                    var Sprinkeler_Rabi_WaterDemand = 0;
+                    if (data.sprinkler_rabi_total_waterdemand != null && data.sprinkler_rabi_total_waterdemand != "") {
+                        Sprinkeler_Rabi_WaterDemand = parseFloat(data.sprinkler_rabi_total_waterdemand);
+                    }
+
+                    var Sprinkeler_Summer_WaterDemand = 0;
+                    if (data.sprinkler_summer_total_waterdemand != null && data.sprinkler_summer_total_waterdemand != "") {
+                        Sprinkeler_Summer_WaterDemand = parseFloat(data.sprinkler_summer_total_waterdemand);
+                    }
+                    if (Sprinkeler_Kharif_WaterDemand != null && Sprinkeler_Kharif_WaterDemand != "") {
+                        swd_total_WaterDemand = Sprinkeler_Kharif_WaterDemand + swd_total_WaterDemand;
+                        $('#sprinkler_kharif').text(parseFloat(swd_total_WaterDemand).toFixed(2));
+                    }
+                    else {
+                        $('#sprinkler_kharif').text(0);
+                    }
+
+
+                    if (data.sprinkler_kharif_paddy_fundingsource != "" && data.sprinkler_kharif_paddy_fundingsource != null) {
+                        if (data.sprinkler_kharif_paddy_fundingsource == "Others") {
+                            $('#sprinkler_FundingSource').text(data.sprinkler_other_funding_source);
+                        }
+                        else {
+                            $('#sprinkler_FundingSource').text(data.sprinkler_kharif_paddy_fundingsource);
+                        }
+
+                    }
+
+
+                    if (Sprinkeler_Rabi_WaterDemand != null && Sprinkeler_Rabi_WaterDemand != "") {
+                        swd_total_WaterDemand = Sprinkeler_Rabi_WaterDemand + swd_total_WaterDemand;
+                        $('#sprinkler_rabi').text(parseFloat(Sprinkeler_Rabi_WaterDemand).toFixed(2));
+                    }
+                    else {
+
+                        $('#sprinkler_rabi').text(0);
+                    }
+                    if (Sprinkeler_Summer_WaterDemand != null && Sprinkeler_Summer_WaterDemand != "") {
+                        swd_total_WaterDemand = Sprinkeler_Summer_WaterDemand + swd_total_WaterDemand;
+
+                        $('#sprinkler_summer').text(parseFloat(Sprinkeler_Summer_WaterDemand).toFixed(2));
+
+                    }
+                    else {
+
+                        $('#sprinkler_summer').text(0);
+                    }
+
+                    if (Sprinkeler_Kharif != null && Sprinkeler_Kharif != "") {
+                        swd_total = Sprinkeler_Kharif + swd_total;
+
+                    }
+
+
+
+
+                    if (Sprinkeler_Rabi != null && Sprinkeler_Rabi != "") {
+                        swd_total = Sprinkeler_Rabi + swd_total;
+
+                    }
+
+
+                    if (Sprinkeler_Summer != null && Sprinkeler_Summer != "") {
+                        swd_total = Sprinkeler_Summer + swd_total;
+
+
+                    }
+
+
+
+                    $('#sprinkler_TotalDemand').text(swd_total.toFixed(2));
+
+                    $('#sprinkler_TotalStandardDemand').text(swd_total_WaterDemand.toFixed(2));
+                    var sprinkler_TotalReduction = swd_total_WaterDemand - swd_total;
+
+                    $('#sprinkler_TotalReduction').text(sprinkler_TotalReduction.toFixed(2));
+
+                    // DemandSide_KharifArray.push(Sprinkeler_Kharif);
+                    DemandSide_KharifArray.push(swd_total_WaterDemand);
+                    //   DemandSide_RabiArray.push(Sprinkeler_Rabi);
+                    DemandSide_RabiArray.push(swd_total);
+                    //   DemandSide_SummerArray.push(Sprinkeler_Summer);
+                    DemandSide_SummerArray.push(sprinkler_TotalReduction);
+
+
+                }
+                else {
+                    // DemandSide_KharifArray.push(Sprinkeler_Kharif);
+                    DemandSide_KharifArray.push(0);
+                    //   DemandSide_RabiArray.push(Sprinkeler_Rabi);
+                    DemandSide_RabiArray.push(0);
+                    //   DemandSide_SummerArray.push(Sprinkeler_Summer);
+                    DemandSide_SummerArray.push(0);
+                }
+
+                Drip_Info();
+
+            }
+        });
+    }
+
+    function Drip_Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/Drip_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                debugger;
+                if (data.length != 0) {
+
+
+                    if (data.drip_approx_estimated_cost != "" && data.drip_approx_estimated_cost != null) {
+
+                            // $('#drip_approx_cost_type').text(data.drip_cost_type);
+                            var ss1 = parseFloat(data.drip_approx_estimated_cost).toFixed(2) + " " + "Lakhs";
+                            $('#drip_approx_cost').text(ss1);
+
+
+
+                        DemandSide_Approx_mate_Cost_Total += parseFloat(data.drip_approx_estimated_cost);
+                        //alert(DemandSide_Approx_mate_Cost_Total + 'Drip_Info');
+                    }
+
+
+
+
+                    if (data.drip_kharif_paddy_fundingsource != null && data.drip_kharif_paddy_fundingsource != "") {
+                        if (data.drip_kharif_paddy_fundingsource == "Others") {
+                            $('#drip_FundingSource').text(data.drip_other_funding_source);
+                        } else {
+                            $('#drip_FundingSource').text(data.drip_kharif_paddy_fundingsource);
+                        }
+                    }
+
+
+
+                    var drip_total = 0;
+                    var drip_total_WaterDemand = 0;
+                    var drip_Kharif = 0;
+                    if (data.drip_kharif_total_drip_waterdemand != null && data.drip_kharif_total_drip_waterdemand != "") {
+                        drip_Kharif = parseFloat(data.drip_kharif_total_drip_waterdemand);
+                    }
+
+
+                    var drip_Rabi = 0;
+                    if (data.drip_rabi_total_rabi_waterdemand != null && data.drip_rabi_total_rabi_waterdemand != "") {
+                        drip_Rabi = parseFloat(data.drip_rabi_total_rabi_waterdemand);
+                    }
+
+                    var drip_Summer = 0;
+                    if (data.drip_summer_total_summer_waterdemand != null && data.drip_summer_total_summer_waterdemand != "") {
+                        drip_Summer = parseFloat(data.drip_summer_total_summer_waterdemand);
+                    }
+
+                    var drip_Kharif_WaterDemand = 0;
+                    if (data.drip_kharif_total_waterdemand != null && data.drip_kharif_total_waterdemand != "") {
+                        drip_Kharif_WaterDemand = parseFloat(data.drip_kharif_total_waterdemand);
+                    }
+                    var drip_Rabi_WaterDemand = parseFloat(data.drip_rabi_total_waterdemand);
+                    var drip_Summer_WaterDemand = parseFloat(data.drip_summer_total_waterdemand);
+
+
+                    if (drip_Kharif_WaterDemand != null && drip_Kharif_WaterDemand != "") {
+                        drip_total_WaterDemand = drip_Kharif_WaterDemand + drip_total_WaterDemand;
+                        $('#drip_kharif').text(parseFloat(drip_Kharif_WaterDemand).toFixed(2));
+
+                    }
+                    else {
+                        drip_Kharif_WaterDemand = 0;
+                        $('#drip_kharif').text(0);
+                    }
+                    if (drip_Rabi_WaterDemand != null && drip_Rabi_WaterDemand != "") {
+                        drip_total_WaterDemand = drip_Rabi_WaterDemand + drip_total_WaterDemand;
+                        $('#drip_rabi').text(parseFloat(drip_Rabi_WaterDemand).toFixed(2));
+
+                    }
+
+                    else {
+                        drip_Rabi_WaterDemand = 0;
+                        $('#drip_rabi').text(0);
+                    }
+                    if (drip_Summer_WaterDemand != null && drip_Summer_WaterDemand != "") {
+                        drip_total_WaterDemand = drip_Summer_WaterDemand + drip_total_WaterDemand;
+
+                        $('#drip_summer').text(parseFloat(drip_Summer_WaterDemand).toFixed(2));
+
+                    }
+                    else {
+                        drip_Summer_WaterDemand = 0;
+                        $('#drip_summer').text(0);
+                    }
+
+                    if (drip_Kharif != null && drip_Kharif != "") {
+                        drip_total = drip_total + drip_Kharif;
+
+                    }
+                    if (drip_Rabi != null && drip_Rabi != "") {
+                        drip_total = drip_total + drip_Rabi;
+
+                    }
+                    if (drip_Summer != null && drip_Summer != "") {
+                        drip_total = drip_total + drip_Summer;
+
+                    }
+
+                    $('#drip_TotalStandardDemand').text(parseFloat(drip_total_WaterDemand).toFixed(2));
+
+                    $('#drip_TotalWaterdDemand').text(parseFloat(drip_total).toFixed(2));
+                    var drip_TotalReduction = parseFloat(drip_total_WaterDemand) - parseFloat(drip_total);
+                    $('#drip_TotalReduction').text(drip_TotalReduction.toFixed(2));
+
+                    DemandSide_KharifArray.push(drip_total_WaterDemand);
+                    DemandSide_RabiArray.push(drip_total);
+                    DemandSide_SummerArray.push(drip_TotalReduction);
+                }
+                else {
+                    DemandSide_KharifArray.push(0);
+                    DemandSide_RabiArray.push(0);
+                    DemandSide_SummerArray.push(0);
+                }
+                PipeLine_Info();
+
+            }
+        });
+    }
+
+    function PipeLine_Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/PipeLine_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                debugger;
+                console.log(data);
+                if (data.length != 0) {
+                    if (data.pipeline_approx_estimated_cost != "" && data.pipeline_approx_estimated_cost != null) {
+                        //$('#pipeline_approx_cost').text(data.pipeline_approx_estimated_cost);
+                        var ss1 = parseFloat(data.pipeline_approx_estimated_cost).toFixed(2) + " " + "Lakhs";
+                        $('#pipeline_approx_cost_type').text(ss1);
+                        DemandSide_Approx_mate_Cost_Total += parseFloat(data.pipeline_approx_estimated_cost);
+                        //alert(DemandSide_Approx_mate_Cost_Total + 'PipeLine_Info');
+                        //if (data.pipeline_cost_type != "0" && data.pipeline_cost_type != "" && data.pipeline_cost_type != null) {
+
+                        //    var ss1 = parseFloat(data.pipeline_approx_estimated_cost).toFixed(2) + " " + data.pipeline_cost_type;
+                        //    $('#pipeline_approx_cost_type').text(ss1);
+                        //}
+                    }
+
+
+
+
+                    if (data.pipeline_kharif_paddy_fundingsource != null && data.pipeline_kharif_paddy_fundingsource != "") {
+                        if (data.pipeline_kharif_paddy_fundingsource == "Others") {
+                            $('#pipeline_FundingSource').text(data.pipeline_other_funding_source);
+                        }
+                        else {
+                            $('#pipeline_FundingSource').text(data.pipeline_kharif_paddy_fundingsource);
+                        }
+                    }
+
+
+                    var pipeline_total = 0;
+                    var pipeline_total_WaterDemand = 0;
+                    var pipeline_kharif = 0;
+                    if (data.pipeline_kharif_total_pipeline_waterdemand != null && data.pipeline_kharif_total_pipeline_waterdemand != "") {
+                        pipeline_kharif = parseFloat(data.pipeline_kharif_total_pipeline_waterdemand);
+
+                    }
+                    var pipeline_rabi = 0;
+                    if (data.pipeline_rabi_total_rabi_waterdemand != null && data.pipeline_rabi_total_rabi_waterdemand != "") {
+                        pipeline_rabi = parseFloat(data.pipeline_rabi_total_rabi_waterdemand);
+
+                    }
+
+
+                    var pipeline_summer = 0;
+                    if (data.pipeline_summer_total_summer_waterdemand != null && data.pipeline_summer_total_summer_waterdemand != "") {
+                        pipeline_summer = parseFloat(data.pipeline_summer_total_summer_waterdemand);
+
+                    }
+
+
+                    var pipeline_kharif_waterDemand = 0;
+                    if (data.pipeline_kharif_total_waterdemand != null && data.pipeline_kharif_total_waterdemand != "") {
+                        pipeline_kharif_waterDemand = parseFloat(data.pipeline_kharif_total_waterdemand);
+
+                    }
+                    var pipeline_rabi_waterDemand = 0;
+                    if (data.pipeline_rabi_total_waterdemand != null && data.pipeline_rabi_total_waterdemand != "") {
+                        pipeline_rabi_waterDemand = parseFloat(data.pipeline_rabi_total_waterdemand);
+
+                    }
+
+
+                    var pipeline_summer_waterDemand = 0;
+                    if (data.pipeline_summer_total_waterdemand != null && data.pipeline_summer_total_waterdemand != "") {
+                        pipeline_summer_waterDemand = parseFloat(data.pipeline_summer_total_waterdemand);
+
+                    }
+
+
+                    debugger;
+                    if (pipeline_kharif_waterDemand != null && pipeline_kharif_waterDemand != "") {
+                        pipeline_total_WaterDemand = pipeline_total_WaterDemand + pipeline_kharif_waterDemand;
+
+                        $('#pipeline_kharif').text(parseFloat(pipeline_kharif_waterDemand).toFixed(2));
+                    }
+                    else {
+                        pipeline_kharif_waterDemand = 0;
+                        $('#pipeline_kharif').text(pipeline_kharif_waterDemand);
+                    }
+
+                    if (pipeline_rabi_waterDemand != null && pipeline_rabi_waterDemand != "") {
+                        pipeline_total_WaterDemand = pipeline_total_WaterDemand + pipeline_rabi_waterDemand;
+
+                        $('#pipeline_rabi').text(parseFloat(pipeline_rabi_waterDemand).toFixed(2));
+                    }
+                    else {
+                        pipeline_rabi_waterDemand = 0;
+                        $('#pipeline_rabi').text(pipeline_rabi_waterDemand);
+                    }
+
+                    if (pipeline_summer_waterDemand != null && pipeline_summer_waterDemand != "") {
+                        pipeline_total_WaterDemand = pipeline_total_WaterDemand + pipeline_summer_waterDemand;
+                        $('#pipeline_summer').text(parseFloat(pipeline_summer_waterDemand).toFixed(2));
+                    }
+                    else {
+                        pipeline_summer_waterDemand = 0;
+                        $('#pipeline_summer').text(pipeline_summer_waterDemand);
+                    }
+
+
+                    if (pipeline_kharif != null && pipeline_kharif != "") {
+                        pipeline_total = pipeline_total + pipeline_kharif;
+
+                    }
+
+
+
+                    if (pipeline_rabi != null && pipeline_rabi != "") {
+                        pipeline_total = pipeline_total + pipeline_rabi;
+                    }
+
+                    if (pipeline_summer != null && pipeline_summer != "") {
+                        pipeline_total = pipeline_total + pipeline_summer;
+
+                    }
+                    if (data.pipeline_total_WaterDemand != null && data.pipeline_total_WaterDemand != "") {
+                        $('#pipeline_TotalStandardDemand').text(pipeline_total_WaterDemand.toFixed(2));
+                    } else {
+                        $('#pipeline_TotalStandardDemand').text(pipeline_total_WaterDemand.toFixed(2));
+                    }
+
+                    $('#pipeline_TotalWaterDemand').text(pipeline_total.toFixed(2));
+
+                    var pipeline_TotalReduction = pipeline_total_WaterDemand - pipeline_total;
+                    $('#pipeline_TotalReduction').text(pipeline_TotalReduction.toFixed(2));
+
+                    DemandSide_KharifArray.push(pipeline_total_WaterDemand);
+                    DemandSide_RabiArray.push(pipeline_total);
+                    DemandSide_SummerArray.push(pipeline_TotalReduction);
+
+                }
+                else {
+                    $("#pipeline_TotalStandardDemand").text(0.00);
+                    $('#pipeline_kharif').text(0);
+                    $('#pipeline_rabi').text(0);
+                    $('#pipeline_summer').text(0);
+                    $('#pipeline_TotalWaterDemand').text(0);
+                    $('#pipeline_TotalReduction').text(0);
+                    $('#pipeline_approx_cost').text(0)
+
+                    DemandSide_KharifArray.push(0);
+                    DemandSide_RabiArray.push(0);
+                    DemandSide_SummerArray.push(0);
+                }
+                Crop_Info();
+
+            }
+        });
+    }
+
+    function Crop_Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/Crop_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                debugger;
+                if (data.length != 0) {
+
+
+                    if (data.crop_approx_estimated_cost != "" && data.crop_approx_estimated_cost != null) {
+                        // $('#crop_approx_cost').text(data.crop_approx_estimated_cost);
+                        var ss1 = parseFloat(data.crop_approx_estimated_cost).toFixed(2) + " " + "Lakhs";
+                        $('#crop_approx_cost_type').text(ss1);
+                        DemandSide_Approx_mate_Cost_Total += parseFloat(data.crop_approx_estimated_cost);
+                        //alert(DemandSide_Approx_mate_Cost_Total + 'Crop_Info');
+                        //if (data.crop_cost_type != "0" && data.crop_cost_type != "" && data.crop_cost_type != null) {
+                        //    var ss1 = parseFloat(data.crop_approx_estimated_cost).toFixed(2) + " " + data.crop_cost_type;
+                        //    $('#crop_approx_cost_type').text(ss1);
+                        //}
+                    }
+
+
+
+                    var crop_total_WaterDemand = 0;
+                    var crop_total_Standard = 0;
+
+                    if (data.changed_kharif_paddy_fundingsource != null && data.changed_kharif_paddy_fundingsource != "") {
+                        if (data.changed_kharif_paddy_fundingsource == "Others") {
+                            $('#crop_FundingSource').text(data.crop_other_funding_source);
+                        } else {
+                            $('#crop_FundingSource').text(data.changed_kharif_paddy_fundingsource);
+                        }
+                    }
+
+
+
+
+
+                    var crop_kharif_Standard = 0;
+                    if (data.changed_kharif_total_waterdemand != null && data.changed_kharif_total_waterdemand != "") {
+                        crop_kharif_Standard = parseFloat(data.changed_kharif_total_waterdemand);
+                    }
+                    var crop_rabi_Standard = 0;
+                    if (data.changed_rabi_total_waterdemand != null && data.changed_rabi_total_waterdemand != "") {
+                        crop_rabi_Standard = parseFloat(data.changed_rabi_total_waterdemand);
+                    }
+
+                    var crop_summer_Standard = 0;
+                    if (data.changed_summer_total_waterdemand != null && data.changed_summer_total_waterdemand != "") {
+                        crop_summer_Standard = parseFloat(data.changed_summer_total_waterdemand);
+                    }
+
+                    debugger;
+                    if (crop_kharif_Standard != null && crop_kharif_Standard != "") {
+                        crop_total_Standard = crop_total_Standard + crop_kharif_Standard;
+                        $('#crop_kharif').text(parseFloat(crop_kharif_Standard));
+
+                    }
+                    else {
+                        $('#crop_kharif').text(0);
+                    }
+                    if (crop_rabi_Standard != null) {
+                        crop_total_Standard = crop_total_Standard + crop_rabi_Standard;
+                        $('#crop_rabi').text(parseFloat(crop_rabi_Standard));
+
+                    }
+                    else {
+                        $('#crop_rabi').text(0);
+                    }
+
+                    if (crop_summer_Standard != null) {
+                        crop_total_Standard = crop_total_Standard + crop_summer_Standard;
+                        $('#crop_summer').text(parseFloat(crop_summer_Standard));
+
+                    }
+                    else {
+                        $('#crop_summer').text(0);
+                    }
+
+
+                    var crop_kharif = 0;
+                    if (data.original_kharif_total_waterdemand != null && data.original_kharif_total_waterdemand != "") {
+                        crop_kharif = parseFloat(data.original_kharif_total_waterdemand);
+                    }
+                    var crop_rabi = 0;
+                    if (data.original_rabi_total_waterdemand != null && data.original_rabi_total_waterdemand != "") {
+                        crop_rabi = parseFloat(data.original_rabi_total_waterdemand);
+                    }
+
+                    var crop_summer = 0;
+                    if (data.original_summer_total_waterdemand != null && data.original_summer_total_waterdemand != "") {
+                        crop_summer = parseFloat(data.original_summer_total_waterdemand);
+                    }
+
+
+                    if (crop_kharif != null && crop_kharif != "") {
+                        crop_total_WaterDemand = crop_total_WaterDemand + crop_kharif;
+
+                    }
+                    if (crop_rabi != null && crop_rabi != "") {
+                        crop_total_WaterDemand = crop_total_WaterDemand + crop_rabi;
+
+                    }
+
+                    if (crop_summer != null && crop_summer != "") {
+                        crop_total_WaterDemand = crop_total_WaterDemand + crop_summer;
+
+                    }
+                    //crop_total_Standard
+                    crop_total_WaterDemand
+                    $('#crop_total_Standard').text(crop_total_WaterDemand.toFixed(2));
+                    $('#crop_TotalDemand').text(crop_total_Standard.toFixed(2));
+                    var crop_TotalReduction = crop_total_WaterDemand - crop_total_Standard;
+                    $('#crop_TotalReduction').text(crop_TotalReduction.toFixed(2));
+                    DemandSide_KharifArray.push(crop_total_WaterDemand);
+                    DemandSide_RabiArray.push(crop_total_Standard);
+                    DemandSide_SummerArray.push(crop_TotalReduction);
+                }
+                else {
+                    $('#crop_total_Standard').text(0);
+                    $('#crop_kharif').text(0);
+                    $('#crop_rabi').text(0);
+                    $('#crop_summer').text(0);
+                    $('#crop_TotalDemand').text(0);
+                    $('#crop_TotalReduction').text(0);
+                    $('#crop_approx_cost').text(0);
+
+                    DemandSide_KharifArray.push(0);
+                    DemandSide_RabiArray.push(0);
+                    DemandSide_SummerArray.push(0);
+                }
+
+                Reduction_Info();
+
+            }
+        });
+    }
+
+    function Other_Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/Other_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                debugger;
+                if (data.length != 0) {
+
+                    if (data.other_approx_estimated_cost != "" && data.other_approx_estimated_cost != null) {
+                       // $('#other_approx_cost').text(data.other_approx_estimated_cost);
+                        var ss1 = parseFloat(data.other_approx_estimated_cost).toFixed(2) + " " + "Lakhs";
+                        $('#other_approx_cost_type').text(ss1);
+                        DemandSide_Approx_mate_Cost_Total += parseFloat(data.other_approx_estimated_cost);
+                        //alert(DemandSide_Approx_mate_Cost_Total + 'Other_Info');
+                        //if (data.other_cost_type != "0" && data.other_cost_type != "" && data.other_cost_type != null) {
+                        //    var ss1 = parseFloat(data.other_approx_estimated_cost).toFixed(2) + " " + data.other_cost_type;
+                        //    $('#other_approx_cost_type').text(ss1);
+                        //}
+                    }
+
+
+
+                    if (data.other_kharif_paddy_fundingsource != null && data.other_kharif_paddy_fundingsource != "") {
+                        if (data.other_kharif_paddy_fundingsource == "Others") {
+                            $('#other_FundingSource').text(data.other_funding_source);
+                        }
+                        else {
+                            $('#other_FundingSource').text(data.other_kharif_paddy_fundingsource);
+                        }
+                    }
+
+
+                    debugger;
+                    var other_total = 0;
+                    var other_kharif_Standard = 0;
+                    if (data.other_kharif_total_kharifcrop_waterdemand != null && data.other_kharif_total_kharifcrop_waterdemand != "") {
+                        other_kharif_Standard = parseFloat(data.other_kharif_total_kharifcrop_waterdemand);
+                    }
+
+                    var other_rabi_Standard = 0;
+                    if (data.other_rabi_total_rabicrop_waterdemand != null && data.other_rabi_total_rabicrop_waterdemand != "") {
+                        other_rabi_Standard = parseFloat(data.other_rabi_total_rabicrop_waterdemand);
+                    }
+
+                    var other_summer_Standard = 0;
+                    if (data.other_summer_total_summercrop_waterdemand != null && data.other_summer_total_summercrop_waterdemand != "") {
+                        other_summer_Standard = parseFloat(data.other_summer_total_summercrop_waterdemand);
+                    }
+
+                    var other_total_WaterDemand = 0;
+
+                    var other_kharif_WaterDemand = 0;
+                    if (data.other_kharif_total_reduc_gw_demand != null && data.other_kharif_total_reduc_gw_demand != "") {
+                        other_kharif_WaterDemand = parseFloat(data.other_kharif_total_reduc_gw_demand);
+                    }
+
+                    var other_rabi_WaterDemand = 0;
+                    if (data.other_rabi_total_reduc_gw_demand != null && data.other_rabi_total_reduc_gw_demand != "") {
+                        other_rabi_WaterDemand = parseFloat(data.other_rabi_total_reduc_gw_demand);
+                    }
+
+                    var other_summer_WaterDemand = 0;
+                    if (data.other_summer_total_reduc_gw_demand != null && data.other_summer_total_reduc_gw_demand != "") {
+                        other_summer_WaterDemand = parseFloat(data.other_summer_total_reduc_gw_demand);
+                    }
+
+                    // other_total_annual_waterdemand
+                    var other_total_annual_waterdemand = 0;
+                    if (data.other_total_annual_waterdemand != null && data.other_total_annual_waterdemand != "") {
+                        other_total_annual_waterdemand = parseFloat(data.other_total_annual_waterdemand);
+                    }
+
+                    if (other_kharif_WaterDemand != null && other_kharif_WaterDemand != "") {
+                        other_total_WaterDemand = other_kharif_WaterDemand + other_kharif_Standard;
+
+                    }
+                    if (other_rabi_WaterDemand != null && other_rabi_WaterDemand != "") {
+                        other_total_WaterDemand = other_total_WaterDemand + other_rabi_WaterDemand;
+
+                    }
+
+                    if (other_summer_WaterDemand != null && other_summer_WaterDemand != "") {
+                        other_total_WaterDemand = other_total_WaterDemand + other_summer_WaterDemand;
+
+                    }
+
+
+
+
+
+                    debugger;
+                    if (other_kharif_Standard != null && other_kharif_Standard != "") {
+                        other_total = other_total + other_kharif_Standard;
+                        $('#other_kharif').text(parseFloat(other_kharif_Standard));
+                    }
+                    else {
+                        $('#other_kharif').text(0);
+                    }
+
+
+
+                    if (other_rabi_Standard != null && other_rabi_Standard != "") {
+                        other_total = other_total + other_rabi_Standard;
+                        $('#other_rabi').text(parseFloat(other_rabi_Standard));
+                    }
+                    else {
+                        $('#other_rabi').text(0);
+                    }
+
+                    if (other_summer_Standard != null && other_summer_Standard != "") {
+                        other_total = other_total + other_summer_Standard;
+                        $('#other_summer').text(parseFloat(other_summer_Standard));
+                    }
+                    else {
+                        $('#other_summer').text(0);
+                    }
+
+                    $('#other_TotalStandardDemand').text(other_total.toFixed(2));
+                    $('#other_TotalWaterDemand').text("--");
+
+                    var other_TotalReduction = other_total - other_total_WaterDemand;
+                    $('#other_TotalReduction').text(other_total_annual_waterdemand.toFixed(2));
+
+                    DemandSide_KharifArray.push(other_total);
+                    //DemandSide_RabiArray.push(other_total_WaterDemand);
+                    DemandSide_SummerArray.push(other_total_annual_waterdemand);
+
+                }
+                else {
+                    DemandSide_KharifArray.push(0);
+                    DemandSide_RabiArray.push(0);
+                    DemandSide_SummerArray.push(0);
+                }
+                debugger;
+
+                var SSS = DemandSide_Approx_mate_Cost_Total.toFixed(2) + " Lakhs";
+                //alert(DemandSide_Approx_mate_Cost_Total + 'Other_Info_last');
+                $('#DemandSide_Approx_mate_Cost_Total').text(SSS);
+                C2();
+
+                AR_StructureInfo();
+
+            }
+        });
+    }
+    function Reduction_Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/Reduction_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                debugger;
+                if (data.length != 0) {
+
+                    if (data.reduction_approx_estimated_cost != "" && data.reduction_approx_estimated_cost != null) {
+                        //$('#reduction_approx_cost').text(data.reduction_approx_estimated_cost);
+                        var ss1 = parseFloat(data.reduction_approx_estimated_cost).toFixed(2) + " " + "Lakhs";
+                        $('#reduction_approx_cost_type').text(ss1);
+                        DemandSide_Approx_mate_Cost_Total += parseFloat(data.reduction_approx_estimated_cost);
+                        //if (data.reduction_cost_type != "0" && data.reduction_cost_type != "" && data.reduction_cost_type != null) {
+                        //    var ss1 = parseFloat(data.reduction_approx_estimated_cost).toFixed(2) + " " + data.reduction_cost_type;
+                        //    $('#reduction_approx_cost_type').text(ss1);
+                        //}
+                    }
+
+
+
+                    if (data.reduction_kharif_paddy_fundingsource != null && data.reduction_kharif_paddy_fundingsource != "") {
+                        if (data.reduction_kharif_paddy_fundingsource == "Others") {
+                            $('#reduction_FundingSource').text(data.reduction_other_funding_source);
+                        } else {
+                            $('#reduction_FundingSource').text(data.reduction_kharif_paddy_fundingsource);
+                        }
+                    }
+
+                    var reduction_total = 0;
+                    var reduction_kharif = 0;
+                    if (data.reduction_kharif_total_kharifcrop_waterdemand != null && data.reduction_kharif_total_kharifcrop_waterdemand != "") {
+                        reduction_kharif = parseFloat(data.reduction_kharif_total_kharifcrop_waterdemand);
+                    }
+
+                    var reduction_rabi = 0;
+                    if (data.reduction_rabi_total_rabicrop_waterdemand != null && data.reduction_rabi_total_rabicrop_waterdemand != "") {
+                        reduction_rabi = parseFloat(data.reduction_rabi_total_rabicrop_waterdemand);
+                    }
+
+                    var reduction_summer = 0;
+                    if (data.reduction_summer_total_summercrop_waterdemand != null && data.reduction_summer_total_summercrop_waterdemand != "") {
+                        reduction_summer = parseFloat(data.reduction_summer_total_summercrop_waterdemand);
+                    }
+
+                    var reduction_total_WaterDemand = 0;
+
+                    var reduction_kharif_WaterDemand = 0;
+                    if (data.reduction_kharif_total_reduc_gw_demand != null && data.reduction_kharif_total_reduc_gw_demand != "") {
+                        reduction_kharif_WaterDemand = parseFloat(data.reduction_kharif_total_reduc_gw_demand);
+                    }
+
+                    var reduction_rabi_WaterDemand = 0;
+                    if (data.reduction_rabi_total_reduc_gw_demand != null && data.reduction_rabi_total_reduc_gw_demand != "") {
+                        reduction_rabi_WaterDemand = parseFloat(data.reduction_rabi_total_reduc_gw_demand);
+                    }
+
+                    var reduction_summer_WaterDemand = 0;
+                    if (data.reduction_summer_total_reduc_gw_demand != null && data.reduction_summer_total_reduc_gw_demand != "") {
+                        reduction_summer_WaterDemand = parseFloat(data.reduction_summer_total_reduc_gw_demand);
+                    }
+
+
+                    if (reduction_kharif_WaterDemand != null && reduction_kharif_WaterDemand != "") {
+                        reduction_total_WaterDemand = reduction_total_WaterDemand + reduction_kharif_WaterDemand;
+
+                    }
+
+                    if (reduction_rabi_WaterDemand != null && reduction_rabi_WaterDemand != "") {
+                        reduction_total_WaterDemand = reduction_total_WaterDemand + reduction_rabi_WaterDemand;
+
+                    }
+
+                    if (reduction_summer_WaterDemand != null && reduction_summer_WaterDemand != "") {
+                        reduction_total_WaterDemand = reduction_total_WaterDemand + reduction_summer_WaterDemand;
+
+                    }
+
+
+
+                    if (reduction_kharif != null && reduction_kharif != "") {
+                        reduction_total = reduction_total + reduction_kharif;
+                        $('#reduction_kharif').text(parseFloat(reduction_kharif));
+                    }
+                    else {
+                        $('#reduction_kharif').text(0);
+                    }
+
+                    if (reduction_rabi != null && reduction_rabi != "") {
+                        reduction_total = reduction_total + reduction_rabi;
+                        $('#reduction_rabi').text(parseFloat(reduction_rabi));
+                    }
+                    else {
+                        $('#reduction_rabi').text(0);
+                    }
+
+                    if (reduction_summer != null && reduction_summer != "") {
+                        reduction_total = reduction_total + reduction_summer;
+                        $('#reduction_summer').text(parseFloat(reduction_summer));
+                    }
+                    else {
+                        $('#reduction_summer').text(0);
+                    }
+                    $('#reduction_TotalStandardDemand').text(reduction_total.toFixed(2));
+                    $('#reduction_TotalWaterDemand').text(reduction_total_WaterDemand.toFixed(2));
+                    var reduction_TotalReduction = reduction_total - reduction_total_WaterDemand;
+                    $('#reduction_TotalReduction').text(reduction_TotalReduction.toFixed(2));
+
+                    DemandSide_KharifArray.push(reduction_total);
+                    DemandSide_RabiArray.push(reduction_total_WaterDemand);
+                    DemandSide_SummerArray.push(reduction_TotalReduction);
+
+                }
+                else {
+                    DemandSide_KharifArray.push(0);
+                    DemandSide_RabiArray.push(0);
+                    DemandSide_SummerArray.push(0);
+                }
+                Other_Info();
+            }
+        });
+    }
+
+    function AR_StructureInfo() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/AR_Structure_Details1',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data.length != 0) {
+
+                    var ar_total = 0;
+
+                    var AR_cost = 0;
+                    var AR_Type = "";
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (data[i].ar_approx_estimated_cost != null && data[i].ar_approx_estimated_cost != "") {
+                            AR_cost += parseFloat(data[i].ar_approx_estimated_cost);
+                            if (data[i].ar_cost_type != null && data[i].ar_cost_type != "" && data[i].ar_cost_type != "null") {
+                                AR_Type = data[i].ar_cost_type;
+
+                            }
+
+                        }
+
+
+
+
+                        var zz = data.length - 1;
+                        if (data[i].possible_funding_source != "" && data[i].possible_funding_source != null) {
+                            if (data[i].possible_funding_source == "Others") {
+                                $('#AR_PossibleFundingSource').text(data[i].other_funding_source);
+                            }
+                            else {
+                                $('#AR_PossibleFundingSource').text(data[i].possible_funding_source);
+                            }
+                        }
+                        if (data[i].gw_recharge_kharif != "" && data[i].gw_recharge_kharif != null) {
+                            AR_Kharif += parseFloat(parseFloat(data[i].gw_recharge_kharif).toFixed(2));
+
+                        }
+                        if (data[i].gw_recharge_rabi != "" && data[i].gw_recharge_rabi != null) {
+                            AR_Rabi += parseFloat(parseFloat(data[i].gw_recharge_rabi).toFixed(2));
+
+                        }
+
+                        if (data[i].gw_recharge_annual != "" && data[i].gw_recharge_annual != null) {
+                            AR_Annual += parseFloat(parseFloat(data[i].gw_recharge_annual).toFixed(2));
+
+                        }
+                    }
+
+                    if (AR_cost != 0) {
+                        var ss1 = AR_cost.toFixed(2) + " " + AR_Type;
+
+                        // $('#ar_approx_cost').text(AR_cost.toFixed(2));
+
+                        $('#ar_approx_cost_type').text(ss1);
+                    }
+
+
+
+
+
+                    $('#ar_kharif').text(parseFloat(AR_Kharif).toFixed(2));
+                    $('#ar_rabi').text(parseFloat(AR_Rabi).toFixed(2));
+                    $('#ar_annual').text(parseFloat(AR_Annual).toFixed(2));
+
+
+                    KharifArray.push(parseFloat(AR_Kharif));
+                    RabiArray.push(parseFloat(AR_Rabi));
+                    AOIArray.push(parseFloat(AR_Annual));
+                }
+                else {
+                    AR_Kharif = 0;
+                    AR_Rabi = 0;
+                    AR_Annual = 0;
+                    ar_total = AR_Kharif + AR_Rabi + AR_Annual;
+                    var S1 = parseFloat(ar_total).toFixed(2);
+                    $('#ar_total').text(S1);
+                    $('#ar_kharif').text(0);
+                    $('#ar_rabi').text(0);
+                    $('#ar_annual').text(0);
+
+                    KharifArray.push(0);
+                    RabiArray.push(0);
+                    AOIArray.push(0);
+                }
+                WC_StructureInfo();
+
+            }
+        });
+    }
+    function WC_StructureInfo() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/WC_Structure_Infoture_Details1',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data.length != 0) {
+
+                    WC_Kharif = 0;
+                    WC_Rabi = 0;
+                    WC_Annual = 0;
+
+                    var WC_cost = 0;
+                    var WC_Type = "";
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (data[i].wc_approx_estimated_cost != null && data[i].wc_approx_estimated_cost != "") {
+                            WC_cost += parseFloat(data[i].wc_approx_estimated_cost);
+                            if (data[i].wc_cost_type != null && data[i].wc_cost_type != "" && data[i].wc_cost_type != "null") {
+                                WC_Type = data[i].wc_cost_type;
+                            }
+                        }
+                        var wc_total = 0;
+
+                        if (data[i].possiable_funding_source != "" && data[i].possiable_funding_source != null) {
+                            if (data[i].possiable_funding_source == "Others") {
+                                $('#WC_PossibleFundingSource').text(data[i].other_funding_source);
+                            }
+                            else {
+                                $('#WC_PossibleFundingSource').text(data[i].possiable_funding_source);
+                            }
+                        }
+
+                        if (data[i].gw_recharge_kharif != "" && data[i].gw_recharge_kharif != null) {
+                            WC_Kharif = parseFloat(data[i].gw_recharge_kharif) + parseFloat(WC_Kharif);
+                        }
+
+                        if (data[i].gw_recharge_rabi != "" && data[i].gw_recharge_rabi != null) {
+                            WC_Rabi = parseFloat(data[i].gw_recharge_rabi) + parseFloat(WC_Rabi);
+                        }
+
+                        if (data[i].gw_recharge_annual != "" && data[i].gw_recharge_annual != null) {
+                            WC_Annual = parseFloat(data[i].gw_recharge_annual) + parseFloat(WC_Annual);
+                        }
+                    }
+
+                    if (WC_cost != 0) {
+                        var ss1 = WC_cost.toFixed(2) + " " + WC_Type;
+
+                        // $('#wc_approx_cost').text(WC_cost.toFixed(2));
+
+                        $('#wc_approx_cost_type').text(ss1);
+                    }
+
+
+                    wc_total = WC_Kharif + WC_Rabi + WC_Annual;
+                    var S1 = parseFloat(wc_total).toFixed(2);
+                    $('#wc_total').text(S1);
+                    $('#wc_kharif').text(WC_Kharif.toFixed(2));
+                    $('#wc_rabi').text(WC_Rabi.toFixed(2));
+                    $('#wc_annual').text(WC_Annual.toFixed(2));
+                    KharifArray.push(parseFloat(WC_Kharif));
+                    RabiArray.push(parseFloat(WC_Rabi));
+                    AOIArray.push(parseFloat(WC_Annual));
+
+                }
+                else {
+                    WC_Kharif = 0;
+                    WC_Rabi = 0;
+                    WC_Annual = 0;
+                    wc_total = WC_Kharif + WC_Rabi + WC_Annual;
+                    var S1 = parseFloat(wc_total).toFixed(2);
+                    $('#wc_total').text(S1);
+                    $('#wc_kharif').text(0);
+                    $('#wc_rabi').text(0);
+                    $('#wc_annual').text(0);
+                    KharifArray.push(0);
+                    RabiArray.push(0);
+                    AOIArray.push(0);
+                }
+                other_Intervention_Details();
+            }
+        });
+    }
+    function other_Intervention_Details() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/other_Intervention_Details1',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/WSPHome/WSPDemansidereports";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                var AOI_cost = 0;
+                var AOI_Type = "";
+                if (data.length != 0) {
+                    var any_total = 0;
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (data[i].anyother_approx_estimated_cost != null && data[i].anyother_approx_estimated_cost != "") {
+                            AOI_cost += parseFloat(data[i].anyother_approx_estimated_cost);
+                            if (data[i].anyother_cost_type != null && data[i].anyother_cost_type != "" && data[i].anyother_cost_type != 'null') {
+                                AOI_Type = data[i].anyother_cost_type;
+                            }
+
+
+                        }
+
+
+
+                        if (data[i].possible_funding_source != "" && data[i].possible_funding_source != null) {
+                            if (data[i].possible_funding_source == "Others") {
+                                $('#Other_PossibleFundingSource').text(data[i].other_funding_source);
+                            }
+                            else {
+                                $('#Other_PossibleFundingSource').text(data[i].possible_funding_source);
+                            }
+
+                        }
+
+                        if (data[i].gw_recharge_kharif != "" && data[i].gw_recharge_kharif != null) {
+                            AOI_Kharif += parseFloat(data[i].gw_recharge_kharif);
+                        }
+
+                        if (data[i].gw_recharge_rabi != "" && data[i].gw_recharge_rabi != null) {
+                            AOI_Rabi += parseFloat(data[i].gw_recharge_rabi);
+                        }
+                        if (data[i].gw_recharge_annual != "" && data[i].gw_recharge_annual != null) {
+                            AOI_Annual += parseFloat(data[i].gw_recharge_annual);
+                        }
+
+
+                    }
+                    if (AOI_cost != 0) {
+                        var ss1 = AOI_cost.toFixed(2) + " " + AOI_Type;
+                        //$('#aoi_approx_cost').text(AOI_cost.toFixed(2));
+                        $('#aoi_approx_cost_type').text(ss1);
+
+                    }
+
+                    $('#aoi_kharif').text(parseFloat(AOI_Kharif).toFixed(2));
+                    $('#aoi_rabi').text(parseFloat(AOI_Rabi).toFixed(2));
+                    $('#aoi_annual').text(parseFloat(AOI_Annual).toFixed(2));
+
+
+                    KharifArray.push(parseFloat(AOI_Kharif));
+                    RabiArray.push(parseFloat(AOI_Rabi));
+                    AOIArray.push(parseFloat(AOI_Annual));
+                    any_total = AOI_Kharif + AOI_Rabi + AOI_Annual;
+                    var S1 = parseFloat(any_total).toFixed(2);
+                    $('#any_total').text(S1);
+                }
+                else {
+                    $('#aoi_kharif').text(0);
+                    $('#aoi_rabi').text(0);
+                    $('#aoi_annual').text(0);
+
+                    AOI_Kharif = 0;
+                    AOI_Rabi = 0;
+                    AOI_Annual = 0;
+                    KharifArray.push(0);
+                    RabiArray.push(0);
+                    AOIArray.push(0);
+                    any_total = AOI_Kharif + AOI_Rabi + AOI_Annual;
+                    var S1 = parseFloat(any_total).toFixed(2);
+                    $('#any_total').text(S1);
+                }
+                Supply_SideReport();
+                supply_side_approx_cost_total_fn();
+            }
+        });
+    }
+    function supply_side_approx_cost_total_fn() {
+        var ar_approx_cost_val = $('#ar_approx_cost_type').text()
+        var wc_approx_cost_val = $('#wc_approx_cost_type').text()
+        var aoi_approx_cost_val = $('#aoi_approx_cost_type').text()
+        if (ar_approx_cost_val != "" && ar_approx_cost_val != null) {
+
+        } else {
+            ar_approx_cost_val = "0";
+        }
+        if (wc_approx_cost_val != "" && wc_approx_cost_val != null) {
+
+        } else {
+            wc_approx_cost_val = "0";
+        }
+        if (aoi_approx_cost_val != "" && aoi_approx_cost_val != null) {
+
+        } else {
+            aoi_approx_cost_val = "0";
+        }
+
+        var supply_side_approx_cost_total = parseFloat(ar_approx_cost_val) + parseFloat(wc_approx_cost_val) + parseFloat(aoi_approx_cost_val);
+        if (supply_side_approx_cost_total != 0) {
+            var SSS = supply_side_approx_cost_total.toFixed(2) + " Lakhs";
+            $('#supply_side_approx_cost_total').text(SSS);
+        } else {
+            $('#supply_side_approx_cost_total').text(supply_side_approx_cost_total);
+        }
+
+    }
+</script>
+<script>
+    function C2() {
+        Highcharts.chart('container_demand_side', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    //   'Standard Water<br/> Demand(ha.m)',
+                    'Micro-irrigation (Sprinkler)',
+                    'Micro-irrigation (Drip)',
+                    'Irrigation through <br/>underground <br/> pipelines ',
+                    'Crop <br/>diversification',
+                    'Reduction in <br/>GW by added <br/>use of  SW',
+                    'Other measures <br/>for saving water'
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Standard water Demand (Ha.m)',
+                data: DemandSide_KharifArray
+
+            }, {
+                name: 'Total water Demand(Ha.m)',
+                data: DemandSide_RabiArray
+
+            }, {
+                name: 'Reduction in water Demand(Ha.m)',
+                data: DemandSide_SummerArray
+
+            }]
+        });
+    }
+    function Supply_SideReport() {
+        Highcharts.chart('container_supply_side', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'GW Recharge AR Structures',
+                    'GW Recharge WC Structures',
+                    'Any Other Intervention'
+
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Kharif season',
+                data: KharifArray,
+
+            }, {
+                name: 'Rabi season',
+                data: RabiArray,
+
+            }, {
+                name: 'Annual',
+                data: AOIArray
+
+            }]
+        });
+    }
+</script>
+<script>
+
+
+
+    function ReportPdf() {
+
+        $("#Data1").width(1100);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'WaterSecurityPlan.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('div.demandsidesupplyside_space1').addClass('demandsidesupplyside_space');
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        $('div.demandsidesupplyside_space1_12').addClass('demandsidesupplyside_space1_121');
+        demandsidesupplyside_space1_121
+        $(".highcharts-credits").css("display", "none");
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $('div.demandsidesupplyside_space1').removeClass('demandsidesupplyside_space');
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+            $('div.demandsidesupplyside_space1_12').removeClass('demandsidesupplyside_space1_121');
+        }, 2000);
+
+    }
+</script>
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demodemandsupply2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demodemandsupply").innerHTML = today;
+
+
+    function get_demandside_fund() {
+        var tr_sp = '';
+
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Wsp_new/get_demandside_fund",
+            data: "",
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var department_name = "";
+                var scheme_name = "";
+                var proposed_area = "";
+                var approximate_cost = "";
+                var fund = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].department_name != null && data[i].department_name != "" && data[i].department_name != "NULL") {
+                        department_name = data[i].department_name;
+                    }
+                    if (data[i].scheme_name != null && data[i].scheme_name != "" && data[i].scheme_name != "NULL") {
+                        scheme_name = data[i].scheme_name;
+                    }
+                    if (data[i].proposed_area != null && data[i].proposed_area != "" && data[i].proposed_area != "NULL") {
+                        proposed_area = data[i].proposed_area;
+                    }
+                    if (data[i].approximate_cost != null && data[i].approximate_cost != "" && data[i].approximate_cost != "NULL") {
+                        approximate_cost = data[i].approximate_cost;
+                        fund += parseFloat(data[i].approximate_cost);
+                    }
+
+
+                    tr_sp += '<tr><td>' + (i + 1) + '</td>' +
+                        '<td>' + data[i].type + '</td >' +
+                        '<td>' + data[i].claim_year + '</td >' +
+                        '<td>' + data[i].other_measures + '</td >' +
+                        '<td>' + department_name + '</td >' +
+                        '<td>' + scheme_name + '</td >' +
+                        '<td>' + proposed_area + '</td >' +
+                        '<td>' + approximate_cost + '</td ></tr>'
+
+                }
+                tr_sp += '<tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + parseFloat((fund).toFixed(2) + " Lakhs") + '</td></tr>'
+                if (tr_sp != '') {
+                    $('#sprinkler_data').html(tr_sp);
+                } else {
+                    tr_sp = '<tr style="text-align:center;"><td colspan="16" style="text-align:center;">No Data</td></tr>';
+                    $('#sprinkler_data').html(tr_sp);
+                }
+                get_supplyside_fund();
+            }
+        })
+    }
+
+
+    function get_supplyside_fund() {
+        var tr_sp = '';
+        var j = 0;
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Wsp_new/get_ar_supplyside_fund",
+            data: "",
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var ar = "Artificial Recharge Structures";
+                var possible_funding = '';
+                var fund = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].possible_funding_source == "Others") {
+                        possible_funding = data[i].other_funding_source;
+                    } else {
+                        possible_funding = data[i].possible_funding_source;
+                    }
+                    if (data[i].ar_approx_estimated_cost != null && data[i].ar_approx_estimated_cost != "NULL" && data[i].ar_approx_estimated_cost != "") {
+                        fund += parseFloat(data[i].ar_approx_estimated_cost);
+                    }
+
+                    tr_sp += '<tr><td>' + (++j) + '</td>' +
+                        '<td>' + ar + '</td >' +
+                        '<td>' + data[i].type_ar_structure + '</td >' +
+                        '<td>' + data[i].latitude + '</td >' +
+                        '<td>' + data[i].longitude + '</td >' +
+                        '<td>' + data[i].sp_year + '</td >' +
+                        '<td>' + data[i].ar_department_name + '</td >' +
+                        '<td>' + possible_funding + '</td >' +
+
+                        '<td>' + (data[i].ar_approx_estimated_cost + " Lakhs") + '</td ></tr>'
+
+                }
+                $.ajax({
+                    type: "POST",
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/Wsp_new/get_wc_supplyside_fund",
+                    data: "",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        debugger;
+                        var wc = "Water Conservation Structures";
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].possible_funding_source == "Others") {
+                                possible_funding = data[i].other_funding_source;
+                            } else {
+                                possible_funding = data[i].possiable_funding_source;
+                            }
+                            if (data[i].wc_approx_estimated_cost != null && data[i].wc_approx_estimated_cost != "NULL" && data[i].wc_approx_estimated_cost != "") {
+                                fund += parseFloat(data[i].wc_approx_estimated_cost);
+                            }
+
+                            tr_sp += '<tr><td>' + (++j) + '</td>' +
+                                '<td>' + wc + '</td >' +
+                                '<td>' + data[i].type_wc_structure + '</td >' +
+                                '<td>' + data[i].latitude + '</td >' +
+                                '<td>' + data[i].longitude + '</td >' +
+                                '<td>' + data[i].wc_year + '</td >' +
+                                '<td>' + data[i].wc_department_name + '</td >' +
+                                '<td>' + possible_funding + '</td >' +
+
+                                '<td>' + (data[i].wc_approx_estimated_cost + " Lakhs") + '</td ></tr>'
+
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            contentType: 'application/json; chatset=utf-8',
+                            url: "/Wsp_new/get_other_supplyside_fund",
+                            data: "",
+                            dataType: 'JSON',
+                            success: function (data) {
+                                debugger;
+                                var ot = "Any Other Intervention";
+                                for (var i = 0; i < data.length; i++) {
+
+                                    if (data[i].possible_funding_source == "Others") {
+                                        possible_funding = data[i].other_funding_source;
+                                    } else {
+                                        possible_funding = data[i].possible_funding_source;
+                                    }
+                                    if (data[i].anyother_approx_estimated_cost != null && data[i].anyother_approx_estimated_cost != "NULL" && data[i].anyother_approx_estimated_cost != "") {
+                                        fund += parseFloat(data[i].anyother_approx_estimated_cost);
+                                    }
+
+                                    tr_sp += '<tr><td>' + (++j) + '</td>' +
+                                        '<td>' + ot + '</td >' +
+                                        '<td>' + data[i].other_structure + '</td >' +
+                                        '<td>' + data[i].latitude + '</td >' +
+                                        '<td>' + data[i].longitude + '</td >' +
+                                        '<td>' + data[i].any_year + '</td >' +
+                                        '<td>' + data[i].other_department_name + '</td >' +
+                                        '<td>' + possible_funding + '</td >' +
+
+                                        '<td>' + (data[i].anyother_approx_estimated_cost + " Lakhs") + '</td ></tr>'
+
+                                }
+
+                                tr_sp += '<tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + parseFloat((fund).toFixed(2) + " Lakhs") + '</td></tr>'
+                                if (tr_sp != '') {
+                                    $('#supply_data').html(tr_sp);
+                                } else {
+                                    tr_sp = '<tr style="text-align:center;"><td colspan="16" style="text-align:center;">No Data</td></tr>';
+                                    $('#supply_data').html(tr_sp);
+                                }
+                            }
+                        })
+                    }
+                })
+
+            }
+        })
+        
+        
+    }
+</script>
+
+<script src="~/Content/JS_Files/deamendside_report_js.js"></script>

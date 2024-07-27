@@ -1,0 +1,12758 @@
+﻿/*phase1_start*/
+
+$(function () {
+
+    $("input[name='numonlydecimal']").on('input', function (f) {
+        $(this).val($(this).val().replace(/[^0-9.]/g, ''));
+    });
+});
+$(function () {
+
+    $("input[name='numonly']").on('input', function (f) {
+        $(this).val($(this).val().replace(/[^0-9]/g, ''));
+    });
+});
+
+function Goto_page() {
+    window.location = "/Demand_new/Supply_New";
+
+}
+function Report_PDF() {
+
+
+}
+function Excel() {
+
+    var year = $("#year").val();
+    var demand_val = $('#Demand_side').val();
+
+    if (State == "0") {
+        alert("Please Select State");
+        return false;
+    }
+    {
+        window.location.href = "/Demand_new/Demand_excel?State=" + State + "&Dist=" + Dist + "&Block=" + Block + "&Gram=" + Gram + "&Year=" + year + "&demand_val=" + demand_val;
+    }
+}
+var email = "";
+function SessionInfo() {
+
+    var obj = {};
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: "/DLI3New/State_SessionInfo_1",
+        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else {
+                $('#Error_').text("");
+
+                $('#StateLabel').hide();
+                $('#StateDropdownLabel').hide();
+                $('#DistLabel').hide();
+                $('#DistDropdownLabel').hide();
+                $('#BlockLabel').hide();
+                $('#BlockDropdownLabel').hide();
+                $('#GramLabel').hide();
+                $('#GramDropdownLabel').hide();
+                $('#DropdownSearch_btn').hide();
+
+
+                var Str = data.split(',');
+                email = Str[1];
+                if (Str[0] == "Admin") {
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').show();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').show();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').show();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').show();
+                    $('#DropdownSearch_btn').show();
+                    $('.loader').hide();
+
+                }
+                else if (Str[0] == "State Level Nodal Officer") {
+                    State = Str[1];
+                    off_1 = "state";
+                    $('#StateLabel').show();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').show();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').show();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').show();
+                    $('#DropdownSearch_btn').show();
+                    State_Dropdown_Function();
+                    State_Dropdown_Function();
+                    $('.loader').hide();
+                    var phase = $('#phase').val();
+                    if (phase == "phase1") {
+                        $('#district_p1').show();
+                        $('#district_p2').hide();
+                        $('#district_p1').attr("disabled", "disabled");
+                        $('#ssdistrict_p1').show();
+                        $('#ssdistrict_p2').hide();
+                        $('#ssdistrict_p1').attr("disabled", "disabled");
+                        $('#districtblock_p1').hide();
+                        $('#districtblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p1').hide();
+                        $('#demanddistrictblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p2').hide();
+                        $('#demanddistrictblock_p2').attr("disabled", true);
+                        $('#districtblock_p2').hide();
+                        $('#districtblock_p2').attr("disabled", true);
+                    }
+                    if (phase == "phase2") {
+                        $('#district_p1').hide();
+                        $('#district_p2').show();
+                        $('#district_p2').attr("disabled", "disabled");
+                        $('#ssdistrict_p1').hide();
+                        $('#ssdistrict_p2').show();
+                        $('#ssdistrict_p2').attr("disabled", "disabled");
+                        $('#districtblock_p1').hide();
+                        $('#districtblock_p1').attr("disabled", true);
+                        $('#districtblock_p2').hide();
+                        $('#districtblock_p2').attr("disabled", true);
+                        $('#demanddistrictblock_p1').hide();
+                        $('#demanddistrictblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p2').hide();
+                        $('#demanddistrictblock_p2').attr("disabled", true);
+                    }
+
+                }
+                else if (Str[0] == "District Level Nodal Officer") {
+                    off_1 = "dist";
+                    State = Str[1];
+                    Dist = Str[2];
+                    $('#StateLabel').show();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').show();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').show();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').show();
+                    $('#DropdownSearch_btn').show();
+                    Dist_fun();
+                    Dist_fun();
+                    $('.loader').hide();
+                    var phase = $('#phase').val();
+                    if (phase == "phase1") {
+                        $('#districtblock_p2').hide();
+                        $('#districtblock_p2').attr("disabled", true);
+                        $('#districtblock_p1').show();
+                        $('#districtblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p1').show();
+                        $('#demanddistrictblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p2').hide();
+                        $('#demanddistrictblock_p2').attr("disabled", true);
+                        $('#district_p1').hide();
+                        $('#district_p1').attr("disabled", "disabled");
+                        $('#block_p1').hide();
+                        $('#block_p1').attr("disabled", "disabled");
+                        $('#ssdistrict_p1').hide();
+                        $('#ssdistrict_p1').attr("disabled", "disabled");
+                        $('#ssblock_p1').hide();
+                        $('#ssblock_p1').attr("disabled", "disabled");
+                        $('#state_p2').hide();
+                        $('#district_p2').hide();
+
+
+                    }
+                    if (phase == "phase2") {
+                        $('#districtblock_p2').show();
+                        $('#districtblock_p2').attr("disabled", true);
+                        $('#districtblock_p1').hide();
+                        $('#districtblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p1').hide();
+                        $('#demanddistrictblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p2').show();
+                        $('#demanddistrictblock_p2').attr("disabled", true);
+                        $('#district_p1').hide();
+                        $('#district_p1').attr("disabled", "disabled");
+                        $('#block_p1').hide();
+                        $('#block_p1').attr("disabled", "disabled");
+                        $('#ssdistrict_p1').hide();
+                        $('#ssdistrict_p1').attr("disabled", "disabled");
+                        $('#ssblock_p1').hide();
+                        $('#ssblock_p1').attr("disabled", "disabled");
+                        $('#state_p2').hide();
+                        $('#district_p2').hide();
+                        $('#ssdistrict_p2').hide();
+                        $('#ssdistrict_p2').attr("disabled", "disabled");
+
+                    }
+
+
+                }
+                else if (Str[0] == "Block Level Nodal Officer") {
+                    off_1 = "block";
+                    State = Str[1];
+                    Dist = Str[2];
+                    Block = Str[3];
+                    $('#StateLabel').show();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').show();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').show();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').show();
+                    $('#DropdownSearch_btn').show();
+                    Block_fun();
+                    Block_fun();
+                    $('.loader').hide();
+
+
+
+                }
+                else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                    State = Str[1];
+                    Dist = Str[2];
+                    Block = Str[3];
+                    Gram = Str[4];
+                    $('#StateLabel').show();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').show();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').show();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').show();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').show();
+                    $('.loader').hide();
+
+
+
+
+                }
+
+
+            }
+        }
+
+    });
+
+}
+function DropDownInfo() {
+
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: "/Home/Sign_Up_DropdownInfo",
+        data: "{ }",
+        dataType: 'JSON',
+        success: function (response) {
+
+            if (response.length != 0) {
+                Jsondata = response;
+                $("#spnstate").empty();
+                var opstate = '<option value="0">Select StateName</option>';
+                $("#spnstate").append(opstate);
+                $("#dist11").empty();
+                var opdist = '<option value="0">Select District</option>';
+                $("#dist11").append(opdist);
+                $("#block1").empty();
+                var opblock = '<option value="0">Select Block</option>';
+                $("#block1").append(opblock);
+                $("#gram").empty();
+                var opgram = '<option value="0">Select Gram Panchayat</option>';
+                $("#gram").append(opgram);
+                //var StateName = $("#spnstate").text();
+                if (Jsondata.length != 0) {
+                    var ddlst = {};
+                    var all_dists = [];
+                    var optionState = '';
+
+                    for (var i = 0; i < Jsondata.length; i++) {
+
+                        if (!ddlst[Jsondata[i].state_name]) {
+                            all_dists.push(Jsondata[i].state_name);
+                            ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                        }
+                    }
+                    var DistArray = [];
+                    DistArray = all_dists.sort(function (a, b) {
+                        if (a < b) return -1;
+                        else if (a > b) return 1;
+                        return 0;
+                    });
+                    optionState = '<option value="0">Select StateName</option>';
+                    optionState += '<option value="All">ALL</option>';
+
+                    for (var i = 0; i < DistArray.length; i++) {
+                        if (DistArray[i] != "Delhi_7") {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                        }
+                    }
+                    $("#spnstate").html(optionState);
+
+                }
+
+            }
+
+            SessionInfo();
+
+
+        }
+    });
+}
+function DBG_hide() {
+    var state = $("#spnstate").val();
+    if (state == "All") {
+        $('#DistDropdownLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramDropdownLabel').hide();
+    }
+    else {
+        $('#DistDropdownLabel').show();
+        $('#BlockDropdownLabel').show();
+        $('#GramDropdownLabel').show();
+    }
+}
+
+function State_Dropdown_Function() {
+
+    $('#state_p2').hide();
+    $('#district_p2').hide();
+    $('#ssstate_p2').hide();
+    $('#ssdistrict_p2').hide();
+    $('#districtblock_p1').hide();
+    $('#districtblock_p1').attr("disabled", true);
+    $('#demanddistrictblock_p1').hide();
+    $('#demanddistrictblock_p1').attr("disabled", true);
+    $('#demanddistrictblock_p2').hide();
+    $('#demanddistrictblock_p2').attr("disabled", true);
+    $('#districtblock_p2').hide();
+    $('#districtblock_p2').attr("disabled", true);
+
+
+    var phase = $('#phase').val();
+
+    $("#dist11").empty();
+    var opdist = '<option value="0">Select District</option>';
+    $("#dist11").append(opdist);
+    $("#block1").empty();
+    var opblock = '<option value="0">Select Block</option>';
+    $("#block1").append(opblock);
+    $("#gram").empty();
+    var opgram = '<option value="0">Select GramPanchayat</option>';
+    $("#gram").append(opgram);
+
+    var StateName = $("#spnstate").val();
+    if (off_1 == "state") {
+        StateName = State;
+    } else {
+        State = StateName;
+    }
+    var state = State;
+    if (phase == "phase1") {
+        $('#ssstate_p2').hide();
+        $('#ssdistrict_p2').hide();
+        if (state == "All") {
+            $("#dist11").prop("disabled", true);
+            $("#block1").prop("disabled", true);
+            $("#gram").prop("disabled", true);
+            $('#state_p1').show();
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').hide();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssstate_p1').show();
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').hide();
+            $('#ssblock_p1').attr("disabled", "disabled");
+
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+        }
+        else if (state == "0") {
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#block_p1').hide();
+            $('#ssstate_p1').hide();
+            $('#ssdistrict_p1').hide();
+            $('#ssblock_p1').hide();
+            $("#dist11").prop("disabled", false);
+            $("#block1").prop("disabled", false);
+            $("#gram").prop("disabled", false);
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+        }
+        else {
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+            $("#dist11").prop("disabled", false);
+            $("#block1").prop("disabled", false);
+            $("#gram").prop("disabled", false);
+            $('#state_p1').hide();
+            $('#district_p1').show();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').show();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssstate_p1').hide();
+            $('#ssdistrict_p1').show();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').show();
+            $('#ssblock_p1').attr("disabled", "disabled");
+
+        }
+    }
+    if (phase == "phase2") {
+
+        if (state == "All") {
+            $("#dist11").prop("disabled", true);
+            $("#block1").prop("disabled", true);
+            $("#gram").prop("disabled", true);
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#state_p2').show();
+            $('#district_p2').hide();
+            $('#state_p2').attr("disabled", "disabled");
+            $('#district_p2').attr("disabled", "disabled");
+            $('#ssstate_p1').hide();
+            $('#ssstate_p2').show();
+            $('#ssdistrict_p1').hide();
+            $('#ssstate_p1').attr("disabled", "disabled");
+            $('#ssstate_p2').attr("disabled", "disabled");
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+
+
+
+        }
+        else if (state == "0") {
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+            $('#block_p1').hide();
+            $('#ssstate_p1').hide();
+            $('#ssstate_p2').hide();
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p2').hide();
+            $('#ssblock_p1').hide();
+            $("#dist11").prop("disabled", false);
+            $("#block1").prop("disabled", false);
+            $("#gram").prop("disabled", false);
+
+        }
+        else {
+
+            $("#dist11").prop("disabled", false);
+            $("#block1").prop("disabled", false);
+            $("#gram").prop("disabled", false);
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#district_p2').show();
+            $('#district_p2').attr("disabled", "disabled");
+            $('#ssstate_p1').hide();
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p2').show();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p2').attr("disabled", "disabled");
+
+        }
+
+    }
+
+    if (StateName != "0" && Jsondata.length != 0) {
+        var ddlst = {};
+        var all_dists = [];
+        var optionDist = '';
+        for (var i = 0; i < Jsondata.length; i++) {
+            if (StateName == Jsondata[i].state_name) {
+
+                if (!ddlst[Jsondata[i].district_name]) {
+                    all_dists.push(Jsondata[i].district_name);
+                    ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                }
+            }
+        }
+
+
+        var DistArray = [];
+        DistArray = all_dists.sort(function (a, b) {
+            if (a < b) return -1;
+            else if (a > b) return 1;
+            return 0;
+        });
+        for (var i = 0; i < DistArray.length; i++) {
+            if (DistArray[i] != null && DistArray[i] != "") {
+                optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+            }
+        }
+        $("#dist11").append(optionDist);
+    }
+
+}
+function Dist_fun() {
+
+    var phase = $('#phase').val();
+    //var dist = $("#dist11").val();
+    $('#districtblock_p2').hide();
+    $('#districtblock_p2').attr("disabled", true);
+
+    $("#block1").empty();
+    var opblock = '<option value="0">Select Block</option>';
+    $("#block1").append(opblock);
+    $("#gram").empty();
+    var opgram = '<option value="0">Select Gram Panchayat</option>';
+    $("#gram").append(opgram);
+
+    var dist = $("#dist11").val();
+    if (off_1 == "dist") {
+        dist = Dist;
+    } else {
+        Dist = dist;
+    }
+    if (phase == "phase1") {
+
+        if (dist == 0) {
+            $('#district_p1').show();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').show();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p1').show();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').show();
+            $('#ssblock_p1').attr("disabled", "disabled");
+            $('#districtblock_p1').hide();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#districtblock_p2').hide();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#demanddistrictblock_p1').hide();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+
+        }
+        else {
+            $('#districtblock_p2').hide();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#districtblock_p1').show();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p1').show();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').hide();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').hide();
+            $('#ssblock_p1').attr("disabled", "disabled");
+
+        }
+    }
+    if (phase == "phase2") {
+        if (dist == 0) {
+            $('#districtblock_p2').hide();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#district_p2').show();
+            $('#district_p2').attr("disabled", "disabled");
+            $('#ssdistrict_p2').show();
+            $('#ssdistrict_p2').attr("disabled", "disabled");
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+        }
+        else {
+            $('#ssdistrict_p2').hide();
+            $('#ssdistrict_p2').attr("disabled", "disabled");
+            $('#districtblock_p2').show();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p2').show();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#district_p2').hide();
+            $('#district_p2').attr("disabled", "disabled");
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').hide();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+
+        }
+    }
+    if (dist != "0" && Jsondata.length != 0) {
+        var ddlst = {};
+        var all_blocks = [];
+        var optionDist = '';
+        for (var i = 0; i < Jsondata.length; i++) {
+            //if (Jsondata[i].district_name == 'Kaithal' ) {
+            //    alert(dist);
+
+            //    return;
+            //}
+
+            if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                if (!ddlst[Jsondata[i].block_name]) {
+                    all_blocks.push(Jsondata[i].block_name);
+                    ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                    //  $("#block").append(optionDist);
+                }
+            }
+        }
+
+
+        var BlockArray = [];
+        BlockArray = all_blocks.sort(function (a, b) {
+            if (a < b) return -1;
+            else if (a > b) return 1;
+            return 0;
+        });
+        for (var i = 0; i < BlockArray.length; i++) {
+            if (BlockArray[i] != null && BlockArray[i] != "") {
+                optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+            }
+        }
+        $("#block1").append(optionDist);
+
+    }
+}
+function Block_fun() {
+
+    var phase = $('#phase').val();
+    //var block = $("#block1").val();
+    $('#districtblock_p2').hide();
+    $('#districtblock_p2').attr("disabled", true);
+
+    $("#gram").empty();
+    var opgram = '<option value="0">Select Gram Panchayat</option>';
+    $("#gram").append(opgram);
+    var block = $("#block1").val();
+
+    if (off_1 == "block") {
+        block = Block;
+    } else {
+        Block = block;
+    }
+    if (phase == "phase1") {
+
+        if (block == 0) {
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').hide();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').hide();
+            $('#ssblock_p1').attr("disabled", "disabled");
+            $('#districtblock_p1').show();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p1').show();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+
+        }
+        else {
+            $('#demanddistrictblock_p1').hide();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').hide();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').hide();
+            $('#ssblock_p1').attr("disabled", "disabled");
+
+        }
+    }
+    if (phase == "phase2") {
+        if (block == 0) {
+            $('#demanddistrictblock_p2').show();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#demanddistrictblock_p1').hide();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#district_p2').hide();
+            $('#district_p2').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#districtblock_p2').show();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#ssdistrict_p2').hide();
+            $('#ssdistrict_p2').attr("disabled", true);
+
+
+        }
+        else {
+            $('#districtblock_p2').hide();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#ssdistrict_p2').hide();
+            $('#ssdistrict_p2').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#demanddistrictblock_p1').hide();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#district_p2').hide();
+            $('#district_p1').hide();
+            $('#block_p1').hide();
+            $('#ssdistrict_p1').hide();
+
+
+        }
+    }
+
+
+    if (block != "0" && Jsondata.length != 0) {
+        var ddlst = {};
+        var all_grams = [];
+        var optionDist = '';
+        for (var i = 0; i < Jsondata.length; i++) {
+            if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                    ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                    all_grams.push(Jsondata[i].gram_panchayat_name);
+                    //   $("#gram").append(optionDist);
+                }
+            }
+        }
+
+
+        var GramArray = [];
+        GramArray = all_grams.sort(function (a, b) {
+            if (a < b) return -1;
+            else if (a > b) return 1;
+            return 0;
+        });
+        for (var i = 0; i < GramArray.length; i++) {
+            if (GramArray[i] != null && GramArray[i] != "") {
+
+                optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+            }
+        }
+        $("#gram").append(optionDist);
+    }
+}
+function Gram_change() {
+    if (phase == "phase1") {
+
+        if (block == 0) {
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').hide();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').hide();
+            $('#ssblock_p1').attr("disabled", "disabled");
+            $('#districtblock_p1').show();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p1').show();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+
+        }
+        else {
+            $('#demanddistrictblock_p1').hide();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#block_p1').hide();
+            $('#block_p1').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#ssblock_p1').hide();
+            $('#ssblock_p1').attr("disabled", "disabled");
+
+        }
+    }
+    if (phase == "phase2") {
+        if (block == 0) {
+            $('#demanddistrictblock_p2').show();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#demanddistrictblock_p1').hide();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#districtblock_p1').attr("disabled", true);
+            $('#district_p1').hide();
+            $('#district_p1').attr("disabled", "disabled");
+            $('#district_p2').hide();
+            $('#district_p2').attr("disabled", "disabled");
+            $('#ssdistrict_p1').hide();
+            $('#ssdistrict_p1').attr("disabled", "disabled");
+            $('#districtblock_p2').hide();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#ssdistrict_p2').show();
+            $('#ssdistrict_p2').attr("disabled", true);
+
+
+        }
+        else {
+            $('#districtblock_p2').show();
+            $('#districtblock_p2').attr("disabled", true);
+            $('#ssdistrict_p2').hide();
+            $('#ssdistrict_p2').attr("disabled", true);
+            $('#demanddistrictblock_p2').hide();
+            $('#demanddistrictblock_p2').attr("disabled", true);
+            $('#demanddistrictblock_p1').hide();
+            $('#demanddistrictblock_p1').attr("disabled", true);
+            $('#districtblock_p1').hide();
+            $('#district_p2').hide();
+            $('#district_p1').hide();
+            $('#block_p1').hide();
+            $('#ssdistrict_p1').hide();
+
+
+        }
+    }
+
+    $('#districtblock_p2').hide();
+    $('#districtblock_p2').attr("disabled", true);
+    $('#ssdistrict_p2').hide();
+    $('#ssdistrict_p2').attr("disabled", true);
+    var Gram = $("#gram").val();
+    if (Gram == "0") {
+        /* alert("Please Select Grampanchayat");*/
+    }
+    else {
+        Gram = $('#gram').val();
+
+    }
+}
+function Dropdown_Search() {
+    $('.loader').show();
+    Gram = $('#gram').val();
+    var year = $('#year').val();
+    var phase = $('#phase').val();
+    var xx = 0;
+    if (State == "0") {
+        xx = 1;
+        alert("Please Select State Name");
+        $('.loader').hide();
+    }
+    if (xx == 0) {
+
+        $.ajax({
+            type: "Post",
+            url: "/DLI3New/StateLevel_Dropdown",
+            contentType: "application/json;charset=utf-8",
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','year':'" + year + "'}",
+            dataType: "json",
+            success: function (results) {
+
+                $('#pdf').prop('disabled', false);
+                if (State == "All") {
+                    $('.loader').hide();
+                    if (phase == "phase1") {
+                        $('#state_p1').attr("disabled", false);
+                        $('#btnexcelphase1').hide();
+                        $('#btnexcelphase2').hide();
+                        //$('#state_p2').hide();
+                        //$('#district_p2').hide();
+                        //$('#demanddistrictblock_p1').hide();
+                        $('#demanddistrictblock_p1').attr("disabled", true);
+                        //$('#demanddistrictblock_p2').hide();
+                        $('#demanddistrictblock_p2').attr("disabled", true);
+                        var tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                        $('#tbl_details').html(tr);
+                        $('#existing_well_total').html(0);
+                    }
+                    if (phase == "phase2") {
+                        /*$('#demanddistrictblock_p2').hide();*/
+                        $('#demanddistrictblock_p2').attr("disabled", true);
+                        /*$('#demanddistrictblock_p1').hide();*/
+                        $('#demanddistrictblock_p1').attr("disabled", true);
+                        $('#state_p2').attr("disabled", false);
+                        $('#btnexcelphase1').hide();
+                        $('#btnexcelphase2').hide();
+                        //$('#state_p1').hide();
+                        //$('#district_p1').hide();
+
+                    }
+                }
+                else {
+                    if (phase == "phase1") {
+                        $('#btnexcelphase1').show();
+                        $('#btnexcelphase2').hide();
+                        $('#district_p1').attr("disabled", false);
+                        //$('#state_p2').hide();
+                        //$('#district_p2').hide();
+                        $('#demanddistrictblock_p1').attr("disabled", false);
+                        /*$('#demanddistrictblock_p2').hide();*/
+                        Data_get();
+                    }
+                    if (phase == "phase2") {
+                        $('#btnexcelphase1').hide();
+                        $('#btnexcelphase2').show();
+                        //$('#state_p1').hide();
+                        //$('#district_p1').hide();
+                        /*$('#district_p2').show();*/
+                        $('#district_p2').attr("disabled", false);
+                        $('#state_p2').attr("disabled", "disabled");
+                        /*$('#demanddistrictblock_p1').hide();*/
+                        $('#demanddistrictblock_p1').attr("disabled", true);
+                        $('#demanddistrictblock_p2').attr("disabled", false);
+
+                        Data_get_phase2();
+                    }
+                }
+
+                /*var phase = $('#phase').val();*/
+                if (phase == "phase1") {
+                    $('#btnexcelphase1').show();
+                    $('#btnexcelphase2').hide();
+                    //$('#state_p1').hide();
+                    //$('#district_p1').hide();
+                    /*$('#state_p2').hide();*/
+                    $('#state_p2').attr("disabled", "disabled");
+                    /*$('#district_p2').hide();*/
+                    $('#district_p2').attr("disabled", "disabled");
+                    //$('#demanddistrictblock_p1').hide();
+                    //$('#demanddistrictblock_p1').attr("disabled", "disabled");
+                    /*$('#demanddistrictblock_p2').hide();*/
+                    $('#demanddistrictblock_p2').attr("disabled", "disabled");
+                    $('#txtyear').text("Phase1[April 2023 - September 2023]");
+                }
+                else if (phase == "phase2") {
+                    $('#btnexcelphase1').hide();
+                    $('#btnexcelphase2').show();
+                    //$('#state_p1').hide();
+                    //$('#district_p1').hide();
+                    //$('#state_p2').hide();
+                    //$('#district_p2').hide();
+                    $('#txtyear').text("Phase2[October 2023 - March 2024]");
+                    /*$('#demanddistrictblock_p1').hide();*/
+                    $('#demanddistrictblock_p1').attr("disabled", "disabled");
+                    //$('#demanddistrictblock_p2').hide();
+                    //$('#demanddistrictblock_p2').attr("disabled", "disabled");
+                }
+
+
+
+            }
+        });
+    }
+}
+
+function summerybuttonon() {
+$('#district_p1').hide();
+ $('#district_p2').hide();
+    var phase = $('#phase').val();
+    if (phase == "phase1") {
+        $('#btnexcelphase2').hide();
+        $('#btnexcelphase1').show();
+        if (State == "All") {
+            $('#state_p1').show();
+            $('#district_p1').hide();
+            $('#demanddistrictblock_p1').hide();
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+            $('#demanddistrictblock_p2').hide();
+
+        }
+        else if (State != "All" || State != "0") {
+            if (Dist == "0") {
+                $('#state_p1').hide();
+                $('#district_p1').show();
+                $('#demanddistrictblock_p1').hide();
+                $('#state_p2').hide();
+                $('#district_p2').hide();
+                $('#demanddistrictblock_p2').hide();
+            }
+            else if (Dist != "0") {
+                if (Block == "0") {
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#demanddistrictblock_p1').show();
+                    $('#state_p2').hide();
+                    $('#district_p2').hide();
+                    $('#demanddistrictblock_p2').hide();
+                }
+                else {
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#demanddistrictblock_p1').hide();
+                    $('#state_p2').hide();
+                    $('#district_p2').hide();
+                    $('#demanddistrictblock_p2').hide();
+                }
+            }
+            else {
+                $('#state_p1').hide();
+                $('#district_p1').hide();
+                $('#demanddistrictblock_p1').hide();
+                $('#state_p2').hide();
+                $('#district_p2').hide();
+                $('#demanddistrictblock_p2').hide();
+            }
+
+
+        }
+        else if (State != "All" || State != "0" || Dist != "0") {
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#demanddistrictblock_p1').hide();
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+            $('#demanddistrictblock_p2').hide();
+        }
+        else {
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#demanddistrictblock_p1').hide();
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+            $('#demanddistrictblock_p2').hide();
+        }
+
+
+
+    }
+    if (phase == "phase2") {
+        $('#btnexcelphase2').show();
+        $('#btnexcelphase1').hide();
+        if (State == "All") {
+            $('#state_p2').show();
+            $('#district_p2').hide();
+            $('#demanddistrictblock_p2').hide();
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#demanddistrictblock_p1').hide();
+        }
+        else if (State != "All" || State != "0") {
+            if (Dist == "0") {
+                $('#state_p2').hide();
+                $('#district_p2').show();
+                $('#demanddistrictblock_p2').hide();
+                $('#state_p1').hide();
+                $('#district_p1').hide();
+                $('#demanddistrictblock_p1').hide();
+            }
+            else if (Dist != "0") {
+                if (Block == "0") {
+                    $('#state_p2').hide();
+                    $('#district_p2').hide();
+                    $('#demanddistrictblock_p2').show();
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#demanddistrictblock_p1').hide();
+                }
+                else {
+                    $('#state_p2').hide();
+                    $('#district_p2').hide();
+                    $('#demanddistrictblock_p2').hide();
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#demanddistrictblock_p1').hide();
+                }
+            }
+
+        }
+
+        else if (State != "All" || State != "0" || Dist != "0") {
+            $('#state_p2').hide();
+            $('#district_p2').hide();
+            $('#demanddistrictblock_p2').hide();
+            $('#state_p1').hide();
+            $('#district_p1').hide();
+            $('#demanddistrictblock_p1').hide();
+        }
+
+
+
+
+    }
+}
+
+var PageNumberexe = 1;
+var snoexe = 0;
+var countexe = 0;
+var j = 0;
+var year = "";
+var month = "";
+var demand_val = "";
+function Data_get() {
+    $('.loader').show();
+    year = $('#year').val();
+    month = $('#month').val();
+    demand_val = $('#Demand_side').val();
+
+
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    obj.PageNumber = PageNumberexe;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/Data_get',
+        data: "{'Data': '" + JSON.stringify(obj) + "','demand_va': '" + demand_val + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var tr = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                $('#tbl_details').html(tr);
+                $('#pdf').prop('disabled', true);
+            }
+            else {
+                if (data.length != 0) {
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var total_crop_area = data[i].total_crop_area;
+                            if (total_crop_area == null) {
+                                total_crop_area = "";
+                            }
+
+                            var scheme_name = data[i].scheme_name;
+                            if (scheme_name == "Other") {
+                                var other = data[i].other_scheme;
+                                var abc = scheme_name + ' - ' + other;
+                                scheme_name = abc;
+                            }
+                            var fund_for = data[i].fund_for;
+                            if (fund_for == "Other Measures") {
+                                var other = data[i].innovative_measures;
+                                var abc = fund_for + ' - ' + other;
+                                fund_for = abc;
+                            }
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">At SPMU</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].rejectremark_phase1 + '</label></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: Black;">At DPMU</label></td><td></td></tr> ';
+                                }
+                                else if (entry_phase == "Delete") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td></td><td></td><td></td></tr> ';
+                                }
+
+                            }
+
+                        }
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var total_crop_area = data[i].total_crop_area;
+                            if (total_crop_area == null) {
+                                total_crop_area = "";
+                            }
+                            var scheme_name = data[i].scheme_name;
+                            if (scheme_name == "Other") {
+                                var other = data[i].other_scheme;
+                                var abc = scheme_name + ' - ' + other;
+                                scheme_name = abc;
+                            }
+                            var fund_for = data[i].fund_for;
+                            if (fund_for == "Other Measures") {
+                                var other = data[i].innovative_measures;
+                                var abc = fund_for + ' - ' + other;
+                                fund_for = abc;
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted To SPMU</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].rejectremark_phase1 + '</label></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: Black;">At DPMU</label></td><td></td></tr> ';
+                                }
+                                else if (entry_phase == "Delete") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button style="display:none;"  class="btn btn-success disable" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="fill_data(' + data[i].id + ')">Enter Data </button ></td><td></td><td></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button style="display:none;"  class="btn btn-success" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="fill_data(' + data[i].id + ')"> Enter Data</button ></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+                        }
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var total_crop_area = data[i].total_crop_area;
+                            if (total_crop_area == null) {
+                                total_crop_area = "";
+                            }
+                            var scheme_name = data[i].scheme_name;
+                            if (scheme_name == "Other") {
+                                var other = data[i].other_scheme;
+                                var abc = scheme_name + ' - ' + other;
+                                scheme_name = abc;
+                            }
+                            var fund_for = data[i].fund_for;
+                            if (fund_for == "Other Measures") {
+                                var other = data[i].innovative_measures;
+                                var abc = fund_for + ' - ' + other;
+                                fund_for = abc;
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted To SPMU</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].rejectremark_phase1 + '</label></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">View Data</button ></td><td><label style="color: Black;">At DPMU</label></td><td></td></tr> ';
+                                }
+                                else if (entry_phase == "Delete") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+                        }
+
+                    }
+
+
+                }
+                $("#exampleModal__ddphase_two").hide();
+                $(".showdiv").show();
+                $('#tbl_details').html(tr);
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+                $('#existing_well_total').html(sno);
+            }
+            $('.loader').hide();
+            $('.disable').attr("disabled", "disabled");
+            $('.disable').hide();
+        }
+    });
+}
+
+var id = "";
+var idd = "";
+function fill_data(id) {
+
+    id = id;
+    idd = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_demand',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var scheme_name = data[0].scheme_name;
+            if (scheme_name == "Other") {
+                var other = data[0].other_scheme;
+                var abc = scheme_name + ' - ' + other;
+                scheme_name = abc;
+            }
+            var fund_for = data[0].fund_for;
+            if (fund_for == "Other Measures") {
+                var other = data[0].innovative_measures;
+                var abc = fund_for + ' - ' + other;
+                fund_for = abc;
+            }
+            $('#a').val(data[0].state);
+            $('#b').val(data[0].district);
+            $('#c').val(data[0].block);
+            $('#d').val(data[0].gp);
+            $('#e').val(data[0].latitude);
+            $('#f').val(data[0].longitude);
+            $('#g').val(data[0].financial_year);
+            $('#h').val(fund_for);
+            $('#i').val(data[0].department_name);
+            $('#j').val(scheme_name);
+            $('#k').val(data[0].area_proposed);
+            $('#l').val(data[0].approx_est_cost);
+            $('#m').val(data[0].total_water_demand);
+            $('#n').val(data[0].total_reduction_gw);
+            $('#v').val(data[0].total_crop_area);
+            $('#o').val("Phase-1(April-September 2023-24)");
+
+            /*Department_name();*/
+
+        }
+    });
+}
+
+function Other() {
+    var department = $('#txtdepartment').val();
+    if (department == "Other") {
+        $('#div_other').show();
+    }
+    else {
+        $('#div_other').hide();
+    }
+}
+
+function Other_schema() {
+    var schema = $('#txtschema').val();
+    if (schema == "Other") {
+        $('#div_other_2').show();
+    }
+    else {
+        $('#div_other_2').hide();
+    }
+}
+
+function insert_data_phase1() {
+
+    $('.loader').show();
+    var xx = 0;
+    var id = idd;
+    var date1 = $('#o').val();
+    var date2 = $('#txtdepartment').val();
+    var date3 = $('#txtotherdepartment').val();
+    var date4 = $('#txtschema').val();
+    var date5 = $('#txtotherScheme').val();
+    var date6 = $('#r').val();
+    var date7 = $('#s').val();
+    var date8 = $('#t').val();
+    var date9 = $('#u').val();
+
+    if (date2 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date2 == "Other") {
+        if (date3 == "") {
+            xx = 1;
+            alert("Please Enter Other Department Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name");
+        $('.loader').hide();
+    }
+    else if (date4 == "Other") {
+        if (date5 == "") {
+            xx = 1;
+            alert("Please Enter Other Scheme Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date6 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date9 == "") {
+        xx = 1;
+        alert("Please Enter Total Number of Benificiary");
+        $('.loader').hide();
+    }
+
+
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/insert_demand',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("year_subsidey_phase1", date1);
+                data.append("departmentname_phase1", date2);
+                data.append("schemename_phase1", date4);
+                data.append("otherschemename_phase1", date5);
+                data.append("area_covered_phase1", date6);
+                data.append("expenditure_phase1", date7);
+                data.append("remark_phase1", date8);
+                data.append("total_beneficery", date9);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Saved") {
+
+                    $('#o').val("");
+                    $('#txtdepartment').val("0");
+                    $('#txtotherdepartment').val("");
+                    $('#txtschema').val("0");
+                    $('#txtotherScheme').val("");
+                    $('#r').val("");
+                    $('#s').val("");
+                    $('#t').val("");
+                    $('#u').val("");
+                    $("#exampleModal_waterflow").hide();
+                    $(".showdiv").show();
+                    autoclick();
+
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+
+function autoclick() {
+    $("#autoclick").click();
+    Data_get();
+
+}
+
+var submit_id = 0;
+function data_show_phase1(id) {
+    submit_id = id;
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_demand',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+            debugger;
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var Tbodyhtml = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                Tbodyhtml = '<tr style="text-align:center;"><td colspan="10">No Data</td></tr>';
+                $('#phase1_data').html(Tbodyhtml);
+
+            }
+            else {
+                if (data.length != 0) {
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var otherschemename_phase = data[i].otherschemename_phase1;
+                            if (otherschemename_phase == null) {
+                                otherschemename_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+
+                                $('#phase1submittospmu').hide();
+                                $('#phase1submittoapprove').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Approved").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+
+                                $('#phase1submittospmu').hide();
+                                $('#phase1submittoapprove').show();
+                                $('#txtrejectremark').show();
+                                $('#phase1reject').show();
+                                $('#gp_status').text("At SPMU").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var otherschemename_phase = data[i].otherschemename_phase1;
+                            if (otherschemename_phase == null) {
+                                otherschemename_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Approved").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Submitted to SPMU").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary disable" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger disable" type="button"  onclick="delete_phase1(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                    Tbodyhtml += '<td><button type="button"  class="btn btn-success disable" onclick="add_new(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase1' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select id="departmentname_phase_aa' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase1 + '">' + data[i].departmentname_phase1 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schemename_phase_aa' + i + '" onchange="ddlother(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase1 + '">' + data[i].schemename_phase1 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="otherschemename_phase_aa' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered_phase' + i + '" value="' + data[i].area_covered_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase' + i + '" value="' + data[i].total_beneficery_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase1(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP1_TR_edit_new' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select id="departmentname_phase' + i + '" class="form-control select_width_set"><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schemename_phase' + i + '" onchange="ddlother_addnew(' + i + ')" class="form-control select_width_set"><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="otherschemename_phase' + i + '"/></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered_phase_aa' + i + '"   /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase_aa' + i + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase_aa' + i + '"   /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase_aa' + i + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="save_newrow(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_new(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary disable" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger disable" type="button"  onclick="delete_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                                    Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase1' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select id="departmentname_phase_new' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase1 + '">' + data[i].departmentname_phase1 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schemename_phase_new' + i + '" onchange="ddlother_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase1 + '">' + data[i].schemename_phase1 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="otherschemename_phase_new' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered_phase_new' + i + '" value="' + data[i].area_covered_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase_new' + i + '" value="' + data[i].total_beneficery_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase_new' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase_new' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').show();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary disable" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger disable" type="button"  onclick="delete_phase1(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                    Tbodyhtml += '<td><button type="button"  class="btn btn-success disable" onclick="add_new(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase1' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select id="departmentname_phase_aa' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase1 + '">' + data[i].departmentname_phase1 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schemename_phase_aa' + i + '" onchange="ddlother(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase1 + '">' + data[i].schemename_phase1 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="otherschemename_phase_aa' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered_phase' + i + '" value="' + data[i].area_covered_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase' + i + '" value="' + data[i].total_beneficery_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase1(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP1_TR_edit_new' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select id="departmentname_phase' + i + '" class="form-control select_width_set"><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schemename_phase' + i + '" onchange="ddlother_addnew(' + i + ')" class="form-control select_width_set"><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="otherschemename_phase' + i + '"/></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered_phase_aa' + i + '"   /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase_aa' + i + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase_aa' + i + '"   /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase_aa' + i + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="save_newrow(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_new(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary disable" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger disable" type="button"  onclick="delete_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                                    Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase1' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select id="departmentname_phase_new' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase1 + '">' + data[i].departmentname_phase1 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schemename_phase_new' + i + '" onchange="ddlother_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase1 + '">' + data[i].schemename_phase1 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="otherschemename_phase_new' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered_phase_new' + i + '" value="' + data[i].area_covered_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase_new' + i + '" value="' + data[i].total_beneficery_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase_new' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase_new' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').show();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var otherschemename_phase = data[i].otherschemename_phase1;
+                            if (otherschemename_phase == null) {
+                                otherschemename_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+
+                            if (approve == "Approved") {
+
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Approved").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Submitted to SPMU").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+                                else if (entry_phase == "phase1_new") {
+
+                                    Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+
+                                }
+                                $('#phase1submittoapprove').hide();
+                                $('#phase1submittospmu').hide();
+                                $('#txtrejectremark').hide();
+                                $('#phase1reject').hide();
+                                $('#gp_status').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+                    }
+                }
+
+                $('#phase1_data').html(Tbodyhtml);
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+            }
+            fill_data_wsp(id);
+            $('.loader').hide();
+        }
+    });
+}
+function fill_data_wsp(id) {
+
+    id = id;
+    idd = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_demand_wsp',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var tr = '';
+            var sno = 0;
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var scheme_name = data[i].scheme_name;
+                    if (scheme_name == "Other") {
+                        var other = data[i].other_scheme;
+                        var abc = scheme_name + ' - ' + other;
+                        scheme_name = abc;
+                    }
+                    var total_crop_area = data[i].total_crop_area;
+                    if (total_crop_area == null) {
+                        total_crop_area = "";
+                    }
+                    var fund_for = data[i].fund_for;
+                    if (fund_for == "Other Measures") {
+                        var other = data[i].innovative_measures;
+                        var abc = fund_for + ' - ' + other;
+                        fund_for = abc;
+                    }
+                    sno = i + 1;
+                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td></tr> ';
+                }
+                $('#tbl_details_add').html(tr);
+            }
+        }
+    });
+}
+var bb = 0;
+function editrowcomp_A_Good_data(i) {
+
+    bb = i;
+    var other = $('#schemename_phase_aa' + i).val();
+    if (other == "Other") {
+        $('#otherschemename_phase_aa' + i).show();
+    }
+    else {
+        $('#otherschemename_phase_aa' + i).hide();
+    }
+    var other_new = $('#schemename_phase_new' + i).val();
+    if (other_new == "Other") {
+        $('#otherschemename_phase_new' + i).show();
+    }
+    else {
+        $('#otherschemename_phase_new' + i).hide();
+    }
+    $('#AWP1_TR_edit' + i).hide();
+    $('#Hide_AWP1_TR_edit' + i).show();
+    $('#Hide_AWP1_TR_edit_new' + i).hide();
+    //Department_name_old();
+    //Department_name_addnew();
+}
+function ddlother(i) {
+    $('#otherschemename_phase_aa' + i).val("");
+    var other = $('#schemename_phase_aa' + i).val();
+    if (other == "Other") {
+        $('#otherschemename_phase_aa' + i).show();
+    }
+    else {
+        $('#otherschemename_phase_aa' + i).hide();
+    }
+}
+function ddlother_new(i) {
+    $('#otherschemename_phase_new' + i).val("");
+    var other_new = $('#schemename_phase_new' + i).val();
+    if (other_new == "Other") {
+        $('#otherschemename_phase_new' + i).show();
+    }
+    else {
+        $('#otherschemename_phase_new' + i).hide();
+    }
+}
+function ddlother_addnew(i) {
+    $('#otherschemename_phase' + i).val("");
+    var other_new = $('#schemename_phase' + i).val();
+    if (other_new == "Other") {
+        $('#otherschemename_phase' + i).show();
+    }
+    else {
+        $('#otherschemename_phase' + i).hide();
+    }
+}
+
+var id_new = 0;
+var aa = 0;
+function add_new(id, i) {
+
+    id_new = id;
+    aa = i;
+    $('#otherschemename_phase' + i).hide();
+    $('#AWP1_TR_edit' + i).show();
+    $('#Hide_AWP1_TR_edit_new' + i).show();
+
+}
+function cancelcomp_A_Support_NEW_data(i) {
+
+    $('#AWP1_TR_edit' + i).show();
+    $('#Hide_AWP1_TR_edit' + i).hide();
+    $('#Hide_AWP1_TR_edit_new' + i).hide();
+
+}
+function cancelcomp_A_Support_NEW_data_new(i) {
+
+    $('#AWP1_TR_edit' + i).show();
+    $('#Hide_AWP1_TR_edit' + i).hide();
+    $('#Hide_AWP1_TR_edit_new' + i).hide();
+
+}
+function delete_phase1(id) {
+
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/delete_phase1',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Delete") {
+                Data_get();
+                $("#exampleModal_add_new").hide();
+                $(".showdiv").show();
+            }
+        }
+    });
+}
+function update_data_phase1(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    id = id;
+
+    var date4 = $('#departmentname_phase_aa' + i).val();
+    var date5 = $('#schemename_phase_aa' + i).val();
+    var date6 = $('#otherschemename_phase_aa' + i).val();
+    var date7 = $('#total_beneficery_phase' + i).val();
+    var date1 = $('#area_covered_phase' + i).val();
+    var date2 = $('#expenditure_phase' + i).val();
+    var date3 = $('#remark_phase' + i).val();
+
+
+
+    if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Department Name ");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Schema Name ");
+        $('.loader').hide();
+    }
+    else if (date5 == "Other") {
+        if (date6 == "") {
+            xx = 1;
+            alert("Please Enter Schema Name ");
+            $('.loader').hide();
+        }
+    }
+    else if (date1 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number of Benificiary");
+        $('.loader').hide();
+    }
+    var other = "";
+    if (date5 == "Other") {
+        other = date6;
+    }
+    else {
+        other = "";
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/update_data_phase1',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("area_covered_phase1", date1);
+                data.append("expenditure_phase1", date2);
+                data.append("remark_phase1", date3);
+                data.append("departmentname_phase", date4);
+                data.append("schemename_phase", date5);
+                data.append("otherschemename_phase", other);
+                data.append("total_beneficery_phase", date7);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+
+                    $('#departmentname_phase_aa' + i).val("0");
+                    $('#schemename_phase_aa' + i).val("0");
+                    $('#otherschemename_phase_aa' + i).val("");
+                    $('#total_beneficery_phase' + i).val("");
+                    $('#area_covered_phase' + i).val("");
+                    $('#expenditure_phase' + i).val("");
+                    $('#remark_phase' + i).val("");
+
+                    data_show_phase1(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function close_btn() {
+    $('#o').val("");
+    $('#txtdepartment').val("0");
+    $('#txtotherdepartment').val("");
+    $('#txtschema').val("0");
+    $('#txtotherScheme').val("");
+    $('#r').val("");
+    $('#s').val("");
+    $('#t').val("");
+    $('#u').val("");
+    $('.loader').show();
+    $('.disable').attr("disabled", "disabled");
+    $('.disable').hide();
+    Data_get();
+}
+
+function save_newrow(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    id = id;
+
+    var date1 = $('#year_subsidey_phase' + i).val();
+    var date2 = $('#departmentname_phase' + i).val();
+    var date3 = $('#schemename_phase' + i).val();
+    var date8 = $('#otherschemename_phase' + i).val();
+    var date4 = $('#area_covered_phase_aa' + i).val();
+    var date5 = $('#expenditure_phase_aa' + i).val();
+    var date6 = $('#remark_phase_aa' + i).val();
+    var date7 = $('#total_beneficery_phase_aa' + i).val();
+
+    if (date2 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date3 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name");
+        $('.loader').hide();
+    }
+    else if (date3 == "Other") {
+        if (date8 == "") {
+            xx = 1;
+            alert("Please Enter Scheme Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date4 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date5 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number of Benificiary");
+        $('.loader').hide();
+    }
+
+    var other = "";
+    if (date3 == "Other") {
+        other = date8;
+    }
+    else {
+        other = "";
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/save_newrow',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("year_subsidey_phase1", date1);
+                data.append("departmentname_phase1", date2);
+                data.append("schemename_phase1", date3);
+                data.append("otherschemename_phase1", other);
+                data.append("area_covered_phase1", date4);
+                data.append("expenditure_phase1", date5);
+                data.append("remark_phase1", date6);
+                data.append("total_beneficery", date7);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Saved") {
+
+                    $('#departmentname_phase' + i).val("0");
+                    $('#schemename_phase1' + i).val("0");
+                    $('#area_covered_phase_aa' + i).val("");
+                    $('#expenditure_phase_aa' + i).val("");
+                    $('#remark_phase_aa' + i).val("");
+                    $('#total_beneficery_phase_aa' + i).val("");
+                    $('#otherschemename_phase' + i).val("");
+                    data_show_phase1(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function update_data_phase1_addnew(phaseid1, id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    var phaseid1 = phaseid1;
+
+    var date1 = $('#area_covered_phase_new' + i).val();
+    var date2 = $('#expenditure_phase_new' + i).val();
+    var date3 = $('#remark_phase_new' + i).val();
+    var date4 = $('#departmentname_phase_new' + i).val();
+    var date5 = $('#schemename_phase_new' + i).val();
+    var date6 = $('#otherschemename_phase_new' + i).val();
+    var date7 = $('#total_beneficery_phase_new' + i).val();
+
+    if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Schema Name");
+        $('.loader').hide();
+    }
+    else if (date5 == "Other") {
+        if (date6 == "") {
+            xx = 1;
+            alert("Please Enter Other Schema Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date1 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number Beneficery");
+        $('.loader').hide();
+    }
+    else if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+
+    var other = "";
+    if (date5 == "Other") {
+        other = date6;
+    }
+    else {
+        other = "";
+    }
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/update_data_phase1_addnew',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("phaseid1", phaseid1);
+                data.append("area_covered_phase1", date1);
+                data.append("expenditure_phase1", date2);
+                data.append("remark_phase1", date3);
+                data.append("departmentname_phase1", date4);
+                data.append("schemename_phase1", date5);
+                data.append("otherschemename_phase1", other);
+                data.append("total_beneficery", date7);
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+
+                    $('#area_covered_phase_new' + i).val("");
+                    $('#expenditure_phase_new' + i).val("");
+                    $('#remark_phase_new' + i).val("");
+                    $('#departmentname_phase_new' + i).val("0");
+                    $('#schemename_phase_new' + i).val("0");
+                    $('#otherschemename_phase_new' + i).val("");
+                    $('#total_beneficery_phase_new' + i).val("");
+                    data_show_phase1(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function delete_phase1_addnew(phaseid1, id) {
+
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/delete_phase1_addnew',
+        data: "{'phaseid1': '" + phaseid1 + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Delete") {
+                data_show_phase1(id);
+            }
+        }
+    });
+}
+
+function submit_to_spmu() {
+    var id = submit_id;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/submittospmu',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Submitted") {
+                Data_get();
+            }
+        }
+    });
+}
+function approve() {
+    var id = submit_id;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/phase1approve',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Approved") {
+                Data_get();
+            }
+        }
+    });
+}
+function reject() {
+    var xx = 0;
+    var id = submit_id;
+    var reject = $('#txtrejectremark').val();
+    $('.loader').show();
+
+    if (reject == "") {
+        xx = 1;
+        alert("Please Enter Reject Remark");
+        $('.loader').hide();
+
+    }
+    if (xx == 0) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/DLI3New/phase1reject',
+            data: "{'id': '" + id + "' , 'reject': '" + reject + "' }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Rejected") {
+
+                    $('#txtrejectremark').val("");
+                    $("#exampleModal_add_new").hide();
+                    $(".showdiv").show();
+                    autoclick();
+                }
+            }
+        });
+    }
+}
+
+/*phase1_end*/
+
+/*phase2_start*/
+function Data_get_phase2() {
+    $('.loader').show();
+    year = $('#year').val();
+    month = $('#month').val();
+    demand_val = $('#Demand_side').val();
+
+
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    obj.PageNumber = PageNumberexe;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/Data_get',
+        data: "{'Data': '" + JSON.stringify(obj) + "','demand_va': '" + demand_val + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var tr = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                $('#tbl_details').html(tr);
+                $('#pdf').prop('disabled', true);
+            }
+            else {
+                if (data.length != 0) {
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var total_crop_area = data[i].total_crop_area;
+                            if (total_crop_area == null) {
+                                total_crop_area = "";
+                            }
+                            var scheme_name = data[i].scheme_name;
+                            if (scheme_name == "Other") {
+                                var other = data[i].other_scheme;
+                                var abc = scheme_name + ' - ' + other;
+                                scheme_name = abc;
+                            }
+                            var fund_for = data[i].fund_for;
+                            if (fund_for == "Other Measures") {
+                                var other = data[i].innovative_measures;
+                                var abc = fund_for + ' - ' + other;
+                                fund_for = abc;
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td></tr> ';
+                                }
+
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">At SPMU</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].rejectremark_phase2 + '</label></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: black;">At DPMU</label></td><td></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+                        }
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var total_crop_area = data[i].total_crop_area;
+                            if (total_crop_area == null) {
+                                total_crop_area = "";
+                            }
+                            var scheme_name = data[i].scheme_name;
+                            if (scheme_name == "Other") {
+                                var other = data[i].other_scheme;
+                                var abc = scheme_name + ' - ' + other;
+                                scheme_name = abc;
+                            }
+                            var fund_for = data[i].fund_for;
+                            if (fund_for == "Other Measures") {
+                                var other = data[i].innovative_measures;
+                                var abc = fund_for + ' - ' + other;
+                                fund_for = abc;
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted To SPMU</label></td><td></td></tr> ';
+
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].rejectremark_phase2 + '</label></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: Black;">At DPMU</label></td><td></td></tr> ';
+
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button  class="btn btn-success hidebutton" data-toggle="modal" data-target="#exampleModal_phasetwo"  onclick="fill_data_phase_two(' + data[i].id + ')"> Enter Data</button ></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+                        }
+
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var total_crop_area = data[i].total_crop_area;
+                            if (total_crop_area == null) {
+                                total_crop_area = "";
+                            }
+                            var scheme_name = data[i].scheme_name;
+                            if (scheme_name == "Other") {
+                                var other = data[i].other_scheme;
+                                var abc = scheme_name + ' - ' + other;
+                                scheme_name = abc;
+                            }
+                            var fund_for = data[i].fund_for;
+                            if (fund_for == "Other Measures") {
+                                var other = data[i].innovative_measures;
+                                var abc = fund_for + ' - ' + other;
+                                fund_for = abc;
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted To SPMU</label></td><td></td></tr> ';
+
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].rejectremark_phase2 + '</label></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__ddphase_two"  onclick="data_show_phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: Black;">At DPMU</label></td><td></td></tr> ';
+
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+                        }
+
+                    }
+
+
+                }
+                $('#tbl_details').html(tr);
+                $('.disable').attr("disabled", "disabled");
+                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                    $('.hidebutton').hide();
+                }
+                else {
+                    $('.hidebutton').show();
+                }
+
+                $('#existing_well_total').html(sno);
+                $("#exampleModal__ddphase_two").hide();
+                $(".showdiv").show();
+
+            }
+
+            $('.loader').hide();
+            $('.disable').attr("disabled", "disabled");
+            $('.disable').hide();
+        }
+    });
+}
+var phase1data = "yes";
+function fill_data_phase_two(id) {
+    demandsideleftoveralert = "No";
+    demandsidephase2alert = "No";
+    phase1data = "yes";
+    $('#lop1oaphase2').val("");
+    $('#lop1txtdepartmentphase2').val("0");
+    $('#lop1txtschemaphase2').val("0");
+    $('#lop1txtotherSchemephase2').val("");
+    $('#lop1rphase2').val("");
+    $('#lop1sphase2').val("");
+    $('#lop1tphase2').val("");
+    $('#lop1uphase2').val("");
+    id = id;
+    idd = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_demand',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            //Department_name_2phase();
+            //schema_name_2phase();
+            var scheme_name = data[0].scheme_name;
+            if (scheme_name == "Other") {
+                var other = data[0].other_scheme;
+                var abc = scheme_name + ' - ' + other;
+                scheme_name = abc;
+            }
+            var total_crop_area = data[0].total_crop_area;
+            if (total_crop_area == null) {
+                total_crop_area = "";
+            }
+            var fund_for = data[0].fund_for;
+            if (fund_for == "Other Measures") {
+                var other = data[0].innovative_measures;
+                var abc = fund_for + ' - ' + other;
+                fund_for = abc;
+            }
+            $('#div_other_phase2').hide();
+            $('#lop1div_other_phase2').hide();
+            $('#aa').val(data[0].state);
+            $('#ba').val(data[0].district);
+            $('#ca').val(data[0].block);
+            $('#da').val(data[0].gp);
+            $('#ea').val(data[0].latitude);
+            $('#fa').val(data[0].longitude);
+            $('#ga').val(data[0].financial_year);
+            $('#ha').val(fund_for);
+            $('#ia').val(data[0].department_name);
+            $('#ja').val(scheme_name);
+            $('#ka').val(data[0].area_proposed);
+            $('#la').val(data[0].approx_est_cost);
+            $('#ma').val(data[0].total_water_demand);
+            $('#na').val(data[0].total_reduction_gw);
+            $('#va').val(data[0].total_crop_area);
+
+
+            var approvep1 = data[0].approve_phase1;
+            var year_subsidey_phase1 = data[0].year_subsidey_phase1;
+            var phasea = data[0].departmentname_phase1;
+            var phaseb = data[0].schemename_phase1;
+            var phasec = data[0].otherschemename_phase1;
+            var phased = data[0].area_covered_phase1;
+            var phasee = data[0].total_beneficery_phase1;
+            var phasef = data[0].expenditure_phase1;
+            var phaseg = data[0].remark_phase1;
+
+
+            if (approvep1 == "Approved") {
+
+
+                if (year_subsidey_phase1 != "" && year_subsidey_phase1 != null) {
+                    demandsidephase2alert = "No";
+                    phase1data = "No";
+                    $('#lop1txtdepartmentphase2').prop('disabled', true);
+                    $('#lop1txtschemaphase2').prop('disabled', true);
+                    $('#lop1txtotherSchemephase2').prop('disabled', true);
+                    $('#lop1rphase2').prop('disabled', true);
+                    $('#lop1sphase2').prop('disabled', true);
+                    $('#lop1tphase2').prop('disabled', true);
+                    $('#lop1uphase2').prop('disabled', true);
+
+                    $('#txtdepartmentphase2').prop('disabled', true);
+                    $('#txtdepartmentphase2').val(phasea);
+                    $('#txtschemaphase2').prop('disabled', true);
+                    $('#txtschemaphase2').val(phaseb);
+                    $('#txtotherSchemephase2').prop('disabled', true);
+                    $('#txtotherSchemephase2').val(phasec);
+                    if (phaseb == "Other") {
+                        $('#div_other_phase2').show();
+                    }
+                    else {
+                        $('#div_other_phase2').hide();
+                    }
+                }
+                else {
+                    $('#lop1txtdepartmentphase2').prop('disabled', false);
+                    $('#lop1txtschemaphase2').prop('disabled', false);
+                    $('#lop1txtotherSchemephase2').prop('disabled', false);
+                    $('#lop1txtotherSchemephase2').val("");
+                    $('#lop1rphase2').prop('disabled', false);
+                    $('#lop1sphase2').prop('disabled', false);
+                    $('#lop1tphase2').prop('disabled', false);
+                    $('#lop1uphase2').prop('disabled', false);
+
+                    $('#txtdepartmentphase2').prop('disabled', false);
+                    $('#txtdepartmentphase2').val("0");
+                    $('#txtschemaphase2').prop('disabled', false);
+                    $('#txtschemaphase2').val("0");
+                    $('#txtotherSchemephase2').prop('disabled', false);
+                    $('#txtotherSchemephase2').val("");
+                }
+
+                if (year_subsidey_phase1 == null) {
+                    year_subsidey_phase1 = "";
+                }
+                if (phasea == null) {
+                    phasea = "";
+                }
+                if (phaseb == null) {
+                    phaseb = "";
+                }
+                if (phasec == null) {
+                    phasec = "";
+                }
+                if (phased == null) {
+                    phased = "";
+                }
+                if (phasee == null) {
+                    phasee = "";
+                }
+                if (phasef == null) {
+                    phasef = "";
+                }
+                if (phaseg == null) {
+                    phaseg = "";
+                }
+                if (phaseb == "Other") {
+                    $('#otherphase1').show();
+                }
+                else {
+                    $('#otherphase1').hide();
+                }
+                $('#oa').val(year_subsidey_phase1);
+                $('#phasea').val(phasea);
+                $('#phaseb').val(phaseb);
+                $('#phasec').val(phasec);
+                $('#phased').val(phased);
+                $('#phasee').val(phasee);
+                $('#phasef').val(phasef);
+                $('#phaseg').val(phaseg);
+            }
+            else {
+                $('#lop1txtdepartmentphase2').prop('disabled', false);
+                $('#lop1txtschemaphase2').prop('disabled', false);
+                $('#lop1txtotherSchemephase2').prop('disabled', false);
+                $('#lop1txtotherSchemephase2').val("");
+                $('#lop1rphase2').prop('disabled', false);
+                $('#lop1sphase2').prop('disabled', false);
+                $('#lop1tphase2').prop('disabled', false);
+                $('#lop1uphase2').prop('disabled', false);
+
+                $('#txtdepartmentphase2').prop('disabled', false);
+                $('#txtdepartmentphase2').val("0");
+                $('#txtschemaphase2').prop('disabled', false);
+                $('#txtschemaphase2').val("0");
+                $('#txtotherSchemephase2').prop('disabled', false);
+                $('#txtotherSchemephase2').val("");
+
+                $('#oa').val("");
+                $('#phasea').val("");
+                $('#phaseb').val("");
+                $('#phasec').val("");
+                $('#phased').val("");
+                $('#phasee').val("");
+                $('#phasef').val("");
+                $('#phaseg').val("");
+            }
+
+
+
+
+
+
+        }
+    });
+}
+function Department_name_2phase() {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        url: "/incentive_phy_fin/Department_name",
+        data: '',
+        dataType: 'JSON',
+        success: function (response) {
+
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            $("#txtdepartmentphase2").empty();
+
+
+            var optionhtml = "<option value='0'>--Select Department  Name --</option>";
+            if (response.length != 0) {
+                allstate = [];
+                FullData = response;
+                var ddlSourse = {};
+                for (var i = 0; i < response.length; i++) {
+                    if (response[i].department_name != null && response[i].department_name != "") {
+                        if (!ddlSourse[response[i].department_name]) {
+                            optionhtml += '<option value="' + response[i].department_name + '">' + response[i].department_name + '</option>';
+                            allstate.push(response[i].department_name);
+                            ddlSourse[response[i].department_name] = response[i].department_name;
+
+                        }
+                    }
+                }
+                /*optionhtml += "<option value='Other'>Other</option>";*/
+                $("#txtdepartmentphase2").append(optionhtml);
+
+            }
+
+
+        }
+
+    });
+}
+function schema_name_2phase() {
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        url: "/DLI3New/Schema_name",
+        data: '',
+        dataType: 'JSON',
+        success: function (response) {
+
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            $("#txtschemaphase2").empty();
+
+
+            var optionhtml = "<option value='0'>--Select Scheme  Name --</option>";
+            if (response.length != 0) {
+                allstate = [];
+                FullData = response;
+                var ddlSourse = {};
+                for (var i = 0; i < response.length; i++) {
+                    if (response[i].scheme_name != null && response[i].scheme_name != "") {
+                        if (!ddlSourse[response[i].scheme_name]) {
+                            optionhtml += '<option value="' + response[i].scheme_name + '">' + response[i].scheme_name + '</option>';
+                            allstate.push(response[i].scheme_name);
+                            ddlSourse[response[i].scheme_name] = response[i].scheme_name;
+
+                        }
+                    }
+                }
+                optionhtml += "<option value='Other'>Other</option>";
+                $("#txtschemaphase2").append(optionhtml);
+
+
+            }
+
+
+        }
+
+    });
+}
+function Other_schema_phase2() {
+    var schema = $('#txtschemaphase2').val();
+    if (schema == "Other") {
+        $('#div_other_phase2').show();
+    }
+    else {
+        $('#div_other_phase2').hide();
+    }
+}
+function lop1Other_schema_phase2() {
+    var schema = $('#lop1txtschemaphase2').val();
+    if (schema == "Other") {
+        $('#lop1div_other_phase2').show();
+    }
+    else {
+        $('#lop1div_other_phase2').hide();
+    }
+}
+
+var demandsideleftoveralert = "No";
+var demandsidephase2alert = "No";
+function demandsidetextfileundisable() {
+
+    // $('#lop1oaphase2').val("");
+    var d1 = $('#lop1oaphase2').val();
+    var d2 = $('#lop1txtdepartmentphase2').val();
+    var d3 = $('#lop1txtschemaphase2').val();
+    var d4 = $('#lop1txtotherSchemephase2').val();
+    var d5 = $('#lop1rphase2').val();
+    var d6 = $('#lop1sphase2').val();
+    var d7 = $('#lop1tphase2').val();
+    var d8 = $('#lop1uphase2').val();
+    if (d3 == "Other") {
+        $('#lop1div_other_phase2').show();
+    }
+    else {
+        $('#lop1txtotherSchemephase2').val("");
+        $('#lop1div_other_phase2').hide();
+    }
+
+    if (d2 != "0" || d3 != "0" || d4 != "" || d5 != "" || d6 != "" || d7 != "" || d8 != "") {
+        demandsideleftoveralert = "yes";
+        $('#lop1oaphase2').val("Left Over Phase 1 (April-September 2023-24)");
+        if (demandsidephase2alert == "yes") {
+            $('#txtdepartmentphase2').val("0");
+            $('#txtdepartmentphase2').prop('disabled', false);
+            $('#txtschemaphase2').val("0");
+            $('#txtschemaphase2').prop('disabled', false);
+            $('#txtotherSchemephase2').val("");
+            $('#txtotherSchemephase2').prop('disabled', false);
+            $('#oaphase2').val("");
+            demandsidephase2alert = "No";
+        }
+        else {
+            demandsidephase2alert = "No";
+            $('#oaphase2').val("");
+        }
+    }
+    else {
+        demandsideleftoveralert = "No";
+        demandsidephase2alert = "No";
+        $('#lop1oaphase2').val("");
+        $('#oaphase2').val("");
+
+        $('#txtdepartmentphase2').val("0");
+        $('#txtdepartmentphase2').prop('disabled', false);
+        $('#txtschemaphase2').val("0");
+        $('#txtschemaphase2').prop('disabled', false);
+        $('#txtotherSchemephase2').val("");
+        $('#txtotherSchemephase2').prop('disabled', false);
+
+    }
+}
+function demandsidetextfilealertcheckphase2() {
+
+    //$('#oaphase2').val("");
+    var d1 = $('#oaphase2').val();
+    var d2 = $('#txtdepartmentphase2').val();
+    var d3 = $('#txtschemaphase2').val();
+    var d4 = $('#txtotherSchemephase2').val();
+    var d5 = $('#rphase2').val();
+    var d6 = $('#sphase2').val();
+    var d7 = $('#tphase2').val();
+    var d8 = $('#uphase2').val();
+
+    var A1 = $('#lop1txtdepartmentphase2').val();
+    var A2 = $('#lop1txtschemaphase2').val();
+    var A3 = $('#lop1txtotherSchemephase2').val();
+    if (d3 == "Other") {
+        $('#div_other_phase2').show();
+    }
+    else {
+        $('#txtotherSchemephase2').val("");
+        $('#div_other_phase2').hide();
+    }
+    if (d2 != "0" || d3 != "0" || d4 != "" || d5 != "" || d6 != "" || d7 != "" || d8 != "") {
+        demandsidephase2alert = "yes";
+        $('#oaphase2').val("Phase- 2 (October-March 2023-24)");
+        if (demandsideleftoveralert == "yes") {
+            $('#txtdepartmentphase2').val(A1);
+            $('#txtdepartmentphase2').prop('disabled', true);
+            $('#txtschemaphase2').val(A2);
+            $('#txtschemaphase2').prop('disabled', true);
+            $('#txtotherSchemephase2').val(A3);
+            $('#txtotherSchemephase2').prop('disabled', true);
+            if (A2 == "Other") {
+                $('#div_other_phase2').show();
+                $('#lop1div_other_phase2').show();
+            }
+            else {
+                $('#div_other_phase2').hide();
+                $('#lop1div_other_phase2').hide();
+            }
+
+
+        }
+        else {
+            demandsideleftoveralert = "No";
+            $('#lop1oaphase2').val("");
+        }
+    }
+    else {
+        demandsideleftoveralert = "No";
+        demandsidephase2alert = "No";
+        $('#oaphase2').val("");
+        $('#lop1oaphase2').val("");
+        $('#txtdepartmentphase2').val("0");
+        $('#txtdepartmentphase2').prop('disabled', false);
+        $('#txtschemaphase2').val("0");
+        $('#txtschemaphase2').prop('disabled', false);
+        $('#txtotherSchemephase2').val("");
+        $('#txtotherSchemephase2').prop('disabled', false);
+    }
+}
+
+
+function insert_data_phase2() {
+
+    $('.loader').show();
+
+    var xx = 0;
+    var id = idd;
+    var date1 = $('#oaphase2').val();
+    var date2 = $('#txtdepartmentphase2').val();
+    var date4 = $('#txtschemaphase2').val();
+    var date5 = $('#txtotherSchemephase2').val();
+    var date6 = $('#rphase2').val();
+    var date7 = $('#sphase2').val();
+    var date8 = $('#tphase2').val();
+    var date9 = $('#uphase2').val();
+
+    var date10 = $('#lop1oaphase2').val();
+    var date11 = $('#lop1txtdepartmentphase2').val();
+    var date12 = $('#lop1txtschemaphase2').val();
+    var date13 = $('#lop1txtotherSchemephase2').val();
+    var date14 = $('#lop1rphase2').val();
+    var date15 = $('#lop1uphase2').val();
+    var date16 = $('#lop1sphase2').val();
+    var date17 = $('#lop1tphase2').val();
+
+    var date18 = $('#phasea').val();
+    var date19 = $('#phaseb').val();
+    var date20 = $('#phasec').val();
+
+
+    if (demandsideleftoveralert == "yes" && demandsidephase2alert == "No") {
+        if (date11 == "0") {
+            xx = 1;
+            alert("Please Select Department Name Left Over Phase 1");
+            $('.loader').hide();
+            return false;
+        }
+        else if (date12 == "0") {
+            xx = 1;
+            alert("Please Select Scheme Name Left Over Phase 1");
+            $('.loader').hide();
+        }
+        else if (date12 == "Other") {
+            if (date13 == "") {
+                xx = 1;
+                alert("Please Enter Other Scheme Name Left Over Phase 1");
+                $('.loader').hide();
+            }
+        }
+        else if (date14 == "") {
+            xx = 1;
+            alert("Please Enter Area Covered (in ha) Left Over Phase 1");
+            $('.loader').hide();
+        }
+        else if (date15 == "") {
+            xx = 1;
+            alert("Please Enter Total Number of Benificiary Left Over Phase 1");
+            $('.loader').hide();
+        }
+        else if (date16 == "") {
+            xx = 1;
+            alert("Please Enter Expenditure incurred other than Atal Jal (in lakh) Left Over Phase 1");
+            $('.loader').hide();
+        }
+
+    }
+    else if (demandsideleftoveralert == "No" && demandsidephase2alert == "yes") {
+        if (date2 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Department Name");
+            $('.loader').hide();
+        }
+        else if (date4 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Scheme Name");
+            $('.loader').hide();
+        }
+        else if (date4 == "Other") {
+            if (date5 == "") {
+                xx = 1;
+                alert("Phase 2 Please Enter Other Scheme Name");
+                $('.loader').hide();
+            }
+        }
+        else if (date6 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Area Covered (in ha)");
+            $('.loader').hide();
+        }
+        else if (date9 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Total Number of Benificiary");
+            $('.loader').hide();
+        }
+        else if (date7 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+            $('.loader').hide();
+        }
+    }
+    else if (demandsideleftoveralert == "yes" && demandsidephase2alert == "yes") {
+
+        if (date11 == "0") {
+            xx = 1;
+            alert("Please Select Department Name Left Over Phase 1");
+            $('.loader').hide();
+        }
+        else if (date12 == "0") {
+            xx = 1;
+            alert("Please Select Scheme Name Left Over Phase 1");
+            $('.loader').hide();
+        }
+        else if (date12 == "Other") {
+            if (date13 == "") {
+                xx = 1;
+                alert("Please Enter Other Scheme Name Left Over Phase 1");
+                $('.loader').hide();
+            }
+        }
+        else if (date14 == "") {
+            xx = 1;
+            alert("Please Enter Area Covered (in ha) Left Over Phase 1");
+            $('.loader').hide();
+        }
+        else if (date15 == "") {
+            xx = 1;
+            alert("Please Enter Total Number of Benificiary Left Over Phase 1");
+            $('.loader').hide();
+        }
+        else if (date16 == "") {
+            xx = 1;
+            alert("Please Enter Expenditure incurred other than Atal Jal (in lakh) Left Over Phase 1");
+            $('.loader').hide();
+        }
+
+        else if (date2 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Department Name");
+            $('.loader').hide();
+        }
+        else if (date4 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Scheme Name");
+            $('.loader').hide();
+        }
+        else if (date4 == "Other") {
+            if (date5 == "") {
+                xx = 1;
+                alert("Phase 2 Please Enter Other Scheme Name");
+                $('.loader').hide();
+            }
+        }
+        else if (date6 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Area Covered (in ha)");
+            $('.loader').hide();
+        }
+        else if (date9 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Total Number of Benificiary");
+            $('.loader').hide();
+        }
+        else if (date7 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+            $('.loader').hide();
+        }
+    }
+    else if (phase1data == "No" && demandsidephase2alert == "No") {
+
+    }
+    else {
+        xx = 1;
+        alert("Please Enter Any One Convergence Expenditure Claim ");
+        $('.loader').hide();
+    }
+    debugger;
+    if (xx == 0) {
+        if (confirm("Are you sure you want to save data.")) {
+            if (phase1data == "No" && demandsidephase2alert == "No") {
+                date1 = "Phase- 2 (October-March 2023-24)";
+                date2 = date18;
+                date4 = date19;
+                date5 = date20;
+                date6 = "0";
+                date7 = "0";
+                date8 = "";
+                date9 = "0";
+
+
+                $.ajax({
+                    url: '/DLI3New/insert_demand_phase2',
+                    type: "POST",
+                    data: function () {
+
+                        var data = new FormData();
+                        data.append("id", id);
+                        data.append("year_subsidey_phase2", date1);
+                        data.append("departmentname_phase2", date2);
+                        data.append("schemename_phase2", date4);
+                        data.append("otherschemename_phase2", date5);
+                        data.append("area_covered_phase2", date6);
+                        data.append("expenditure_phase2", date7);
+                        data.append("remark_phase2", date8);
+                        data.append("total_beneficery2", date9);
+
+                        data.append("lop1year_subsidey_phase2", date10);
+                        data.append("lop1departmentname_phase2", date11);
+                        data.append("lop1schemename_phase2", date12);
+                        data.append("lop1otherschemename_phase2", date13);
+                        data.append("lop1area_covered_phase2", date14);
+                        data.append("lop1total_beneficery2", date15);
+                        data.append("lop1expenditure_phase2", date16);
+                        data.append("lop1remark_phase2", date17);
+
+
+
+                        return data;
+                    }(),
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        alert(response);
+                        if (response == "Logout") {
+                              window.location = "/Home/LogOut";
+                        }
+                        else if (response == "Successfully Saved") {
+                            $('#txtdepartmentphase2').prop('disabled', false);
+                            $('#txtschemaphase2').prop('disabled', false);
+                            $('#txtotherSchemephase2').prop('disabled', false);
+                            $('#oaphase2').val("");
+                            $('#txtdepartmentphase2').val("0");
+                            $('#txtschemaphase2').val("0");
+                            $('#txtotherSchemephase2').val("");
+                            $('#rphase2').val("");
+                            $('#sphase2').val("");
+                            $('#tphase2').val("");
+                            $('#uphase2').val("");
+
+                            $('#lop1oaphase2').val("");
+                            $('#lop1txtdepartmentphase2').val("0");
+                            $('#lop1txtschemaphase2').val("0");
+                            $('#lop1txtotherSchemephase2').val("");
+                            $('#lop1rphase2').val("");
+                            $('#lop1sphase2').val("");
+                            $('#lop1tphase2').val("");
+                            $('#lop1uphase2').val("");
+                            $("#exampleModal_phasetwo").hide();
+                            $(".showdiv").show();
+                            autoclickphase2();
+                        }
+
+                    },
+                    error: function (jqXHR, textStatus, errorMessage) {
+                        console.log(errorMessage);
+                    }
+                });
+
+            }
+            else if (demandsideleftoveralert == "yes" && demandsidephase2alert == "No") {
+                date1 = "Phase- 2 (October-March 2023-24)";
+                date2 = date11;
+                date4 = date12;
+                date5 = date13;
+                date6 = "0";
+                date7 = "0";
+                date8 = "";
+                date9 = "0";
+
+
+                $.ajax({
+                    url: '/DLI3New/insert_demand_phase2',
+                    type: "POST",
+                    data: function () {
+
+                        var data = new FormData();
+                        data.append("id", id);
+                        data.append("year_subsidey_phase2", date1);
+                        data.append("departmentname_phase2", date2);
+                        data.append("schemename_phase2", date4);
+                        data.append("otherschemename_phase2", date5);
+                        data.append("area_covered_phase2", date6);
+                        data.append("expenditure_phase2", date7);
+                        data.append("remark_phase2", date8);
+                        data.append("total_beneficery2", date9);
+
+                        data.append("lop1year_subsidey_phase2", date10);
+                        data.append("lop1departmentname_phase2", date11);
+                        data.append("lop1schemename_phase2", date12);
+                        data.append("lop1otherschemename_phase2", date13);
+                        data.append("lop1area_covered_phase2", date14);
+                        data.append("lop1total_beneficery2", date15);
+                        data.append("lop1expenditure_phase2", date16);
+                        data.append("lop1remark_phase2", date17);
+
+
+
+                        return data;
+                    }(),
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        alert(response);
+                        if (response == "Logout") {
+                              window.location = "/Home/LogOut";
+                        }
+                        else if (response == "Successfully Saved") {
+                            $('#txtdepartmentphase2').prop('disabled', false);
+                            $('#txtschemaphase2').prop('disabled', false);
+                            $('#txtotherSchemephase2').prop('disabled', false);
+                            $('#oaphase2').val("");
+                            $('#txtdepartmentphase2').val("0");
+                            $('#txtschemaphase2').val("0");
+                            $('#txtotherSchemephase2').val("");
+                            $('#rphase2').val("");
+                            $('#sphase2').val("");
+                            $('#tphase2').val("");
+                            $('#uphase2').val("");
+
+                            $('#lop1oaphase2').val("");
+                            $('#lop1txtdepartmentphase2').val("0");
+                            $('#lop1txtschemaphase2').val("0");
+                            $('#lop1txtotherSchemephase2').val("");
+                            $('#lop1rphase2').val("");
+                            $('#lop1sphase2').val("");
+                            $('#lop1tphase2').val("");
+                            $('#lop1uphase2').val("");
+                            $("#exampleModal_phasetwo").hide();
+                            $(".showdiv").show();
+                            autoclickphase2();
+                        }
+
+                    },
+                    error: function (jqXHR, textStatus, errorMessage) {
+                        console.log(errorMessage);
+                    }
+                });
+
+            }
+            else {
+                if (xx == 0) {
+                    $.ajax({
+                        url: '/DLI3New/insert_demand_phase2',
+                        type: "POST",
+                        data: function () {
+
+                            var data = new FormData();
+                            data.append("id", id);
+                            data.append("year_subsidey_phase2", date1);
+                            data.append("departmentname_phase2", date2);
+                            data.append("schemename_phase2", date4);
+                            data.append("otherschemename_phase2", date5);
+                            data.append("area_covered_phase2", date6);
+                            data.append("expenditure_phase2", date7);
+                            data.append("remark_phase2", date8);
+                            data.append("total_beneficery2", date9);
+
+                            data.append("lop1year_subsidey_phase2", date10);
+                            data.append("lop1departmentname_phase2", date11);
+                            data.append("lop1schemename_phase2", date12);
+                            data.append("lop1otherschemename_phase2", date13);
+                            data.append("lop1area_covered_phase2", date14);
+                            data.append("lop1total_beneficery2", date15);
+                            data.append("lop1expenditure_phase2", date16);
+                            data.append("lop1remark_phase2", date17);
+
+
+
+                            return data;
+                        }(),
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+
+                            alert(response);
+                            if (response == "Logout") {
+                                  window.location = "/Home/LogOut";
+                            }
+                            else if (response == "Successfully Saved") {
+                                $('#txtdepartmentphase2').prop('disabled', false);
+                                $('#txtschemaphase2').prop('disabled', false);
+                                $('#txtotherSchemephase2').prop('disabled', false);
+                                $('#oaphase2').val("");
+                                $('#txtdepartmentphase2').val("0");
+                                $('#txtschemaphase2').val("0");
+                                $('#txtotherSchemephase2').val("");
+                                $('#rphase2').val("");
+                                $('#sphase2').val("");
+                                $('#tphase2').val("");
+                                $('#uphase2').val("");
+                                $('#lop1oaphase2').val("");
+                                $('#lop1txtdepartmentphase2').val("0");
+                                $('#lop1txtschemaphase2').val("0");
+                                $('#lop1txtotherSchemephase2').val("");
+                                $('#lop1rphase2').val("");
+                                $('#lop1sphase2').val("");
+                                $('#lop1tphase2').val("");
+                                $('#lop1uphase2').val("");
+                                $("#exampleModal_phasetwo").hide();
+                                $(".showdiv").show();
+                                autoclickphase2();
+                            }
+
+                        },
+                        error: function (jqXHR, textStatus, errorMessage) {
+                            console.log(errorMessage);
+                        }
+                    });
+                }
+            }
+        }
+
+        else {
+            $('.loader').hide();
+        }
+    }
+}
+
+function autoclickphase2() {
+    $("#autoclickd2").click();
+    Data_get_phase2();
+
+}
+var phase2submit_id = 0;
+function data_show_phase2(id) {
+
+    phase2submit_id = id;
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_demand_phase2',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var Tbodyhtml = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                Tbodyhtml = '<tr style="text-align:center;"><td colspan="10">No Data</td></tr>';
+                $('#phase1_data').html(Tbodyhtml);
+
+            }
+            else {
+                if (data.length != 0) {
+
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var dd = "Phase-2(October-March 2023-24)";
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var findinglop1data = "No";
+                            var year_subsidey_phase2 = data[i].year_subsidey_phase2;
+                            if (year_subsidey_phase2 == null || year_subsidey_phase2 == "") {
+                                findinglop1data = "Yes";
+                                year_subsidey_phase2 = "";
+                            }
+                            var departmentname_phase2 = data[i].departmentname_phase2;
+                            if (departmentname_phase2 == "0" || departmentname_phase2 == "") {
+                                findinglop1data = "Yes";
+                                departmentname_phase2 = "";
+                            }
+                            var schemename_phase2 = data[i].schemename_phase2;
+                            if (schemename_phase2 == "0" || schemename_phase2 == "") {
+                                findinglop1data = "Yes";
+                                schemename_phase2 = "";
+                            }
+                            var otherschemename_phase = data[i].otherschemename_phase2;
+                            if (otherschemename_phase == null || otherschemename_phase == "") {
+                                otherschemename_phase = "";
+                            }
+                            var area_covered_phase2 = data[i].area_covered_phase2;
+                            if (area_covered_phase2 == null || area_covered_phase2 == "") {
+                                findinglop1data = "Yes";
+                                area_covered_phase2 = "";
+                            }
+                            var total_beneficery_phase2 = data[i].total_beneficery_phase2;
+                            if (total_beneficery_phase2 == null || total_beneficery_phase2 == "") {
+                                findinglop1data = "Yes";
+                                total_beneficery_phase2 = "";
+                            }
+                            var expenditure_phase2 = data[i].expenditure_phase2;
+                            if (expenditure_phase2 == null || expenditure_phase2 == "") {
+                                findinglop1data = "Yes";
+                                expenditure_phase2 = "";
+                            }
+                            var remark_phase2 = data[i].remark_phase2;
+
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Approved").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+                                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                else {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').show();
+                                    $('#txtreject2remark').show();
+                                    $('#phase2reject').show();
+                                }
+
+                                $('#gp_status2phase').text("At SPMU").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></tr>';
+
+                                    }
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></tr>';
+
+                                    }
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+
+                        }
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var dd = "Phase-2(October-March 2023-24)";
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+
+                            var lop1departmentname_phase2 = data[i].lop1departmentname_phase2;
+                            var lop1schemename_phase2 = data[i].lop1schemename_phase2;
+                            var lop1otherschemename_phase = data[i].lop1otherschemename_phase2;
+
+                            var findinglop1data = "No";
+                            var year_subsidey_phase2 = data[i].year_subsidey_phase2;
+                            if (year_subsidey_phase2 == null || year_subsidey_phase2 == "") {
+                                findinglop1data = "Yes";
+                                year_subsidey_phase2 = "";
+                            }
+                            var departmentname_phase2 = data[i].departmentname_phase2;
+                            if (departmentname_phase2 == "0" || departmentname_phase2 == "") {
+                                findinglop1data = "Yes";
+                                departmentname_phase2 = "";
+                            }
+                            var schemename_phase2 = data[i].schemename_phase2;
+                            if (schemename_phase2 == "0" || schemename_phase2 == "") {
+                                findinglop1data = "Yes";
+                                schemename_phase2 = "";
+                            }
+                            var otherschemename_phase = data[i].otherschemename_phase2;
+                            if (otherschemename_phase == null || otherschemename_phase == "") {
+                                otherschemename_phase = "";
+                            }
+                            var area_covered_phase2 = data[i].area_covered_phase2;
+                            if (area_covered_phase2 == null || area_covered_phase2 == "") {
+                                findinglop1data = "Yes";
+                                area_covered_phase2 = "";
+                            }
+                            var total_beneficery_phase2 = data[i].total_beneficery_phase2;
+                            if (total_beneficery_phase2 == null || total_beneficery_phase2 == "") {
+                                findinglop1data = "Yes";
+                                total_beneficery_phase2 = "";
+                            }
+                            var expenditure_phase2 = data[i].expenditure_phase2;
+                            if (expenditure_phase2 == null || expenditure_phase2 == "") {
+                                findinglop1data = "Yes";
+                                expenditure_phase2 = "";
+                            }
+                            var remark_phase2 = data[i].remark_phase2;
+
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Approved").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Submitted to SPMU").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Rejected") {
+
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+                                        Tbodyhtml += '<tr> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase2' + i + '" value="' + dd + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select disabled id="departmentname_phase2_aa' + i + '" disabled class="form-control select_width_set"><option value="' + lop1departmentname_phase2 + '">' + lop1departmentname_phase2 + '</option></select></td>';
+                                        Tbodyhtml += '<td><select disabled id="schemename_phase2_aa' + i + '" disabled onchange="ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + lop1schemename_phase2 + '">' + lop1schemename_phase2 + '</option></select></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control" disabled style="display:none;"  id="otherschemename2_phase_aa' + i + '" value="' + lop1otherschemename_phase + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase' + i + '"   /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase' + i + '"   /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase' + i + '"  /></td>';
+
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase' + i + '" value=""  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton"   onclick="update_data_phase2(' + data[i].id + ',' + i + ')">Save</button></td><td></td></tr >';
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"   onclick="editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                        Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase2(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                        Tbodyhtml += '<td><button type="button"  class="btn btn-success hidebutton"  onclick="add_new_phase2(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+
+                                        Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase2' + i + '" value="' + data[i].year_subsidey_phase2 + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select disabled id="departmentname_phase2_aa' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase2 + '">' + data[i].departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                        Tbodyhtml += '<td><select disabled id="schemename_phase2_aa' + i + '" onchange="ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase2 + '">' + data[i].schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control"  id="otherschemename2_phase_aa' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase' + i + '" value="' + data[i].area_covered_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase' + i + '" value="' + data[i].total_beneficery_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase' + i + '" value="' + data[i].expenditure_phase2 + '" /></td>';
+
+
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                        Tbodyhtml += '<tr id="Hide_AWP2_TR_edit_new' + i + '" style="display:none;"> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey2_phase' + i + '" value="' + data[i].year_subsidey_phase2 + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select id="departmentname2_phase' + i + '" class="form-control select_width_set"><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                        Tbodyhtml += '<td><select id="schemename2_phase' + i + '" onchange="ddlotherphase2_addnew(' + i + ')" class="form-control select_width_set"><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="otherschemename2_phase' + i + '"/></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase_aa' + i + '"   /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase_aa' + i + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase_aa' + i + '" /></td>';
+
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase_aa' + i + '"  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="save_newrow_phase2(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_phase2addnew(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase2' + i + '" value="' + data[i].year_subsidey_phase2 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select disabled id="departmentname_phase2_new' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase2 + '">' + data[i].departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select disabled id="schemename_phase2_new' + i + '" onchange="ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase2 + '">' + data[i].schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control"  id="otherschemename2_phase_new' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase_new' + i + '" value="' + data[i].area_covered_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase_new' + i + '" value="' + data[i].total_beneficery_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase_new' + i + '" value="' + data[i].expenditure_phase2 + '" /></td>';
+
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase_new' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+
+                                }
+                                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                else {
+                                    $('#phase2submittospmu').show();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                $('#gp_status2phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+                                        Tbodyhtml += '<tr> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase2' + i + '" value="' + dd + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select id="departmentname_phase2_aa' + i + '" disabled class="form-control select_width_set"><option value="' + lop1departmentname_phase2 + '">' + lop1departmentname_phase2 + '</option></select></td>';
+                                        Tbodyhtml += '<td><select id="schemename_phase2_aa' + i + '" disabled onchange="ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + lop1schemename_phase2 + '">' + lop1schemename_phase2 + '</option></select></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control" disabled style="display:none;"  id="otherschemename2_phase_aa' + i + '" value="' + lop1otherschemename_phase + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase' + i + '"   /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase' + i + '"   /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase' + i + '"  /></td>';
+
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase' + i + '" value=""  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton"   onclick="update_data_phase2(' + data[i].id + ',' + i + ')">Save</button></td><td></td></tr >';
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td><button class="btn btn-primary hidebutton"   type="button"  onclick="editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                        Tbodyhtml += '<td><button class="btn btn-danger hidebutton"   type="button"  onclick="delete_phase2(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                        Tbodyhtml += '<td><button type="button"  class="btn btn-success hidebutton"   onclick="add_new_phase2(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+
+                                        Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase2' + i + '" value="' + data[i].year_subsidey_phase2 + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select disabled id="departmentname_phase2_aa' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase2 + '">' + data[i].departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                        Tbodyhtml += '<td><select disabled id="schemename_phase2_aa' + i + '" onchange="ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase2 + '">' + data[i].schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control"  id="otherschemename2_phase_aa' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase' + i + '" value="' + data[i].area_covered_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase' + i + '" value="' + data[i].total_beneficery_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase' + i + '" value="' + data[i].expenditure_phase2 + '"  /></td>';
+
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                        Tbodyhtml += '<tr id="Hide_AWP2_TR_edit_new' + i + '" style="display:none;"> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey2_phase' + i + '" value="' + data[i].year_subsidey_phase2 + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select id="departmentname2_phase' + i + '" class="form-control select_width_set"><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                        Tbodyhtml += '<td><select id="schemename2_phase' + i + '" onchange="ddlotherphase2_addnew(' + i + ')" class="form-control select_width_set"><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="otherschemename2_phase' + i + '"/></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase_aa' + i + '"   /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase_aa' + i + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase_aa' + i + '"   /></td>';
+
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase_aa' + i + '"  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="save_newrow_phase2(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_phase2addnew(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase2' + i + '" value="' + data[i].year_subsidey_phase2 + '" disabled /></td>';
+                                    Tbodyhtml += '<td><select disabled id="departmentname_phase2_new' + i + '" class="form-control select_width_set"><option value="' + data[i].departmentname_phase2 + '">' + data[i].departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                    Tbodyhtml += '<td><select disabled id="schemename_phase2_new' + i + '" onchange="ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schemename_phase2 + '">' + data[i].schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control"  id="otherschemename2_phase_new' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="area_covered2_phase_new' + i + '" value="' + data[i].area_covered_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery2_phase_new' + i + '" value="' + data[i].total_beneficery_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure2_phase_new' + i + '" value="' + data[i].expenditure_phase2 + '"    /></td>';
+
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark2_phase_new' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+
+                                }
+                                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                else {
+                                    $('#phase2submittospmu').show();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                $('#gp_status2phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            debugger;
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var dd = "Phase-2(October-March 2023-24)";
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var findinglop1data = "No";
+                            var year_subsidey_phase2 = data[i].year_subsidey_phase2;
+                            if (year_subsidey_phase2 == null || year_subsidey_phase2 == "") {
+                                findinglop1data = "Yes";
+                                year_subsidey_phase2 = "";
+                            }
+                            var departmentname_phase2 = data[i].departmentname_phase2;
+                            if (departmentname_phase2 == "0" || departmentname_phase2 == "") {
+                                findinglop1data = "Yes";
+                                departmentname_phase2 = "";
+                            }
+                            var schemename_phase2 = data[i].schemename_phase2;
+                            if (schemename_phase2 == "0" || schemename_phase2 == "") {
+                                findinglop1data = "Yes";
+                                schemename_phase2 = "";
+                            }
+                            var otherschemename_phase = data[i].otherschemename_phase2;
+                            if (otherschemename_phase == null || otherschemename_phase == "") {
+                                otherschemename_phase = "";
+                            }
+                            var area_covered_phase2 = data[i].area_covered_phase2;
+                            if (area_covered_phase2 == null || area_covered_phase2 == "") {
+                                findinglop1data = "Yes";
+                                area_covered_phase2 = "";
+                            }
+                            var total_beneficery_phase2 = data[i].total_beneficery_phase2;
+                            if (total_beneficery_phase2 == null || total_beneficery_phase2 == "") {
+                                findinglop1data = "Yes";
+                                total_beneficery_phase2 = "";
+                            }
+                            var expenditure_phase2 = data[i].expenditure_phase2;
+                            if (expenditure_phase2 == null || expenditure_phase2 == "") {
+                                findinglop1data = "Yes";
+                                expenditure_phase2 = "";
+                            }
+                            var remark_phase2 = data[i].remark_phase2;
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Approved").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Submitted to SPMU").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></tr>';
+                                    }
+
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                debugger;
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></tr>';
+
+                                    }
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+
+                        }
+                    }
+                }
+
+                $('#phase2_data_old').html(Tbodyhtml);
+                $('.disable').attr("disabled", "disabled");
+                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                    $('.hidebutton').hide();
+                }
+                else {
+                    $('.hidebutton').show();
+                }
+
+
+            }
+            lop1data_show_phase2(id);
+            $('.loader').hide();
+        }
+    });
+}
+
+function lop1data_show_phase2(id) {
+
+    phase2submit_id = id;
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/lop1filldata_demand_phase2',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var Tbodyhtml = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                Tbodyhtml = '<tr style="text-align:center;"><td colspan="10">No Data</td></tr>';
+                $('#phase1_data').html(Tbodyhtml);
+
+            }
+            else {
+                if (data.length != 0) {
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var dd = "Left Over Phase 1 (April-September 2023-24)";
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var findinglop1data = "No";
+                            var year_subsidey_phase2 = data[i].lop1year_subsidey_phase2;
+                            if (year_subsidey_phase2 == null || year_subsidey_phase2 == "") {
+                                findinglop1data = "Yes";
+                                year_subsidey_phase2 = "";
+                            }
+                            var departmentname_phase2 = data[i].lop1departmentname_phase2;
+                            if (departmentname_phase2 == "0" || departmentname_phase2 == "") {
+                                findinglop1data = "Yes";
+                                departmentname_phase2 = "";
+                            }
+                            var schemename_phase2 = data[i].lop1schemename_phase2;
+                            if (schemename_phase2 == "0" || schemename_phase2 == "") {
+                                findinglop1data = "Yes";
+                                schemename_phase2 = "";
+                            }
+                            var otherschemename_phase = data[i].lop1otherschemename_phase2;
+                            if (otherschemename_phase == null || otherschemename_phase == "") {
+
+                                otherschemename_phase = "";
+                            }
+                            var area_covered_phase2 = data[i].lop1area_covered_phase2;
+                            if (area_covered_phase2 == null || area_covered_phase2 == "") {
+                                findinglop1data = "Yes";
+                                area_covered_phase2 = "";
+                            }
+                            var total_beneficery_phase2 = data[i].lop1total_beneficery_phase2;
+                            if (total_beneficery_phase2 == null || total_beneficery_phase2 == "") {
+                                findinglop1data = "Yes";
+                                total_beneficery_phase2 = "";
+                            }
+                            var expenditure_phase2 = data[i].lop1expenditure_phase2;
+                            if (expenditure_phase2 == null || expenditure_phase2 == "") {
+                                findinglop1data = "Yes";
+                                expenditure_phase2 = "";
+                            }
+                            var remark_phase2 = data[i].lop1remark_phase2;
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Approved").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+                                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                else {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').show();
+                                    $('#txtreject2remark').show();
+                                    $('#phase2reject').show();
+                                }
+                                $('#gp_status2phase').text("At SPMU").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></tr>';
+
+                                    }
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></tr>';
+
+
+                                    }
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+
+                        }
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var lop1departmentname_phase2 = data[i].departmentname_phase2;
+                            var lop1schemename_phase2 = data[i].schemename_phase2;
+                            var lop1otherschemename_phase = data[i].otherschemename_phase2;
+
+
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var dd = "Left Over Phase 1 (April-September 2023-24)";
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var gfdg = "No";
+                            var year_subsidey_phase1 = data[i].approve_phase1;
+                            if (year_subsidey_phase1 != "Approved") {
+                                gfdg = "Yes";
+
+                            }
+
+                            var findinglop1data = "No";
+                            var year_subsidey_phase2 = data[i].lop1year_subsidey_phase2;
+                            if (year_subsidey_phase2 == null || year_subsidey_phase2 == "") {
+                                findinglop1data = "Yes";
+                                year_subsidey_phase2 = "";
+                            }
+                            var departmentname_phase2 = data[i].lop1departmentname_phase2;
+                            if (departmentname_phase2 == "0" || departmentname_phase2 == "") {
+                                findinglop1data = "Yes";
+                                departmentname_phase2 = "";
+                            }
+                            var schemename_phase2 = data[i].lop1schemename_phase2;
+                            if (schemename_phase2 == "0" || schemename_phase2 == "") {
+                                findinglop1data = "Yes";
+                                schemename_phase2 = "";
+                            }
+                            var otherschemename_phase = data[i].lop1otherschemename_phase2;
+                            if (otherschemename_phase == null || otherschemename_phase == "") {
+
+                                otherschemename_phase = "";
+                            }
+                            var area_covered_phase2 = data[i].lop1area_covered_phase2;
+                            if (area_covered_phase2 == null || area_covered_phase2 == "") {
+                                findinglop1data = "Yes";
+                                area_covered_phase2 = "";
+                            }
+                            var total_beneficery_phase2 = data[i].lop1total_beneficery_phase2;
+                            if (total_beneficery_phase2 == null || total_beneficery_phase2 == "") {
+                                findinglop1data = "Yes";
+                                total_beneficery_phase2 = "";
+                            }
+                            var expenditure_phase2 = data[i].lop1expenditure_phase2;
+                            if (expenditure_phase2 == null || expenditure_phase2 == "") {
+                                findinglop1data = "Yes";
+                                expenditure_phase2 = "";
+                            }
+                            var remark_phase2 = data[i].lop1remark_phase2;
+                            //if (remark_phase2 == null || remark_phase2 == "") {
+                            //    findinglop1data = "Yes";
+                            //    remark_phase2 = "";
+                            //}
+
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+
+                                    }
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Approved").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+
+                                    }
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Submitted to SPMU").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (gfdg == "No") {
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr> <td></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey_phase2' + i + '" value="' + dd + '" disabled /></td>';
+                                            Tbodyhtml += '<td><select id="lop1departmentname_phase2_aa' + i + '" disabled class="form-control select_width_set"><option value="' + lop1departmentname_phase2 + '">' + lop1departmentname_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><select id="lop1schemename_phase2_aa' + i + '" disabled onchange="lop1ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + lop1schemename_phase2 + '">' + lop1schemename_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control" disabled style="display:none;"  id="lop1otherschemename2_phase_aa' + i + '" value="' + lop1otherschemename_phase + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase' + i + '"   /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase' + i + '"   /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase' + i + '" /></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase' + i + '" value=""  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton"   onclick="lop1update_data_phase2(' + data[i].id + ',' + i + ')">Save</button></td><td></td></tr >';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="lop1AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td><button class="btn btn-primary hidebutton"  "  type="button"  onclick="lop1editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                            Tbodyhtml += '<td><button class="btn btn-danger hidebutton"    type="button"  onclick="lop1delete_phase2(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                            Tbodyhtml += '<td><button type="button"  class="btn btn-success hidebutton"   onclick="lop1add_new_phase2(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+
+                                            Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey_phase2' + i + '" value="' + year_subsidey_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><select disabled id="lop1departmentname_phase2_aa' + i + '" class="form-control select_width_set"><option value="' + departmentname_phase2 + '">' + departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                            Tbodyhtml += '<td><select disabled id="lop1schemename_phase2_aa' + i + '" onchange="lop1ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + schemename_phase2 + '">' + schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control"  id="lop1otherschemename2_phase_aa' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase' + i + '" value="' + area_covered_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase' + i + '" value="' + total_beneficery_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase' + i + '" value="' + expenditure_phase2 + '"  /></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase' + i + '" value="' + remark_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1update_data_phase2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                            Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_edit_new' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey2_phase' + i + '" value="' + dd + '" disabled /></td>';
+                                            Tbodyhtml += '<td><select id="lop1departmentname2_phase' + i + '" class="form-control select_width_set"><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                            Tbodyhtml += '<td><select id="lop1schemename2_phase' + i + '" onchange="lop1ddlotherphase2_addnew(' + i + ')" class="form-control select_width_set"><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1otherschemename2_phase' + i + '"/></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase_aa' + i + '"   /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase_aa' + i + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase_aa' + i + '"   /></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase_aa' + i + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1save_newrow_phase2(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data_phase2addnew(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                        }
+                                    }
+                                    else if (entry_phase == "phase2_new") {
+                                        var otherschemename_phase = data[i].lop1otherschemename_phase2;
+                                        if (otherschemename_phase == null) {
+                                            otherschemename_phase = "";
+                                        }
+                                        Tbodyhtml += '<tr id="lop1AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td><button class="btn btn-primary hidebutton"   type="button"  onclick="lop1editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                        Tbodyhtml += '<td><button class="btn btn-danger hidebutton"    type="button"  onclick="lop1delete_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                                        Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey_phase2' + i + '" value="' + data[i].lop1year_subsidey_phase2 + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select disabled id="lop1departmentname_phase2_new' + i + '" class="form-control select_width_set"><option value="' + data[i].lop1departmentname_phase2 + '">' + data[i].lop1departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                        Tbodyhtml += '<td><select disabled id="lop1schemename_phase2_new' + i + '" onchange="lop1ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].lop1schemename_phase2 + '">' + data[i].lop1schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control"  id="lop1otherschemename2_phase_new' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase_new' + i + '" value="' + data[i].lop1area_covered_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase_new' + i + '" value="' + data[i].lop1total_beneficery_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase_new' + i + '"   /></td>';
+
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase_new' + i + '" value="' + data[i].lop1remark_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1update_data_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+
+                                    }
+                                }
+                                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                else {
+                                    $('#phase2submittospmu').show();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                $('#gp_status2phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (gfdg == "No") {
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr> <td></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey_phase2' + i + '" value="' + dd + '" disabled /></td>';
+                                            Tbodyhtml += '<td><select id="lop1departmentname_phase2_aa' + i + '" disabled class="form-control select_width_set"><option value="' + lop1departmentname_phase2 + '">' + lop1departmentname_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><select id="lop1schemename_phase2_aa' + i + '" disabled onchange="lop1ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + lop1schemename_phase2 + '">' + lop1schemename_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control" disabled style="display:none;"  id="lop1otherschemename2_phase_aa' + i + '" value="' + lop1otherschemename_phase + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase' + i + '"   /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase' + i + '"   /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase' + i + '" /></td>';
+
+
+                                            /*  Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1expenditure2_phase' + i + '"   /></td>';*/
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase' + i + '" value=""  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary  hidebutton"    onclick="lop1update_data_phase2(' + data[i].id + ',' + i + ')">Save</button></td><td></td></tr >';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="lop1AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td><button class="btn btn-primary hidebutton"    type="button"  onclick="lop1editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                            Tbodyhtml += '<td><button class="btn btn-danger hidebutton"  type="button"  onclick="lop1delete_phase2(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                            Tbodyhtml += '<td><button type="button"  class="btn btn-success hidebutton"    onclick="lop1add_new_phase2(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+
+                                            Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey_phase2' + i + '" value="' + year_subsidey_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><select disabled  id="lop1departmentname_phase2_aa' + i + '" class="form-control select_width_set"><option value="' + departmentname_phase2 + '">' + departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                            Tbodyhtml += '<td><select disabled  id="lop1schemename_phase2_aa' + i + '" onchange="lop1ddl2other(' + i + ')" class="form-control select_width_set"><option value="' + schemename_phase2 + '">' + schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input  disabled type="text" maxlength="250" class="form-control"  id="lop1otherschemename2_phase_aa' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase' + i + '" value="' + area_covered_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase' + i + '" value="' + total_beneficery_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase' + i + '"value="' + expenditure_phase2 + '" /></td>';
+
+                                            /*Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1expenditure2_phase' + i + '" value="' + expenditure_phase2 + '"  /></td>';*/
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase' + i + '" value="' + remark_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1update_data_phase2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                            Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_edit_new' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey2_phase' + i + '" value="' + dd + '" disabled /></td>';
+                                            Tbodyhtml += '<td><select id="lop1departmentname2_phase' + i + '" class="form-control select_width_set"><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                            Tbodyhtml += '<td><select id="lop1schemename2_phase' + i + '" onchange="lop1ddlotherphase2_addnew(' + i + ')" class="form-control select_width_set"><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1otherschemename2_phase' + i + '"/></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase_aa' + i + '"   /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase_aa' + i + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase_aa' + i + '" /></td>';
+
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase_aa' + i + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1save_newrow_phase2(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data_phase2addnew(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                        }
+                                    }
+                                    else if (entry_phase == "phase2_new") {
+                                        var otherschemename_phase = data[i].lop1otherschemename_phase2;
+                                        if (otherschemename_phase == null) {
+                                            otherschemename_phase = "";
+                                        }
+                                        Tbodyhtml += '<tr id="lop1AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].lop1remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td><button class="btn btn-primary hidebutton"    type="button"  onclick="lop1editrowcomp_A_Good_data2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                        Tbodyhtml += '<td><button class="btn btn-danger hidebutton"    type="button"  onclick="lop1delete_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+
+                                        Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="lop1year_subsidey_phase2' + i + '" value="' + data[i].lop1year_subsidey_phase2 + '" disabled /></td>';
+                                        Tbodyhtml += '<td><select disabled  id="lop1departmentname_phase2_new' + i + '" class="form-control select_width_set"><option value="' + data[i].lop1departmentname_phase2 + '">' + data[i].lop1departmentname_phase2 + '</option><option value="0">--Select Department  Name --</option><option value="Agriculture &amp; Farmer Welfare Department">Agriculture &amp; Farmer Welfare Department</option><option value="Agriculture Soil &amp; Conservation Office">Agriculture Soil &amp; Conservation Office</option><option value="Department of Agriculture">Department of Agriculture</option><option value="Department of Forest">Department of Forest</option><option value="Department of Sericulture ">Department of Sericulture </option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="MICADA">MICADA</option><option value="NGO">NGO</option><option value="Rural Development Department (ZP / GP)">Rural Development Department (ZP / GP)</option><option value="Social Forestry Department">Social Forestry Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Department of Horticulture">Department of Horticulture</option><option value="Ground Water Department">Ground Water Department</option></select></td>';
+                                        Tbodyhtml += '<td><select disabled  id="lop1schemename_phase2_new' + i + '" onchange="lop1ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].lop1schemename_phase2 + '">' + data[i].lop1schemename_phase2 + '</option><option value="0">--Select Scheme  Name --</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY">PMKSY</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="MGNREGA">MGNREGA</option><option value="Other">Other</option></select></td>';
+                                        Tbodyhtml += '<td><input  disabled type="text" maxlength="250" class="form-control"  id="lop1otherschemename2_phase_new' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1area_covered2_phase_new' + i + '" value="' + data[i].lop1area_covered_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="lop1total_beneficery2_phase_new' + i + '" value="' + data[i].lop1total_beneficery_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="lop1expenditure2_phase_new' + i + '" value="' + data[i].lop1expenditure_phase2 + '"  /></td>';
+
+                                        /*Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="lop1expenditure2_phase_new' + i + '" value="' + data[i].lop1expenditure_phase2 + '"  /></td>';*/
+                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1remark2_phase_new' + i + '" value="' + data[i].lop1remark_phase2 + '"  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1update_data_phase2_addnew(' + data[i].phaseid2 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+
+                                    }
+                                }
+                                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                    $('#phase2submittospmu').hide();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                else {
+                                    $('#phase2submittospmu').show();
+                                    $('#phase2submittoapprove').hide();
+                                    $('#txtreject2remark').hide();
+                                    $('#phase2reject').hide();
+                                }
+                                $('#gp_status2phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            debugger;
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var dd = "Left Over Phase 1 (April-September 2023-24)";
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            var findinglop1data = "No";
+                            var year_subsidey_phase2 = data[i].lop1year_subsidey_phase2;
+                            if (year_subsidey_phase2 == null || year_subsidey_phase2 == "") {
+                                findinglop1data = "Yes";
+                                year_subsidey_phase2 = "";
+                            }
+                            var departmentname_phase2 = data[i].lop1departmentname_phase2;
+                            if (departmentname_phase2 == "0" || departmentname_phase2 == "") {
+                                findinglop1data = "Yes";
+                                departmentname_phase2 = "";
+                            }
+                            var schemename_phase2 = data[i].lop1schemename_phase2;
+                            if (schemename_phase2 == "0" || schemename_phase2 == "") {
+                                findinglop1data = "Yes";
+                                schemename_phase2 = "";
+                            }
+                            var otherschemename_phase = data[i].lop1otherschemename_phase2;
+                            if (otherschemename_phase == null || otherschemename_phase == "") {
+
+                                otherschemename_phase = "";
+                            }
+                            var area_covered_phase2 = data[i].lop1area_covered_phase2;
+                            if (area_covered_phase2 == null || area_covered_phase2 == "") {
+                                findinglop1data = "Yes";
+                                area_covered_phase2 = "";
+                            }
+                            var total_beneficery_phase2 = data[i].lop1total_beneficery_phase2;
+                            if (total_beneficery_phase2 == null || total_beneficery_phase2 == "") {
+                                findinglop1data = "Yes";
+                                total_beneficery_phase2 = "";
+                            }
+                            var expenditure_phase2 = data[i].lop1expenditure_phase2;
+                            if (expenditure_phase2 == null || expenditure_phase2 == "") {
+                                findinglop1data = "Yes";
+                                expenditure_phase2 = "";
+                            }
+                            var remark_phase2 = data[i].lop1remark_phase2;
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Approved").css({ 'color': 'Green' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+
+                                    }
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Submitted to SPMU").css({ 'color': 'Blue' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></tr>';
+
+
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                debugger;
+                                if (entry_phase == "phase2") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+                                    }
+                                }
+                                else if (entry_phase == "phase2_new") {
+                                    if (findinglop1data == "Yes") {
+
+                                    }
+                                    else {
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + year_subsidey_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + departmentname_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + schemename_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + area_covered_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + total_beneficery_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></tr>';
+                                    }
+
+
+
+                                }
+
+                                $('#phase2submittospmu').hide();
+                                $('#phase2submittoapprove').hide();
+                                $('#txtreject2remark').hide();
+                                $('#phase2reject').hide();
+                                $('#gp_status2phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+
+                        }
+                    }
+                }
+
+                $('#leftoverphase1_data_old').html(Tbodyhtml);
+                $('.disable').attr("disabled", "disabled");
+                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                    $('.hidebutton').hide();
+                }
+                else {
+                    $('.hidebutton').show();
+                }
+            }
+            fill_data_wsp_phase2(id);
+            $('.loader').hide();
+        }
+    });
+}
+
+function validatenew(e) {
+    var { value } = event.target;
+    var countBeforeDecimal = 0;
+    var countAfterDecimal = 0;
+    var decimalReached = false;
+
+    for (var i = 0; i < value.length; i++) {
+        if (value[i] == '.') {
+            decimalReached = true;
+            continue; // Skip to the next iteration as '.' should not be counted
+        }
+
+        if (decimalReached) {
+            countAfterDecimal++;
+            if (countAfterDecimal > 1) {
+                e.preventDefault();
+                return; // Stop further validation if condition met
+            }
+        } else {
+            countBeforeDecimal++;
+            if (countBeforeDecimal > 5) {
+                e.preventDefault();
+                return; // Stop further validation if condition met
+            }
+        }
+    }
+
+    // If the loop completes without any issues, the input is valid
+}
+
+function validatenewsupply(e) {
+    var { value } = event.target;
+    var countBeforeDecimal = 0;
+    var countAfterDecimal = 0;
+    var decimalReached = false;
+
+    for (var i = 0; i < value.length; i++) {
+        if (value[i] == '.') {
+            decimalReached = true;
+            continue; // Skip to the next iteration as '.' should not be counted
+        }
+
+        if (decimalReached) {
+            countAfterDecimal++;
+            if (countAfterDecimal > 1) {
+                e.preventDefault();
+                return; // Stop further validation if condition met
+            }
+        } else {
+            countBeforeDecimal++;
+            if (countBeforeDecimal > 5) {
+                e.preventDefault();
+                return; // Stop further validation if condition met
+            }
+        }
+    }
+
+    // If the loop completes without any issues, the input is valid
+}
+
+function fill_data_wsp_phase2(id) {
+
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_demand_wsp',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var tr = '';
+            var sno = 0;
+            var id = 0;
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    id = data[0].id;
+                    var scheme_name = data[i].scheme_name;
+                    if (scheme_name == "Other") {
+                        var other = data[i].other_scheme;
+                        var abc = scheme_name + ' - ' + other;
+                        scheme_name = abc;
+                    }
+                    var total_crop_area = data[i].total_crop_area;
+                    if (total_crop_area == null) {
+                        total_crop_area = "";
+                    }
+                    var fund_for = data[i].fund_for;
+                    if (fund_for == "Other Measures") {
+                        var other = data[i].innovative_measures;
+                        var abc = fund_for + ' - ' + other;
+                        fund_for = abc;
+                    }
+                    sno = i + 1;
+                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td></tr> ';
+                }
+                $('#tbl_details_add_phase2').html(tr);
+            }
+            fill_data_phase1(id);
+        }
+    });
+}
+function fill_data_phase1(id) {
+
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_demand',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var Tbodyhtml = '';
+            var sno = 0;
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var entry_phase = data[i].entry_phase1;
+                    if (entry_phase == null) {
+                        entry_phase = "";
+                    }
+
+                    var otherschemename_phase = data[i].otherschemename_phase1;
+                    if (otherschemename_phase == null) {
+                        otherschemename_phase = "";
+                    }
+                    var approve = data[i].approve_phase1;
+                    if (approve == null) {
+                        approve = "";
+                    }
+                    if (approve == "Approved") {
+
+
+                        if (entry_phase == "phase1") {
+                            sno = i + 1;
+
+                            Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td></tr>';
+                        }
+                        if (entry_phase == "phase1_new") {
+                            sno = i + 1;
+
+                            Tbodyhtml += '<tr id="AWP1_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].year_subsidey_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].departmentname_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].schemename_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].area_covered_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td></tr>';
+                        }
+                        else {
+
+                        }
+                    }
+                    // $('#leftoverphase1_data_old').html("");
+                }
+                $('#phase2_data').html(Tbodyhtml);
+            }
+        }
+    });
+}
+var phase2bb = 0;
+function editrowcomp_A_Good_data2(i) {
+
+    phase2bb = i;
+
+
+    var other = $('#schemename_phase2_aa' + i).val();
+    if (other == "Other") {
+        $('#otherschemename2_phase_aa' + i).show();
+    }
+    else {
+        $('#otherschemename2_phase_aa' + i).hide();
+    }
+    var other_new = $('#schemename_phase2_new' + i).val();
+    if (other_new == "Other") {
+        $('#otherschemename2_phase_new' + i).show();
+    }
+    else {
+        $('#otherschemename2_phase_new' + i).hide();
+    }
+    $('#AWP2_TR_edit' + i).hide();
+    $('#Hide_AWP2_TR_edit' + i).show();
+    $('#Hide_AWP2_TR_edit_new' + i).hide();
+    //Department_name_phase2();
+    // Department_name_phase2_addnew_new();
+}
+function lop1editrowcomp_A_Good_data2(i) {
+
+    phase2bb = i;
+
+
+    var other = $('#lop1schemename_phase2_aa' + i).val();
+    if (other == "Other") {
+        $('#lop1otherschemename2_phase_aa' + i).show();
+    }
+    else {
+        $('#lop1otherschemename2_phase_aa' + i).hide();
+    }
+    var other_new = $('#lop1schemename_phase2_new' + i).val();
+    if (other_new == "Other") {
+        $('#lop1otherschemename2_phase_new' + i).show();
+    }
+    else {
+        $('#lop1otherschemename2_phase_new' + i).hide();
+    }
+    $('#lop1AWP2_TR_edit' + i).hide();
+    $('#lop1Hide_AWP2_TR_edit' + i).show();
+    $('#lop1Hide_AWP2_TR_edit_new' + i).hide();
+    //Department_name_phase2();
+    // Department_name_phase2_addnew_new();
+}
+var phase2_id_new = 0;
+var phase2_aa = 0;
+var lop1phase2_id_new = 0;
+var lop1phase2_aa = 0;
+function add_new_phase2(id, i) {
+
+    phase2_id_new = id;
+    phase2_aa = i;
+    $('#otherschemename2_phase' + i).hide();
+    $('#AWP2_TR_edit' + i).show();
+    $('#Hide_AWP2_TR_edit_new' + i).show();
+    // Department_name_phase2_addnew();
+}
+function lop1add_new_phase2(id, i) {
+
+    lop1phase2_id_new = id;
+    lop1phase2_aa = i;
+    $('#lop1otherschemename2_phase' + i).hide();
+    $('#lop1AWP2_TR_edit' + i).show();
+    $('#lop1Hide_AWP2_TR_edit_new' + i).show();
+
+}
+function cancelcomp_A_Support_NEW_data2(i) {
+
+    $('#AWP2_TR_edit' + i).show();
+    $('#Hide_AWP2_TR_edit' + i).hide();
+    $('#Hide_AWP2_TR_edit_new' + i).hide();
+
+}
+function lop1cancelcomp_A_Support_NEW_data2(i) {
+
+    $('#lop1AWP2_TR_edit' + i).show();
+    $('#lop1Hide_AWP2_TR_edit' + i).hide();
+    $('#lop1Hide_AWP2_TR_edit_new' + i).hide();
+
+}
+function cancelcomp_A_Support_NEW_data_phase2addnew(i) {
+
+    $('#AWP2_TR_edit' + i).show();
+    $('#Hide_AWP2_TR_edit' + i).hide();
+    $('#Hide_AWP2_TR_edit_new' + i).hide();
+
+}
+function lop1cancelcomp_A_Support_NEW_data_phase2addnew(i) {
+
+    $('#lop1AWP2_TR_edit' + i).show();
+    $('#lop1Hide_AWP2_TR_edit' + i).hide();
+    $('#lop1Hide_AWP2_TR_edit_new' + i).hide();
+
+}
+function update_data_phase2(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    id = id;
+
+    var date8 = $('#year_subsidey_phase2' + i).val();
+    var date4 = $('#departmentname_phase2_aa' + i).val();
+    var date5 = $('#schemename_phase2_aa' + i).val();
+    var date6 = $('#otherschemename2_phase_aa' + i).val();
+    var date7 = $('#total_beneficery2_phase' + i).val();
+    var date1 = $('#area_covered2_phase' + i).val();
+    var date2 = $('#expenditure2_phase' + i).val();
+    var date3 = $('#remark2_phase' + i).val();
+
+
+
+    if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Department Name ");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Schema Name ");
+        $('.loader').hide();
+    }
+    else if (date5 == "Other") {
+        if (date6 == "") {
+            xx = 1;
+            alert("Please Enter Schema Name ");
+            $('.loader').hide();
+        }
+    }
+    else if (date1 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number of Benificiary");
+        $('.loader').hide();
+    }
+    var other = "";
+    if (date5 == "Other") {
+        other = date6;
+    }
+    else {
+        other = "";
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/update_data_phase2',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("year_subsidey_phase2", date8);
+                data.append("area_covered_phase2", date1);
+                data.append("expenditure_phase2", date2);
+                data.append("remark_phase2", date3);
+                data.append("departmentname_phase2", date4);
+                data.append("schemename_phase2", date5);
+                data.append("otherschemename_phase2", other);
+                data.append("total_beneficery_phase2", date7);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+                    $('#departmentname_phase2_aa' + i).val("0");
+                    $('#schemename_phase2_aa' + i).val("0");
+                    $('#otherschemename2_phase_aa' + i).val("");
+                    $('#total_beneficery2_phase' + i).val("");
+                    $('#area_covered2_phase' + i).val("");
+                    $('#expenditure2_phase' + i).val("");
+                    $('#remark2_phase' + i).val("");
+
+                    data_show_phase2(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function lop1update_data_phase2(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    id = id;
+
+    var date8 = $('#lop1year_subsidey_phase2' + i).val();
+    var date4 = $('#lop1departmentname_phase2_aa' + i).val();
+    var date5 = $('#lop1schemename_phase2_aa' + i).val();
+    var date6 = $('#lop1otherschemename2_phase_aa' + i).val();
+    var date7 = $('#lop1total_beneficery2_phase' + i).val();
+    var date1 = $('#lop1area_covered2_phase' + i).val();
+    var date2 = $('#lop1expenditure2_phase' + i).val();
+    var date3 = $('#lop1remark2_phase' + i).val();
+
+
+
+    if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Department Name ");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Schema Name ");
+        $('.loader').hide();
+    }
+    else if (date5 == "Other") {
+        if (date6 == "") {
+            xx = 1;
+            alert("Please Enter Schema Name ");
+            $('.loader').hide();
+        }
+    }
+    else if (date1 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number of Benificiary");
+        $('.loader').hide();
+    }
+    var other = "";
+    if (date5 == "Other") {
+        other = date6;
+    }
+    else {
+        other = "";
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/lop1update_data_phase2',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("year_subsidey_phase2", date8);
+                data.append("area_covered_phase2", date1);
+                data.append("expenditure_phase2", date2);
+                data.append("remark_phase2", date3);
+                data.append("departmentname_phase2", date4);
+                data.append("schemename_phase2", date5);
+                data.append("otherschemename_phase2", other);
+                data.append("total_beneficery_phase2", date7);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+                    $('#lo1departmentname_phase2_aa' + i).val("0");
+                    $('#lo1schemename_phase2_aa' + i).val("0");
+                    $('#lo1otherschemename2_phase_aa' + i).val("");
+                    $('#lo1total_beneficery2_phase' + i).val("");
+                    $('#lo1area_covered2_phase' + i).val("");
+                    $('#lo1expenditure2_phase' + i).val("");
+                    $('#lo1remark2_phase' + i).val("");
+
+                    lop1data_show_phase2(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function save_newrow_phase2(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    id = id;
+
+    var date1 = $('#year_subsidey2_phase' + i).val();
+    var date2 = $('#departmentname2_phase' + i).val();
+    var date3 = $('#schemename2_phase' + i).val();
+    var date8 = $('#otherschemename2_phase' + i).val();
+    var date4 = $('#area_covered2_phase_aa' + i).val();
+    var date5 = $('#expenditure2_phase_aa' + i).val();
+    var date6 = $('#remark2_phase_aa' + i).val();
+    var date7 = $('#total_beneficery2_phase_aa' + i).val();
+
+    if (date2 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date3 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name");
+        $('.loader').hide();
+    }
+    else if (date3 == "Other") {
+        if (date8 == "") {
+            xx = 1;
+            alert("Please Enter Scheme Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date4 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date5 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number of Benificiary");
+        $('.loader').hide();
+    }
+
+    var other = "";
+    if (date3 == "Other") {
+        other = date8;
+    }
+    else {
+        other = "";
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/save_newrow_phase2',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("year_subsidey_phase2", date1);
+                data.append("departmentname_phase2", date2);
+                data.append("schemename_phase2", date3);
+                data.append("otherschemename_phase2", other);
+                data.append("area_covered_phase2", date4);
+                data.append("expenditure_phase2", date5);
+                data.append("remark_phase2", date6);
+                data.append("total_beneficery2", date7);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Saved") {
+
+                    $('#year_subsidey2_phase' + i).val();
+                    $('#departmentname2_phase' + i).val("0");
+                    $('#schemename2_phase' + i).val("0");
+                    $('#otherschemename2_phase' + i).val("");
+                    $('#area_covered2_phase_aa' + i).val("");
+                    $('#expenditure2_phase_aa' + i).val("");
+                    $('#remark2_phase_aa' + i).val("");
+                    $('#total_beneficery2_phase_aa' + i).val("");
+
+                    data_show_phase2(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function lop1save_newrow_phase2(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    id = id;
+
+    var date1 = $('#lop1year_subsidey2_phase' + i).val();
+    var date2 = $('#lop1departmentname2_phase' + i).val();
+    var date3 = $('#lop1schemename2_phase' + i).val();
+    var date8 = $('#lop1otherschemename2_phase' + i).val();
+    var date4 = $('#lop1area_covered2_phase_aa' + i).val();
+    var date5 = $('#lop1expenditure2_phase_aa' + i).val();
+    var date6 = $('#lop1remark2_phase_aa' + i).val();
+    var date7 = $('#lop1total_beneficery2_phase_aa' + i).val();
+
+    if (date2 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date3 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name");
+        $('.loader').hide();
+    }
+    else if (date3 == "Other") {
+        if (date8 == "") {
+            xx = 1;
+            alert("Please Enter Scheme Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date4 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date5 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number of Benificiary");
+        $('.loader').hide();
+    }
+
+    var other = "";
+    if (date3 == "Other") {
+        other = date8;
+    }
+    else {
+        other = "";
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/lop1save_newrow_phase2',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("lop1year_subsidey_phase2", date1);
+                data.append("lop1departmentname_phase2", date2);
+                data.append("lop1schemename_phase2", date3);
+                data.append("lop1otherschemename_phase2", other);
+                data.append("lop1area_covered_phase2", date4);
+                data.append("lop1expenditure_phase2", date5);
+                data.append("lop1remark_phase2", date6);
+                data.append("lop1total_beneficery2", date7);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Saved") {
+
+                    $('#lop1year_subsidey2_phase' + i).val();
+                    $('#lop1departmentname2_phase' + i).val("0");
+                    $('#lop1schemename2_phase' + i).val("0");
+                    $('#lop1otherschemename2_phase' + i).val("");
+                    $('#lop1area_covered2_phase_aa' + i).val("");
+                    $('#lop1expenditure2_phase_aa' + i).val("");
+                    $('#lop1remark2_phase_aa' + i).val("");
+                    $('#lop1total_beneficery2_phase_aa' + i).val("");
+
+                    lop1data_show_phase2(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function lop1ddl2other(i) {
+    $('#lop1otherschemename2_phase_aa' + i).val("");
+    var other = $('#lop1schemename_phase2_aa' + i).val();
+    if (other == "Other") {
+        $('#lop1otherschemename2_phase_aa' + i).show();
+    }
+    else {
+        $('#lop1otherschemename2_phase_aa' + i).hide();
+    }
+}
+
+function ddl2other(i) {
+    $('#otherschemename2_phase_aa' + i).val("");
+    var other = $('#schemename_phase2_aa' + i).val();
+    if (other == "Other") {
+        $('#otherschemename2_phase_aa' + i).show();
+    }
+    else {
+        $('#otherschemename2_phase_aa' + i).hide();
+    }
+}
+function ddlotherphase2_addnew(i) {
+    /*$('#schemename2_phase' + i).val("");*/
+    var other = $('#schemename2_phase' + i).val();
+    if (other == "Other") {
+        $('#otherschemename2_phase' + i).show();
+    }
+    else {
+        $('#otherschemename2_phase' + i).hide();
+    }
+}
+function lop1ddlotherphase2_addnew(i) {
+    /*$('#schemename2_phase' + i).val("");*/
+    var other = $('#lop1schemename2_phase' + i).val();
+    if (other == "Other") {
+        $('#lop1otherschemename2_phase' + i).show();
+    }
+    else {
+        $('#lop1otherschemename2_phase' + i).hide();
+    }
+}
+function ddlother2_new(i) {
+    $('#otherschemename2_phase_new' + i).val("");
+    var other_new = $('#schemename_phase2_new' + i).val();
+    if (other_new == "Other") {
+        $('#otherschemename2_phase_new' + i).show();
+    }
+    else {
+        $('#otherschemename2_phase_new' + i).hide();
+    }
+}
+function lop1ddlother2_new(i) {
+    $('#lop1otherschemename2_phase_new' + i).val("");
+    var other_new = $('#lop1schemename_phase2_new' + i).val();
+    if (other_new == "Other") {
+        $('#lop1otherschemename2_phase_new' + i).show();
+    }
+    else {
+        $('#lop1otherschemename2_phase_new' + i).hide();
+    }
+}
+function update_data_phase2_addnew(phaseid2, id, i) {
+    $('.loader').show();
+    var xx = 0;
+    var phaseid2 = phaseid2;
+
+    var date1 = $('#area_covered2_phase_new' + i).val();
+    var date2 = $('#expenditure2_phase_new' + i).val();
+    var date3 = $('#remark2_phase_new' + i).val();
+    var date4 = $('#departmentname_phase2_new' + i).val();
+    var date5 = $('#schemename_phase2_new' + i).val();
+    var date6 = $('#otherschemename2_phase_new' + i).val();
+    var date7 = $('#total_beneficery2_phase_new' + i).val();
+
+    if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Schema Name");
+        $('.loader').hide();
+    }
+    else if (date5 == "Other") {
+        if (date6 == "") {
+            xx = 1;
+            alert("Please Enter Schema Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date1 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number Beneficery");
+        $('.loader').hide();
+    }
+    else if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+
+    var other = "";
+    if (date5 == "Other") {
+        other = date6;
+    }
+    else {
+        other = "";
+    }
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/update_data_phase2_addnew',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("phaseid2", phaseid2);
+                data.append("area_covered_phase2", date1);
+                data.append("expenditure_phase2", date2);
+                data.append("remark_phase2", date3);
+                data.append("departmentname_phase2", date4);
+                data.append("schemename_phase2", date5);
+                data.append("otherschemename_phase2", other);
+                data.append("total_beneficery2", date7);
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+
+                    $('#area_covered2_phase_new' + i).val("");
+                    $('#expenditure2_phase_new' + i).val("");
+                    $('#remark2_phase_new' + i).val("");
+                    $('#departmentname2_phase_new' + i).val("0");
+                    $('#schemename2_phase_new' + i).val("0");
+                    $('#otherschemename2_phase_new' + i).val("");
+                    $('#total_beneficery2_phase_new' + i).val("");
+                    data_show_phase2(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function lop1update_data_phase2_addnew(phaseid2, id, i) {
+    $('.loader').show();
+    var xx = 0;
+    var phaseid2 = phaseid2;
+
+    var date1 = $('#lop1area_covered2_phase_new' + i).val();
+    var date2 = $('#lop1expenditure2_phase_new' + i).val();
+    var date3 = $('#lop1remark2_phase_new' + i).val();
+    var date4 = $('#lop1departmentname_phase2_new' + i).val();
+    var date5 = $('#lop1schemename_phase2_new' + i).val();
+    var date6 = $('#lop1otherschemename2_phase_new' + i).val();
+    var date7 = $('#lop1total_beneficery2_phase_new' + i).val();
+
+    if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Schema Name");
+        $('.loader').hide();
+    }
+    else if (date5 == "Other") {
+        if (date6 == "") {
+            xx = 1;
+            alert("Please Enter Schema Name");
+            $('.loader').hide();
+        }
+    }
+    else if (date1 == "") {
+        xx = 1;
+        alert("Please Enter Area Covered (in ha)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Total Number Beneficery");
+        $('.loader').hide();
+    }
+    else if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+
+    var other = "";
+    if (date5 == "Other") {
+        other = date6;
+    }
+    else {
+        other = "";
+    }
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/lop1update_data_phase2_addnew',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("phaseid2", phaseid2);
+                data.append("area_covered_phase2", date1);
+                data.append("expenditure_phase2", date2);
+                data.append("remark_phase2", date3);
+                data.append("departmentname_phase2", date4);
+                data.append("schemename_phase2", date5);
+                data.append("otherschemename_phase2", other);
+                data.append("total_beneficery2", date7);
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+
+                    $('#lop1area_covered2_phase_new' + i).val("");
+                    $('#lop1expenditure2_phase_new' + i).val("");
+                    $('#lop1remark2_phase_new' + i).val("");
+                    $('#lop1departmentname2_phase_new' + i).val("0");
+                    $('#lop1schemename2_phase_new' + i).val("0");
+                    $('#lop1otherschemename2_phase_new' + i).val("");
+                    $('#lop1total_beneficery2_phase_new' + i).val("");
+                    lop1data_show_phase2(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+
+function delete_phase2_addnew(phaseid2, id) {
+
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/delete_phase2_addnew',
+        data: "{'phaseid2': '" + phaseid2 + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Delete") {
+                data_show_phase2(id);
+            }
+        }
+    });
+}
+function lop1delete_phase2_addnew(phaseid2, id) {
+
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/lop1delete_phase2_addnew',
+        data: "{'phaseid2': '" + phaseid2 + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Delete") {
+                data_show_phase2(id);
+            }
+        }
+    });
+}
+function closephase2_btn() {
+    $('#txtdepartmentphase2').prop('disabled', false);
+    $('#txtschemaphase2').prop('disabled', false);
+    $('#txtotherSchemephase2').prop('disabled', false);
+    $('#oaphase2').val("");
+    $('#txtdepartmentphase2').val("0");
+    $('#txtschemaphase2').val("0");
+    $('#txtotherSchemephase2').val("");
+    $('#rphase2').val("");
+    $('#sphase2').val("");
+    $('#tphase2').val("");
+    $('#uphase2').val("");
+
+    $('#lop1oaphase2').val("");
+    $('#lop1txtdepartmentphase2').val("0");
+    $('#lop1txtschemaphase2').val("0");
+    $('#lop1txtotherSchemephase2').val("");
+    $('#lop1rphase2').val("");
+    $('#lop1sphase2').val("");
+    $('#lop1tphase2').val("");
+    $('#lop1uphase2').val("");
+    $("#txtreject2remark").val("");
+    $('.loader').show();
+    $('.disable').attr("disabled", "disabled");
+    $('.disable').hide();
+    Data_get_phase2();
+}
+function delete_phase2(id) {
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/delete_phase2',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+            var data = response.split(',');
+            var a = data[0];
+            var b = data[1];
+            alert(a);
+            if (a == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            if (b == "No") {
+                data_show_phase2(id);
+            }
+            else {
+                Data_get_phase2();
+                $("#exampleModal__ddphase_two").hide();
+                $(".showdiv").show();
+            }
+        }
+    });
+}
+function lop1delete_phase2(id) {
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/lop1delete_phase2',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+            var data = response.split(',');
+            var a = data[0];
+            var b = data[1];
+            var a = data[0];
+            var b = data[1];
+            alert(a);
+            if (a == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            if (b == "No") {
+                lop1data_show_phase2(id);
+            }
+            else {
+                Data_get_phase2();
+                $("#exampleModal__ddphase_two").hide();
+                $(".showdiv").show();
+            }
+
+        }
+    });
+}
+
+function phase2submit_to_spmu() {
+    var id = phase2submit_id;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/phase2submittospmu',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Submitted") {
+                $("#txtreject2remark").val("");
+                $("#exampleModal__ddphase_two").hide();
+                $(".showdiv").show();
+                Data_get_phase2();
+            }
+        }
+    });
+}
+function phase2approve() {
+    var id = phase2submit_id;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/phase2approve',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Approved") {
+                $("#txtreject2remark").val("");
+                $("#exampleModal__ddphase_two").hide();
+                $(".showdiv").show();
+                Data_get_phase2();
+            }
+        }
+    });
+}
+function phase2reject() {
+    var xx = 0;
+    var id = phase2submit_id;
+    var reject = $('#txtreject2remark').val();
+    $('.loader').show();
+
+    if (reject == "") {
+        xx = 1;
+        alert("Please Enter Reject Remark");
+        $('.loader').hide();
+
+    }
+    if (xx == 0) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/DLI3New/phase2reject',
+            data: "{'id': '" + id + "' , 'reject': '" + reject + "' }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Rejected") {
+
+                    $("#txtreject2remark").val("");
+                    $("#exampleModal__ddphase_two").hide();
+                    $(".showdiv").show();
+                    autoclickphase2();
+                }
+            }
+        });
+    }
+}
+
+function Exceldemandside_phase1() {
+
+    var year = $('#year').val();
+    var Demand_side = $('#Demand_side').val();
+    var Gramg = $("#gram").val();
+    if (State == "0") {
+        alert("Please Select State");
+        return false;
+    }
+    {
+        window.location.href = "/DLI3New/demandside_excel_phase1?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gramg + "&year1=" + year + "&demand_va=" + Demand_side;
+    }
+
+}
+function Exceldemandside_phase2() {
+    var year = $('#year').val();
+    var Demand_side = $('#Demand_side').val();
+    var Gramg = $("#gram").val();
+    if (State == "0") {
+        alert("Please Select State");
+        return false;
+    }
+    {
+        window.location.href = "/DLI3New/demandside_excel_phase2?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gramg + "&year1=" + year + "&demand_va=" + Demand_side;
+    }
+
+}
+
+/*supplyside Phase1 start*/
+
+function Dropdown_Search_supply() {
+    $('.loader').show();
+    var year = $('#year').val();
+    Gram = $('#gram').val();
+    var phase = $('#phase').val();
+    var xx = 0;
+    if (State == "0") {
+        xx = 1;
+        alert("Please Select State Name");
+        $('.loader').hide();
+    }
+    if (xx == 0) {
+
+        $.ajax({
+            type: "Post",
+            url: "/Home/StateLevel_Dropdown",
+            contentType: "application/json;charset=utf-8",
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','year':'" + year + "'}",
+            dataType: "json",
+            success: function (results) {
+
+
+                if (State == "All") {
+                    $('.loader').hide();
+                    if (phase == "phase1") {
+                        $('#ssstate_p1').attr("disabled", false);
+                        $('#btnexcelphase1').hide();
+                        $('#btnexcelphase2').hide();
+                        var tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                        $('#supply_tbl_details').html(tr);
+                        $('#supply_total').html(0);
+                        $('#ssstate_p2').hide();
+                        $('#districtblock_p1').hide();
+                        $('#districtblock_p2').hide();
+                    }
+                    if (phase == "phase2") {
+                        $('#ssstate_p1').hide();
+                        $('#ssstate_p2').attr("disabled", false);
+                        $('#btnexcelphase1').hide();
+                        $('#btnexcelphase2').hide();
+                        $('#ssstate_p1').hide();
+                        $('#ssdistrict_p1').hide();
+                        $('#districtblock_p1').hide();
+                        $('#districtblock_p2').hide();
+                    }
+                }
+                else {
+                    if (phase == "phase1") {
+                        $('#btnexcelphase1').show();
+                        $('#btnexcelphase2').hide();
+                        $('#ssstate_p2').hide();
+                        $('#ssdistrict_p2').hide();
+                        $('#ssdistrict_p1').attr("disabled", false);
+                        $('#districtblock_p1').attr("disabled", false);
+                        $('#districtblock_p2').hide();
+                        $('#districtblock_p2').attr("disabled", true);
+
+                        Data_get_supply();
+                    }
+                    if (phase == "phase2") {
+                        $('#ssdistrict_p2').attr("disabled", false);
+                        $('#districtblock_p2').attr("disabled", false);
+                        $('#btnexcelphase1').hide();
+                        $('#btnexcelphase2').show();
+                        $('#ssstate_p1').hide();
+                        $('#ssdistrict_p1').hide();
+                        $('#districtblock_p1').hide();
+                        Data_get_phase2supply();
+                    }
+                }
+
+                if (phase == "phase1") {
+                    $('#btnexcelphase1').show();
+                    $('#btnexcelphase2').hide();
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#state_p2').hide();
+                    $('#state_p2').attr("disabled", "disabled");
+                    $('#district_p2').hide();
+                    $('#district_p2').attr("disabled", "disabled");
+                    $('#demanddistrictblock_p1').hide();
+                    $('#demanddistrictblock_p1').attr("disabled", "disabled");
+                    $('#demanddistrictblock_p2').hide();
+                    $('#demanddistrictblock_p2').attr("disabled", "disabled");
+                    $('#txtyear').text("Phase1[April 2023 - September 2023]");
+                }
+                else if (phase == "phase2") {
+                    $('#btnexcelphase1').hide();
+                    $('#btnexcelphase2').show();
+                    $('#state_p1').hide();
+                    $('#district_p1').hide();
+                    $('#state_p2').hide();
+                    $('#district_p2').hide();
+                    $('#txtyear').text("Phase2[October 2023 - March 2024]");
+                    $('#demanddistrictblock_p1').hide();
+                    $('#demanddistrictblock_p1').attr("disabled", "disabled");
+                    $('#demanddistrictblock_p2').hide();
+                    $('#demanddistrictblock_p2').attr("disabled", "disabled");
+                }
+
+
+
+            }
+        });
+    }
+}
+
+var supply_val = "";
+function Data_get_supply() {
+    $('.loader').show();
+    var year = $('#year').val();
+    var month = $('#month').val();
+    supply_val = $('#supply_val').val();
+
+
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/Data_get_supply',
+        data: "{'Data': '" + JSON.stringify(obj) + "','supply_val': '" + supply_val + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var tr = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                $('#supply_tbl_details').html(tr);
+            }
+            else {
+                if (data.length != 0) {
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno += 1;
+                            var other_scheme = data[i].other_scheme;
+                            if (other_scheme == null) {
+                                other_scheme = "";
+                            }
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">At SPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].reject_phase1 + '</label></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: black;">At DPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+
+                        }
+
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno += 1;
+                            var other_scheme = data[i].other_scheme;
+                            if (other_scheme == null) {
+                                other_scheme = "";
+                            }
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted To SPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].reject_phase1 + '</label></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else {
+
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: black;">At DPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-success" style="display:none"  data-toggle="modal" data-target="#exampleModal_supplyside"  onclick="fill_data_supply_side(' + data[i].id + ')">Enter Data </button ></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+
+                        }
+
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno += 1;
+                            var other_scheme = data[i].other_scheme;
+                            if (other_scheme == null) {
+                                other_scheme = "";
+                            }
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted to SPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].reject_phase1 + '</label></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_supplyside_1phase"  onclick="data_show_supplyside1phase(' + data[i].id + ')">View Data</button ></td><td><label style="color: black;">At DPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase1?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+
+                        }
+
+                    }
+                }
+
+                $('#supply_tbl_details').html(tr);
+                $('#supply_total').html(sno);
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+            }
+            $('.loader').hide();
+        }
+    });
+}
+function fill_data_supply_side(id) {
+
+    id = id;
+    idd = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            $('#a').val(data[0].state);
+            $('#b').val(data[0].district);
+            $('#c').val(data[0].block);
+            $('#d').val(data[0].gp);
+            $('#e').val(data[0].gp_center_point_latitude);
+            $('#f').val(data[0].gp_center_point_longitude);
+            $('#g').val(data[0].village_name);
+            $('#h').val(data[0].financial_year);
+            $('#i').val(data[0].type_of_supply_side_structure);
+            $('#j').val(data[0].gw_recharge_or_effective_storage);
+            $('#k').val(data[0].department_name);
+            $('#l').val(data[0].scheme_name_possible_funding_source);
+            $('#m').val(data[0].other_scheme);
+            $('#n').val(data[0].name_of_structure);
+            $('#o').val(data[0].latitude);
+            $('#p').val(data[0].longitude);
+            $('#q').val(data[0].total_approximate_estimated_cost);
+            $('#r').val("Phase-1(April-September 2023-24)");
+
+
+            var other = data[0].scheme_name_possible_funding_source;
+            if (other == "Other") {
+                $('#other_schema').show();
+            }
+            else {
+                $('#other_schema').hide();
+            }
+
+            $('#div_other_supply').hide();
+
+        }
+    });
+}
+function Other_schema_supply() {
+    var other = $('#txtschema_supply').val();
+    if (other == "Other") {
+        $('#div_other_supply').show();
+    }
+    else {
+        $('#div_other_supply').hide();
+    }
+}
+function insert_data_supplyside_phase1() {
+
+    $('.loader').show();
+    var xx = 0;
+    var id = idd;
+    var date1 = $('#r').val();
+    var date2 = $('#s').val();
+    var date3 = $('#t').val();
+    var date4 = $('#ddltypeofwork').val();
+    var date5 = $('#ddlstatusofwork').val();
+    var date6 = $('#latitude').val();
+    var date7 = $('#longitude').val();
+    var date8 = $('#txtdepartment_supply').val();
+    var date9 = $('#txtschema_supply').val();
+    var date10 = $('#txtotherScheme').val();
+    var date11 = $('#w').val();
+    var date12 = $('#x').val();
+
+    if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Work Start Date");
+        $('.loader').hide();
+    }
+    else if (date3 == "") {
+        xx = 1;
+        alert("Please Enter Work End Date");
+        $('.loader').hide();
+    }
+    else if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Type of Work");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Status of Work");
+        $('.loader').hide();
+    }
+    else if (date6 == "") {
+        xx = 1;
+        alert("Please Enter Latitude of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Longitude  of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date8 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date9 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name / Possible Funding Source");
+        $('.loader').hide();
+    }
+    else if (date9 == "Other") {
+        if (date10 == "") {
+            xx = 1;
+            alert("Please Enter Other Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+    }
+    else if (date11 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date2 > date3) {
+        alert("Work end date should be later than Work start date");
+        $('#t').focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+    else if (date2 == date3) {
+        alert("Work end date should not be equal than Work start date");
+        $('#ss2t').focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/insert_supplyside_phase1',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("year_subsidey_phase1", date1);
+                data.append("work_start_date_phase1", date2);
+                data.append("work_end_date_phase1", date3);
+                data.append("type_of_work_phase1", date4);
+                data.append("status_of_work_phase1", date5);
+                data.append("latitude_phase1", date6);
+                data.append("longitude_phase1", date7);
+                data.append("department_name_phase1", date8);
+                data.append("schema_name_phase1", date9);
+                data.append("other_schema_name_phase1", date10);
+                data.append("expenditure_phase1", date11);
+                data.append("remark_phase1", date12);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Saved") {
+
+                    $('#r').val("");
+                    $('#s').val("");
+                    $('#t').val("");
+                    $('#ddltypeofwork').val("0");
+                    $('#ddlstatusofwork').val("0");
+                    $('#latitude').val("");
+                    $('#longitude').val("");
+                    $('#txtdepartment_supply').val("0");
+                    $('#txtschema_supply').val("0");
+                    $('#txtotherScheme').val("");
+                    $('#w').val("");
+                    $('#x').val("");
+
+                    $("#exampleModal_supplyside").hide();
+                    $(".showdiv").show();
+                    autoclicksupply();
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function autoclicksupply() {
+    $("#autoclicksupplyp2").click();
+    Data_get_supply();
+
+}
+//$(function () {
+//    $("input[name='numonly_decimal']").on('input', function (e) {
+//        $(this).val($(this).val().replace(/[^0-9.]/g, ''));
+//    });
+//});
+function enforceNumber_lat_lon(ele) {
+
+    var match = false;
+    var match2 = false;
+    var matchwr = false;
+    var matchwr2 = false;
+    var lat = $('#latitude').val();
+    var long = $('#longitude').val();
+
+    if (!(lat.indexOf(".") == -1)) {
+        match = true; // decimal
+    } else {
+        match = false;
+    }
+    if (lat.length == 2 && match != true) {
+        $('#latitude').val(lat + '.');
+    } else if (lat.length == 1 && match != false) {
+        $('#latitude').val('');
+    }
+
+
+    if (!(long.indexOf(".") == -1)) {
+        match2 = true; // decimal
+    } else {
+        match2 = false;
+    }
+    if (long.length == 2 && match2 != true) {
+        $('#longitude').val(long + '.');
+    } else if (long.length == 1 && match2 != false) {
+        $('#longitude').val('');
+    }
+
+
+    var latwr = $('#latitude').val();
+    var longwr = $('#longitude').val();
+
+    if (!(latwr.indexOf(".") == -1)) {
+        matchwr = true; // decimal
+    } else {
+        matchwr = false;
+    }
+    if (latwr.length == 2 && matchwr != true) {
+        $('#latitude').val(latwr + '.');
+    } else if (latwr.length == 1 && matchwr != false) {
+        $('#latitude').val('');
+    }
+
+
+    if (!(longwr.indexOf(".") == -1)) {
+        matchwr2 = true; // decimal
+    } else {
+        matchwr2 = false;
+    }
+    if (longwr.length == 2 && matchwr2 != true) {
+        $('#longitude').val(longwr + '.');
+    } else if (longwr.length == 1 && matchwr2 != false) {
+        $('#longitude').val('');
+    }
+
+
+    if ($(ele).data('decimal') != null) {
+        // found valid rule for decimal
+        var decimal = parseInt($(ele).data('decimal')) || 0;
+        var val = $(ele).val();
+        if (decimal > 0) {
+            var splitVal = val.split('.');
+            if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                // user entered invalid input
+                $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+            }
+        } else if (decimal == 0) {
+            // do not allow decimal place
+            var splitVal = val.split('.');
+            if (splitVal.length > 1) {
+                // user entered invalid input
+                $(ele).val(splitVal[0]); // always trim everything after '.'
+            }
+        }
+    }
+}
+var supplysidephase1submit_id = 0;
+function data_show_supplyside1phase(id) {
+
+    id = id;
+    supplysidephase1submit_id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside_phase1',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var Tbodyhtml = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                Tbodyhtml = '<tr style="text-align:center;"><td colspan="10">No Data</td></tr>';
+                $('#phase1_data').html(Tbodyhtml);
+
+            }
+            else {
+                if (data.length != 0) {
+                    debugger;
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var otherschemename_phase = data[i].other_schema_name_phase1;
+                            if (otherschemename_phase == null) {
+                                otherschemename_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Approved").css({ 'color': 'blue' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').show();
+                                $('#sstxtreject1remark').show();
+                                $('#ssphase1reject').show();
+                                $('#ssgp_status1phase').text("At SPMU").css({ 'color': 'green' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var otherschemename_phase = data[i].other_schema_name_phase1;
+                            if (otherschemename_phase == null) {
+                                otherschemename_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Approved").css({ 'color': 'blue' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Submit to SPMU").css({ 'color': 'green' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary disable" type="button"  onclick="editrowcomp_A_Good_ssdata2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger disable" type="button"  onclick="delete_phase_supplyside(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><select id="type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase1 + '">' + data[i].type_of_work_phase1 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select id="status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase1 + '">' + data[i].status_of_work_phase1 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="enforceNumberValidation(' + i + ' , this)"  id="cf' + i + '" value="' + data[i].latitude_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="enforceNumberValidation(' + i + ' , this)"  id="cg' + i + '" value="' + data[i].longitude_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><select id="department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase1 + '">' + data[i].department_name_phase1 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schema_name_phase' + i + '" onchange="ddl1other(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase1 + '">' + data[i].schema_name_phase1 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="100" class="form-control"  id="otherschemename_phase' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                }
+
+                                $('#ssphase1submittospmu').show();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary disable" type="button"  onclick="editrowcomp_A_Good_ssdata2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger disable" type="button"  onclick="delete_phase_supplyside(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><select id="type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase1 + '">' + data[i].type_of_work_phase1 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select id="status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase1 + '">' + data[i].status_of_work_phase1 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="enforceNumberValidation(' + i + ' , this)"  id="cf' + i + '" value="' + data[i].latitude_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="enforceNumberValidation(' + i + ' , this)"  id="cg' + i + '" value="' + data[i].longitude_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><select id="department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase1 + '">' + data[i].department_name_phase1 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select id="schema_name_phase' + i + '" onchange="ddl1other(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase1 + '">' + data[i].schema_name_phase1 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="100" class="form-control"  id="otherschemename_phase' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                }
+
+                                $('#ssphase1submittospmu').show();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno = i + 1;
+                            var entry_phase = data[i].entry_phase1;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var otherschemename_phase = data[i].other_schema_name_phase1;
+                            if (otherschemename_phase == null) {
+                                otherschemename_phase = "";
+                            }
+                            var approve = data[i].approve_phase1;
+                            if (approve == null) {
+                                approve = "";
+                            }
+
+                            if (approve == "Approved") {
+                                if (email == 'akanshakushwah-cgwb@gov.in' ||  email == 'vivekvivektiwari80@gmail.com') {
+                                    if (entry_phase == "phase1") {
+
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                        Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                        Tbodyhtml += '<td><button class="btn btn-primary " type="button"  onclick="editrowcomp_A_Good_ssdata2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                        Tbodyhtml += '<td><button class="btn btn-danger disable" type="button"  onclick="delete_phase_supplyside(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                        Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
+                                        Tbodyhtml += '<td><input disabled type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase1 + '"  /></td>';
+                                        Tbodyhtml += '<td><input disabled type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase1 + '"  /></td>';
+                                        Tbodyhtml += '<td><select disabled id="type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase1 + '">' + data[i].type_of_work_phase1 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                        Tbodyhtml += '<td><select id="status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase1 + '">' + data[i].status_of_work_phase1 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="enforceNumberValidation(' + i + ' , this)"  id="cf' + i + '" value="' + data[i].latitude_phase1 + '"  /></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="enforceNumberValidation(' + i + ' , this)"  id="cg' + i + '" value="' + data[i].longitude_phase1 + '"  /></td>';
+                                        Tbodyhtml += '<td><select disabled id="department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase1 + '">' + data[i].department_name_phase1 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                        Tbodyhtml += '<td><select disabled id="schema_name_phase' + i + '" onchange="ddl1other(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase1 + '">' + data[i].schema_name_phase1 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="NGO">NGO</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="otherschemename_phase' + i + '" value="' + otherschemename_phase + '"  /></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="20" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
+                                        Tbodyhtml += '<td><input disabled type="text" maxlength="250" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
+                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                    }
+                                }
+                                else {
+                                    if (entry_phase == "phase1") {
+
+                                        Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                        Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                        Tbodyhtml += '<td></td>';
+                                        Tbodyhtml += '<td></td></tr>';
+
+                                    }
+                                }
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Approved").css({ 'color': 'blue' });
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Submit to SPMU").css({ 'color': 'green' });
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("Rejected").css({ 'color': 'Red' });
+                            }
+                            else {
+                                if (entry_phase == "phase1") {
+
+                                    Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+
+                                }
+
+                                $('#ssphase1submittospmu').hide();
+                                $('#ssphase1submittoapprove').hide();
+                                $('#sstxtreject1remark').hide();
+                                $('#ssphase1reject').hide();
+                                $('#ssgp_status1phase').text("At DPMU").css({ 'color': 'Black' });
+                            }
+                        }
+                    }
+                }
+
+                $('#phase1_data_supplyside').html(Tbodyhtml);
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+            }
+            fill_data_wsp_phase1_supplyside(id);
+            $('.loader').hide();
+        }
+    });
+
+}
+function editrowcomp_A_Good_ssdata2(i) {
+    var other = $('#schema_name_phase' + i).val();
+    if (other == "Other") {
+        $('#otherschemename_phase' + i).show();
+    }
+    else {
+        $('#otherschemename_phase' + i).hide();
+    }
+
+    $('#AWP2_TR_edit' + i).hide();
+    $('#Hide_AWP2_TR_edit' + i).show();
+
+}
+function cancelcomp_A_Support_NEW_data2(i) {
+
+    $('#AWP2_TR_edit' + i).show();
+    $('#Hide_AWP2_TR_edit' + i).hide();
+}
+function fill_data_wsp_phase1_supplyside(id) {
+    $('.loader').show();
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside_wsp',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var tr = '';
+            var sno = 0;
+            var id = 0;
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var other_scheme = data[i].other_scheme;
+                    if (other_scheme == null) {
+                        other_scheme = "";
+                    }
+                    id = data[0].id;
+                    sno = i + 1;
+                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td></tr> ';
+                }
+                $('#tbl_supplyside1_phase').html(tr);
+                $('.loader').hide();
+            }
+        }
+    });
+}
+function close_btn_supplyside() {
+    $('#r').val("");
+    $('#s').val("");
+    $('#t').val("");
+    $('#ddltypeofwork').val("0");
+    $('#ddlstatusofwork').val("0");
+    $('#latitude').val("");
+    $('#longitude').val("");
+    $('#txtdepartment_supply').val("0");
+    $('#txtschema_supply').val("0");
+    $('#txtotherScheme').val("");
+    $('#w').val("");
+    $('#x').val("");
+    $('.disable').attr("disabled", "disabled");
+    $('.disable').hide();
+    Data_get_supply();
+}
+function enforceNumberValidation(i, ele) {
+
+    let j = i.toString();
+    /*var i = aaa;*/
+    var match = false;
+    var match2 = false;
+    var matchwr = false;
+    var matchwr2 = false;
+    var lat = $('#cf' + j).val();
+    var long = $('#cg' + j).val();
+
+
+
+
+    if (!(lat.indexOf(".") == -1)) {
+        match = true; // decimal
+    } else {
+        match = false;
+    }
+    if (lat.length == 2 && match != true) {
+        $('#cf' + j).val(lat + '.');
+    } else if (lat.length == 1 && match != false) {
+        $('#cf' + j).val('');
+    }
+
+
+    if (!(long.indexOf(".") == -1)) {
+        match2 = true; // decimal
+    } else {
+        match2 = false;
+    }
+    if (long.length == 2 && match2 != true) {
+        $('#cg' + j).val(long + '.');
+    } else if (long.length == 1 && match2 != false) {
+        $('#cg' + j).val('');
+    }
+
+
+    var latwr = $('#cf' + j).val();
+    var longwr = $('#cg' + j).val();
+
+    if (!(latwr.indexOf(".") == -1)) {
+        matchwr = true; // decimal
+    } else {
+        matchwr = false;
+    }
+    if (latwr.length == 2 && matchwr != true) {
+        $('#cf' + j).val(latwr + '.');
+    } else if (latwr.length == 1 && matchwr != false) {
+        $('#cf' + j).val('');
+    }
+
+
+    if (!(longwr.indexOf(".") == -1)) {
+        matchwr2 = true; // decimal
+    } else {
+        matchwr2 = false;
+    }
+    if (longwr.length == 2 && matchwr2 != true) {
+        $('#cg' + j).val(longwr + '.');
+    } else if (longwr.length == 1 && matchwr2 != false) {
+        $('#cg' + j).val('');
+    }
+
+
+    if ($(ele).data('decimal') != null) {
+        // found valid rule for decimal
+        var decimal = parseInt($(ele).data('decimal')) || 0;
+        var val = $(ele).val();
+        if (decimal > 0) {
+            var splitVal = val.split('.');
+            if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                // user entered invalid input
+                $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+            }
+        } else if (decimal == 0) {
+            // do not allow decimal place
+            var splitVal = val.split('.');
+            if (splitVal.length > 1) {
+                // user entered invalid input
+                $(ele).val(splitVal[0]); // always trim everything after '.'
+            }
+        }
+    }
+}
+function ddl1other(i) {
+    var other = $('#schema_name_phase' + i).val();
+    if (other == "Other") {
+        $('#otherschemename_phase' + i).show();
+    }
+    else {
+        $('#otherschemename_phase' + i).hide();
+    }
+}
+function delete_phase_supplyside(id) {
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/delete_phase1_supplyside',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Delete") {
+                $("#exampleModal_supplyside_1phase").hide();
+                $(".showdiv").show();
+                Data_get_supply();
+            }
+        }
+    });
+}
+function update_data_phase_supplyside(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    var id = id;
+
+    var date2 = $('#work_start_date_phase' + i).val();
+    var date3 = $('#work_end_date_phase' + i).val();
+    var date4 = $('#type_of_work_phase' + i).val();
+    var date5 = $('#status_of_work_phase' + i).val();
+    var date6 = $('#cf' + i).val();
+    var date7 = $('#cg' + i).val();
+    var date8 = $('#department_name_phase' + i).val();
+    var date9 = $('#schema_name_phase' + i).val();
+    var date10 = $('#otherschemename_phase' + i).val();
+    var date11 = $('#expenditure_phase' + i).val();
+    var date12 = $('#remark_phase' + i).val();
+
+    if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Work Start Date");
+        $('.loader').hide();
+    }
+    else if (date3 == "") {
+        xx = 1;
+        alert("Please Enter Work End Date");
+        $('.loader').hide();
+    }
+    else if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Type of Work");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Status of Work");
+        $('.loader').hide();
+    }
+    else if (date6 == "") {
+        xx = 1;
+        alert("Please Enter Latitude of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Longitude  of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date8 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date9 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name / Possible Funding Source");
+        $('.loader').hide();
+    }
+    else if (date9 == "Other") {
+        if (date10 == "") {
+            xx = 1;
+            alert("Please Enter Other Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+    }
+    else if (date11 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date2 > date3) {
+        alert("Work end date should be later than Work start date");
+        $('#work_end_date_phase' + i).focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+    else if (date2 == date3) {
+        alert("Work end date should not be equal than Work start date");
+        $('#ss2t').focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+    var other = "";
+    if (date9 == "Other") {
+        other = date10;
+    }
+    else {
+        other = "";
+    }
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/update_supplyside_phase1',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("work_start_date_phase1", date2);
+                data.append("work_end_date_phase1", date3);
+                data.append("type_of_work_phase1", date4);
+                data.append("status_of_work_phase1", date5);
+                data.append("latitude_phase1", date6);
+                data.append("longitude_phase1", date7);
+                data.append("department_name_phase1", date8);
+                data.append("schema_name_phase1", date9);
+                data.append("other_schema_name_phase1", other);
+                data.append("expenditure_phase1", date11);
+                data.append("remark_phase1", date12);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+
+                    $('#work_start_date_phase' + i).val("");
+                    $('#work_end_date_phase' + i).val("");
+                    $('#type_of_work_phase' + i).val("0");
+                    $('#status_of_work_phase' + i).val("0");
+                    $('#cf' + i).val("");
+                    $('#cg' + i).val("");
+                    $('#department_name_phase' + i).val("0");
+                    $('#schema_name_phase' + i).val("0");
+                    $('#otherschemename_phase' + i).val("");
+                    $('#expenditure_phase' + i).val("");
+                    $('#remark_phase' + i).val("");
+
+                    data_show_supplyside1phase(id);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function suppysidephase1submittospmu() {
+    var id = supplysidephase1submit_id;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/suppysidephase1submittospmu',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Submitted") {
+                Data_get_supply();
+            }
+        }
+    });
+}
+function supplysidephase1approve() {
+    var id = supplysidephase1submit_id;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/supplysidephase1approve',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Approved") {
+                Data_get_supply();
+            }
+        }
+    });
+}
+function supplysidephase1reject() {
+    var xx = 0;
+    var id = supplysidephase1submit_id;
+    var reject = $('#sstxtreject1remark').val();
+    $('.loader').show();
+
+    if (reject == "") {
+        xx = 1;
+        alert("Please Enter Reject Remark");
+        $('.loader').hide();
+
+    }
+    if (xx == 0) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/DLI3New/supplysidephase1reject',
+            data: "{'id': '" + id + "' , 'reject': '" + reject + "' }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Rejected") {
+                    Data_get_supply();
+                    $("#sstxtreject1remark").val("");
+                    $("#exampleModal_supplyside_1phase").hide();
+                    $(".showdiv").show();
+                }
+            }
+        });
+    }
+}
+
+function Excelsupplyside_phase1() {
+
+    var year = $('#year').val();
+    var sssupply_val = $('#supply_val').val();
+    if (State == "0") {
+        alert("Please Select State");
+        return false;
+    }
+    {
+        window.location.href = "/DLI3New/supplyside_excel_phase1?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&supply_val=" + sssupply_val;
+    }
+
+}
+function Excelsupplyside_phase2() {
+    var year = $('#year').val();
+    var sssupply_val = $('#supply_val').val();
+    if (State == "0") {
+        alert("Please Select State");
+        return false;
+    }
+    {
+        window.location.href = "/DLI3New/supplyside_excel_phase2?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&supply_val=" + sssupply_val;
+    }
+
+}
+/*supplyside Phase1 end*/
+/*supplyside Phase2 start*/
+
+function Data_get_phase2supply() {
+    $('.loader').show();
+    var year = $('#year').val();
+    var month = $('#month').val();
+    supply_val = $('#supply_val').val();
+
+
+    var obj = {};
+    obj.statename = State;
+    obj.districtname = Dist;
+    obj.blockname = Block;
+    obj.gpname = Gram;
+    obj.year = year;
+    obj.month = month;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/Data_get_supply',
+        data: "{'Data': '" + JSON.stringify(obj) + "','supply_val': '" + supply_val + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            if (data == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            var tr = '';
+            var sno = 0;
+            if (data == 'No Data') {
+                tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                $('#supply_tbl_details').html(tr);
+            }
+            else {
+                if (data.length != 0) {
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno += 1;
+                            var other_scheme = data[i].other_scheme;
+                            if (other_scheme == null) {
+                                other_scheme = "";
+                            }
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">At SPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].reject_phase2 + '</label></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: black;">At DPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+
+                        }
+
+                    }
+                    if (StateOfficer == "District Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno += 1;
+                            var other_scheme = data[i].other_scheme;
+                            if (other_scheme == null) {
+                                other_scheme = "";
+                            }
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted To SPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].reject_phase2 + '</label></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else {
+
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">Edit / View Data</button ></td><td><label style="color: black;">At DPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-success hidebutton" data-toggle="modal" data-target="#exampleModal_phasetwoss"  onclick="fill_data_ss2supply_side(' + data[i].id + ')">Enter Data </button></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+
+                        }
+
+                    }
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        for (var i = 0; i < data.length; i++) {
+                            sno += 1;
+                            var other_scheme = data[i].other_scheme;
+                            if (other_scheme == null) {
+                                other_scheme = "";
+                            }
+                            var entry_phase = data[i].entry_phase2;
+                            if (entry_phase == null) {
+                                entry_phase = "";
+                            }
+                            var approve = data[i].approve_phase2;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "Approved") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: blue;">Approved</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Submit to SPMU") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: green;">Submitted to SPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else if (approve == "Rejected") {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: red;">Rejected</label></td><td><label>' + data[i].reject_phase2 + '</label></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                            }
+                            else {
+                                if (entry_phase == "phase2") {
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal__phase_twoss"  onclick="fill_data_wsp_ss2phase2(' + data[i].id + ')">View Data</button ></td><td><label style="color: black;">At DPMU</label></td><td></td><td><a href="/DLI3New/Mapview_supplysidePhase2?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr> ';
+                                }
+                                else {
+
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td></td><td></td><td></td></tr> ';
+                                }
+                            }
+
+
+                        }
+
+                    }
+                }
+
+                $('#supply_tbl_details').html(tr);
+                $('#supply_total').html(sno);
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                    $('.hidebutton').hide();
+                }
+                else {
+                    $('.hidebutton').show();
+                }
+            }
+            $('.loader').hide();
+        }
+    });
+}
+
+function enforceNumber_lat_lon_lo1_phase(ele) {
+    var match = false;
+    var match2 = false;
+    var matchwr = false;
+    var matchwr2 = false;
+    var lat = $('#sslo1latitude').val();
+    var long = $('#sslo1longitude').val();
+
+    if (!(lat.indexOf(".") == -1)) {
+        match = true; // decimal
+    } else {
+        match = false;
+    }
+    if (lat.length == 2 && match != true) {
+        $('#sslo1latitude').val(lat + '.');
+    } else if (lat.length == 1 && match != false) {
+        $('#sslo1latitude').val('');
+    }
+
+    if (!(long.indexOf(".") == -1)) {
+        match2 = true; // decimal
+    } else {
+        match2 = false;
+    }
+    if (long.length == 2 && match2 != true) {
+        $('#sslo1longitude').val(long + '.');
+    } else if (long.length == 1 && match2 != false) {
+        $('#sslo1longitude').val('');
+    }
+
+    var latwr = $('#sslo1latitude').val();
+    var longwr = $('#sslo1longitude').val();
+
+    if (!(latwr.indexOf(".") == -1)) {
+        matchwr = true; // decimal
+    } else {
+        matchwr = false;
+    }
+    if (latwr.length == 2 && matchwr != true) {
+        $('#sslo1latitude').val(latwr + '.');
+    } else if (latwr.length == 1 && matchwr != false) {
+        $('#sslo1latitude').val('');
+    }
+
+    if (!(longwr.indexOf(".") == -1)) {
+        matchwr2 = true; // decimal
+    } else {
+        matchwr2 = false;
+    }
+    if (longwr.length == 2 && matchwr2 != true) {
+        $('#sslo1longitude').val(longwr + '.');
+    } else if (longwr.length == 1 && matchwr2 != false) {
+        $('#sslo1longitude').val('');
+    }
+
+    // Capture backspace event and handle it appropriately
+    $(ele).on('keydown', function (event) {
+        if (event.keyCode == 8) { // 8 is the key code for backspace
+            var decimal = parseInt($(this).data('decimal')) || 0;
+            var val = $(this).val();
+            if (decimal > 0 && val.includes('.')) {
+                var splitVal = val.split('.');
+                // Remove the last character if it's a decimal place
+                if (splitVal[1].length === 1) {
+                    $(this).val(splitVal[0]);
+                }
+            }
+        }
+    });
+
+    if ($(ele).data('decimal') != null) {
+        // found valid rule for decimal
+        var decimal = parseInt($(ele).data('decimal')) || 0;
+        var val = $(ele).val();
+        if (decimal > 0) {
+            var splitVal = val.split('.');
+            if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                // user entered invalid input
+                $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+            }
+        } else if (decimal == 0) {
+            // do not allow decimal place
+            var splitVal = val.split('.');
+            if (splitVal.length > 1) {
+                // user entered invalid input
+                $(ele).val(splitVal[0]); // always trim everything after '.'
+            }
+        }
+    }
+}
+function enforceNumber_lat_lon_2_phase(ele) {
+    var match = false;
+    var match2 = false;
+    var matchwr = false;
+    var matchwr2 = false;
+    var lat = $('#ss2latitude').val();
+    var long = $('#ss2longitude').val();
+
+    if (!(lat.indexOf(".") == -1)) {
+        match = true; // decimal
+    } else {
+        match = false;
+    }
+    if (lat.length == 2 && match != true) {
+        $('#ss2latitude').val(lat + '.');
+    } else if (lat.length == 1 && match != false) {
+        $('#ss2latitude').val('');
+    }
+
+    if (!(long.indexOf(".") == -1)) {
+        match2 = true; // decimal
+    } else {
+        match2 = false;
+    }
+    if (long.length == 2 && match2 != true) {
+        $('#ss2longitude').val(long + '.');
+    } else if (long.length == 1 && match2 != false) {
+        $('#ss2longitude').val('');
+    }
+
+    var latwr = $('#ss2latitude').val();
+    var longwr = $('#ss2longitude').val();
+
+    if (!(latwr.indexOf(".") == -1)) {
+        matchwr = true; // decimal
+    } else {
+        matchwr = false;
+    }
+    if (latwr.length == 2 && matchwr != true) {
+        $('#ss2latitude').val(latwr + '.');
+    } else if (latwr.length == 1 && matchwr != false) {
+        $('#ss2latitude').val('');
+    }
+
+    if (!(longwr.indexOf(".") == -1)) {
+        matchwr2 = true; // decimal
+    } else {
+        matchwr2 = false;
+    }
+    if (longwr.length == 2 && matchwr2 != true) {
+        $('#ss2longitude').val(longwr + '.');
+    } else if (longwr.length == 1 && matchwr2 != false) {
+        $('#ss2longitude').val('');
+    }
+
+    // Capture backspace event and handle it appropriately
+    $(ele).on('keydown', function (event) {
+        if (event.keyCode == 8) { // 8 is the key code for backspace
+            var decimal = parseInt($(this).data('decimal')) || 0;
+            var val = $(this).val();
+            if (decimal > 0 && val.includes('.')) {
+                var splitVal = val.split('.');
+                // Remove the last character if it's a decimal place
+                if (splitVal[1].length === 1) {
+                    $(this).val(splitVal[0]);
+                }
+            }
+        }
+    });
+
+    if ($(ele).data('decimal') != null) {
+        // found valid rule for decimal
+        var decimal = parseInt($(ele).data('decimal')) || 0;
+        var val = $(ele).val();
+        if (decimal > 0) {
+            var splitVal = val.split('.');
+            if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                // user entered invalid input
+                $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+            }
+        } else if (decimal == 0) {
+            // do not allow decimal place
+            var splitVal = val.split('.');
+            if (splitVal.length > 1) {
+                // user entered invalid input
+                $(ele).val(splitVal[0]); // always trim everything after '.'
+            }
+        }
+    }
+}
+
+var insert_id_2ss = "";
+function fill_data_ss2supply_side(id) {
+    id = id;
+    insert_id_2ss = id;
+
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            $('#ss2a').val(data[0].state);
+            $('#ss2b').val(data[0].district);
+            $('#ss2c').val(data[0].block);
+            $('#ss2d').val(data[0].gp);
+            $('#ss2e').val(data[0].gp_center_point_latitude);
+            $('#ss2f').val(data[0].gp_center_point_longitude);
+            $('#ss2g').val(data[0].village_name);
+            $('#ss2h').val(data[0].financial_year);
+            $('#ss2i').val(data[0].type_of_supply_side_structure);
+            $('#ss2j').val(data[0].gw_recharge_or_effective_storage);
+            $('#ss2k').val(data[0].department_name);
+            $('#ss2l').val(data[0].scheme_name_possible_funding_source);
+            $('#ss2m').val(data[0].other_scheme);
+            $('#ss2n').val(data[0].name_of_structure);
+            $('#ss2o').val(data[0].latitude);
+            $('#ss2p').val(data[0].longitude);
+            $('#ss2q').val(data[0].total_approximate_estimated_cost);
+
+            leftoveralert = "No";
+            phase2alert = "No";
+            $('#btn1phase2').show();
+            var approve_phase1 = data[0].approve_phase1;
+            if (approve_phase1 == "Approved") {
+
+                $('#ss1a').val(data[0].year_subsidey_phase1);
+                $('#ss1b').val(data[0].work_start_date_phase1);
+                $('#ss1c').val(data[0].work_end_date_phase1);
+                $('#ss1d').val(data[0].type_of_work_phase1);
+                $('#ss1e').val(data[0].status_of_work_phase1);
+                $('#ss1f').val(data[0].latitude_phase1);
+                $('#ss1g').val(data[0].longitude_phase1);
+                $('#ss1h').val(data[0].department_name_phase1);
+                $('#ss1i').val(data[0].schema_name_phase1);
+                $('#ss1j').val(data[0].other_schema_name_phase1);
+                $('#ss1k').val(data[0].expenditure_phase1);
+                $('#ss1l').val(data[0].remark_phase1);
+                $('#ss2r').val("Phase-2(October-March 2023-24)");
+
+
+                var start_date = data[0].work_start_date_phase1;
+                var type_of_work_phase = data[0].type_of_work_phase1;
+                var latitude_phase = data[0].latitude_phase1;
+                var longitude_phase = data[0].longitude_phase1;
+                var department_name_phase = data[0].department_name_phase1;
+                var schema_name_phase = data[0].schema_name_phase1;
+                var other_schema_name_phase = data[0].other_schema_name_phase1;
+                var status_of_work_phase1 = data[0].status_of_work_phase1;
+
+                var other = data[0].scheme_name_possible_funding_source;
+                if (other == "Other") {
+                    $('#ss2other_schema').show();
+                }
+                else {
+                    $('#ss2other_schema').hide();
+                }
+                var other_1phase = data[0].schema_name_phase1;
+                if (other_1phase == "Other") {
+                    $('#ss1div_other_supply').show();
+                }
+                else {
+                    $('#ss1div_other_supply').hide();
+                }
+
+                if (start_date != "" && start_date != null) {
+                    $('#ss2s').val(data[0].work_start_date_phase1);
+
+                    phase2alert = "yes";
+                    $('#sslo1s').prop('disabled', true);
+                    $('#sslo1t').prop('disabled', true);
+                    $('#sslo1ddltypeofwork').prop('disabled', true);
+                    $('#sslo1ddlstatusofwork').prop('disabled', true);
+                    $('#sslo1latitude').prop('disabled', true);
+                    $('#sslo1longitude').prop('disabled', true);
+                    $('#sslo1txtdepartment_supply').prop('disabled', true);
+                    $('#ss2txtschema_leftoverphase1supply').prop('disabled', true);
+                    $('#sslo1w').prop('disabled', true);
+                    $('#sslo1x').prop('disabled', true);
+                    $('#ss2s').prop('disabled', true);
+
+                }
+                else {
+                    $('#sslo1s').prop('disabled', false);
+                    $('#sslo1t').prop('disabled', false);
+                    $('#sslo1ddltypeofwork').prop('disabled', false);
+                    $('#sslo1ddlstatusofwork').prop('disabled', false);
+                    $('#sslo1latitude').prop('disabled', false);
+                    $('#sslo1longitude').prop('disabled', false);
+                    $('#sslo1txtdepartment_supply').prop('disabled', false);
+                    $('#ss2txtschema_leftoverphase1supply').prop('disabled', false);
+                    $('#sslo1w').prop('disabled', false);
+                    $('#sslo1x').prop('disabled', false);
+                    $('#ss2s').val("");
+                    $('#ss2s').prop('disabled', false);
+
+                }
+                if (type_of_work_phase != "" && type_of_work_phase != null) {
+                    $('#ss2ddltypeofwork').val(data[0].type_of_work_phase1);
+                    $('#ss2ddltypeofwork').prop('disabled', true);
+                }
+                else {
+                    $('#ss2ddltypeofwork').val("0");
+                    $('#ss2ddltypeofwork').prop('disabled', false);
+                }
+                if (latitude_phase != "" && latitude_phase != null) {
+                    $('#ss2latitude').val(data[0].latitude_phase1);
+                    $('#ss2latitude').prop('disabled', true);
+                }
+                else {
+                    $('#ss2latitude').val("");
+                    $('#ss2latitude').prop('disabled', false);
+                }
+                if (longitude_phase != "" && longitude_phase != null) {
+                    $('#ss2longitude').val(data[0].longitude_phase1);
+                    $('#ss2longitude').prop('disabled', true);
+                }
+                else {
+                    $('#ss2longitude').val("");
+                    $('#ss2longitude').prop('disabled', false);
+                }
+                if (department_name_phase != "" && department_name_phase != null) {
+                    $('#ss2txtdepartment_supply').val(data[0].department_name_phase1);
+                    $('#ss2txtdepartment_supply').prop('disabled', true);
+                }
+                else {
+                    $('#ss2txtdepartment_supply').val("0");
+                    $('#ss2txtdepartment_supply').prop('disabled', false);
+                }
+                if (schema_name_phase != "" && schema_name_phase != null) {
+                    $('#ss2txtschema_supply').val(data[0].schema_name_phase1);
+                    $('#ss2txtschema_supply').prop('disabled', true);
+                }
+                else {
+                    $('#ss2txtschema_supply').val("0");
+                    $('#ss2txtschema_supply').prop('disabled', false);
+                }
+                if (schema_name_phase == "Other") {
+                    $('#ss2div_other_supply').show();
+                    $('#ss2txtotherScheme').val(data[0].other_schema_name_phase1);
+                    $('#ss2txtotherScheme').prop('disabled', true);
+                }
+                else {
+                    $('#ss2div_other_supply').hide();
+                    $('#ss2txtotherScheme').val("");
+                    $('#ss2txtotherScheme').prop('disabled', false);
+                }
+
+                if (status_of_work_phase1 == "Completed") {
+                    $('#ss2t').prop('disabled', true);
+                    $('#ss2ddlstatusofwork').prop('disabled', true);
+                    $('#ss2w').prop('disabled', true);
+                    $('#ss2x').prop('disabled', true);
+                    $('#btn1phase2').hide();
+                }
+                else {
+                    $('#ss2t').prop('disabled', false);
+                    $('#ss2ddlstatusofwork').prop('disabled', false);
+                    $('#ss2w').prop('disabled', false);
+                    $('#ss2x').prop('disabled', false);
+                    $('#btn1phase2').show();
+                }
+
+            }
+            else {
+                $('#ss1div_other_supply').hide();
+                $('#ss2div_other_supply').hide();
+                $('#ss2s').val("");
+                $('#ss2s').prop('disabled', false);
+                $('#ss2t').val("");
+                $('#ss2t').prop('disabled', false);
+                $('#ss2ddlstatusofwork').val("0");
+                $('#ss2ddlstatusofwork').prop('disabled', false);
+                $('#ss2ddltypeofwork').val("0");
+                $('#ss2ddltypeofwork').prop('disabled', false);
+                $('#ss2latitude').val("");
+                $('#ss2latitude').prop('disabled', false);
+                $('#ss2longitude').val("");
+                $('#ss2longitude').prop('disabled', false);
+                $('#ss2txtdepartment_supply').val("0");
+                $('#ss2txtdepartment_supply').prop('disabled', false);
+                $('#ss2txtschema_supply').val("0");
+                $('#ss2txtschema_supply').prop('disabled', false);
+                $('#ss2txtotherScheme').val("");
+                $('#ss2txtotherScheme').prop('disabled', false);
+                $('#ss2w').val("");
+                $('#ss2w').prop('disabled', false);
+                $('#ss2x').val("");
+                $('#ss2x').prop('disabled', false);
+                $('#sslo1s').val("");
+                $('#sslo1s').prop('disabled', false);
+                $('#sslo1ddltypeofwork').val("0");
+                $('#sslo1ddltypeofwork').prop('disabled', false);
+                $('#sslo1ddlstatusofwork').val("0");
+                $('#sslo1ddlstatusofwork').prop('disabled', false);
+                $('#sslo1latitude').val("");
+                $('#sslo1latitude').prop('disabled', false);
+                $('#sslo1longitude').val("");
+                $('#sslo1longitude').prop('disabled', false);
+                $('#sslo1txtdepartment_supply').val("0");
+                $('#sslo1txtdepartment_supply').prop('disabled', false);
+                $('#ss2txtschema_leftoverphase1supply').val("0");
+                $('#ss2txtschema_leftoverphase1supply').prop('disabled', false);
+                $('#ssleftoverphase1txtotherScheme').val("");
+                $('#ssleftoverphase1txtotherScheme').prop('disabled', false);
+                $('#sslo1t').val("");
+                $('#sslo1t').prop('disabled', false);
+                $('#sslo1w').val("");
+                $('#sslo1w').prop('disabled', false);
+                $('#sslo1x').val("");
+                $('#sslo1x').prop('disabled', false);
+
+                $('#ss1a').val("");
+                $('#ss1b').val("");
+                $('#ss1c').val("");
+                $('#ss1d').val("");
+                $('#ss1e').val("");
+                $('#ss1f').val("");
+                $('#ss1g').val("");
+                $('#ss1h').val("");
+                $('#ss1i').val("");
+                $('#ss1j').val("");
+                $('#ss1k').val("");
+                $('#ss1l').val("");
+                $('#ss2r').val("");
+
+            }
+
+
+        }
+    });
+}
+var leftoveralert = "No";
+var phase2alert = "No";
+function textfileundisable() {
+
+    var d1 = $('#sslo1s').val();
+    var d2 = $('#sslo1t').val();
+    var d3 = $('#sslo1ddltypeofwork').val();
+    var d4 = $('#sslo1ddlstatusofwork').val();
+    var d5 = $('#sslo1latitude').val();
+    var d6 = $('#sslo1longitude').val();
+    var d7 = $('#sslo1txtdepartment_supply').val();
+    var d8 = $('#ss2txtschema_leftoverphase1supply').val();
+    var d9 = $('#ssleftoverphase1txtotherScheme').val();
+    var d10 = $('#sslo1w').val();
+    var d11 = $('#sslo1x').val();
+
+    if (d8 == "Other") {
+        $('#ssleftoverphase1div_other_supply').show();
+
+    }
+    else {
+        $('#ssleftoverphase1txtotherScheme').val("");
+        $('#ssleftoverphase1div_other_supply').hide();
+
+    }
+
+    if (d1 != "" || d2 != "" || d3 != "0" || d4 != "0" || d5 != "" || d6 != "" || d7 != "0" || d8 != "0" || d9 != "" || d10 != "" || d11 != "") {
+        leftoveralert = "yes";
+        if (d4 == "Completed") {
+            phase2alert = "No";
+            $('#ss2s').val("");
+            $('#ss2s').prop('disabled', true);
+            $('#ss2t').val("");
+            $('#ss2t').prop('disabled', true);
+            $('#ss2ddlstatusofwork').val("0");
+            $('#ss2ddlstatusofwork').prop('disabled', true);
+            $('#ss2ddltypeofwork').val("0");
+            $('#ss2ddltypeofwork').prop('disabled', true);
+            $('#ss2latitude').val("");
+            $('#ss2latitude').prop('disabled', true);
+            $('#ss2longitude').val("");
+            $('#ss2longitude').prop('disabled', true);
+            $('#ss2txtdepartment_supply').val("0");
+            $('#ss2txtdepartment_supply').prop('disabled', true);
+            $('#ss2txtschema_supply').val("0");
+            $('#ss2txtschema_supply').prop('disabled', true);
+            $('#ss2txtotherScheme').val("");
+            $('#ss2txtotherScheme').prop('disabled', true);
+            $('#ss2w').val("");
+            $('#ss2w').prop('disabled', true);
+            $('#ss2x').val("");
+            $('#ss2x').prop('disabled', true);
+        }
+        else {
+
+            if (phase2alert == "yes") {
+                $('#ss2s').val("");
+                $('#ss2s').prop('disabled', false);
+
+                $('#ss2ddltypeofwork').val("0");
+                $('#ss2ddltypeofwork').prop('disabled', false);
+                $('#ss2latitude').val("");
+                $('#ss2latitude').prop('disabled', false);
+                $('#ss2longitude').val("");
+                $('#ss2longitude').prop('disabled', false);
+                $('#ss2txtdepartment_supply').val("0");
+                $('#ss2txtdepartment_supply').prop('disabled', false);
+                $('#ss2txtschema_supply').val("0");
+                $('#ss2txtschema_supply').prop('disabled', false);
+                $('#ss2txtotherScheme').val("");
+                $('#ss2txtotherScheme').prop('disabled', false);
+                $('#ss2w').val("");
+                $('#ss2x').val("");
+                phase2alert = "No";
+            }
+            else {
+                phase2alert = "No";
+                $('#ss2s').val("");
+                $('#ss2s').prop('disabled', false);
+                $('#ss2t').val("");
+                $('#ss2t').prop('disabled', false);
+                $('#ss2ddlstatusofwork').val("0");
+                $('#ss2ddlstatusofwork').prop('disabled', false);
+                $('#ss2ddltypeofwork').val("0");
+                $('#ss2ddltypeofwork').prop('disabled', false);
+                $('#ss2latitude').val("");
+                $('#ss2latitude').prop('disabled', false);
+                $('#ss2longitude').val("");
+                $('#ss2longitude').prop('disabled', false);
+                $('#ss2txtdepartment_supply').val("0");
+                $('#ss2txtdepartment_supply').prop('disabled', false);
+                $('#ss2txtschema_supply').val("0");
+                $('#ss2txtschema_supply').prop('disabled', false);
+                $('#ss2txtotherScheme').val("");
+                $('#ss2txtotherScheme').prop('disabled', false);
+                $('#ss2w').val("");
+                $('#ss2w').prop('disabled', false);
+                $('#ss2x').val("");
+                $('#ss2x').prop('disabled', false);
+            }
+        }
+    }
+    else {
+        leftoveralert = "No";
+        phase2alert = "No";
+        $('#ss2s').val("");
+        $('#ss2s').prop('disabled', false);
+        $('#ss2t').val("");
+        $('#ss2t').prop('disabled', false);
+        $('#ss2ddlstatusofwork').val("0");
+        $('#ss2ddlstatusofwork').prop('disabled', false);
+        $('#ss2ddltypeofwork').val("0");
+        $('#ss2ddltypeofwork').prop('disabled', false);
+        $('#ss2latitude').val("");
+        $('#ss2latitude').prop('disabled', false);
+        $('#ss2longitude').val("");
+        $('#ss2longitude').prop('disabled', false);
+        $('#ss2txtdepartment_supply').val("0");
+        $('#ss2txtdepartment_supply').prop('disabled', false);
+        $('#ss2txtschema_supply').val("0");
+        $('#ss2txtschema_supply').prop('disabled', false);
+        $('#ss2txtotherScheme').val("");
+        $('#ss2txtotherScheme').prop('disabled', false);
+        $('#ss2w').val("");
+        $('#ss2w').prop('disabled', false);
+        $('#ss2x').val("");
+        $('#ss2x').prop('disabled', false);
+
+    }
+}
+function textfilealertcheckphase2() {
+
+    var d1 = $('#ss2s').val();
+    var d2 = $('#ss2t').val();
+    var d3 = $('#ss2ddltypeofwork').val();
+    var d4 = $('#ss2ddlstatusofwork').val();
+    var d5 = $('#ss2latitude').val();
+    var d6 = $('#ss2longitude').val();
+    var d7 = $('#ss2txtdepartment_supply').val();
+    var d8 = $('#ss2txtschema_supply').val();
+    var d9 = $('#ss2txtotherScheme').val();
+    var d10 = $('#ss2w').val();
+    var d11 = $('#ss2x').val();
+
+    var A1 = $('#sslo1s').val();
+    var A2 = $('#sslo1t').val();
+    var A3 = $('#sslo1ddltypeofwork').val();
+    var A5 = $('#sslo1latitude').val();
+    var A6 = $('#sslo1longitude').val();
+    var A7 = $('#sslo1txtdepartment_supply').val();
+    var A8 = $('#ss2txtschema_leftoverphase1supply').val();
+    var A9 = $('#ssleftoverphase1txtotherScheme').val();
+    if (d8 == "Other") {
+        $('#ss2div_other_supply').show();
+    }
+    else {
+        $('#ss2txtotherScheme').val("");
+        $('#ss2div_other_supply').hide();
+    }
+
+    if (d1 != "" || d2 != "" || d3 != "0" || d4 != "0" || d5 != "" || d6 != "" || d7 != "0" || d8 != "0" || d9 != "" || d10 != "" || d11 != "") {
+        phase2alert = "yes";
+        if (leftoveralert == "yes") {
+
+            $('#ss2s').val(A1);
+            $('#ss2s').prop('disabled', true);
+
+            $('#ss2ddltypeofwork').val(A3);
+            $('#ss2ddltypeofwork').prop('disabled', true);
+            $('#ss2latitude').val(A5);
+            $('#ss2latitude').prop('disabled', true);
+            $('#ss2longitude').val(A6);
+            $('#ss2longitude').prop('disabled', true);
+            $('#ss2txtdepartment_supply').val(A7);
+            $('#ss2txtdepartment_supply').prop('disabled', true);
+            $('#ss2txtschema_supply').val(A8);
+            $('#ss2txtschema_supply').prop('disabled', true);
+            $('#ss2txtotherScheme').val(A9);
+            $('#ss2txtotherScheme').prop('disabled', true);
+            if (A8 == "Other") {
+                $('#ssleftoverphase1div_other_supply').show();
+                $('#ss2div_other_supply').show();
+            }
+            else {
+                $('#ssleftoverphase1div_other_supply').hide();
+                $('#ss2div_other_supply').hide();
+            }
+        }
+        else {
+            leftoveralert = "No";
+        }
+    }
+    else {
+        phase2alert = "No";
+        leftoveralert = "No";
+        $('#ss2s').val("");
+        $('#ss2s').prop('disabled', false);
+
+        $('#ss2ddltypeofwork').val("0");
+        $('#ss2ddltypeofwork').prop('disabled', false);
+        $('#ss2latitude').val("");
+        $('#ss2latitude').prop('disabled', false);
+        $('#ss2longitude').val("");
+        $('#ss2longitude').prop('disabled', false);
+        $('#ss2txtdepartment_supply').val("0");
+        $('#ss2txtdepartment_supply').prop('disabled', false);
+        $('#ss2txtschema_supply').val("0");
+        $('#ss2txtschema_supply').prop('disabled', false);
+        $('#ss2txtotherScheme').val("");
+        $('#ss2txtotherScheme').prop('disabled', false);
+
+        $('#sslo1s').val("");
+        $('#sslo1s').prop('disabled', false);
+        $('#sslo1ddltypeofwork').val("0");
+        $('#sslo1ddltypeofwork').prop('disabled', false);
+        $('#sslo1latitude').val("");
+        $('#sslo1latitude').prop('disabled', false);
+        $('#sslo1longitude').val("");
+        $('#sslo1longitude').prop('disabled', false);
+        $('#sslo1txtdepartment_supply').val("0");
+        $('#sslo1txtdepartment_supply').prop('disabled', false);
+        $('#ss2txtschema_leftoverphase1supply').val("0");
+        $('#ss2txtschema_leftoverphase1supply').prop('disabled', false);
+        $('#ssleftoverphase1txtotherScheme').val("");
+        $('#ssleftoverphase1txtotherScheme').prop('disabled', false);
+
+    }
+}
+
+function Other_schema_supply_phase2() {
+    var other = $('#ss2txtschema_supply').val();
+    if (other == "Other") {
+        $('#ss2div_other_supply').show();
+    }
+    else {
+        $('#ss2div_other_supply').hide();
+    }
+}
+function Other_schema_supply_leftoverphase1() {
+    var other = $('#ss2txtschema_leftoverphase1supply').val();
+    if (other == "Other") {
+        $('#ssleftoverphase1div_other_supply').show();
+    }
+    else {
+        $('#ssleftoverphase1div_other_supply').hide();
+    }
+}
+function insert_data_supplyside_phase2() {
+    $('.loader').show();
+    var xx = 0;
+    var id = insert_id_2ss;
+    var date1 = $('#ss2r').val();
+    var date2 = $('#ss2s').val();
+    var date3 = $('#ss2t').val();
+    var date4 = $('#ss2ddltypeofwork').val();
+    var date5 = $('#ss2ddlstatusofwork').val();
+    var date6 = $('#ss2latitude').val();
+    var date7 = $('#ss2longitude').val();
+    var date8 = $('#ss2txtdepartment_supply').val();
+    var date9 = $('#ss2txtschema_supply').val();
+    var date10 = $('#ss2txtotherScheme').val();
+    var date11 = $('#ss2w').val();
+    var date12 = $('#ss2x').val();
+    /*leftoverphase1*/
+    var date13 = $('#sslo1s').val();
+    var date14 = $('#sslo1t').val();
+    var date15 = $('#sslo1ddltypeofwork').val();
+    var date16 = $('#sslo1ddlstatusofwork').val();
+    var date17 = $('#sslo1latitude').val();
+    var date18 = $('#sslo1longitude').val();
+    var date19 = $('#sslo1txtdepartment_supply').val();
+    var date20 = $('#ss2txtschema_leftoverphase1supply').val();
+    var date23 = $('#ssleftoverphase1txtotherScheme').val();
+    var date21 = $('#sslo1w').val();
+    var date22 = $('#sslo1x').val();
+
+
+    if (leftoveralert == "yes" && phase2alert == "No") {
+        if (date13 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Work Start Date");
+            $('.loader').hide();
+        }
+        else if (date14 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Work End Date");
+            $('.loader').hide();
+        }
+        else if (date15 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Type of Work");
+            $('.loader').hide();
+        }
+        else if (date16 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Status of Work");
+            $('.loader').hide();
+        }
+        else if (date17 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Latitude of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date18 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Longitude  of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date19 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Department Name");
+            $('.loader').hide();
+        }
+        else if (date20 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+        else if (date20 == "Other") {
+            if (date23 == "") {
+                xx = 1;
+                alert("Left Over Phase1 Please Enter Other Scheme Name / Possible Funding Source");
+                $('.loader').hide();
+            }
+        }
+        else if (date21 == "") {
+
+            alert("Left Over Phase1 Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+            $('.loader').hide();
+        }
+        else if (date13 > date14) {
+            alert("Left Over Phase1 Work end date should be later than Work start date");
+            $('#sslo1t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+        else if (date13 == date14) {
+            alert("Left Over Phase1 Work end date should not be equal than Work start date");
+            $('#sslo1t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+
+    }
+    else if (leftoveralert == "No" && phase2alert == "yes") {
+
+        if (date2 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Work Start Date");
+            $('.loader').hide();
+        }
+        else if (date3 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Work End Date");
+            $('.loader').hide();
+        }
+        else if (date4 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Type of Work");
+            $('.loader').hide();
+        }
+        else if (date5 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Status of Work");
+            $('.loader').hide();
+        }
+        else if (date6 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Latitude of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date7 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Longitude  of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date8 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Department Name");
+            $('.loader').hide();
+        }
+        else if (date9 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+        else if (date9 == "Other") {
+            if (date10 == "") {
+                xx = 1;
+                alert("Phase 2 Please Enter Other Scheme Name / Possible Funding Source");
+                $('.loader').hide();
+            }
+        }
+        else if (date11 == "") {
+
+            alert("Phase 2 Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+            $('.loader').hide();
+        }
+        else if (date2 > date3) {
+            alert("Phase 2 Work end date should be later than Work start date");
+            $('#ss2t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+        else if (date2 == date3) {
+            alert("Phase 2 Work end date should not be equal than Work start date");
+            $('#ss2t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+    }
+    else if (leftoveralert == "yes" && phase2alert == "yes") {
+        if (date13 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Work Start Date");
+            $('.loader').hide();
+        }
+        else if (date14 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Work End Date");
+            $('.loader').hide();
+        }
+        else if (date15 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Type of Work");
+            $('.loader').hide();
+        }
+        else if (date16 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Status of Work");
+            $('.loader').hide();
+        }
+        else if (date17 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Latitude of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date18 == "") {
+            xx = 1;
+            alert("Left Over Phase1 Please Enter Longitude  of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date19 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Department Name");
+            $('.loader').hide();
+        }
+        else if (date20 == "0") {
+            xx = 1;
+            alert("Left Over Phase1 Please Select Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+        else if (date20 == "Other") {
+            if (date23 == "") {
+                xx = 1;
+                alert("Left Over Phase1 Please Enter Other Scheme Name / Possible Funding Source");
+                $('.loader').hide();
+            }
+        }
+        else if (date21 == "") {
+
+            alert("Left Over Phase1 Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+            $('.loader').hide();
+        }
+        else if (date13 > date14) {
+            alert("Left Over Phase1 Work end date should be later than Work start date");
+            $('#sslo1t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+        else if (date13 == date14) {
+            alert("Left Over Phase1 Work end date should not be equal than Work start date");
+            $('#sslo1t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+
+        else if (date2 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Work Start Date");
+            $('.loader').hide();
+        }
+        else if (date3 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Work End Date");
+            $('.loader').hide();
+        }
+        else if (date14 != date3) {
+            xx = 1;
+            alert("Please Enter Work End Date Left over Phase1 and Work End Date Phase 2 is equal or same ");
+            $('.loader').hide();
+        }
+        else if (date4 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Type of Work");
+            $('.loader').hide();
+        }
+        else if (date5 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Status of Work");
+            $('.loader').hide();
+        }
+        else if (date6 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Latitude of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date7 == "") {
+            xx = 1;
+            alert("Phase 2 Please Enter Longitude  of structure (Decimal Degree)");
+            $('.loader').hide();
+        }
+        else if (date8 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Department Name");
+            $('.loader').hide();
+        }
+        else if (date9 == "0") {
+            xx = 1;
+            alert("Phase 2 Please Select Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+        else if (date9 == "Other") {
+            if (date10 == "") {
+                xx = 1;
+                alert("Phase 2 Please Enter Other Scheme Name / Possible Funding Source");
+                $('.loader').hide();
+            }
+        }
+        else if (date11 == "") {
+
+            alert("Phase 2 Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+            $('.loader').hide();
+        }
+        else if (date2 > date3) {
+            alert("Phase 2 Work end date should be later than Work start date");
+            $('#ss2t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+        else if (date2 == date3) {
+            alert("Phase 2 Work end date should not be equal than Work start date");
+            $('#ss2t').focus();
+            $('.loader').hide();
+            xx = 1;
+        }
+    }
+    else {
+        xx = 1;
+        alert("Please Enter Any One Convergence Expenditure Claim ");
+        $('.loader').hide();
+    }
+
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/insert_supplyside_phase2',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("year_subsidey_phase2", date1);
+                data.append("work_start_date_phase2", date2);
+                data.append("work_end_date_phase2", date3);
+                data.append("type_of_work_phase2", date4);
+                data.append("status_of_work_phase2", date5);
+                data.append("latitude_phase2", date6);
+                data.append("longitude_phase2", date7);
+                data.append("department_name_phase2", date8);
+                data.append("schema_name_phase2", date9);
+                data.append("other_schema_name_phase2", date10);
+                data.append("expenditure_phase2", date11);
+                data.append("remark_phase2", date12);
+
+                data.append("lop1_work_start_date_phase2", date13);
+                data.append("lop1_work_end_date_phase2", date14);
+                data.append("lop1_type_of_work_phase2", date15);
+                data.append("lop1_status_of_work_phase2", date16);
+                data.append("lop1_latitude_phase2", date17);
+                data.append("lop1_longitude_phase2", date18);
+                data.append("lop1_department_name_phase2", date19);
+                data.append("lop1_schema_name_phase2", date20);
+                data.append("lop1_other_schema_name_phase2", date23);
+                data.append("lop1_expenditure_phase2", date21);
+                data.append("lop1_remark_phase2", date22);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Saved") {
+
+                    $('#ss2r').val("");
+                    $('#ss2s').val("");
+                    $('#ss2t').val("");
+                    $('#ss2ddltypeofwork').val("0");
+                    $('#ss2ddlstatusofwork').val("0");
+                    $('#ss2latitude').val("");
+                    $('#ss2longitude').val("");
+                    $('#ss2txtdepartment_supply').val("0");
+                    $('#ss2txtschema_supply').val("0");
+                    $('#ss2txtotherScheme').val("");
+                    $('#ss2w').val("");
+                    $('#ss2x').val("");
+                    $('#sslo1s').val("");
+                    $('#sslo1t').val("");
+                    $('#sslo1ddltypeofwork').val("0");
+                    $('#sslo1ddlstatusofwork').val("0");
+                    $('#sslo1latitude').val("");
+                    $('#sslo1longitude').val("");
+                    $('#sslo1txtdepartment_supply').val("0");
+                    $('#ss2txtschema_leftoverphase1supply').val("0");
+                    $('#ssleftoverphase1txtotherScheme').val("");
+                    $('#sslo1w').val("");
+                    $('#sslo1x').val("");
+
+                    $("#exampleModal_phasetwoss").hide();
+                    $(".showdiv").show();
+                    autoclicksupplyphase2();
+                }
+                $('.loader').hide();
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function autoclicksupplyphase2() {
+
+    $("#autoclicksupply").click();
+    Data_get_phase2supply();
+
+}
+function fill_data_wsp_ss2phase2(id) {
+    $('.loader').show();
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside_wsp',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var tr = '';
+            var sno = 0;
+            var id = 0;
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    id = data[0].id;
+                    sno = i + 1;
+                    var other_scheme = data[i].other_scheme;
+                    if (other_scheme == null) {
+                        other_scheme = "";
+                    }
+                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td></tr>';
+
+                }
+                $('#ss2tbl_details_add_phase2').html(tr);
+            }
+            fill_data_phase2_supplyside(id);
+        }
+    });
+}
+function fill_data_phase2_supplyside(id) {
+    id = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside_wsp',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var Tbodyhtml = '';
+            var sno = 0;
+            var id = 0;
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
+                    id = data[0].id;
+                    sno = i + 1;
+                    var other_scheme = data[i].other_schema_name_phase1;
+                    if (other_scheme == null) {
+                        other_scheme = "";
+                    }
+                    var approve_phase1 = data[i].approve_phase1;
+                    if (approve_phase1 == null) {
+                        approve_phase1 = "";
+                    }
+                    var entry_phase = data[i].entry_phase1;
+                    if (entry_phase == null) {
+                        entry_phase = "";
+                    }
+                    if (approve_phase1 == "Approved") {
+
+                        if (entry_phase == "phase1") {
+
+                            Tbodyhtml += '<tr id="AWP2_TR_edit' + i + '"><td id="srNo">' + (sno) + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
+                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td></tr>';
+
+                        }
+                    }
+                }
+                $('#ss2phase2_data').html(Tbodyhtml);
+            }
+            viewdata_phase2_supplyside(id);
+        }
+    });
+}
+/*disable class use for hide button */
+function viewdata_phase2_supplyside(id) {
+    id = id;
+    insert_id_2ss = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside_wsp',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var Tbodyhtml = '';
+            var sno = 0;
+            /*var id = 0;*/
+            if (data.length != 0) {
+                if (StateOfficer == "State Level Nodal Officer") {
+                    for (var i = 0; i < data.length; i++) {
+                        id = data[0].id;
+                        sno = i + 1;
+                        var other_scheme = data[i].other_schema_name_phase2;
+                        if (other_scheme == null) {
+                            other_scheme = "";
+                        }
+                        var entry_phase = data[i].entry_phase2;
+                        if (entry_phase == null) {
+                            entry_phase = "";
+                        }
+                        var approve = data[i].approve_phase2;
+                        if (approve == null) {
+                            approve = "";
+                        }
+                        var phase1 = "No";
+                        var work_start_date_phase1 = data[i].work_start_date_phase1;
+                        if (work_start_date_phase1 == null || work_start_date_phase1 == "") {
+                            phase1 = "Yes";
+
+                        }
+                        var Lopphase1 = "No";
+                        var lop1_work_start_date_phase2 = data[i].lop1_work_start_date_phase2;
+                        if (lop1_work_start_date_phase2 == null || lop1_work_start_date_phase2 == "") {
+                            Lopphase1 = "Yes";
+
+                        }
+                        var p2_type_of_work_phase2 = data[i].lop1_type_of_work_phase2;
+                        var findinglop1data = "No";
+                        var work_start_date_phase2 = data[i].work_start_date_phase2;
+                        if (work_start_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_start_date_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var type_of_work_phase2 = data[i].type_of_work_phase2;
+                        if (type_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            type_of_work_phase2 = "";
+                        }
+                        var status_of_work_phase2 = data[i].status_of_work_phase2;
+                        if (status_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            status_of_work_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var latitude_phase2 = data[i].latitude_phase2;
+                        if (latitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            latitude_phase2 = "";
+                        }
+                        var longitude_phase2 = data[i].longitude_phase2;
+                        if (longitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            longitude_phase2 = "";
+                        }
+                        var department_name_phase2 = data[i].department_name_phase2;
+                        if (department_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            department_name_phase2 = "";
+                        }
+                        var schema_name_phase2 = data[i].schema_name_phase2;
+                        if (schema_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            schema_name_phase2 = "";
+                        }
+                        var expenditure_phase2 = data[i].expenditure_phase2;
+                        if (expenditure_phase2 == null) {
+                            findinglop1data = "Yes";
+                            expenditure_phase2 = "";
+                        }
+                        var remark_phase2 = data[i].remark_phase2;
+                        //if (remark_phase2 == null) {
+                        //    findinglop1data = "Yes";
+                        //    remark_phase2 = "";
+                        //}
+                        if (approve == "Approved") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+
+                            $('#gp_status2phasess').text("Approved").css({ 'color': 'blue' });
+                        }
+                        else if (approve == "Submit to SPMU") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').show();
+                                $('#sstxtreject2remark').show();
+                                $('#ssphase2reject').show();
+                            }
+                            $('#gp_status2phasess').text("At SPMU").css({ 'color': 'green' });
+                        }
+                        else if (approve == "Rejected") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            $('#gp_status2phasess').text("Rejected").css({ 'color': 'red' });
+                        }
+                        else {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            $('#gp_status2phasess').text("At DPMU").css({ 'color': 'black' });
+                        }
+                    }
+                }
+                if (StateOfficer == "District Level Nodal Officer") {
+                    for (var i = 0; i < data.length; i++) {
+                        /*id = data[0].id;*/
+
+                        sno = i + 1;
+                        var other_scheme = data[i].other_schema_name_phase2;
+                        if (other_scheme == null) {
+                            other_scheme = "";
+                        }
+                        var entry_phase = data[i].entry_phase2;
+                        if (entry_phase == null) {
+                            entry_phase = "";
+                        }
+                        var approve = data[i].approve_phase2;
+                        if (approve == null) {
+                            approve = "";
+                        }
+                        var phase1 = "No";
+                        var work_start_date_phase1 = data[i].work_start_date_phase1;
+                        if (work_start_date_phase1 == null || work_start_date_phase1 == "") {
+                            phase1 = "Yes";
+
+                        }
+                        var Lopphase1 = "No";
+                        var lop1_work_start_date_phase2 = data[i].lop1_work_start_date_phase2;
+                        if (lop1_work_start_date_phase2 == null || lop1_work_start_date_phase2 == "") {
+                            Lopphase1 = "Yes";
+
+                        }
+                        var p2_type_of_work_phase2 = data[i].lop1_type_of_work_phase2;
+
+                        var p2_work_start_date_phase2 = data[i].lop1_work_start_date_phase2;
+
+
+                        var p2_status_of_work_phase2 = data[i].lop1_status_of_work_phase2;
+                        var p2_latitude_phase2 = data[i].lop1_latitude_phase2;
+                        var p2_longitude_phase2 = data[i].lop1_longitude_phase2;
+                        var p2_department_name_phase2 = data[i].lop1_department_name_phase2;
+                        var p2_schema_name_phase2 = data[i].lop1_schema_name_phase2;
+                        var p2_other_schema_name_phase2 = data[i].lop1_other_schema_name_phase2;
+
+
+                        var findinglop1data = "No";
+                        var work_start_date_phase2 = data[i].work_start_date_phase2;
+                        if (work_start_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_start_date_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var type_of_work_phase2 = data[i].type_of_work_phase2;
+                        if (type_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            type_of_work_phase2 = "";
+                        }
+                        var status_of_work_phase2 = data[i].status_of_work_phase2;
+                        if (status_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            status_of_work_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var latitude_phase2 = data[i].latitude_phase2;
+                        if (latitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            latitude_phase2 = "";
+                        }
+                        var longitude_phase2 = data[i].longitude_phase2;
+                        if (longitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            longitude_phase2 = "";
+                        }
+                        var department_name_phase2 = data[i].department_name_phase2;
+                        if (department_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            department_name_phase2 = "";
+                        }
+                        var schema_name_phase2 = data[i].schema_name_phase2;
+                        if (schema_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            schema_name_phase2 = "";
+                        }
+                        var expenditure_phase2 = data[i].expenditure_phase2;
+                        if (expenditure_phase2 == null) {
+                            findinglop1data = "Yes";
+                            expenditure_phase2 = "";
+                        }
+                        var remark_phase2 = data[i].remark_phase2;
+                        //if (remark_phase2 == null) {
+                        //    findinglop1data = "Yes";
+                        //    remark_phase2 = "";
+                        //}
+
+                        if (approve == "Approved") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Approved").css({ 'color': 'blue' });
+                        }
+                        else if (approve == "Submit to SPMU") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Submitted to SPMU").css({ 'color': 'green' });
+                        }
+                        else if (approve == "Rejected") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value=""   /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control ssother" style="display:none;"  id="ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value=""></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value=""  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
+
+
+                                        }
+                                        else {
+
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                            Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                            Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').show();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            $('#gp_status2phasess').text("Rejected").css({ 'color': 'red' });
+                        }
+                        else {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value=""   /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control ssother" style="display:none;"  id="ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value=""></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value=""  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
+
+
+                                        }
+                                        else {
+
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                            Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                            Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').show();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            $('#gp_status2phasess').text("At DPMU").css({ 'color': 'black' });
+                        }
+
+                        var oo = p2_schema_name_phase2;
+                        if (oo == "Other") {
+                            $('.ssother').show();
+                        }
+                        else {
+                            $('.ssother').hide();
+                        }
+
+                    }
+                }
+                if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                    for (var i = 0; i < data.length; i++) {
+                        id = data[0].id;
+                        sno = i + 1;
+                        var other_scheme = data[i].other_schema_name_phase2;
+                        if (other_scheme == null) {
+                            other_scheme = "";
+                        }
+                        var entry_phase = data[i].entry_phase2;
+                        if (entry_phase == null) {
+                            entry_phase = "";
+                        }
+                        var approve = data[i].approve_phase2;
+                        if (approve == null) {
+                            approve = "";
+                        }
+                        var phase1 = "No";
+                        var work_start_date_phase1 = data[i].work_start_date_phase1;
+                        if (work_start_date_phase1 == null || work_start_date_phase1 == "") {
+                            phase1 = "Yes";
+
+                        }
+                        var Lopphase1 = "No";
+                        var lop1_work_start_date_phase2 = data[i].lop1_work_start_date_phase2;
+                        if (lop1_work_start_date_phase2 == null || lop1_work_start_date_phase2 == "") {
+                            Lopphase1 = "Yes";
+
+                        }
+                        var p2_type_of_work_phase2 = data[i].lop1_type_of_work_phase2;
+                        var findinglop1data = "No";
+                        var work_start_date_phase2 = data[i].work_start_date_phase2;
+                        if (work_start_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_start_date_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var type_of_work_phase2 = data[i].type_of_work_phase2;
+                        if (type_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            type_of_work_phase2 = "";
+                        }
+                        var status_of_work_phase2 = data[i].status_of_work_phase2;
+                        if (status_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            status_of_work_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var latitude_phase2 = data[i].latitude_phase2;
+                        if (latitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            latitude_phase2 = "";
+                        }
+                        var longitude_phase2 = data[i].longitude_phase2;
+                        if (longitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            longitude_phase2 = "";
+                        }
+                        var department_name_phase2 = data[i].department_name_phase2;
+                        if (department_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            department_name_phase2 = "";
+                        }
+                        var schema_name_phase2 = data[i].schema_name_phase2;
+                        if (schema_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            schema_name_phase2 = "";
+                        }
+                        var expenditure_phase2 = data[i].expenditure_phase2;
+                        if (expenditure_phase2 == null) {
+                            findinglop1data = "Yes";
+                            expenditure_phase2 = "";
+                        }
+                        var remark_phase2 = data[i].remark_phase2;
+                        //if (remark_phase2 == null) {
+                        //    findinglop1data = "Yes";
+                        //    remark_phase2 = "";
+                        //}
+                        if (approve == "Approved") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Approved").css({ 'color': 'blue' });
+                        }
+                        else if (approve == "Submit to SPMU") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Submitted to SPMU").css({ 'color': 'green' });
+                        }
+                        else if (approve == "Rejected") {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Rejected").css({ 'color': 'red' });
+                        }
+                        else {
+                            if (p2_status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("At DPMU").css({ 'color': 'black' });
+                        }
+                    }
+                }
+                $('#ss2phase2_data_old').html(Tbodyhtml);
+                viewdata_phase2_supplysidelop1(id);
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                    $('.hidebutton').hide();
+                }
+                else {
+                    $('.hidebutton').show();
+                }
+                $('.loader').hide();
+            }
+        }
+    });
+}
+function viewdata_phase2_supplysidelop1(id) {
+    id = id;
+    insert_id_2ss = id;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/filldata_supplyside_wsp',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (data) {
+
+            var Tbodyhtml = '';
+            var sno = 0;
+            /*var id = 0;*/
+            if (data.length != 0) {
+
+                if (StateOfficer == "State Level Nodal Officer") {
+                    for (var i = 0; i < data.length; i++) {
+                        id = data[0].id;
+                        sno = i + 1;
+                        var other_scheme = data[i].lop1_other_schema_name_phase2;
+                        if (other_scheme == null) {
+                            other_scheme = "";
+                        }
+                        var entry_phase = data[i].entry_phase2;
+                        if (entry_phase == null) {
+                            entry_phase = "";
+                        }
+                        var approve = data[i].approve_phase2;
+                        if (approve == null) {
+                            approve = "";
+                        }
+                        var phase1 = "No";
+                        var work_start_date_phase1 = data[i].approve_phase1;
+                        if (work_start_date_phase1 != "Approved") {
+                            phase1 = "Yes";
+
+                        }
+                        var Lopphase1 = "No";
+                        var work_start_date_phase2 = data[i].work_start_date_phase2;
+                        if (work_start_date_phase2 == null || work_start_date_phase2 == "") {
+                            Lopphase1 = "Yes";
+
+                        }
+                        var p2_type_of_work_phase2 = data[i].type_of_work_phase2;
+                        var findinglop1data = "No";
+                        var work_start_date_phase2 = data[i].lop1_work_start_date_phase2;
+                        if (work_start_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_start_date_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].lop1_work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var type_of_work_phase2 = data[i].lop1_type_of_work_phase2;
+                        if (type_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            type_of_work_phase2 = "";
+                        }
+                        var status_of_work_phase2 = data[i].lop1_status_of_work_phase2;
+                        if (status_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            status_of_work_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].lop1_work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var latitude_phase2 = data[i].lop1_latitude_phase2;
+                        if (latitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            latitude_phase2 = "";
+                        }
+                        var longitude_phase2 = data[i].lop1_longitude_phase2;
+                        if (longitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            longitude_phase2 = "";
+                        }
+                        var department_name_phase2 = data[i].lop1_department_name_phase2;
+                        if (department_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            department_name_phase2 = "";
+                        }
+                        var schema_name_phase2 = data[i].lop1_schema_name_phase2;
+                        if (schema_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            schema_name_phase2 = "";
+                        }
+                        var expenditure_phase2 = data[i].lop1_expenditure_phase2;
+                        if (expenditure_phase2 == null) {
+                            findinglop1data = "Yes";
+                            expenditure_phase2 = "";
+                        }
+                        var remark_phase2 = data[i].lop1_remark_phase2;
+                        //if (remark_phase2 == null) {
+                        //    findinglop1data = "Yes";
+                        //    remark_phase2 = "";
+                        //}
+                        if (approve == "Approved") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Approved").css({ 'color': 'blue' });
+                        }
+                        else if (approve == "Submit to SPMU") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').show();
+                                $('#sstxtreject2remark').show();
+                                $('#ssphase2reject').show();
+                            }
+                            $('#gp_status2phasess').text("At SPMU").css({ 'color': 'green' });
+                        }
+                        else if (approve == "Rejected") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Rejected").css({ 'color': 'red' });
+                        }
+                        else {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("At DPMU").css({ 'color': 'black' });
+                        }
+                    }
+                }
+                if (StateOfficer == "District Level Nodal Officer") {
+                    for (var i = 0; i < data.length; i++) {
+                        /*id = data[0].id;*/
+
+                        sno = i + 1;
+                        var other_scheme = data[i].lop1_other_schema_name_phase2;
+                        if (other_scheme == null) {
+                            other_scheme = "";
+                        }
+                        var entry_phase = data[i].entry_phase2;
+                        if (entry_phase == null) {
+                            entry_phase = "";
+                        }
+                        var approve = data[i].approve_phase2;
+                        if (approve == null) {
+                            approve = "";
+                        }
+                        var asa = "No";
+                        var sasdasd = data[i].work_start_date_phase1;
+                        if (sasdasd == null || sasdasd == "") {
+                            asa = "yes";
+
+                        }
+
+                        var phase1 = "No";
+                        var work_start_date_phase1 = data[i].work_start_date_phase1;
+                        if (work_start_date_phase1 == null || work_start_date_phase1 == "") {
+                            phase1 = "Yes";
+
+                        }
+                        var Lopphase1 = "No";
+                        var work_start_date_phase2 = data[i].work_start_date_phase2;
+                        if (work_start_date_phase2 == null || work_start_date_phase2 == "") {
+                            Lopphase1 = "Yes";
+
+                        }
+                        var p2_type_of_work_phase2 = data[i].type_of_work_phase2;
+                        var p2_status_of_work_phase2 = data[i].status_of_work_phase2;
+                        var p2_work_start_date_phase2 = data[i].work_start_date_phase2;
+                        var p2_work_end_date_phase2 = data[i].work_end_date_phase2;
+
+                        var p2_latitude_phase2 = data[i].latitude_phase2;
+                        var p2_longitude_phase2 = data[i].longitude_phase2;
+                        var p2_department_name_phase2 = data[i].department_name_phase2;
+                        var p2_schema_name_phase2 = data[i].schema_name_phase2;
+                        var p2_other_schema_name_phase2 = data[i].other_schema_name_phase2;
+
+
+
+
+                        var findinglop1data = "No";
+                        var work_start_date_phase2 = data[i].lop1_work_start_date_phase2;
+                        if (work_start_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_start_date_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].lop1_work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var type_of_work_phase2 = data[i].lop1_type_of_work_phase2;
+                        if (type_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            type_of_work_phase2 = "";
+                        }
+                        var status_of_work_phase2 = data[i].lop1_status_of_work_phase2;
+                        if (status_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            status_of_work_phase2 = "";
+                        }
+
+                        var latitude_phase2 = data[i].lop1_latitude_phase2;
+                        if (latitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            latitude_phase2 = "";
+                        }
+                        var longitude_phase2 = data[i].lop1_longitude_phase2;
+                        if (longitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            longitude_phase2 = "";
+                        }
+                        var department_name_phase2 = data[i].lop1_department_name_phase2;
+                        if (department_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            department_name_phase2 = "";
+                        }
+                        var schema_name_phase2 = data[i].lop1_schema_name_phase2;
+                        if (schema_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            schema_name_phase2 = "";
+                        }
+                        var expenditure_phase2 = data[i].lop1_expenditure_phase2;
+                        if (expenditure_phase2 == null) {
+                            findinglop1data = "Yes";
+                            expenditure_phase2 = "";
+                        }
+                        var remark_phase2 = data[i].lop1_remark_phase2;
+                        //if (remark_phase2 == null) {
+                        //    findinglop1data = "Yes";
+                        //    remark_phase2 = "";
+                        //}
+
+                        if (approve == "Approved") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Approved").css({ 'color': 'blue' });
+                        }
+                        else if (approve == "Submit to SPMU") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Submitted to SPMU").css({ 'color': 'green' });
+                        }
+                        else if (approve == "Rejected") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="lop1AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="lop1editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="lop1delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                    Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_start_date_phase' + i + '" value="' + work_start_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_end_date_phase' + i + '" value="' + work_end_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + type_of_work_phase2 + '">' + type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + status_of_work_phase2 + '">' + status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cf' + i + '" value="' + latitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cg' + i + '" value="' + longitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + department_name_phase2 + '">' + department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2schema_name_phase' + i + '" onchange="lop1ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + schema_name_phase2 + '">' + schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="lop1ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenewsupply(event)" id="lop1ss2expenditure_phase' + i + '' + i + '" value="' + expenditure_phase2 + '"></td>';
+
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1ss2remark_phase' + i + '" value="' + remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1_ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (asa == "No") {
+
+                                        }
+                                        else {
+                                            if (findinglop1data == "Yes") {
+                                                Tbodyhtml += '<tr> <td></td>';
+                                                Tbodyhtml += '<td><input disabled type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '"   /></td>';
+                                                Tbodyhtml += '<td><input  type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_end_date_phase' + i + '" value=""  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
+                                                Tbodyhtml += '<td><select  id="lop1ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                                Tbodyhtml += '<td><input disabled disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</option></select></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2schema_name_phase' + i + '" onchange="lop1ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" style="display:none;" class="form-control"  id="lop1ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenewsupply(event)" id="lop1ss2expenditure_phase' + i + '" value=""></td>';
+
+                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1ss2remark_phase' + i + '" value=""  /></td>';
+                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="lop1_ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
+
+                                                var oo = p2_schema_name_phase2;
+                                                if (oo == "Other") {
+                                                    $('#lop1ss2otherschemename_phase' + i).show();
+                                                }
+                                                else {
+                                                    $('#lop1ss2otherschemename_phase' + i).hide();
+                                                }
+                                            }
+                                            else {
+
+                                                Tbodyhtml += '<tr id="lop1AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                                Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                                Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="lop1editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                                Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="lop1delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                                Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_start_date_phase' + i + '" value="' + work_start_date_phase2 + '" disabled /></td>';
+                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_end_date_phase' + i + '" value="' + work_end_date_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + type_of_work_phase2 + '">' + type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                                Tbodyhtml += '<td><select  id="lop1ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + status_of_work_phase2 + '">' + status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cf' + i + '" value="' + latitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cg' + i + '" value="' + longitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + department_name_phase2 + '">' + department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2schema_name_phase' + i + '" onchange="lop1ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + schema_name_phase2 + '">' + schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="lop1ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                                Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenewsupply(event)" id="lop1ss2expenditure_phase' + i + '" value="' + expenditure_phase2 + '"></td>';
+
+                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1ss2remark_phase' + i + '" value="' + remark_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1_ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').show();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            $('#gp_status2phasess').text("Rejected").css({ 'color': 'red' });
+                        }
+                        else {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="lop1AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="lop1editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="lop1delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                    Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_start_date_phase' + i + '" value="' + work_start_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_end_date_phase' + i + '" value="' + work_end_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + type_of_work_phase2 + '">' + type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + status_of_work_phase2 + '">' + status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cf' + i + '" value="' + latitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cg' + i + '" value="' + longitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + department_name_phase2 + '">' + department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="lop1ss2schema_name_phase' + i + '" onchange="lop1ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + schema_name_phase2 + '">' + schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="lop1ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenewsupply(event)" id="lop1ss2expenditure_phase' + i + '" value="' + expenditure_phase2 + '"></td>';
+
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1ss2remark_phase' + i + '" value="' + remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1_ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (asa == "No") {
+
+                                        }
+                                        else {
+                                            if (findinglop1data == "Yes") {
+                                                Tbodyhtml += '<tr> <td></td>';
+                                                Tbodyhtml += '<td><input disabled type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '"   /></td>';
+                                                Tbodyhtml += '<td><input  type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_end_date_phase' + i + '" value=""  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
+                                                Tbodyhtml += '<td><select  id="lop1ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                                Tbodyhtml += '<td><input disabled disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</option></select></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2schema_name_phase' + i + '" onchange="lop1ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" style="display:none;" class="form-control"  id="lop1ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenewsupply(event)" id="lop1ss2expenditure_phase' + i + '" value=""></td>';
+
+                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1ss2remark_phase' + i + '" value=""  /></td>';
+                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="lop1_ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
+
+                                                var oo = p2_schema_name_phase2;
+                                                if (oo == "Other") {
+                                                    $('#lop1ss2otherschemename_phase' + i).show();
+                                                }
+                                                else {
+                                                    $('#lop1ss2otherschemename_phase' + i).hide();
+                                                }
+                                            }
+                                            else {
+
+                                                Tbodyhtml += '<tr id="lop1AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                                Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                                Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                                Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="lop1editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                                Tbodyhtml += '<td><button class="btn btn-danger  hidebutton" type="button"  onclick="lop1delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+
+                                                Tbodyhtml += '<tr id="lop1Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_start_date_phase' + i + '" value="' + work_start_date_phase2 + '" disabled /></td>';
+                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="lop1ss2work_end_date_phase' + i + '" value="' + work_end_date_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + type_of_work_phase2 + '">' + type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                                Tbodyhtml += '<td><select  id="lop1ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + status_of_work_phase2 + '">' + status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cf' + i + '" value="' + latitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="8" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="lop1ss2enforceNumberValidation(' + i + ' , this)"  id="lop1ss2cg' + i + '" value="' + longitude_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + department_name_phase2 + '">' + department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                                Tbodyhtml += '<td><select disabled id="lop1ss2schema_name_phase' + i + '" onchange="lop1ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + schema_name_phase2 + '">' + schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="lop1ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                                Tbodyhtml += '<td><input type="text" maxlength="10" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenewsupply(event)" id="lop1ss2expenditure_phase' + i + '" value="' + expenditure_phase2 + '"></td>';
+
+                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="lop1ss2remark_phase' + i + '" value="' + remark_phase2 + '"  /></td>';
+                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="lop1_ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="lop1cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                                $('#ssphase2submittospmu').hide();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            else {
+                                $('#ssphase2submittospmu').show();
+                                $('#ssphase2submittoapprove').hide();
+                                $('#sstxtreject2remark').hide();
+                                $('#ssphase2reject').hide();
+                            }
+                            $('#gp_status2phasess').text("At DPMU").css({ 'color': 'black' });
+                        }
+                    }
+                }
+                if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                    for (var i = 0; i < data.length; i++) {
+
+                        id = data[0].id;
+                        sno = i + 1;
+                        var other_scheme = data[i].lop1_other_schema_name_phase2;
+                        if (other_scheme == null) {
+                            other_scheme = "";
+                        }
+                        var entry_phase = data[i].entry_phase2;
+                        if (entry_phase == null) {
+                            entry_phase = "";
+                        }
+                        var approve = data[i].approve_phase2;
+                        if (approve == null) {
+                            approve = "";
+                        }
+                        var phase1 = "No";
+                        var work_start_date_phase1 = data[i].work_start_date_phase1;
+                        if (work_start_date_phase1 == null || work_start_date_phase1 == "") {
+                            phase1 = "Yes";
+
+                        }
+                        var Lopphase1 = "No";
+                        var work_start_date_phase2 = data[i].work_start_date_phase2;
+                        if (work_start_date_phase2 == null || work_start_date_phase2 == "") {
+                            Lopphase1 = "Yes";
+
+                        }
+                        var p2_type_of_work_phase2 = data[i].type_of_work_phase2;
+                        var findinglop1data = "No";
+                        var work_start_date_phase2 = data[i].lop1_work_start_date_phase2;
+                        if (work_start_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_start_date_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].lop1_work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var type_of_work_phase2 = data[i].lop1_type_of_work_phase2;
+                        if (type_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            type_of_work_phase2 = "";
+                        }
+                        var status_of_work_phase2 = data[i].lop1_status_of_work_phase2;
+                        if (status_of_work_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            status_of_work_phase2 = "";
+                        }
+                        var work_end_date_phase2 = data[i].lop1_work_end_date_phase2;
+                        if (work_end_date_phase2 == null) {
+                            findinglop1data = "Yes";
+                            work_end_date_phase2 = "";
+                        }
+                        var latitude_phase2 = data[i].lop1_latitude_phase2;
+                        if (latitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            latitude_phase2 = "";
+                        }
+                        var longitude_phase2 = data[i].lop1_longitude_phase2;
+                        if (longitude_phase2 == null) {
+                            findinglop1data = "Yes";
+                            longitude_phase2 = "";
+                        }
+                        var department_name_phase2 = data[i].lop1_department_name_phase2;
+                        if (department_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            department_name_phase2 = "";
+                        }
+                        var schema_name_phase2 = data[i].lop1_schema_name_phase2;
+                        if (schema_name_phase2 == "0") {
+                            findinglop1data = "Yes";
+                            schema_name_phase2 = "";
+                        }
+                        var expenditure_phase2 = data[i].lop1_expenditure_phase2;
+                        if (expenditure_phase2 == null) {
+                            findinglop1data = "Yes";
+                            expenditure_phase2 = "";
+                        }
+                        var remark_phase2 = data[i].lop1_remark_phase2;
+                        //if (remark_phase2 == null) {
+                        //    findinglop1data = "Yes";
+                        //    remark_phase2 = "";
+                        //}
+                        if (approve == "Approved") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Approved").css({ 'color': 'blue' });
+                        }
+                        else if (approve == "Submit to SPMU") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Submitted to SPMU").css({ 'color': 'green' });
+                        }
+                        else if (approve == "Rejected") {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("Rejected").css({ 'color': 'red' });
+                        }
+                        else {
+                            if (p2_status_of_work_phase2 == "Completed" && status_of_work_phase2 == "Completed") {
+
+                            }
+                            else {
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                    Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td></td>';
+                                    Tbodyhtml += '<td></td></tr>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+
+                                        }
+                                        else {
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+
+                                            Tbodyhtml += '<td id="vill">' + work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td></td>';
+                                            Tbodyhtml += '<td></td></tr>';
+                                        }
+                                    }
+                                }
+                            }
+                            $('#ssphase2submittospmu').hide();
+                            $('#ssphase2submittoapprove').hide();
+                            $('#sstxtreject2remark').hide();
+                            $('#ssphase2reject').hide();
+                            $('#gp_status2phasess').text("At DPMU").css({ 'color': 'black' });
+                        }
+                    }
+                }
+                $('#ss2leftoverphase1_data_old').html(Tbodyhtml);
+                $('.disable').attr("disabled", "disabled");
+                $('.disable').hide();
+                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                    $('.hidebutton').hide();
+                }
+                else {
+                    $('.hidebutton').show();
+                }
+                $('.loader').hide();
+            }
+        }
+    });
+}
+function ss2ddlother2_new(i) {
+    var other_new = $('#ss2schema_name_phase' + i).val();
+    if (other_new == "Other") {
+        $('#ss2otherschemename_phase' + i).show();
+    }
+    else {
+        $('#ss2otherschemename_phase' + i).hide();
+    }
+}
+function lop1ss2ddlother2_new(i) {
+    var other_new = $('#lop1ss2schema_name_phase' + i).val();
+    if (other_new == "Other") {
+        $('#lop1ss2otherschemename_phase' + i).show();
+    }
+    else {
+        $('#lop1ss2otherschemename_phase' + i).hide();
+    }
+}
+function editrowcomp_A_Good_data2ss(i) {
+    var other = $('#ss2schema_name_phase' + i).val();
+
+    if (other == "Other") {
+        $('#ss2otherschemename_phase' + i).show();
+    }
+    else {
+        $('#ss2otherschemename_phase' + i).hide();
+    }
+
+
+    $('#AWP2_TR_editss' + i).hide();
+    $('#Hide_AWP2_TR_editss' + i).show();
+
+}
+function cancelcomp_A_Support_NEW_data2ss(i) {
+
+    $('#AWP2_TR_editss' + i).show();
+    $('#Hide_AWP2_TR_editss' + i).hide();
+}
+function lop1editrowcomp_A_Good_data2ss(i) {
+    var lop1other = $('#lop1ss2schema_name_phase' + i).val();
+
+    if (lop1other == "Other") {
+        $('#lop1ss2otherschemename_phase' + i).show();
+    }
+    else {
+        $('#lop1ss2otherschemename_phase' + i).hide();
+    }
+
+    $('#lop1AWP2_TR_editss' + i).hide();
+    $('#lop1Hide_AWP2_TR_editss' + i).show();
+
+}
+function lop1cancelcomp_A_Support_NEW_data2ss(i) {
+
+    $('#lop1AWP2_TR_editss' + i).show();
+    $('#lop1Hide_AWP2_TR_editss' + i).hide();
+}
+function delete_phase_supplyside2ss(id) {
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/delete_phase2_supplyside',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            var data = response.split(',');
+            var a = data[0];
+            var b = data[1];
+            alert(a);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (a == "Successfully Delete") {
+
+                if (b == "No") {
+                    viewdata_phase2_supplyside(id);
+                }
+                else {
+                    Data_get_phase2supply();
+                    $("#exampleModal__phase_twoss").hide();
+                    $(".showdiv").show();
+                }
+            }
+
+        }
+    });
+}
+function lop1delete_phase_supplyside2ss(id) {
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/lop1delete_phase2_supplyside',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            var data = response.split(',');
+            var a = data[0];
+            var b = data[1];
+            alert(a);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (a == "Successfully Delete") {
+
+                if (b == "No") {
+                    viewdata_phase2_supplyside(id);
+                }
+                else {
+                    Data_get_phase2supply();
+                    $("#exampleModal__phase_twoss").hide();
+                    $(".showdiv").show();
+                }
+            }
+        }
+    });
+}
+function ss2update_data_phase_supplyside(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    var id = id;
+    $('#ss2otherschemename_phase' + i).hide();
+    var date2 = $('#ss2work_start_date_phase' + i).val();
+    var date3 = $('#ss2work_end_date_phase' + i).val();
+    var date4 = $('#ss2type_of_work_phase' + i).val();
+    var date5 = $('#ss2status_of_work_phase' + i).val();
+    var date6 = $('#ss2cf' + i).val();
+    var date7 = $('#ss2cg' + i).val();
+    var date8 = $('#ss2department_name_phase' + i).val();
+    var date9 = $('#ss2schema_name_phase' + i).val();
+    var date10 = $('#ss2otherschemename_phase' + i).val();
+    var date11 = $('#ss2expenditure_phase' + i).val();
+    var date12 = $('#ss2remark_phase' + i).val();
+
+    if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Work Start Date");
+        $('.loader').hide();
+    }
+    else if (date3 == "") {
+        xx = 1;
+        alert("Please Enter Work End Date");
+        $('.loader').hide();
+    }
+    else if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Type of Work");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Status of Work");
+        $('.loader').hide();
+    }
+    else if (date6 == "") {
+        xx = 1;
+        alert("Please Enter Latitude of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Longitude  of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date8 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date9 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name / Possible Funding Source");
+        $('.loader').hide();
+    }
+    else if (date9 == "Other") {
+        if (date10 == "") {
+            xx = 1;
+            alert("Please Enter Other Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+    }
+    else if (date11 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date2 > date3) {
+        alert("Work end date should be later than Work start date");
+        $('#ss2work_end_date_phase' + i).focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+    else if (date2 == date3) {
+        alert("Work end date should not be equal than Work start date");
+        $('#ss2t').focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+    var other = "";
+    if (date9 == "Other") {
+        other = date10;
+    }
+    else {
+        other = "";
+    }
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/update_supplyside_phase2',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("work_start_date_phase2", date2);
+                data.append("work_end_date_phase2", date3);
+                data.append("type_of_work_phase2", date4);
+                data.append("status_of_work_phase2", date5);
+                data.append("latitude_phase2", date6);
+                data.append("longitude_phase2", date7);
+                data.append("department_name_phase2", date8);
+                data.append("schema_name_phase2", date9);
+                data.append("other_schema_name_phase2", other);
+                data.append("expenditure_phase2", date11);
+                data.append("remark_phase2", date12);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+
+                    $('#ss2work_start_date_phase' + i).val("");
+                    $('#ss2work_end_date_phase' + i).val("");
+                    $('#ss2type_of_work_phase' + i).val("0");
+                    $('#ss2status_of_work_phase' + i).val("0");
+                    $('#ss2cf' + i).val("");
+                    $('#ss2cg' + i).val("");
+                    $('#ss2department_name_phase' + i).val("0");
+                    $('#ss2schema_name_phase' + i).val("0");
+                    $('#ss2otherschemename_phase' + i).val("");
+                    $('#ss2expenditure_phase' + i).val("");
+                    $('#ss2remark_phase' + i).val("");
+
+                    viewdata_phase2_supplyside(id);
+                }
+                $('.loader').hide();
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function lop1_ss2update_data_phase_supplyside(id, i) {
+
+    $('.loader').show();
+    var xx = 0;
+    var id = id;
+
+
+    var date2 = $('#lop1ss2work_start_date_phase' + i).val();
+    var date3 = $('#lop1ss2work_end_date_phase' + i).val();
+    var date4 = $('#lop1ss2type_of_work_phase' + i).val();
+    var date5 = $('#lop1ss2status_of_work_phase' + i).val();
+    var date6 = $('#lop1ss2cf' + i).val();
+    var date7 = $('#lop1ss2cg' + i).val();
+    var date8 = $('#lop1ss2department_name_phase' + i).val();
+    var date9 = $('#lop1ss2schema_name_phase' + i).val();
+    var date10 = $('#lop1ss2otherschemename_phase' + i).val();
+    var date11 = $('#lop1ss2expenditure_phase' + i).val();
+    var date12 = $('#lop1ss2remark_phase' + i).val();
+
+    if (date2 == "") {
+        xx = 1;
+        alert("Please Enter Work Start Date");
+        $('.loader').hide();
+    }
+    else if (date3 == "") {
+        xx = 1;
+        alert("Please Enter Work End Date");
+        $('.loader').hide();
+    }
+    else if (date4 == "0") {
+        xx = 1;
+        alert("Please Select Type of Work");
+        $('.loader').hide();
+    }
+    else if (date5 == "0") {
+        xx = 1;
+        alert("Please Select Status of Work");
+        $('.loader').hide();
+    }
+    else if (date6 == "") {
+        xx = 1;
+        alert("Please Enter Latitude of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date7 == "") {
+        xx = 1;
+        alert("Please Enter Longitude  of structure (Decimal Degree)");
+        $('.loader').hide();
+    }
+    else if (date8 == "0") {
+        xx = 1;
+        alert("Please Select Department Name");
+        $('.loader').hide();
+    }
+    else if (date9 == "0") {
+        xx = 1;
+        alert("Please Select Scheme Name / Possible Funding Source");
+        $('.loader').hide();
+    }
+    else if (date9 == "Other") {
+        if (date10 == "") {
+            xx = 1;
+            alert("Please Enter Other Scheme Name / Possible Funding Source");
+            $('.loader').hide();
+        }
+    }
+    else if (date11 == "") {
+        xx = 1;
+        alert("Please Enter Expenditure incurred other than Atal Jal (in lakh)");
+        $('.loader').hide();
+    }
+    else if (date2 > date3) {
+        alert("Work end date should be later than Work start date");
+        $('#ss2work_end_date_phase' + i).focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+    else if (date2 == date3) {
+        alert("Work end date should not be equal than Work start date");
+        $('#ss2t').focus();
+        $('.loader').hide();
+        xx = 1;
+    }
+    var other = "";
+    if (date9 == "Other") {
+        other = date10;
+    }
+    else {
+        other = "";
+    }
+    if (xx == 0) {
+        $.ajax({
+            url: '/DLI3New/lop1_update_supplyside_phase2',
+            type: "POST",
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("work_start_date_phase2", date2);
+                data.append("work_end_date_phase2", date3);
+                data.append("type_of_work_phase2", date4);
+                data.append("status_of_work_phase2", date5);
+                data.append("latitude_phase2", date6);
+                data.append("longitude_phase2", date7);
+                data.append("department_name_phase2", date8);
+                data.append("schema_name_phase2", date9);
+                data.append("other_schema_name_phase2", other);
+                data.append("expenditure_phase2", date11);
+                data.append("remark_phase2", date12);
+
+
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Updated") {
+
+                    $('#ss2work_start_date_phase' + i).val("");
+                    $('#ss2work_end_date_phase' + i).val("");
+                    $('#ss2type_of_work_phase' + i).val("0");
+                    $('#ss2status_of_work_phase' + i).val("0");
+                    $('#ss2cf' + i).val("");
+                    $('#ss2cg' + i).val("");
+                    $('#ss2department_name_phase' + i).val("0");
+                    $('#ss2schema_name_phase' + i).val("0");
+                    $('#ss2otherschemename_phase' + i).val("");
+                    $('#ss2expenditure_phase' + i).val("");
+                    $('#ss2remark_phase' + i).val("");
+
+                    viewdata_phase2_supplyside(id);
+                }
+                $('.loader').hide();
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            }
+        });
+    }
+}
+function lop1ss2enforceNumberValidation(i, ele) {
+
+    let j = i.toString();
+    var match = false;
+    var match2 = false;
+    var matchwr = false;
+    var matchwr2 = false;
+    var lat = $('#lop1ss2cf' + j).val();
+    var long = $('#lop1ss2cg' + j).val();
+
+    function hasDecimal(val) {
+        return val.indexOf(".") !== -1;
+    }
+
+    function handleBackspace(input) {
+        $(input).on('keydown', function (event) {
+            if (event.keyCode == 8) { // 8 is the key code for backspace
+                var decimal = parseInt($(this).data('decimal')) || 0;
+                var val = $(this).val();
+                if (decimal > 0 && hasDecimal(val)) {
+                    var splitVal = val.split('.');
+                    // Remove the last character if it's a decimal place
+                    if (splitVal[1].length === 1) {
+                        $(this).val(splitVal[0]);
+                    }
+                }
+            }
+        });
+    }
+
+    if (lat.length == 2 && !hasDecimal(lat)) {
+        $('#lop1ss2cf' + j).val(lat + '.');
+    } else if (lat.length == 1 && hasDecimal(lat)) {
+        $('#lop1ss2cf' + j).val('');
+    }
+
+    if (long.length == 2 && !hasDecimal(long)) {
+        $('#lop1ss2cg' + j).val(long + '.');
+    } else if (long.length == 1 && hasDecimal(long)) {
+        $('#lop1ss2cg' + j).val('');
+    }
+
+    var latwr = $('#lop1ss2cf' + j).val();
+    var longwr = $('#lop1ss2cg' + j).val();
+
+    if (latwr.length == 2 && !hasDecimal(latwr)) {
+        $('#lop1ss2cf' + j).val(latwr + '.');
+    } else if (latwr.length == 1 && hasDecimal(latwr)) {
+        $('#lop1ss2cf' + j).val('');
+    }
+
+    if (longwr.length == 2 && !hasDecimal(longwr)) {
+        $('#lop1ss2cg' + j).val(longwr + '.');
+    } else if (longwr.length == 1 && hasDecimal(longwr)) {
+        $('#lop1ss2cg' + j).val('');
+    }
+
+    // Capture backspace event and handle it appropriately
+    $(ele).on('keydown', function (event) {
+        if (event.keyCode == 8) { // 8 is the key code for backspace
+            var decimal = parseInt($(this).data('decimal')) || 0;
+            var val = $(this).val();
+            if (decimal > 0 && val.includes('.')) {
+                var splitVal = val.split('.');
+                // Remove the last character if it's a decimal place
+                if (splitVal[1].length === 1) {
+                    $(this).val(splitVal[0]);
+                }
+            }
+        }
+    });
+
+    if ($(ele).data('decimal') != null) {
+        // found valid rule for decimal
+        var decimal = parseInt($(ele).data('decimal')) || 0;
+        var val = $(ele).val();
+        if (decimal > 0) {
+            var splitVal = val.split('.');
+            if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                // user entered invalid input
+                $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+            }
+        } else if (decimal == 0) {
+            // do not allow decimal place
+            var splitVal = val.split('.');
+            if (splitVal.length > 1) {
+                // user entered invalid input
+                $(ele).val(splitVal[0]); // always trim everything after '.'
+            }
+        }
+    }
+}
+function ss2enforceNumberValidation(i, ele) {
+    let j = i.toString();
+    var match = false;
+    var match2 = false;
+    var matchwr = false;
+    var matchwr2 = false;
+    var lat = $('#ss2cf' + j).val();
+    var long = $('#ss2cg' + j).val();
+
+    function hasDecimal(val) {
+        return val.indexOf(".") !== -1;
+    }
+
+    function handleBackspace(input) {
+        $(input).on('keydown', function (event) {
+            if (event.keyCode == 8) { // 8 is the key code for backspace
+                var decimal = parseInt($(this).data('decimal')) || 0;
+                var val = $(this).val();
+                if (decimal > 0 && hasDecimal(val)) {
+                    var splitVal = val.split('.');
+                    // Remove the last character if it's a decimal place
+                    if (splitVal[1].length === 1) {
+                        $(this).val(splitVal[0]);
+                    }
+                }
+            }
+        });
+    }
+
+    if (lat.length == 2 && !hasDecimal(lat)) {
+        $('#ss2cf' + j).val(lat + '.');
+    } else if (lat.length == 1 && hasDecimal(lat)) {
+        $('#ss2cf' + j).val('');
+    }
+
+    if (long.length == 2 && !hasDecimal(long)) {
+        $('#ss2cg' + j).val(long + '.');
+    } else if (long.length == 1 && hasDecimal(long)) {
+        $('#ss2cg' + j).val('');
+    }
+
+    var latwr = $('#ss2cf' + j).val();
+    var longwr = $('#ss2cg' + j).val();
+
+    if (latwr.length == 2 && !hasDecimal(latwr)) {
+        $('#ss2cf' + j).val(latwr + '.');
+    } else if (latwr.length == 1 && hasDecimal(latwr)) {
+        $('#ss2cf' + j).val('');
+    }
+
+    if (longwr.length == 2 && !hasDecimal(longwr)) {
+        $('#ss2cg' + j).val(longwr + '.');
+    } else if (longwr.length == 1 && hasDecimal(longwr)) {
+        $('#ss2cg' + j).val('');
+    }
+
+    // Capture backspace event and handle it appropriately
+    $(ele).on('keydown', function (event) {
+        if (event.keyCode == 8) { // 8 is the key code for backspace
+            var decimal = parseInt($(this).data('decimal')) || 0;
+            var val = $(this).val();
+            if (decimal > 0 && val.includes('.')) {
+                var splitVal = val.split('.');
+                // Remove the last character if it's a decimal place
+                if (splitVal[1].length === 1) {
+                    $(this).val(splitVal[0]);
+                }
+            }
+        }
+    });
+
+    if ($(ele).data('decimal') != null) {
+        // found valid rule for decimal
+        var decimal = parseInt($(ele).data('decimal')) || 0;
+        var val = $(ele).val();
+        if (decimal > 0) {
+            var splitVal = val.split('.');
+            if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                // user entered invalid input
+                $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+            }
+        } else if (decimal == 0) {
+            // do not allow decimal place
+            var splitVal = val.split('.');
+            if (splitVal.length > 1) {
+                // user entered invalid input
+                $(ele).val(splitVal[0]); // always trim everything after '.'
+            }
+        }
+    }
+}
+function suppysidephase2submittospmu() {
+
+    var id = insert_id_2ss;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/suppysidephase2submittospmu',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Submitted") {
+                $("#sstxtreject2remark").val("");
+                Data_get_phase2supply();
+                $("#exampleModal__phase_twoss").hide();
+                $(".showdiv").show();
+            }
+        }
+    });
+}
+function supplysidephase2approve() {
+    var id = insert_id_2ss;
+    $('.loader').show();
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/DLI3New/supplysidephase2approve',
+        data: "{'id': '" + id + "'}",
+        dataType: 'JSON',
+        success: function (response) {
+
+            alert(response);
+            if (response == "Logout") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (response == "Successfully Approved") {
+                $("#sstxtreject2remark").val("");
+                Data_get_phase2supply();
+                $("#exampleModal__phase_twoss").hide();
+                $(".showdiv").show();
+
+            }
+        }
+    });
+}
+function supplysidephase2reject() {
+    var xx = 0;
+    var id = insert_id_2ss;
+    var reject = $('#sstxtreject2remark').val();
+    $('.loader').show();
+
+    if (reject == "") {
+        xx = 1;
+        alert("Please Enter Reject Remark");
+        $('.loader').hide();
+
+    }
+    if (xx == 0) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/DLI3New/supplysidephase2reject',
+            data: "{'id': '" + id + "' , 'reject': '" + reject + "' }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                else if (response == "Successfully Rejected") {
+                    Data_get_phase2supply();
+                    $("#sstxtreject2remark").val("");
+                    $("#exampleModal__phase_twoss").hide();
+                    $(".showdiv").show();
+                }
+            }
+        });
+    }
+}
+function p2close_btn_supplyside() {
+    $('#ss2r').val("");
+    $('#ss2s').val("");
+    $('#ss2t').val("");
+    $('#ss2ddltypeofwork').val("0");
+    $('#ss2ddlstatusofwork').val("0");
+    $('#ss2latitude').val("");
+    $('#ss2longitude').val("");
+    $('#ss2txtdepartment_supply').val("0");
+    $('#ss2txtschema_supply').val("0");
+    $('#ss2txtotherScheme').val("");
+    $('#ss2w').val("");
+    $('#ss2x').val("");
+    $('#sslo1s').val("");
+    $('#sslo1t').val("");
+    $('#sslo1ddltypeofwork').val("0");
+    $('#sslo1ddlstatusofwork').val("0");
+    $('#sslo1latitude').val("");
+    $('#sslo1longitude').val("");
+    $('#sslo1txtdepartment_supply').val("0");
+    $('#ss2txtschema_leftoverphase1supply').val("0");
+    $('#ssleftoverphase1txtotherScheme').val("");
+    $("#sstxtreject2remark").val("");
+    $('#sslo1w').val("");
+    $('#sslo1x').val("");
+    $('.disable').attr("disabled", "disabled");
+    $('.disable').hide();
+    Data_get_phase2supply();
+}
+
+function sssummery() {
+ $('#ssdistrict_p1').hide();
+ $('#ssdistrict_p2').hide();
+    var phase = $('#phase').val();
+    if (phase == "phase1") {
+        $('#btnexcelphase2').hide();
+        $('#btnexcelphase1').show();
+        if (State == "All") {
+            $('#ssstate_p1').show();
+            $('#ssdistrict_p1').hide();
+            $('#ssdemanddistrictblock_p1').hide();
+            $('#ssstate_p2').hide();
+            $('#ssdistrict_p2').hide();
+            $('#districtblock_p1').hide();
+
+        }
+        else if (State != "All" || State != "0") {
+            if (Dist == "0") {
+                $('#ssstate_p1').hide();
+                $('#ssdistrict_p1').show();
+                $('#ssdemanddistrictblock_p1').hide();
+                $('#ssstate_p2').hide();
+                $('#ssdistrict_p2').hide();
+                $('#districtblock_p1').hide();
+            }
+            else if (Dist != "0") {
+                if (Block == "0") {
+                    $('#ssstate_p1').hide();
+                    $('#ssdistrict_p1').hide();
+                    $('#ssdemanddistrictblock_p1').show();
+                    $('#ssstate_p2').hide();
+                    $('#ssdistrict_p2').hide();
+                    $('#districtblock_p1').hide();
+                }
+                else {
+                    $('#ssstate_p1').hide();
+                    $('#ssdistrict_p1').hide();
+                    $('#ssdemanddistrictblock_p1').hide();
+                    $('#ssstate_p2').hide();
+                    $('#ssdistrict_p2').hide();
+                    $('#districtblock_p1').hide();
+                }
+            }
+            else {
+                $('#ssstate_p1').hide();
+                $('#ssdistrict_p1').hide();
+                $('#ssdemanddistrictblock_p1').hide();
+                $('#ssstate_p2').hide();
+                $('#ssdistrict_p2').hide();
+                $('#districtblock_p1').hide();
+            }
+
+
+        }
+        else if (State != "All" || State != "0" || Dist != "0") {
+            $('#ssstate_p1').hide();
+            $('#ssdistrict_p1').hide();
+            $('#ssdemanddistrictblock_p1').hide();
+            $('#ssstate_p2').hide();
+            $('#ssdistrict_p2').hide();
+            $('#districtblock_p1').hide();
+        }
+        else {
+            $('#ssstate_p1').hide();
+            $('#ssdistrict_p1').hide();
+            $('#ssdemanddistrictblock_p1').hide();
+            $('#ssstate_p2').hide();
+            $('#ssdistrict_p2').hide();
+            $('#districtblock_p1').hide();
+        }
+
+
+
+    }
+    if (phase == "phase2") {
+        $('#btnexcelphase2').show();
+        $('#btnexcelphase1').hide();
+        if (State == "All") {
+            $('#ssstate_p2').show();
+            $('#ssdistrict_p2').hide();
+            $('#ssdemanddistrictblock_p2').hide();
+            $('#ssstate_p1').hide();
+            $('#ssdistrict_p1').hide();
+            $('#districtblock_p1').hide();
+        }
+        else if (State != "All" || State != "0") {
+            if (Dist == "0") {
+                $('#ssstate_p2').hide();
+                $('#ssdistrict_p2').show();
+                $('#ssdemanddistrictblock_p2').hide();
+                $('#ssstate_p1').hide();
+                $('#ssdistrict_p1').hide();
+                $('#districtblock_p1').hide();
+            }
+            else if (Dist != "0") {
+                if (Block == "0") {
+                    $('#ssstate_p2').hide();
+                    $('#ssdistrict_p2').hide();
+                    $('#ssdemanddistrictblock_p2').show();
+                    $('#ssstate_p1').hide();
+                    $('#ssdistrict_p1').hide();
+                    $('#districtblock_p1').hide();
+                }
+                else {
+                    $('#ssstate_p2').hide();
+                    $('#ssdistrict_p2').hide();
+                    $('#ssdemanddistrictblock_p2').hide();
+                    $('#ssstate_p1').hide();
+                    $('#ssdistrict_p1').hide();
+                    $('#districtblock_p1').hide();
+                }
+            }
+
+        }
+
+        else if (State != "All" || State != "0" || Dist != "0") {
+            $('#ssstate_p2').hide();
+            $('#ssdistrict_p2').hide();
+            $('#ssdemanddistrictblock_p2').hide();
+            $('#ssstate_p1').hide();
+            $('#ssdistrict_p1').hide();
+            $('#districtblock_p1').hide();
+        }
+
+
+
+
+    }
+}
+/*supplyside Phase2 end*/

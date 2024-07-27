@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Training_modules";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title>Training Modules</title>
+<style>
+    .col-md-6 > subtraiingdiv {
+        display: inline-block;
+    }
+
+    .subtraiingdiv {
+        text-align: center;
+        padding: 10px;
+        z-index: 1;
+        background: #FFFFFF;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        margin-bottom: 10px;
+    }
+
+    .panelbodyheading {
+        background-color: #E2cf31;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .bodypanel {
+        padding: 0px;
+    }
+
+    .subtraiingdiv:hover,
+    subtraiingdiv:focus {
+        background-color: #ddd;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Farmer Water School(FWS) Training Modules</div>
+    </div>
+</div>
+<div class="row">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div id="collapse-one" class="panel-collapse in">
+                        <div class="panel-body bodypanel">
+                            <div class="panelbodyheading">
+                                Download Training Material by Scheduled
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/june_3rdweek.pdf" download="june_3rdweek">June 3rd week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/aug_1stweek.pdf" download="aug_1stweek">August 1st week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/sep_3rdweek.pdf" download="sep_3rdweek">September 3rd week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/oct_2ndweek.pdf" download="oct_2ndweek">October 2nd week </a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/nov_lastweek.pdf" download="nov_lastweek">November last week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/jan_1stweek.pdf" download="jan_1stweek">January 1st week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/march_last.pdf" download="march_lastweek">March last week</a>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/july_2ndweek.pdf" download="july_2ndweek">July 2nd week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/sep_1stweek.pdf" download="sep_1stweek">September 1st week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/oct_1stweek.pdf" download="oct_1stweek">October 1st week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/nov_1stweek.pdf" download="nov_1stweek">November 1st week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/dec_2ndweek.pdf" download="dec_2ndweek">December 2nd week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/jan_lastweek.pdf" download="jan_lastweek">January last week or February 1st week</a>
+                                </div>
+                                <div class="col-md-12 subtraiingdiv">
+                                    <a href="~/Content/Pdf_files/april_1st..pdf" download="april_1stweek">April 1st or 2nd week</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End Accordion 1 -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(9)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(9)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(9) > ul.dropdown > li:nth-child(3)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(9) > ul.dropdown > li:nth-child(3)").siblings().removeClass('active');
+
+</script>

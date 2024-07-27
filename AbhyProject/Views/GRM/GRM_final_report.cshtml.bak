@@ -1,0 +1,605 @@
+﻿
+@{
+    ViewBag.Title = "";
+    Layout = null;
+}
+
+
+<meta name="viewport" content="width=device-width" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+<!--Pie Chart-->
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<!--pie chart-->
+
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+<!--favicon end-->
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/table2excel.js"></script>
+
+<html>
+<head>
+
+    <style>
+        .colorline1 {
+            background: #ddd;
+            background-size: 100% 6px;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin-top: 12px;
+            height: 3px;
+            width: 100%
+        }
+
+        .table-striped tbody tr td:last-child {
+            /*text-align: right;*/
+        }
+
+        .dateandtime_ul {
+            padding: 0px;
+        }
+
+            .dateandtime_ul > li {
+                display: inline-block;
+                color: #000;
+                font-size: 18px;
+                padding: 0px 15px;
+            }
+
+        .hideDownload {
+            display: none;
+        }
+
+        .background_after_download * {
+            font-weight: normal !important;
+            text-decoration: none !important;
+            text-shadow: none !important;
+        }
+
+
+        .col-md-9 > h1 {
+            font-weight: bold;
+            color: #404040;
+            text-shadow: -1px -1px #000;
+        }
+
+        .col-md-9 > p {
+            color: #404040;
+        }
+
+        .col12 > .firsttable > h6 {
+            letter-spacing: 0px;
+            padding-left: 10px;
+        }
+
+        .firstptag {
+            padding-left: 4%;
+        }
+
+        body {
+            background-color: #ddd;
+        }
+
+        .clearfixcolor {
+            margin-top: 15px;
+        }
+
+        .col12 {
+            background-color: #fff;
+            padding: 25px;
+        }
+
+        .highcharts-credits {
+            display: none;
+        }
+
+
+
+        .highcharts-button-box {
+            display: none;
+        }
+
+        #Data1 {
+            background-color: #fff;
+        }
+
+        .firsttable {
+            padding: 10px 0px 0px 0px;
+        }
+
+        .report_heading_div {
+            background-color: #ddd;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .cololr-div {
+            background: #4cae4c;
+            height: 3px;
+            padding: 0px;
+        }
+
+        .last-div-footer {
+            padding: 10px 0px;
+        }
+
+        .text-right > .btn-success {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .text-right {
+            padding: 5px;
+        }
+
+            .text-right > .btn-success {
+                padding: 8px 20px 8px 20px;
+                border-radius: 50px;
+                font-size: 18px;
+            }
+
+        .btn-success {
+            color: #fff;
+            background-color: #6fb01d;
+            border-color: #4cae4c;
+        }
+
+        .coll7 {
+            padding-right: 0px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            display: block;
+            padding: 10px 0px 0px 0px;
+            font-size: 15px;
+            /*margin: 0px;*/
+        }
+
+            ul.Select_option > li {
+                display: inline-block;
+                padding: 0px 0px 0px 46px;
+                text-transform: uppercase;
+                word-spacing: 1px;
+            }
+
+                ul.Select_option > li > span > i {
+                    padding: 0px 0px 0px 10px;
+                }
+
+        #Select_dist_level {
+            padding: 10px 0px 5px 15px;
+            text-transform: capitalize;
+        }
+
+        ul.firstimages {
+            display: block;
+            margin-bottom: 0px;
+            padding: 0px;
+        }
+
+            ul.firstimages > li {
+                display: inline-block;
+                padding-left: 5px;
+                border: 1px solid #ddd;
+                padding: 10px 10px 5px 10px;
+            }
+
+                ul.firstimages > li > img {
+                    border-left: 2px solid #ddd;
+                }
+
+                ul.firstimages > li > span > img {
+                    width: 25px;
+                    height: 25px;
+                }
+
+        .highcharts-title {
+            font-weight: bold;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+        }
+
+        tspan {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+
+
+        .secondtable {
+            text-align: right;
+        }
+
+        sup {
+            font-weight: bold;
+        }
+
+        .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            background: #fff;
+        }
+
+        .tolat_report_color {
+            color: #337ab7;
+        }
+
+        .balnace_mater_space1 {
+            margin-top: 75px;
+        }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="Data1">
+        <div class="row row_padding_10">
+            <div class="col-md-12 ">
+                <div class="firsttable col-md-12">
+                    <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+                </div>
+
+            </div>
+
+            <div class="col-md-12 report_heading_div">
+                <div class="col-md-9">
+                    <h1>Grievance Detail Report</h1>
+
+                </div>
+                <div class="col-md-3 text-right" id="btnExport">
+                    <button class="btn btn-success download1" onclick="ReportPdf()" id="download">Download</button>
+                    <button class="btn btn-success download1" id="btnexcel">Excel</button>
+                </div>
+                <div class="col-md-12">
+                    <ul class="dateandtime_ul">
+                        <li>Date : <span id="demobalance"></span></li>
+                        <li>Time : <span id="demobalance2"></span></li>
+                        <li>
+                            User Name :
+                            @if (Session["UserName"] != null)
+                            {
+                                <span>@Session["UserName"].ToString()</span>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="col-md-12 Select_option_div">
+
+                <ul class="Select_option col-md-12 col-sm-12  text-left">
+
+                    <li id="">
+                        <label id="">Year:</label>
+                    </li>
+                    <li class="">
+                        <select name="" id="Finacial_Year" class="form-control" onchange="state_data()">
+                            <option value="0">Select Year</option>
+                            <option value="ALL">All 5 Year</option>
+                            <option value="2020-21">2020-21</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2022-23">2022-23</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2024-25">2024-25</option>
+
+                        </select>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+            <br />
+            <div class="col-md-6">
+                <div class="tbl-responsive" style="overflow-x: scroll; width: 205%;  font-size: 12px;">
+                    <table id="tblreport" style="width:100%" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+
+                        <thead>
+                            <tr class="tableheader1"></tr>
+                            <tr class="success" style="display:none">
+                                <td colspan="15">
+                                    <label>
+                                        Year :
+                                        <label id="year_fill"></label>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td class="text-center"><label>Sl.No</label></td>
+                                <td class="text-center"><label>State</label></td>
+                                <td class="text-center"><label>Grivance Registration Mode </label></td>
+                                <td class="text-center"><label>Subject</label></td>
+                                <td class="text-center"><label>Grivance Type</label></td>
+                                <td class="text-center"><label>Complainant Name</label></td>
+                                <td class="text-center"><label>Email of complainant</label></td>
+                                <td class="text-center"><label>Mobile Number</label></td>
+                                <td class="text-center"><label>Phone Number</label></td>
+                                <td class="text-center"><label>Address</label></td>
+                                <td class="text-center"><label>Registation Date</label></td>
+                                <td class="text-center"><label>Grivance Description</label></td>
+                                <td class="text-center"><label>Process adopted to resolve the Registered Grievance </label></td>
+                                <td class="text-center"><label>Resolved Date</label></td>
+                                <td class="text-center"><label>Feedback Satisfaction</label></td>
+                                <td class="text-center"><label>Forward Status</label></td>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="tbl_report">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12" style="margin-bottom:15px;">
+                    <div class="container  hidediv" id="btnExport1">
+                        <div class="col-md-12 text-center">
+                            <a href="~/GRM/Grm_daseboard" class="btn btn-danger">
+                                Back
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function ReportPdf() {
+        $("#Data1").width(2000);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'Grievance Report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A2', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1045);
+    }
+
+</script>
+<script>
+    var StateName = "";
+    $(document).ready(function () {
+
+        $('#Finacial_Month').prop('disabled', true);
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "") {
+            window.location = "/WspNew/WSP_GWM_HOME";
+        }
+        if (StateOfficer == "State Level Nodal Officer") {
+
+        }
+        else if (StateOfficer == "District Level Nodal Officer") {
+            window.location = "/WspNew/WSP_GWM_HOME";
+        }
+        else if (StateOfficer == "Block Level Nodal Officer") {
+            window.location = "/WspNew/WSP_GWM_HOME";
+        }
+        else if (StateOfficer == "Gram Panchyat Nodal Officer") {
+            window.location = "/WspNew/WSP_GWM_HOME";
+        }
+        SessionInfo();
+    });
+
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demobalance2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/ ' + mm + '/ ' + yyyy;
+    document.getElementById("demobalance").innerHTML = today;
+</script>
+
+<script>
+
+
+    function state_data() {
+        debugger;
+        $('#year_fill').text("");
+        var year = $('#Finacial_Year').val();
+        if (year == "ALL") {
+            $('#year_fill').text("5 year (2020-2025)");
+        }
+        else {
+            $('#year_fill').text(year);
+        }
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance_new/Grievance_Report',
+            data: { 'year': year, 'statename': StateName },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                var tr = '';
+                if (data.length != 0) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        var process = data[i].process;
+                        if (process == null) {
+                            process = "";
+                        }
+                        var appove_date = data[i].approve_date;
+                        if (appove_date == null) {
+                            appove_date = "";
+                        }
+
+                        var supported_document_file = data[i].supported_document_file;
+                        if (supported_document_file == null) {
+                            supported_document_file = "No";
+                        }
+                        else {
+                            supported_document_file = "Yes";
+                        }
+                        var image_name = data[i].image_name;
+                        if (image_name == null) {
+                            image_name = "No";
+                        }
+                        else {
+                            image_name = "Yes";
+                        }
+
+                        var forward_mail = data[i].forward_mail;
+                        if (forward_mail == null) {
+                            forward_mail = "";
+                        }
+                        else {
+                            forward_mail = "Yes";
+                        }
+
+                        var email = data[i].email;
+                        if (email == null) {
+                            email = "";
+                        }
+                        var yes_no = data[i].yes_no;
+                        if (yes_no == null) {
+                            yes_no = "";
+                        }
+
+                        tr += '<tr><td>' + (i + 1) + '</td><td>' + data[i].grievance_address_to + '</td><td>' + data[i].status + '</td><td>' + data[i].subject + '</td><td>' + data[i].grievance_type + '</td><td>' + data[i].complaint_name + '</td><td>' + email + '</td><td>' + data[i].mobile + '</td><td>' + data[i].phone + '</td><td>' + data[i].address + '</td><td>' + data[i].reg_date + '</td><td>' + data[i].grivance_description + '</td><td>' + process + '</td><td>' + appove_date + '</td><td>' + yes_no + '</td><td>' + forward_mail + '</td></tr>';
+
+
+                    }
+                }
+                if (tr == '') {
+                    tr += '<tr><td colspan="17" style="text-align:center;"><label> No Data </label></td></tr>';
+                    $('#tbl_report').html(tr);
+
+                }
+                else {
+                    $('#tbl_report').html(tr);
+
+                }
+            }
+        });
+    }
+
+    function SessionInfo() {
+        debugger;
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/mis_new/State_SessionInfo',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                else if (data == "Admin") {
+                    StateName = "All";
+                }
+                else {
+                    StateName = data;
+
+                }
+
+
+
+            }
+
+        });
+    }
+
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnexcel").click(function () {
+
+            $("#tblreport").table2excel({
+                filename: "Grievance Report.xls"
+            });
+        });
+    });
+</script>

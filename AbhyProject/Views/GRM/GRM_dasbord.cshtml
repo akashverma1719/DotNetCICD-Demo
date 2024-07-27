@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Monitoring_evaluation";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+
+}
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<link href="~/Content/wspnewcss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/Content/JS_Files/wsphome.js"></script>
+<link href="~/Content/css/mis_after_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    body {
+        background: #D1E8E2 !important;
+    }
+    .notice-ribbon {
+        font-size: 14px;
+        background: #3585dc;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+
+        .notice-ribbon p {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 0px;
+        }
+		
+</style>
+<main>
+    <div class="container-fluid notice-ribbon">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mb-0">To clear cache, please refresh this page by pressing Ctrl + F5.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 Select_option_div">
+
+        <ul class="Select_option pull-right col-md-2 col-sm-2">
+            <li>
+                <a href="~/WSPHome/Monitoring_evaluation" class="btn btn-primary">
+                    Back To GRM
+                </a>
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="clearfix total_div_wsp_home" style="justify-content: space-between;">
+
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div">
+            <a href="~/GRM/GRM">
+                <ul class="ul_image_wsphome text-center">
+                    <li>
+                        <ul class="arrow_ul_css">
+                            <li>  <img src="~/Content/Agriculture_icons/Grievance_Registration_Form.png" /></li>
+                            <li></li>
+                        </ul>
+
+                    </li>
+                    <li></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div text-center">
+            <a href="~/Grievance_new/grm_dashboard">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            <li><img src="~/Content/Agriculture_icons/grievance_tracker.png" /></li>
+                            <li></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div">
+            <a href="~/GRM/Grm_daseboard">
+                <ul class="ul_image_wsphome text-center">
+                    <li>
+                        <ul class="arrow_ul_css">
+                            <li><img src="~/Content/Agriculture_icons/report_icon.png" /></li>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li></li>
+                </ul>
+            </a>
+        </div>
+
+
+    </div>
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Grievance Management</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+
+    </div>
+</main>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        SessionInfo();
+    });
+    function SessionInfo() {
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+
+
+            }
+
+        });
+
+    }
+
+</script>

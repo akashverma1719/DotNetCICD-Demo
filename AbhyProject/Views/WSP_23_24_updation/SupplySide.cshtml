@@ -1,0 +1,2156 @@
+﻿
+@{ ViewBag.Title = "WSPgram";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml"; }
+
+<title>Supply Side</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .color_database {
+        color: green !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+    .btn.btn-dark {
+        background: #000000b3 !important;
+        font-weight: 500;
+        color: #fff;
+    }
+    thead tr th {
+        background: #337ab7;
+        color: #fff;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="clearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                            <span style="color:#fff;">:@Session["UserName"]</span>
+                        </li>
+                        <li>
+
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="~/WSP_23_24_updation/WSP_HOME">
+                                <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                <label>WSP Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                            <label>Supply Side</label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+    </header>
+
+    <div class="tab-content">
+        <!--Rainfail_menu Start-->
+        <div role="tabpanel" class="tab-pane fade in active" id="music">
+            <div class="container-fluid">
+                <!--images Row Started-->
+                <div class="clearfix">
+                    <div class="row" id="Select_dist_level">
+                        <ul class="Select_option selectbackhome">
+                            <li>
+                                <label id="lblstate">State:</label>
+                                <span id="spnstate">@Session["gstate"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Block:</label>
+                                <span id="spnblock">@Session["gblock"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Gram panchayat:</label>
+                                <span id="spngram">@Session["ggram"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Year:</label>
+                                <span id="Year">@Session["Year"]</span>
+                            </li>
+
+                        </ul>
+                        <ul class="selectbackhome" style="float:right;">
+                            <li>
+                                <a href="~/WSP_23_24_updation/WSP_HOME" class="btn btn-success">
+                                    Back To WSP Home
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12 col-lg-12">
+                            <ul class="tabs_menu sru_menu" id="Surface_menu">
+                                <li class="tab-link active subtab1" data-tab="menu-11">
+                                    <a href="javascript:;">
+                                        <span><img src="~/Content/Agriculture_icons/Gram_Panchayat_2icon.png" /></span>
+                                        <label>
+                                            Artificial Recharge Structures
+                                        </label>
+                                    </a>
+                                </li>
+
+                                @*abhi1204*@
+
+                                @*<li class="tab-link subtab2" data-tab="menu-12">
+                                        <a href="javascript:;">
+                                            <span><img src="~/Content/Agriculture_icons/PGWMC.png" /></span>
+                                            <label>PGWM Committee</label>
+                                        </a>
+                                    </li>*@
+                                <li class="tab-link subtab3" data-tab="menu-13">
+                                    <a href="javascript:;">
+                                        <span><img src="/Content/Agriculture_icons/location.png" /></span>
+                                        <label>
+                                            Water Conservation Structures
+                                        </label>
+                                    </a>
+                                </li>
+                                @*<li class="tab-link subtab3" data-tab="menu-14">
+                                        <a href="javascript:;">
+                                            <span><img src="/Content/Agriculture_icons/location.png" /></span>
+                                            <label>
+                                                Convergence Options (Central Schemes) (For reference)
+                                            </label>
+                                        </a>
+                                    </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix tabfirst">
+                    <div class="suface-info active" id="menu-11">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding:10px 15px">
+                                    <div class="form-div">
+                                        <div class="col-md-12 background-border-Database ">
+                                            <div class="row database_trainer_row ">
+                                                <h3>
+                                                    Artificial Recharge Structures
+                                                    @*<a href="javascript:;" data-toggle="tooltip" title="Data Source : Shapefile(Village Boundary)">
+                                                            <span class="glyphicon glyphicon-info-sign" style="color:#fff" aria-hidden="true"></span>
+                                                        </a>*@
+                                                </h3>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Village Name <span class="Required_star">*</span>:</label>
+                                                </div>
+
+                                                @*<div class="col-md-7 col-sm-8">
+                                                        <input type="text" id="txt_village_ar" maxlength="25" class="form-control color_database" name="" placeholder="Vilage Name">
+                                                    </div>*@
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select id="txt_village_ar">
+                                                        <option value="0">--select Village Name--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Location Details :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input type="text" id="txt_loaction_Details_ar" maxlength="40" class="form-control color_database" name="" placeholder="Location">
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Type of Artificial recharge Structure<span class="Required_star">*</span> :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select id="ddl_structure_ar" onchange="check_other()">
+                                                        <option value="0">--select structure--</option>
+                                                        <option value="Anicut/Check Dam/Earthen Dam">Anicut/Check Dam/Earthen Dam</option>
+                                                        <option value="Basin / Percolation Tanks">Basin / Percolation Tanks</option>
+                                                        <option value="Blast Well">Blast Well</option>
+                                                        <option value="Bore Hole Flooding">Bore Hole Flooding</option>
+                                                        <option value="Borewell Recharge Pit">Borewell Recharge Pit</option>
+                                                        <option value="CCT (Continuous Contour Trench)">CCT (Continuous Contour Trench)</option>
+                                                        <option value="Contour Bunds And Contour Trenches">Contour Bunds And Contour Trenches</option>
+                                                        <option value="Ditch And Furrow System">Ditch And Furrow System</option>
+                                                        <option value="Drainage Pit">Drainage Pit</option>
+                                                        <option value="Dug Well Recharge">Dug Well Recharge</option>
+                                                        <option value="Field Bund">Field Bund</option>
+                                                        <option value="Gabion">Gabion</option>
+                                                        <option value="Gravity Head Recharge Wells">Gravity Head Recharge Wells</option>
+                                                        <option value="Gully Plugs">Gully Plugs</option>
+                                                        <option value="Injection Wells/ Recharge Wells">Injection Wells/ Recharge Wells</option>
+                                                        <option value="Kolhapuri Bandhara /KT Weir">Kolhapuri Bandhara /KT Weir</option>
+                                                        <option value="Leach Pit/Soak Pit">Leach Pit/Soak Pit</option>
+                                                        <option value="Multi Arch Check Dam">Multi Arch Check Dam</option>
+                                                        <option value="Nala Development & Dredging">Nala Development & Dredging</option>
+                                                        <option value="Nalah Bund">Nalah Bund</option>
+                                                        <option value="Rechage Pit And Shaft">Rechage Pit And Shaft</option>
+                                                        <option value="Recharge Basins">Recharge Basins</option>
+                                                        <option value="Spillway ">Spillway </option>
+                                                        <option value="Spreading Channel">Spreading Channel</option>
+                                                        <option value="Stop Dam">Stop Dam</option>
+                                                        <option value="Straggered Trench">Straggered Trench</option>
+                                                        <option value="Sub Surface Barrier">Sub Surface Barrier</option>
+                                                        <option value="Subsurface Dykes">Subsurface Dykes</option>
+                                                        <option value="Trenchs">Trenchs</option>
+                                                        <option value="Underground Dams">Underground Dams</option>
+                                                        <option value="Other">Other</option>
+
+                                                    </select>
+                                                    <input Type="text" id="txt_structure_ar" class="form-control color_database" placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Latitude of proposed structure<span class="Required_star">*</span> :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_latitude_ar" autocomplete="off" onpaste="return false" maxlength="11" data-decimal="8" oninput="enforceNumberValidation(this)" class="form-control color_database decimal" name="" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Longitude of proposed structure<span class="Required_star">*</span> :
+                                                        <span class="Required_star"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_longitude_ar" autocomplete="off" onpaste="return false" maxlength="11" data-decimal="8" oninput="enforceNumberValidation(this)" class="form-control color_database decimal" name="" placeholder="">
+                                                    <label id="AlertError1" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Work Proposed <span class="Required_star">*</span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    @*abhi1204*@
+                                                    <select id="ddl_work_rproposed_ar">
+                                                        <option value="0">--Select Work Proposed--</option>
+                                                        <option value="New">New</option>
+                                                        <option value="Renovation">Renovation</option>
+                                                    </select>
+                                                    <label id="AlertError2" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Storage capacity  (ha m)
+                                                        <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    @*abhi1204*@
+                                                    <input Type="text" id="txt_storage_ar" onpaste="return false" maxlength="8" class="form-control color_database decimal" name="" placeholder="" oninput="cal_AR()" onkeypress="validate(event);">
+                                                    <label id="AlertError3" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Annual no. of fillings
+                                                        <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_annual_fil_ar" onpaste="return false" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="validatenum()" class="form-control color_database decimal" name="" placeholder="" oninput="cal_AR()">
+                                                    <label id="AlertError4" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">
+                                                        Recharge (%)<span class="Required_star">*</span> :
+                                                    </label>
+                                                </div>
+                                                @*class="form-control alpha"*@
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_recharge_ar" onpaste="return false" maxlength="3" class="form-control decimal" name="" placeholder="" oninput="cal_AR(event)">
+                                                    <label id="AlertError5" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+
+                                                    <label for="lname" class="">
+                                                        Annual GW Recharge (ha m)
+                                                        <span class="Required_star">*</span>:
+                                                        <a href="javascript:;" data-toggle="tooltip" title="(Storage Capacity*Annual no. of fillings*Recharge%*0.01)">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                        </a>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_annual_recharge_ar" onpaste="return false" class="form-control decimal" name="" placeholder="" disabled>
+                                                    <label id="AlertError6" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">
+                                                        Financial year<span class="Required_star">*</span> :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control disable_btn" id="ar_year">
+                                                        <option value="0">--Select Financial Year--</option>
+                                                        <option value="2023-24">2023-24</option>
+                                                    </select>
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">
+                                                        Department Name<span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control" id="ar_department_name"></select>
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">
+                                                        Scheme Name<span class="Required_star">*</span> :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control" id="ar_scheme_name" onchange="CheckOther()"></select>
+                                                    <input type="text" class="form-control" id="other_scheme" style="display:none" />
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Total Approximate Estimated Cost(in lakh)
+                                                        <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+
+                                                    <input type="text" id="txt_ap_es_cost_ar" onpaste="return false" maxlength="7" data-decimal="4" style="margin-top:6px" @*oninput="minus_val_a(this)"*@ class="form-control decimal" onkeypress="validate(event);" />
+                                                    <label id="AlertError8" style="float: right;color: red;font-size: 12px!important;"></label>
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row database_trainer_row_button">
+                                                <div class=" col-md-12">
+                                                    <div class="text-center" style="margin-bottom:10px;">
+                                                        <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+
+                                                            <li class=" ">
+                                                                <button class="btn btn-success btn_disabled" id="SAVE_BTN" onclick="SaveDetails_AR()"> Save </button>
+
+                                                            </li>
+
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12" style="padding:0px;margin-bottom:20px;">
+                                                    <div class="text-right">
+                                                        <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_Table()"> Export To Excel</i></div>
+                                                        <input type="button" id="dli_report_excel" onclick="tableToExcel('tbl1' , 'DLI_Data')" hidden />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive" style="overflow-x:scroll;text-align:left">
+                                               
+                                                <table class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" id="tbl1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <th>Go to Map</th>
+                                                            <th>Village Name</th>
+                                                            <th>Location details</th>
+                                                            <th>Type of Artificial recharge Structure</th>
+                                                            <th>Latitude of proposed structure</th>
+                                                            <th>Longitude of proposed structure</th>
+                                                            <th>Work proposed</th>
+                                                            <th>Storage capacity  (ha m)</th>
+                                                            <th>Annual no. of fillings</th>
+                                                            <th>Recharge (%)</th>
+                                                            <th>Annual GW Recharge (ha m)</th>
+                                                            <th>Financial Year</th>
+                                                            <th>Department Name</th>
+                                                            <th>Scheme Name</th>
+                                                            <th>Total Approximate Estimated Cost(in lakh)</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_ar_details"></tbody>
+                                                </table>
+                                            </div>
+                                            <div style="text-align:center;color:red;"><label id="AlertError"></label></div>
+
+                                            <div>
+                                                <ul class="d-flex" style="justify-content: space-between; margin-top: 18px; list-style: none;padding:0px;">
+                                                    <li>
+                                                        @*<button class="btn btnNext">Next</button>*@
+                                                        <a href="~/WSP_23_24_updation/DemandSide#" class="btn btn-dark">Back</a>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <button class="btn btnNext">Next</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hair-info" id="menu-13">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding:10px 15px">
+                                    <div class="form-div">
+                                        <div class="col-md-12 background-border-Database ">
+                                            <div class="row database_trainer_row ">
+                                                <h3>
+                                                    Water Conservation Structure
+                                                    @*<a href="javascript:;" data-toggle="tooltip" title="Data Source : Shapefile(Village Boundary)">
+                                                            <span class="glyphicon glyphicon-info-sign" style="color:#fff" aria-hidden="true"></span>
+                                                        </a>*@
+                                                </h3>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">Village Name<span class="Required_star">*</span> :</label>
+                                                </div>
+                                                @*<div class="col-md-7 col-sm-8">
+                                                        <input type="text" id="txt_village_wr" class="form-control color_database" name="" placeholder="Vilage Name">
+                                                    </div>*@
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select id="txt_village_wr">
+                                                        <option value="0">--select Village Name--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">Location Details :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input type="text" id="txt_loaction_Details_wr" class="form-control color_database" name="" placeholder="Location">
+                                                </div>
+                                            </div>
+
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Type of Water Conservation Structure<span class="Required_star">*</span> :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select id="ddl_structure_wr" onchange="check_other()">
+                                                        <option value="0">--select structure--</option>
+                                                        <option value="Diggi">Diggi</option>
+                                                        <option value="Farm Pond">Farm Pond</option>
+                                                        <option value="Gokatte">Gokatte</option>
+                                                        <option value="Pond/Amrit Sarovar">Pond/Amrit Sarovar</option>
+                                                        <option value="Rain Water Harvesting Structure">Rain Water Harvesting Structure</option>
+                                                        <option value="SMC Trench">SMC Trench</option>
+                                                        <option value="Tanka">Tanka</option>
+                                                        <option value="Water Tank">Water Tank</option>
+                                                        <option value="Other">Other</option>
+
+                                                    </select>
+                                                    <input Type="text" id="txt_structure_wr" class="form-control color_database" name="" placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Latitude of proposed structure<span class="Required_star">*</span> :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_latitude_wr" autocomplete="off" onpaste="return false" maxlength="11" data-decimal="8" oninput="enforceNumberValidation(this)" class="form-control color_database decimal" name="" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Longitude of proposed structure<span class="Required_star">*</span> :
+                                                        <span class="Required_star"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_longitude_wr" autocomplete="off" onpaste="return false" maxlength="11" data-decimal="8" oninput="enforceNumberValidation(this)" class="form-control color_database decimal" name="" placeholder="">
+                                                    <label id="AlertError1" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">Work Proposed <span class="Required_star">*</span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    @*abhi1204*@
+                                                    <select id="ddl_work_rproposed_wr">
+                                                        <option value="0">--Select Work Proposed--</option>
+                                                        <option value="New">New</option>
+                                                        <option value="Renovation">Renovation</option>
+                                                    </select>
+                                                    <label id="AlertError2" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Storage capacity  (ha m)
+                                                        <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    @*abhi1204*@
+                                                    <input Type="text" id="txt_storage_wr" onpaste="return false" maxlength="8" class="form-control color_database decimal" name="" placeholder="" oninput="Cal_wr()">
+                                                    <label id="AlertError3" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname" class="">
+                                                        Annual no. of fillings
+                                                        <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_annual_fil_wr" onpaste="return false" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="validatenum()" class="form-control color_database decimal" name="" placeholder="">
+                                                    <label id="AlertError4" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname">
+                                                        Effective storage available for use (ha m)
+                                                        <span class="Required_star">*</span>:
+                                                        <a href="javascript:;" data-toggle="tooltip" title="(Storage Capacity*0.6)">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                        </a>
+                                                    </label>
+
+                                                </div>
+                                                @*class="form-control alpha"*@
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_effective_storage_wr" onpaste="return false" class="form-control" name="" placeholder="" disabled>
+                                                    <label id="AlertError5" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname">
+                                                        Financial year <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control disable_btn" id="wc_year">
+                                                        <option value="0">--Select Financial Year--</option>
+                                                        <option value="2023-24">2023-24</option>
+                                                    </select>
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname">
+                                                        Department Name <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control" id="wc_department_name"></select>
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname">
+                                                        Scheme Name <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control" id="wc_scheme_name" onchange="WC_CheckOther()"></select>
+                                                    <input type="text" class="form-control" id="wc_other_scheme" style="display:none" />
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-5 col-sm-4">
+                                                    <label for="lname">
+                                                        Total Approximate Estimated Cost (in lakh) <span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_app_esti_wr" onpaste="return false" class="form-control decimal" maxlength="7" data-decimal="4" name="" placeholder="" @*oninput="minus_val_b(this)"*@>
+                                                    <label id="AlertError6" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <!--<div class="row database_trainer_row">
+                                            <div class="col-md-4 col-sm-4">
+                                                <label for="lname">
+                                                    Approximate fund available  from Convergence (in lakh) :
+                                                </label>-->
+                                            @*<span class="Required_star">*</span>:*@
+                                            <!--</div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="txt_app_fr_conve_wr" maxlength="12" data-decimal="4" class="form-control decimal" name="" placeholder="" oninput="minus_val_b(this)">
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>-->
+                                            <!--<div class="row database_trainer_row">
+                                            <div class="col-md-4 col-sm-4">
+                                                <label for="lname" class="">
+                                                    Gap funding from Atal Jal (in lakh) :-->
+                                            @*(Total Approximate cost- Approximate fund available  from Convergence)*@
+                                            <!--<a href="javascript:;" data-toggle="tooltip" title="= (Total Approximate cost- Approximate fund available  from Convergence)">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                        </a>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+
+                                                    <input type="text" id="txt_gap_fund_at_wr" style="margin-top:6px" class="form-control decimal" disabled />
+                                                    <label id="AlertError8" style="float: right;color: red;font-size: 12px!important;"></label>
+
+
+                                                </div>
+                                            </div>-->
+                                            <div class="row database_trainer_row_button">
+                                                <div class=" col-md-12">
+                                                    <div class="text-center" style="margin-bottom:10px;">
+                                                        <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                                                            <li class=" ">
+                                                                <button class="btn btn-success btn_disabled" id="SAVE_BTN1" onclick="SaveDetails_WR()"> Save </button>
+
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12"style="padding:0px;margin-bottom:20px;">
+                                                    <div class="text-right">
+                                                        <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_Table1()"> Export To Excel</i></div>
+                                                        <input type="button" id="dli_report_excel1" onclick="tableToExcel('tbl2' , 'DLI_Data')" hidden />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive" style="overflow-x:scroll;text-align:left">
+                                               
+
+                                                <table class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" id="tbl2">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <th>Go to Map</th>
+                                                            <th>Location details</th>
+                                                            <th>Village Name</th>
+                                                            <th>Type of Water Conservation Structure</th>
+                                                            <th>Latitude of proposed structure</th>
+                                                            <th>Longitude of proposed structure</th>
+                                                            <th>Work proposed</th>
+                                                            <th>Storage capacity  (ha m)</th>
+                                                            <th>Annual no. of fillings</th>
+                                                            <th>Effective storage available for use (ha m)</th>
+                                                            <th>Financial Year</th>
+                                                            <th>Department Name</th>
+                                                            <th>Scheme Name</th>
+                                                            <th>Total Approximate Estimated Cost(in lakh)</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_wr_details"></tbody>
+                                                </table>
+                                            </div>
+                                            <div style="text-align:center;color:red;"><label id="AlertError"></label></div>
+
+                                            <div>
+                                                <ul class="d-flex" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden; justify-content: space-between;">
+                                                    <li>
+                                                        <button class="btn btn-dark btnPrevious">Back</button>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <a href="~/WSP_23_24_updation/Summary_supply_demand" class="btn btn-primary">Summary</a>
+                                                        @*<button class="btn btnNext">Next</button>*@
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Supply Side</span>
+                <div class="progress-node answering active now tab-link subtab1" data-tab="menu-11">
+                    <div class="progress-label">
+                        Artificial Recharge Structures<span class="pointer"></span>
+                    </div>
+                </div>
+                <div class="progress-node tab-link subtab3" data-tab="menu-13">
+                    <div class="progress-label">Water Conservation Structures <span class="pointer"></span></div>
+                </div>
+
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+
+
+        </ul>
+
+    </div>
+    <!--fotter End-->
+    <input hidden="hidden" id="hdnRechargefactor" />
+    <input hidden="hidden" id="hdnSeepagefactor" />
+    <input hidden="hidden" id="hdnareairrigation" />
+</div>
+
+
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/Scripts/Wsp_Comman.js"></script>
+
+<script type="text/javascript">
+    var StateOfficer = "";
+    debugger;
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            $('input[type=text]').prop("disabled", true)
+            $('select').prop("disabled", true);
+            $('input[type=file]').prop("disabled", true)
+            $('.btn_disabled').prop("disabled", true);
+        }
+        else if (StateOfficer != "" && StateOfficer != null) {
+
+        } else {
+              window.location = "/Home/LogOut";
+        }
+        Scheme_Info();
+        GetARData();
+        GetWRData();
+
+        GetVillageName();
+        $('#txt_structure_ar').hide();
+        $('#txt_structure_wr').hide();
+
+        get_approved_status();
+    });
+
+
+
+    function GetVillageName() {
+        var slection_options = '';
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: '/WSP_23_24_updation/GetVillageName',
+            data: {},
+            success: function (data) {
+
+                const Response = data.split(',');
+                slection_options += '<option value="0">--Select VillageName-- </option>';
+
+                for (var i = 0; i < Response.length; i++) {
+                    slection_options += '<option value="' + Response[i] + '"> ' + Response[i] + ' </option>';
+                    console.log(Response[i]);
+                }
+                $('#txt_village_ar').html(slection_options);
+                $('#txt_village_wr').html(slection_options);
+
+            }
+            });
+
+    }
+
+    function enforceNumberValidation(ele) {
+
+        var match = false;
+        var match2 = false;
+        var matchwr = false;
+        var matchwr2 = false;
+        var lat = $('#txt_latitude_ar').val();
+        var long = $('#txt_longitude_ar').val();
+
+
+
+        if (!(lat.indexOf(".") == -1)) {
+            match = true; // decimal
+        } else {
+            match = false;
+        }
+        if (lat.length == 2 && match != true) {
+            $('#txt_latitude_ar').val(lat + '.');
+        } else if (lat.length == 1 && match != false) {
+            $('#txt_latitude_ar').val('');
+        }
+
+
+        if (!(long.indexOf(".") == -1)) {
+            match2 = true; // decimal
+        } else {
+            match2 = false;
+        }
+        if (long.length == 2 && match2 != true) {
+            $('#txt_longitude_ar').val(long + '.');
+        } else if (long.length == 1 && match2 != false) {
+            $('#txt_longitude_ar').val('');
+        }
+
+
+        var latwr = $('#txt_latitude_wr').val();
+        var longwr = $('#txt_longitude_wr').val();
+
+        if (!(latwr.indexOf(".") == -1)) {
+            matchwr = true; // decimal
+        } else {
+            matchwr = false;
+        }
+        if (latwr.length == 2 && matchwr != true) {
+            $('#txt_latitude_wr').val(latwr + '.');
+        } else if (latwr.length == 1 && matchwr != false) {
+            $('#txt_latitude_wr').val('');
+        }
+
+
+        if (!(longwr.indexOf(".") == -1)) {
+            matchwr2 = true; // decimal
+        } else {
+            matchwr2 = false;
+        }
+        if (longwr.length == 2 && matchwr2 != true) {
+            $('#txt_longitude_wr').val(longwr + '.');
+        } else if (longwr.length == 1 && matchwr2 != false) {
+            $('#txt_longitude_wr').val('');
+        }
+
+
+        if ($(ele).data('decimal') != null) {
+            // found valid rule for decimal
+            var decimal = parseInt($(ele).data('decimal')) || 0;
+            var val = $(ele).val();
+            if (decimal > 0) {
+                var splitVal = val.split('.');
+                if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                    // user entered invalid input
+                    $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+                }
+            } else if (decimal == 0) {
+                // do not allow decimal place
+                var splitVal = val.split('.');
+                if (splitVal.length > 1) {
+                    // user entered invalid input
+                    $(ele).val(splitVal[0]); // always trim everything after '.'
+                }
+            }
+        }
+    }
+    var IDD_AR = 0;
+    var IDD_WR = 0;
+    function GetARData() {
+        var strorage_cap = 0;
+        var annual_no_fill = 0;
+        var recharge = 0;
+        var annual_gw_rech = 0;
+        var aprx_est_cost = 0;
+        var aprx_fund_avail = 0;
+        var gap_fund = 0;
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: '/WSP_23_24_updation/Get_Lists_AR',
+            data: {},
+            success: function (data) {
+                //if (data == "Logout") {
+                //      window.location = "/Home/LogOut";
+                //}
+
+                $('.loader').hide();
+                var tr = '';
+
+                if (data.length != 0) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        var scheme_name = "";
+                        if (data[i].scheme_name == "Other") {
+                            scheme_name = data[i].scheme_name + ' - ' + data[i].other_scheme;
+                        } else {
+                            scheme_name = data[i].scheme_name;
+                        }
+                        if (data[i].isarchive != 1) {
+                            tr += '<tr><td>' + (parseInt(i) + 1) + '</td><td><a href="/WSP_23_24_updation/SupplySide_AR_Pointer?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td><td>' + data[i].village_name + '</td><td>' + data[i].location_detail + '</td>';
+                            tr += '<td>' + data[i].type_of_ar + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td>';
+                            tr += '<td>' + data[i].work_proposed + '</td><td>' + data[i].storage_capacity + '</td><td>' + data[i].annual_filling_no + '</td>';
+                            tr += '<td> ' + data[i].recharge + '</td ><td>' + data[i].annual_gw_recharge + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td>;'
+                            tr += '<td> ' + data[i].estimated_cost + '</td>';
+                            tr += '<td><button class="btn btn-primary btn_disabled" onclick="Edit_data_ar(\'' + data[i].id + '\')" >update</button > </td>';
+                            tr += '<td><button class="btn btn-danger btn_disabled" onclick="Delete_data_ar(\'' + data[i].id + '\')" >Delete</button > </td></tr>';
+                        } else {
+                            tr += '<tr><td>' + (parseInt(i) + 1) + '</td><td><a href="/WSP_23_24_updation/SupplySide_AR_Pointer?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td><td>' + data[i].village_name + '</td><td>' + data[i].location_detail + '</td>';
+                            tr += '<td>' + data[i].type_of_ar + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td>';
+                            tr += '<td>' + data[i].work_proposed + '</td><td>' + data[i].storage_capacity + '</td><td>' + data[i].annual_filling_no + '</td>';
+                            tr += '<td> ' + data[i].recharge + '</td ><td>' + data[i].annual_gw_recharge + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td>;'
+                            tr += '<td> ' + data[i].estimated_cost + '</td>';
+                            tr += '<td><button class="btn btn-primary btn_disabled" disabled onclick="Edit_data_ar(\'' + data[i].id + '\')" >update</button > </td>';
+                            tr += '<td><button class="btn btn-danger btn_disabled" disabled onclick="Delete_data_ar(\'' + data[i].id + '\')" >Delete</button > </td></tr>';
+                        }
+                        strorage_cap += parseFloat(data[i].storage_capacity);
+                        annual_no_fill += parseFloat(data[i].annual_filling_no);
+                        recharge += parseFloat(data[i].recharge);
+                        annual_gw_rech += parseFloat(data[i].annual_gw_recharge);
+                        aprx_est_cost += parseFloat(data[i].estimated_cost);
+                        /*aprx_fund_avail += parseFloat(data[i].fund_avail_convergence);*/
+                        /*gap_fund += parseFloat(data[i].gap_funding_atal);*/
+                    }
+
+                }
+                tr += '<tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><input type="text" value="' + strorage_cap.toFixed(4) + '" readonly style="width:100%; background-color:#f2f2f2;"/></td>'
+                tr += '<td><input type="text" value="' + annual_no_fill + '" readonly style="width:100%; background-color:#f2f2f2;"/></td><td><input type="text" value="' + recharge.toFixed(4) + '" readonly style="width:100%; background-color:#f2f2f2;"/></td><td><input type="text" value="' + annual_gw_rech.toFixed(4) + '" readonly style="width:100%; background-color:#f2f2f2;"/></td><td></td><td></td><td></td><td><input type="text" value="' + aprx_est_cost.toFixed(4) + '" readonly style="width:100%; background-color:#f2f2f2;"/></td>'
+                tr += '</tr> ';
+                $('#tbl_ar_details').html(tr);
+                $('#SAVE_BTN').text('Save');
+                if (StateOfficer != "Gram Panchyat Nodal Officer") {
+                    $('input[type=text]').prop("disabled", true)
+                    $('select').prop("disabled", true);
+                    $('input[type=file]').prop("disabled", true)
+                    $('.btn_disabled').prop("disabled", true);
+                }
+                else {
+                    $('input[type=text]').prop("disabled", false)
+                    $('select').prop("disabled", false);
+                    $('input[type=file]').prop("disabled", false)
+                    $('.btn_disabled').prop("disabled", false);
+                }
+                if (access_auth == "admin") {
+                    $('input[type=text]').prop("disabled", false)
+                    $('select').prop("disabled", false);
+                    $('input[type=file]').prop("disabled", false)
+                    $('.btn_disabled').prop("disabled", false);
+                }
+                IDD_AR = 0;
+            },
+            error:
+                function (response) {
+                    console.dir(response)
+                    //alert("Error: " + response);
+                }
+        });
+    }
+
+    function toggle(source) {
+        checkboxes = document.getElementsByName('supply_ar');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+
+    function Edit_data_ar(id) {
+        var formData = new FormData();
+        formData.append('id', id);
+        $.ajax({
+            url: '/WSP_23_24_updation/Get_Lists_AR_by_id',
+            data: formData,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data == "This entry cannot be edited or deleted.") {
+                    alert(data);
+                    return
+                }
+                if (data.length != 0) {
+
+                    var ii = false;
+                    var options = $('#ddl_structure_ar option');
+                    // Next, translate that into an array of just the values
+                    var values = $.map(options, e => $(e).val())
+
+                    $('#txt_village_ar').val(data[0].village_name);
+                    $('#txt_loaction_Details_ar').val(data[0].location_detail);
+                    var ddl_structure_ar = data[0].type_of_ar;
+
+
+                    for (var i = 0; i < values.length; i++) {
+                        if (values[i] == ddl_structure_ar) {
+                            ii = true;
+                        }
+                    }
+                    if (ii == true) {
+                        $('#ddl_structure_ar').val(data[0].type_of_ar);
+                    } else {
+                        $('#ddl_structure_ar').val("Other");
+                        $('#txt_structure_ar').val(data[0].type_of_ar);
+                    }
+                    if ($('#ddl_structure_ar').val() == 'Other') {
+                        /*$('#ddl_structure_ar').hide();*/
+                        $('#txt_structure_ar').show();
+                    }
+                    else {
+                        $('#ddl_structure_ar').show();
+                        $('#txt_structure_ar').hide();
+                    }
+
+                    $('#txt_latitude_ar').val(data[0].latitude);
+                     $('#txt_longitude_ar').val(data[0].longitude);
+                    $('#ddl_work_rproposed_ar').val(data[0].work_proposed);
+                    $('#txt_storage_ar').val(data[0].storage_capacity);
+                    $('#txt_annual_fil_ar').val(data[0].annual_filling_no);
+                    $('#txt_recharge_ar').val(data[0].recharge);
+                    $('#txt_annual_recharge_ar').val(data[0].annual_gw_recharge);
+                    $('#txt_funding_soruce').val(data[0].fund_resource);
+                    $('#txt_ap_es_cost_ar').val(data[0].estimated_cost);
+                     /*$('#txt_fund_avail_ar').val(data[0].fund_avail_convergence);*/
+                    $("#ar_year").val(data[0].financial_year);
+                    $("#ar_department_name").val(data[0].department_name);
+                    $("#ar_scheme_name").val(data[0].scheme_name)
+                    if (data[0].scheme_name == "Other") {
+                        $("#other_scheme").show();
+                        $("#other_scheme").val(data[0].other_scheme);
+                    }
+
+                    /*$('#txt_fund_atal_ar').val(data[0].gap_funding_atal);*/
+                    $("#txt_village_ar").focus();
+                    $('#SAVE_BTN').text('Update');
+                    IDD_AR = id;
+                }
+            },
+            error:
+                function (response) {
+                    console.dir(response)
+                    //alert("Error: " + response);
+                }
+        });
+    }
+    function Delete_data_ar(id) {
+        var formData = new FormData();
+        formData.append('id', id);
+        $.ajax({
+            url: '/WSP_23_24_updation/Delete_AR_by_id',
+            data: formData,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert(data);
+                GetARData();
+            },
+            error:
+                function (response) {
+                    console.dir(response)
+                    //alert("Error: " + response);
+                }
+        });
+    }
+    function GetWRData() {
+        var strorage_cap = 0;
+        var annual_no_fill = 0;
+        var eff_storage = 0;
+        var total_aprx = 0;
+        var aprx_fund_conv = 0;
+        var fund_atal = 0;
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: '/WSP_23_24_updation/Get_Lists_WR',
+            data: {},
+            success: function (data) {
+                //if (data == "Logout") {
+                //      window.location = "/Home/LogOut";
+                //}
+
+                var tr = '';
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var scheme_name = "";
+                        if (data[i].scheme_name == "Other") {
+                            scheme_name = data[i].scheme_name + ' - ' + data[i].other_scheme;
+                        } else {
+                            scheme_name = data[i].scheme_name;
+                        }
+                        if (data[i].isarchive != 1) {
+                            tr += '<tr><td>' + (parseInt(i) + 1) + '</td><td><a href="/WSP_23_24_updation/SupplySide_WC_Pointer?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td><td>' + data[i].location_detail + '</td>';
+                            tr += '<td> ' + data[i].village_name + '</td ><td id="ar">' + data[i].type_of_wr + '</td><td>' + data[i].latitude + '</td>';
+                            tr += '<td> ' + data[i].longitude + '</td ><td>' + data[i].work_proposed + '</td><td>' + data[i].storage_capacity + '</td>';
+                            tr += '<td> ' + data[i].annual_filling_no + '</td ><td>' + data[i].effective_storage + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td>';
+                            tr += '<td> ' + data[i].estimated_cost + '</td >';
+                            tr += '<td><button class="btn btn-primary btn_disabled" onclick="Edit_data_wr(\'' + data[i].id + '\')" >update</button > </td>';
+                            tr += '<td><button class="btn btn-danger btn_disabled" onclick="Delete_data_wr(\'' + data[i].id + '\')" >Delete</button > </td></tr>';
+                        } else {
+                            tr += '<tr><td>' + (parseInt(i) + 1) + '</td><td><a href="/WSP_23_24_updation/SupplySide_WC_Pointer?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td><td>' + data[i].location_detail + '</td>';
+                            tr += '<td> ' + data[i].village_name + '</td ><td id="ar">' + data[i].type_of_wr + '</td><td>' + data[i].latitude + '</td>';
+                            tr += '<td> ' + data[i].longitude + '</td ><td>' + data[i].work_proposed + '</td><td>' + data[i].storage_capacity + '</td>';
+                            tr += '<td> ' + data[i].annual_filling_no + '</td ><td>' + data[i].effective_storage + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td>';
+                            tr += '<td> ' + data[i].estimated_cost + '</td >';
+                            tr += '<td><button class="btn btn-primary btn_disabled" disabled onclick="Edit_data_wr(\'' + data[i].id + '\')" >update</button > </td>';
+                            tr += '<td><button class="btn btn-danger btn_disabled" disabled onclick="Delete_data_wr(\'' + data[i].id + '\')" >Delete</button > </td></tr>';
+
+                       }
+                            strorage_cap += parseFloat(data[i].storage_capacity);
+                        annual_no_fill += parseFloat(data[i].annual_filling_no);
+                        eff_storage += parseFloat(data[i].effective_storage);
+                        total_aprx += parseFloat(data[i].estimated_cost);
+
+                    }
+                    tr += '<tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><input type="text" value="' + strorage_cap.toFixed(4) + '" readonly style="width:100%; background-color:#f2f2f2;"/></td>'
+                    tr += '<td><input type="text" value="' + annual_no_fill + '" readonly style="width:100%;background-color:#f2f2f2;"/></td><td><input type="text" value="' + eff_storage.toFixed(4) + '" readonly style="width:100%; background-color:#f2f2f2;"/></td><td></td><td></td><td></td><td><input type="text" value="' + total_aprx.toFixed(4) + '" readonly style="width:100%; background-color:#f2f2f2;"/></td>'
+                    tr += '</tr> ';
+                }
+                $('#tbl_wr_details').html(tr);
+                $('#SAVE_BTN1').text('Save');
+                if (StateOfficer != "Gram Panchyat Nodal Officer") {
+                    $('input[type=text]').prop("disabled", true)
+                    $('select').prop("disabled", true);
+                    $('input[type=file]').prop("disabled", true)
+                    $('.btn_disabled').prop("disabled", true);
+                }
+
+                if (access_auth == "admin") {
+                    $('input[type=text]').prop("disabled", false)
+                    $('select').prop("disabled", false);
+                    $('input[type=file]').prop("disabled", false)
+                    $('.btn_disabled').prop("disabled", false);
+                }
+            },
+            error:
+                function (response) {
+                    console.dir(response)
+                    //alert("Error: " + response);
+                }
+        });
+    }
+
+    function toggle_wr(source) {
+        checkboxes = document.getElementsByName('supply_wr');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+    function Edit_data_wr(id) {
+
+        var formData = new FormData();
+        formData.append('id', id);
+        $.ajax({
+            url: '/WSP_23_24_updation/Get_Lists_WR_by_id',
+            data: formData,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data == "This entry cannot be edited or deleted.") {
+                    alert(data);
+                    return
+                }
+                if (data.length != 0) {
+
+                    var ii = false;
+                    var ddl_structure_wr = data[0].type_of_wr;
+                    var options = $('#ddl_structure_wr option');
+                    // Next, translate that into an array of just the values
+                    var values = $.map(options, e => $(e).val())
+                    for (var i = 0; i < values.length; i++) {
+                        if (values[i] == ddl_structure_wr) {
+                            ii = true;
+                        }
+                    }
+                    if (ii == true) {
+                        $('#ddl_structure_wr').val(data[0].type_of_wr);
+                    } else {
+                        $('#ddl_structure_wr').val("Other");
+                        $('#txt_structure_wr').val(data[0].type_of_wr);
+                    }
+
+                    if ($('#ddl_structure_wr').val() == 'Other') {
+                        /*$('#ddl_structure_wr').hide();*/
+                        $('#txt_structure_wr').show();
+                    }
+                    else {
+                        $('#ddl_structure_wr').show();
+                        $('#txt_structure_wr').hide();
+                    }
+
+
+                    $('#txt_village_wr').val(data[0].village_name);
+                    $('#txt_loaction_Details_wr').val(data[0].location_detail);
+
+                    $('#txt_latitude_wr').val(data[0].latitude);
+                    $('#txt_longitude_wr').val(data[0].longitude);
+                    $('#ddl_work_rproposed_wr').val(data[0].work_proposed);
+                    $('#txt_storage_wr').val(data[0].storage_capacity);
+                    $('#txt_annual_fil_wr').val(data[0].annual_filling_no);
+                    $('#txt_recharge_wr').val(data[0].recharge);
+                    $('#txt_annual_recharge_wr').val(data[0].annual_gw_recharge);
+                    $('#txt_funding_sorce_wr').val(data[0].fund_resource);
+                    $('#txt_ap_es_cost_wr').val(data[0].estimated_cost);
+                    $('#txt_fund_avail_wr').val(data[0].fund_avail_convergence);
+                    $('#txt_fund_atal_wr').val(data[0].gap_funding_atal);
+                    $('#txt_effective_storage_wr').val(data[0].effective_storage);
+
+
+                    $('#txt_app_esti_wr').val(data[0].estimated_cost);
+                   /* $('#txt_app_fr_conve_wr').val(data[0].fund_avail_convergence);*/
+                    /*$('#txt_gap_fund_at_wr').val(data[0].gap_funding_atal);*/
+                    $("#wc_year").val(data[0].financial_year);
+                    $("#wc_department_name").val(data[0].department_name);
+                    $("#wc_scheme_name").val(data[0].scheme_name)
+                    if (data[0].scheme_name == "Other") {
+                        $("#wc_other_scheme").show();
+                        $("#wc_other_scheme").val(data[0].other_scheme);
+                    }
+                    $('#txt_village_wr').focus();
+                    $('#SAVE_BTN1').text('Update');
+                    IDD_WR = id;
+                }
+            },
+            error:
+                function (response) {
+                    console.dir(response)
+                    //alert("Error: " + response);
+                }
+        });
+    }
+    function Delete_data_wr(id) {
+        var formData = new FormData();
+        formData.append('id', id);
+        $.ajax({
+            url: '/WSP_23_24_updation/Delete_WR_by_id',
+            data: formData,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert(data);
+                GetWRData();
+
+            },
+            error:
+                function (response) {
+                    console.dir(response)
+                    //alert("Error: " + response);
+                }
+        });
+    }
+
+        function cal_AR(e) {
+            if (e != undefined) {
+                var Data = e.target.value;
+                check = parseFloat(Data);
+
+                if (check < 1 || check > 100) {
+                    alert('Please Enter Vaue in % between 1-100');
+                    $("#txt_recharge_ar").val('');
+                    return;
+                }
+            }
+        var a = $('#txt_storage_ar').val();
+        var b = $('#txt_annual_fil_ar').val();
+        var c = $('#txt_recharge_ar').val();
+
+        if (a != '' && b != '' && c != '') {
+            var d = parseFloat(a) * parseFloat(b) * parseFloat(c) * 0.01;
+            $('#txt_annual_recharge_ar').val(d.toFixed(4));
+        }
+    }
+    function Cal_wr() {
+        var a = $('#txt_storage_wr').val();
+
+        if (a != '') {
+            var d = parseFloat(a) * 0.6;
+            $('#txt_effective_storage_wr').val(d.toFixed(4));
+        } else {
+            $('#txt_effective_storage_wr').val('');
+        }
+    }
+
+    function SaveDetails_AR()
+    {
+        var formData = new FormData();
+            var state ='@Session["gstate"]';
+            var dis ='@Session["gdist"]';
+            var block ='@Session["gblock"]';
+        var gp = '@Session["ggram"]';
+        var txt_village_ar = $('#txt_village_ar').val();
+        var ddl_structure_ar = $("#ddl_structure_ar").val();
+
+        var vall = $('#txt_recharge_ar').val();
+
+
+        if (txt_village_ar == "0") {
+            alert("Please Select Village Name");
+            $('#txt_village_ar').focus();
+            return;
+        }
+        if (ddl_structure_ar == "0") {
+            alert("Please Select Type of Artificial recharge Structure");
+            $('#ddl_structure_ar').focus();
+            return;
+        } else if (ddl_structure_ar == "Other") {
+            if ($("#txt_structure_ar").val() == "") {
+                alert("Please enter other Type of artificial recharge structure");
+                $("#txt_structure_ar").focus();
+                return;
+            }
+        }
+        if ($('#txt_latitude_ar').val() == '') {
+            alert('Please Fill Latitude of proposed structure');
+            $('#txt_latitude_ar').focus()
+            return;
+        }
+        if ($('#txt_longitude_ar').val() == '') {
+            alert('Please Fill Longitude of proposed structure');
+            $('#txt_longitude_ar').focus()
+            return;
+        }
+        if ($('#ddl_work_rproposed_ar').val() == '0') {
+            alert('Please Select Work Proposed');
+            $('#ddl_work_rproposed_ar').focus();
+            return;
+        }
+        if ($('#txt_storage_ar').val() == '') {
+            alert('Please Fill Storage capacity');
+            $('#txt_storage_ar').focus();
+            return;
+        }
+        if ($('#txt_annual_fil_ar').val() == '') {
+            alert('Please Fill Annual no. of fillings');
+            $('#txt_annual_fil_ar').focus();
+            return;
+        } else if (vall < 1 || vall > 100) {
+            alert('Please Enter Vaue in % between 1-100');
+            $('#txt_recharge_ar').focus();
+            return;
+        }
+        else if ($("#txt_annual_recharge_ar").val() == "") {
+            alert('Please Select Financial Year');
+            $("#txt_annual_recharge_ar").focus();
+            return;
+        } else if ($("#ar_year").val() == "0") {
+            alert('Please Select Financial Year');
+            $("#ar_year").focus();
+            return;
+        } else if ($("#ar_department_name").val() == "0") {
+            alert('Please Select Department Name');
+            $("#ar_department_name").focus()
+            return;
+        } else if ($("#ar_scheme_name").val() == "0") {
+            alert('Please Select Scheme Name');
+            $("#ar_scheme_name").focus()
+            return;
+        } else if ($("#ar_scheme_name").val() == "Other") {
+            if ($("#other_scheme").val() == "") {
+                alert("Please Enter Other Scheme Name");
+                $("#other_scheme").focus();
+                return;
+            }
+        }
+        if ($('#txt_ap_es_cost_ar').val() == '') {
+            alert('Please Fill Total Approximate Estimated Cost');
+            $('#txt_ap_es_cost_ar').focus()
+            return;
+        }
+        if ($("#ar_scheme_name").val() != "Other") {
+            $("#other_scheme").val("");
+        }
+
+        formData.append('financial_year', $("#ar_year").val());
+        formData.append('department_name', $("#ar_department_name").val());
+        formData.append('scheme_name', $("#ar_scheme_name").val());
+        formData.append('other_scheme', $("#other_scheme").val());
+        formData.append('State', state);
+        formData.append('District', dis);
+        formData.append('Block', block);
+        formData.append('Gp', gp);
+        formData.append('village_name', $('#txt_village_ar').val());
+        formData.append('location_detail', $('#txt_loaction_Details_ar').val());
+        if ($('#ddl_structure_ar').val()=='Other')
+        {
+            formData.append('type_of_ar', $('#txt_structure_ar').val());
+        }
+        else {
+            formData.append('type_of_ar', $('#ddl_structure_ar').val());
+        }
+        formData.append('latitude', $('#txt_latitude_ar').val());
+        formData.append('longitude', $('#txt_longitude_ar').val());
+        formData.append('work_proposed', $('#ddl_work_rproposed_ar').val());
+        formData.append('storage_capacity', $('#txt_storage_ar').val());
+        formData.append('annual_filling_no', $('#txt_annual_fil_ar').val());
+        formData.append('recharge', $('#txt_recharge_ar').val());
+        formData.append('annual_gw_recharge', $('#txt_annual_recharge_ar').val());
+        formData.append('estimated_cost', $('#txt_ap_es_cost_ar').val());
+        /*formData.append('fund_avail_convergence', $('#txt_fund_avail_ar').val());*/
+        /*formData.append('gap_funding_atal', $('#txt_fund_atal_ar').val());*/
+        if ($('#SAVE_BTN').text() == "Save") {
+            $.ajax({
+                url: '/WSP_23_24_updation/Save_Data_AR',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                    GetARData();
+                    if (data != 'Data already entered for that Lat, Long') {
+                        window.location.reload();
+                    }
+
+
+                }
+            });
+        }
+        if ($('#SAVE_BTN').text() == "Update") {
+            formData.append('IDD_AR', IDD_AR);
+            $.ajax({
+                url: '/WSP_23_24_updation/Update_Data_AR',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                    GetARData();
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    function SaveDetails_WR() {
+
+            var formData = new FormData();
+            var state ='@Session["gstate"]';
+            var dis ='@Session["gdist"]';
+            var block ='@Session["gblock"]';
+        var gp = '@Session["ggram"]';
+        var txt_village_wr = $("#txt_village_wr").val();
+        var ddl_structure_wr = $('#ddl_structure_wr').val();
+        if (txt_village_wr == '0') {
+            alert('Please Select Village Name');
+            $('#txt_village_wr').focus()
+            return;
+        }
+        if (ddl_structure_wr == '0') {
+            alert('Please Select Type of Water Conservation Structure');
+            $('#ddl_structure_wr').focus()
+            return;
+        } else if (ddl_structure_wr == 'Other') {
+            if ($("#txt_structure_wr").val() == "")  {
+                alert("Please enter other type of Water Conservation Structure");
+                $("#txt_structure_wr").focus()
+                return;
+            }
+        }
+        if ($('#txt_latitude_wr').val() == '') {
+            alert('Please Fill Latitude of proposed structure');
+            $('#txt_latitude_wr').focus()
+            return;
+        }
+        if ($('#txt_longitude_wr').val() == '') {
+            alert('Please Fill Longitude of proposed structure');
+            $('#txt_longitude_wr').focus()
+            return;
+        }
+        if ($('#ddl_work_rproposed_wr').val() == '0') {
+            alert('Please Select Work Proposed');
+            $('#ddl_work_rproposed_wr').focus()
+            return;
+        }
+        if ($('#txt_storage_wr').val() == '') {
+            alert('Please Fill Storage capacity');
+            $('#txt_storage_wr').focus()
+            return;
+        }
+        if ($('#txt_annual_fil_wr').val() == '') {
+            alert('Please Fill Annual no. of fillings');
+            $('#txt_annual_fil_wr').focus()
+            return;
+        }
+        if ($('#txt_effective_storage_wr').val() == '') {
+            alert('Please Fill Annual no. of fillings');
+            $('#txt_effective_storage_wr').focus()
+            return;
+        }
+        else if ($("#wc_year").val() == "0") {
+            alert('Please Select Financial Year');
+            $("#wc_year").focus()
+            return;
+        } else if ($("#wc_department_name").val() == "0") {
+            alert('Please Select Department Name');
+            $("#wc_department_name").focus()
+            return;
+        } else if ($("#wc_scheme_name").val() == "0") {
+            alert('Please Select Scheme Name');
+            $("#wc_scheme_name").focus()
+            return;
+        } else if ($("#txt_app_esti_wr").val() == "") {
+            alert('Please Enter Total Approximate Estimated Cost');
+            $("#txt_app_esti_wr").focus()
+            return;
+        }
+        else if ($("#wc_scheme_name").val() == "Other") {
+            if ($("#wc_other_scheme").val() == "") {
+                alert("Please Enter Other Scheme Name");
+                $("#wc_other_scheme").focus();
+                return;
+            }
+        }
+
+        //if ($('#txt_app_fr_conve_wr').val() == '') {
+        //    alert('Please Fill Total Approximate Estimated Cost');
+        //    $('#txt_app_fr_conve_wr').focus()
+        //    return;
+        //}
+        if ($("#wc_scheme_name").val() != "Other") {
+            $("#wc_other_scheme").val("");
+        }
+        formData.append('financial_year', $("#wc_year").val());
+        formData.append('department_name', $("#wc_department_name").val());
+        formData.append('scheme_name', $("#wc_scheme_name").val());
+        formData.append('other_scheme', $("#wc_other_scheme").val());
+            formData.append('State', state);
+            formData.append('District', dis);
+            formData.append('Block', block);
+            formData.append('Gp', gp);
+        formData.append('village_name', $('#txt_village_wr').val());
+        formData.append('location_detail', $('#txt_loaction_Details_wr').val());
+        if ($('#ddl_structure_wr').val() == 'Other') {
+            formData.append('type_of_wr', $('#txt_structure_wr').val());
+        }
+        else {
+            formData.append('type_of_wr', $('#ddl_structure_wr').val());
+        }
+        formData.append('latitude', $('#txt_latitude_wr').val());
+        formData.append('longitude', $('#txt_longitude_wr').val());
+        formData.append('work_proposed', $('#ddl_work_rproposed_wr').val());
+        formData.append('storage_capacity', $('#txt_storage_wr').val());
+        formData.append('annual_filling_no', $('#txt_annual_fil_wr').val());
+        formData.append('effective_storage', $('#txt_effective_storage_wr').val());
+        formData.append('fund_resource', $('#txt_funding_sorce_wr').val());
+        formData.append('estimated_cost', $('#txt_app_esti_wr').val());
+        /*formData.append('fund_avail_convergence', $('#txt_app_fr_conve_wr').val());*/
+        /*formData.append('gap_funding_atal', $('#txt_gap_fund_at_wr').val());*/
+        if ($('#SAVE_BTN1').text() == "Save") {
+            $.ajax({
+                url: '/WSP_23_24_updation/Save_Data_WR',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                    GetWRData();
+                    if (data != 'Data already entered for that Lat, Long') {
+                        $('#txt_village_wr').val(0);
+                        $('#txt_loaction_Details_wr').val('');
+                        $('#ddl_structure_wr').val(0);
+                        $('#txt_latitude_wr').val('');
+                        $('#txt_longitude_wr').val('');
+                        $('#ddl_work_rproposed_wr').val(0);
+                        $('#txt_storage_wr').val('');
+                        $('#txt_annual_fil_wr').val('');
+                        $('#txt_effective_storage_wr').val('');
+                        $('#txt_funding_sorce_wr').val('');
+                        $('#txt_app_esti_wr').val('');
+                        $("#wc_scheme_name").val("0");
+                        $("#wc_department_name").val("0");
+                        $("#wc_year").val("0");
+                        WC_CheckOther();
+                        /*$('#txt_app_fr_conve_wr').val('');*/
+                        /*$('#txt_gap_fund_at_wr').val('');*/
+                    }
+                }
+            });
+        }
+        if ($('#SAVE_BTN1').text() == "Update") {
+            formData.append('IDD_WR', IDD_WR);
+            $.ajax({
+                url: '/WSP_23_24_updation/Update_Data_WR',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                    GetWRData();
+                    window.location.reload();
+                }
+            });
+        }
+    }
+    function check_other()
+    {
+
+        if ($('#ddl_structure_ar').val() == 'Other') {
+             /*$('#ddl_structure_ar').hide();*/
+             $('#txt_structure_ar').show();
+         }
+         else {
+             $('#ddl_structure_ar').show();
+            $('#txt_structure_ar').hide();
+            $('#txt_structure_ar').val("");
+         }
+
+         if ($('#ddl_structure_wr').val() == 'Other') {
+             /*$('#ddl_structure_wr').hide();*/
+             $('#txt_structure_wr').show();
+         }
+         else {
+             $('#ddl_structure_wr').show();
+             $('#txt_structure_wr').hide();
+             $('#txt_structure_wr').val("");
+         }
+    }
+    var tableToExcel = (function () {
+
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+    function Export_Table() {
+        //if (component != 0) {
+        //    for (var i = 0; i < component; i++) {
+        //        var ss = "TRA01" + i;
+        //        $(ss).remove();
+        //    }
+        //}
+
+        $('#dli_report_excel').click();
+            GetARData();
+
+
+
+    }
+    function Export_Table1() {
+        $('#dli_report_excel1').click();
+
+            GetARData();
+
+    }
+</script>
+
+
+<script type="text/javascript">
+    $('li.leftbtnnext > button.btnprocess1').click(function () {
+
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+    $("ul#myTabs > li > a").on("show.bs.tab", function () {
+        $('ul.tabs_menu > li:first-child').trigger('click');
+    });
+
+</script>
+<script>
+
+    $('#btnDrftGo').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+    $('#btngotobalance').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+</script>
+<script>
+      var access_auth = '';
+
+    $(document).ready(function () {
+        access_auth = '@Session["access_auth"]';
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+
+</script>
+<script>
+    $('#m1').click(function (e) {
+        $('.subtab2').removeClass('active');
+        $('.subtab3').removeClass('active');
+        $('.subtab4').removeClass('active');
+        $('.subtab5').removeClass('active');
+        $('.subtab6').removeClass('active');
+        $('.subtab7').removeClass('active');
+        $('.subtab1').addClass('active');
+        $('div.tabfirst div.active').removeClass('active');
+        $('#menu-11').addClass('active in');
+        $('li#Surface-water div').removeClass('active');
+        $('li#Surface-water div.subtab1').addClass('active');
+    });
+    $('#m2').click(function (e) {
+        $('.subtab12').removeClass('active');
+        $('.subtab13').removeClass('active');
+        $('.subtab14').removeClass('active');
+        $('.subtab15').removeClass('active');
+        $('.subtab16').removeClass('active');
+        $('.subtab17').removeClass('active');
+        $('.subtab11').addClass('active');
+        $('div.tabsecond div.active').removeClass('active');
+        $('#menu-1').addClass('active in');
+        $('li#indoor-water div').removeClass('active');
+        $('li#indoor-water div.subtab11').addClass('active now');
+    });
+    $('#m3').click(function (e) {
+        $('.subtab22').removeClass('active');
+        $('.subtab23').removeClass('active');
+        $('.subtab24').removeClass('active');
+        $('.subtab21').addClass('active');
+        $('div.tabthrid div.active').removeClass('active');
+        $('#menu-8').addClass('active in');
+        $('li#outdoor-water div').removeClass('active');
+        $('li#outdoor-water  div.subtab21').addClass('active now');
+    });
+
+</script>
+<script>
+    // start header and footer nav bar changes script
+    $('#indoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#indoor-water.progress-group .progress-node').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#outdoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#Surface-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('ul#rainfall_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#rainfall_menu li').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+    $('ul#Surface_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Surface_menu li').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('ul#Water_draft_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Water_draft_menu li').removeClass('active');
+        $('.Sider_column > ul.sider_images_sider').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+        $("[data-target=" + tab_id + "]").addClass('active');
+        //$('ul.tabs li').click(function () {
+        //  var tab_id = $(this).attr('data-tab');
+
+        //$('ul.tabs li').removeClass('current');
+
+
+        //$(this).addClass('current');
+
+        //})
+    });
+    $('.btnNext').click(function () {
+        $('.tabs_menu > .active').next('.tab-link').trigger('click');
+        //$('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.btnPrevious').click(function () {
+        $('.tabs_menu > .active').prev('.tab-link').trigger('click');
+        // $('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.gwr_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwr_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwr_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwr_menu[class*="-info"]').removeClass('active');
+        $('.gwr_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    $('ul[data-tabs="tabs"] > li > [data-toggle="tab"]').click(function (e) {
+
+        var href = $(this).attr('data-target');
+
+
+        $('ul[data-tabs="tabs"] > li').removeClass('active');
+
+
+        $('ul[data-tabs="tabs"] > li > [data-toggle="tab"][data-target="' + href + '"]').closest('li').addClass('active');
+
+
+        $('.tab-pane').removeClass('active in');
+        $('.tab-pane' + href).addClass('active in');
+    });
+
+    $('.gwd_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwd_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwd_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwd_menu[class*="-info"]').removeClass('active');
+        $('.gwd_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+
+    $('.sru_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.sru_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.sru_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.sru_menu[class*="-info"]').removeClass('active');
+        $('.sru_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+
+    function validatenum() {
+        var txt_annual_fil_ar = parseInt($('#txt_annual_fil_ar').val());
+        if (txt_annual_fil_ar < 1 || txt_annual_fil_ar > 8) {
+            alert("Please input between 1 to 8");
+            $('#txt_annual_fil_ar').val('');
+        }
+
+        var txt_annual_fil_wr = parseInt($('#txt_annual_fil_wr').val());
+        if (txt_annual_fil_wr < 1 || txt_annual_fil_wr > 8) {
+            alert("Please input between 1 to 8");
+            $('#txt_annual_fil_wr').val('');
+        }
+    }
+
+    function goto_mapview() {
+
+        var Values_all_select = [];
+        //$('#tbl1 tbl_ar_details')
+        $('#tbl1 > tbody').each(function () {
+            //var customerId = $(this).find(".customerIDCell").html();
+
+
+            $($('.supply_ar')).each(function () {// id of ul
+                //var aa = $(this).find('input[type=checkbox],select');
+                var aa = $(this).closest('tr').find('input[type=checkbox],select');
+                if (aa.prop('checked') == true) {
+                    var id = aa.attr("id")
+                    Values_all_select.push({
+                        menu_id: id,
+                    });
+                }
+
+            })
+
+        });
+        console.log(Values_all_select);
+    }
+
+
+    function goto_mapview_wr() {
+
+        var Values_all_select = [];
+        //$('#tbl1 tbl_ar_details')
+        $('#tbl2 > tbody').each(function () {
+            //var customerId = $(this).find(".customerIDCell").html();
+
+
+            $($('.supply_wr')).each(function () {// id of ul
+                //var aa = $(this).find('input[type=checkbox],select');
+                var aa = $(this).closest('tr').find('input[type=checkbox],select');
+                if (aa.prop('checked') == true) {
+                    var id = aa.attr("id")
+                    Values_all_select.push({
+                        menu_id: id,
+                    });
+                }
+
+            })
+
+        });
+        console.log(Values_all_select);
+    }
+
+</script>
+<script>
+
+    function Department_Info() {
+
+        $.ajax({
+            type: "GET",
+            url: "/WSP_23_24_updation/SupplySide_Department_Info",
+            //url: "/WSPHome/SupplaySide_Funding_Source",
+            contentType: "application/json;charset=utf-8",
+            data: '',
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                $("#ar_department_name").empty();
+                //$("#ar_possible_funding_source").empty();
+                //$("#other_possible_funding_source").empty();
+
+                var optionhtml = "<option value='0'>--Select Department name--</option>";
+                if (response.length != 0) {
+
+                    for (var i = 0; i < response.length; i++) {
+                        if (response[i].department_name != null && response[i].department_name != "") {
+                            optionhtml += '<option value="' + response[i].department_name + '">' + response[i].department_name + '</option>';
+                        }
+                    }
+                    $("#ar_department_name").append(optionhtml);
+                    $("#wc_department_name").append(optionhtml);
+
+
+                }
+            }
+        });
+    }
+    function Scheme_Info() {
+
+        $.ajax({
+            type: "GET",
+            url: "/wspDemandSide/Scheme_Info",
+            //url: "/WSPHome/SupplaySide_Funding_Source",
+            contentType: "application/json;charset=utf-8",
+            data: '',
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                /*$("#sprinkler_scheme").empty();*/
+                //$("#ar_possible_funding_source").empty();
+                //$("#other_possible_funding_source").empty();
+
+                var optionhtml = "<option value='0'>--Select Scheme--</option>";
+                if (response.length != 0) {
+
+                    for (var i = 0; i < response.length; i++) {
+                        if (response[i].scheme_name != null && response[i].scheme_name != "") {
+                            optionhtml += '<option value="' + response[i].scheme_name + '">' + response[i].scheme_name + '</option>';
+                        }
+                    }
+                    optionhtml += "<option value='Other'>Other</option>";
+                    $("#ar_scheme_name").append(optionhtml);
+                    $("#wc_scheme_name").append(optionhtml);
+                    Department_Info();
+                }
+            }
+        });
+    }
+
+    function CheckOther() {
+        var ar_scheme_name = $("#ar_scheme_name").val();
+        if (ar_scheme_name == "Other") {
+            $("#other_scheme").show();
+        } else {
+            $("#other_scheme").hide();
+        }
+    }
+    function WC_CheckOther() {
+        var wc_scheme_name = $("#wc_scheme_name").val();
+        if (wc_scheme_name == "Other") {
+            $("#wc_other_scheme").show();
+        } else {
+            $("#wc_other_scheme").hide();
+            $("#wc_other_scheme").val("");
+        }
+    }
+</script>
+<script src="~/Scripts/validations.js"></script>

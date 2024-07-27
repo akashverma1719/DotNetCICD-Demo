@@ -1,0 +1,827 @@
+﻿
+@{
+    ViewBag.Title = "WSpGramreport";
+    Layout = null;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<meta name="viewport" content="width=device-width" />
+<title>Water Panchayat Report</title>
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!--favicon end-->
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .dateandtime_ul > li {
+        display: inline-block;
+        color: #000;
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+
+    .tablebaody input {
+        text-transform: capitalize;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .row {
+        margin: 0px;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    /*  .firsttable {
+        display: table-cell;
+    }*/
+
+    .secondtable {
+        /* display: table-cell;*/
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 10px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+</style>
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12 ">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>Gram Panchayat Report </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demogram"></span></li>
+                    <li>Time : <span id="demogram2"></span></li>
+                    <li>
+                        Username:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat:</label>
+                            <span id="spngram">@Session["ggram"]</span>
+
+                        </li>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+        <div class=" col-md-12 col-sm-12">
+            <div id="resetinfo" class="tbl-responsive" style="overflow-x:scroll">
+                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                Gram Panchayat Report
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tablebaody">
+
+                        <tr>
+                            <td>State:</td>
+                            <td>
+                                <label id="state_name"></label>
+                            </td>
+                            <td>District:</td>
+                            <td>
+                                <label id="district_name"></label>
+                                @*<input type="text" class="form-control decimal" id="district_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Block / Taluk :</td>
+                            <td>
+                                <label id="block_name"></label>
+                                @*<input type="text" class="form-control decimal" id="block_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                            <td>GP Name :</td>
+                            <td>
+                                <label id="gram_panchayat_name"></label>
+                                @*<input type="text" class="form-control decimal" id="gram_panchayat_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>GP ID :</td>
+                            <td>
+                                <label id="gp_id"></label>
+                                @*<input type="text" class="form-control decimal" id="gp_id" placeholder="Enter the numeric value" />*@
+                            </td>
+                            <td>Block Area  (Ha) :</td>
+                            <td>
+                                <label id="block_area"></label>
+                                @*<input type="text" class="form-control decimal" id="block_area" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>GP Area (Ha) :</td>
+                            <td>
+                                <label id="gp_area"></label>
+                                @*<input type="text" class="form-control decimal" id="gp_area" placeholder="Enter the numeric value" />*@
+                            </td>
+                            <td>Watershed Code :</td>
+                            <td>
+                                <label id="watershed_code"></label>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Watershed Name :</td>
+                            <td>
+                                <label id="watershed_name"></label>
+
+                            </td>
+                            <td>Watershed Area in Block / Taluk (Ha) :</td>
+                            <td>
+                                <label id="watershed_area_block"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Sub Basin Code :</td>
+                            <td>
+                                <label id="sub_basin_code"></label>
+
+                            </td>
+                            <td>Sub Basin Name :</td>
+                            <td>
+                                <label id="sub_basin_name"></label>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Basin Code :</td>
+                            <td>
+                                <label id="basin_code"></label>
+
+                            </td>
+                            <td>Basin Name :</td>
+                            <td>
+                                <label id="basin_name"></label>
+                                @*<input type="text" class="form-control decimal" id="basin_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class=" col-md-12 col-sm-12 main_heading_pgwm">
+            <div id="resetinfo" class="tbl-responsive" style="overflow-x:scroll">
+                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                Social Monitorings
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tablebaody">
+
+                        <tr>
+                            <td>Date:</td>
+                            <td>
+                                <label id="sm_date"></label>
+                            </td>
+                            <td>No of Attendees :</td>
+                            <td>
+                                <label id="numberofattendees"></label>
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Number of Male:</td>
+                            <td>
+                                <label id="sm_male"></label>
+                            </td>
+                            <td>Number of Female:</td>
+                            <td>
+                                <label id="sm_female"></label>
+                            </td>
+                        </tr>
+
+                        <tr>
+
+                            <td>Latitude:</td>
+                            <td>
+                                <label id="sm_latitude"></label>
+                            </td>
+                            <td>Longitude:</td>
+                            <td>
+                                <label id="sm_longitude"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Location:</td>
+                            <td colspan="3">
+                                <label id="sm_location"></label>
+                            </td>
+                        </tr>
+                        <tr id="downloadtr">
+
+                            @*<td id="agendatr1">Meeting Agenda Image:</td>
+                                <td id="agendatr">
+                                </td>*@
+                            <td id="momtr">MOM(Minutes of Meeting):</td>
+                            <td id="momtr1">
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 main_heading_sm" id="SW_Image">
+
+
+        </div>
+        <div class="col-md-12 main_heading_pgwm_change tbl-responsive" style="overflow-x:scroll">
+            <p class="heading_second_one_pgwm">
+                <label> PGWM Committee</label>
+            </p>
+            <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd;">
+                <thead>
+                    <tr class="tableheader1">
+                    </tr>
+                    <tr class="success">
+                        <td>S.No</td>
+                        <td>Name</td>
+                        <td>Designation</td>
+                        <td>Gender</td>
+                        <td>Department</td>
+                    </tr>
+                </thead>
+                <tbody id="tbldata"></tbody>
+            </table>
+        </div>
+
+
+        <div class="col-md-12" style="margin-bottom:15px;">
+            <div class="text-center">
+                <label class="text-center">
+                    .............................
+                </label>
+                <p class="text-justify">
+                    The results and analysis contained within the Water Budgeting Report are generated with the help of inputs given by the
+                    user as well as existing database. Each component of water budgeting is designed to make understand the users about
+                    the processes, parameters and equations involved in the system. The overall goal of water budgeting is therefore to
+                    improve the management of ground water resources in priority areas of the country.
+                </p>
+                <label class="text-center">
+                    .............................
+                </label>
+            </div>
+
+            <div class="col-md-12 last-div-footer hidediv" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/Wsp_new/WSPgram" class="btn btn-danger">
+                        Back
+                    </a>
+
+                    @*<button type="button" class="btn btn-success" onclick="ReportPdf();">Download</button>*@
+                    <a href="~/WspNew/WspWaterAvailability" class="btn btn-primary">Go to Water Availability</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+        function ReportPdf() {
+
+        $("#Data1").width(1110);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'Gram_Panchayat_Report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+            $("#Data1").width();
+            $('#Data1').addClass('background_after_download');
+            $('div.demandsidesupplyside_space1').addClass('demandsidesupplyside_space');
+            $('div#btnExport').addClass('hideDownload');
+            $('div#btnExport1').addClass('hideDownload');
+            $('div.main_heading_pgwm').addClass('main_heading_pgwm1');
+            $('div.main_heading_sm').addClass('main_heading_sm1');
+            $('div.main_heading_pgwm_change').addClass('main_heading_pgwm_change1');
+
+            setTimeout(function () {
+                $('#Data1').removeClass('background_after_download');
+                $('div.demandsidesupplyside_space1').removeClass('demandsidesupplyside_space');
+                $('div#btnExport').removeClass('hideDownload');
+                $('div#btnExport1').removeClass('hideDownload');
+                $('div.main_heading_pgwm').removeClass('main_heading_pgwm1');
+                $('div.main_heading_sm').removeClass('main_heading_sm1');
+                $('div.main_heading_pgwm_change').removeClass('main_heading_pgwm_change1');
+            }, 2000);
+    }
+
+
+     var State = "";
+    var Dist ="";
+    var Block ="";
+    var Gram="";
+    $(document).ready(function () {
+         State = '@Session["gstate"]';
+     Dist ='@Session["gdist"]';
+     Block ='@Session["gblock"]';
+        Gram ='@Session["ggram"]';
+        $('#state_name').text(State);
+        $('#district_name').text(Dist);
+        $('#block_name').text(Block);
+        $('#gram_panchayat_name').text(Gram);
+        Details();
+        pgwn_Data();
+        Social_Monitor_Details1();
+
+    });
+    function Details() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/GrampanchayatDetails',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/Wsp_new/WSpGramreport";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data.length != 0) {
+
+                    //$('#state_name').val(data[0].state_name);
+                    //$('#district_name').val(data[0].district_name);
+                    //$('#block_name').val(data[0].block_name);
+                    //$('#gram_panchayat_name').val(data[0].gram_panchayat_name);
+
+                    $('#gp_id').text(data[0].gp_id);
+                    if (data[0].block_area != null) {
+                        $('#block_area').text(parseFloat(data[0].block_area).toFixed(2));
+                    }
+                    if (data[0].gp_area != null) {
+                        $('#gp_area').text(parseFloat(data[0].gp_area).toFixed(2));
+                    }
+                    $('#watershed_code').text(data[0].watershed_code);
+
+                    $('#watershed_name').text(data[0].watershed_name);
+                    $('#watershed_area_block').text(data[0].watershed_area_block);
+                    $('#sub_basin_code').text(data[0].sub_basin_code);
+                    $('#sub_basin_name').text(data[0].sub_basin_name);
+
+                    $('#basin_name').text(data[0].basin_name);
+                    $('#basin_code').text(data[0].basin_code);
+
+                }
+
+
+            }
+        });
+    }
+
+    function pgwn_Data() {
+
+        var State_name = $('#spnstate').text();
+        var District_name = $('#spndistrict').text();
+        var Block = $('#spnblock').text();
+        var Gname = $('#spngram').text();
+        //  var Villname = document.getElementById('village').value;
+        var Villname = "";
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/pgwn_Depdetails',
+            data: { 'state': State_name, 'dist': District_name, 'block': Block, 'gram': Gname, 'vill': Villname },
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Error") {
+                    window.location = "/Wsp_new/WSpGramreport";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+
+                let tr = "";
+
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        tr += '<tr><td>'+(i+1)+'</td><td>' + data[i].countname + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td><td> ' + data[i].department + '</td></tr>';
+
+                    }
+
+                }
+                else {
+                    tr += '<tr><td colspan="5"  style="text-align:center;">No Data</td></tr>';
+                }
+                if (tr == "") {
+                    tr += '<tr><td colspan="5" style="text-align:center;">No Data</td></tr>';
+                }
+
+                $("#tbldata").html(tr);
+
+            }
+        });
+
+    }
+
+    function Social_Monitor_Details1() {
+        debugger;
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/Social_Monitor_Details_website',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var i = 0;
+                $('#SW_Image').hide();
+                //$('#agendatr').hide();
+                //$('#agendatr1').hide();
+                $('#momtr').hide();
+                $('#momtr1').hide();
+                if (data != 0) {
+                    $('#sm_date').text(data.date);
+                    $('#sm_location').text(data.location);
+                    $('#numberofattendees').text(data.numberofattendees);
+                    $('#sm_male').text(data.male);
+                    $('#sm_female').text(data.female);
+                    $('#sm_latitude').text(data.latitude);
+                    $('#sm_longitude').text(data.longitude);
+                    var tr1 = '';
+                    var tr2 = '';
+                    debugger;
+                    
+
+                    if (data.minutesofmeeting != null && data.minutesofmeeting != "") {
+
+                        tr2 = '<label id="sm_mom"><a href="' + data.minutesofmeeting + '" class="btn btn-success" target="_blank">Download</a></label>';
+                        $('#momtr1').append(tr2);
+                        $('#momtr').show();
+                        $('#momtr1').show();
+                        $('#downloadtr').show();
+                    }
+                    else {
+                        $('#momtr1').html("");
+                        $('#momtr').hide();
+                        $('#momtr1').hide();
+                        i = 0;
+                    }
+
+                    var Imge11 = '';
+
+                    if (data.image != null && data.image != "") {
+                        var SS = /*'data:image/png;base64,' + */data.image;
+                        $('#SW_Image').show();
+                        Imge11 = '<div class="col-md-12"><img id = "" src = "' + SS+'" style = "width:100%;height:500px;" /></div>';
+                        $('#SW_Image').html(Imge11);
+                    }
+
+
+
+                }
+                else {
+                    $('#downloadtr').hide();
+                }
+            }
+
+        });
+    }
+
+</script>
+
+
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demogram2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demogram").innerHTML = today;
+</script>

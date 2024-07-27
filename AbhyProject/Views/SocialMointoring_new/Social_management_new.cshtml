@@ -1,0 +1,2968 @@
+﻿
+
+@{
+    /**/
+
+    ViewBag.Title = "Social_management";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    [name="push_title"] {
+        height: 70px;
+        width: 200px;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #72a230;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+    .d-flex {
+        display: flex;
+    }
+
+        .d-flex .c {
+            margin-right: 5px;
+        }
+
+    .select_width_set {
+        width: 166px !important;
+    }
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+
+
+    /*ends here*/
+    .second_heading {
+        background-color: #72a230;
+        color: #fff;
+        list-style: none;
+        padding: 3px 40px;
+        font-size: 15px;
+        font-weight: bold
+    }
+
+    .main_div {
+        padding-bottom: 30px;
+    }
+
+    .btn-success {
+        margin: 5px 0px !important;
+    }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    table .input {
+        width: 150px !important;
+    }
+
+    .c1_count_displ {
+        display: flex;
+        gap: 5px;
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+    .notice-ribbon {
+        font-size: 14px;
+        background: #3585dc;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+
+        .notice-ribbon p {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 0px;
+        }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<main>
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a target="_blank" href="http://ataljal.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="Javascript:;" style="color:#fff;font-size:14px;" role="link">Ministry of Jal Shakti</a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">River Development & Ganga Rejuvenation</a>
+                                </span>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                            <label>Social Management</label>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="col-md-2 pull-right">
+                    @*<a href="~/WSPHome/Gp_information" class="btn btn-danger">
+                            Back To GP Modules
+                        </a>*@
+                    <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/UserManual/Social Management User Manual.pdf" target="_blank">USER MANUAL</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid notice-ribbon">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mb-0">To clear cache, please refresh this page by pressing Ctrl + F5.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row container-fluid main_div">
+        <div class="col-md-12 col-sm-12">
+            <div class="selectdistshowoption">
+                <label style="text-align:center;color:red;" id="Error_"></label>
+                <ul class="Select_option selectbackhome">
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+                    <li id="StateDropdownLabel">
+                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                    </li>
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+                    <li id="DistDropdownLabel">
+                        <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                    </li>
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+                    <li id="BlockDropdownLabel">
+
+                        <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                    </li>
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>
+
+                    <li id="GramDropdownLabel">
+
+                        <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
+                    </li>
+                    <li>
+                        <select class="form-control" id="year">
+                            <option value="0">Select year</option>
+                            <option value="2020-21">2020-21</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2022-23">2022-23</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2024-25">2024-25</option>
+                        </select>
+                    </li>
+                    <li id="MonthDropdownLabel">
+
+                        <select class="form-control" id="month" disabled>
+                            <option value="0">Select Month</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                        </select>
+                    </li>
+                    <li id="DropdownSearch_btn">
+                        <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                    </li>
+
+
+
+                    <li style="float:right">
+                        @*<button class="btn btn-success" id="btn_pdf"  style="float:right">Go To Page</button>*@
+                        <select class="form-control" id="goto_page" onchange="Goto_page()" style="float:right;width:150px;margin-top:5px">
+                            <option value="0">Navigate to</option>
+                            <option value="/Gplevel/Gplevel">GPDCI Modules</option>
+                            <option value="/WaterSecurityPlan/Wsp_Home">WSP Modules</option>
+                            <option value="/WSPHome/Gp_information">Back to GP Modules</option>
+                        </select>
+
+                    </li>
+                    <li style="float:right">
+                        <button class="btn btn-success" id="btnpdf" onclick="Report_BTN()">
+                            Export (PDF)
+                        </button>
+                    </li>
+                    <li style="float:right">
+                        <button class="btn btn-success btn_export" id="btnsubmit" onclick="Create_Excel()">
+                            Export (Excel)
+                        </button>
+                    </li>
+                </ul>
+                <ul>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <br />
+            <h3><b><label id="remark_txt" style="float:left; font-size:20px ; color : red">Remarks : <label id="gp_remark"></label></label></b></h3>
+            <br />
+        </div>
+        <div>
+            <br />
+            <h3><b><label id="State_txt" style="float:left; font-size:20px">Status : <label id="gp_status"></label></label></b></h3>
+            <br />
+            <br />
+        </div>
+        <div class="col-md-12">
+            <div class="A_part_div">
+                <div class="panelbodyheading">
+                    <h4 class="mb-0">(A). Details of Members of various Committees / Agencies</h4>
+
+                </div>
+                <div class="second_heading">
+
+                    1.  Key Personnel of Gram Panchayat
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:350px;">
+                    <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info red">
+
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+                                <th class="text-center">
+                                    Mobile No
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_GRAM_PANCHAYAT_DATABASE"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="d_part_div">
+                <div class="second_heading">
+                    2. Village Water and Sanitation Committee(VWSC) / Participatory Ground Water Management Committee(PGWMC) / Water User Association(WUA) / Pani Samiti
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:400px; font-size:12px;">
+                    <table id="TblData_d_part" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info" style="">
+                                <th rowspan="3" class="text-center"><button class="updatenew btn btn-success hide_btn" id="addrow_d_part" onclick="addrow_d_part()"> New </button></th>
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center" style="padding:8px 40px;">Name of Committee / Association</th>
+                                <th class="text-center" style="padding:8px 40px;">Establishment Date of Committee / Association</th>
+                                <th class="text-center" style="padding:8px 40px;">Designation</th>
+                                <th class="text-center" style="padding:8px 40px;">Name of Member</th>
+                                <th class="text-center" style="padding:8px 40px;">Gender</th>
+                                <th class="text-center" style="padding:8px 40px;">Category</th>
+                                <th class="text-center" style="padding:8px 40px;">Mobile No </th>
+                                <th class="text-center" style="padding:8px 40px;">Member From Date</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+                                <th rowspan="2" class="text-center">Remarks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_Others_local_instituions_citizen_leaders_Info"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="C_part_div">
+                <div class="second_heading">
+                    3. 	Details of officials of the District Implementation Partner(s) (DIP) engaged in the Gram Panchayat
+
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:350px; font-size:12px;">
+                    <table id="TblData_c_part" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th rowspan="3" class="text-center"><button class="updatenew btn btn-success hide_btn" id="addrow_c_part" onclick="addrow_c_part()"> New </button></th>
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center" style="padding:8px 40px;">Name of DIP</th>
+                                <th class="text-center" style="padding:8px 40px;">Contract Award Date of DIP</th>
+                                <th class="text-center" style="padding:8px 40px;">Name of Official </th>
+                                <th class="text-center" style="padding:8px 40px;">Designation </th>
+                                <th class="text-center" style="padding:8px 40px;">Gender</th>
+                                <th class="text-center" style="padding:8px 40px;">Mobile No</th>
+                                <th class="text-center" style="padding:8px 40px;">Date of Deployment For Officials</th>
+                                <th class="text-center">Edit</th>  @*abhi2706*@
+                                <th class="text-center">Delete</th>   @*abhi2706*@
+                                <th rowspan="2" class="text-center">Remarks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_DIP"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="">
+                <div class="panelbodyheading">
+                    (B). PROGRAM BENEFICIARIES
+                </div>
+                <div class="">
+                    <ul class="second_heading">
+                        <li> Demographic Profile</li>
+                    </ul>
+
+                </div>
+                <div class="tbl-responsive" style=" font-size:12px; overflow-x:scroll;">
+                    <table id="" class="GWL_deviation_table  table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+
+                            <tr class="info">
+
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
+                                @*<th class="text-center">Total Population </th>
+                                        <th class="text-center">Census Year(2011)</th>
+                                        <th class="text-center">2021</th>
+                                    <th class="text-center">2021-22</th>*@
+                                <th class="text-center">2022-23</th>
+                                <th class="text-center">2023-24</th>
+                                <th class="text-center">2024-25</th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="">
+
+                            @*demographic profile*@
+                            <tr>
+                                <td style="text-align:center" colspan="2">Total Population of the GP </td>
+                                @*<td><input type="text" id="tol_population" class="decimal form-control" placeholder="Enter Total Population of the GP" /></td>
+                                        <td><input type="text" id="basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="5">Categorisation based on Gender </td>
+                            </tr>
+
+                            <tr>
+                                <td>Male</td>
+                                @* <td><input type="text" id="male_basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="male_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="male_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="male_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="male_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="male_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+
+                            </tr>
+                            <tr>
+                                <td>Female</td>
+
+                                @*<td><input type="text" id="female_basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="female_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="female_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="female_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="female_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="female_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Transgender
+                                    @*Transgender<a href="javascript:;" data-toggle="tooltip" data-original-title="Transgender" title="Transgender">
+                                            <span class="glyphicon fa fa-star" aria-hidden="true"></span>
+                                        </a>*@
+                                </td>
+
+                                @*<td><input type="text" id="other_basic_year" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="other_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="other_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="other_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="other_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="other_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sex Ratio
+                                    <a href="javascript:;" data-toggle="tooltip" title=" Sex Ratio = ((Number of Female)*1000) / Number of Male">
+                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+
+                                @*<td><input type="text" id="sexratio_basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="sexratio_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="sexratio_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="sexratio_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="sexratio_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="sexratio_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="5">Category </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>SC</td>
+                                @* <td><input type="text" id="sc_basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="sc_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="sc_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="sc_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="sc_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="sc_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                            </tr>
+                            <tr>
+                                <td>ST</td>
+                                @*<td><input type="text" id="st_basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="st_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="st_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="st_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="st_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="st_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                            </tr>
+                            <tr>
+                                <td>OBC</td>
+                                @*<td><input type="text" id="obc_basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="obc_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="obc_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="obc_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="obc_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="obc_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                            </tr>
+                            <tr>
+                                <td>General</td>
+                                @*<td><input type="text" id="bpl_basic_data" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                        <td><input type="text" id="bpl_pop_20_21" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                    <td><input type="text" id="bpl_pop_21_22" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>*@
+                                <td><input type="text" id="bpl_pop_22_23" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="bpl_pop_23_24" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                                <td><input type="text" id="bpl_pop_24_25" class="decimal form-control disable_text" placeholder="Enter numeric value" disabled /></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="6">
+                                    Farmers Categorisation (Landholding Size)<br> (Source - Census 2011)
+                                    @*<label style="color: red;font-size: 12px!important;">*</label>*@
+                                </td>    @*abhi1006*@
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Large <br />
+                                    @*<label style="color: red;font-size: 12px!important;">*</label>*@ More than 10(ha)
+
+
+                                </td>
+
+                                @*<td><input type="text" id="large_basic_data" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" disabled /></td>
+                                        <td><input type="text" id="large_pop_20_21" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2020-21" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                    <td><input type="text" id="large_pop_21_22" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2021-22" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>*@
+                                <td><input type="text" id="large_pop_22_23" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2022-23" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="large_pop_23_24" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2023-24" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="large_pop_24_25" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2024-25" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Medium
+                                    <br />
+                                    @*<label style="color: red;font-size: 12px!important;">*</label>*@ Between 4 to 10(ha)
+                                </td>
+
+
+                                @*<td><input type="text" id="medium_basic_data" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" disabled /></td>
+                                        <td><input type="text" id="medium_pop_20_21" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2020-21" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                    <td><input type="text" id="medium_pop_21_22" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2021-22" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>*@
+                                <td><input type="text" id="medium_pop_22_23" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2022-23" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="medium_pop_23_24" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2023-24" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="medium_pop_24_25" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2024-25" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Semi-Medium
+                                    <br />
+                                    @*<label style="color: red;font-size: 12px!important;">*</label>*@ Between 2 to 4(ha)
+                                </td>
+
+
+                                @*<td><input type="text" id="medium_semi_basic_data" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" disabled /></td>
+                                        <td><input type="text" id="medium_semi_pop_20_21" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2020-21" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                    <td><input type="text" id="medium_semi_pop_21_22" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2021-22" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>*@
+                                <td><input type="text" id="medium_semi_pop_22_23" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2022-23" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="medium_semi_pop_23_24" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2023-24" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="medium_semi_pop_24_25" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2024-25" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Small
+                                    <br />
+                                    @*<label style="color: red;font-size: 12px!important;">*</label>*@ Between 1 to 2(ha)
+                                </td>
+
+                                @*<td><input type="text" id="small_basic_data" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" disabled /></td>
+                                        <td><input type="text" id="small_pop_20_21" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2020-21" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                    <td><input type="text" id="small_pop_21_22" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2021-22" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>*@
+                                <td><input type="text" id="small_pop_22_23" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2022-23" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="small_pop_23_24" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2023-24" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="small_pop_24_25" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2024-25" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Marginal
+                                    <br />
+                                    @*<label style="color: red;font-size: 12px!important;">*</label>*@ Less than 1(ha)
+                                </td>
+
+                                @*<td><input type="text" id="marginal_basic_data" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" disabled /></td>
+                                        <td><input type="text" id="marginal_pop_20_21" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2020-21" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                    <td><input type="text" id="marginal_pop_21_22" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter numeric value in ha" name="2021-22" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>*@
+                                <td><input type="text" id="marginal_pop_22_23" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2022-23" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="marginal_pop_23_24" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2023-24" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+                                <td><input type="text" id="marginal_pop_24_25" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="Enter Number of Farmers" name="2024-25" onkeyup="tot_pop()" onkeydown="tot_pop()" /></td>
+
+                            </tr>
+
+                            <tr id="total_pop">
+                                <td></td>
+                                <td></td>
+
+                                @*<td><input type="text" id="tot_pop1" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="total number" disabled /></td>
+                                        <td><input type="text" id="tot_pop2" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="total number" name="2020-21" disabled /></td>
+                                    <td><input type="text" id="tot_pop3" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="total number" name="2021-22" disabled /></td>*@
+                                <td><input type="text" id="tot_pop4" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="total number" name="2022-23" disabled /></td>
+                                <td><input type="text" id="tot_pop5" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="total number" name="2023-24" disabled /></td>
+                                <td><input type="text" id="tot_pop6" maxlength="5" class="decimal form-control disable_text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" data-decimal="4" placeholder="total number" name="2024-25" disabled /></td>
+
+                            </tr>
+
+                            @*demographic profile ends*@
+
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <button class="btn btn-success hide_btn" id="btnFinalSave2" onclick="Save_abhy_socialmgt_farmers_Info()">Save</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <div class="">
+                <div class="panelbodyheading">
+                    (C). COMMUNITY PARTICIPATION
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <div class="">
+                    <ul class="second_heading">
+                        <li> Awareness  about Greivance Redressal Mechanism (GRM)</li>                                                                                                                                 </li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <tbody id="">
+                            <tr>
+                                <td>Has the awareness activity on GRM system been completed?</td>
+                                <td>
+                                    <select class="form-control" id="ddlawareness" onchange="disalbelvalues()">
+                                        <option value="0"> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Means of awareness </td>
+                                <td>
+                                    <select class="form-control" id="adds_awareness" onchange="Others_option()">
+                                        <option value=""> Select One</option>
+                                        <option value="Word of Mouth">Word of Mouth</option>
+                                        <option value="Wall Paintings"> Wall Paintings</option>
+                                        @*<option value="Wall Paintings"> Wall Paintings</option>*@
+                                        <option value="Display on Notice Boards at common places">Display on Notice Boards at common places</option>
+                                        <option value="Others">Others pl. specify</option>
+                                    </select>
+
+                                    <input class="form-control" type="text" id="others_awareness" style="display:none;" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Are the villagers aware about online GRM?</td>
+                                <td>
+                                    <select class="form-control" id="sys_aval" onchange="AwarenessDiable()">
+                                        <option value=""> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Are the villagers aware about GRM Toll-free Number?</td>
+                                <td>
+                                    <select class="form-control" id="tollfreeno" onchange="AwarenessDiable()">
+                                        <option value=""> Select One</option>
+                                        <option value="Yes"> Yes</option>
+                                        <option value="No"> No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success hide_btn" id="btnFinalSave7" onclick="Save_GRM()">Save</button>
+                </div>
+                <br />
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:200px;margin-top:10px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+
+                            <tr class="info">
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Has the awareness activity on GRM system been completed?</th>
+                                <th class="text-center">Means of awareness</th>
+                                <th class="text-center">Other Means of awareness</th>
+                                <th class="text-center">Are the villagers aware about online GRM?</th>
+                                <th class="text-center">Are the villagers aware about GRM Toll-free Number?</th>
+                                <th class="text-center">Delete</th>
+                                <th class="text-center">Remark</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grm_Info"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div id="hide_table">
+            <div class="col-md-12">
+                <div class="">
+                    <div class="">
+                        <ul class="second_heading">
+                            <li>  2. Gram Panchayat / Village / Ward Community Meetings     </li>
+                        </ul>
+                    </div>
+                    <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                        <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                            <thead>
+                                <tr class="info">
+                                    <th class="">Name of the Meeting </th>
+                                    <th colspan="2">
+                                        <select class="form-control" id="name_of_meeting" onchange="texthideshow()">
+                                            <option value="0">--Select Meeting Name--</option>
+                                            <option value="Village Community Meeting"> Village Community Meeting</option>
+                                            <option value="Gram Panchayat community meeting"> Gram Panchayat Community Meeting</option>
+                                            <option value="Ward community meeting"> Ward Community Meeting</option>
+                                            <option value="Other community meeting"> Other Community Meeting</option>
+
+                                        </select>
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody id="">
+
+
+                                <tr>
+                                    <td colspan="2">
+                                        <label>
+
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="txtother" name="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>
+                                            Date Of Meeting
+                                        </label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+                                    </td>
+                                    <td>
+                                        <input type="date" class="form-control" id="dateofmeeting" name="setTodaysDate" oninput="checkdate('dateofmeeting')" onkeypress="return false;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>
+                                            Location
+                                        </label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="location" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>Whether prior information provided?</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="priorinfo">
+                                            <option value="0"> Select One</option>
+                                            <option value="Yes"> Yes</option>
+                                            <option value="No"> No</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2">
+                                        <label> Male</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+
+                                    </td>
+
+                                    <td>
+                                        <input type="text" class="form-control" id="male_v" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeyup="TotalPapulation_fun()" onkeydown="TotalPapulation_fun()" onkeypress="attendence_check()" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>  Female</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+
+                                    <td>
+                                        <input type="text" class="form-control" id="female_v" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeyup="TotalPapulation_fun()" onkeydown="TotalPapulation_fun()" onkeypress="attendence_check()" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>  Transgender</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+
+                                    <td>
+                                        <input type="text" class="form-control" id="other_v" maxlength="5" placeholder="Enter numeric value" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="TotalPapulation_fun()" onkeydown="TotalPapulation_fun()" onkeypress="attendence_check()" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2">
+                                        <label>
+                                            Total No of Attendees
+                                        </label>
+                                        <a href="javascript:;" data-toggle="tooltip" title="Total number of Attendees= Male+Female+Transgender">
+                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="decimal form-control" id="total_v" placeholder="Enter numeric value" readonly />
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <th><label>Category wise No. of Attendees</label></th>
+                                </tr>
+
+
+                                <tr>
+                                    <td colspan="2">
+                                        <label>SC</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+
+                                    <td>
+                                        <input type="text" class="decimal form-control" id="sc" maxlength="5" placeholder="Enter numeric value" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="TotalValidation()" onkeydown="TotalValidation()" onkeypress="attendence_check()" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>ST</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+                                    <td>
+                                        <input type="text" class="decimal form-control" id="st" maxlength="5" placeholder="Enter numeric value" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="TotalValidation()" onkeydown="TotalValidation()" onkeypress="attendence_check()" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>OBC</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+
+                                    <td>
+                                        <input type="text" class="decimal form-control" id="obc" maxlength="5" placeholder="Enter numeric value" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="TotalValidation()" onkeydown="TotalValidation()" onkeypress="attendence_check()" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label> General</label>
+                                        <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                        <label>:</label>
+                                    <td>
+                                        <input type="text" class="decimal form-control" id="general" maxlength="5" placeholder="Enter numeric value" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="TotalValidation()" onkeydown="TotalValidation()" onkeypress="attendence_check()" />
+                                    </td>
+
+
+                                    <td><span id=""><input type="text" class="form-control decimal" id="totalCaste" name="general" placeholder="Enter the numeric value" /></span>  </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2">
+                                        <label>Key issues : </label>
+                                    </td>
+                                    <td>
+                                        <textarea id="key_issues" class=" form-control" rows=" " cols="50" placeholder="Enter Key Issues"></textarea>
+                                        @*<input type="text" class=" form-control" id="key_issues" />*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>MoM (Minutes of Meeting)</label>(<label style="color: red;">Select only *.pdf,*.jpg,*.doc files</label>)
+                                    </td>
+                                    <td>
+                                        <input type="file" class="form-control" id="mom" accept=".pdf,.doc,.jpg" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>Photograph</label>(<label style="color: red;">Select only *.png,*.jpg files</label>)
+                                    </td>
+                                    <td>
+                                        <input type="file" class="form-control" id="photographs" accept="image/x-png, image/gif, image/jpeg" />
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <button class="btn btn-success hide_btn" id="btnFinalSave4" onclick="Save_abhy_socialmgt_village_meetings_Info()">Save</button>
+                        </div>
+                    </div>
+                    <table class="info">
+                        <tr>
+                            <th style="padding-bottom:10px;padding-top:10px;">Total:    <var id="lbl_count1"></var></th>
+
+                        </tr>
+                        <tr>
+                            <th class="">Name of the Meeting :</th>
+                            <th colspan="2" style="padding-left: 16px;">
+                                <select class="form-control" id="name_of_meeting_fetch" onchange="abhy_socialmgt_village_meetings_Info_month_year()">
+                                    <option value="0">--Select Meeting Name--</option>
+                                    <option value="Village Community Meeting">Village Community Meeting</option>
+                                    <option value="Gram Panchayat community meeting"> Gram Panchayat community meeting</option>
+                                    <option value="Ward community meeting"> Ward community meeting</option>
+                                    <option value="Other community meeting"> Other community meeting</option>
+
+                                </select>
+                            </th>
+                            <th style="padding-left: 22px;">Year :</th>
+                            <th style="padding-left: 22px;">
+                                <select class="form-control" id="year_meet" onchange="abhy_socialmgt_village_meetings_Info_month_year()">
+                                    <option value="0">Select year</option>
+                                    <option value="2020-21">2020-21</option>
+                                    <option value="2021-22">2021-22</option>
+                                    <option value="2022-23">2022-23</option>
+                                    <option value="2023-24">2023-24</option>
+                                    <option value="2024-25">2024-25</option>
+
+                                </select>
+                            </th>
+                            <th style="padding-left: 22px;">Month :</th>
+                            <th style="padding-left: 22px;">
+                                <select class="form-control" id="ddl_month_fetch" onchange="abhy_socialmgt_village_meetings_Info_month_year()">
+                                    <option value="0">--Select Month--</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February </option>
+                                    <option value="3">March</option>
+                                </select>
+                            </th>
+                        </tr>
+                    </table>
+                    <div id="">
+                        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:450px;margin-top:10px;">
+                            <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                                <thead>
+
+                                    <tr class="info">
+                                        <th rowspan="2" class="text-center">S.No.</th>
+                                        <th rowspan="2" class="text-center" style="padding:75px">Name of the Meeting</th>
+                                        <th rowspan="2" class="text-center" style="padding:45px">Other Name of the Meeting</th>
+                                        <th rowspan="2" class="text-center" style="padding:45px">Date of the Meeting</th>
+                                        <th rowspan="2" class="text-center" style="padding:45px">Location</th>
+                                        <th rowspan="2" class="text-center">Whether Prior information provided?</th>
+                                        <th rowspan="2" class="text-center" style="padding:35px">Male</th>
+                                        <th rowspan="2" class="text-center" style="padding:35px">Female</th>
+                                        <th rowspan="2" class="text-center">Transgender</th>
+                                        <th rowspan="2" class="text-center">Total Number of Attendees</th>
+                                        <th rowspan="1" colspan="4" class="text-center">Category Wise</th>
+                                        <th rowspan="2" class="text-center" style="padding:35px">Key issues</th>
+                                        <th rowspan="2" class="text-center" style="padding:35px">Minutes of Meeting (MOM) </th>
+                                        <th rowspan="2" class="text-center">Photograph</th>
+                                        <th rowspan="2" class="text-center">Edit</th>
+                                        <th rowspan="2" class="text-center">Delete</th>
+                                        @*<th rowspan="2" class="text-center">Submit to DPMU</th>
+                                            <th rowspan="2" class="text-center">Submit to SPMU</th>*@
+                                        <th rowspan="2" class="text-center">Reject</th>
+                                        @*<th rowspan="2" class="text-center">Approved</th>*@
+                                        <th rowspan="2" class="text-center">Remarks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    </tr>
+
+                                    <tr class="info">
+                                        <th rowspan="1" class="text-center" style="padding:35px">SC</th>
+                                        <th rowspan="1" class="text-center" style="padding:35px">ST</th>
+                                        <th rowspan="1" class="text-center" style="padding:35px">OBC</th>
+                                        <th rowspan="1" class="text-center" style="padding:35px">General</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody id="village_meeting_Info"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+                <!--<div class="">
+                    <ul class="second_heading">
+                        <li>  3. Training at GP Level for Community     </li>
+                    </ul>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <tbody id="">
+
+                            <tr>
+                                <td colspan="2">
+                                    <label>Topic of Training </label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="topicoftraining_gp" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label>Location</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="location_gp" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label>Date of Training </label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="date" id="date_gp" name="setTodaysDate1" oninput="checkdate('date_gp')" onkeypress="return false;" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <label> Male</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+
+                                <td>
+                                    <input type="text" class="decimal form-control" id="male_gp" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeypress="attendence_val_check()" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label> Female</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+
+                                <td>
+                                    <input type="text" class="decimal form-control" id="female_gp" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeypress="attendence_val_check()" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label> Transgender</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+
+                                <td>
+                                    <input type="text" class="decimal form-control" id="other_gp" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeypress="attendence_val_check()" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <label>
+                                        Total Number of Participants
+                                    </label><a href="javascript:;" data-toggle="tooltip" data-original-title="Total Number of Participants= Male+Female+Transgender" title="Total Number of Participants= Male+Female+Transgender">
+                                        <span class="glyphicon fa fa-info-circle" aria-hidden="true"></span>
+
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="total_participants" placeholder="Enter numeric value" readonly />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th><label>Category wise No. of Attendees</label></th>
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="2">
+                                    <label>SC</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+
+                                <td>
+                                    <input type="text" class="decimal form-control" id="scTraining" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeyup="total_values()" onkeydown="total_values()" onkeypress="attendence_val_check()" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label>ST</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="stTraining" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeyup="total_values()" onkeydown="total_values()" onkeypress="attendence_val_check()" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label>OBC</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+
+                                <td>
+                                    <input type="text" class="decimal form-control" id="obcTraining" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeyup="total_values()" onkeydown="total_values()" onkeypress="attendence_val_check()" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label> General</label>
+                                    <label><span class="Required_star" style="float: right;color: red;font-size: 12px!important;"> * </span></label>
+                                    <label>:</label>
+                                <td>
+                                    <input type="text" class="decimal form-control" id="generalTraining" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter numeric value" onkeyup="total_values()" onkeydown="total_values()" onkeypress="attendence_val_check()" />
+                                </td>
+
+
+                                <td><span id=""><input type="text" class="form-control decimal" id="totalCasteTraining" name="" placeholder="Enter the numeric value" /></span>  </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <label>
+                                        Upload attendance sheet of the participant(<label style="color: red;">Select only *.pdf,*.jpg,*.doc files</label>)
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="file" class=" form-control" id="Atten_sheet_gp" accept=".pdf,.doc,.jpg" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <label>Upload Photograph of the training</label>(<label style="color: red;">Select only *.png,*.jpg files</label>)
+                                </td>
+                                <td>
+                                    <input type="file" class=" form-control" id="Photo_Train_gp" accept=".png,.jpg" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <label>
+                                        Feedback from Participants on prescribed format.    (Download And Field Than Attached <a href="#">(link)</a>)(<label style="color: red;">Select only *.pdf,*.jpg,*.doc files</label>)
+                                    </label>-->
+                @*<a href="javascript:;" data-toggle="tooltip" data-original-title="download from the portal (Link)" title="download from the portal (Link)">
+                        <span class="glyphicon fa fa-info-circle" aria-hidden="true"></span>
+                    </a>*@
+                <!--</td>
+                                <td>
+                                    <input type="file" class="form-control" id="mom_gp" accept=".pdf,.doc,.jpg" />
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success hide_btn" id="btnFinalSave4" onclick="Save_Training_Gp_level()">Save</button>
+                </div>
+
+                <br />-->
+                <!--<table>
+                <tr>
+                    <th style="padding-bottom:10px;">Total Trainings:          <var id="lblcount_2"></var></th>
+                </tr>
+                <tr>
+                    <th style="padding-left: 70px;"><label>Year :</label></th>
+                    <th style="padding-left: 0px;">
+                        <select class="form-control" id="year_train" onchange="abhy_socialmgt_training_gp_Info_month()">
+                            <option value="0">Select Year</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>-->
+                @*<option value="2024">2024</option>
+                    <option value="2025">2025</option>*@
+
+                <!--</select>
+                        </th>
+                        <th style="padding-left: 35px;"><label>Month :</label></th>
+                        <th style="padding-left: 22px;">
+                            <select class="form-control" id="ddl_month_fetch1" onchange="abhy_socialmgt_training_gp_Info_month()">
+                                <option value="0">--Select Month--</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                                <option value="1">January</option>
+                                <option value="2">February </option>
+                                <option value="3">March</option>
+                            </select>
+                        </th>
+
+
+                    </tr>
+                </table>-->
+                <!--<div id="">
+                <div class="tbl-responsive_gp" style="overflow-x:scroll;overflow-y:scroll;height:350px;margin-top:10px;">
+                    <table id="training_gp" class="GWL_deviation_table table table-bordered row-border order-column table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+
+                            <tr class="info">
+                                <th rowspan="2" class="text-center">S.No.</th>
+                                <th rowspan="2" class="text-center">Topic of Training</th>
+                                <th rowspan="2" class="text-center" style="padding:45px">Location</th>
+                                <th rowspan="2" class="text-center" style="padding:45px">Date of Training</th>
+                                <th rowspan="2" class="text-center" style="padding:25px">Male</th>
+                                <th rowspan="2" class="text-center" style="padding:25px">Female</th>
+                                <th rowspan="2" class="text-center" style="padding:25px">Transgender</th>
+                                <th rowspan="2" class="text-center">Total Number of Participants</th>
+                                <th rowspan="1" colspan="4" class="text-center">Category Wise</th>
+                                <th rowspan="2" class="text-center">Upload attendance sheet of the participants</th>
+                                <th rowspan="2" class="text-center">Upload Photograph of the training</th>-->
+                <!--<th rowspan="2" class="text-center">Feedback from Participants on prescribed format</th>
+                        <th rowspan="2" class="text-center">Edit</th>
+                        <th rowspan="2" class="text-center">Delete</th>
+
+                        <th rowspan="2" class="text-center">Reject</th>
+
+                        <th rowspan="2" class="text-center">Remarks</th>
+                    </tr>
+
+                    <tr class="info">
+                        <th rowspan="1" class="text-center" style="padding:35px">SC</th>
+                        <th rowspan="1" class="text-center" style="padding:35px">ST</th>
+                        <th rowspan="1" class="text-center" style="padding:35px">OBC</th>
+                        <th rowspan="1" class="text-center" style="padding:35px">General</th>
+                    </tr>
+
+
+                </thead>
+                <tbody id="training_gp_Info"></tbody>-->
+                @*here*@
+
+                <!--</table>
+                    </div>
+                </div>-->
+
+                <div class="form-group" style="margin-top:10px;">
+                    @*<label for="Textarea1">Remarks:</label>*@
+                    <textarea class="form-control" id="remarks" rows="6" placeholder="Remarks--"></textarea>
+                </div>
+                <!--<div class="form-group" style="margin-top:10px;">-->
+                @*<label for="Textarea1">Remarks:</label>*@
+                <!--<textarea class="form-control" id="state_remarks" rows="6" placeholder="Remarks--"></textarea>
+                </div>-->
+
+                <div class="text-center" style="margin-bottom:10px;">
+                    <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                        <li>
+                            <button type="button" class="btn btn-success" id="btn_submit_dpmu" onclick="Submit_To_DPMU()"><i class="fa fa-save"></i>Submit to DPMU Nodal Officer</button>
+                            <button type="button" class="btn btn-success" id="btn_submit_spmu" onclick="Submit_To_SPMU()"><i class="fa fa-save"></i>Approved</button>
+                            <button type="button" class="btn btn-success" id="btn_reject_dpmu" onclick="Reject_To_DPMU()"><i class="fa fa-save"></i>Reject</button>
+                            @*<button type="button" class="btn btn-success" id="btn_submit_approve" onclick="Submit_To_approve()"><i class="fa fa-save"></i>Approved</button>
+                                <button type="button" class="btn btn-success" id="btn_reject_spmu" onclick="Reject_To_SPMU()"><i class="fa fa-save"></i>Reject</button>*@
+
+
+                            <!--<button type="button" class="btn btn-success" id="approved" onclick="submitNDO()"><i class="fa fa-save"></i>Approved</button>-->
+                            @*<button type="button" class=" btn btn-success" id="btnFinalSave" onclick="baseline_gp_data_saveing()"><i class="fa fa-save"></i>Submit</button>*@
+                            <!--<button type="button" class="btn btn-success" id="btn_submitspmu" onclick="submitNDO()">Submit to SPMU Nodal Officer</button>-->
+                        </li>
+                        <li>
+                            @*<button type="button" class="btn btn-success" id="btn_submitNDO" onclick="submitNDO()"><i class="fa fa-save"></i>Submit to DPMU Nodal Officer</button>
+                                <button type="button" class="btn btn-success" id="btn_rejectNDO" onclick="rejectdata()"><i class="fa fa-arrow-circle-left"></i> Reject</button>*@
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+</main>
+<script src="~/Scripts/jquery.min.js"></script>
+
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/css/social_management_js_new.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+</script>
+@*<script>
+
+        function handleChange(input) {
+            if (input.value < 10) input.value = 10;
+            if (input.value > 100) input.value = 100;
+        }
+    </script>*@
+<script>
+
+    function checkdate(b) {
+
+        var a = $("#"+b).val();
+
+        let isValidDate = Date.parse(a);
+
+        if (isNaN(isValidDate)) {
+
+            alert('Enter a valid date');
+        }
+    }
+    var Jsondata = "";
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    $(document).ready(function () {
+
+         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $('#total_pop').hide();
+        $('#hide_table').hide();
+        $('#remark_txt').hide();
+
+        $('#approved').hide();
+        //$('#btnfinalsave').hide();
+        $('#btn_submitspmu').hide();
+        $('#btn_submitNDO').hide();
+        $('#btn_rejectNDO').hide();
+        $('#month').hide();
+
+        $('#btnpdf').prop('disabled', true);
+
+        var StateOfficer = '@Session["Officer"]';
+
+        if (StateOfficer == "Gram Panchyat Nodal Officer") {
+            $('#btn_submitNDO').show();
+            $('#hide_table').hide();
+            $('#btnpdf').prop('disabled', false);
+            $('#btn_submit_spmu').hide();
+            $('#btn_reject_dpmu').hide();
+            $('#btn_submit_approve').hide();
+            $('#btn_reject_spmu').hide();
+            $('#year').prop('disabled', true);
+        }
+        if (StateOfficer == "District Level Nodal Officer") {
+            $('#remarks').show();
+            $('#btn_submitspmu').show();
+            $('#btn_rejectNDO').show();
+            $('.hide_btn').prop('disabled', true);
+            $('#btnFinalSave2').prop('disabled', true);
+            $("#btnFinalSave7").prop("disabled", true);
+            $('#btnpdf').prop('disabled', true);
+            $('#hide_table').hide();
+            $('#year').prop('disabled', true);
+
+            $('#btn_submit_approve').hide();
+            $('#btn_reject_spmu').hide();
+            $('#btn_submit_dpmu').hide();
+        }
+        else if (StateOfficer == "State Level Nodal Officer") {
+            $('#remarks').show();
+            $('#approved').show();
+            $('#btn_rejectNDO').show();
+            $('.hide_btn').prop('disabled', true);
+            $('#btnFinalSave2').prop('disabled', true);
+            $("#btnFinalSave7").prop("disabled", true);
+            $('#btnpdf').prop('disabled', true);
+            $('#hide_table').hide();
+            $('#btn_submit_spmu').hide();
+            $('#btn_reject_dpmu').hide();
+            $('#btn_submit_dpmu').hide();
+            $('#year').prop('disabled', true);
+        }
+        else if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+            $('#year').prop('disabled', false);
+            $('.hide_btn').prop('disabled', true);
+            $('#approved').hide();
+            $('#btn_rejectNDO').hide();
+            $('#btnFinalSave2').prop('disabled', true);
+            $("#btnFinalSave7").prop("disabled", true);
+            $('#btnpdf').prop('disabled', true);
+            $('#hide_table').hide();
+            $('#ddlawareness').prop("disabled", true);
+            $('#adds_awareness').prop("disabled", true);
+            $('#sys_aval').prop("disabled", true);
+            $('#tollfreeno').prop("disabled", true);
+            $('#btn_submit_spmu').hide();
+            $('#btn_reject_dpmu').hide();
+            $('#btn_submit_approve').hide();
+            $('#btn_reject_spmu').hide();
+            $('#btn_submit_dpmu').hide();
+            $('#remarks').hide();
+
+        }
+
+        const d = new Date();
+        /*let year = d.getFullYear();*/
+        var fin_year = getCurrentFiscalYear();
+
+        var year = "";
+        if (fin_year == "2021-22") {
+            year = "2021-22"
+        } else if (fin_year == "2022-23") {
+            year = "2022-23";
+        } else if (fin_year == "2023-24") {
+            year = "2023-24"
+        }
+        else if (fin_year == "2024-25") {
+            year = "2024-25"
+        }
+
+        $("#year").val(year);
+        $("#year_meet").val(year);
+        $("#year_train").val(year);
+        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const m = new Date()
+        let MonthName = month[m.getUTCMonth()];
+        $("#month").val(MonthName);
+        var month_name1 = $("#month").val();
+
+        var month_name = Get_Month_Number(month_name1)
+        $('#ddl_month_fetch').val(month_name);
+        $('#ddl_month_fetch1').val(month_name);
+
+        //var year = new Date().getFullYear();
+        //$("#year").val(year);
+
+        DropDownInfo();
+        disable_by_year();
+        enable_by_year();
+
+        //document.getElementById("large_basic_data").focusout = function () {
+
+        //    var input = parseFloat(this.value);
+        //    if (input <= 10) {
+        //        alert('Input Value Should Be More Than 10');
+        //        $('#large_basic_data').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("large_pop_20_21").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input <= 10) {
+        //        alert('Input Value Should Be More Than 10');
+        //        $('#large_pop_20_21').val(0);
+        //        return;
+        //    }
+        //}
+
+        //$('#large_pop_21_22').val("");
+        //document.getElementById("large_pop_21_22").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input <= 10) {
+        //        alert('Input Value Should Be More Than 10');
+        //        $('#large_pop_21_22').val("");
+
+        //        return;
+        //    }
+
+
+        //}
+
+        //document.getElementById("large_pop_22_23").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input <= 10) {
+        //        alert('Input Value Should Be More Than 10');
+        //        $('#large_pop_22_23').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("large_pop_23_24").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input <= 10) {
+        //        alert('Input Value Should Be More Than 10');
+        //        $('#large_pop_23_24').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("large_pop_24_25").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input <= 10) {
+        //        alert('Input Value Should Be More Than 10');
+        //        $('#large_pop_24_25').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("medium_basic_data").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 4 || input > 10) {
+        //        alert('Input Value should be Between 4 - 10');
+        //        $('#medium_basic_data').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("medium_pop_20_21").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 4 || input > 10) {
+        //        alert('Input Value should be Between 4 - 10');
+        //        $('#medium_pop_20_21').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("medium_pop_21_22").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 4 || input > 10) {
+        //        alert('Input Value should be Between 4 - 10');
+        //        $('#medium_pop_21_22').val("");
+
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("medium_pop_22_23").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 4 || input > 10) {
+        //        alert('Input Value should be Between 4 - 10');
+        //        $('#medium_pop_22_23').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("medium_pop_23_24").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 4 || input > 10) {
+        //        alert('Input Value should be Between 4 - 10');
+        //        $('#medium_pop_23_24').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("medium_pop_24_25").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 4 || input > 10) {
+        //        alert('Input Value should be Between 4 - 10');
+        //        $('#medium_pop_24_25').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("medium_semi_basic_data").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 2 || input > 4) {
+        //        alert('Input Value should be Between 2 - 4');
+        //        $('#medium_semi_basic_data').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("medium_semi_pop_20_21").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 2 || input > 4) {
+        //        alert('Input Value should be Between 2 - 4');
+        //        $('#medium_semi_pop_20_21').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("medium_semi_pop_21_22").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 2 || input > 4) {
+        //        alert('Input Value should be Between 2 - 4');
+        //        $('#medium_semi_pop_21_22').val("");
+
+        //        return;
+        //    }
+        //}
+        //document.getElementById("medium_semi_pop_22_23").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 2 || input > 4) {
+        //        alert('Input Value should be Between 2 - 4');
+        //        $('#medium_semi_pop_22_23').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("medium_semi_pop_23_24").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 2 || input > 4) {
+        //        alert('Input Value should be Between 2 - 4');
+        //        $('#medium_semi_pop_23_24').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("medium_semi_pop_24_25").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 2 || input > 4) {
+        //        alert('Input Value should be Between 2 - 4');
+        //        $('#medium_semi_pop_24_25').val(0);
+        //        return;
+        //    }
+        //}
+
+        //document.getElementById("small_basic_data").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 1 || input > 2) {
+        //        alert('Input Value should be Between 1 - 2');
+        //        $('#small_basic_data').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("small_pop_20_21").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 1 || input > 2) {
+        //        alert('Input Value should be Between 1 - 2');
+        //        $('#small_pop_20_21').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("small_pop_21_22").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 1 || input > 2) {
+        //        alert('Input Value should be Between 1 - 2');
+        //        $('#small_pop_21_22').val("");
+
+        //        return;
+        //    }
+        //}
+        //document.getElementById("small_pop_22_23").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 1 || input > 2) {
+        //        alert('Input Value should be Between 1 - 2');
+        //        $('#small_pop_22_23').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("small_pop_23_24").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 1 || input > 2) {
+        //        alert('Input Value should be Between 1 - 2');
+        //        $('#small_pop_23_24').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("small_pop_24_25").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input < 1 || input > 2) {
+        //        alert('Input Value should be Between 1 - 2');
+        //        $('#small_pop_24_25').val(0);
+        //        return;
+        //    }
+        //}
+
+
+        //document.getElementById("marginal_basic_data").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input >= 1) {
+        //        alert('Input Value should be Less Than  1');
+        //        $('#marginal_basic_data').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("marginal_pop_20_21").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input >= 1) {
+        //        alert('Input Value should be Less Than  1');
+        //        $('#marginal_pop_20_21').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("marginal_pop_21_22").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input >= 1) {
+        //        alert('Input Value should be Less Than  1');
+        //        $('#marginal_pop_21_22').val("");
+
+        //        return;
+        //    }
+        //}
+        //document.getElementById("marginal_pop_22_23").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input >= 1) {
+        //        alert('Input Value should be Less Than  1');
+        //        $('#marginal_pop_22_23').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("marginal_pop_23_24").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input >= 1) {
+        //        alert('Input Value should be Less Than  1');
+        //        $('#marginal_pop_23_24').val(0);
+        //        return;
+        //    }
+        //}
+        //document.getElementById("marginal_pop_24_25").focusout = function () {
+        //    var input = parseFloat(this.value);
+        //    if (input >= 1) {
+        //        alert('Input Value should be Less Than  1');
+        //        $('#marginal_pop_24_25').val(0);
+        //        return;
+        //    }
+        //}
+
+    });
+    function enforceNumberValidation(ele) {
+        if ($(ele).data('decimal') != null) {
+            // found valid rule for decimal
+            var decimal = parseInt($(ele).data('decimal')) || 0;
+            var val = $(ele).val();
+            if (decimal > 0) {
+                var splitVal = val.split('.');
+                if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                    // user entered invalid input
+                    $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+                }
+            } else if (decimal == 0) {
+                // do not allow decimal place
+                var splitVal = val.split('.');
+                if (splitVal.length > 1) {
+                    // user entered invalid input
+                    $(ele).val(splitVal[0]); // always trim everything after '.'
+                }
+            }
+        }
+    }
+
+    function Get_Month_Number(month) {
+
+        var month_num = "";
+        switch (month) {
+            case "April":
+                month_num = '4';
+                break;
+            case "May":
+                month_num = '5';
+                break;
+            case "June":
+                month_num = "6";
+                break;
+            case "July":
+                month_num = "7";
+                break;
+            case "August":
+                month_num = "8";
+                break;
+            case "September":
+                month_num = "9";
+                break;
+            case "October":
+                month_num = "10";
+                break;
+            case "November":
+                month_num = "11";
+                break;
+            case "December":
+                month_num = "12";
+                break;
+            case "January":
+                month_num = "1";
+                break;
+            case "February":
+                month_num = "2";
+                break;
+            case "March":
+                month_num = "3";
+                break;
+        }
+        return month_num;
+    }
+    function getCurrentFiscalYear() {
+        //get current date
+        var today = new Date();
+        if ((today.getMonth() + 1) <= 3) {
+            fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+        } else {
+            fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+        }
+
+        if (fiscalyear == "2020-2021") {
+            fincalyear = 2020;
+        } else if (fiscalyear == "2021-2022") {
+            fincalyear = 2021;
+        } else if (fiscalyear == "2022-2023") {
+            fincalyear = 2022;
+        } else if (fiscalyear == "2023-2024") {
+            fincalyear = 2023;
+        } else if (fiscalyear == "2024-2025") {
+            fincalyear = 2024;
+        }
+
+        if (fiscalyear == "2020-2021") {
+            fiscalyear = "2020-21";
+        } else if (fiscalyear == "2021-2022") {
+            fiscalyear = "2021-22";
+        } else if (fiscalyear == "2022-2023") {
+            fiscalyear = "2022-23";
+        } else if (fiscalyear == "2023-2024") {
+            fiscalyear = "2023-24";
+        } else if (fiscalyear == "2024-2025") {
+            fiscalyear = "2024-25";
+        }
+
+        return (fiscalyear);
+    }
+    function DropDownInfo() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select State Name</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select Gram Panchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+                            if (Jsondata[i].state_name != "Delhi_7") {
+                                if (!ddlst[Jsondata[i].state_name]) {
+                                    all_dists.push(Jsondata[i].state_name);
+                                    ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+                                }
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select State Name</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function State_Dropdown_Function() {
+
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name &&block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+    function Gram_Fun() {
+        var Gram1 = $("#gram").val();
+        if (Gram1 == "0") {
+            alert("Please Select Grampanchayat");
+        } else {
+            Gram = $('#gram').val();
+        }
+    }
+    function Create_Excel() {
+        debugger;
+        $('.loader').show();
+        var year = $("#year").val();
+        var month = $("#month").val();
+       
+        if (State == "0") {
+            alert("Please Select State");
+            $('.loader').hide();
+            return false;
+        } 
+
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring_new/Create_Excel",
+            /*data: { state1: State, district1: Dist, block01: Block, gp1: Gram, year1: year },*/
+            data: '{"state1": "' + State + '","district1": "' + Dist + '","block01": "' + Block + '","gp1": "' + Gram + '","year1": "' + year + '"}',
+            success: function (response) {
+                debugger;
+                $('.loader').hide();
+                window.location.href = response;
+            }
+        });
+    }
+
+    function Create_Excel_old() {
+
+        var year = $('#year').val();
+        var month = $('#month').val();
+        if (State == "0") {
+            alert("Please Select State");
+            return false;
+        }
+        {
+            window.location.href = "/SocialMointoring_new/Create_Excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year;
+             /*window.location.href = "/SocialMointoring_new/Create_Excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;*/
+        }
+    }
+    function Others_option() {
+
+        var valu = $("#adds_awareness").val();
+
+
+        if (valu == "Others") {
+            $("#others_awareness").show();
+        }
+        else {
+            $("#others_awareness").hide();
+        }
+        check_data1();
+    }
+    function check_data1() {
+
+        var Name_of_aw = $('#adds_awareness').val();
+        for (var i = 0; i < awareness.length; i++) {
+
+            if (awareness[i].awareness_value == Name_of_aw) {
+                alert('Already Data Exist');
+                $('#adds_awareness').val("");
+                break;
+            }
+        }
+
+    }
+    function texthideshow() {
+
+        var ddlvalues = $('#name_of_meeting').val();
+        if (ddlvalues == 'Other community meeting') {
+            $('#txtother').show();
+        }
+        else {
+            $('#txtother').hide();
+        }
+
+    }
+    function disalbelvalues() {
+
+        if (i == undefined) {
+            var ddlvalues = $('#ddlawareness').val();
+            var mean = $('#adds_awareness').val();
+
+            if (ddlvalues == 'No') {
+
+                for (var i = 0; i < ddlawareness_data.length; i++) {
+
+                    if (ddlawareness_data[i].ddlawareness_value == "Yes") {
+
+                        alert('Awareness Activity on GRM System Been Completed Should Be Either(Yes or No)');
+                        /*alert('Firsty Delete The Entry After That Selection');*/
+                        $('#ddlawareness').val('0');
+                        $("#btnFinalSave7").prop("disabled", false);
+                        break;
+                    }
+                }
+
+                $("#adds_awareness").prop("disabled", true);
+                $("#sys_aval").prop("disabled", true);
+                $("#tollfreeno").prop("disabled", true);
+
+                $("#sys_aval").val("0");
+                $("#tollfreeno").val("0");
+                $("#adds_awareness").val("0");
+
+            }
+            else {
+                /*$("#btnFinalSave7").prop("disabled", false);*/
+                $("#sys_aval").prop("disabled", false);
+                $("#tollfreeno").prop("disabled", false);
+                $("#adds_awareness").prop("disabled", false);
+
+                $("#sys_aval").val("");
+                $("#tollfreeno").val("");
+                $("#adds_awareness").val("");
+            }
+        }
+
+    }
+    function AwarenessDiable() {
+
+        var a = $('#sys_aval').val();
+        var b = $('#tollfreeno').val();
+
+        if (a == "No" && b == "No") {
+            $('#adds_awareness').prop('disabled', true);
+            $('#adds_awareness').val('');
+            Others_option();
+        }
+        else {
+            $('#adds_awareness').prop('disabled', false);
+        }
+    }
+    function Dropdown_Search() {
+
+        $('#alert_waiting').show();
+        var year = $("#year").val();
+        var month = $('#month').val();
+
+        $("#year_meet").val(year);
+        $("#year_train").val(year);
+        var month_name = Get_Month_Number(month);
+        $('#ddl_month_fetch').val(month_name);
+        $('#ddl_month_fetch1').val(month_name);
+
+        if (Gram != "0") {
+
+        } else {
+            Gram = $('#gram').val();
+        }
+
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+            $('#btnpdf').prop('disabled', true);
+        } else if (Dist == "0") {
+            xx = 1;
+            alert("Please Select District");
+            $('#btnpdf').prop('disabled', true);
+        }
+        else if (Block == "0") {
+            xx = 1;
+            alert("Please Select Block");
+            $('#btnpdf').prop('disabled', true);
+        } else if (Gram == "0") {
+            xx = 1;
+            alert("Please Select Gram Panchayat");
+            $('#btnpdf').prop('disabled', true);
+        } else if (year == "0") {
+            xx = 1;
+            alert("Please Select Year");
+            $('#btnpdf').prop('disabled', true);
+        }
+        else if (month == "0") {
+            xx = 1;
+            alert("Please Select Month");
+            $('#btnpdf').prop('disabled', true);
+        }
+
+        if (xx == 0) {
+            disable_by_year();
+            enable_by_year();
+            $.ajax({
+
+                type: "Post",
+                url: "/Home/StateLevel_Dropdown",
+                contentType: "application/json;charset=utf-8",
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','year':'" + year + "','Month':'" + month + "'}",
+                dataType: "json",
+                success: function (results) {
+                    $('#btnpdf').prop('disabled', false);
+                    /*Dropdown_Search();*/
+                    GramPanchayatDataBase_Info();
+
+                    Others_local_instituions_citizen_leaders_Info();
+                    Support_Agency_DIP_Info();
+                    Socio_economic_demographic_profile_Info();
+                    abhy_socialmgt_farmers_Info();
+                    abhy_socialmgt_vulnerable_communities_Info();
+                    abhy_socialmgt_GRM_Info_getting();
+                    abhy_socialmgt_remarks();
+                }
+            });
+        }
+    }
+    function enable_by_year() {
+
+        var year = $('#year').val();
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer")
+        {
+
+
+            if (year == "2020-21") {
+                $('#large_pop_20_21').prop('disabled', false);
+                $('#medium_pop_20_21').prop('disabled', false);
+                $('#medium_semi_pop_20_21').prop('disabled', false);
+                $('#small_pop_20_21').prop('disabled', false);
+                $('#marginal_pop_20_21').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+
+
+            }
+            if (year == "2021-22") {
+                $('#large_pop_21_22').prop('disabled', false);
+                $('#medium_pop_21_22').prop('disabled', false);
+                $('#medium_semi_pop_21_22').prop('disabled', false);
+                $('#small_pop_21_22').prop('disabled', false);
+                $('#marginal_pop_21_22').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+            }
+            if (year == "2023-24") {
+                $('#large_pop_22_23').prop('disabled', true);
+                $('#medium_pop_22_23').prop('disabled', true);
+                $('#medium_semi_pop_22_23').prop('disabled', true);
+                $('#small_pop_22_23').prop('disabled', true);
+                $('#marginal_pop_22_23').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+                return;
+            }
+            if (year == "2024-25") {
+                $('#large_pop_23_24').prop('disabled', true);
+                $('#medium_pop_23_24').prop('disabled', true);
+                $('#medium_semi_pop_23_24').prop('disabled', true);
+                $('#small_pop_23_24').prop('disabled', true);
+                $('#marginal_pop_23_24').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+            }
+            if (year == "2025-26") {
+                $('#large_pop_24_25').prop('disabled', false);
+                $('#medium_pop_24_25').prop('disabled', false);
+                $('#medium_semi_pop_24_25').prop('disabled', false);
+                $('#small_pop_24_25').prop('disabled', false);
+                $('#marginal_pop_24_25').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+
+            }
+        }
+        if (StateOfficer == "District Level Nodal Officer") {
+
+            if (year == "2020-21") {
+                $('#large_pop_20_21').prop('disabled', false);
+                $('#medium_pop_20_21').prop('disabled', false);
+                $('#medium_semi_pop_20_21').prop('disabled', false);
+                $('#small_pop_20_21').prop('disabled', false);
+                $('#marginal_pop_20_21').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+
+
+            }
+            if (year == "2021-22") {
+                $('#large_pop_21_22').prop('disabled', false);
+                $('#medium_pop_21_22').prop('disabled', false);
+                $('#medium_semi_pop_21_22').prop('disabled', false);
+                $('#small_pop_21_22').prop('disabled', false);
+
+                $('#marginal_pop_21_22').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+            }
+            if (year == "2023-24_") {
+                $('#large_pop_22_23').prop('disabled', true);
+                $('#medium_pop_22_23').prop('disabled', true);
+                $('#medium_semi_pop_22_23').prop('disabled', true);
+                $('#small_pop_22_23').prop('disabled', true);
+                $('#marginal_pop_22_23').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+                return;
+            }
+            if (year == "2024-25") {
+                $('#large_pop_23_24').prop('disabled', true);
+                $('#medium_pop_23_24').prop('disabled', true);
+                $('#medium_semi_pop_23_24').prop('disabled', true);
+                $('#small_pop_23_24').prop('disabled', true);
+                $('#marginal_pop_23_24').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+            }
+            if (year == "2025-26") {
+                $('#large_pop_24_25').prop('disabled', false);
+                $('#medium_pop_24_25').prop('disabled', false);
+                $('#medium_semi_pop_24_25').prop('disabled', false);
+                $('#small_pop_24_25').prop('disabled', false);
+                $('#marginal_pop_24_25').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+
+            }
+        }
+        if (StateOfficer == "State Level Nodal Officer") {
+
+            if (year == "2020-21") {
+                $('#large_pop_20_21').prop('disabled', false);
+                $('#medium_pop_20_21').prop('disabled', false);
+                $('#medium_semi_pop_20_21').prop('disabled', false);
+                $('#small_pop_20_21').prop('disabled', false);
+                $('#marginal_pop_20_21').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+
+
+            }
+            if (year == "2021-22") {
+                $('#large_pop_21_22').prop('disabled', false);
+                $('#medium_pop_21_22').prop('disabled', false);
+                $('#medium_semi_pop_21_22').prop('disabled', false);
+                $('#small_pop_21_22').prop('disabled', false);
+
+                $('#marginal_pop_21_22').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+            }
+            if (year == "2023-24_") {
+                $('#large_pop_22_23').prop('disabled', true);
+                $('#medium_pop_22_23').prop('disabled', true);
+                $('#medium_semi_pop_22_23').prop('disabled', true);
+                $('#small_pop_22_23').prop('disabled', true);
+                $('#marginal_pop_22_23').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+                return;
+            }
+            if (year == "2024-25") {
+                $('#large_pop_23_24').prop('disabled', true);
+                $('#medium_pop_23_24').prop('disabled', true);
+                $('#medium_semi_pop_23_24').prop('disabled', true);
+                $('#small_pop_23_24').prop('disabled', true);
+                $('#marginal_pop_23_24').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+            }
+            if (year == "2025-26") {
+                $('#large_pop_24_25').prop('disabled', false);
+                $('#medium_pop_24_25').prop('disabled', false);
+                $('#medium_semi_pop_24_25').prop('disabled', false);
+                $('#small_pop_24_25').prop('disabled', false);
+                $('#marginal_pop_24_25').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', true);
+
+            }
+        }
+        if (StateOfficer == "Gram Panchyat Nodal Officer") {
+            if (year == "2020-21") {
+                $('#large_pop_20_21').prop('disabled', false);
+                $('#medium_pop_20_21').prop('disabled', false);
+                $('#medium_semi_pop_20_21').prop('disabled', false);
+                $('#small_pop_20_21').prop('disabled', false);
+                $('#marginal_pop_20_21').prop('disabled', false);
+                /*$('#btnFinalSave2').prop('disabled', false);*/
+
+
+            }
+            if (year == "2021-22") {
+                $('#large_pop_21_22').prop('disabled', false);
+                $('#medium_pop_21_22').prop('disabled', false);
+                $('#medium_semi_pop_21_22').prop('disabled', false);
+                $('#small_pop_21_22').prop('disabled', false);
+                $('#marginal_pop_21_22').prop('disabled', false);
+                /*$('#btnFinalSave2').prop('disabled', false);*/
+            }
+            if (year == "2023-24") {
+                $('#large_pop_22_23').prop('disabled', false);
+                $('#medium_pop_22_23').prop('disabled', false);
+                $('#medium_semi_pop_22_23').prop('disabled', false);
+                $('#small_pop_22_23').prop('disabled', false);
+                $('#marginal_pop_22_23').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', false);
+                return;
+            }
+            if (year == "2024-25") {
+                $('#large_pop_23_24').prop('disabled', false);
+                $('#medium_pop_23_24').prop('disabled', false);
+                $('#medium_semi_pop_23_24').prop('disabled', false);
+                $('#small_pop_23_24').prop('disabled', false);
+                $('#marginal_pop_23_24').prop('disabled', false);
+                /*$('#btnFinalSave2').prop('disabled', false);*/
+            }
+            if (year == "2025-26") {
+                $('#large_pop_24_25').prop('disabled', false);
+                $('#medium_pop_24_25').prop('disabled', false);
+                $('#medium_semi_pop_24_25').prop('disabled', false);
+                $('#small_pop_24_25').prop('disabled', false);
+                $('#marginal_pop_24_25').prop('disabled', false);
+                /*$('#btnFinalSave2').prop('disabled', false);*/
+
+            }
+        }
+    }
+    function disable_by_year() {
+
+            $('#large_pop_20_21').prop('disabled', true);
+            $('#medium_pop_20_21').prop('disabled', true);
+            $('#medium_semi_pop_20_21').prop('disabled', true);
+            $('#small_pop_20_21').prop('disabled', true);
+            $('#marginal_pop_20_21').prop('disabled', true);
+            $('#large_pop_21_22').prop('disabled', true);
+            $('#medium_pop_21_22').prop('disabled', true);
+            $('#medium_semi_pop_21_22').prop('disabled', true);
+            $('#small_pop_21_22').prop('disabled', true);
+            $('#marginal_pop_21_22').prop('disabled', true);
+            $('#large_pop_22_23').prop('disabled', true);
+            $('#medium_pop_22_23').prop('disabled', true);
+            $('#medium_semi_pop_22_23').prop('disabled', true);
+            $('#small_pop_22_23').prop('disabled', true);
+            $('#marginal_pop_22_23').prop('disabled', true);
+            $('#large_pop_23_24').prop('disabled', true);
+            $('#medium_pop_23_24').prop('disabled', true);
+            $('#medium_semi_pop_23_24').prop('disabled', true);
+            $('#small_pop_23_24').prop('disabled', true);
+            $('#marginal_pop_23_24').prop('disabled', true);
+            $('#large_pop_24_25').prop('disabled', true);
+            $('#medium_pop_24_25').prop('disabled', true);
+            $('#medium_semi_pop_24_25').prop('disabled', true);
+            $('#small_pop_24_25').prop('disabled', true);
+            $('#marginal_pop_24_25').prop('disabled', true);
+
+
+    }
+    function TotalPapulation_fun() {
+
+        var total_v = 0;
+        var male = $('#male_v').val();
+        var female = $('#female_v').val();
+        var trans = $('#other_v').val();
+
+        if (male == "") {
+
+            male = 0;
+        }
+
+        if (female == "") {
+
+            female = 0;
+        }
+        if (trans == "") {
+
+            trans = 0;
+        }
+        tol_population = parseFloat(male) + parseFloat(female) + parseFloat(trans);
+
+        $('#total_v').val(total_v);
+
+
+    }
+    function TotalValidation() {
+
+        var sc = $('#sc').val();
+        var st = $('#st').val();
+        var obc = $('#obc').val();
+        var general = $('#general').val();
+        var totalPopulation = $('#total_v').val();
+        var totalCasteSec = 0;
+        if (sc == "") {
+            sc = 0;
+        }
+        if (st == "") {
+            st = 0;
+        }
+        if (obc == "") {
+            obc = 0;
+        }
+        if (general == "") {
+            general = 0;
+        }
+
+
+
+        totalCasteSec = parseFloat(sc) + parseFloat(st) + parseFloat(obc) + parseFloat(general);
+        if (totalCasteSec > totalPopulation) {
+            alert('Categories section total should not be greater than total Attendees ');
+            $('#sc').val('');
+            $('#st').val('');
+            $('#obc').val('');
+            $('#general').val('');
+            $('#sc').focus();
+        }
+        else {
+            $("#totalCaste").val(totalCasteSec);
+
+        }
+
+    }
+    //function lessthan() {
+    //
+    //    if (totalCasteSec < totalPopulation) {
+    //        alert('Categories section total should not be Less than total Attendees ');
+    //        $('#sc').val('');
+    //        $('#st').val('');
+    //        $('#obc').val('');
+    //        $('#general').val('');
+    //        $('#sc').focus();
+    //    }
+    //    else {
+    //        $("#totalCaste").val(totalCasteSec);
+    //    }
+    //}
+    function attendence_check() {
+
+
+
+
+        if (male != '' && female != '' && trans != '' && sc != '' && st != '' && obc != '' && general != '') {
+
+            var total_pop = parseFloat(male) + parseFloat(female) + parseFloat(trans);
+            var total_cast = parseFloat(sc) + parseFloat(st) + parseFloat(obc) + parseFloat(general);
+
+            if (total_pop != total_cast) {
+                alert('Attendence is not match');
+
+            }
+
+
+        }
+
+    }
+    onkeypress = "attendence_val_check()"
+    function attendence_val_check() {
+
+
+
+
+        if (male_g != '' && female_g != '' && transgender_g != '' && sc_value != '' && st_value != '' && obc_value != '' && general_value != '') {
+
+            var total_pop = parseFloat(male_g) + parseFloat(female_g) + parseFloat(transgender_g);
+            var total_cast = parseFloat(sc_value) + parseFloat(st_value) + parseFloat(obc_value) + parseFloat(general_value);
+
+            if (total_pop != total_cast) {
+                alert('Attendence is not match');
+
+            }
+
+
+        }
+
+    }
+    function total_values() {
+
+        var sc_value = $('#scTraining').val();
+        var st_value = $('#stTraining').val();
+        var obc_value = $('#obcTraining').val();
+        var general_value = $('#generalTraining').val();
+        var total_g = $('#total_participants').val();
+
+
+        if (sc_value == "") {
+            sc_value = 0;
+        }
+
+        if (st_value == "") {
+            st_value = 0;
+        }
+
+        if (obc_value == "") {
+            obc_value = 0;
+        }
+        if (general_value == "") {
+            general_value = 0;
+        }
+
+        var total_pop = parseFloat(sc_value) + parseFloat(st_value) + parseFloat(obc_value) + parseFloat(general_value);
+        if (total_pop > total_g) {
+            alert('Categories section total should not be greater than total Attendies ');
+            $('#scTraining').val('');
+            $('#stTraining').val('');
+            $('#obcTraining').val('');
+            $('#generalTraining').val('');
+            $('#scTraining').focus();
+
+        } else {
+            $("#totalCasteTraining").val(total_pop);
+        }
+    }
+    function Report_BTN() {
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var xx = 0;
+        if (State != "0" && State != "") {
+            if (Dist != "0" && Dist != "") {
+                if (Block != "0" && Block != "") {
+                    if (Gram != "0" && Gram != "") {
+                        if (year != "0" && year != "") {
+                            if (month != "0" && month != "") {
+
+                            } else {
+                                xx = 1;
+                                alert("Please Select Month");
+                            }
+                        } else {
+                            xx = 1;
+                            alert("Please Select Year");
+                        }
+                    } else {
+                        xx = 1;
+                        alert("Please Select Gram Panchayat");
+                    }
+                } else {
+                    xx = 1;
+                    alert("Please Select Block");
+                }
+            } else {
+                xx = 1;
+                alert("Please Select District");
+            }
+        } else {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        if (xx == 0) {
+            window.location = "/SocialMointoring_new/Social_management_report_new";
+        }
+    }
+</script>
+<script>
+    // Disable keyboard input for the date input field
+    document.getElementById("establishment_date").addEventListener("keydown", function (event) {
+        event.preventDefault();
+    });
+    document.getElementById("date_of_commi").addEventListener("keydown", function (event) {
+        event.preventDefault();
+    });
+    document.getElementById("ca_date_of_dip").addEventListener("keydown", function (event) {
+        event.preventDefault();
+    });
+    document.getElementById("date_of_dip").addEventListener("keydown", function (event) {
+        event.preventDefault();
+    });
+</script>
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        let MyDate = new Date();
+        let MyDateString;
+        MyDate.setDate(MyDate.getDate() + 20);
+        MyDateString = MyDate.getFullYear() + '-' + ('0' + (MyDate.getMonth())).slice(-2) + '-0' + 1;
+
+
+        $('#totalCaste').hide();
+        $('#totalCasteTraining').hide();
+        $('#txtother').hide();
+        $('#txtotherddl').hide();
+       StateOfficer = '@Session["Officer"]';
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("setTodaysDate")[0].setAttribute('max', today);
+        document.getElementsByName("setTodaysDate1")[0].setAttribute('max', today);
+        document.getElementsByName("setTodaysDate")[0].setAttribute('min', MyDateString);
+        document.getElementsByName("setTodaysDate1")[0].setAttribute('min', MyDateString);
+
+
+
+    });
+
+
+    function Goto_page() {
+
+        var path = $('#goto_page').val();
+        window.location = path;
+    }
+</script>
+

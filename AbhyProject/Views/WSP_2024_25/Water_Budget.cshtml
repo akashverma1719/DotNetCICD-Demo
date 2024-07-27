@@ -1,0 +1,1076 @@
+﻿
+@{
+    ViewBag.Title = "WaterBudget";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<title>Water  Budget</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+
+<style>
+    .nav-tabs > li {
+        float: none;
+    }
+
+    #progress-ui {
+        text-align: center !important;
+    }
+
+    h3 {
+        font-weight: 600;
+    }
+
+    @@media (min-width: 992px) {
+        .Sider_column {
+            width: 23%;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .hole_column {
+            width: 77%;
+        }
+    }
+
+    @@media (max-width:1491px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 345px !important;
+        }
+    }
+
+    @@media (max-width:1364px) and (min-width:990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 290px !important;
+        }
+    }
+
+    @@media (max-width: 1200px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 200px !important;
+        }
+    }
+
+    table > tbody > tr > td > span {
+        float: right;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target] {
+        display: none;
+    }
+
+    .Sider_column > ul.sider_images_sider:after {
+        position: absolute;
+        content: "";
+        /*height: 10%;*/
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target]:after {
+        position: absolute;
+        content: "";
+        height: 0%;
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target].active {
+        display: block;
+    }
+
+
+    .btnNext {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    .btnPrevious {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    .btnprocess {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    .btnprocess1 {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    ul[id$="_menu"] {
+        padding: 0;
+        margin: 0;
+    }
+
+    .Side_Image {
+        padding: 0;
+        margin: auto;
+    }
+
+    ul[id$="_menu"] > li {
+        display: inline-flex;
+        position: relative;
+        width: 100%;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+        ul[id$="_menu"] > li > a {
+            display: block;
+            text-align: center;
+        }
+
+    [id^="menu-"][class*="-info"] {
+        font-size: 21px;
+    }
+
+        [id^="menu-"][class*="-info"] > .clearfix {
+            padding: 15px 0;
+        }
+
+            [id^="menu-"][class*="-info"] > .clearfix:last-child {
+                text-align: center;
+            }
+
+
+
+    ul[id$="_menu"] > li > a > span {
+        border-radius: 50%;
+        border: 1px solid #333;
+        display: inline-block;
+        padding: 10px;
+    }
+
+        ul[id$="_menu"] > li > a > span > img {
+            height: 40px;
+            width: 40px;
+            margin: auto;
+        }
+
+    ul[id$="_menu"] > li > a > label {
+        /*color: #7c3c0b;*/
+        color: #000;
+        font-size: 12px;
+        display: block;
+        border: 2px solid transparent;
+    }
+
+    ul[id$="_menu"] > li > a:hover > label,
+    ul[id$="_menu"] > li > a:focus > label,
+    ul[id$="_menu"] > li.active > a > label {
+        border-color: #337ab7;
+        background-color: #fde0ca;
+    }
+
+    #myTabs.nav-pills > li.active > a:before {
+        content: "";
+        /*height: 2px;*/
+        position: absolute;
+        bottom: 6px;
+        display: inline-block;
+        width: 98%;
+        z-index: 99;
+        left: 2%;
+        background-color: #fff;
+    }
+
+    ul[id$="_menu"] > li > a:active,
+    ul[id$="_menu"] > li > a:focus,
+    ul[id$="_menu"] > li > a:hover {
+        text-decoration: none;
+    }
+
+    ul[id$="_menu"] > li.active > a > span {
+        border-width: 2px;
+        border-color: #337ab7;
+    }
+
+    ul[id$="_menu"] > li.active:after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #337ab7;
+        content: " ";
+        position: absolute;
+        bottom: -10px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    .form-control {
+        border: none;
+        box-shadow: none;
+        border-bottom: 1px solid;
+        border-radius: 0;
+    }
+
+
+    a:hover {
+        color: red;
+        border-bottom: 2px;
+    }
+
+    a:active {
+        color: green;
+    }
+
+    h2 {
+        text-align: center;
+        font-weight: 600;
+    }
+</style>
+<style>
+    [id^="menu-"][class*="-info"] {
+        display: none;
+    }
+
+        [id^="menu-"][class*="-info"].active {
+            display: block;
+        }
+
+    @@media(min-width: 992px) {
+        ul[id$="_menu"] > li {
+            /*width: calc(100%/7);
+            float: left;*/
+            width: 14%;
+            float: left;
+            display: block;
+        }
+
+        [id^="menu-"][class*="-info"] {
+            text-align: right;
+        }
+
+        ul.nav-justified {
+            display: table;
+        }
+
+            ul.nav-justified > li {
+                width: auto;
+            }
+        /*ul.nav-justified > li:first-child {
+                    width: 2%;
+                }*/
+        .btn.btn-primary + .btn.btn-primary {
+            margin-left: 5%;
+        }
+
+        #Water_draft_menu {
+            padding: 0px 0px 0px 50px;
+        }
+    }
+
+    .btn.btn-dark {
+        background: #000000b3;
+        font-weight: 500;
+        color: #fff;
+    }
+
+    @@media (max-width:992px) and (min-width:768px) {
+        ul[id$="_menu"] > li {
+            width: 25%;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .col-md-offset-2 {
+        margin-left: 0;
+    }
+
+
+    .col-md-offset-1 {
+        margin-left: 0;
+    }
+</style>
+
+<style type="text/css">
+    .color_database {
+        color: green !important;
+    }
+
+    .nav-justified {
+        padding-top: 0;
+    }
+
+    .nav-justified {
+        /*padding-top: 3em;*/
+        text-align: right;
+        padding-bottom: 0.5em;
+        /*margin-bottom: 1em;*/
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 0% !important;
+        }
+    }
+
+    nav-pills > li > a {
+        border-radius: 0px !important;
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 10%;
+        }
+
+            .nav-justified > li {
+                display: inline-block;
+                width: auto;
+            }
+    }
+
+    .nav-justified > li > a,
+    .nav-justified > li > a:hover,
+    .nav-justified > li > a:focus {
+        background-color: transparent;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 0;
+    }
+
+    ul.btnall > li {
+        list-style: none;
+    }
+
+        ul.btnall > li.leftbtnprivous {
+            text-align: right;
+        }
+
+        ul.btnall > li.leftbtnnext {
+            text-align: left;
+        }
+
+    ul.textbox1 > li.leftbtnnext {
+        text-align: left;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="clearfix mainclearfix">
+    <div class="clearfix" onload="myFunction()">
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                }
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                    </span>
+                                    <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="~/WSP_2024_25/WSP_HOME">
+                                    <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                    <label>WSP Home <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="~/WSP_2024_25/Wsp_Water_Availability">
+                                    <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                    <label>WSP Availablity <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                <label>Water Budget</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul id="myTabs" class="nav nav-pills nav-justified">
+                            <li class="active">
+                                <a href="javascript:;">
+                                    <span> <img src="~/Content/WspImages/draft new 1.png" /></span>Water Budget
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!--Rainfail_menu Start-->
+        <div role="tabpanel" class="tab-pane fade in ">
+            <div class="container-fluid">
+                <!--images Row Started-->
+                <div class="clearfix">
+                    <div class="row" id="Select_dist_level">
+                        <ul class="Select_option  selectbackhome">
+                            <li>
+                                <label id="lblstate">State:</label>
+                                <span id="spnstate">@Session["gstate"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Block:</label>
+                                <span>@Session["gblock"] </span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Gram panchayat:</label>
+                                <span>@Session["ggram"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Year:</label>
+                                <span id="Year">@Session["Year"]</span>
+                            </li>
+
+                        </ul>
+                        <ul class="selectbackhome" style="float:right;">
+                            <li>
+                                <a href="~/WSP_2024_25/WSP_HOME" class="btn btn-success">
+                                    Back To WSP Home
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="clearfix tabfirst">
+                    <div class="suface-info">
+                        <div class="container-fluid">
+
+                            <div class="col-lg-offset-1 col-md-12 col-sm-12 col-lg-10 col-lg-offset-1 form-body1">
+                                <div class="form-div">
+                                    <div class="col-md-12 background-border-Database">
+                                        <div class="row database_trainer_row">
+                                            <h2>Water Budget</h2>
+                                        </div>
+
+                                        <div class="row database_trainer_row">
+                                            <h3>
+                                                A. Allocation for Drinking & Domestic Requirements
+                                            </h3>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <h3 style="background-color:royalblue;color:white">
+                                                I. Humans
+                                            </h3>
+                                        </div>
+
+                                        <br />
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">i) Present Human Population (as in GPDCI Module) :</label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="human_p_pop" class="form-control color_database " name="" placeholder="" readonly>
+
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    ii) Annual population growth rate in % (r)
+                                                    <span class="Required_star">*</span>:
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="human_a_pop" onpaste="return false" maxlength="5" class="form-control color_database" name="" placeholder="" onkeypress="return isNumberKey(event)" oninput="findval()">
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    iii) No. of years (n):
+                                                    <a href="javascript:;" data-toggle="tooltip" title="(n = 2050 - year for which the present population was entered in GPDCI Module)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="human_no_of_year" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    iv) Projected human population (as in 2050) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="[Projected population=Present human population * (1 + r) ^ n] (Round Off)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="human_pro_pop" class="form-control color_database" name="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    v) Per capita requirement (L) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="Auto Fetched From Water Utilization Module: Daily water requirement (LPCD)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="human_per_capita" class="form-control" name="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    vi) Projected water requirement  for humans (as in 2050) (ha m) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="[Projected human population(as in 2050) * Per capita requirement * 365 * 10 ^ -7] ">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="human_pro_water_req" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+
+
+                                        <br />
+                                        <div class="row database_trainer_row">
+                                            <h3 style="background-color:royalblue;color:white">
+                                                II. LiveStock
+                                            </h3>
+                                        </div>
+                                        <br />
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">i) Present livestock population (as is GPDCI Module) :</label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="live_p_pop" class="form-control color_database " name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    ii) Annual population growth rate in % (r)
+                                                    <span class="Required_star">*</span>:
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="live_a_pop" onpaste="return false" maxlength="5" class="form-control color_database" name="" placeholder="" onkeypress="return isNumberKey(event)" oninput="findval_live()">
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    iii) No. of years (n) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="(n = 2050 - year for which the present population was entered in GPDCI Module)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="live_no_of_year" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    iv) Projected livestock population (as in 2050) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title=" [Projected population=Present livestock population * (1 + r) ^ n] (Round Off)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="live_pro_pop" class="form-control color_database" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    v) Average per capita requirement (L) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="Auto Fetched From Water Utilization Module: Average water requirement (LPCD)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="live_per_capita" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    vi) Projected water requirement  for livestock (as in 2050) (ha m) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="(Projected livestock population(as in 2050) * Avg per capita requirement * 365 * 10 ^ -7)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="live_pro_water_req" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <div class="row database_trainer_row">
+                                            <h3>
+                                                B. Projected water requirement  for humans and livestock (ha m) (as in 2050)
+                                            </h3>
+                                        </div>
+                                        <br />
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    Total Projected water requirement  for humans and livestock (as in 2050) (ha m) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="[Projected water requirement  for humans (as in 2050) + Projected water requirement  for livestock (as in 2050)]">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="total_pro_water_req" class="form-control color_database " name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    i) Proposed share to be met from Ground water (in % )
+                                                    <span class="Required_star">*</span>:
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" maxlength="5" onpaste="return false" id="gw_proposed_share" onKeyPress="return check(event,value)" class="form-control color_database" name="" placeholder="" oninput="pwr_ground()">
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    ii) Proposed share to be met from Surface water (in % ) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="(100 - Proposed share (in %) to be met from Ground water)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="text" id="sw_proposed_share" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    iii) Demand met from Ground water (ha m) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="[Projected water requirement for humans and livestock (as in 2050)*(Proposed share (in %) to be met from Ground water/100)]">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="gw_demand" class="form-control color_database" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">
+                                                    iv) Demand met from Surface water (ha m) :
+                                                    <a href="javascript:;" data-toggle="tooltip" title="[Projected water requirement  for humans and livestock (as in 2050)*(Proposed share (in %) to be met from Surface water/100)]">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="sw_demand" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row database_trainer_row">
+                                            <h3>
+                                                C. Water available for future irrigation (ha m)
+                                            </h3>
+                                        </div>
+
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">i) Ground Water:</label>
+                                                <a href="javascript:;" data-toggle="tooltip" title="Ground Water=Total Ground Water Available (ha m) (From Water Availability Form) (2-f)) - Demand met from Ground Water (ha m) (From Water Budget Form) (B-(iii))">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="ground_water" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">ii) Surface Water:</label>
+                                                <a href="javascript:;" data-toggle="tooltip" title="Surface Water=Total Surface Water Available (ha m)(From Water Availability Form) (3-c)) - Demand met from Surface Water (ha m) (From Water Budget Form) (B-(iv))">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="surface_water" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <label for="lname">iii) Total water available for future irrigation:</label>
+                                                <a href="javascript:;" data-toggle="tooltip" title="Total water available for future irrigation = Ground water + Surface water">
+                                                    <span class="glyphicon glyphicon-info-sign" style="color:blue;" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-5 col-sm-6">
+                                                <input type="number" id="total_water" class="form-control" name="" placeholder="" readonly>
+                                            </div>
+                                        </div>
+
+                                        @*<div id="Wsp_gram_checkbox" style="text-align:center"><input type="checkbox" id="WspTacker_Verification_CheckBox" /><span>The data entered has been checked and verified by DPMU</span></div>*@
+
+                                        <div class="row database_trainer_row_button">
+                                            <div class="col-md-12 col-sm-12 text-center" style="padding: 0px;">
+                                                <div>
+                                                    <span style="color:red;font-size:15px;">Before going to the summary page or next, click on the save button</span>
+                                                </div>
+                                                <div style="display:flex; justify-content: space-between;margin-top:10px;">
+                                                    <div class="col-md-4 col-lg-4 col-sm-12 text-left"><a href="~/WSP_2024_25/Balance_report" class="btn btn-dark">Back</a></div>
+                                                    <div class="col-md-4 col-lg-4 col-sm-12 text-center"> <button class="btn btn-success btn_disabled" id="SAVE_BTN" onclick="SaveInfo11()">Save</button></div>
+                                                    @*<button class="btn btn-danger" id="Wsp_gram_submit" onclick="Save_Full_Info()">Submit</button>*@
+
+                                                    <div class="col-md-4 col-lg-4 col-sm-12 text-right">
+                                                        <a href="~/WSP_2024_25/Water_Budget_report" id="next_budget" style="display:none" class="btn btn-primary">Summary</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="text-align:center;color:red;"><label id="ERRor1"></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div id="progress">
+                <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+                    <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                        <span class="progress-group-label" data-target="#music" data-toggle="tab">Water Budget</span>
+                        <div class="tri shadow"></div>
+                        <div class="tri"></div>
+                    </li>
+                </ul>
+            </div>*@
+    </div>
+</div>
+
+<script src="~/Content/JS_Files/Wsp_Comman.js"></script>
+<script src="~/Content/JS_Files/Water_Budget_24.js"></script>
+<script>
+       var access_auth = '';
+
+    $(document).ready(function () {
+        access_auth = '@Session["access_auth"]';
+
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+</script>
+<script>
+    var StateOfficer = '';
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            $('input[type=text]').prop("disabled", true)
+            $('select').prop("disabled", true);
+            $('input[type=file]').prop("disabled", true)
+            $('.btn_disabled').prop("disabled", true);
+        }
+        else if (StateOfficer != "" && StateOfficer != null) {
+
+        } else {
+              window.location = "/Home/LogOut";
+        }
+        get_approved_status();
+    });
+</script>
+<script>
+    function SaveInfo11() {
+
+        var human_a_pop = $('#human_a_pop').val();
+        var live_a_pop = $('#live_a_pop').val();
+        var gw_proposed_share = $('#gw_proposed_share').val();
+        if (human_a_pop == "" || human_a_pop == "0") {
+            alert("Please Enter Annual population growth rate in % (r)");
+            $('#human_a_pop').focus();
+            return;
+        } else if (live_a_pop == "" || live_a_pop == "0") {
+            alert("Please Enter Annual population growth rate in % (r)");
+            $('#live_a_pop').focus();
+            return;
+        } else if (gw_proposed_share == "" || gw_proposed_share == "0") {
+            alert("Please Enter Proposed share to be met from Ground water (in % )");
+            $('#gw_proposed_share').focus();
+            return;
+        }
+
+        $('#SAVE_BTN').prop('disabled', true);
+        var obj = {};
+        obj.latitude = lat;
+        obj.longitude = long;
+
+        obj.human_p_pop = $('#human_p_pop').val();
+        obj.human_a_pop = $('#human_a_pop').val();
+        obj.human_no_of_year = $('#human_no_of_year').val();
+        obj.human_pre_pop = $('#human_pro_pop').val();
+        obj.human_per_capita = $('#human_per_capita').val();
+        obj.human_pro_water_req = $('#human_pro_water_req').val();
+        obj.live_p_pop = $('#live_p_pop').val();
+        obj.live_a_pop = $('#live_a_pop').val();
+        obj.live_no_of_year = $('#live_no_of_year').val();
+        obj.live_pro_pop = $('#live_pro_pop').val();
+        obj.live_pre_capita = $('#live_per_capita').val();
+        obj.live_pro_water_req = $('#live_pro_water_req').val();
+        obj.total_pro_water_req = $('#total_pro_water_req').val();
+        obj.proposed_share_gw = $('#gw_proposed_share').val();
+        obj.proposed_share_sw = $('#sw_proposed_share').val();
+        obj.demand_gw = $('#gw_demand').val();
+        obj.demand_sw = $('#sw_demand').val();
+        obj.surface_water = $('#surface_water').val();
+        obj.ground_water = $('#ground_water').val();
+        obj.total_wt_available = $('#total_water').val();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_2024_25/WaterBudgetInfo__InsertData",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                $('#SAVE_BTN').prop('disabled', false);
+                //$('#ERRor1').text(response);
+                document.getElementById('ERRor1').innerHTML = response;
+                $("#ERRor1").css('display', 'block');
+                $("#ERRor1").fadeIn(5000, function () {
+                });
+                $("#ERRor1").fadeOut(5000, function () {
+                });
+                if (response == "Successfully Saved") {
+                    Info();
+                }
+            }
+        });
+    }
+
+
+
+</script>
+<script type='text/javascript'>
+    var point = false;
+    var count = 0;
+    function check(e, value) {
+
+        //Check Charater
+
+        if (count == 3) return false;
+        var unicode = e.charCode ? e.charCode : e.keyCode;
+
+        if (unicode == 46 && point == true)
+            return false;
+        if (unicode == 46 && point == false) {
+            point = true;
+        }
+        if (unicode != 8) if ((unicode < 48 || unicode > 57) && unicode != 46) return false;
+        if (point == true) count++;
+    }
+    function checkLength() {
+
+        var fieldVal = document.getElementById('gw_proposed_share').value;
+        //Suppose u want 3 number of character
+        if (fieldVal <= 100) {
+            return true;
+        }
+        else {
+            var str = document.getElementById('gw_proposed_share').value;
+            str = str.substring(0, str.length - 1);
+            document.getElementById('gw_proposed_share').value = str;
+        }
+    }
+    // VALIDATION FOR PERCENTAGE VALUE
+    function check_percentage() {
+
+        var gw_proposed_share = $("#gw_proposed_share").val();
+        if (gw_proposed_share >= 100) {
+            $("#gw_proposed_share").val("");
+        }
+    }
+    // Decimal Validation
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+
+ //   function get_approved_status() {
+ //       $.ajax({
+ //           type: 'POST',
+ //           contentType: 'application/json; chatset=utf-8',
+ //           url: "/WSP_2024_25/get_approved_status",
+ //           dataType: 'JSON',
+ //           success: function (data) {
+ //
+ //
+ //               @* status_id = @ViewBag.status_id;
+ //               alert(status_id) *@
+ //               if (data > 1) {
+ //                   $('input[type=text]').prop("disabled", true)
+ //                   //$('select').prop("disabled", true);
+ //                   //$('input[type=file]').prop("disabled", true)
+ //                   $('.btn_disabled').prop("disabled", true);
+ //               }
+ //               if (access_auth == "admin") {
+ //                   $('input[type=text]').prop("disabled", false)
+ //
+ //                   $('.btn_disabled').prop("disabled", false);
+ //               } else {
+ //                   $('input[type=text]').prop("disabled", true)
+ //
+ //                   $('.btn_disabled').prop("disabled", true);
+ //               }
+ //           }
+ //       });
+ //   }
+</script>

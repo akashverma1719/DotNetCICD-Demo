@@ -1,0 +1,263 @@
+﻿
+.tab-side {
+    margin-top: 30px;
+}
+
+.panel_addmin_wsp {
+    margin-top: 30px;
+}
+
+/*.image_login_img > img {
+    height: 540px;
+}*/
+
+.tablinks {
+    padding: 10px 0px !important;
+}
+.tablinks1 {
+    padding: 10px 0px !important;
+}
+
+select.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow e
+}
+
+#example_admin_wrapper input,
+#example_admin_wrapper select {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow e
+}
+
+.append > h4.change_image > span {
+    background-color: #337ab7;
+    color: #fff;
+    font-size: 16px;
+}
+
+.change_image > span {
+    font-size: 16px;
+}
+
+.append > h4.change_image {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.change_image {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+    transition: box-shadow .25s;
+    padding: 4px;
+}
+
+#gwmSIGUP > .Loginlabel, #gwmLOGIN > .Loginlabel {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 12%;
+}
+
+.append {
+    display: block !important;
+}
+
+    .append > h4.uppercas > span {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .append > h4.uppercas {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+h4.uppercas > span {
+    font-size: 16px;
+}
+
+.button.lemon:hover {
+    background-color: #398439;
+}
+
+.uppercas {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+    transition: box-shadow .25s;
+    padding: 4px;
+}
+
+.EdgeButton, .EdgeButton:visited {
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.StaticLoggedOutHomePage-buttonSignup, .StaticLoggedOutHomePage-buttonLogin {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.EdgeButton--secondary {
+    background-color: #fff;
+    border: 1px solid #1da1f2;
+    /* color: #1da1f2; */
+}
+
+.EdgeButton--medium {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 16px;
+}
+
+#MISSIGUP > .Loginlabel,
+#MISLOGIN > .Loginlabel {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 12%;
+}
+
+.labelName {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.colmd12 {
+    padding: 0px;
+}
+
+.text-color {
+    position: relative;
+    top: -4px;
+}
+
+.labelName > i.fa,
+.labelName > span.fa {
+    padding-right: 3px;
+}
+
+ul.admin_login_form {
+    list-style: none;
+}
+
+    ul.admin_login_form > li {
+        padding: 10px;
+    }
+
+        ul.admin_login_form > li button {
+            width: 100%;
+        }
+
+        ul.admin_login_form > li input {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow e
+        }
+
+.Admin_view_form {
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 600px;
+    margin: 0 auto 100px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.admin_login_name_label {
+    color: #337ab7;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0px 0px 10px 0px;
+}
+
+.example_admin_table {
+    display: none;
+}
+.login_div_view_hide {
+    display: none;
+}
+
+.login_div_view {
+    margin-top: 30px;
+}
+
+.water_level > tbody > tr > td > span {
+    color: red;
+}
+
+.water_level > tbody > tr > td {
+    color: #953030;
+    font-weight: 700;
+    padding: 11px 16px;
+    background: #f0f0f0;
+    list-style-type: none;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: capitalize !important;
+}
+
+    .water_level > tbody > tr > td:hover {
+        color: #06756d;
+        background: #d4ebe9;
+    }
+
+    .water_level > tbody > tr > td:first-child {
+        text-transform: uppercase;
+    }
+
+.water_level > tbody > tr:nth-child(odd) > td, .water_level > tbody > tr:nth-child(odd) > th {
+    background-color: #f9f9f9;
+}
+
+.top_border_blue {
+    border-top: #337ab7;
+    border-top: 2px solid #337ab7;
+    padding: 30px;
+    background-color: #dfdfdf;
+}

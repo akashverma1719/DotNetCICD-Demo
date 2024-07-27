@@ -1,0 +1,310 @@
+.dark-mode {
+  background-color: #000;
+}
+.dark-mode h1 {
+  color: yellow;
+}
+.dark-mode .menu ul li a {
+  background: #000 !important;
+}
+.dark-mode .menu ul li a:hover {
+  background: #185589;
+}
+.dark-mode .menu li a {
+  color: yellow;
+}
+.dark-mode .g-bg-gray-gradient-opacity-v1 {
+  background: transparent;
+}
+.dark-mode .card {
+  background: #000 !important;
+}
+.dark-mode .card a {
+  color: yellow !important;
+}
+.dark-mode .top-banner-bg {
+  background-color: #000;
+  color: yellow;
+}
+.dark-mode table thead tr th {
+  background: #000;
+}
+.dark-mode table tr {
+  background: #000 !important;
+}
+.dark-mode table tr th {
+  background: #000;
+  color: yellow;
+}
+.dark-mode table tr td {
+  color: yellow !important;
+  background: transparent !important;
+}
+.dark-mode .ss {
+  color: yellow;
+}
+.dark-mode .ss .headline h2 {
+  background-color: #000;
+  color: var(--yellow);
+}
+.dark-mode #Commentary {
+  color: yellow;
+}
+.dark-mode #Commentary p {
+  color: yellow;
+}
+.dark-mode #Videos {
+  color: yellow;
+  color: yellow;
+}
+.dark-mode #Videos h4 {
+  color: yellow;
+}
+.dark-mode #Videos p {
+  color: yellow;
+}
+.dark-mode .div-w99 h5 {
+  color: yellow;
+}
+.dark-mode #accordionEx1 .card {
+  background: #000;
+  color: yellow;
+}
+.dark-mode #accordionEx1 .card .card-header a {
+  color: yellow;
+}
+.dark-mode #accordionEx1 .card .card-body a {
+  color: yellow !important;
+}
+.dark-mode #DataTables_Table_0_wrapper table thead th {
+  color: yellow !important;
+}
+.dark-mode #DataTables_Table_0_wrapper table tbody tr td {
+  color: var(--yellow);
+}
+.dark-mode .topscreenreader_txt {
+  color: yellow;
+  background-color: #000 !important;
+  border-top: 1px solid #beff00 !important;
+  color: yellow !important;
+}
+.dark-mode .nav-bg-clr {
+  background-color: #000;
+  color: yellow;
+}
+.dark-mode .home-page .heading {
+  color: yellow;
+}
+.dark-mode .news-image p {
+  color: yellow;
+}
+.dark-mode .readmore-link a {
+  color: yellow;
+}
+.dark-mode .heading {
+  color: yellow;
+}
+.dark-mode .atal-jal-para {
+  color: yellow;
+}
+.dark-mode .about-atal-jal-button {
+  color: yellow;
+}
+.dark-mode .bg-image {
+  background-image: unset;
+  background-color: #000;
+  color: yellow;
+}
+.dark-mode .related-websites {
+  background-color: #000;
+  color: yellow;
+}
+.dark-mode .web-text-border p {
+  color: yellow;
+}
+.dark-mode .whats-new-bg {
+  background: #000;
+}
+.dark-mode .copyright {
+  background-color: #000;
+  color: yellow;
+}
+.dark-mode footer {
+  background: #000;
+}
+.dark-mode footer address {
+  color: yellow;
+}
+.dark-mode .footer-heading {
+  color: yellow;
+}
+.dark-mode .footer_links {
+  color: yellow;
+}
+.dark-mode .visitors span {
+  color: yellow;
+}
+.dark-mode .atal-logo-sec {
+  filter: brightness(200%);
+}
+.dark-mode .atal-icon-sec {
+  filter: brightness(200%);
+}
+.dark-mode .logoimg {
+  filter: brightness(200%);
+}
+.dark-mode header.hederImage {
+  background: #000;
+  background: #000;
+}
+.dark-mode .header-top-info > ul > li > span:first-child > a {
+  color: yellow;
+}
+.dark-mode .header-top-info > ul > li > span:last-child > a {
+  color: yellow;
+}
+.dark-mode .header-top-info a {
+  color: yellow;
+}
+.dark-mode .imgHome a {
+  color: yellow;
+}
+.dark-mode ul.imgHome > li > label {
+  color: yellow;
+}
+.dark-mode ul.imgHome.clearfix > li > a > label {
+  color: yellow;
+}
+.dark-mode .tab-side div.tablinks1 {
+  background: #000;
+  color: yellow;
+}
+.dark-mode .labelName {
+  color: yellow;
+}
+.dark-mode .forgotlink {
+  color: yellow;
+}
+.dark-mode .button.lemon {
+  background: #beff00;
+}
+.dark-mode #progress-ui {
+  background-color: #000;
+  border-top: 1px solid #beff00;
+}
+.dark-mode h2 {
+  color: yellow;
+}
+.dark-mode h3 {
+  color: yellow !important;
+}
+.dark-mode h4 {
+  color: yellow !important;
+}
+.dark-mode h5 {
+  color: yellow;
+}
+.dark-mode h6 {
+  color: yellow !important;
+}
+.dark-mode .g-bg-gray-gradient-opacity-v1--after::after {
+  background: transparent;
+}
+.dark-mode .card-header {
+  background: #000 !important;
+}
+.dark-mode p {
+  color: yellow !important;
+}
+.dark-mode ul li {
+  color: yellow;
+  background-color: transparent !important;
+}
+.dark-mode .top_border_blue {
+  background: #000 !important;
+}
+.dark-mode select {
+  background: #000 !important;
+  color: yellow !important;
+}
+.dark-mode a {
+  color: yellow !important;
+  background: transparent !important;
+}
+.dark-mode a:hover {
+  color: yellow;
+  background-color: #000;
+}
+.dark-mode .tablecellhead {
+  color: yellow !important;
+}
+.dark-mode .col-lg-12 {
+  background: transparent !important;
+}
+.dark-mode .panel-body {
+  background: transparent !important;
+  color: yellow;
+}
+.dark-mode .msg {
+  color: yellow !important;
+}
+.dark-mode input {
+  background: transparent;
+  color: yellow;
+}
+.dark-mode .widget-categories h6 span {
+  color: yellow !important;
+}
+.dark-mode .panel a {
+  background: #000;
+  color: yellow !important;
+}
+.dark-mode textarea {
+  background: #000;
+  color: yellow;
+}
+.dark-mode .marquee-1 {
+  background: #000;
+}
+.dark-mode .marquee-1 marquee {
+  color: yellow;
+  background: #000;
+}
+.dark-mode .table thead tr th {
+  background: #000;
+  color: yellow;
+}
+.dark-mode .dataTables_length label {
+  color: yellow;
+}
+.dark-mode .Training2 {
+  background: #000;
+}
+.dark-mode .text-h {
+  color: yellow !important;
+  background: transparent !important;
+}
+.dark-mode button {
+  color: yellow;
+  background: transparent !important;
+  border: none;
+}
+.dark-mode button i {
+  color: black;
+}
+.dark-mode span {
+  color: yellow !important;
+}
+.dark-mode .iconImg img {
+  filter: brightness(0) invert(1);
+}
+.dark-mode .field-icon {
+  color: #000 !important;
+}
+.dark-mode label {
+  color: yellow;
+}
+.dark-mode .topbar_whitebox {
+  color: #fff !important;
+  background: #fff !important;
+}

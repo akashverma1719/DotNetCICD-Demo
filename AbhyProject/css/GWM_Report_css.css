@@ -1,0 +1,328 @@
+﻿body {
+}
+
+.reportheading {
+    color: #337ab7;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.demandside_text > tbody > tr > td {
+    text-align: right;
+}
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+.dateandtime_ul {
+    padding: 0px;
+}
+
+.image_space_gap {
+    margin-top: 230px;
+}
+
+.pgwm_table_space {
+    margin-top: 320px;
+}
+
+.image_space_gap_2 {
+    margin-top: 40px;
+}
+
+.image_space_gap_3 {
+    margin-top: 60px;
+}
+
+.dateandtime_ul > li {
+    display: inline-block;
+    color: #000;
+    font-size: 18px;
+    padding: 0px 15px;
+}
+
+.table-striped tbody tr td:last-child {
+    text-align: right;
+}
+
+.pgwmtable tbody tr td:last-child,
+.demandsidetable tr td:last-child {
+    text-align: left !important;
+}
+
+.wateravaliablity_space {
+    margin-top: 190px;
+}
+
+.waterdrft_space {
+    margin-top: 130px;
+}
+
+.waterdrft_balance {
+    margin-top: 180px;
+}
+
+.waterdrft_Budgeting_space {
+    margin-top: 280px;
+}
+
+.hideDownload {
+    display: none;
+}
+
+.singnatire_table tbody tr td {
+    height: 100px;
+}
+
+.supplyside_demandside_space {
+    margin-top: 345px;
+}
+
+.pgwmCommiteee_space {
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.background_after_download * {
+    font-weight: normal !important;
+    text-decoration: none !important;
+    text-shadow: none !important;
+}
+
+.tableheadingbg {
+    color: #337ab7 !important;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    background: #fff;
+}
+
+.colorline1 {
+    background: #ddd;
+    background-size: 100% 6px;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin-top: 12px;
+    height: 3px;
+    width: 100%
+}
+
+.col-md-9 > h1 {
+    font-weight: bold;
+    color: #404040;
+    text-shadow: -1px -1px #000;
+}
+
+.col-md-9 > p {
+    color: #404040;
+}
+
+.col12 > .firsttable > h6 {
+    letter-spacing: 0px;
+    padding-left: 10px;
+}
+
+.firstptag {
+    padding-left: 4%;
+}
+
+body {
+    background-color: #ddd;
+}
+
+.clearfixcolor {
+    margin-top: 15px;
+}
+
+.col12 {
+    background-color: #fff;
+    padding: 25px;
+}
+
+.highcharts-credits {
+    display: none;
+}
+
+
+
+.highcharts-button-box {
+    display: none;
+}
+
+
+.text-right > .btn-success {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.text-right {
+    padding: 5px;
+}
+
+    .text-right > .btn-success {
+        padding: 8px 20px 8px 20px;
+        border-radius: 50px;
+        font-size: 18px;
+    }
+
+.btn-success {
+    color: #fff;
+    background-color: #6fb01d;
+    border-color: #4cae4c;
+}
+
+.coll7 {
+    padding-right: 0px;
+}
+
+ul.Select_option {
+    list-style: none;
+    display: block;
+    padding: 0px 0px 0px 0px;
+    font-size: 15px;
+    margin: 0px;
+}
+
+    ul.Select_option > li {
+        display: inline-block;
+        padding: 0px 0px 0px 46px;
+        letter-spacing: 2px;
+        word-spacing: 1px;
+    }
+
+        ul.Select_option > li > span > i {
+            padding: 0px 0px 0px 10px;
+        }
+
+#Select_dist_level {
+    padding: 10px 0px 5px 15px;
+    text-transform: capitalize;
+}
+
+ul.firstimages {
+    display: block;
+    margin-bottom: 0px;
+}
+
+    ul.firstimages > li {
+        display: inline-block;
+        padding-left: 5px;
+        border: 1px solid #ddd;
+        padding: 10px 10px 5px 10px;
+    }
+
+        ul.firstimages > li > img {
+            border-left: 2px solid #ddd;
+        }
+
+        ul.firstimages > li > span > img {
+            width: 25px;
+            height: 25px;
+        }
+
+.highcharts-title {
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+}
+
+tspan {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+
+.secondtable {
+    text-align: right;
+}
+
+sup {
+    font-weight: bold;
+}
+
+.tableheadingbg > span {
+    color: purple;
+    font-size: 20px;
+}
+
+.totatal_value_label {
+    background-color: #fff;
+    padding: 10px;
+}
+
+#Data1 {
+    background-color: #fff;
+}
+
+.firsttable {
+    padding: 10px 0px 0px 0px;
+}
+
+.report_heading_div {
+    background-color: #ddd;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.cololr-div {
+    background: #4cae4c;
+    height: 3px;
+    padding: 0px;
+}
+
+.last-div-footer {
+    padding: 10px 0px;
+}
+
+.table-condensed {
+    font-weight: 100;
+    text-shadow: none;
+}
+
+.tolat_report_color {
+    color: #337ab7;
+}
+
+.pre_post_ul {
+    list-style: none;
+}
+
+    .pre_post_ul > li {
+        display: inline-block;
+        color: red;
+    }
+
+.gramReport_div_Data_Collection1 {
+    margin-top: 250px;
+}
+
+.gramReport_div_Groundwater_Information1 {
+    margin-top: 250px;
+}
+
+.gramReport_div_Groundwater_Information_last1 {
+    margin-top: 210px;
+}
+.ground_water_Quality_download1{
+    margin-top:150px;
+}
+
+.graphheader1 > canvas {
+    padding: 0px 20px;
+}
+.Water_Quantity_table > thead  > tr > th {
+    background-color: #337ab7 !important;
+    color: #fff;
+}
+.Water_Quantity_table > tbody > tr > td
+{
+    text-align:right;
+}
+.Qunatity_report_table > thead tr > th {
+    background-color: #337ab7;
+    text-align: center !important;
+    color: #fff;
+    padding:10px;
+}

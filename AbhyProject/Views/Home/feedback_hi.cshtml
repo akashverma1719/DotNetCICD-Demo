@@ -1,0 +1,258 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/WebsiteLayout_hindi.cshtml";
+}
+<!--google search  -->
+<meta name="google-site-verification" content="ZN56fDZb0OFNRtZDBb78Y2hSZM6RgGBzCQmV6Fpaslk" />
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<title>Contact Us</title>
+<script>
+    $(window).load(function () {
+        $('.loading').hide();
+        $('.ss').show();
+    });
+</script>
+<style>
+    .btnSubmit {
+        color: #fff;
+        background-color: #3FADA8;
+        border-color: #3FADA8;
+    }
+
+    .refreshicon {
+        position: relative;
+        right: 21px;
+        top: -12px;
+    }
+
+    #mapid {
+        height: 500px;
+    }
+
+    .contact-icons {
+        height: 35px;
+        background-color: #e3e8ed;
+        font-size: 17px;
+        color: #094080;
+        border-radius: 50%;
+        padding: 8px 9px 0px 9px;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #contact.fa:hover {
+        /*   transition: 0.9s;
+            -webkit-transform: rotateZ(720deg);
+            -moz-transform: rotateZ(720deg);
+            transform: rotateZ(720deg);
+            color: blue;
+            font-size: 20px;*/
+    }
+
+    .alignmentcontact {
+        padding-left: 0px;
+    }
+
+    .contact-sloaricon {
+        height: 35px;
+        width: 35px;
+        background: antiquewhite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+    }
+</style>
+
+
+<div class="loading" id="loading" style="text-align:center;">
+
+    <img src="~/Content/WspImages/loader.gif" width="150" height="150" />
+
+</div>
+<div class="ss container-fluid" style="display:none">
+    <div class="container">
+        <div class="row justify-content-center mb-4" style="margin-top: 20px;">
+
+            <div class="col-md-7">
+
+               <div class="card">
+                   <div class="card-body">
+                       <div class="row" style="margin-bottom:12px;">
+                           <h4 class="get-intouch-txt">सार्वत्रिक प्रतिपुष्टी फ़ार्म</h4>
+                       </div>
+                       <div class="row" style="margin-bottom:12px;">
+                           <div class="col-md-6 alignmentcontact">
+                               <div class="form-group">
+                                   <input type="text" class="form-control alpha" name="name" id="name" placeholder=" अपना नाम दर्ज करें" required />
+                               </div>
+                           </div>
+                           <div class="col-md-6 alignmentcontact">
+                               <div class="form-group">
+                                   <input type="text" class="form-control mail" name="email" id="email" placeholder="अपना ईमेल पता दर्ज करें" required />
+                               </div>
+                           </div>
+                           <div class="col-md-6 alignmentcontact">
+                               <div class="form-group">
+                                   <input type="text" class="form-control alpha" name="subject" id="subject" placeholder="अपना विषय दर्ज करें" required />
+                               </div>
+                           </div>
+                           <div class="col-md-6 alignmentcontact">
+                               <div class="form-group">
+                                   <input type="text" class="form-control integer" name="number" id="number" maxlength="10" placeholder="अपना मोबाइल संख्या दर्ज करे" required />
+                               </div>
+                           </div>
+                       </div>
+
+
+                       <div class="row" style="margin-bottom:12px;">
+                           <div class="col-md-12 alignmentcontact">
+                               <textarea rows="4" cols="50" class="form-control alphanum" name="message" id="message" placeholder="अपना संदेश दर्ज करें"></textarea>
+                           </div>
+                       </div>
+
+
+                       <div class="row">
+                           <div class="col-md-6 alignmentcontact">
+                               <div class="form-group">
+                                   <input type="text" class="form-control" name="clientCaptcha" id="clientCaptcha" placeholder="लेख टाइप करें" required />
+                               </div>
+                           </div>
+                           <div class="col-md-6 alignmentcontact text-center">
+                               <div class="form-group">
+                                   <img src="@Url.Action("ContactGetCaptchaImage","Home")" id="C_img1" />
+                                   <span class="refreshicon"><i class="fa fa-refresh" onclick="refress()"></i></span>
+                                   <span id="Grv_captcha" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                               </div>
+                           </div>
+
+                       </div>
+                       <div class="row form-group mb-0 text-center">
+                           <p id="status" class="error_captch" style="font-weight:bold;color:red;margin-bottom:6px;"></p>
+                       </div>
+
+                       <div class="row" style="margin-bottom:20px;">
+                           <div class="col-md-4" style="padding:0">
+                               <button type="submit" value="Submit" id="btnSubmit" class=" mt-0 btn btn-primary" onclick="captcha_contact()">जांच भेजें</button>
+
+
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+                <h4 style="text-align:center;color:red;">@ViewBag.Error</h4>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11) > ul.dropdown > li:first-child ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11) > ul.dropdown > li:first-child ").siblings().removeClass('active');
+
+</script>
+<script src="~/Scripts/validations.js"></script>
+<script type="text/javascript">
+    //$(function () {
+    //    $("#btnSubmit").click(function () {
+    //        
+    //        captcha_contact();
+
+    //    });
+    //});
+    function captcha_contact() {
+
+        var XX = 0;
+        
+        var UserName = $('#name').val();
+        var Email = $('#email').val();
+        var Subject = $('#subject').val();
+        var MobileNumber = $('#number').val();
+        var Message = $('#message').val();
+        var clientCaptcha = $('#clientCaptcha').val();
+        if (UserName == "") {
+            XX = 1;
+            $('#status').text("अपना नाम दर्ज करें");
+        }
+        else if (Email == "") {
+            XX = 1;
+            $('#status').text("अपना ईमेल पता दर्ज करें");
+
+        }
+        else if (Subject == "") {
+            XX = 1;
+            $('#status').text("अपना विषय दर्ज करें");
+        }
+        else if (MobileNumber == "") {
+            XX = 1;
+            $('#status').text("अपना मोबाइल संख्या दर्ज करे");
+        } else if (Message == "") {
+            XX = 1;
+            $('#status').text("अपना संदेश दर्ज करें");
+        }
+        else if (clientCaptcha == "") {
+            XX = 1;
+            $('#status').text("लेख टाइप करें");
+        }
+
+
+        if (XX == 0) {
+            $.ajax({
+                url: "/Home/Contact",
+                type: "POST",
+                data: function () {
+                    var data = new FormData();
+                    data.append("Subject", Subject);
+                    data.append("UserName", UserName);
+                    data.append("clientCaptcha", clientCaptcha);
+                    data.append("Email", Email);
+                    /*data.append("Subject", Subject);*/
+                    data.append("MobileNumber", MobileNumber);
+                    data.append("Message", Message);
+
+
+                    return data;
+                }(),
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    if (response == "Captcha is Not Matched") {
+
+                    } else if (response == "Your Captcha is Expired") {
+
+                    } else {
+                        $("#name").val("");
+                        $("#email").val("");
+                        $("#subject").val("");
+                        $("#mobile")
+                        $('#clientCaptcha').val("");
+                        $("#number").val("");
+                        $("#message").val("");
+                    }
+
+                    $('#status').text(response);
+                    refress();
+
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+        }
+
+    }
+    function refress() {
+        $('#C_img1').attr('src', $('#C_img1').attr('src') + '#');
+    }
+
+</script>

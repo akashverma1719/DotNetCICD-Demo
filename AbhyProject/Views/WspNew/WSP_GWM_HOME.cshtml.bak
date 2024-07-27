@@ -1,0 +1,2274 @@
+﻿@model IEnumerable<AbhyProject.Models.abhy_villages>
+@{
+    ViewBag.Title = "WSP_GWM_HOME";
+    Layout = null;
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<title>MIS Login</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+@*
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+<!-- Google Fonts
+
+   ============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
+
+<!-- All css files are included here
+============================================ -->
+<!-- Bootstrap CSS
+============================================ -->
+<link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/bootstrap.css">
+<link rel="stylesheet" href="~/Content/Website/css/bootstrap.min.css">
+
+<!-- This core.css file contents all plugins css file
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/core.css">
+
+<!-- Theme shortcodes/elements style
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/shortcode/shortcodes.css">
+
+<!--  Theme main style
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/style.css">
+
+<!-- Responsive CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/responsive.css">
+
+<!-- Style Customizer CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/style-customizer.css">
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+
+<link href="~/Content/css/Ataljalheader.css" rel="stylesheet" />
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<!--favicon end-->
+
+<style>
+    .gis_card {
+        background: aliceblue;
+        height: 446px;
+        width: 332px;
+        padding: 20px 1px;
+        border-left: 18px solid #023157db;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+    }
+
+        .gis_card p:first-child {
+            background-color: #337ab7;
+            width: 262px;
+            font-size: 19px;
+            color: #fff;
+            font-weight: 600;
+            margin-left: 60px;
+            padding: 16px;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .gis_card img {
+            width: 231px;
+            padding-top: 45px;
+        }
+
+    .gis_web_icon {
+        width: 115px;
+    }
+
+    .gis_card .card:focus, div.card:hover {
+        transition: none !important;
+        transform: none !important;
+        border-top-left-radius: 50px !important;
+        border-bottom-left-radius: 50px !important;
+    }
+
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    .passwordchangepass > li {
+        display: inline-block;
+    }
+
+    .refreshicon {
+        position: relative;
+        right: 21px;
+        top: -12px;
+    }
+
+    .highlight {
+        color: red;
+    }
+
+    .captch_div > input {
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        height: 34px;
+    }
+
+    .captch_div > label {
+        color: #000;
+    }
+
+    .error_captch {
+        height: 10px;
+        text-align: center;
+    }
+
+
+    .input-box {
+        font-size: 42px;
+        border: none;
+        border-bottom: 1px solid #000;
+        height: 42px;
+        line-height: 28px;
+        border-radius: 0px;
+        box-shadow: none;
+        padding: 0px;
+    }
+
+    .header-top-info {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+
+
+    .input-box input {
+        width: 100%;
+    }
+
+    .sss1 {
+        margin-top: 0px !important;
+    }
+
+
+
+    .button.lemon {
+        background: #5cb85c;
+        padding: 4px;
+        text-align: center;
+        border: none;
+        border-radius: 10px;
+        /*box-shadow: 8px 3px 17px rgba(0, 0, 0, 1);*/
+        transition: all 0.3s ease 0s;
+        font-size: 14px;
+        height: 40px;
+        font-size: 20px;
+        width: 100%;
+        border-color: #4cae4c;
+        text-transform: none;
+    }
+
+    @@media (max-width:768px) {
+        /*.button.lemon {
+                position: absolute;
+            }*/
+        .btnsinup {
+            font-size: 14px !important;
+        }
+    }
+
+    .modal-body > .form-control {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+
+    #ss {
+    }
+
+    .field-icon {
+        float: right;
+        font-size: 20px;
+        margin-top: -32px;
+        position: relative;
+        z-index: 2;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    .mt-140 {
+        margin-top: 0px !important;
+    }
+
+    .mb-19 {
+        margin-bottom: 10px;
+    }
+
+
+    a.button, button {
+        text-transform: none;
+    }
+
+    ul.relogin {
+        display: inline-flex;
+        width: 98%;
+    }
+
+        ul.relogin > li {
+        }
+
+
+    a {
+        color: #1c94e0;
+        text-decoration: none;
+    }
+
+    a {
+        background: transparent;
+    }
+
+    .EdgeButton--secondary:hover {
+        background-color: #eaf5fd;
+        color: #1da1f2;
+    }
+
+    .EdgeButton:active, .EdgeButton:focus, .EdgeButton:hover {
+        text-decoration: none;
+    }
+
+    .text-dark .text-icon > h2, .single-fun-factor.text-dark h4 {
+        padding: 1px 1px 6px 1px !important;
+    }
+    /*#ss {
+            border: 1px solid #000;
+        }*/
+    .input-box input {
+        padding: 0px !important;
+    }
+
+    .forgotlink {
+        font-size: 16px;
+        width: 100%;
+        color: #1c94e0;
+        font-weight: 600;
+    }
+
+
+    .mb-191 {
+        margin-bottom: 6px;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+        color: #fff !important;
+        border-bottom: 2px solid #fff !important;
+        background-color: transparent !important;
+        font-size: 13px;
+        font-weight: 600 !important;
+        border-radius: 0 !important;
+    }
+
+    @@media (min-width: 992px) {
+        ul.nav-justified > li {
+            width: auto;
+        }
+
+        ul.nav-justified {
+            display: table;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified > li {
+            display: inline-block;
+            width: auto;
+        }
+    }
+</style>
+
+
+<header class="header hederImage">
+
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-8">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+
+                        <li>
+                            <span>
+                                <a href="~/home/index" class="text-white" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="Javascript:;" title="GOVERNMENT OF INDIA" class="text-white" style="font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" class="text-white" role="link" style="font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" class="text-white" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="https://forms.gle/k5pHsGLwPpPdCbmU7" class="text-white" target="_blank" style="font-size:16px">
+                            Data Disclosure Modalities Questionnaire
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-7" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                            </span>
+                            <label>Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+                    <li>
+
+                        <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                        <label>MIS Login</label>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-5">
+                <ul id="myTabs" class="nav nav-pills nav-justified">
+
+                    <li class="active">
+                        <a href="javascript:;">
+                            <span> @*<img src="~/Content/WspImages/draft new 1.png" />*@</span>MIS Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="allcontent">
+    <div class="">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-md-12">
+                <div class="col-md-3 col-sm-12">
+                    <div class="tab-side">
+                        <div class="row">
+                            <div class=" col-md-12 tablinks1 admin_view_hid_show1" onclick="openCity(event, 'WSP_HOME_WSP')" id="defaultOpen">
+                                <ul>
+                                    <li><img src="~/Content/Agriculture_icons/grampanchayat_icon.png" /> </li>
+                                    <li> Gram Panchayat Modules</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 tablinks1 admin_view_hid_show1" onclick="openCity(event, 'Gplevel_data')">
+                                <ul>
+                                    <li><img src="~/Content/Agriculture_icons/monitoring_and_evaluation_icon.png" />
+                                    <li>
+                                        Monitoring And Evaluation <br />  Modules
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 tablinks1 admin_view_hid_show1" onclick="openCity(event, 'Physical_view')">
+                                <ul>
+                                    <li><img src="~/Content/Agriculture_icons/training_user_manual_icon.png" />
+                                    <li> Training And Workshop</li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 tablinks1 admin_view_hid_show1" onclick="openCity(event, 'Gis_portel')">
+                                <ul>
+                                    <li><img class="gis_web_icon" src="~/Content/Agriculture_icons/gis_portal_icon.png" />
+                                    <li> GIS Web Portal</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="panel_addmin_wsp">
+                        <div id="WSP_HOME_WSP" class="tabcontent">
+
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="image_login_img">
+                                    <img src="~/Content/Agriculture_icons/gp_module_side_infographics_1.png" title="Gram Panchayt Module" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="Gplevel_data" class="tabcontent">
+
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="image_login_img">
+                                    <img src="~/Content/Agriculture_icons/Monitoring And Evaluation_latest.png" title="Monitoring And Evaluation" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Physical_view" class="tabcontent">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="image_login_img">
+                                    <img src="~/Content/Agriculture_icons/training manuals_latest2.png" title="Training Manuals" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="Gis_portel" class="tabcontent">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="image_login_img">
+                                    <div class="card gis_card">
+                                        <div class="card-body">
+                                            <p>GIS Web Portal</p>
+                                            <img src="~/Content/Agriculture_icons/gis_protal.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 login_div_view ">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-7 col-sm-12">
+                        <div class="col-xs-6 col-md-6 append" style="padding:0px;">
+                            <h4 id="login_tab_id" class="uppercas" data-id="MISLOGIN" style="text-align: center;font-family: 'montserratlight'; display:block;padding:6px">
+                                <span class="text-color" id="login_tab_id_span">Log in</span>
+                            </h4>
+                        </div>
+                        <div class="col-xs-6 col-md-6" style="padding:0px;">
+                            <h4 id="reg_tab_id" class="uppercas" data-id="MISSIGUP" style="text-align: center;font-family: 'montserratlight'; display:block;padding:6px">
+                                <span class="text-color" id="reg_tab_id_span">Register</span>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <label id="randomnumber" hidden>@ViewBag.RandomNumber</label>
+                    <div id="MISLOGIN" style="margin-top:100px;padding:10px;">
+                        @using (Html.BeginForm("WSP_GRM_HOME", "WspNew", FormMethod.Post))
+                        {
+
+
+                            <label class="Loginlabel">Log in</label>
+                            <div>
+                                <label class="labelName"> <i class="fa fa-envelope"></i>Email</label>
+                            </div>
+                            <div class="input-box mb-19 form-control">
+
+                                @*<i class="fa fa-envelope"></i>*@
+
+                                <input type="email" id="useremail" name="Email" autocomplete="off" placeholder="Enter your email id" required>
+                            </div>
+                            <label class="labelName"> <i class="fa fa-lock"></i>Password</label>
+                            <div class="input-box form-control">
+                                @*<i class="fa fa-lock"></i>*@
+
+                                <input type="password" name="Password" id="userpassword" placeholder=" Enter your password" autocomplete="off" min="4" maxlength="25" required>
+                                <span toggle="#userpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="text-center">
+                                <img src="@Url.Action("GetCaptchaImage","Home")" id="C_img1" />
+                                <span class="refreshicon"><i class="fa fa-refresh" onclick="refress()"></i></span>
+                                <span id="Grv_captcha" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                            </div>
+                            <input type="text" name="CheckingCode" id="CheckingCode" hidden />
+                            @*<input type="text" name="Villagename" id="Villagename" hidden />*@
+                            <div class="text-center captch_div">
+                                <label for="message">Enter the code above here </label>
+                                <input type="text" class="" style="width:60%;" name="clientcaptcha" autocomplete="off" id="clientCaptcha" placeholder="Type the text" required />
+
+
+                                <p id="status" class="error_captch" style="font-weight:bold;color:red;"></p>
+                                <label style="font-weight:bold;color:red;">@Session["Error"]</label>
+                            </div>
+                            <input type="text" name="NodalOfficer" id="Session_Name" hidden>
+                            <div class="" style="margin-top: 8px;font-size: 18px;">
+                                <ul>
+                                    <li class="col-md-12 colmd12" style="">
+                                        <button type="button" class="login-btn button lemon" id="btnSubmit" style="">Log in</button>
+                                        <button type="submit" id="ss1" hidden></button>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        }
+                        <div class="">
+                            <ul style="margin-top:15px;" class="passwordchangepass">
+                                <li class="col-md-12 col-sm-12" style="margin-top:15px;padding:0px">
+                                    <a href="#" class="forgotlink" data-toggle="modal" data-target="#myModal" id="FPassword">Change or forgot password ?</a>
+
+                                </li>
+                                @*
+                                    <li class="col-md-5 col-sm-6" style="margin-top: 15px;padding: 0px">
+                                        <a href="~/Contact/Change_password" class="forgotlink">Change password ?</a>
+                                    </li>*@
+
+                            </ul>
+                        </div>
+                        <div style="text-align:center;font-size:25px;"><label id="LoginError"></label></div>
+
+                    </div>
+                    <div id="MISSIGUP" style="display:none;margin-top:100px;padding:10px;">
+                        <label class="Loginlabel">Register</label>
+                        <div>
+                            <label class="labelName"><span class="fa"><img src="~/Images/officer_2@1x.png" style="margin-top:-2px;"></span>Select Nodal Officer</label>
+                        </div>
+
+                        @using (Html.BeginForm("Register", "WspNew", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return myFunction()" }))
+                        {
+                            <div class="input-box form-control  mb-191">
+                                <select id="NodalOfficer" name="NodalOfficer" onchange="NodalOfficer_fun(this)" required>
+                                    <option value="Nodal Officer">Select Nodal Officer</option>
+                                    @*
+                                        <option value="Admin">Admin</option>*@
+                                    <option value="National Level Nodal Officer">National Level Nodal Officer</option>
+                                    <option value="State Level Nodal Officer">State Level Nodal Officer</option>
+                                    <option value="District Level Nodal Officer">District Level Nodal Officer</option>
+                                    <option value="Block Level Nodal Officer">Block Level Nodal Officer</option>
+                                    <option value="Gram Panchyat Nodal Officer">Gram Panchyat Nodal Officer</option>
+                                </select>
+
+                            </div>
+                            <select style="margin-bottom: 10px;text-transform: capitalize; height:35px" name="StateName" id="state" onchange="State_Dropdown_Function()" class="state form-control">
+                                <option value="0">Select State</option>
+                            </select>
+                            <select style="margin-bottom: 10px; text-transform: capitalize; height: 35px" name="DistrictName" id="dist" onchange="Dist_fun()()" class="dist form-control">
+                                <option value="0">Select District</option>
+                            </select>
+                            <select style="margin-bottom: 10px !important; text-transform: capitalize; height: 35px" name="BlockName" onchange="Block_fun()" id="block" class="block form-control">
+                                <option value="0">Select Block</option>
+
+                            </select>
+                            <select style="margin-bottom: 10px; text-transform: capitalize; height: 35px" name="GramPanchayatName" id="gram" class="gram form-control">
+                                <option value="0">Select Panchayat</option>
+                            </select>
+                            <input type="text" name="signupdata" hidden />
+                            <label class="labelName"><i class="fa fa-user"></i>Username</label>
+                            <div class="input-box form-control  mb-191">
+                                <input type="text" name="UserName" id="username1" class="sinup" autocomplete="off" placeholder="Enter your username" maxlength="30" required />
+                            </div>
+                            <label class="labelName"><i class="fa fa-envelope"></i>Email</label>
+                            <div class="input-box form-control mb-191">
+                                <input type="email" name="Email" id="Signup_useremail" autocomplete="off" placeholder="Enter your email id" required>
+                            </div> <label class="labelName"><i class="fa fa-mobile" style="font-size:22px;"></i>Mobile Number</label>
+                            <div class="input-box form-control mb-191">
+                                <input type="text" name="ContactNumber" id="mobilenumber" autocomplete="off" placeholder="Enter your mobile number" class="integer" maxlength="10" required>
+                            </div>
+                            <label class="labelName"><i class="fa fa-building"></i>Department Name</label>
+                            <div class="input-box form-control mb-191">
+                                <input type="text" id="department" name="DepartmentName" autocomplete="off" placeholder="Enter your department name" maxlength="25" required>
+                            </div>
+                            <label class="labelName"><i class="fa fa-lock"></i>Password</label>
+                            <div class="input-box form-control mb-191">
+                                <input type="password" name="Password" id="usercreatepassword" autocomplete="off" placeholder="Create your password" maxlength="25" min="3" required>
+                                <span toggle="#usercreatepassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <label class="labelName"><i class="fa fa-lock"></i>Confirm Password</label>
+                            <div class="input-box form-control mb-191">
+                                <input type="password" name="Verifiedornot" id="userconfirmpassword" autocomplete="off" placeholder="Confirm your password" maxlength="25" min="3" required>
+                                <input type="hidden" name="VerificationCode" id="VerificationCode" />
+                                <span toggle="#userconfirmpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+
+                            <div class="text-center">
+                                <img src="@Url.Action("Reg_GetCaptchaImage","Home")" id="C_img2" />
+                                <span class="refreshicon"><i class="fa fa-refresh" onclick="refress1()"></i></span>
+                                <span id="Grv_captcha1" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                            </div>
+                            <div class="text-center captch_div">
+                                <label for="message">Enter the code above here </label>
+                                <input type="text" class="" style="width:60%;" name="clientcaptcha" autocomplete="off" id="clientcaptcha" placeholder="Type the text" required />
+
+                                <p id="status1" class="error_captch" style="font-weight:bold;color:red;"></p>
+                            </div>
+
+                            <div class="button-box mt-20" style="font-size:25px">
+                                <ul>
+                                    <li class="col-md-12" style="padding:0px;">
+                                        <input type="submit" id="reg_btn" hidden />
+                                        <button type="button" id="register-btn" class="register-btn button lemon pull_right" @*onclick="myFunction()" *@>Register</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+
+                        <input type="text" name="state" hidden />
+                        <input type="text" name="dist" hidden />
+                        <input type="text" name="block" hidden />
+                        <input type="text" name="gram" hidden />
+                        <input type="text" name="village" hidden />
+                    </div>
+                    <div style="text-align:center;color:red;font-weight:600;font-size:21px;"><b><label id="AlertInfo"></label></b></div>
+                </div>
+                @*<div id="Admin_view" class="tabcontent">
+                    <div class="about-area mt-140 about-two">
+                        <div class="row">
+                            <div class=" col-md-8 col-sm-12 ">
+                                <div class="form Admin_view_form">
+                                    <label class="text-center admin_login_name_label">Admin Login</label>
+                                    <ul class="admin_login_form">
+                                        <li>
+                                            <input type="email" class="form-control" autocomplete="off" placeholder="Enter your email id" id="AEmail" />
+                                        </li>
+                                        <li>
+                                            <input type="password" class="form-control" autocomplete="off" placeholder="Enter your password" id="APassword" style="">
+                                            <span toggle="#chpwd" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                        </li>
+                                        <li><button type="button" class="btn btn-success" onclick="show_admin_table();">Login</button></li>
+                                    </ul>
+                                    <div style="text-align:center;color:red;">
+                                        <label id="AdError"></label>
+                                    </div>
+                                </div>
+                                <div class="row example_admin_table">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="tbl-responsive">
+                                            <table id="example_admin" class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>S.No</th>
+                                                        <th>User Name</th>
+                                                        <th>E-Mail</th>
+                                                        <th> Mobile</th>
+                                                        <th> Department </th>
+                                                        <th>Accept</th>
+                                                        <th>Reject</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="TBLUSERS"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>*@
+            </div>
+        </div>
+        <div id="progress">
+            <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+                <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                    <span class="progress-group-label" data-target="#music" data-toggle="tab">MIS Login</span>
+                    <div class="tri shadow"></div>
+                    <div class="tri"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--password icon script start-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div id="emailid_show">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Password Recovery</h4>
+                </div>
+                @using (Html.BeginForm("ForgetPassword1", "WspNew", FormMethod.Post))
+                {
+                    <div class="modal-body">
+                        <input type="text" class="form-control" autocomplete="off" name="Email" id="forget_password_email" placeholder="Enter Valid Email Address" required />
+                        <div class="text-center">
+                            <img src="@Url.Action("Forget_PWD__GetCaptchaImage", "Home" )" id="C_img3" />
+                            <span class="refreshicon"><i class="fa fa-refresh" onclick="refress2()"></i></span>
+                            <span id="Grv_captcha" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                        </div>
+                        <div class="text-center captch_div">
+                            <label for="message">Enter the code above here </label>
+                            <input type="text" class="" style="width:60%;" name="clientCaptcha" autocomplete="off" id="clientCaptcha2" placeholder="Type the text" required />
+
+                            <p id="status3" class="error_captch" style="font-weight:bold;color:red;"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="ForgetPassWord_Info()">Submit</button>
+                        <input type="submit" id="Btn_forgetClick" hidden />
+                    </div>
+
+                }
+            </div>
+            <div id="password_change_id" style="display:none">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+                </div>
+
+                <div class="modal-body">
+                    <input type="text" class="form-control" name="old_password" id="old_password" placeholder="Enter old password" required />
+                    <input type="text" class="form-control" name="gmail_change" id="gmail_change" placeholder="Enter your Email" required />
+                    <input type="text" class="form-control" name="new_password" id="new_password" placeholder="Enter New password" required />
+                    <input type="text" class="form-control" name="confirm_password" id="confirm_password" placeholder="Enter Confirm password" required />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="f_close_btn" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="ChangePassword()">Change Password</button>
+                </div>
+            </div>
+            <div class="text-center" id="">
+                <label style="color:red" id="AlertInfo_mail"></label>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/validations.js"></script>
+<script type="text/javascript">
+    //var token = "";
+    //function Token_generate() {
+    //    var form = $('#__AjaxAntiForgeryForm');
+    //    token = $('input[name="__RequestVerificationToken"]', form).val();
+    //}
+    //alert('This website is under construction, Few modules are available for view purpose only');
+    $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+
+
+    $('#userconfirmpassword').on('change', function () {
+
+        //// alert($('#usercreatepassword').val());
+        // alert($('#userconfirmpassword').val());
+
+        if ($('#usercreatepassword').val() != $('#userconfirmpassword').val()) {
+            //   alert("not equal");
+            $('#message').css("display", "block");
+            return false;
+        }
+        else {
+            $('#message').css("display", "none");
+            return false;
+        }
+    });
+
+</script>
+<!--password iconscript End-->
+<!--Nodel officer pop script start-->
+<script type="text/javascript">
+        var Jsondata = "";
+        var Jsondata2 = "";
+        var StateName = "0";
+        var DistName = "0";
+        var BlockName = "0";
+        var SessionTabName = "WSP_HOME_WSP";
+
+        $(document).ready(function () {
+            debugger;
+            Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.list));
+            DropDownInfo();
+            /*State_Bind();*/
+            debugger;
+            refress();
+            refress1();
+            refress2();
+            $('#Session_Name').val(SessionTabName);
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+
+            //  DropDownInfo();
+
+
+
+            // Error_Info();
+            $("#Change").css("display", "none");
+
+
+
+            if ($('#change').val() == 'Nodal Officer') {
+                // $('#modal1').modal('hide');
+                $('#District1').hide();
+                $('#State1').hide();
+                $('#Block1').hide();
+                $('#Gram1').hide();
+                $('#state').hide();
+
+                $('#dist').hide();
+
+                $('#block').hide();
+
+                $('#gram').hide();
+                $('#village').hide();
+
+
+            }
+
+            $.noConflict();
+
+            $('#example_admin').DataTable();
+            $('#example44').DataTable();
+
+
+            $('[data-id]').on('click', function (e) {/*h4.uppercas*/
+                e.preventDefault();
+                if ($(this).hasClass("uppercas")) {
+
+                    $(this).parent().addClass('append');
+                    $(this).parent().siblings().removeClass('append');
+                }
+                var ref = $(this).attr('data-id');
+                $('div[id^="MIS"]').hide();
+                $("#" + ref).fadeIn(500);
+            });
+
+
+            $('[data-content]').on('click', function (e) {/*h4.uppercas*/
+                e.preventDefault();
+                if ($(this).hasClass("change_image")) {
+
+                    $(this).parent().addClass('append');
+                    $(this).parent().siblings().removeClass('append');
+                }
+                var ref = $(this).attr('data-content');
+                $('div[id^="gwm"]').hide();
+                $("#" + ref).fadeIn(500);
+            });
+
+
+        });
+
+        function Error() {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/WspNew/Error_Info",
+                data: '',
+                dataType: 'JSON',
+                success: function (response) {
+                    debugger;
+                    $('#status').text('');
+                    $('#status1').text('');
+                    $('#status3').text('');
+                    $('#useremail').val();
+                    $('#userpassword').val('');
+                    if (response.length != 0) {
+
+                        $('#District1').hide();
+                        $('#State1').hide();
+                        $('#Block1').hide();
+                        $('#Gram1').hide();
+                        $('#state').hide();
+
+                        $('#dist').hide();
+
+                        $('#block').hide();
+
+                        $('#gram').hide();
+                        $('#village').hide();
+                        debugger;
+                        if (response[0].user_type == "ForgetPassword") {
+
+                            // $('#myModal').modal('show');
+                            // $('#myModal').show();
+                            $('#FPassword')[0].click();
+                            $('#status3').text(response[0].error_test);
+                            $('#forget_password_email').val(response[0].user_email);
+                        }
+                        else if (response[0].user_type == "MisSignup") {
+                            $('#MISLOGIN').hide();
+
+                            $('#MISSIGUP').show();
+
+                            $('#reg_tab_id').css("background", "#337ab7");
+                            $('#reg_tab_id').css("color", "#fff");
+                            $('#login_tab_id').css("background", "#fff");
+                            $('#reg_tab_id_span').css("background", "337ab7");
+                            // $('#reg_tab_id_span').css("color", "black");
+                            $('#login_tab_id').css("color", "black");
+                            $('#login_tab_id_span').css("background", "#fff");
+                            $('#login_tab_id_span').css("color", "black");
+
+                            $('#AlertInfo').text(response[0].error_test);
+
+                            if (response[0].nodal_officer == "National Level Nodal Officer") {
+
+                            }
+                            else if (response[0].nodal_officer == "State Level Nodal Officer") {
+                                $('#state').show();
+                                $("#state").val(response[0].state_name);
+
+
+                            } else if (response[0].nodal_officer == "District Level Nodal Officer") {
+                                $('#state').show();
+                                $('#dist').show();
+                                $("#state").val(response[0].state_name);
+                                State_Fun1(response[0].district_name);
+                                $("#dist").val(response[0].district_name);
+                            }
+                            else if (response[0].nodal_officer == "Block Level Nodal Officer") {
+                                $('#state').show();
+                                $('#dist').show();
+                                $('#block').show();
+                                $("#state").val(response[0].state_name);
+                                State_Fun1(response[0].district_name);
+                                $("#dist").val(response[0].district_name);
+                                Dist_Fun1(response[0].block_name);
+                                $("#block").val(response[0].block_name);
+
+
+                            }
+                            else {
+                                $('#state').show();
+                                $('#dist').show();
+                                $('#block').show();
+                                $('#gram').show();
+                                $("#state").val(response[0].state_name);
+                                State_Fun1(response[0].district_name);
+                                $("#dist").val(response[0].district_name);
+                                Dist_Fun1(response[0].block_name);
+
+                                $("#block").val(response[0].block_name);
+                                Block_Fun1(response[0].gpname);
+                                $("#gram").val(response[0].gpname);
+                                // $('#village').show();
+                            }
+
+                            $("#usercreatepassword").val(response[0].user_password);
+                            $("#userconfirmpassword").val(response[0].user_password);
+                            $("#username1").val(response[0].user_name);
+                            $("#Signup_useremail").val(response[0].user_email);
+                            $('#NodalOfficer').val(response[0].nodal_officer);
+                            $("#mobilenumber").val(response[0].mobile);
+                            $("#department").val(response[0].department);
+
+                        }
+                        else if (response[0].user_type == "login") {
+                            $('#userpassword').val(response[0].user_password);
+                            $('#status').text(response[0].error_test);
+                            $('#useremail').val(response[0].user_email);
+                        }
+
+                    }
+                }
+            });
+        }
+        function DropDownInfo() {
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Home/Sign_Up_DropdownInfo",
+                data: "{ }",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    if (response.length != 0) {
+                        Jsondata2 = response;
+                        $("#state").empty();
+                        var opstate = '<option value="0">Select State Name</option>';
+                        $("#state").append(opstate);
+                        $("#dist").empty();
+                        var opdist = '<option value="0">Select District</option>';
+                        $("#dist").append(opdist);
+                        $("#block").empty();
+                        var opblock = '<option value="0">Select Block</option>';
+                        $("#block").append(opblock);
+                        $("#gram").empty();
+                        var opgram = '<option value="0">Select Gram Panchayat</option>';
+                        $("#gram").append(opgram);
+                        //var StateName = $("#spnstate").text();
+                        if (Jsondata2.length != 0) {
+                            var ddlst = {};
+                            var all_dists = [];
+                            var optionState = '';
+                            for (var i = 0; i < Jsondata2.length; i++) {
+
+                                if (!ddlst[Jsondata2[i].state_name]) {
+                                    all_dists.push(Jsondata2[i].state_name);
+                                    ddlst[Jsondata2[i].state_name] = Jsondata2[i].state_name;
+
+                                }
+                            }
+                            var DistArray = [];
+                            DistArray = all_dists.sort(function (a, b) {
+                                if (a < b) return -1;
+                                else if (a > b) return 1;
+                                return 0;
+                            });
+                            optionState = '<option value="0">Select State Name</option>';
+                            for (var i = 0; i < DistArray.length; i++) {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                }
+                            }
+                            $("#state").html(optionState);
+                        }
+
+                    }
+
+                }
+            });
+        }
+
+        function State_Dropdown_Function() {
+            debugger;
+            $("#dist").empty();
+            var opdist = '<option value="0">Select District</option>';
+            $("#dist").append(opdist);
+            $("#block").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select Gram Panchayat</option>';
+            $("#gram").append(opgram);
+
+            StateName = $("#state").val();
+
+
+            if (StateName != "0" && Jsondata2.length != 0) {
+                var ddlst = {};
+                var all_dists = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata2.length; i++) {
+                    if (StateName == Jsondata2[i].state_name) {
+
+                        if (!ddlst[Jsondata2[i].district_name]) {
+                            all_dists.push(Jsondata2[i].district_name);
+                            ddlst[Jsondata2[i].district_name] = Jsondata2[i].district_name;
+
+                        }
+                    }
+                }
+
+
+                var DistArray = [];
+                DistArray = all_dists.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < DistArray.length; i++) {
+                    if (DistArray[i] != null && DistArray[i] != "") {
+                        optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                    }
+                }
+                $("#dist").append(optionDist);
+            }
+
+        }
+
+
+
+        function Dist_fun() {
+            debugger;
+            $("#block").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+
+            DistName = $("#dist").val();
+
+            if (DistName != "0" && Jsondata2.length != 0) {
+                var ddlst = {};
+                var all_blocks = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata2.length; i++) {
+                    if (DistName == Jsondata2[i].district_name && StateName == Jsondata2[i].state_name) {
+
+                        if (!ddlst[Jsondata2[i].block_name]) {
+                            all_blocks.push(Jsondata2[i].block_name);
+                            ddlst[Jsondata2[i].block_name] = Jsondata2[i].block_name;
+                            //  $("#block").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var BlockArray = [];
+                BlockArray = all_blocks.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < BlockArray.length; i++) {
+                    if (BlockArray[i] != null && BlockArray[i] != "") {
+                        optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                    }
+                }
+                $("#block").append(optionDist);
+
+            }
+        }
+
+
+
+        function Block_fun() {
+            debugger;
+            $("#gram").empty();
+            var opgram = '<option value="0">Select Gram Panchayat</option>';
+            $("#gram").append(opgram);
+            BlockName = $("#block").val();
+
+            if (BlockName != "0" && Jsondata2.length != 0) {
+                var ddlst = {};
+                var all_grams = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata2.length; i++) {
+                    if (StateName == Jsondata2[i].state_name && DistName == Jsondata2[i].district_name && BlockName == Jsondata2[i].block_name) {
+
+                        if (!ddlst[Jsondata2[i].gram_panchayat_name]) {
+                            ddlst[Jsondata2[i].gram_panchayat_name] = Jsondata2[i].gram_panchayat_name;
+                            all_grams.push(Jsondata2[i].gram_panchayat_name);
+                            //   $("#gram").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var GramArray = [];
+                GramArray = all_grams.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < GramArray.length; i++) {
+                    if (GramArray[i] != null && GramArray[i] != "") {
+
+                        optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                    }
+                }
+                $("#gram").append(optionDist);
+            }
+        }
+        //function State_Bind() {
+        //    if (Jsondata.length != 0) {
+        //        var all_states = [];
+        //        $("#dist").empty();
+        //        var opdist = '<option value="0">Select District</option>';
+        //        $("#dist").append(opdist);
+        //        $("#block").empty();
+        //        var opblock = '<option value="0">Select Block</option>';
+        //        $("#block").append(opblock);
+        //        $("#gram").empty();
+        //        var opgram = '<option value="0">Select GramPanchayat</option>';
+        //        $("#gram").append(opgram);
+
+        //        var ddlst = {};
+        //        var optionhtml = '';
+        //        // var optionState = '<option value="0">Please Select State</option>';
+        //        for (var i = 0; i < Jsondata.length; i++) {
+
+        //            if (!ddlst[Jsondata[i].state_name]) {
+        //                all_states.push(Jsondata[i].state_name);
+        //                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+        //                // $("#state").append(optionState);
+        //            }
+        //        }
+
+        //        var StateArray = [];
+        //        StateArray = all_states.sort(function (a, b) {
+        //            if (a < b) return -1;
+        //            else if (a > b) return 1;
+        //            return 0;
+        //        });
+        //        for (var i = 0; i < StateArray.length; i++) {
+        //            if (StateArray[i] != null && StateArray[i] != "") {
+        //                optionhtml += '<option value="' + StateArray[i] + '">' + StateArray[i] + '</option>';
+        //            }
+        //        }
+        //        $("#state").append(optionhtml);
+
+        //    }
+
+        //    Error();
+
+        //}
+
+
+        /*
+        function State_Fun() {
+
+            $("#dist").empty();
+            var opdist = '<option value="0">Select District</option>';
+            $("#dist").append(opdist);
+            $("#block").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var StateName = $("#state").val();
+            if (StateName != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_dists = [];
+                var optionDist = '<option value="0">Select District</option>';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (StateName == Jsondata[i].state_name) {
+
+                        if (!ddlst[Jsondata[i].district_name]) {
+                            all_dists.push(Jsondata[i].district_name);
+                            ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                        }
+                    }
+                }
+
+
+                var DistArray = [];
+                DistArray = all_dists.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < DistArray.length; i++) {
+                    if (DistArray[i] != null && DistArray[i] != "") {
+                        optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                    }
+                }
+                $("#dist").html(optionDist);
+            }
+        }
+
+        function Dist_Fun() {
+
+            $("#block").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var dist = $("#dist").val();
+            if (dist != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_blocks = [];
+                var optionDist = '<option value="0">Select Block</option>';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (dist == Jsondata[i].district_name) {
+
+                        if (!ddlst[Jsondata[i].block_name]) {
+                            all_blocks.push(Jsondata[i].block_name);
+                            ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                            //  $("#block").append(optionDist);
+                        }
+                    }
+                }
+
+
+                //var BlockArray = [];
+                BlockArray = all_blocks.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < BlockArray.length; i++) {
+                    if (BlockArray[i] != null && BlockArray[i] != "") {
+                        optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                    }
+                }
+                $("#block").html(optionDist);
+
+            }
+        }
+
+
+
+        function Block_Fun() {
+
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var block = $("#block").val();
+            if (block != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_grams = [];
+                var optionDist = '<option value="0">Select GramPanchayat</option>';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (block == Jsondata[i].block_name) {
+
+                        if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                            ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                            all_grams.push(Jsondata[i].gram_panchayat_name);
+                            //   $("#gram").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var GramArray = [];
+                GramArray = all_grams.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < GramArray.length; i++) {
+                    if (GramArray[i] != null && GramArray[i] != "") {
+
+                        optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                    }
+                }
+                $("#gram").html(optionDist);
+            }
+        }
+
+*/
+
+
+        function State_Fun1(ss) {
+
+            $("#dist").empty();
+            var opdist = '<option value="0">Select District</option>';
+            $("#dist").append(opdist);
+            $("#block").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var StateName = $("#state").val();
+            if (StateName != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_dists = [];
+                var optionDist = '<option value="0">Select District</option>';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (StateName == Jsondata[i].state_name) {
+
+                        if (!ddlst[Jsondata[i].district_name]) {
+                            all_dists.push(Jsondata[i].district_name);
+                            ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                        }
+                    }
+                }
+
+
+                var DistArray = [];
+                DistArray = all_dists.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < DistArray.length; i++) {
+                    if (DistArray[i] != null && DistArray[i] != "") {
+                        optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                    }
+                }
+                $("#dist").html(optionDist);
+                $("#dist").val(ss);
+
+            }
+        }
+
+        function Dist_Fun1(ss) {
+
+            $("#block").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var dist = $("#dist").val();
+            if (dist != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_blocks = [];
+                var optionDist = '<option value="0">Select Block</option>';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (dist == Jsondata[i].district_name) {
+
+                        if (!ddlst[Jsondata[i].block_name]) {
+                            all_blocks.push(Jsondata[i].block_name);
+                            ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                            //  $("#block").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var BlockArray = [];
+                BlockArray = all_blocks.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < BlockArray.length; i++) {
+                    if (BlockArray[i] != null && BlockArray[i] != "") {
+                        optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                    }
+                }
+                $("#block").html(optionDist);
+                $("#block").val(ss);
+
+            }
+        }
+
+
+
+        function Block_Fun1(ss) {
+
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var block = $("#block").val();
+            if (block != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_grams = [];
+                var optionDist = '<option value = "0" > Select GramPanchayat</option>';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (block == Jsondata[i].block_name) {
+
+                        if (!ddlst[Jsondata[i].village_name]) {
+                            ddlst[Jsondata[i].village_name] = Jsondata[i].village_name;
+                            all_grams.push(Jsondata[i].village_name);
+                            //   $("#gram").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var GramArray = [];
+                GramArray = all_grams.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < GramArray.length; i++) {
+                    if (GramArray[i] != null && GramArray[i] != "") {
+
+                        optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                    }
+                }
+                $("#gram").html(optionDist);
+                $("#gram").val(ss);
+            }
+        }
+
+</script>
+<script src="~/Content/JS_Files/login_js.js"></script>
+<script>
+    $('#register-btn').change(function () {
+
+        alert("Plese Select Nodel Officer");
+    });
+
+    $("#reg_tab_id").click(function () {
+
+        $('#reg_tab_id').css("background", "#337ab7");
+        $('#reg_tab_id').css("color", "#fff");
+        $('#reg_tab_id_span').css("background", "#337ab7");
+        $('#reg_tab_id_span').css("color", "#fff");
+        $('#login_tab_id').css("background", "#fff");
+        $('#login_tab_id').css("color", "black");
+        $('#login_tab_id_span').css("background", "#fff");
+        $('#login_tab_id_span').css("color", "black");
+
+    });
+    $("#login_tab_id").click(function () {
+        debugger;
+        $('#login_tab_id').css("background", "#337ab7");
+        $('#login_tab_id').css("color", "#fff");
+        $('#login_tab_id_span').css("background", "#337ab7");
+        $('#login_tab_id_span').css("color", "#fff");
+        $('#reg_tab_id').css("background", "#fff");
+        $('#reg_tab_id').css("color", "black");
+        $('#reg_tab_id_span').css("background", "#fff");
+        $('#reg_tab_id_span').css("color", "black");
+    });
+
+
+    $('#NodalOfficer').change(function () {
+
+        debugger;
+        if ($(this).val() == 'Nodal Officer') {
+            //alert("Plese ")
+            // $('#modal1').modal('hide');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+
+
+        }
+        if ($(this).val() == 'Admin') {
+            // $('#modal1').modal('hide');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+
+
+        }
+        if ($(this).val() == 'National Level Nodal Officer') {
+            // $('#modal1').modal('hide');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').hide();
+            $('#state').hide();
+
+            $('#dist').hide();
+
+            $('#block').hide();
+
+            $('#gram').hide();
+            $('#village').hide();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#gram').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            //$('#gram').val('Select Panchayat');
+        }
+
+        if ($(this).val() == 'State Level Nodal Officer') {
+            // $('#modal1').modal('show');
+            $('#state').show();
+            $('#gram').hide();
+            $('#block').hide();
+            $('#dist').hide();
+            //$('#state').vaL('');
+            //$('#state').val('Select State');
+
+            $('#State1').show();
+            $('#District1').hide();
+            $('#Gram1').hide();
+            $('#Block1').hide();
+            $('#village').hide();
+
+        }
+        if ($(this).val() == 'District Level Nodal Officer') {
+            //  $('#modal1').modal('show');
+            $('#state').show();
+            $('#dist').show();
+            $('#block').hide();
+            $('#gram').hide();
+            $('#village').hide();
+            //$('#state').val('Select State');
+            // $('#dist').val('Select District');
+            $('#block').hide();
+            $('#District1').show();
+            $('#State1').hide();
+            $('#Gram1').hide();
+            $('#Block1').hide();
+            $('#village').hide();
+        }
+        if ($(this).val() == 'Block Level Nodal Officer') {
+            //    $('#modal1').modal('show');
+            $('#state').show();
+            $('#dist').show();
+            $('#block').show();
+            $('#gram').hide();
+            $('#village').hide();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            $('#Block1').show();
+            $('#State1').hide();
+            $('#Gram1').hide();
+            $('#District1').hide();
+            $('#village').hide();
+        }
+
+        if ($(this).val() == 'Gram Panchyat Nodal Officer') {
+            //  $('#modal1').modal('show');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').show();
+            $('#state').show();
+
+            $('#dist').show();
+
+            $('#block').show();
+
+            $('#gram').show();
+            $('#village').hide();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#gram').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            //$('#gram').val('Select Panchayat');
+        }
+        if ($(this).val() == 'Village Level Nodal Officer') {
+            $('#modal1').modal('show');
+            $('#District1').hide();
+            $('#State1').hide();
+            $('#Block1').hide();
+            $('#Gram1').show();
+            $('#state').show();
+
+            $('#dist').show();
+
+            $('#block').show();
+
+            $('#gram').show();
+            $('#village').show();
+            //$('#state').val('');
+            //$('#dist').val('');
+            //$('#block').val('');
+            //$('#gram').val('');
+            //$('#state').val('Select State');
+            //$('#dist').val('Select District');
+            //$('#block').val('Select Block');
+            //$('#gram').val('Select Panchayat');
+        }
+    });
+    //function myFunction() {
+    //    alert("Plese Select Nodel Officer");
+    //}
+</script>
+<!--Nodel officer pop script End-->
+<script>
+
+    $("#register-btn").click(function () {
+
+        SaveDetails();
+
+    });
+
+
+    function SaveDetails() {
+        debugger;
+        var j = 0;
+        var State = $("#state").val();
+        var Dist = $("#dist").val();
+        var Block = $("#block").val();
+        var Gram = $("#gram").val();
+        var Pass = $("#usercreatepassword").val();
+        var CPass = $("#userconfirmpassword").val();
+        var UserName = $("#username1").val();
+        var Email = $("#Signup_useremail").val();
+        var NodalOfficer = $("#NodalOfficer").val();
+        var Mobile = $("#mobilenumber").val();
+        var DepartmentName = $("#department").val();
+        var str = document.getElementById("usercreatepassword").value;
+
+
+        if (Pass != CPass && Pass != "" && CPass != "") {
+            document.getElementById('AlertInfo').innerHTML = "Password's Doesn't Matched";
+        }
+        else if (NodalOfficer == "Nodal Officer") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Select Nodal Officer";
+            j = 1;
+        }
+        else if (UserName == "") {
+            document.getElementById('AlertInfo').innerHTML = "Please Enter UserName";
+            j = 1;
+        }
+        else if (Email == "") {
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Email";
+            j = 1;
+        }
+
+        else if (Mobile == "") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Mobile Number";
+            j = 1;
+        }
+        else if (DepartmentName == "") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Department Name";
+            j = 1;
+        }
+        else if (Pass == "") {
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Password";
+            j = 1;
+        }
+        //else if (Email != "") {
+        //    if (Email.match(validRegex)) {
+
+        //    } else {
+        //        alert("Your Email Id is Invalid")
+        //    }
+        //}
+        else if (Pass != "") {
+
+            if (str.match(/[a-z]/g) && str.match(/[A-Z]/g) && str.match(/[0-9]/g) && str.match(/[^a-zA-Z\d]/g) && str.length >= 8) {
+
+                alert("Your Password is Allowed")
+            }
+
+            else {
+                alert("Your  Password should be [Minimum 8 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character]");
+                j = 1;
+            }
+
+        }
+        else if (CPass == "") {
+
+            document.getElementById('AlertInfo').innerHTML = "Please Enter Confirm Password";
+            j = 1;
+        }
+
+        if (NodalOfficer == "State Level Nodal Officer") {
+
+            if (State != "0" && State != null) {
+            }
+            else {
+
+                document.getElementById('AlertInfo').innerHTML = "Please Fill StateName";
+                j = 1;
+            }
+        }
+        if (NodalOfficer == "District Level Nodal Officer") {
+
+            if (State != "0" && State != null && Dist != "0" && Dist != null) {
+
+            }
+            else {
+                document.getElementById('AlertInfo').innerHTML = "Please Select State And District ";
+
+                j = 1;
+            }
+        }
+        if (NodalOfficer == "Block Level Nodal Officer") {
+
+            if (State != "0" && State != null && Dist != "0" && Dist != null && Block != "0" && Block != null) {
+
+            }
+            else {
+                document.getElementById('AlertInfo').innerHTML = "Please Select State, District and Block";
+
+                j = 1;
+            }
+        }
+        if (NodalOfficer == "Gram Panchyat Nodal Officer") {
+            if (State != "0" && State != null && Dist != "0" && Dist != null && Block != "0" && Block != null && Gram != "0" && Gram != null) {
+
+            }
+            else {
+                document.getElementById('AlertInfo').innerHTML = "Please Select State,District, Block and  Gram Panchayat";
+                j = 1;
+            }
+        }
+
+
+        if (j != 1) {
+            ddd = 0;
+            //var randomnumber = $('#randomnumber').text();
+            debugger;
+            var Password = $("#usercreatepassword").val();
+
+            var C_Password = $("#userconfirmpassword").val();
+            $("#VerificationCode").val(Password);
+
+            var hashText = CryptoJS.SHA256(Password);
+            var CP_hashText = CryptoJS.SHA256(C_Password);
+
+            //var Compound = randomnumber.concat(hashText);
+
+            //var Complex = CryptoJS.SHA256(Compound);
+
+            //$("#CheckingCode").val(randomnumber);
+            $("#usercreatepassword").val(hashText);
+            $("#userconfirmpassword").val(CP_hashText);
+
+
+            $('#reg_btn').click();
+
+
+        }
+
+    }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script src="~/Content/JS_Files/core.js"></script>
+<script src="~/Content/JS_Files/sha256.js"></script>
+<script src="~/DashboardStyles/js/custom-script.js"></script>
+@*
+    <script src="~/Content/JS_Files/WSP_GWM_HOME.js"></script>*@
+<script>
+    function ForgetPassWord_Info() {
+        Forget_Pwd_Verification();
+
+    }
+    $(function () {
+        $("#btnSubmit").click(function () {
+
+            Login();
+
+        });
+    });
+
+    function Login() {
+
+        var obj = {};
+        var XX = 0;
+        var Email = $('#useremail').val();
+        if (Email == "") {
+            XX = 1;
+            $('#LoginError').text('Please Enter Email');
+        }
+        // obj.stateofficer_email = token;
+        debugger;
+        obj.DepartmentName = SessionTabName;
+        var Password = $('#userpassword').val();
+        if (Password == "") {
+            XX = 1;
+            $('#LoginError').text('Please Enter Password');
+        }
+
+        if (XX == 0) {
+            debugger;
+            var randomnumber = $('#randomnumber').text();
+
+            var Password = $('#userpassword').val();
+            debugger;
+            var hashText = CryptoJS.SHA256(Password);
+            $('#CheckingCode').val(randomnumber);
+            var Compound = randomnumber.concat(hashText);
+            var Complex = CryptoJS.SHA256(Compound);
+            $('#userpassword').val(Complex);
+            $('#ss1').click();
+        }
+    }
+    function show_admin_table() {
+
+        var obj = {};
+        var XX = 0;
+        var Email = $('#AEmail').val();
+        if (Email == "") {
+            XX = 1;
+            $('#AdError').text('Please Enter Email');
+        }
+        var Password = $('#APassword').val();
+        if (Password == "") {
+            XX = 1;
+            $('#AdError').text('Please Enter Password');
+        }
+
+        if (XX == 0) {
+            obj.Email = Email;
+            obj.Password = Password;
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Home/WSPHomeAdminRole",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    if (response == "OK") {
+                        // GetAdminDetails();
+                        window.location = "/Aminview/admin";
+                    }
+                    else {
+                        $('#AdError').text(response);
+                    }
+
+                }
+            });
+        }
+
+
+    }
+    //var table = $('#example_admin').DataTable();
+    //$('.example_admin').on('keyup', function () {
+    //    table.search(this.value).draw();
+    //});
+    function Error_Info() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WspNew/Error_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                $('#status').text("");
+                if (data.length != 0) {
+
+                    $('#status').text(data[0].error_test);
+                }
+            }
+        });
+    }
+
+    function GetAdminDetails() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Home/UsersInfoo',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                debugger;
+                if (data.length != 0) {
+                    var ss = "";
+
+                    for (var i = 0; i < data.length; i++) {
+                        ss += '<tr><td> ' + (i + 1) + ' </td><td> Sankar </td><td>  ' + data[i].Email + ' </td><td>  ' + data[i].ContactNumber + ' </td>' +
+                            '<td>  ' + data[i].DepartmentName + ' </td> <td class="text-center"><button type="button" title="Accept" class="btn btn-success btn-md" onclick="Approved(' + data[i].UserId + ')"><i class="fa fa-check"></i></button></td>' +
+                            '<td class="text-center"> <button type="button" title="Reject" class="btn btn-danger btn-md" onclick="Rejected(' + data[i].UserId + ')"><i class="fa fa-close"></i></button></td></tr>';
+                    }
+
+                    if (ss == "") {
+                        ss = '<tr>No Data</tr>';
+                    }
+                    $('.odd').hide();
+                    $('#TBLUSERS').html(ss);
+                    $('.example_admin_table').show();
+                    $('.Admin_view_form').hide();
+                }
+
+            }
+        });
+
+    }
+
+    function Approved(userid) {
+        debugger;
+        var obj = {};
+
+        obj.UserId = userid;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/WSPHomeAdminApproved",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+
+                GetAdminDetails();
+
+
+            }
+        });
+    }
+
+    function Rejected(userid) {
+        var obj = {};
+
+        obj.UserId = userid;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/WSPHomeAdminRejected",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+
+                GetAdminDetails();
+
+
+            }
+        });
+    }
+
+
+    function openCity(evt, cityName) {
+        debugger;
+        $('#Session_Name').val(cityName);
+
+        var i, tabcontent, tablinks1;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks1 = document.getElementsByClassName("tablinks1");
+        for (i = 0; i < tablinks1.length; i++) {
+            tablinks1[i].className = tablinks1[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+        if (cityName == "admin_view") {
+
+
+            $("div.login_div_view").hide();
+
+        }
+    }
+
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    //$("div.admin_view_hid_show").click(function () {
+
+    //    $("div.login_div_view").addClass("login_div_view_hide");
+
+    //});
+    //$("div.admin_view_hid_show1").click(function () {
+    //    debugger
+
+    //    $("div.login_div_view").remove("login_div_view_hide");
+
+    //});
+    $(function () {
+        $(".admin_view_hid_show1").click(function () {
+            $(".login_div_view").show();
+            return false;
+        });
+        $(".admin_view_hid_show").click(function () {
+            $(".login_div_view").hide();
+            return false;
+        });
+    });
+
+</script>
+<script>
+
+    function ChangePassword() {
+
+        document.getElementById('AlertInfo_mail').innerHTML = "";
+        var old_password = $('#old_password').val();
+        var gmail_change = $('#gmail_change').val();
+        var new_password = $('#new_password').val();
+        var confirm_password = $('#confirm_password').val();
+
+        var s = 0;
+        if (old_password == "") {
+
+            document.getElementById('AlertInfo_mail').innerHTML = "Please Enter Old Password";
+            s = 1;
+        }
+        else if (gmail_change == "") {
+
+            document.getElementById('AlertInfo_mail').innerHTML = "Please Enter your Email id";
+            s = 1;
+        }
+        else if (new_password == "") {
+
+            document.getElementById('AlertInfo_mail').innerHTML = "Please Enter New Password";
+            s = 1;
+        }
+        else if (confirm_password == "") {
+
+            document.getElementById('AlertInfo_mail').innerHTML = "Please Enter Confirm Password";
+            s = 1;
+        }
+        else if (new_password != confirm_password) {
+
+            document.getElementById('AlertInfo_mail').innerHTML = "New Password and Confirm Password is Not Matched";
+            s = 1;
+
+        }
+
+
+
+        if (s == 0) {
+            var obj = {};
+
+
+            obj.Password = new_password;
+            obj.DepartmentName = old_password;
+            obj.Email = gmail_change;
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Home/ChangePassword",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    document.getElementById('AlertInfo_mail').innerHTML = response;
+
+                    if (response == "Password Changed Successfully") {
+                        $('#old_password').val("");
+                        $('#gmail_change').val("");
+                        $('#new_password').val("");
+                        $('#confirm_password').val("");
+
+                        $('#AlertInfo_mail').text(response);
+                        $('#password_change_id').hide();
+
+                        $('#emailid_show').show();
+                        $("#f_close_btn").click();
+                        alert(response);
+                        document.getElementById('AlertInfo_mail').innerHTML = "";
+
+                    }
+                    else {
+                        $('#AlertInfo_mail').text(response);
+
+
+                    }
+
+
+                }
+            });
+        }
+
+    }
+</script>
+<script type="text/javascript">
+        //$('input[type=email]').bind("cut copy paste", function (e) {
+        //    e.preventDefault();
+        //})
+        //$('input[type=password]').bind("cut copy paste", function (e) {
+        //    e.preventDefault();
+        //})
+
+        var Captcha_str_1 = "";
+        var Captcha_str_2 = "";
+        var Captcha_str_3 = "";
+        function refress() {
+
+            debugger;
+            $('#C_img1').attr('src', $('#C_img1').attr('src') + '#');
+        }
+        var s = 0;
+        var CapchaInfo = "";
+        function Checking() {
+            $.post("@Url.Action("Login_CustomCaptcha", "Home")",
+                {
+                    clientCaptcha: $("#clientCaptcha").val(),
+
+                },
+                function (data) {
+                    if (data == 0) {
+                        CapchaInfo = "Not Matched";
+                        $("#status").html('<font color="red"> Not Matched</font>');
+                        refress();
+                    }
+                    else {
+                        CapchaInfo = "Matched";
+                        $("#status").html('<font color="green">Captch process is Succesfully</font>');
+                        Login();
+                    }
+
+                });
+
+        }
+
+        function refress1() {
+            $('#C_img2').attr('src', $('#C_img2').attr('src') + '#');
+        }
+        var s = 0;
+        var CapchaInfo1 = "";
+        function Checking1() {
+            $.post("@Url.Action("Reg_CustomCaptcha", "Home")",
+                {
+                    clientCaptcha: $("#clientCaptcha1").val(),
+
+                },
+                function (data) {
+                    if (data == 0) {
+                        CapchaInfo1 = "Not Matched";
+                        $("#status1").html('<font color="red"> Not Matched</font>');
+                        refress1();
+                    }
+                    else {
+                        CapchaInfo1 = "Matched";
+                        $("#status1").html('<font color="green">Captch process is Succesfully</font>');
+                        SaveDetails();
+                    }
+                });
+        }
+        function refress2() {
+            $('#C_img3').attr('src', $('#C_img3').attr('src') + '#');
+
+        }
+        var s = 0;
+        var CapchaInfo2 = "";
+
+
+        function Forget_Pwd_Verification() {
+            debugger;
+            $('#emailid_show').show();
+
+            var Email = $('#forget_password_email').val();
+            if (Email == "") {
+
+                alert('Please Enter Email');
+            } else {
+                $('#Btn_forgetClick').click();
+            }
+
+        }
+</script>
+

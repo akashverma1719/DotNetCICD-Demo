@@ -1,0 +1,1036 @@
+﻿
+@{
+    ViewBag.Title = "Water_Level";
+    Layout = "~/Views/Shared/_Mobile.cshtml";
+}
+
+
+<script>
+    $(".subtab2").addClass("active");
+</script>
+<style>
+    /*table fix code*/
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*ends here*/
+</style>
+<style>
+    form {
+        margin: 0px;
+    }
+</style>
+
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Water Level</title>
+    <style>
+
+
+        tr {
+            width: fit-content;
+        }
+
+        input {
+            width: 80px;
+        }
+
+
+        td, th {
+            border: 2px solid black;
+            color: black;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+</head>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+<div class="container">
+    <h4>
+        <label>
+            Total Number of ground water monitoring Stations  :  <label id="total_gwm"></label>
+        </label>
+        <br />
+        <br />
+        <br />
+        <label>
+            Total Number of Existing Well  :  <label id="existing_well_total"></label>
+        </label>
+        @*<br />
+            <label>
+                Total Number of Updated Existing observation Well  :  <label id="update_total"></label>
+            </label>*@
+        <br />
+        <label>
+            Total Number of New Well  :  <label id="new_well_total"></label>
+        </label>
+    </h4>
+    <br />
+    <br />
+    <br />
+</div>
+
+
+<div class="container">
+    <div class="row table_head_strip" style="margin:0px;padding-top:7px;">
+        <div class="col-md-6">
+            <div>
+                <h4 class="" style="font-size:15px;">
+                    <label>
+                        Existing Well <label id="social_total"></label>
+                    </label>
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 bg-light text-right d-flex">
+                <div style="margin-right:10px;">
+                    <div class="bg-light text-right display_flex">
+                        <button class="btn btn-primary btn_export btn-sm" id="btnsubmit" onclick="Excel()">
+                            Export (Excel)
+                        </button>
+                    </div>
+                </div>
+                <div style="margin-left:10px">
+
+                    <button type="button" id="pdf1" onclick="Report_PDF_exesting()" class="btn btn-primary btn-sm"> Export (PDF)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+            <table id="mainTable" class="table pip_report_table table-hover row-border order-column table-striped table-bordered  no-footer">
+
+                <thead>
+                    <tr style="text-align:center; background-color:goldenrod">
+
+                        <th><label>Sr.no</label></th>
+                        <th><label>Village Name</label></th>
+                        <th><label>Location Details</label></th>
+                        <th><label>Latitude</label></th>
+                        <th><label>Longitude</label></th>
+                        <th><label>Date</label></th>
+                        <th><label>Well ID.</label></th>
+                        <th><label>Type of Well</label></th>
+                        <th><label>Other Well Type </label></th>
+
+                        <th><label>OwnerShip Type </label></th>
+                        <th><label>Pre Monsoon</label></th>
+                        <th><label>Pre Monsoon Date </label></th>
+                        <th><label>Post Monsoon</label></th>
+                        <th><label>Post Monsoon Date </label></th>
+                        <th><label>Water Level (m bgl) </label></th>
+                        <th><label>Image Upload </label></th>
+                        @*<th><label>Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></th>*@
+                    </tr>
+                </thead>
+                <tbody id="Tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<br />
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="Modelledby" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Data</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data" id="ModalForm">
+
+                    <input type="hidden" id="editId" value="">
+
+                    <div class="form-group">
+                        <label for="Village">Village</label>
+                        <input type="text" name="Village" class="form-control" id="Village" placeholder="Village" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="LocationDetails">Location Details</label>
+                        <input type="text" name="Location Details" class="form-control" id="LocationDetails" placeholder="Location Details" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Latitude">Latitude</label>
+                        <input type="text" name="Latitude" class="form-control" id="Latitude" placeholder="Latitude" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Longitude">Longitude</label>
+                        <input type="text" name="Longitude" class="form-control" id="Longitude" placeholder="Longitude" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Date">Date</label>
+                        <input type="date" name="Date" class="form-control" id="Date" placeholder="Date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="widd">Well ID.</label>
+                        <input type="text" name="Type of structure" class="form-control" id="widd" placeholder="Well ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="toww">Type of Well</label>
+                        <input type="text" name="Type of Well" class="form-control" id="toww" placeholder="Type of Well" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="premm">Pre Monsoon 2019</label>
+                        <input type="text" name="Pre Monsoon 2019" class="form-control" id="premm" placeholder="Pre Monsoon 2019" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="post">Post Monsoon 2019</label>
+                        <input type="text" name="Post Monsoon 2019" class="form-control" id="post" placeholder="Post Monsoon 2019" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Image Upload">Image Upload</label>
+                        <input type="file" class="form-control" id="txtimage" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                <button type="button" id="updateButton" class="btn btn-primary" rowid="" onclick="update()" data-dismiss="modal">update</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+<br />
+<div class="container">
+    <!--<div class="row table_head_strip" style="margin:0px;padding-top:7px;">
+        <div class="col-md-6">
+            <div>
+                <h4 class="">
+                    Updated Existing observation Well <label id="social_total"></label>
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 bg-light text-right d-flex">
+                <div style="margin-right:10px;">
+                    <button class="btn btn-primary btn_export btn-sm" type="button" id="btnSave" onclick=''>Excel</button>
+
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary btn-sm">PDF</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+            <table id="mainTable1" class="table pip_report_table table-hover row-border order-column table-striped table-bordered  no-footer">
+
+                <thead>
+                    <tr style="text-align:center; background-color:goldenrod">
+
+                        <th><label>Sr.no</label></th>
+                        <th><label>Village</label></th>
+                        <th><label>Location Details</label></th>
+                        <th><label>Latitude</label></th>
+                        <th><label>Longitude</label></th>
+                        <th><label>Date</label></th>
+                        <th><label>Well ID.</label></th>
+                        <th><label>Type of Well</label></th>
+                        <th><label>Pre Monsoon</label></th>
+                        <th><label>Post Monsoon</label></th>
+                        <th><label>Water Level</label></th>
+                        <th><label>Image Upload </label></th>-->
+    @*<th><label>Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></th>*@
+    <!--</tr>
+                </thead>
+                <tbody id="Tbody1"></tbody>
+            </table>
+        </div>
+    </div>-->
+    <br />
+    <div class="modal fade" id="myModalupdate" role="dialog" aria-labelledby="Modelledby" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Data</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data" id="ModalForm">
+
+                        <input type="hidden" id="editId" value="">
+
+                        <div class="form-group">
+                            <label for="updateVillage">Village</label>
+                            <input type="text" name="Village" class="form-control" id="updateVillage" placeholder="Village" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateLocationDetails">Location Details</label>
+                            <input type="text" name="Location Details" class="form-control" id="updateLocationDetails" placeholder="Location Details" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateLatitude">Latitude</label>
+                            <input type="text" name="Latitude" class="form-control" id="updateLatitude" placeholder="Latitude" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateLongitude">Longitude</label>
+                            <input type="text" name="Longitude" class="form-control" id="updateLongitude" placeholder="Longitude" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDate">Date</label>
+                            <input type="text" name="Date" class="form-control" id="updateDate" placeholder="Date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updatewid1">Well ID.</label>
+                            <input type="text" name="Type of structure" class="form-control" id="updatewid1" placeholder="Well ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updatetoww">Type of Well</label>
+                            <input type="text" name="Type of Well" class="form-control" id="updatetoww" placeholder="Type of Well" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateprem1">Pre Monsoon</label>
+                            <input type="text" name="Pre Monsoon" class="form-control" id="updateprem1" placeholder="Pre Monsoon" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updatepost1">Post Monsoon</label>
+                            <input type="text" name="Post Monsoon" class="form-control" id="updatepost1" placeholder="Post Monsoon" required>
+                        </div>
+                        @*<div class="form-group">
+                                <label for="updatesource1">Source</label>
+                                <input type="text" name="Source" class="form-control" id="updatesource1" placeholder="Source" required>
+                            </div>*@
+                        <div class="form-group">
+                            <label for="Image Upload">Image Upload</label>
+                            <input type="file" class="form-control" id="updateimage1" required>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                    <button type="button" id="update_data" class="btn btn-primary" Rowid="" onclick="update_observation()" data-dismiss="modal">Update</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<br />
+<div class="container">
+    <div class="row table_head_strip" style="margin:0px;padding-top:7px;">
+        <div class="col-md-6">
+            <div>
+                <h4 class="">
+                    <label>
+                        New observation Well <label id="social_total"></label>
+                    </label>
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="col-md-12 bg-light text-right d-flex">
+                <div style="margin-right:10px;">
+                    <div class="bg-light text-right display_flex">
+                        <button class="btn btn-primary btn_export btn-sm" id="btnsubmit_new" onclick="New_Excel()">
+                            Export (Excel)
+                        </button>
+                    </div>
+                </div>
+                <div style="margin-left:10px">
+
+                    <button type="button" id="pdf1" onclick="Report_PDF()" class="btn btn-primary btn-sm"> Export (PDF)</button>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="">
+        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+            <table id="mainTable2" class="table pip_report_table table-hover row-border order-column table-striped table-bordered  no-footer">
+
+                <thead>
+                    <tr style="text-align:center; background-color:goldenrod">
+
+                        <th><label>Sr.no</label></th>
+                        <th><label>Village Name</label></th>
+                        <th><label>Location Details</label></th>
+                        <th><label>Latitude</label></th>
+                        <th><label>Longitude</label></th>
+                        <th><label>Date</label></th>
+                        <th><label>Well ID.</label></th>
+                        <th><label>Type of Well</label></th>
+                        <th><label>Other Well Type </label></th>
+                        <th><label>OwnerShip Type </label></th>
+                        <th><label>Pre Monsoon</label></th>
+                        <th><label>Pre Monsoon Date </label></th>
+                        <th><label>Post Monsoon</label></th>
+                        <th><label>Post Monsoon Date </label></th>
+                        <th><label>Water Level (m bgl) </label></th>
+                        <th><label>Image Upload </label></th>
+                        @*<th><label>Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></th>*@
+                    </tr>
+                </thead>
+                <tbody id="Tbody2"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<div class="modal fade" id="myModalownership" role="dialog" aria-labelledby="Modelledby" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Data</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data" id="ModalForm">
+
+                    <input type="hidden" id="editId" value="">
+
+                    <div class="form-group">
+                        <label for="newVillage">Village</label>
+                        <input type="text" name="Village" class="form-control" id="newVillage" placeholder="Village" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newLocationDetails">Location Details</label>
+                        <input type="text" name="Location Details" class="form-control" id="newLocationDetails" placeholder="Location Details" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newLatitude">Latitude</label>
+                        <input type="text" name="Latitude" class="form-control" id="newLatitude" placeholder="Latitude" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newLongitude">Longitude</label>
+                        <input type="text" name="Longitude" class="form-control" id="newLongitude" placeholder="Longitude" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Date">Date</label>
+                        <input type="text" name="Date" class="form-control" id="datepicker_new" placeholder="Date" required>
+                    </div>
+                    @*<div class="form-group">
+                            <label for="newDate">Date</label>
+                            <input type="date" name="Date" class="form-control" id="newDate" placeholder="Date" required>
+                        </div>*@
+                    <div class="form-group">
+                        <label for="newwidd">Well ID</label>
+                        <input type="text" name="Type of structure" class="form-control" id="newwidd" placeholder="Well ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newtoww">Type of Well</label>
+                        <input type="text" name="Type of Well" class="form-control" id="newtoww" placeholder="Type of Well" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newownership">Pre Monsoon</label>
+                        <input type="text" name="Ownership Type" class="form-control" id="newownership" placeholder="Ownership Type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newwl">Post Monsoon</label>
+                        <input type="text" name="Water Level" class="form-control" id="newwl" placeholder="Water Level" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Image Upload">Image Upload</label>
+                        <input type="file" class="form-control" id="txtimage2" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                <button type="button" id="updatenewButton" class="btn btn-primary" Rowid="" onclick="updatenew_save()" data-dismiss="modal">update</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        existingwell();
+        updatewell_data();
+        newwell();
+
+
+    });
+
+    /*Existing Well*/
+    //  var Existing = $('#existing_well_total').text(data.length);
+    
+    var id = 0;
+    var exist = 0;
+    var update = 0;
+    var new_well = 0;
+    function existingwell() {
+        
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/Existingwell',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var Tbodyhtml = '';
+
+                for (var i = 0; i < data.length; i++) {
+
+                    Tbodyhtml += '<tr><td id="srNo" rowId = ' + data[i].gp['id'] + '>' + (i + 1) + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].gp['sitename'] + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].gp['locationdetails'] + '</td>';
+                    Tbodyhtml += '<td id="latitude">' + data[i].gp['latitude'] + '</td>';
+                    Tbodyhtml += '<td id="longtude">' + data[i].gp['longitude'] + '</td>';
+                    Tbodyhtml += '<td id = "date">' + data[i].gp['date'] + '</td>';
+                    Tbodyhtml += '<td id="Wellid">' + data[i].gp['wellid'] + '</td>';
+                    Tbodyhtml += '<td id="typeofwell">' + data[i].gp['typeofwell'] + '</td>';
+                    Tbodyhtml += '<td id="email">' + data[i].gp['other_well_type'] + '</td>';
+                    Tbodyhtml += '<td id="email">' + data[i].gp['source'] + '</td>';
+                    Tbodyhtml += '<td id="PreMonsoon2019">' + data[i].r['pre_monsoon'] + '</td>';
+                    Tbodyhtml += '<td id="updatewaterlevel">' + data[i].gp['pre_date'] + '</td>';
+                    Tbodyhtml += '<td id="postMonsoon2019">' + data[i].r['post_monsoon'] + '</td>';
+                    Tbodyhtml += '<td id="updatewaterlevel">' + data[i].gp['post_date'] + '</td>';
+                    Tbodyhtml += '<td id="updatewaterlevel">' + data[i].gp['groundwater_level'] + '</td>';
+                    Tbodyhtml += '<td><a href=' + data[i].gp['image'] + ' id="image1">Image</a></td></tr> ';
+                    /* Tbodyhtml += '<td><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit editbtn" data-toggle="modal" data-target="#myModal" onclick="editexisting(this)"></button> <button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-trash deletebtn" onclick="deletedata(' + data[i].gp['id'] + ')"></button></td></tr> ';*/
+
+
+                }
+                $('#mainTable tbody').html(Tbodyhtml);
+                exist = data.length;
+                $('#existing_well_total').text(exist);
+
+            }
+        });
+
+    }
+
+    function update() {
+        
+
+        var id = $('#updateButton').attr('rowid');
+        var village = $('#Village').val();
+        var locationdetail = $('#LocationDetails').val();
+        var latitude = $('#Latitude').val();
+        var longitude = $('#Longitude').val();
+        var date = $('#Date').val();
+        var widd = $('#widd').val();
+        var toww = $('#toww').val();
+        var premm = $('#premm').val();
+        var post = $('#post').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/Updatewell',
+            data: function () {
+                
+                var data = new FormData();
+                data.append("id", id);
+                data.append("village", village);
+                data.append("locationdetail", locationdetail);
+                data.append("latitude", latitude);
+                data.append("longitude", longitude);
+                data.append("Date", date);
+                data.append("widd", widd);
+                data.append("toww", toww);
+                data.append("premm", premm);
+                data.append("post", post);
+                data.append("txtimage", jQuery("#txtimage").get(0).files[0]);
+
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                existingwell();
+                updatewell_data();
+                newwell();
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+    function deletedata(id) {
+
+        
+        var obj = {};
+        obj.id = id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/deletewell',
+            data: "{'Id': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                existingwell();
+                updatewell_data();
+                newwell()
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+
+    function editexisting(param) {
+
+        
+        var tr = $(param).closest("tr");
+        var RowId = tr.find('#srNo').attr('rowId');
+        var village = tr.find('#vill').html();
+        var location = tr.find('#location').html();
+        var latitude = tr.find('#latitude').html();
+        var longtude = tr.find('#longtude').html();
+        var date = tr.find('#date').html();
+        var wellid = tr.find('#wellid').html();
+        var Type1 = tr.find('#typeofwell').html();
+        var pre1 = tr.find('#PreMonsoon2019').html();
+        var post1 = tr.find('#postMonsoon2019').html();
+        var image = tr.find('#image').html();
+
+
+        $('#Village').val(village);
+        $('#LocationDetails').val(location);
+        $('#Latitude').val(latitude);
+        $('#Longitude').val(longtude);
+        $('#Date').val(date);
+        $('#widd').val(wellid);
+        $('#toww').val(Type1);
+        $('#premm').val(pre1);
+        $('#post').val(post1);
+        $('#txtimage').val(image);
+        $('#updateButton').attr('rowid', RowId);
+
+    }
+
+
+    function Excel() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/exesitingwellexcel";
+        }
+    }
+
+    function New_Excel() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/newobservationwellexcel";
+        }
+    }
+
+    function Report_PDF() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/newobservation_report";
+        }
+    }
+    function Report_PDF_exesting() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/exesting_getting";
+        }
+    }
+
+    /*Updated Existing observation Well*/
+    // var Updated = $('#New').text(data.length);
+
+    var id = 0;
+    function updatewell_data() {
+        
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/updatewell_data',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var Tbodyhtml = '';
+                for (var i = 0; i < data.length; i++) {
+
+                    Tbodyhtml += '<tr><td id="srNo_update" rowId = ' + data[i].gp['id'] + '>' + (i + 1) + '</td>';
+                    Tbodyhtml += '<td id="updatevill">' + data[i].gp['sitename'] + '</td>';
+                    Tbodyhtml += '<td id="updatelocation">' + data[i].gp['locationdetails'] + '</td>';
+                    Tbodyhtml += '<td id="updatelatitude">' + data[i].gp['latitude'] + '</td>';
+                    Tbodyhtml += '<td id="updatelongtude">' + data[i].gp['longitude'] + '</td>';
+                    Tbodyhtml += '<td id ="updatedate">' + data[i].gp['date'] + '</td>';
+                    Tbodyhtml += '<td id="updateWellid">' + data[i].gp['wellid'] + '</td>';
+                    Tbodyhtml += '<td id="updatetypeofwell">' + data[i].gp['typeofwell'] + '</td>';
+                    Tbodyhtml += '<td id="updateothertypeofwell">' + data[i].gp['other_well_type'] + '</td>';
+                    Tbodyhtml += '<td id="updatesource">' + data[i].gp['source'] + '</td>';
+                    Tbodyhtml += '<td id="updatePreMonsoon">' + data[i].r['pre_monsoon'] + '</td>';
+                    Tbodyhtml += '<td id="updatepreMonsoondate">' + data[i].gp['pre_date'] + '</td>';
+                    Tbodyhtml += '<td id="updatepostMonsoon">' + data[i].r['post_monsoon'] + '</td>';
+                    Tbodyhtml += '<td id="updatepostMonsoondate">' + data[i].gp['post_date'] + '</td>';
+                    Tbodyhtml += '<td id="updatewaterlevel">' + data[i].gp['groundwater_level'] + '</td>';
+                    Tbodyhtml += '<td><a href=' + data[i].gp['image'] + ' id="updateimage">Image</a></td></tr> ';
+
+                }
+                $('#mainTable1 tbody').html(Tbodyhtml);
+                update = data.length;
+                $('#update_total').text(update);
+
+
+            }
+        });
+
+    }
+
+
+    function editnew_update(param) {
+
+        
+        var tr = $(param).closest("tr");
+        var RowId = tr.find('#srNo_update').attr('rowId');
+        var village = tr.find('#updatevill').html();
+        var location = tr.find('#updatelocation').html();
+        var latitude = tr.find('#updatelatitude').html();
+        var longtude = tr.find('#updatelongtude').html();
+        var date = tr.find('#updatedate').html();
+        var wellid = tr.find('#updateWellid').html();
+        var Type1 = tr.find('#updatetypeofwell').html();
+        var pre1 = tr.find('#updatePreMonsoon').html();
+        var post1 = tr.find('#updatepostMonsoon').html();
+        var updateimage = tr.find('#updateimage').html();
+
+
+
+
+        $('#updateVillage').val(village);
+        $('#updateLocationDetails').val(location);
+        $('#updateLatitude').val(latitude);
+        $('#updateLongitude').val(longtude);
+        $('#updateDate').val(date);
+        $('#updatewid1').val(wellid);
+        $('#updatetoww').val(Type1);
+        $('#updateprem1').val(pre1);
+        $('#updatepost1').val(post1);
+        $('#updateimage').val(updateimage);
+        $('#update_data').attr('rowid', RowId);
+
+    }
+
+
+    function update_observation() {
+        
+
+        var id = $('#update_data').attr('rowid');
+        var village = $('#updateVillage').val();
+        var locationdetail = $('#updateLocationDetails').val();
+        var latitude = $('#updateLatitude').val();
+        var longitude = $('#updateLongitude').val();
+        var date = $('#updateDate').val();
+        var widd = $('#updatewid1').val();
+        var toww = $('#updatetoww').val();
+        var premm = $('#updateprem1').val();
+        var post = $('#updatepost1').val();
+        // var source = $('#updatesource1').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/Update_observation_well',
+            data: function () {
+                
+                var data1 = new FormData();
+                data1.append("id", id);
+                data1.append("village", village);
+                data1.append("locationdetail", locationdetail);
+                data1.append("latitude", latitude);
+                data1.append("longitude", longitude);
+                data1.append("Date", date);
+                data1.append("widd", widd);
+                data1.append("toww", toww);
+                data1.append("premm", premm);
+                data1.append("post", post);
+                //data1.append("updateimage", jQuery("#updateimage").get(0).files[0]);
+                return data1;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                existingwell();
+                updatewell_data();
+                newwell();
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+
+    function delete_update_observation(id) {
+
+        
+        var obj = {};
+        obj.id = id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/delete_update_observation',
+            data: "{'Id': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                existingwell();
+                updatewell_data();
+                newwell();
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+
+
+
+
+
+
+    /*New observation Well*/
+    // var New = $('#new_well_total').text(data.length);
+
+    var id = 0;
+    function newwell() {
+        
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/newwell',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var Tbodyhtml = '';
+
+                for (var i = 0; i < data.length; i++) {
+
+                    Tbodyhtml += '<tr><td id="srNo_new" rowId = ' + data[i].gp['id'] + '>' + (i + 1) + '</td>';
+                    Tbodyhtml += '<td id="newvill">' + data[i].gp['sitename'] + '</td>';
+                    Tbodyhtml += '<td id="newlocation">' + data[i].gp['locationdetails'] + '</td>';
+                    Tbodyhtml += '<td id="newlatitude">' + data[i].gp['latitude'] + '</td>';
+                    Tbodyhtml += '<td id="newlongtude">' + data[i].gp['longitude'] + '</td>';
+                    Tbodyhtml += '<td id ="newdate">' + data[i].gp['date'] + '</td>';
+                    Tbodyhtml += '<td id="newWellid">' + data[i].gp['wellid'] + '</td>';
+                    Tbodyhtml += '<td id="newtypeofwell">' + data[i].gp['typeofwell'] + '</td>';
+                    Tbodyhtml += '<td id="newothertypeofwell">' + data[i].gp['other_well_type'] + '</td>';
+                    Tbodyhtml += '<td id="newsource">' + data[i].gp['source'] + '</td>';
+                    Tbodyhtml += '<td id="newPreMonsoon">' + data[i].r['pre_monsoon'] + '</td>';
+                    Tbodyhtml += '<td id="newpreMonsoondate">' + data[i].gp['pre_date'] + '</td>';
+                    Tbodyhtml += '<td id="newpostMonsoon">' + data[i].r['post_monsoon'] + '</td>';
+                    Tbodyhtml += '<td id="newpostMonsoondate">' + data[i].gp['post_date'] + '</td>';
+                    Tbodyhtml += '<td id="newwaterlevel">' + data[i].gp['groundwater_level'] + '</td>';
+                    Tbodyhtml += '<td><a href=' + data[i].gp['image'] + ' id="newimage1">Image</a></td></tr> ';
+                    // Tbodyhtml += '<td><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit newobservationbtn" data-toggle="modal" data-target="#myModalownership" onclick="editnew(this)"></button> <button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-trash deletebtn" onclick="deletedatanew(' + data[i].gp['id'] + ')"></button></td></tr> ';
+
+
+
+                }
+                $('#mainTable2 tbody').html(Tbodyhtml);
+
+                new_well = data.length;
+                $('#new_well_total').text(new_well);
+                
+                var total = parseInt(exist) + parseInt(new_well);
+                $('#total_gwm').text(total);
+                /*+ parseInt(update)*/
+            }
+        });
+
+    }
+
+
+
+    function updatenew_save() {
+        
+
+        var id = $('#updatenewButton').attr('rowid');
+        var village = $('#newVillage').val();
+        var locationdetails = $('#newLocationDetails').val();
+        var latitude = $('#newLatitude').val();
+        var longitude = $('#newLongitude').val();
+        var date = $('#datepicker_new').val();
+        var widd = $('#newwidd').val();
+        var toww = $('#newtoww').val();
+        var premm = $('#newownership').val();
+        var post = $('#newwl').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/Updatenewwell_save',
+            data: function () {
+                
+                var data2 = new FormData();
+                data2.append("id", id);
+                data2.append("village", village);
+                data2.append("locationdetails", locationdetails);
+                data2.append("latitude", latitude);
+                data2.append("longitude", longitude);
+                data2.append("Date", date);
+                data2.append("widd", widd);
+                data2.append("toww", toww);
+                data2.append("premm", premm);
+                data2.append("post", post);
+                data2.append("txtimage2", jQuery("#txtimage2").get(0).files[0]);
+                return data2;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                existingwell();
+                updatewell_data();
+                newwell();
+
+
+
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+
+    function editnew(param) {
+
+        
+        var tr = $(param).closest("tr");
+        var RowIdnew = tr.find('#srNo').attr('RowId');
+        var village = tr.find('#newvill').html();
+        var location = tr.find('#newlocation').html();
+        var latitude = tr.find('#newlatitude').html();
+        var longtude = tr.find('#newlongtude').html();
+        var date = tr.find('#newdate').html();
+        var wellid = tr.find('#newWellid').html();
+        var Type2 = tr.find('#newtypeofwell').html();
+        var ownershiptype = tr.find('#newPreMonsoon').html();
+        var waterlevel = tr.find('#newpostMonsoon').html();
+        var image2 = tr.find('#image').html();
+
+
+
+        $('#newVillage').val(village);
+        $('#newLocationDetails').val(location);
+        $('#newLatitude').val(latitude);
+        $('#newLongitude').val(longtude);
+        $('#datepicker_new').val(date);
+        $('#newwidd').val(wellid);
+        $('#newtoww').val(Type2);
+        $('#newownership').val(ownershiptype);
+        $('#newwl').val(waterlevel);
+        $('#txtimage2').val(image2);
+        $('#updatenewButton').attr('Rowid', RowIdnew);
+    }
+
+
+    function deletedatanew(id) {
+
+        
+        var obj = {};
+        obj.id = id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/deletenewwell',
+            data: "{'Id': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                existingwell();
+                updatewell_data();
+                newwell();
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+
+    //
+    //var Total = exist + update + new_well;
+    //alert(Total);
+
+
+</script>
+
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker_new").datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true,
+        });
+    });
+    $(function () {
+        $("#updateDate").datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true,
+        });
+    });
+    $(function () {
+        $("#Date").datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true,
+        });
+    });
+
+</script>
+
+
+
+
+

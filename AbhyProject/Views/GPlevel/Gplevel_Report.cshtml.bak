@@ -1,0 +1,1648 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Content/css/baseline_gp_js.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    body {
+        font-family: Calibri !important;
+    }
+
+    .page2el2 {
+        margin-top: 50px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .demandside_text > tbody > tr > td {
+        text-align: right;
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .demanside_padding_heading1 {
+        padding: 0px !important;
+    }
+
+    .supplyside_demandside_space1 > .reportheading > p {
+        margin: 0px 0 6px !important;
+    }
+
+    .gramReport_div_start.col-md-12 {
+        padding: 0px;
+    }
+
+    .demandside_text_123 > tbody > tr > th {
+        font-size: 14px !important;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+
+        .dateandtime_ul > li {
+            display: inline-block;
+            color: #000;
+            font-size: 18px;
+            padding: 0px 15px;
+        }
+
+    .table-striped tbody tr td:last-child {
+        text-align: right;
+    }
+
+    .pgwmtable tbody tr td:last-child,
+    .demandsidetable tr td:last-child {
+        text-align: left !important;
+    }
+
+    .wateratextiablity_space {
+        margin-top: 186px;
+    }
+
+    .waterdrft_space {
+        margin-top: 18px;
+    }
+
+    .waterdrft_balance {
+        margin-top: 180px;
+    }
+
+    .waterdrft_Budgeting_space {
+        margin-top: 280px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .singnatire_table tbody tr td {
+        height: 100px;
+    }
+
+    .supplyside_demandside_space {
+        margin-top: 340px;
+    }
+
+    .pgwmCommiteee_space {
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .pgwm_range {
+        margin-top: 280px;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+
+
+    .secondtable {
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    .totatal_textue_label {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    .table-condensed {
+        font-weight: 100;
+        text-shadow: none;
+    }
+
+    .tolat_report_color {
+        color: #6FB11D !important;
+    }
+
+    .wateratextiablity_table > thead > tr > td,
+    .wateratextiablity_table > tbody > tr > td {
+        padding: 0px 3px;
+    }
+
+    table > tbody > tr > td {
+        color: #337ab7 !important;
+        font-weight: 500;
+    }
+
+    table > tbody > tr > th {
+        color: #337ab7 !important;
+    }
+
+    table > tbody > tr > td > label {
+        color: #000 !important;
+    }
+
+    table > tbody > tr > td > span {
+        color: #000 !important;
+    }
+
+    .pgwmtable > tbody > tr > td {
+        color: #000 !important;
+    }
+
+    .text_left_left {
+        text-align: left !important;
+        color: #000 !important;
+    }
+</style>
+<div class="loading-container">
+    @*<div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+        </div>*@
+</div>
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>GPDCI Report </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+                <button class="btn btn-success" id="print" onclick="printpage()">Print</button>
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demo"></span></li>
+                    <li>Time : <span id="demo2"></span></li>
+                    <li>
+                        User Name:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~//Gplevel/Gplevel" class="btn btn-danger"> Back</a>
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label style="text-align:left" id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat:</label>
+                            <span style="text-align:left" id="spngram">@Session["ggram"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["year"] != null && Session["year"].ToString() != "null" && Session["year"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Year:</label>
+                            <span id="spnyear"></span>
+
+                        </li>
+                    }
+                    @if (Session["month"] != null && Session["month"].ToString() != "null" && Session["month"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Month:</label>
+                            <span id="spngram">@Session["month"]</span>
+
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="gramReport_div_start col-md-12">
+            <div class="text-center reportheading">
+                <p>
+                    GP Profile
+                </p>
+            </div>
+
+            <div class="col-md-12">
+                <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+
+                            <tr>
+                                <td>State:</td>
+                                <td>
+                                    <span id="state_name"></span>
+                                </td>
+                                <td>District:</td>
+                                <td>
+                                    <span id="district_name"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Block / Taluk :</td>
+                                <td>
+                                    <span id="block_name"></span>
+                                </td>
+                                <td>GP Name :</td>
+                                <td>
+                                    <span id="gram_panchayat_name"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="village_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    1. Total number of villages under the selected GP :
+                                </td>
+                                <td class="text_left_left">
+                                    <span id="total_no_of_village"></span>
+                                </td>
+
+                                <td class="text_left_left">
+                                    <span id="VillageName"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4">Village Name</th>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="village_name" class="tablebody text_left_left"></tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="">
+                            <tr>
+                                <th colspan="4" id="population_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="4">2. Demographic Profile</th>
+
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text_left_left">2.1 Population</td>
+                            </tr>
+
+                            <tr>
+                                <td>Male :</td>
+                                <td>
+                                    <span id="male_population"></span>
+
+                                </td>
+                                <td>Female :</td>
+                                <td>
+                                    <span id="female_population"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Transgender :</td>
+                                <td>
+                                    <span id="transgender_population"></span>
+
+                                </td>
+                                <td>Total Population:</td>
+                                <td>
+                                    <span id="tol_population"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Source Year :</td>
+                                <td>
+                                    <span id="source_year"></span>
+                                </td>
+                            </tr>
+                            <tr><td colspan="4" class="text_left_left">2.2 Categories</td></tr>
+                            <tr>
+                                <td>SC :</td>
+                                <td>
+                                    <span id="no_of_sc"></span>
+
+                                </td>
+                                <td>ST :</td>
+                                <td>
+                                    <span id="no_of_st"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>OBC :</td>
+                                <td>
+                                    <span id="no_of_obc"></span>
+
+                                </td>
+                                <td>General :</td>
+                                <td>
+                                    <span id="no_of_general"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text_left_left">2.3 Class/Status</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Number of BPL Card Holders :</td>
+                                <td>
+                                    <span id="no_of_bpl"></span>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="text_left_left">2.4 No.of Households</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">No. of Households :</td>
+                                <td>
+                                    <span id="no_of_households"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="livestock_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text_left_left">2.5 Livestock Population</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="livestockthead" class="tablebody text_left_left"></tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+                            <tr class="text_left_left">
+                                <td>Total Livestock population :</td>
+                                <td class="text_left_left">
+                                    <span id="livestock_population"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="gparea_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="4">3. GP Area (In ha)</th>
+                            </tr>
+                            <tr>
+                                <td>Total GP Area :</td>
+                                <td class="text_left_left">
+                                    <span id="gp_area_in_ha"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4">4. Land use and  Land Cover (in ha)</th>
+                            </tr>
+                            <tr>
+
+
+                                <td>Forest area (ha) :</td>
+                                <td class="text_left_left">
+                                    <span id="forest_area_in_ha"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td class="text_left_left">Fallow land (ha):</td>
+                                <td>
+                                    <span id="fallow_land_in_ha"></span>
+
+                                </td>
+                                <td>Cultivable land (ha) :</td>
+                                <td>
+                                    <span id="cultivable_land_in_ha"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>Other Land use (Settlement, Barren land etc.) :</td>
+                                <td class="text_left_left">
+                                    <span id="other_land_use"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="sownarea_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="4">5. Net Area (In ha)</th>
+                            </tr>
+                            <tr>
+                                <td>Net Sown Area :</td>
+                                <td class="text_left_left">
+                                    <span id="net_sown_area"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Net Irrigated Area :</td>
+                                <td class="text_left_left">
+                                    <span id="net_irrigated_area"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="irrigated_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="4">6. Area Under Cultivation Kharif/Rabi/Summer (in ha)</th>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text_left_left">6.1 Irrigated Area</td>
+                            </tr>
+                            <tr>
+                                <td> Area in kharif :</td>
+                                <td>
+                                    <span id="irrigated_area_in_kharif"></span>
+
+                                </td>
+                                <td> Area in rabi :</td>
+                                <td>
+                                    <span id="irrigated_area_in_rabi"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Area in summer :</td>
+                                <td>
+                                    <span id="irrigated_area_in_summer"></span>
+
+                                </td>
+                                <td>Total Irrigated Area :</td>
+                                <td>
+                                    <span id="total_irrigated_area"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="text_left_left">6.2 Un-Irrigated / Rainfed Area</td>
+                            </tr>
+                            <tr>
+                                <td> Area in kharif :</td>
+                                <td>
+                                    <span id="un_irrigated_area_in_kharif"></span>
+
+                                </td>
+                                <td> Area in rabi :</td>
+                                <td>
+                                    <span id="un_irrigated_area_in_rabi"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Area in summer :</td>
+                                <td>
+                                    <span id="un_irrigated_area_in_summer"></span>
+
+                                </td>
+                                <td>Total Irrigated Area :</td>
+                                <td>
+                                    <span id="total_un_irrigated_area"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" class="text_left_left">6.3 Total Cropped Area</td>
+                            </tr>
+                            <tr>
+                                <td>Total Cropped Area :</td>
+                                <td class="text_left_left">
+                                    <span id="total_cropped_area"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4">7. Irrigation Source (in ha)</th>
+                            </tr>
+
+
+                            <tr>
+                                <th colspan="4" id="ground_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text_left_left">7.1 Ground Water</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @*<tr id="trirrsurfother"></tr>*@
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="irriggroundwatertr" class="tablebody"></tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+
+                            <tr>
+                                <td>Total Irrigation from Ground Water :</td>
+                                <td>
+                                    <span id="totalGround"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="surface_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text_left_left">7.2 Surface Water</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="trirrsurfother" class="tablebody"></tbody>
+                    </table>
+
+                    @*<tr id="irriggroundwatertr"></tr>*@
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+
+                            <tr>
+                                <td>Total Irrigation from Surface Water :</td>
+                                <td>
+                                    <span id="totalSurfaceWater"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="4">8. Number of Ground Water Abstraction Structures</th>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="existing_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text_left_left">8.1 Existing Wells</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody id="trgroundwater" class="tablebody"></tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+                            <tr>
+                                <td>Total Existing wells :</td>
+                                <td>
+                                    <span id="totalWells"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="lifting_download"> </th>
+
+                            </tr>
+                            <tr><th colspan="4" class="text_left_left">8.2 Water Lifting Devices</th></tr>
+                            <tr>
+                                <td>Non-energised :</td>
+                                <td>
+                                    <span id="non_energised"></span>
+
+                                </td>
+                                <td>Diesel pump :</td>
+                                <td>
+                                    <span id="diesel_pumps"></span>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Solar pump :</td>
+                                <td>
+                                    <span id="solar_pumps"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Centrifugal pump :</td>
+                                <td>
+                                    <span id="centrifugal_pumps"></span>
+                                </td>
+                                <td>Submersible pump :</td>
+                                <td>
+                                    <span id="submersible_pumps"></span>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Total Electric Pump :</td>
+                                <td>
+                                    <span id="total_electric_pumps"></span>
+                                </td>
+                                <td>Total Water Lifting Devices :</td>
+                                <td class="text_left_left">
+                                    <span id="total_water_lifting_devices"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" id="efficient_download"> </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="4">9. Water Efficient Practices (Existing)</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody" id="watereffthead"></tbody>
+                    </table>
+
+                    @*<tr id="watereffthead"></tr>*@
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+                            <tr>
+                                <td>Total Water Efficient Practices (Existing) :</td>
+                                <td>
+                                    <span id="total_water_efficient"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page2el11">
+            <div class="">
+                <div class="col-md-12 ">
+                    <div class="text-center reportheading">
+                        <p>Contact Details of GP Sarpanch & Panchayat Secretary</p>
+                    </div>
+                    <div class="tbl-responsive" style="overflow-x:scroll">
+                        <table class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <thead>
+                                <tr class="tableheader1"></tr>
+                                <tr class="success">
+                                    <td class="text-center"><label>S.No.</label></td>
+                                    <td class="text-center"><label>Designation</label></td>
+                                    <td class="text-center"><label>Name</label></td>
+                                    <td class="text-center"><label>Gender</label></td>
+                                    <td class="text-center"><label>Contact Details</label></td>
+                                </tr>
+                            </thead>
+                            <tbody id="tbldata"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~//Gplevel/Gplevel" class="btn btn-danger"> Back</a>
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    function ReportPdf() {
+        $("#Data1").width(1095);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'GPDCI_report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+    }
+</script>
+
+<script>
+    //Code for print page
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("print");
+        //Set the print button visibility to 'hidden'
+        //printButton.style.visibility = 'hidden';
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        //Print the page content
+        window.print()
+        $('div#btnExport').removeClass('hideDownload');
+        $('div#btnExport1').removeClass('hideDownload');
+        //printButton.style.visibility = 'visible';
+    }
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        if (@Session["year"] == "2022") {
+            $("#spnyear").text("2022-2023")
+        } else if (@Session["year"] == "2023") {
+            $("#spnyear").text("2023-2024")
+        }else if (@Session["year"] == "2024") {
+            $("#spnyear").text("2024-2025")
+        }
+        report_getting();
+        sarpanch_getting();
+
+
+    });
+
+    function report_getting() {
+        debugger;
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GPlevel/GPlevelreport_getting',
+            data: '',
+            //data: { 'state': State, 'dist': Dist, 'block': Block, 'gram': Gram,'year': Year },
+            //data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+
+                $("#state_name").text(data[0].objgpdata[0].state_name);
+                $("#district_name").text(data[0].objgpdata[0].district_name);
+                $("#block_name").text(data[0].objgpdata[0].block_name);
+                $("#gram_panchayat_name").text(data[0].objgpdata[0].gpname);
+                //$("#state_name").text(data[0].objgpdata[0].year);
+
+                if (data[0].length != 0) {
+
+
+                    if (data[0].objgpdata[0].total_no_of_village != null && data[0].objgpdata[0].total_no_of_village != "") {
+                        $('#total_no_of_village').text(parseInt(data[0].objgpdata[0].total_no_of_village));
+                    }
+
+
+                    //population
+
+                    if (data[0].objgpdata[0].male_population != null && data[0].objgpdata[0].male_population != "") {
+                        //male_population = data[0].male_population;
+                        $('#male_population').text(parseInt(data[0].objgpdata[0].male_population));
+                    }
+                    if (data[0].objgpdata[0].female_population != null && data[0].objgpdata[0].female_population != "") {
+
+                        //female_population = data[0].female_population;
+                        $('#female_population').text(parseInt(data[0].objgpdata[0].female_population));
+                    }
+                    if (data[0].objgpdata[0].transgender_population != null && data[0].objgpdata[0].transgender_population != "") {
+                        // child_population = data[0].child_population;
+                        $('#transgender_population').text(parseInt(data[0].objgpdata[0].transgender_population));
+                    }
+
+                    if (data[0].objgpdata[0].tol_population != null && data[0].objgpdata[0].tol_population != "") {
+
+                        $('#tol_population').text(parseInt(data[0].objgpdata[0].tol_population));
+                    }
+                    if (data[0].objgpdata[0].source_year != null && data[0].objgpdata[0].source_year != "") {
+                        $('#source_year').text(data[0].objgpdata[0].source_year);
+                    }
+
+                    if (data[0].objgpdata[0].no_of_sc != null && data[0].objgpdata[0].no_of_sc != "") {
+
+                        $('#no_of_sc').text(parseInt(data[0].objgpdata[0].no_of_sc));
+                    }
+                    if (data[0].objgpdata[0].no_of_st != null && data[0].objgpdata[0].no_of_st != "") {
+
+                        $('#no_of_st').text(parseInt(data[0].objgpdata[0].no_of_st));
+                    }
+                    if (data[0].objgpdata[0].no_of_obc != null && data[0].objgpdata[0].no_of_obc != "") {
+
+                        $('#no_of_obc').text(parseInt(data[0].objgpdata[0].no_of_obc));
+                    }
+
+                    if (data[0].objgpdata[0].no_of_general != null && data[0].objgpdata[0].no_of_general != "") {
+
+                        $('#no_of_general').text(parseInt(data[0].objgpdata[0].no_of_general));
+                    }
+                    if (data[0].objgpdata[0].no_of_bpl != null && data[0].objgpdata[0].no_of_bpl != "") {
+
+                        $('#no_of_bpl').text(parseInt(data[0].objgpdata[0].no_of_bpl));
+                    }
+                    //Number of House holds
+
+                    if (data[0].objgpdata[0].no_of_households != null && data[0].objgpdata[0].no_of_households != "") {
+
+                        $('#no_of_households').text(parseInt(data[0].objgpdata[0].no_of_households));
+                    }
+
+                    // Gp area in Ha
+
+                    if (data[0].objgpdata[0].gp_area_in_ha != null && data[0].objgpdata[0].gp_area_in_ha != "") {
+
+                        $('#gp_area_in_ha').text(parseFloat(data[0].objgpdata[0].gp_area_in_ha).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].forest_area_in_ha != null && data[0].objgpdata[0].forest_area_in_ha != "") {
+
+                        $('#forest_area_in_ha').text(parseFloat(data[0].objgpdata[0].forest_area_in_ha).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].fallow_land_in_ha != null && data[0].objgpdata[0].fallow_land_in_ha != "") {
+
+                        $('#fallow_land_in_ha').text(parseFloat(data[0].objgpdata[0].fallow_land_in_ha).toFixed(4));
+                    }
+
+                    if (data[0].objgpdata[0].cultivable_land_in_ha != null && data[0].objgpdata[0].cultivable_land_in_ha != "") {
+
+                        $('#cultivable_land_in_ha').text(parseFloat(data[0].objgpdata[0].cultivable_land_in_ha).toFixed(4));
+                    }
+
+                    if (data[0].objgpdata[0].other_land_use != null && data[0].objgpdata[0].other_land_use != "") {
+
+                        $("#other_land_use").text(parseFloat(data[0].objgpdata[0].other_land_use).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].net_sown_area != null && data[0].objgpdata[0].net_sown_area != "") {
+
+                        $('#net_sown_area').text(parseFloat(data[0].objgpdata[0].net_sown_area).toFixed(4));
+                    } else {
+                        $('#net_sown_area').text("");
+                    }
+                    if (data[0].objgpdata[0].net_irrigated_area != null && data[0].objgpdata[0].net_irrigated_area != "") {
+
+                        $('#net_irrigated_area').text(parseFloat(data[0].objgpdata[0].net_irrigated_area).toFixed(4));
+                    } else {
+                        $('#net_irrigated_area').text("");
+                    }
+
+                    //net_sown_area
+
+                    // Agriculture
+
+                    if (data[0].objgpdata[0].irrigated_area_in_kharif != null && data[0].objgpdata[0].irrigated_area_in_kharif != "") {
+
+                        $('#irrigated_area_in_kharif').text(parseFloat(data[0].objgpdata[0].irrigated_area_in_kharif).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].irrigated_area_in_rabi != null && data[0].objgpdata[0].irrigated_area_in_rabi != "") {
+
+                        $('#irrigated_area_in_rabi').text(parseFloat(data[0].objgpdata[0].irrigated_area_in_rabi).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].irrigated_area_in_summer != null && data[0].objgpdata[0].irrigated_area_in_summer != "") {
+
+                        $('#irrigated_area_in_summer').text(parseFloat(data[0].objgpdata[0].irrigated_area_in_summer).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].total_irrigated_area != null && data[0].objgpdata[0].total_irrigated_area != "") {
+
+                        $('#total_irrigated_area').text(parseFloat(data[0].objgpdata[0].total_irrigated_area).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].un_irrigated_area_in_kharif != null && data[0].objgpdata[0].un_irrigated_area_in_kharif != "") {
+
+                        $('#un_irrigated_area_in_kharif').text(parseFloat(data[0].objgpdata[0].un_irrigated_area_in_kharif).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].un_irrigated_area_in_rabi != null && data[0].objgpdata[0].un_irrigated_area_in_rabi != "") {
+
+                        $('#un_irrigated_area_in_rabi').text(parseFloat(data[0].objgpdata[0].un_irrigated_area_in_rabi).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].un_irrigated_area_in_summer != null && data[0].objgpdata[0].un_irrigated_area_in_summer != "") {
+
+                        $('#un_irrigated_area_in_summer').text(parseFloat(data[0].objgpdata[0].un_irrigated_area_in_summer).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].total_un_irrigated_area != null && data[0].objgpdata[0].total_un_irrigated_area != "") {
+
+                        $('#total_un_irrigated_area').text(parseFloat(data[0].objgpdata[0].total_un_irrigated_area).toFixed(4));
+                    }
+                    if (data[0].objgpdata[0].total_cropped_area != null && data[0].objgpdata[0].total_cropped_area != "") {
+
+                        $('#total_cropped_area').text(parseFloat(data[0].objgpdata[0].total_cropped_area).toFixed(4));
+                    }
+
+                    if (data[0].objgpdata[0].unirrigated_area != null && data[0].objgpdata[0].unirrigated_area != "") {
+
+                        $('#non_irrigated_area').text(parseFloat(data[0].objgpdata[0].unirrigated_area).toFixed(4));
+                    }
+
+                    // Water lifting source
+
+                    if (data[0].objgpdata[0].non_energised != null && data[0].objgpdata[0].non_energised != "") {
+
+                        $('#non_energised').text(parseInt(data[0].objgpdata[0].non_energised));
+                    }
+                    if (data[0].objgpdata[0].diesel_pumps != null && data[0].objgpdata[0].diesel_pumps != "") {
+
+                        $('#diesel_pumps').text(parseInt(data[0].objgpdata[0].diesel_pumps));
+                    }
+                    if (data[0].objgpdata[0].centrifugal_pumps != null && data[0].objgpdata[0].centrifugal_pumps != "") {
+
+                        $('#centrifugal_pumps').text(parseInt(data[0].objgpdata[0].centrifugal_pumps));
+                    }
+                    if (data[0].objgpdata[0].submersible_pumps != null && data[0].objgpdata[0].submersible_pumps != "") {
+
+                        $('#submersible_pumps').text(parseInt(data[0].objgpdata[0].submersible_pumps));
+                    }
+                    if (data[0].objgpdata[0].solar_pumps != null && data[0].objgpdata[0].solar_pumps != "") {
+
+                        $('#solar_pumps').text(parseInt(data[0].objgpdata[0].solar_pumps));
+                    }
+                    if (data[0].objgpdata[0].total_electric_pumps != null && data[0].objgpdata[0].total_electric_pumps != "") {
+
+                        $('#total_electric_pumps').text(parseInt(data[0].objgpdata[0].total_electric_pumps));
+                    }
+
+                    if (data[0].objgpdata[0].total_water_lifting_devices != null && data[0].objgpdata[0].total_water_lifting_devices != "") {
+
+                        $('#total_water_lifting_devices').text(parseInt(data[0].objgpdata[0].total_water_lifting_devices));
+                    }
+                    //Village Name section
+                    if (data[0].objgpdata[0] != null && data[0].objgpdata[0] != "") {
+                        var VillageName = data[0].objgpdata[0].village_name.split(',');
+                        $('#villagethead').empty('');
+                        var html = "";
+                        var j = 3;
+                        debugger;
+                        for (var i = 0; i < VillageName.length; i++) {
+                            if (0 == (j % 3)) {
+                                html += '<tr><td style="text-align: left">'   + VillageName[i] + '</td>';
+
+                            } else if (1 == (j % 3)) {
+                                html += '<td style="text-align: left">' + VillageName[i] + '</td>';
+                            }
+                            else {
+                                html += '<td style="text-align: left">' + VillageName[i] + '</td></tr>';
+
+                            }
+                            //if ((i + 1) % 2 == 0) {
+                            j++;
+                            //}
+
+                        }
+                        $('#village_name').append(html);
+                    }
+
+                    ///Livestock Section
+                    debugger;
+                    if (data[0].objlivestock.length != null && data[0].objlivestock.length != "") {
+                        //var LivestockName = data[0].l["livestockname"].split(',');
+                        //var LivestockValue = data[0].l["livestockvalue"].split(',');
+                        $('#livestockthead').empty('');
+                        var html = "";
+                        var html1 = "";
+                        var total_livestock = 0;
+                        var j = 0;
+                        for (var i = 0; i < data[0].objlivestock.length; i++) {
+                            if (j == (i + 10) % 2) {
+                                html = '<tr><td>' + data[0].objlivestock[i].livestock_name + '</td>';
+                                html += '<td class="text_left_left"><span id="">' + data[0].objlivestock[i].livestock_value + '</span></td>';
+
+                            } else {
+                                html = '<td>' + data[0].objlivestock[i].livestock_name + '</td>';
+                                html += '<td><span id="">' + data[0].objlivestock[i].livestock_value + '</span></td></tr>';
+
+                            }
+                            html1 += html;
+
+                            total_livestock += parseInt(data[0].objlivestock[i].livestock_value);
+                            LivestockCounter = parseFloat(i);
+                        }
+
+                        $('#livestockthead').append(html1);
+                        $('#livestock_population').text(total_livestock);
+                    }
+
+
+                    ///Irrigation Surface Water Section
+                    if (data[0].objsurfacewater.length != null && data[0].objsurfacewater.length != "") {
+                        //var other_irrigation_sur_name = data[0].gp["other_irrigation_sur_name"].split(',');
+                        //var other_irrigation_sur_numeric = data[0].gp["other_irrigation_sur_numeric"].split(',');
+
+                        $('#trirrsurfother').empty('');
+                        var html = "";
+                        var html1 = "";
+                        var total_surfacewater = 0;
+                        var j = 0;
+
+                        for (var i = 0; i < data[0].objsurfacewater.length; i++) {
+                            if (j == (i + 10) % 2) {
+                                html = '<tr><td>' + data[0].objsurfacewater[i].surface_water_name + '</td>';
+                                html += '<td class="text_left_left"><span id="">' + parseFloat(data[0].objsurfacewater[i].surface_water_value).toFixed(4) + '</span></td>';
+
+                            } else {
+                                html = '<td>' + data[0].objsurfacewater[i].surface_water_name + '</td>';
+                                html += '<td><span id="">' + parseFloat(data[0].objsurfacewater[i].surface_water_value).toFixed(4) + '</span></td></tr>';
+
+                            }
+                            total_surfacewater += parseFloat(data[0].objsurfacewater[i].surface_water_value);
+
+                            html1 += html;
+                            IrriSurfaceWaterCounter = i;
+                        }
+                        IrriSurfaceWaterCounter = i + 1;
+                        $('#trirrsurfother').append(html1);
+                        $('#totalSurfaceWater').text(parseFloat(total_surfacewater).toFixed(4));
+
+                    }
+
+                    ///Irrigation Ground Water Section
+                    if (data[0].objgroundwater.length != null && data[0].objgroundwater.length != "") {
+                        //var other_irrigation_gr_name = data[0].gp["other_irrigation_gr_name"].split(',');
+                        //var other_irrigation_gr_numeric = data[0].gp["other_irrigation_gr_numeric"].split(',');
+
+                        $('#irriggroundwatertr').empty('');
+                        var html = "";
+                        var html1 = "";
+                        var total_groundwater = 0;
+                        var j = 0;
+
+                        for (var i = 0; i < data[0].objgroundwater.length; i++) {
+                            if (j == (i + 10) % 2) {
+                                html = '<tr><td>' + data[0].objgroundwater[i].ground_water_name + '</td>';
+                                html += '<td class="text_left_left"><span id="">' + parseFloat(data[0].objgroundwater[i].ground_water_value).toFixed(4) + '</span></td>';
+
+                            } else {
+                                html = '<td>' + data[0].objgroundwater[i].ground_water_name + '</td>';
+                                html += '<td><span id="">' + parseFloat(data[0].objgroundwater[i].ground_water_value).toFixed(4) + '</span></td></tr>';
+
+                            }
+                            total_groundwater += parseFloat(data[0].objgroundwater[i].ground_water_value);
+                            html1 += html;
+                            IrriGroundWaterCounter = parseInt(i);
+                        }
+                        $('#irriggroundwatertr').append(html1);
+                        $('#totalGround').text(parseFloat(total_groundwater).toFixed(4));
+                    }
+
+                    ///Ground Water Section
+                    debugger;
+                    if (data[0].objexwells.length != null && data[0].objexwells.length != "") {
+                        //var othergroundwatername = data[0].gp["other_well_name"].split(',');
+                        //var othergroundwaternumeric = data[0].gp["other_well_existing"].split(',');
+                        $('#trgroundwater').empty('');
+                        var html = "";
+                        var html1 = "";
+                        var total_existing = 0;
+
+                        for (var i = 0; i < data[0].objexwells.length; i++) {
+                            if (j == (i + 10) % 2) {
+                                html = '<tr><td>' + data[0].objexwells[i].existing_wells_name + '</td>';
+                                html += '<td class="text_left_left"><span id="">' + parseFloat(data[0].objexwells[i].existing_wells_value) + '</span></td>';
+
+                            } else {
+                                html = '<td>' + data[0].objexwells[i].existing_wells_name + '</td>';
+                                html += '<td><span id="">' + parseFloat(data[0].objexwells[i].existing_wells_value) + '</span></td></tr>';
+
+                            }
+
+                            html1 += html;
+                            total_existing += parseFloat(data[0].objexwells[i].existing_wells_value);
+                            GroundWaterCounter = i;
+                        }
+                        GroundWaterCounter = i + 1;
+                        $('#totalWells').text(total_existing);
+                        $('#trgroundwater').append(html1);
+                    }
+
+
+                    ///Water Efficient Section
+                    debugger;
+                    if (data[0].objwatereff.length != null && data[0].objwatereff.length != "") {
+                        //var otherIrriName = data[0].gp["other_irrigation_name"].split(',');
+                        //var otherIrrivalue = data[0].gp["other_irrigation"].split(',');
+                        $('#watereffthead').empty('');
+                        var html = "";
+                        var html1 = "";
+                        var total_watereff = 0;
+                        for (var i = 0; i < data[0].objwatereff.length; i++) {
+                            if (j == (i + 10) % 2) {
+                                html = '<tr><td>' + data[0].objwatereff[i].water_eff_practices_name + '</td>';
+                                html += '<td class="text_left_left"><span id="">' + parseFloat(data[0].objwatereff[i].water_eff_practices_value).toFixed(4) + '</span></td>';
+
+                            } else {
+                                html = '<td>' + data[0].objwatereff[i].water_eff_practices_name + '</td>';
+                                html += '<td><span id="">' + parseFloat(data[0].objwatereff[i].water_eff_practices_value).toFixed(4) + '</span></td></tr>';
+
+                            }
+
+                            total_watereff += parseFloat(data[0].objwatereff[i].water_eff_practices_value);
+                            html1 += html;
+                            WaterEffCounter = i;
+
+                        }
+                        WaterEffCounter = i + 1;
+                        $('#watereffthead').append(html1);
+                        $('#total_water_efficient').text(parseFloat(total_watereff).toFixed(4));
+                    }
+                    debugger;
+                    for (var i = 0; i < data[0].objupload.length; i++) {
+
+                        if (data[0].objupload[i].villages_file != null && data[0].objupload[i].villages_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].villages_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source Total number of villages</u></a></label>';
+                            $('#village_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].demographic_file != null && data[0].objupload[i].demographic_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].demographic_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Demographic Profile</u></a></label>';
+                            $('#population_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].livestock_file != null && data[0].objupload[i].livestock_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].livestock_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Livestock Population</u></a></label>';
+                            $('#livestock_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].gparea_file != null && data[0].objupload[i].gparea_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].gparea_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of GP Area</u></a></label>';
+                            $('#gparea_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].netsown_area_file != null && data[0].objupload[i].netsown_area_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].netsown_area_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Net Sown Area</u></a></label>';
+                            $('#sownarea_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].area_cultivation_file != null && data[0].objupload[i].area_cultivation_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].area_cultivation_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Area Under Cultivation Kharif/Rabi/Summer</u></a></label>';
+                            $('#irrigated_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].suface_water_file != null && data[0].objupload[i].suface_water_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].suface_water_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Surface Water</u></a></label>';
+                            $('#surface_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].ground_water_file != null && data[0].objupload[i].ground_water_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].ground_water_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Ground Water</u></a></label>';
+                            $('#ground_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].existing_wells_file != null && data[0].objupload[i].existing_wells_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].existing_wells_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Existing Wells</u></a></label>';
+                            $('#existing_download').html(tr1);
+
+                        }
+                        if (data[0].objupload[i].water_lifting_file != null && data[0].objupload[i].water_lifting_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].water_lifting_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Water Lifting Devices</u></a></label>';
+                            $('#lifting_download').html(tr1);
+
+                        }
+
+                        if (data[0].objupload[i].water_efficient_file != null && data[0].objupload[i].water_efficient_file != "") {
+                            var tr1 = '<label><a href="' + data[0].objupload[i].water_efficient_path + '" download="" target="_blank" ><i class="fa fa-file"></i><u> Download Data Source of Water Efficient Practices (Existing)</u></a></label>';
+                            $('#efficient_download').html(tr1);
+
+                        }
+                    }
+
+                } else {
+
+                    $('#state_name').text('');
+                    $('#district_name').text('');
+                    $('#block_name').text('');
+                    $('#gram_panchayat_name').text('');
+                    $('#male_population').text('');
+                    $('#female_population').text('');
+                    $('#child_population').text('');
+                    $('#tol_population').text('');
+                    $('#no_of_apl').text('');
+                    $('#no_of_bpl').text('');
+                    $('#no_of_sc').text('');
+                    $('#no_of_st').text('');
+                    $('#no_of_obc').text('');
+                    $('#general').text('');
+                    $('#no_of_households').text('');
+                    $('#no_of_cows').text('');
+                    $('#no_of_bullocks').text('');
+                    $('#no_of_buffalos').text('');
+                    $('#no_of_sheeps_goats').text('');
+                    $('#no_of_others_or_general').text('');
+                    $('#livestock_population').text('');
+                    $('#gp_area_in_ha').text('');
+                    $('#forest_area_in_ha').text('');
+                    $('#fallow_land_in_ha').text('');
+                    $('#cultivable_land_in_ha').text('');
+                    $('#net_sown_area').text('');
+                    $('#net_irrigated_area').text('');
+                    $('#irrigated_area_in_kharif').text('');
+                    $('#irrigated_area_in_rabi').text('');
+                    $('#irrigated_area_in_summer').text('');
+                    $('#non_irrigated_area').text('');
+                    $('#total_cropped_area').text('');
+                    $('#irrigation_type_canal').text('');
+                    $('#irrigation_type_tanks').text('');
+                    $('#dug_wells').text('');
+                    $('#dug_cum_bore_wells').text('');
+                    $('#bore_well_or_tube_well').text('');
+                    $('#dug_well_existing').text('');
+                    $('#bore_well_existing').text('');
+                    $('#tube_well_existing').text('');
+                    $('#dug_cum_bore_wells_existing').text('');
+                    $('#other_well_existing').text('');
+                    $('#non_energised').text('');
+                    $('#diesel_pump').text('');
+                    $('#centrifugal_pump').text('');
+                    $('#electric_pump').text('');
+                    $('#submersible_pump').text('');
+                    $('#solar_pump').text('');
+                    $('#area_under_sprinkler_irrigation').text('');
+                    $('#area_under_drip_irrigation').text('');
+                    $('#other_irrigation').text('');
+                    $('#total_water_efficient').text('');
+
+
+                }
+            }
+        });
+
+        sarpanch_getting();
+
+    }
+
+    function sarpanch_getting() {
+        debugger;
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GPlevel/GPlevelreport_sarpanch_getting',
+            data: '',
+            // data: { 'state': State, 'dist': Dist, 'block': Block, 'gram': Gram },
+            dataType: 'JSON',
+            success: function (response) {
+                debugger;
+                var tr = "";
+                $('#tbldata').html(tr);
+                if (response.length != 0) {
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        var gender = '';
+                        if (response[i].gender != null && response[i].gender != '' && response[i].gender != 'NULL') {
+                            gender = response[i].gender;
+                        }
+
+                        tr += '<tr><td> ' + (i + 1) + '</td><td>' + response[i].designation_name + '</td><td>' + response[i].name + '</td><td>' + gender + '</td><td>' + response[i].contact_details + '</td> </tr>';
+                    }
+
+                }
+                if (tr == '') {
+                    tr = '<tr colspan="5"><td colspan="5" style="text-align:center;">No Data</td></tr>';
+                }
+                if (response == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                $('#tbldata').html(tr);
+            }
+        });
+    }
+
+</script>

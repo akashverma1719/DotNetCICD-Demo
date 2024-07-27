@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'RobotoSlab-ExtraBold';
+  src: url('RobotoSlab-ExtraBold.eot');
+  src: url('RobotoSlab-ExtraBold.eot?#iefix') format('embedded-opentype'),
+       url('RobotoSlab-ExtraBold.svg#RobotoSlab-ExtraBold') format('svg'),
+       url('RobotoSlab-ExtraBold.ttf') format('truetype'),
+       url('RobotoSlab-ExtraBold.woff') format('woff'),
+       url('RobotoSlab-ExtraBold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

@@ -1,0 +1,2376 @@
+﻿
+
+@{
+    ViewBag.Title = "WSPgram";
+    Layout = null;
+}
+<title>Water Gram Panchayat</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script name="clear-browser-cache" src='~/Content/JS_Files/clear-browser-cache.js' value="true"></script>
+<style>
+    .color_database {
+        color: green !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="clearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                            <span style="color:#fff;">:@Session["UserName"]</span>
+                        </li>
+                        <li>
+
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="~/Wsp_new/WSPHOME">
+                                <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                <label>WSP Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                            <label>Gram Panchayat</label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+    </header>
+
+    <div class="tab-content">
+        <!--Rainfail_menu Start-->
+        <div role="tabpanel" class="tab-pane fade in active" id="music">
+            <div class="container-fluid">
+                <!--images Row Started-->
+                <div class="clearfix">
+                    <div class="row" id="Select_dist_level">
+                        <ul class="Select_option selectbackhome">
+                            <li>
+                                <label id="lblstate">State:</label>
+                                <span id="spnstate">@Session["gstate"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Block:</label>
+                                <span id="spnblock">@Session["gblock"]</span>
+                            </li>
+                            <li>
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Gram panchayat:</label>
+                                <span id="spngram">@Session["ggram"]</span>
+                            </li>
+                        </ul>
+                        <ul class="selectbackhome" style="float:right;">
+                            <li>
+                                <a href="~/Wsp_new/WSPHOME" class="btn btn-success">
+                                    Back To WSP Home
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12 col-lg-12">
+                            <ul class="tabs_menu sru_menu" id="Surface_menu">
+                                <li class="tab-link active subtab1" data-tab="menu-11">
+                                    <a href="javascript:;">
+                                        <span><img src="~/Content/Agriculture_icons/Gram_Panchayat_2icon.png" /></span>
+                                        <label>Gram Panchayat</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab2" data-tab="menu-12">
+                                    <a href="javascript:;">
+                                        <span><img src="~/Content/Agriculture_icons/PGWMC.png" /></span>
+                                        <label>PGWM Committee</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab3" data-tab="menu-13">
+                                    <a href="javascript:;">
+                                        <span><img src="/Content/Agriculture_icons/location.png" /></span>
+                                        <label>Image Upload</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab4" data-tab="menu-14">
+                                    <a href="javascript:;">
+                                        <span><img src="~/Content/Agriculture_icons/location.png" /></span>
+                                        <label>Location</label>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix tabfirst">
+                    <div class="suface-info active" id="menu-11">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding:10px 15px">
+                                    <div class="form-div">
+                                        <div class="col-md-12 background-border-Database ">
+                                            <div class="row database_trainer_row ">
+                                                <h3>
+                                                    Gram Panchayat
+                                                    <a href="javascript:;" data-toggle="tooltip" title="Data Source : Shapefile(Village Boundary)">
+                                                        <span class="glyphicon glyphicon-info-sign" style="color:#fff" aria-hidden="true"></span>
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">State :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input type="text" id="state_name" class="form-control color_database" name="" placeholder="Your State.." readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">District :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input type="text" id="district_name" class="form-control color_database" name="" placeholder="District .." readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Block / Taluk  :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="block_name" class="form-control color_database" name="" placeholder="Block / Taluk" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Gram Panchayat Name :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="gram_panchayat_name" class="form-control color_database" name="" placeholder="Gram Panchayat Name.." readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Gram Panchayat ID <span class="Required_star"></span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="gp_id" class="form-control color_database alphanum" name="" placeholder="Gram Panchayat ID..">
+                                                    <label id="AlertError1" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Block Area (Ha) <span class="Required_star">*</span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="block_area" class="form-control decimal color_database" name="" placeholder="Block Area..">
+                                                    <label id="AlertError2" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Gram Panchayat Area (Ha) <span class="Required_star">*</span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="gp_area" class="form-control color_database decimal" name="" placeholder="Gram Panchayat area..">
+                                                    <label id="AlertError3" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Watershed Code <span class="Required_star">*</span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="watershed_code" class="form-control color_database alphanum" name="" placeholder="Watershed Code..">
+                                                    <label id="AlertError4" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">Watershed Name :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="watershed_name" class="form-control alpha" name="" placeholder="Watershed name..">
+                                                    <label id="AlertError5" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">Watershed Area in Block / Taluk (Ha) :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="watershed_area_block" class="form-control decimal" name="" placeholder="Watershed are in Block / Taluk..">
+                                                    <label id="AlertError6" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">Sub-basin Code :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="sub_basin_code" class="form-control alphanumspecial" name="" placeholder="Sub-basin Code..">
+                                                    <label id="AlertError7" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Sub Basin Name <span class="Required_star">*</span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select id="sub_basin_name" class="form-control alpha"></select>
+                                                    @*<input Type="text" id="sub_basin_name" class="form-control color_database alpha" name="" placeholder="Sub basin name..">*@
+                                                    <label id="AlertError8" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname">Basin Code :</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input Type="text" id="basin_code" class="form-control alphanum" name="" placeholder="Basin Code..">
+                                                    <label id="AlertError10" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+                                            <div class="row database_trainer_row">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <label for="lname" class="">Basin Name <span class="Required_star">*</span>:</label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select id="basin_name" class="form-control alpha"></select>
+
+                                                    <label id="AlertError9" style="float: right;color: red;font-size: 12px!important;"></label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row database_trainer_row_button">
+                                                <div class=" col-md-12">
+                                                    <div class="text-center" style="margin-bottom:10px;">
+                                                        <span style="color:red">Before going to the summary page or next, click on the save button</span>
+                                                        <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                                                            <li class=" ">
+                                                                <button class="btn btn-success" id="SAVE_BTN" onclick="SaveDetails()"> Save </button>
+
+                                                            </li>
+
+                                                            <li class="">
+                                                                <button class="btn btnNext">Next</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="text-align:center;color:red;"><label id="AlertError"></label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-12">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-md-12" style="margin-bottom:10px;">
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            PGWM Committee
+                                        </h3>
+                                    </div>
+                                    <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:hidden;">
+                                        <table id="TblData" class="display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100% !important">
+
+                                            <thead>
+                                                <tr>
+                                                    <th><button class="btn btn-primary" id="add_row_btn" onclick="addrow();"><span class="updatenew"> New </span></button></th>
+                                                    <th>Name</th>
+                                                    <th> Designation</th>
+                                                    <th> Gender</th>
+                                                    <th> Social Organization </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbldata"></tbody>
+                                        </table>
+                                        <div style="text-align:center;">  <label id="DError" style="text-align:center;color:red;"></label></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-offset-1 col-md-12 col-sm-12 col-lg-10 col-lg-offset-1 form-body1">
+                                        <div class="form-div">
+                                            <div class="col-md-12 background-border-Database">
+
+
+                                                <div class="row database_trainer_row">
+                                                    <h3>
+                                                        Social Monitoring
+                                                    </h3>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">Date</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="sm_date" class="form-control color_database" name="" placeholder="Current date..">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">Location:</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <textarea class="form-control color_database alphanum" id="sm_location" rows="2" style="border: 1px solid #ccc; border-radius: 4px;" placeholder="Location"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            No of Attendees :
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="numberofattendees" class="form-control color_database decimal" name="" placeholder="No of Attendees...">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">Number of Male:</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="number" id="sm_male" class="form-control color_database" name="" placeholder="Number of Male..." min="0">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">Number of Female:</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="number" id="sm_female" class="form-control color_database decimal" name="" placeholder="Number of Female..." min="0">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">Latitude:</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="number" id="sm_latitude" class="form-control color_database decimal" name="" placeholder="Lattitude..." min="0">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">Longitude:</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="number" id="sm_longitude" class="form-control color_database decimal" name="" placeholder="Longitude..." min="0">
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="row database_trainer_row">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <label for="lname">Meeting Agenda:</label>
+                                                        </div>
+                                                        <div class="col-md-5 col-sm-6">
+                                                            <input type="file" id="sm_meeting_agenda" name="sm_meeting_agenda" accept='.pdf,.doc' />
+                                                        </div>
+                                                    </div>*@
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">MOM(Minutes of Meeting):</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="file" id="sm_mom" name="sm_mom" accept='.pdf,.doc,.jpeg,.jpg' />
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">Photograph:</label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="file" id="sm_photoshop" name="sm_photoshop" accept='.jpeg,.jpg' @*onchange="validateImageFile()"*@ />
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row_button">
+                                                    <div class="col-md-12 col-sm-12 text-center">
+                                                        <div>
+                                                            <span style="color:red">Before going to the summary page or next, click on the save button</span>
+                                                        </div>
+                                                        <button class="btn btn-success" id="SAVE_BTN1" onclick="Save_Social_Monitor()">Save</button>
+
+                                                    </div>
+                                                </div>
+                                                <div style="text-align:center;color:red;"><label id="SMError"></label></div>
+                                                <div class="row database_trainer_row_button">
+                                                    <div class="col-md-6 col-sm-6 text-left">
+                                                        <label>MOM(Minutes of Meeting):</label>
+                                                        <div id="momtr1">
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 text-left">
+                                                        <label>Photograph:</label>
+                                                        <div id="SW_Image"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row database_trainer_row_button">
+                                    <div class=" col-md-12">
+                                        <div class="text-center" style="margin-bottom:10px;">
+
+                                            <button class="btn btn-danger btnPrevious">Back</button>
+                                            <button class="btn btnNext">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-13">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12  form-body">
+                                    <div class="col-md-12 imageUpload_div text-left" style="margin-bottom:10px;">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3">
+
+                                                <label>1.Location Map Image Upload:</label>
+                                                <input type="file" id="Location_map_Image_Uplaod" name="Location_map_Image_Uplaod" onchange="loadFile(event)" accept='image/*' />
+                                                @*@using (Html.BeginForm("Location_map_Image_Uplaod", "Home", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return myFunction()" }))
+                                                    {
+
+
+                                                        <input name="state_name" id="state_name1" hidden />
+                                                        <input name="district_name" id="district_name1" hidden />
+                                                        <input name="block_name" id="block_name1" hidden />
+                                                        <input name="gpname" id="gpname1" hidden />
+
+                                                    }*@
+                                                <button type="button" id="Location_map_Image_Uplaod1" class="btn btn-success" onclick="save_Location_map_Image_Uplaod()">Save</button>
+                                                @*<input hidden type="submit" value="Upload File to Server" id="Location_map_Image_Uplaod_submit" onclick="save_Location_map_Image_Uplaod()">*@
+                                                <div id="loaction_map_geting"></div>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <label>2.Watershed Map Image Upload:</label>
+                                                <input type="file" id="Watershed_map_Image_Uplaod" name="Watershed_map_Image_Uplaod" onchange="Watershed_map_Image(event)" accept='image/*' />
+                                                @*@using (Html.BeginForm("Watershed_map_Image_Uplaod", "Home", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return myFunction()" }))
+                                                    {
+
+
+                                                        <input name="state_name" id="state_name2" hidden />
+                                                        <input name="district_name" id="district_name2" hidden />
+                                                        <input name="block_name" id="block_name2" hidden />
+                                                        <input name="gpname" id="gpname2" hidden />
+
+
+                                                        <input hidden type="submit" value="Upload File to Server" id="Watershed_map_Image_Uplaod_submit">
+                                                    }*@
+                                                <button type="button" id="Watershed_map_Image_Uplaod1" class="btn btn-success" onclick="save_Watershed_map_Image_Uplaod()">Save</button>
+                                                <div id="Watershed_map_geting"></div>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+
+                                                <label>3.Aquifer Map Image Upload:</label>
+                                                <input type="file" id="Aquifer_map_Image_Uplaod" name="Aquifer_map_Image_Uplaod" onchange="Aquifer_map_Image(event)" accept='image/*' />
+
+                                                <button type="button" id="Aquifer_map_Image_Uplaod1" class="btn btn-success" onclick="save_Aquifer_map_Image_Uplaod()">Save</button>
+                                                <div id="Aquifer_map_geting"></div>
+
+
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <label>4.Drainage Map Image Upload:</label>
+                                                <input type="file" id="Drainage_map_Image_Uplaod" name="Drainage_map_Image_Uplaod" onchange="Drainage_map_Image(event)" accept='image/*' />
+
+                                                <button type="button" id="Drainage_map_Image_Uplaod1" class="btn btn-success" onclick="save_Drainage_map_Image_Uplaod()">Save</button>
+                                                <div id="Drainage_map_geting"></div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row image_preview">
+                                            <div class="col-md-3 col-sm-3">
+
+                                                <img id="output" />
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+
+                                                <img id="Watershed_map_Image_output" />
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+
+                                                <img id="Aquifer_map_Image_output" />
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+
+                                                <img id="Drainage_map_Image_output" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="text-align:center;color:red;"><label id="ImageError"></label></div>
+                                </div>
+
+
+                                <div class="row database_trainer_row_button">
+                                    <div class=" col-md-12">
+                                        <div class="text-center" style="margin-bottom:10px;">
+                                            <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                                                <li>
+                                                    <button class="btn btn-danger btnPrevious">Back</button>
+                                                </li>
+                                                <li>
+                                                    <button class="btn btnNext">Next</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-14">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-md-12 col-sm-12 form-body" style="padding:0px 15px">
+
+                                    <div class="text-center">
+                                        <div class="" id="map" style="height:600px;"></div>
+
+                                    </div>
+                                    <div id="Wsp_gram_checkbox" style="text-align:center"><input type="checkbox" id="WspTacker_Verification_CheckBox" /><span>The data entered has been checked and verified by DPMU</span></div>
+                                    <div class="row database_trainer_row_button">
+                                        <div class=" col-md-12">
+                                            <div class="text-center" style="margin-bottom:10px;">
+                                                <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                                                    <li>
+                                                        <button class="btn btn-danger btnPrevious">Back</button>
+                                                    </li>
+                                                    <li id="Wsp_gram_submit">
+                                                        <button class="btn btn-danger" onclick="Save_Full_Info()">Submit</button>
+                                                    </li>
+                                                    <li class=" ">
+                                                        <button class="btn btn-primary" onclick="btnresult()"> Summary of GP Info <i class="fa fa-arrow-right"></i> </button>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Gram Panchayat</span>
+                <div class="progress-node answering active now tab-link subtab1" data-tab="menu-11">
+                    <div class="progress-label">Gram Panchayat<span class="pointer"></span></div>
+                </div>
+                <div class="progress-node tab-link subtab2" data-tab="menu-12">
+                    <div class="progress-label">PGWM<span class="pointer"></span></div>
+                </div>
+                <div class="progress-node tab-link subtab3" data-tab="menu-13">
+                    <div class="progress-label">Image Upload<span class="pointer"></span></div>
+                </div>
+                <div class="progress-node tab-link subtab4" data-tab="menu-14">
+                    <div class="progress-label">Location<span class="pointer"></span></div>
+                </div>
+
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+
+
+        </ul>
+
+    </div>
+    <!--fotter End-->
+    <input hidden="hidden" id="hdnRechargefactor" />
+    <input hidden="hidden" id="hdnSeepagefactor" />
+    <input hidden="hidden" id="hdnareairrigation" />
+</div>
+
+
+<script src="~/Scripts/validations.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgurNrZ8JU8NiUs9bleClqbVul6VR5u4s&callback=initMap" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    var Auth = '@Session["Access_Auth"]';
+    $(document).ready(function () {
+        debugger;
+        $('#SAVE_BTN').prop('disabled', true);
+        $('#add_row_btn').prop('disabled', true);
+        $('#SAVE_BTN1').prop('disabled', true);
+        $('#Location_map_Image_Uplaod1').prop('disabled', true);
+        $('#Watershed_map_Image_Uplaod1').prop('disabled', true);
+        $('#Aquifer_map_Image_Uplaod1').prop('disabled', true);
+        $('#Drainage_map_Image_Uplaod1').prop('disabled', true);
+        $("input[type='file']").prop("disabled", true);
+
+
+        StateOfficer = '@Session["Officer"]';
+
+        //if (Auth == "WSP") {
+        //    $('#SAVE_BTN').prop('disabled', false);
+        //    $('#add_row_btn').prop('disabled', false);
+        //    $('#SAVE_BTN1').prop('disabled', false);
+        //    $('#Location_map_Image_Uplaod1').prop('disabled', false);
+        //    $('#Watershed_map_Image_Uplaod1').prop('disabled', false);
+        //    $('#Aquifer_map_Image_Uplaod1').prop('disabled', false);
+        //    $('#Drainage_map_Image_Uplaod1').prop('disabled', false);
+        //    $("input[type='file']").prop("disabled", false);
+        //}
+        $('#Wsp_gram_submit').hide();
+        $('#Wsp_gram_checkbox').hide();
+            //alert(StateOfficer);
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            //$('#SAVE_BTN').hide();
+            //$('#SAVE_BTN1').hide();
+            //$('#Location_map_Image_Uplaod1').hide();
+            //$('#Watershed_map_Image_Uplaod1').hide();
+            //$('#Aquifer_map_Image_Uplaod1').hide();
+            //$('#Drainage_map_Image_Uplaod1').hide();
+            ////Gram Panchayat Form
+            //document.getElementById("watershed_name").disabled = true;
+            //document.getElementById("sub_basin_code").disabled = true;
+            //document.getElementById("watershed_area_block").disabled = true;
+            //document.getElementById("sub_basin_name").disabled = true;
+            //document.getElementById("watershed_code").disabled = true;
+            //document.getElementById("gp_area").disabled = true;
+            //document.getElementById("gp_id").disabled = true;
+            //document.getElementById("block_area").disabled = true;
+            //document.getElementById("basin_code").disabled = true;
+            //document.getElementById("basin_name").disabled = true;
+
+            //if (StateOfficer == "District Level Nodal Officer") {
+            //    $('#Wsp_gram_submit').show();
+            //    $('#Wsp_gram_checkbox').show();
+
+            //}
+
+            //// Social Monitoring Form
+            //document.getElementById("sm_date").disabled = true;
+            //document.getElementById("sm_location").disabled = true;
+            //document.getElementById("numberofattendees").disabled = true;
+            //document.getElementById("sm_male").disabled = true;
+            //document.getElementById("sm_female").disabled = true;
+            //document.getElementById("sm_latitude").disabled = true;
+            //document.getElementById("sm_longitude").disabled = true;
+            //document.getElementById("sm_mom").disabled = true;
+            //document.getElementById("sm_photoshop").disabled = true;
+
+
+
+        }
+
+
+        else if (StateOfficer != "" && StateOfficer != null) {
+
+        } else {
+            window.location = "/WspNew/WSP_GWM_HOME";
+        }
+        debugger;
+        BasinInfo();
+         State = '@Session["gstate"]';
+     Dist ='@Session["gdist"]';
+     Block ='@Session["gblock"]';
+        Gram = '@Session["ggram"]';
+        Error_11 = '@Session["Images_Upload"]';
+            if (Error_11 != "")
+            {
+            alert(Error_11);
+        }
+
+        $('#state_name').val(State);
+        $('#district_name').val(Dist);
+        $('#block_name').val(Block);
+        $('#gram_panchayat_name').val(Gram);
+
+            debugger;
+            var STATE = $('#spnstate').text();
+            var DIST = $('#spndistrict').text();
+            var BLOCK = $('#spnblock').text();
+            var GRAM = $('#spngram').text();
+
+            $('#state_name1').val(STATE);
+            $('#district_name1').val(DIST);
+            $('#block_name1').val(BLOCK);
+            $('#gpname1').val(GRAM);
+            $('#state_name2').val(STATE);
+            $('#district_name2').val(DIST);
+            $('#block_name2').val(BLOCK);
+            $('#gpname2').val(GRAM);
+            $('#state_name3').val(STATE);
+            $('#district_name3').val(DIST);
+            $('#block_name3').val(BLOCK);
+            $('#gpname3').val(GRAM);
+            $('#state_name4').val(STATE);
+            $('#district_name4').val(DIST);
+            $('#block_name4').val(BLOCK);
+            $('#gpname4').val(GRAM);
+
+            var tr = '<tr style="text-align:center;"><td colspan="8">No Data</td></tr>';
+            $("#tbldata").html(tr);
+            pgwn_Data();
+            Social_Monitor_Details();
+            var dd = today.getDate();
+
+            gpimagesgeting_Location();
+            //gpimagesgeting_Watershed();
+            //gpimagesgeting_Aquifer();
+            //gpimagesgeting_Drainage();
+
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+
+            today = mm + '/' + dd + '/' + yyyy;
+
+            // $('#sm_date').val(today);
+            document.getElementById('sm_date').value = today;
+
+
+
+
+
+    });
+
+
+
+
+
+
+    function btnhome() {
+        window.location = "WSPHOME", "Wsp_new"
+    }
+    function btnresult() {
+        window.location = "WSpGramreport", "Wsp_new"
+    }
+    function SaveDetails() {
+
+        /*$('#SAVE_BTN').prop('disabled', true);*/
+        document.getElementById('AlertError1').innerHTML = "";
+       var ddd = 0;
+        var obj = {};
+        var state_name= $('#state_name').val();
+        var district_name= $('#district_name').val();
+        var block_name= $('#block_name').val();
+        var gram_panchayat_name= $('#gram_panchayat_name').val();
+        obj.gp_id = $('#gp_id').val();
+
+           obj.watershed_name = $('#watershed_name').val();
+
+           obj.watershed_area_block = $('#watershed_area_block').val();
+
+           obj.sub_basin_code = $('#sub_basin_code').val();
+
+         var basin_name = $('#basin_name').val();
+        if (basin_name != "0") {
+            obj.basin_name = $('#basin_name').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "Please Enter basin_name Name";
+            $('#basin_name').focus();
+        }
+        var sub_basin_name = $('#sub_basin_name').val();
+        if (sub_basin_name != "") {
+            obj.sub_basin_name = $('#sub_basin_name').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "Please Enter Sub Basin Name";
+
+            $('#sub_basin_name').focus();
+        }
+
+        var watershed_code = $('#watershed_code').val();
+        if (watershed_code != "") {
+            obj.watershed_code = $('#watershed_code').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "Please Enter Watershed Code";
+            $('#watershed_code').focus();
+        }
+
+        var gp_area = $('#gp_area').val();
+        if (gp_area != "") {
+            obj.gp_area = $('#gp_area').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "Please Enter Gram Panchayat area (Ha)";
+            $('#gp_area').focus();
+        }
+
+        var block_area = $('#block_area').val();
+        if (block_area != "") {
+            obj.block_area = $('#block_area').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "Please Enter Block Area (Ha)";
+            $('#block_area').focus();
+        }
+
+           obj.basin_code = $('#basin_code').val();
+
+        if (ddd == 0) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Wsp_new/SaveGrampanchayatDetails",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    if (response != "Successfully Saved" && response != "Logout" && response != "Please Select Basin Name" && response != "Please Enter Block Area (Ha)" && response != "Please Enter Gram Panchayat Area (Ha)" && response != "Please Select Sub Basin Name" && response != "Please Enter Watershed Code") {
+                        window.location = "/Error/DefaultError";
+                    }
+                    /*$('#SAVE_BTN').prop('disabled', false);*/
+                    Details();
+                    document.getElementById('AlertError').innerHTML = response;
+                }
+            });
+        }
+
+    }
+
+    var State = "";
+    var Dist ="";
+    var Block ="";
+    var Gram = "";
+    var Error_11 = "";
+    var CurrentAddress = "";
+    var Lat = 0;
+    var Long = 0;
+    var cu_lat = 0;
+    var cu_long = 0;
+    var StateOfficer = "";
+
+
+    function Details() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/GrampanchayatDetails',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                $('.loader').hide();
+                if (data.length != 0) {
+
+                    //$('#state_name').val(data[0].state_name);
+                    //$('#district_name').val(data[0].district_name);
+                    //$('#block_name').val(data[0].block_name);
+                    //$('#gram_panchayat_name').val(data[0].gram_panchayat_name);
+
+                    $('#gp_id').val(data[0].gp_id);
+                    if (data[0].block_area != null) {
+                        $('#block_area').val(parseFloat(data[0].block_area).toFixed(2));
+                    }
+                    if (data[0].gp_area != null) {
+                        $('#gp_area').val(parseFloat(data[0].gp_area).toFixed(2));
+                    }
+                    $('#watershed_code').val(data[0].watershed_code);
+
+                    $('#watershed_name').val(data[0].watershed_name);
+                    $('#watershed_area_block').val(data[0].watershed_area_block);
+
+                    $('#sub_basin_code').val(data[0].sub_basin_code);
+
+                    $('#basin_code').val(data[0].basin_code);
+                    if (data[0].basin_name != null && data[0].basin_name != "0") {
+                        $('#basin_name').val(data[0].basin_name);
+                    } else {
+                        $('#basin_name').val("0");
+                    }
+
+                    if (data[0].sub_basin_name != null && data[0].sub_basin_name != "") {
+                        $('#sub_basin_name').val(data[0].sub_basin_name);
+                    } else
+                    {
+                        $('#sub_basin_name').val("0");
+                    }
+                    Lat = parseFloat(data[0].latitude);
+                    Long = parseFloat(data[0].longitude);
+
+                    myMap(Lat, Long);
+
+                }
+
+                if (DPMU_Level_Count == 1) {
+                    DPMU_Submission();
+                }
+
+
+            }
+        });
+    }
+
+
+    function BasinInfo() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/GrampanchayatDetails_StateWise',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                var BasinNameArray = [];
+                var Sub_BasinNameArray = [];
+                if (data.length != 0) {
+
+                    var Options1 = '<option value="0">Please Select  Basin Name</option>';
+                    var Options2 = '<option value="0">Please Select Sub Basin Name</option>';
+
+
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (data[i].basin_name != "" && data[i].basin_name != null && data[i].basin_name != "0") {
+
+                            var ss = data[i].basin_name;
+                            var basin = ss.trim();
+
+                            if (basin != "") {
+                                if (BasinNameArray.indexOf(data[i].basin_name) === -1) {
+                                    BasinNameArray.push(data[i].basin_name);
+                                }
+                            }
+                            //  Options1 += '<option value="' + data[i].basin_name + '">' + data[i].basin_name + '</option>';
+                        }
+                        if (data[i].sub_basin_name != "" && data[i].sub_basin_name != null && data[i].sub_basin_name != "0") {
+                            var ss = data[i].sub_basin_name;
+                            var basin = ss.trim();
+
+                            if (basin != "") {
+                                if (Sub_BasinNameArray.indexOf(data[i].sub_basin_name) === -1) {
+                                    Sub_BasinNameArray.push(data[i].sub_basin_name);
+                                }
+                            }
+                            //  Options2 += '<option value="' + data[i].sub_basin_name + '">' + data[i].sub_basin_name + '</option>';
+                        }
+                    }
+
+
+
+
+                }
+
+
+
+                for (var i = 0; i < BasinNameArray.length; i++) {
+                    Options1 += '<option value="' + BasinNameArray[i] + '">' + BasinNameArray[i] + '</option>';
+                }
+                for (var i = 0; i < Sub_BasinNameArray.length; i++) {
+                    Options2 += '<option value="' + Sub_BasinNameArray[i] + '">' + Sub_BasinNameArray[i] + '</option>';
+                }
+
+                $('#sub_basin_name').html(Options2);
+
+                $('#basin_name').html(Options1);
+                Details();
+            }
+        });
+
+    }
+
+
+    var DPMU_Level_Count = 0;
+
+    function Save_Full_Info() {
+       // DPMU_Level_Count = 1;
+        DPMU_Submission();
+
+    }
+
+    function DPMU_Submission() {
+        DPMU_Level_Count = 1;
+
+        var verification_val = 0;
+        var lfckv = document.getElementById("WspTacker_Verification_CheckBox").checked;
+
+        if (lfckv == true) {
+            verification_val = 1;
+            DPMU_Level_Count += 1;
+
+        } else {
+            verification_val = 0;
+            alert("Please Check The data entered has been checked and verified by DPMU");
+        }
+        document.getElementById('AlertError1').innerHTML = "";
+        var ddd = 0;
+        var obj = {};
+        var state_name = $('#state_name').val();
+        var district_name = $('#district_name').val();
+        var block_name = $('#block_name').val();
+        var gram_panchayat_name = $('#gram_panchayat_name').val();
+        obj.gp_id = $('#gp_id').val();
+        obj.watershed_name = $('#watershed_name').val();
+
+        obj.watershed_area_block = $('#watershed_area_block').val();
+
+        obj.sub_basin_code = $('#sub_basin_code').val();
+
+        var basin_name = $('#basin_name').val();
+        if (basin_name != "0") {
+            obj.basin_name = $('#basin_name').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            alert("Please Enter basin_name Name");
+            document.getElementById('AlertError9').innerHTML = "Please Enter basin_name Name";
+            $('#basin_name').focus();
+        }
+        var sub_basin_name = $('#sub_basin_name').val();
+        if (sub_basin_name != "") {
+            obj.sub_basin_name = $('#sub_basin_name').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            alert("Please Enter Sub Basin Name");
+            document.getElementById('AlertError8').innerHTML = "Please Enter Sub Basin Name";
+            $('#sub_basin_name').focus();
+        }
+
+        var watershed_code = $('#watershed_code').val();
+        if (watershed_code != "") {
+            obj.watershed_code = $('#watershed_code').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            alert("Please Enter Watershed Code");
+            document.getElementById('AlertError4').innerHTML = "Please Enter Watershed Code";
+            $('#watershed_code').focus();
+        }
+
+        var gp_area = $('#gp_area').val();
+        if (gp_area != "") {
+            obj.gp_area = $('#gp_area').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "Please Enter Gram Panchayat area (Ha)";
+            $('#gp_area').focus();
+            alert("Please Enter Gram Panchayat area (Ha)");
+        }
+
+        var block_area = $('#block_area').val();
+        if (block_area != "") {
+            obj.block_area = $('#block_area').val();
+        }
+        else {
+            ddd = 1;
+            document.getElementById('AlertError1').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "";
+            document.getElementById('AlertError3').innerHTML = "";
+            document.getElementById('AlertError4').innerHTML = "";
+            document.getElementById('AlertError5').innerHTML = "";
+            document.getElementById('AlertError6').innerHTML = "";
+            document.getElementById('AlertError7').innerHTML = "";
+            document.getElementById('AlertError8').innerHTML = "";
+            document.getElementById('AlertError9').innerHTML = "";
+            document.getElementById('AlertError10').innerHTML = "";
+            document.getElementById('AlertError2').innerHTML = "Please Enter Block Area (Ha)";
+            $('#block_area').focus();
+            alert("Please Enter Block Area (Ha)");
+        }
+
+        obj.basin_code = $('#basin_code').val();
+
+        if (ddd == 0 && verification_val == 1 && DPMU_Level_Count == 2) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Wsp_new/SaveGrampanchayatDetails",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    if (response != "Successfully Saved" && response != "Logout" && response != "Please Select Basin Name" && response != "Please Enter Block Area (Ha)" && response != "Please Enter Gram Panchayat Area (Ha)" && response != "Please Select Sub Basin Name" && response != "Please Enter Watershed Code") {
+                        window.location = "/Error/DefaultError";
+                    }
+
+                    alert("Verified Successfully");
+                }
+            });
+        }
+        else {
+            DPMU_Level_Count = 1;
+            Details();
+        }
+
+
+    }
+
+</script>
+@*PGWM Committee Scripts*@
+<script>
+    // Other Option Script
+    function CheckDepartment(val) {
+
+        var element = document.getElementById('otherdepartment');
+        var elementSelect = document.getElementById('department');
+        if (val == 'others')
+            element.style.display = 'block';
+
+        else
+            element.style.display = 'none';
+        if (val == 'others')
+            elementSelect.style.display = 'none';
+
+        else
+            elementSelect.style.display = 'block';
+    }
+    // PGWM TABLE
+    var a = 1;
+    function addrow() {
+
+        var count = 1;
+        if (a == 1) {
+            a = 0;
+            var code = "<tr id='c1_count'><td><button class='btn btn-success' onclick='PGWDepDetails()'>Save</button > <button type='button' class='btn btn-danger' onclick='cancelone();'>Cancel</button></td>" +
+                "<td><input type='text' class='form-control alpha' id='countname'/></td> " +
+                "<td><input type='text' class='form-control alpha' id='designation'/></td>" +
+                "<td><select class='form-control' id='gender'><option value='0'>Select Gender</option><option value='Male'> Male</option><option value='Female'>Female</option><option value='Other'>Other</option></select></td>" +
+                "<td> <select id='department' class='form-control' onchange='CheckDepartment(this.value);'><option value='0'>Select Social Oraganization</option><option value='VWSC (Village Water & Sanitation Committee)'>VWSC (Village Water & Sanitation Committee)</option><option value='SHG (Self Help Group)'>SHG (Self Help Group)</option><option value='WUA (Water User Association)'>WUA (Water User Association) </option><option value='Cooperative Societies'>Cooperative Societies</option> <option value='others'>others</option></select><input type='text' class='form-control' name='otherdepartment' id='otherdepartment' style='display:none;' /></td></tr>";
+            $('table#TblData tbody').prepend(code);
+        }
+        //count=count+1;
+        //alert(count);
+    }
+    function cancelone() {
+        // addrow();
+        $('table#TblData tbody tr#c1_count').remove();
+        a = 1;
+    }
+</script>
+
+<script>
+    var today = new Date();
+    $(document).ready(function () {
+
+    });
+
+
+    function Save_Social_Monitor() {
+        //File Extension check
+        debugger;
+        
+        
+        var ii = 0;
+        var ext = $('#sm_mom').val().split('.').pop().toLowerCase();
+        var ext1 = $('#sm_photoshop').val().split('.').pop().toLowerCase();
+        if (ext != "") {
+            if ($.inArray(ext, ['pdf', 'jpg', 'jpeg', 'doc']) == -1) {
+                alert('Your Upload file has Not valid File, Please Upload proper file');
+                ii = 1;
+                return false;
+            }
+        }
+        if (ext1 != "") {
+            if ($.inArray(ext1, ['png', 'jpg', 'jpeg']) == -1) {
+                alert('Your Upload file has Not valid File, Please Upload proper file');
+                ii = 1;
+                return false;
+            }
+        }
+        
+        $('#SAVE_BTN1').prop('disabled', true);
+        var sm_date = $('#sm_date').val();
+        var sm_location = $('#sm_location').val();
+        var numberofattendees = $('#numberofattendees').val();
+        var sm_male = $('#sm_male').val();
+        var sm_female = $('#sm_female').val();
+        var sm_latitude = $('#sm_latitude').val();
+        var sm_longitude = $('#sm_longitude').val();
+
+        if (ii == 0) {
+            $.ajax({
+                url: "/Wsp_new/Social_Monitoring_info",
+                type: "POST",
+                data: function () {
+                    var data = new FormData();
+                    data.append("sm_date", sm_date);
+                    data.append("sm_location", sm_location);
+                    data.append("numberofattendees", numberofattendees);
+                    data.append("sm_male", sm_male);
+                    data.append("sm_female", sm_female);
+                    data.append("sm_latitude", sm_latitude);
+                    data.append("sm_longitude", sm_longitude);
+                    data.append("sm_mom", jQuery("#sm_mom").get(0).files[0]);
+                    data.append("sm_photoshop", jQuery("#sm_photoshop").get(0).files[0]);
+
+                    return data;
+                }(),
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+
+                    alert(response);
+                    if (response == "Logout") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    else if (response != "Successfully Saved" && response != 'Your Upload file has Not valid File, Please Upload proper file' && response != "Your Upload file has Double Extention, Please Upload proper file" && response != "Logout") {
+                        window.location = "/Error/DefaultError";
+
+                    }
+                    else {
+                        $('#SMError').text(response);
+                    }
+
+                    $("#sm_date").val("");
+                    $("#sm_location").val("");
+                    $("#numberofattendees").val("");
+                    $("#sm_male").val("");
+                    $("#sm_female").val("");
+                    $("#sm_latitude").val("");
+                    $("#sm_longitude").val("");
+                    $("#sm_mom").val("");
+                    $("#sm_photoshop").val("");
+                    Social_Monitor_Details();
+                    $('#SAVE_BTN1').prop('disabled', false);
+
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+        }
+
+    }
+
+    function Social_Monitor_Details() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/Social_Monitor_Details_website1',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                $("#momtr1").html("");
+                $("#SW_Image").html("");
+                if (data.length != 0) {
+                    //alert(data.length);
+                    $('#sm_date').val(data[0].date);
+                    $('#sm_location').val(data[0].location);
+                    $('#numberofattendees').val(data[0].numberofattendees);
+                    $('#sm_male').val(data[0].male);
+                    $('#sm_female').val(data[0].female);
+                    $('#sm_latitude').val(data[0].latitude);
+                    $('#sm_longitude').val(data[0].longitude);
+
+
+                    if (data[0].minutesofmeeting != null && data[0].minutesofmeeting != "" && data[0].minutesofmeeting != "null") {
+                        var abc = '<a href="' + data[0].minutesofmeeting + '" download="" target="_blank">' + data[0].mom_filename + '</a>' + ' <button class = "btn btn-danger disable_btn" type= "button" onclick="Delete_mom_pdf(' + data[0].id + ')">Delete</button>'
+                        $("#momtr1").html(abc);
+                    }
+                    if (data[0].image != null && data[0].image != "" && data[0].image != "null") {
+                        var abcd = '<a href="' + data[0].image + '" download="" target="_blank">' + data[0].photogragh_filename + '</a>' + ' <button class = "btn btn-danger disable_btn" type= "button" onclick="Delete_mom_photo(' + data[0].id + ')">Delete</button>'
+                        $("#SW_Image").html(abcd);
+                    }
+                    $('.disable_btn').prop('disabled', true);
+                    if (Auth == "WSP") { $('.disable_btn').prop('disabled', false);}
+                }
+
+            }
+
+        });
+    }
+
+
+
+    function PGWDepDetails() {
+
+        var State = $('#spnstate').text();
+        var Designation = document.getElementById('designation').value;
+        var department = document.getElementById('department').value;
+        if (department == "others") {
+            department = $('#otherdepartment').val();
+        }
+        var UserName = document.getElementById('countname').value;
+        var Gender = document.getElementById('gender').value;
+        var i = 0;
+        if (Designation == "") {
+            i = 1;
+            document.getElementById('DError').innerHTML = "Please Enter Designation";
+        }
+        if (department == "0") {
+            i = 1;
+            document.getElementById('DError').innerHTML = "Please select  Department";
+        }
+        if (UserName == "") {
+            i = 1;
+            document.getElementById('DError').innerHTML = "Please Enter UserName";
+        }
+        if (Gender == "0") {
+            i = 1;
+            document.getElementById('DError').innerHTML = "Please select Gender";
+        }
+        if (i == 0) {
+            var obj = {};
+            obj.state_name = $('#spnstate').text();
+            obj.district_name = $('#spndistrict').text();
+            obj.block = $('#spnblock').text();
+            obj.gname = $('#spngram').text()
+            obj.villname = "";
+            obj.designation = document.getElementById('designation').value;
+            obj.department = department;
+            obj.countname = document.getElementById('countname').value;
+            obj.gender = document.getElementById('gender').value;
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Wsp_new/PGWN_DepetDetails",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    if (response == "Logout") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    else if (response != "Successfully Saved" && response != "Logout" && response != "Please Enter Designation" && response != "Please Select Social Organization" && response != "Please Enter Name" && response != "Please Select Gender") {
+                        window.location = "/Error/DefaultError";
+
+                    }
+                    cancelone();
+                    a = 1;
+                    pgwn_Data();
+                    document.getElementById('DError').innerHTML = response;
+                }
+
+
+            });
+        }
+        else {
+
+            a = 1;
+            cancelone();
+        }
+
+    }
+    function pgwn_Data() {
+
+        var State_name = $('#spnstate').text();
+        var District_name = $('#spndistrict').text();
+        var Block = $('#spnblock').text();
+        var Gname = $('#spngram').text();
+        //  var Villname = document.getElementById('village').value;
+        var Villname = "";
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/pgwn_Depdetails',
+            data: { 'state': State_name, 'dist': District_name, 'block': Block, 'gram': Gname, 'vill': Villname },
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Error") {
+                    window.location = "/Wsp_new/WSPgram";
+                }
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+
+
+                let tr = "";
+
+                if (data != null || data.length != 0) {
+
+                    //alert("data is not equal to null");
+                    ////alert(data);
+                    ////alert(data.length);
+                    for (var i = 0; i < data.length; i++) {
+                        tr += '<tr><td><button type="button" class="btn btn-danger disable_btn" onclick="Delete_DeptData(' + data[i].pgwndeptid + ')">Delete</button></td><td>' + data[i].countname + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td><td> ' + data[i].department + '</td></tr>';
+                    }
+                }
+                else {
+                    tr += '<tr><td colspan="5"  style="text-align:center;">No Data</td></tr>';
+                }
+                if (tr == "") {
+                    tr += '<tr><td colspan="5" style="text-align:center;">No Data</td></tr>';
+                }
+
+                $("#tbldata").html(tr);
+                //$('.disable_btn').prop('disabled', true);
+                //if (Auth == "WSP") { $('.disable_btn').prop('disabled', false); }
+
+            }
+        });
+
+    }
+
+    function Delete_DeptData(id) {
+        var obj = {};
+
+        obj.pgwndeptid = id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Wsp_new/DeletePGWNDeptDetail",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+
+                if (response == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                } else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                    window.location = "/Error/DefaultError";
+                }
+                pgwn_Data();
+                document.getElementById('DError').innerHTML = response;
+
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    $('li.leftbtnnext > button.btnprocess1').click(function () {
+
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+    $("ul#myTabs > li > a").on("show.bs.tab", function () {
+        $('ul.tabs_menu > li:first-child').trigger('click');
+    });
+</script>
+<script>
+
+    $('#btnDrftGo').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+    $('#btngotobalance').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+
+</script>
+<script>
+    $('#m1').click(function (e) {
+        $('.subtab2').removeClass('active');
+        $('.subtab3').removeClass('active');
+        $('.subtab4').removeClass('active');
+        $('.subtab5').removeClass('active');
+        $('.subtab6').removeClass('active');
+        $('.subtab7').removeClass('active');
+        $('.subtab1').addClass('active');
+        $('div.tabfirst div.active').removeClass('active');
+        $('#menu-11').addClass('active in');
+        $('li#Surface-water div').removeClass('active');
+        $('li#Surface-water div.subtab1').addClass('active');
+    });
+    $('#m2').click(function (e) {
+        $('.subtab12').removeClass('active');
+        $('.subtab13').removeClass('active');
+        $('.subtab14').removeClass('active');
+        $('.subtab15').removeClass('active');
+        $('.subtab16').removeClass('active');
+        $('.subtab17').removeClass('active');
+        $('.subtab11').addClass('active');
+        $('div.tabsecond div.active').removeClass('active');
+        $('#menu-1').addClass('active in');
+        $('li#indoor-water div').removeClass('active');
+        $('li#indoor-water div.subtab11').addClass('active now');
+    });
+    $('#m3').click(function (e) {
+        $('.subtab22').removeClass('active');
+        $('.subtab23').removeClass('active');
+        $('.subtab24').removeClass('active');
+        $('.subtab21').addClass('active');
+        $('div.tabthrid div.active').removeClass('active');
+        $('#menu-8').addClass('active in');
+        $('li#outdoor-water div').removeClass('active');
+        $('li#outdoor-water  div.subtab21').addClass('active now');
+    });
+
+</script>
+<script>
+    // start header and footer nav bar changes script
+    $('#indoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#indoor-water.progress-group .progress-node').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#outdoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#Surface-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('ul#rainfall_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#rainfall_menu li').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+    $('ul#Surface_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Surface_menu li').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('ul#Water_draft_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Water_draft_menu li').removeClass('active');
+        $('.Sider_column > ul.sider_images_sider').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+        $("[data-target=" + tab_id + "]").addClass('active');
+        //$('ul.tabs li').click(function () {
+        //  var tab_id = $(this).attr('data-tab');
+
+        //$('ul.tabs li').removeClass('current');
+
+
+        //$(this).addClass('current');
+
+        //})
+    });
+    $('.btnNext').click(function () {
+        $('.tabs_menu > .active').next('.tab-link').trigger('click');
+        //$('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.btnPrevious').click(function () {
+        $('.tabs_menu > .active').prev('.tab-link').trigger('click');
+        // $('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.gwr_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwr_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwr_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwr_menu[class*="-info"]').removeClass('active');
+        $('.gwr_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    $('ul[data-tabs="tabs"] > li > [data-toggle="tab"]').click(function (e) {
+
+        var href = $(this).attr('data-target');
+
+
+        $('ul[data-tabs="tabs"] > li').removeClass('active');
+
+
+        $('ul[data-tabs="tabs"] > li > [data-toggle="tab"][data-target="' + href + '"]').closest('li').addClass('active');
+
+
+        $('.tab-pane').removeClass('active in');
+        $('.tab-pane' + href).addClass('active in');
+    });
+
+    $('.gwd_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwd_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwd_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwd_menu[class*="-info"]').removeClass('active');
+        $('.gwd_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+
+    $('.sru_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.sru_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.sru_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.sru_menu[class*="-info"]').removeClass('active');
+        $('.sru_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    // start header and footer nav bar changes script
+</script>
+
+
+
+
+
+
+<script>
+
+    function myMap(lat, long) {
+        debugger;
+        myCenter = new google.maps.LatLng(lat, long);
+        var mapOptions = {
+            center: myCenter,
+            zoom: 10, scrollwheel: false, draggable: false,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myCenter,
+            //title: "The Church",
+        });
+        marker.setMap(map);
+    }
+</script>
+
+<script>
+
+
+    $("#Location_map_Image_Uplaod1").click(function (event) {
+        var ii = 0;
+
+        var fileName = document.getElementById("Location_map_Image_Uplaod").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+            //TO DO
+        } else {
+            alert("Only jpg/jpeg and png files are allowed!");
+            $('#Location_map_Image_Uplaod').val('');
+            $('#output').hide();
+            ii = 1;
+        }
+        if (ii == 0) {
+            $('#Location_map_Image_Uplaod_submit').click();
+        }
+
+    });
+
+
+    $('#Watershed_map_Image_Uplaod1').click(function (event) {
+
+        var ii = 0;
+        var fileName = document.getElementById("Watershed_map_Image_Uplaod").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+            //TO DO
+        } else {
+            alert("Only jpg/jpeg and png files are allowed!");
+            $('#Watershed_map_Image_Uplaod').val('');
+            $('#Watershed_map_Image_output').hide();
+            ii = 1;
+        }
+        if (ii == 0) {
+            $('#Watershed_map_Image_Uplaod_submit').click();
+        }
+
+    });
+
+
+    $("#Aquifer_map_Image_Uplaod1").click(function (event) {
+        // var data = new FormData();
+        var ii = 0;
+        var fileName = document.getElementById("Aquifer_map_Image_Uplaod").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+            //TO DO
+        } else {
+            alert("Only jpg/jpeg and png files are allowed!");
+            $('#Aquifer_map_Image_Uplaod').val('');
+            $('#Aquifer_map_Image_output').hide();
+            ii = 1;
+        }
+        if (ii == 0) {
+            $('#Aquifer_map_Image_Uplaod_submit').click();
+        }
+    });
+
+    $("#Drainage_map_Image_Uplaod1").click(function (event) {
+
+        //var data = new FormData();
+        var ii = 0;
+        var fileName = document.getElementById("Drainage_map_Image_Uplaod").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+
+        } else {
+
+            alert("Only jpg/jpeg and png files are allowed!");
+            $('#Drainage_map_Image_Uplaod').val('');
+            $('#Drainage_map_Image_output').hide();
+
+            ii = 1;
+        }
+        if (ii == 0) {
+            $('#Drainage_map_Image_Uplaod_submit').click();
+        }
+    });
+
+</script>
+
+<script>
+
+    // first location Image preview
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+
+    // Watershed map Image
+    var Watershed_map_Image = function (event) {
+
+        var Watershed_map_Image_output = document.getElementById('Watershed_map_Image_output');
+        Watershed_map_Image_output.src = URL.createObjectURL(event.target.files[0]);
+        Watershed_map_Image_output.onload = function () {
+            URL.revokeObjectURL(Watershed_map_Image_output.src) // free memory
+        }
+    };
+    //Aquifer map Image Uplaod
+    var Aquifer_map_Image = function (event) {
+        var Aquifer_map_Image_output = document.getElementById('Aquifer_map_Image_output');
+        Aquifer_map_Image_output.src = URL.createObjectURL(event.target.files[0]);
+        Aquifer_map_Image_output.onload = function () {
+            URL.revokeObjectURL(Aquifer_map_Image_output.src) // free memory
+        }
+    };
+    // Drainage map Image
+    var Drainage_map_Image = function (event) {
+        $('#Drainage_map_Image_output').show();
+        var Drainage_map_Image = document.getElementById('Drainage_map_Image_output');
+        Drainage_map_Image.src = URL.createObjectURL(event.target.files[0]);
+        Drainage_map_Image.onload = function () {
+            URL.revokeObjectURL(Drainage_map_Image.src) // free memory
+        }
+    };
+
+    function gpimagesgeting_Location() {
+        var state = $('#spnstate').text();
+        var dist = $('#spndistrict').text();
+        var block = $('#spnblock').text();
+        var gram = $('#spngram').text();
+        var obj = {};
+        obj.state_name = state;
+        obj.district_name = dist;
+        obj.block_name = block;
+        obj.gpname = gram;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/MapImagesdetails1',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                //alert(data.length);
+                $("#loaction_map_geting").html("");
+                $("#Drainage_map_geting").html("");
+                $("#Aquifer_map_geting").html("");
+                $("#Watershed_map_geting").html("");
+                var i = 0;
+                if (data.length != 0) {
+                    //alert('imagegetting');
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (data[i].gpimage1 != null && data[i].gpimage1 != "") {
+                            var tr1 = '<label><a href="' + data[i].gpimage1 + '" download="" target="_blank" >' + data[i].gpimage1_filename + '</a></label>';
+                            $('#loaction_map_geting').html(tr1);
+
+                        }
+
+
+                        if (data[i].gpimage4 != null && data[i].gpimage4 != "") {
+                            var Drainage_map_geting = '<label><a href="' + data[i].gpimage4 + '" download="" target="_blank" >' + data[i].gpimage4_filename + '</a></label>';
+                            $('#Drainage_map_geting').html(Drainage_map_geting);
+
+                        }
+
+
+                        if (data[i].gpimage3 != null && data[i].gpimage3 != "") {
+                            var Aquifer_map_geting = '<label><a href="' + data[i].gpimage3 + '" download="" target="_blank" >' + data[i].gpimage3_filename + '</a></label>';
+                            $('#Aquifer_map_geting').html(Aquifer_map_geting);
+
+                        }
+
+                        if (data[i].gpimage2 != null && data[i].gpimage2 != "") {
+                            var Watershed_map_geting = '<label><a href="' + data[i].gpimage2 + '" download="" target="_blank" >' + data[i].gpimage2_filename + '</a></label>';
+                            $('#Watershed_map_geting').html(Watershed_map_geting);
+
+                        }
+                    }
+
+                }
+
+            }
+
+        });
+    }
+
+    //ideal state
+    //    let inactivityTime = function() {
+    //        let time;
+    //    window.onload = resetTimer;
+    //    document.onmousemove = resetTimer;
+    //    document.onkeypress = resetTimer;
+    //    function logout() {
+    //        window.location = "/WspNew/WSP_GWM_HOME";
+    //    }
+    //    function resetTimer() {
+    //        clearTimeout(time);
+    //        time = setTimeout(logout, 300000)
+    //    }
+    //  };
+    //  window.onload = function() {
+    //        inactivityTime();
+
+    //}
+
+    function Delete_mom_photo(id) {
+        var idd = parseInt(id);
+        var obj = {};
+        obj.id = idd;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Wsp_new/DeletePHotograph_file_Detail",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                if (response == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                    window.location = "/Error/DefaultError";
+                }
+                Social_Monitor_Details();
+
+            }
+        });
+    }
+    function Delete_mom_pdf(id) {
+        var idd = parseInt(id);
+        var obj = {};
+        obj.id = idd;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Wsp_new/DeleteMOM_file_Detail",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+
+                alert(response);
+                if (response == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                    window.location = "/Error/DefaultError";
+                }
+                Social_Monitor_Details();
+            }
+        });
+    }
+
+    function save_Location_map_Image_Uplaod() {
+    State = '@Session["gstate"]';
+     Dist ='@Session["gdist"]';
+     Block ='@Session["gblock"]';
+        Gram = '@Session["ggram"]';
+
+        var state_name = State;
+        var district_name = Dist;
+        var block_name = Block;
+        var gpname = Gram;
+        debugger;
+
+        var files = $('#Location_map_Image_Uplaod')[0].files;
+
+        $('#Location_map_Image_Uplaod1').prop('disabled', true);
+        $('#Watershed_map_Image_Uplaod1').prop('disabled', true);
+        $('#Aquifer_map_Image_Uplaod1').prop('disabled', true);
+        $('#Drainage_map_Image_Uplaod1').prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "/HOME/Location_map_Image_Uplaod",
+            data: function () {
+                var data = new FormData();
+                data.append('Location_map_Image_Uplaod', files[0]);
+                //data.append("Location_map_Image_Uplaod", jQuery("#file_upload").get(0).files[0]);
+                data.append("state_name", state_name);
+                data.append("district_name", district_name);
+                data.append("block_name", block_name);
+                data.append("gpname", gpname);
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                $('#Location_map_Image_Uplaod1').prop('disabled', false);
+                $('#Watershed_map_Image_Uplaod1').prop('disabled', false);
+                $('#Aquifer_map_Image_Uplaod1').prop('disabled', false);
+                $('#Drainage_map_Image_Uplaod1').prop('disabled', false);
+                gpimagesgeting_Location();
+                //alert(response);
+                //if (response == "Logout") {
+                //    window.location = "/WspNew/WSP_GWM_HOME";
+                //}
+                //else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                //    window.location = "/Error/DefaultError";
+                //}
+            }
+        });
+    }
+
+    function save_Watershed_map_Image_Uplaod() {
+     State = '@Session["gstate"]';
+     Dist ='@Session["gdist"]';
+     Block ='@Session["gblock"]';
+     Gram = '@Session["ggram"]';
+
+        var state_name = State;
+        var district_name = Dist;
+        var block_name = Block;
+        var gpname = Gram;
+        debugger;
+
+        var files = $('#Watershed_map_Image_Uplaod')[0].files;
+
+        $('#Location_map_Image_Uplaod1').prop('disabled', true);
+        $('#Watershed_map_Image_Uplaod1').prop('disabled', true);
+        $('#Aquifer_map_Image_Uplaod1').prop('disabled', true);
+        $('#Drainage_map_Image_Uplaod1').prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "/HOME/Watershed_map_Image_Uplaod",
+            data: function () {
+                var data = new FormData();
+                data.append('Watershed_map_Image_Uplaod', files[0]);
+                //data.append("Location_map_Image_Uplaod", jQuery("#file_upload").get(0).files[0]);
+                data.append("state_name", state_name);
+                data.append("district_name", district_name);
+                data.append("block_name", block_name);
+                data.append("gpname", gpname);
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                $('#Location_map_Image_Uplaod1').prop('disabled', false);
+                $('#Watershed_map_Image_Uplaod1').prop('disabled', false);
+                $('#Aquifer_map_Image_Uplaod1').prop('disabled', false);
+                $('#Drainage_map_Image_Uplaod1').prop('disabled', false);
+                gpimagesgeting_Location();
+                //alert(response);
+                //if (response == "Logout") {
+                //    window.location = "/WspNew/WSP_GWM_HOME";
+                //}
+                //else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                //    window.location = "/Error/DefaultError";
+                //}
+            }
+        });
+    }
+
+
+    function save_Aquifer_map_Image_Uplaod() {
+     State = '@Session["gstate"]';
+     Dist ='@Session["gdist"]';
+     Block ='@Session["gblock"]';
+     Gram = '@Session["ggram"]';
+
+        var state_name = State;
+        var district_name = Dist;
+        var block_name = Block;
+        var gpname = Gram;
+        debugger;
+
+        var files = $('#Aquifer_map_Image_Uplaod')[0].files;
+        $('#Location_map_Image_Uplaod1').prop('disabled', true);
+        $('#Watershed_map_Image_Uplaod1').prop('disabled', true);
+        $('#Aquifer_map_Image_Uplaod1').prop('disabled', true);
+        $('#Drainage_map_Image_Uplaod1').prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "/HOME/Aquifer_map_Image_Uplaod",
+            data: function () {
+                var data = new FormData();
+                data.append('Aquifer_map_Image_Uplaod', files[0]);
+                //data.append("Location_map_Image_Uplaod", jQuery("#file_upload").get(0).files[0]);
+                data.append("state_name", state_name);
+                data.append("district_name", district_name);
+                data.append("block_name", block_name);
+                data.append("gpname", gpname);
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                $('#Location_map_Image_Uplaod1').prop('disabled', false);
+                $('#Watershed_map_Image_Uplaod1').prop('disabled', false);
+                $('#Aquifer_map_Image_Uplaod1').prop('disabled', false);
+                $('#Drainage_map_Image_Uplaod1').prop('disabled', false);
+                gpimagesgeting_Location();
+                //alert(response);
+                //if (response == "Logout") {
+                //    window.location = "/WspNew/WSP_GWM_HOME";
+                //}
+                //else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                //    window.location = "/Error/DefaultError";
+                //}
+            }
+        });
+    }
+
+
+    function save_Drainage_map_Image_Uplaod() {
+     State = '@Session["gstate"]';
+     Dist ='@Session["gdist"]';
+     Block ='@Session["gblock"]';
+     Gram = '@Session["ggram"]';
+
+        var state_name = State;
+        var district_name = Dist;
+        var block_name = Block;
+        var gpname = Gram;
+        debugger;
+
+        var files = $('#Drainage_map_Image_Uplaod')[0].files;
+
+        $('#Location_map_Image_Uplaod1').prop('disabled', true);
+        $('#Watershed_map_Image_Uplaod1').prop('disabled', true);
+        $('#Aquifer_map_Image_Uplaod1').prop('disabled', true);
+        $('#Drainage_map_Image_Uplaod1').prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "/HOME/Drainage_map_Image_Uplaod",
+            data: function () {
+                var data = new FormData();
+                data.append('Drainage_map_Image_Uplaod', files[0]);
+                //data.append("Location_map_Image_Uplaod", jQuery("#file_upload").get(0).files[0]);
+                data.append("state_name", state_name);
+                data.append("district_name", district_name);
+                data.append("block_name", block_name);
+                data.append("gpname", gpname);
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                $('#Location_map_Image_Uplaod1').prop('disabled', false);
+                $('#Watershed_map_Image_Uplaod1').prop('disabled', false);
+                $('#Aquifer_map_Image_Uplaod1').prop('disabled', false);
+                $('#Drainage_map_Image_Uplaod1').prop('disabled', false);
+                gpimagesgeting_Location();
+                //alert(response);
+                //if (response == "Logout") {
+                //    window.location = "/WspNew/WSP_GWM_HOME";
+                //}
+                //else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                //    window.location = "/Error/DefaultError";
+                //}
+            }
+        });
+    }
+
+// upload only image file
+    //function validateImageFile() {
+    //    var fileName = document.getElementById("sm_photoshop").value;
+    //    var idxDot = fileName.lastIndexOf(".") + 1;
+    //    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    //    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+    //        //TO DO
+    //    } else {
+    //        alert("Only jpg/jpeg files are allowed!");
+    //    }
+    //}
+
+
+</script>
+
+
+<script src="~/Scripts/validations.js"></script>

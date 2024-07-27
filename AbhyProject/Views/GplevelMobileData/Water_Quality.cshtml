@@ -1,0 +1,405 @@
+﻿
+@{
+    ViewBag.Title = "Water_Quality";
+    Layout = "~/Views/Shared/_Mobile.cshtml";
+}
+
+<script>
+    $(".subtab3").addClass("active");
+</script>
+<style>
+    /*table fix code*/
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*ends here*/
+</style>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+
+<div class="container">
+
+    <h3>
+        <label>
+            Total No Of GWQM Report Filled through FTK : <label id="GWQM_total"></label>
+        </label>
+    </h3>
+    <br />
+
+
+    <div class="row table_head_strip" style="margin:0px;padding-top:5px;">
+        <div class="col-md-6">
+            <div>
+                <h4 class="" style="font-size:13px;">
+                    @*Total No Of GWQM Report Filled through FTK : <label id="GWQM_total"></label>*@
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 bg-light text-right d-flex" style="margin-top:5px;">
+                <div class="bg-light text-right display_flex">
+                    <button class="btn btn-primary btn_export btn-sm" id="btnsubmit" onclick="Excel()">
+                        Export (Excel)
+                    </button>
+                </div>
+                <div style="margin-left:10px">
+
+                    <button type="button" id="pdf1" onclick="Report_PDF()" class="btn btn-primary btn-sm"> Export (PDF)</button>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+        <table class="table table-bordered comn_table" style="margin-bottom: 0px;">
+            <thead>
+                <tr style="text-align:center; background-color:goldenrod">
+                    <th>Sr.No.</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">State Name</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">District Name</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">Block Name</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">GramPanchayat Name</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">Village Name</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">Location Details</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">Latitude</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">Longitude</th>
+                    <th style="padding: 50px; padding-bottom: 10px;">Date</th>
+                    <th style="padding: 30px; padding-bottom: 6px;">Source</th>
+                    <th style="padding: 30px; padding-bottom: 6px;">Other Source</th>
+                    <th style="padding: 110px; padding-bottom: 6px;">Well ID</th>
+                    <th style="padding: 50px; padding-bottom: 6px;">Well Depth (m bgl)</th>
+                </tr>
+            </thead>
+            <tbody id="tblmain" class="text-center"></tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editId" value="">
+                <div class="form-group">
+                    <label for="editVillage">Village</label>
+                    <input type="text" name="village" class="form-control" id="editVillage" placeholder="Village Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editLocation">Location Details</label>
+                    <input type="text" name="location" class="form-control" id="editLocation" placeholder="Location Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editLatitude">Latitude</label>
+                    <input type="text" name="latitude" class="form-control" id="editLatitude" placeholder="Latitude Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editLongitude">Longitude</label>
+                    <input type="text" name="longitude" class="form-control" id="editLongitude" placeholder="Longitude Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDate">Date</label>
+                    <input type="text" name="datenew" class="form-control" id="datepicker" placeholder="Date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editWellType">Type of well</label>
+                    <input type="text" name="wellType" class="form-control" id="editWellType" placeholder="Type of well" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editWellID">Well ID</label>
+                    <input type="text" name="wellID" class="form-control" id="editWellID" placeholder="WellID" required>
+                </div>
+                <div class="form-group">
+                    <label for="editWellDepth">Well Depth(m bgl)</label>
+                    <input type="text" name="wellDepth" class="form-control" id="editWellDepth" placeholder="Well Depth(m bgl)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPH">pH</label>
+                    <input type="text" name="PH" class="form-control" id="editPH" placeholder="pH Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editThardness">Total Hardness(mg/l)</label>
+                    <input type="text" name="tHardness" class="form-control" id="editThardness" placeholder="Total Hardness(mg/l)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editAlka">Alkalinity(mg/l)</label>
+                    <input type="text" name="alkaN" class="form-control" id="editAlka" placeholder="Alkalinity(mg/l)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editNitra">Nitrate(mg/l)</label>
+                    <input type="text" name="nitrA" class="form-control" id="editNitra" placeholder="Nitrate(mg/l)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editFluo">Fluoride(mg/l)</label>
+                    <input type="text" name="fluO" class="form-control" id="editFluo" placeholder="Fluoride(mg/l)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editIron">Iron(mg/l)</label>
+                    <input type="text" name="iroN" class="form-control" id="editIron" placeholder="Iron(mg/l)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editArsen">Arsenic(mg/l)</label>
+                    <input type="text" name="arsenic" class="form-control" id="editArsen" placeholder="Arsenic(mg/l)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editEc">EC(µS/cm)</label>
+                    <input type="text" name="eC" class="form-control" id="editEc" placeholder="EC(µS/cm)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editBact">Bacterial Test</label>
+                    <input type="text" name="bacterial" class="form-control" id="editBact" placeholder="Bacterial Test" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editOthers">Others</label>
+                    <input type="text" name="other" class="form-control" id="editOthers" placeholder="Others" required>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="updatemodalbtn" rowid="" data-dismiss="modal" onclick="updateData()">Update</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        /*GetData();*/
+    });
+
+    function Excel() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/waterquality";
+        }
+    }
+    function Report_PDF() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/waterquality_report";
+        }
+    }
+
+
+
+    function GetData() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/Fetch_Water_Quality',
+            data: {},
+            dataType: 'JSON',
+            success: function (data) {
+                /*alert(data.length);*/      
+
+                var Tbodyhtml = '';
+                for (var i = 0; i < data.length; i++) {      
+
+                    var approve = data[i].approve;
+                    if (approve == null || approve == "") {
+                        approve = "At DPMU";
+                    }
+                    else if (approve == "State") {
+                        approve = "Submit To DPMU";
+                    }
+                    else if (approve == "Approve") {
+                        approve = "Approved";
+                    }
+
+                    Tbodyhtml += '<tr><td id="SrNo2" Rowid=' + data[i].gwqm_ftk_id + '>' + (i + 1) + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].state + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].district + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].block + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].gp + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].village + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].location_details + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].latitude + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].longitude + '</td>';
+                    Tbodyhtml += '<td id="wid2">' + data[i].qi_date + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].type_of_well + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].others + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].well_id + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].well_depth_mbgl + '</td>';
+                    Tbodyhtml += '<td id="date"><label>' + approve + '</label></td></tr>';
+                    
+                }
+                $('#tblmain').html(Tbodyhtml);
+                $('#GWQM_total').text(data.length);     
+
+            },
+            error: function () {
+                /* alert('Getdata to failed');*/
+            }
+        });
+    }
+
+
+
+    function editData(event) {
+
+        var tr = $(event).closest("tr");
+        var ID = tr.find('#SrNo2').attr('Rowid');
+
+        var sno = tr.find('#SrNo2').html();
+        var villa = tr.find('#villa2').html();
+        var loca = tr.find('#loc2').html();
+        var lat = tr.find('#lati2').html();
+        var long = tr.find('#longi2').html();
+        var dat = tr.find('#dat2').html();
+        var welltyp = tr.find('#wtype2').html();
+        var wellid = tr.find('#wid2').html();
+        var wDepth = tr.find('#wdepth2').html();
+        var pH1 = tr.find('#ph2').html();
+        var Thar = tr.find('#thard2').html();
+        var Alka = tr.find('#alka2').html();
+        var Nitra = tr.find('#nitra2').html();
+        var Fluo = tr.find('#fluo2').html();
+        var Ir = tr.find('#iron2').html();
+        var Ars = tr.find('#arsen2').html();
+        var EC = tr.find('#ecus2').html();
+        var Bact = tr.find('#bacte2').html();
+        var Oth = tr.find('#oth2').html();
+
+        $('#editVillage').val(villa);
+        $('#editLocation').val(loca);
+        $('#editLatitude').val(lat);
+        $('#editLongitude').val(long);
+        $('#datepicker').val(dat);
+        $('#editWellType').val(welltyp);
+        $('#editWellID').val(wellid);
+        $('#editWellDepth').val(wDepth);
+        $('#editPH').val(pH1);
+        $('#editThardness').val(Thar);
+        $('#editAlka').val(Alka);
+        $('#editNitra').val(Nitra);
+        $('#editFluo').val(Fluo);
+        $('#editIron').val(Ir);
+        $('#editArsen').val(Ars);
+        $('#editEc').val(EC);
+        $('#editBact').val(Bact);
+        $('#editOthers').val(Oth);
+        $('#updatemodalbtn').attr('Rowid', ID);
+    };
+
+    function deleteData(gwqm_ftk_id) {
+        if (confirm('Are you want to delete?')) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/GplevelMobileData/DeleteData1',
+                data: "{ID: '" + gwqm_ftk_id + "'}",
+                dataType: 'JSON',
+                success: function () {
+                    GetData();
+                },
+                error: function () {
+                    alert('Delete Failed');
+                }
+            });
+        }
+    }
+
+    function updateData() {
+
+        var obj = {};
+
+        obj.gwqm_ftk_id = $('#updatemodalbtn').attr('Rowid');
+        obj.village = $('#editVillage').val();
+        obj.location_details = $('#editLocation').val();
+        obj.latitude = $('#editLatitude').val();
+        obj.longitude = $('#editLongitude').val();
+        obj.date_of_entry = $('#datepicker').val();
+        obj.well_id = $('#editWellID').val();
+        obj.type_of_well = $('#editWellType').val();
+        obj.well_depth_mbgl = $('#editWellDepth').val();
+        obj.ph = $('#editPH').val();
+        obj.total_hardness_mgl = $('#editThardness').val();
+        obj.alkalinity_mgl = $('#editAlka').val();
+        obj.nitrate_mgl = $('#editNitra').val();
+        obj.fluoride_mgl = $('#editFluo').val();
+        obj.iron_mgl = $('#editIron').val();
+        obj.arsenic_mgl = $('#editArsen').val();
+        obj.ec_us_cm = $('#editEc').val();
+        obj.bacterial_test = $('#editBact').val();
+        obj.others = $('#editOthers').val();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/UpdateData1',
+            data: JSON.stringify(obj),
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                GetData();
+            },
+            error: function () {
+                alert('Update Failed');
+            }
+        });
+
+    }
+
+
+</script>
+
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $('#datepicker').datepicker({
+            dateFormat: 'dd-mm-yy',
+            changeMonth: true,
+            changeYear: true,
+        });
+    });
+</script>
+<style>
+    table thead tr th {
+        font-size: 11px;
+    }
+</style>

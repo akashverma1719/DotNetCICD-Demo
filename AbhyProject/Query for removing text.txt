@@ -1,0 +1,2 @@
+update abhy_procurement_milestone_insertdata set filepath = REPLACE(filepath,'Ataljalimages','/Ataljalimages')
+	select LTRIM(filepath,'https://ataljal.in')as old,LTRIM(filepath,) from abhy_procurement_milestone_insertdata 

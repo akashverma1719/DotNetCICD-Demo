@@ -1,0 +1,393 @@
+﻿<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        html,
+        body,
+        #viewDiv1 {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css" />
+    <script src="https://jsdev.arcgis.com/4.27/"></script>
+
+    <script type="text/plain" id="labeid">
+        var field = $feature.Gram_Panchayat_Name;
+        var queryArc = Trim(First(Split(DomainName($feature, 'Gram_Panchayat_Name'),'_')));
+
+        return queryArc ;
+    </script>
+
+    @*---------Water Level Map View-----------*@
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer",
+            "esri/rest/support/Query",
+            "esri/layers/support/FeatureEffect",
+            "esri/layers/support/FeatureFilter",
+
+
+        ], function (Map, MapView,  FeatureLayer, Query, FeatureEffect, FeatureFilter) {
+
+            var map = new Map({
+                basemap: "gray-vector"
+            });
+
+            const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [78, 22],
+
+                zoom: 16,
+                highlightOptions: {
+                    color: "orange"
+                },
+                popup: {
+                    dockEnabled: true,
+                    dockOptions: {
+                        buttonEnabled: false,
+                        breakpoint: false
+                    }
+                },
+                // minScale: 900000,
+                // maxScale: 900000,
+
+            });
+
+            const excludedEffect = "grayscale(100%) opacity(10%)";
+            const gwlLabel = {
+                type: "simple", // autocasts as new SimpleRenderer()
+                symbol: {
+                    type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                    size: 5,
+                    color: "green",
+                    outline: null
+                }
+            };
+
+            const labellingID = document.getElementById("labeid").text;
+            const labelClass = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",  // autocasts as new TextSymbol()
+                    color: "blue",
+                    //   haloColor: "black",
+                    //   haloSize: 1,
+                    font: {  // autocast as new Font()
+                        "family": "Avenir Next LT Pro Medium",
+                        "style": "normal",
+                        "weight": "bold",
+                        size: 9,
+                    }
+                },
+                labelPlacement: "always-horizontal",
+                labelExpressionInfo: {
+                    expression: labellingID
+                },
+            };
+            const labelClassgwl = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",  // autocasts as new TextSymbol()
+                    color: "green",
+                    //   haloColor: "black",
+                    //   haloSize: 1,
+                    font: {  // autocast as new Font()
+                        "family": "Avenir Next LT Pro Medium",
+                        "style": "normal",
+                        size: 7,
+                    }
+                },
+                labelPlacement: "above-right",
+                labelExpressionInfo: {
+                    expression: "$feature.wellid"
+                },
+            };
+            var gramPan = new FeatureLayer({
+                url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Mobile/Map1tt/MapServer/1",
+
+                title: "Gram Panchayat",
+                labelingInfo: [labelClass],
+                renderer: {
+                    type: "simple",
+                    symbol: {
+                        type: "simple-fill",
+                        color: null,
+                        outline: {
+                            width: 1,
+                            color: "blue"
+                        }
+                    }
+                },
+
+                popupTemplate: {
+                    title: "Gram Panchayat :- {Gram_Panchayat_Name}",
+                    content: [
+                        {
+                            type: "fields",
+                            fieldInfos: [
+                                {
+                                    fieldName: "Gram_Panchayat_Name",
+                                    visible: true,
+                                    label: "Gram Panchayat",
+                                    format: {
+                                        places: 0,
+                                        digitSeparator: true
+                                    }
+                                },
+                                {
+                                    fieldName: "Block_Name",
+                                    visible: true,
+                                    label: "Block Name"
+                                },
+                                {
+                                    fieldName: "District_Name",
+                                    visible: true,
+                                    label: "District Name"
+                                },
+                                {
+                                    fieldName: "State_Name",
+                                    visible: true,
+                                    label: "State Name"
+                                },
+                                {
+                                    fieldName: "Count_of_Villages_Under_GPs",
+                                    visible: true,
+                                    label: "Count_of_Villages_Under_GPs"
+                                },
+                            ]
+                        },
+                    ]
+                },
+                outFields: ["*"],
+            });
+
+            map.add(gramPan);
+            var gp = '@Session["ggram"]';
+
+            view.whenLayerView(gramPan).then(function (layerView) {
+                var query = gramPan.createQuery();
+                query.where = "Gram_Panchayat_Name = '" + gp + "'";
+                gramPan.queryExtent(query).then(function (results) {
+                    view.goTo(results.extent);  // go to the extent of all the graphics in the layer view
+                });
+            });
+            gramPan.featureEffect = new FeatureEffect({
+                filter: new FeatureFilter({
+                    where: "Gram_Panchayat_Name = '" + gp + "'"
+                }),
+                excludedEffect: excludedEffect
+
+            });
+            var gwl = new FeatureLayer({
+                url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Ataljal/WaterLevelView/MapServer/0",
+                renderer: gwlLabel,
+                labelingInfo: [labelClassgwl],
+            });
+            map.add(gwl);
+            gwl.featureEffect = new FeatureEffect({
+                filter: new FeatureFilter({
+                    where: "grampanchayat  = '" + gp + "'"
+                }),
+                excludedEffect: excludedEffect
+            });
+        });
+    </script>
+
+
+    @*---------Water Quality Map View-----------*@
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer",
+            "esri/rest/support/Query",
+            "esri/layers/support/FeatureEffect",
+            "esri/layers/support/FeatureFilter",
+        ], function (Map, MapView, FeatureLayer, Query, FeatureEffect, FeatureFilter) {
+
+            var map = new Map({
+                basemap: "gray-vector"
+            });
+
+            const view = new MapView({
+                container: "viewDiv1",
+                map: map,
+                center: [78, 22],
+
+                zoom: 16,
+                highlightOptions: {
+                    color: "orange"
+                },
+                popup: {
+                    dockEnabled: true,
+                    dockOptions: {
+                        buttonEnabled: false,
+                        breakpoint: false
+                    }
+                },
+                // minScale: 900000,
+                // maxScale: 900000,
+            });
+
+
+            const excludedEffect = "grayscale(100%) opacity(10%)";
+            const gwlLabel = {
+                type: "simple", // autocasts as new SimpleRenderer()
+                symbol: {
+                    type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                    size: 5,
+                    color: "green",
+                    outline: null
+                }
+            };
+            const labellingID = document.getElementById("labeid").text;
+            const labelClass = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",  // autocasts as new TextSymbol()
+                    color: "blue",
+                    //   haloColor: "black",
+                    //   haloSize: 1,
+                    font: {  // autocast as new Font()
+                        "family": "Avenir Next LT Pro Medium",
+                        "style": "normal",
+                        "weight": "bold",
+                        size: 9,
+                    }
+                },
+                labelPlacement: "always-horizontal",
+                labelExpressionInfo: {
+                    expression: labellingID
+                },
+            };
+            const labelClassgwl = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",  // autocasts as new TextSymbol()
+                    color: "green",
+                    //   haloColor: "black",
+                    //   haloSize: 1,
+                    font: {  // autocast as new Font()
+                        "family": "Avenir Next LT Pro Medium",
+                        "style": "normal",
+                        "weight": "bold",
+                        size: 9,
+                    }
+                },
+                labelPlacement: "above-right",
+                labelExpressionInfo: {
+                    expression: "$feature.well_id"
+                },
+            };
+            var gramPan = new FeatureLayer({
+                url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Mobile/Map1tt/MapServer/1",
+                title: "Gram Panchayat",
+                labelingInfo: [labelClass],
+                renderer: {
+                    type: "simple",
+                    symbol: {
+                        type: "simple-fill",
+                        color: null,
+                        outline: {
+                            width: 1,
+                            color: "blue"
+                        }
+                    }
+                },
+                popupTemplate: {
+                    title: "Gram Panchayat :- {Gram_Panchayat_Name}",
+                    content: [
+                        {
+                            type: "fields",
+                            fieldInfos: [
+                                {
+                                    fieldName: "Gram_Panchayat_Name",
+                                    visible: true,
+                                    label: "Gram Panchayat",
+                                    format: {
+                                        places: 0,
+                                        digitSeparator: true
+                                    }
+                                },
+
+
+                                {
+                                    fieldName: "Block_Name",
+                                    visible: true,
+                                    label: "Block Name"
+                                },
+
+                                {
+                                    fieldName: "District_Name",
+                                    visible: true,
+                                    label: "District Name"
+                                },
+
+                                {
+                                    fieldName: "State_Name",
+                                    visible: true,
+                                    label: "State Name"
+                                },
+
+                                {
+                                    fieldName: "Count_of_Villages_Under_GPs",
+                                    visible: true,
+                                    label: "Count_of_Villages_Under_GPs"
+                                },
+                            ]
+                        },
+                    ]
+                },
+                outFields: ["*"],
+            });
+            map.add(gramPan);
+            var gp = '@Session["ggram"]';
+            view.whenLayerView(gramPan).then(function (layerView) {
+                var query = gramPan.createQuery();
+                query.where = "Gram_Panchayat_Name = '" + gp + "'";
+                gramPan.queryExtent(query).then(function (results) {
+                    view.goTo(results.extent);  // go to the extent of all the graphics in the layer view
+                });
+            });
+            gramPan.featureEffect = new FeatureEffect({
+                filter: new FeatureFilter({
+                    where: "Gram_Panchayat_Name = '" + gp + "'"
+                }),
+                excludedEffect: excludedEffect
+
+            });
+            var gwq = new FeatureLayer({
+                url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Ataljal/MapViewAtalJal/MapServer/1",
+                renderer: gwlLabel,
+                labelingInfo: [labelClassgwl],
+            });
+            map.add(gwq);
+            gwq.featureEffect = new FeatureEffect({
+                filter: new FeatureFilter({
+                    where: "gp  = '" + gp + "'"
+                }),
+                excludedEffect: excludedEffect
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="" id="viewDiv"></div>
+    <div class="" id="viewDiv1"></div>
+
+</body>
+</html>

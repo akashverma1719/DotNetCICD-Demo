@@ -1,0 +1,719 @@
+﻿
+
+@{
+    ViewBag.Title = "WspRemarks";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<title>Gram Panchayat (Basic Hydrology Info)</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
+<meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
+<meta name="author" content="Codrops" />
+
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+
+
+
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<link href="~/Content/wsptotal.css" rel="stylesheet" />
+
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/WSPNEW.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .btnall1 > li {
+        display: inline-block;
+    }
+
+    .nav-tabs > li {
+        float: none;
+    }
+
+    #progress-ui {
+        text-align: center !important;
+    }
+
+    h3 {
+        font-weight: 600;
+    }
+
+    @@media (min-width: 992px) {
+        .Sider_column {
+            width: 23%;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .hole_column {
+            width: 77%;
+        }
+    }
+
+    @@media (max-width:1491px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 345px !important;
+        }
+    }
+
+    @@media (max-width:1364px) and (min-width:990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 290px !important;
+        }
+    }
+
+    @@media (max-width: 1200px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 200px !important;
+        }
+    }
+
+    table > tbody > tr > td > span {
+        float: right;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target] {
+        display: none;
+    }
+
+    .Sider_column > ul.sider_images_sider:after {
+        position: absolute;
+        content: "";
+        /*height: 10%;*/
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target]:after {
+        position: absolute;
+        content: "";
+        height: 0%;
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target].active {
+        display: block;
+    }
+
+
+
+    .btnprocess {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    .btnprocess1 {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    ul[id$="_menu"] {
+        padding: 0;
+        margin: 0;
+    }
+
+    .Side_Image {
+        padding: 0;
+        margin: auto;
+    }
+
+    ul[id$="_menu"] > li {
+        display: inline-flex;
+        position: relative;
+        width: 100%;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+        ul[id$="_menu"] > li > a {
+            display: block;
+            text-align: center;
+        }
+
+    [id^="menu-"][class*="-info"] {
+        font-size: 21px;
+    }
+
+        [id^="menu-"][class*="-info"] > .clearfix {
+            padding: 15px 0;
+        }
+
+            [id^="menu-"][class*="-info"] > .clearfix:last-child {
+                text-align: center;
+            }
+
+
+
+    ul[id$="_menu"] > li > a > span {
+        border-radius: 50%;
+        border: 1px solid #333;
+        display: inline-block;
+        padding: 10px;
+    }
+
+        ul[id$="_menu"] > li > a > span > img {
+            height: 40px;
+            width: 40px;
+            margin: auto;
+        }
+
+    ul[id$="_menu"] > li > a > label {
+        /*color: #7c3c0b;*/
+        color: #000;
+        font-size: 12px;
+        display: block;
+        border: 2px solid transparent;
+    }
+
+    ul[id$="_menu"] > li > a:hover > label,
+    ul[id$="_menu"] > li > a:focus > label,
+    ul[id$="_menu"] > li.active > a > label {
+        border-color: #337ab7;
+        background-color: #fde0ca;
+    }
+
+    #myTabs.nav-pills > li.active > a:before {
+        content: "";
+        /*height: 2px;*/
+        position: absolute;
+        bottom: 6px;
+        display: inline-block;
+        width: 98%;
+        z-index: 99;
+        left: 2%;
+        background-color: #fff;
+    }
+
+    ul[id$="_menu"] > li > a:active,
+    ul[id$="_menu"] > li > a:focus,
+    ul[id$="_menu"] > li > a:hover {
+        text-decoration: none;
+    }
+
+    ul[id$="_menu"] > li.active > a > span {
+        border-width: 2px;
+        border-color: #337ab7;
+    }
+
+    ul[id$="_menu"] > li.active:after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #337ab7;
+        content: " ";
+        position: absolute;
+        bottom: -10px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    .banner-form {
+        border: 2px solid;
+        border-radius: 10px;
+        font-size: 18px;
+        border-color: #337ab7;
+    }
+
+    .form-control {
+        border: none;
+        box-shadow: none;
+        border-bottom: 1px solid;
+        border-radius: 0;
+    }
+
+
+    a:hover {
+        color: red;
+        border-bottom: 2px;
+    }
+
+    a:active {
+        color: green;
+    }
+
+    h2 {
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .color_database {
+        color: green !important;
+    }
+
+    .wa_table thead tr th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+</style>
+<style>
+    [id^="menu-"][class*="-info"] {
+        display: none;
+    }
+
+        [id^="menu-"][class*="-info"].active {
+            display: block;
+        }
+
+    @@media(min-width: 992px) {
+        ul[id$="_menu"] > li {
+            /*width: calc(100%/7);
+            float: left;*/
+            width: 11%;
+            float: left;
+            display: block;
+        }
+
+        [id^="menu-"][class*="-info"] {
+            text-align: right;
+        }
+
+        ul.nav-justified {
+            display: table;
+        }
+
+            ul.nav-justified > li {
+                width: auto;
+            }
+        /*ul.nav-justified > li:first-child {
+                    width: 2%;
+                }*/
+        .btn.btn-primary + .btn.btn-primary {
+            margin-left: 5%;
+        }
+
+        #Water_draft_menu {
+            padding: 0px 0px 0px 50px;
+        }
+    }
+
+    @@media (max-width:992px) and (min-width:768px) {
+        ul[id$="_menu"] > li {
+            width: 25%;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .col-md-offset-2 {
+        margin-left: 0;
+    }
+
+
+    .col-md-offset-1 {
+        margin-left: 0;
+    }
+</style>
+
+<style type="text/css">
+    .nav-justified {
+        padding-top: 0;
+    }
+
+    .nav-justified {
+        /*padding-top: 3em;*/
+        text-align: right;
+        padding-bottom: 0.5em;
+        /*margin-bottom: 1em;*/
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 0% !important;
+        }
+    }
+
+    nav-pills > li > a {
+        border-radius: 0px !important;
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 10%;
+        }
+
+            .nav-justified > li {
+                display: inline-block;
+                width: auto;
+            }
+    }
+
+    .nav-justified > li > a,
+    .nav-justified > li > a:hover,
+    .nav-justified > li > a:focus {
+        background-color: transparent;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 0;
+    }
+
+    ul.btnall > li {
+        list-style: none;
+    }
+
+        ul.btnall > li.leftbtnprivous {
+            text-align: right;
+        }
+
+        ul.btnall > li.leftbtnnext {
+            text-align: left;
+        }
+
+    ul.textbox1 > li.leftbtnnext {
+        text-align: left;
+    }
+
+    .database_trainer_row11 > h4 {
+        background-color: none !important;
+        color: #000;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 0px 0px;
+        font-weight: bold;
+    }
+
+    .database_trainer_row11_label > label {
+        color: #000 !important;
+    }
+</style>
+
+
+
+<div class="clearfix mainclearfix">
+    <div class="clearfix">
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                }
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/WaterSecurityPlan/WSP_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>Wsp Home <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <span><img src="~/Content/WspImages/Water Budgeting 2.png" title="GWB"></span>
+                                <label>WSP Remarks </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="tab-content">
+
+            <!--Rainfail_menu Start-->
+            <div role="tabpanel" class="tab-pane fade in active" id="music">
+                <div class="container-fluid">
+                    <!--images Row Started-->
+                    <div class="clearfix">
+                        <div class="row" id="Select_dist_level">
+                            <ul class="Select_option selectbackhome">
+                                <li>
+                                    <label id="lblstate">State:</label>
+                                    <span id="spnstate">@Session["gstate"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label id="lbldistrict">District:</label>
+                                    <span id="spndistrict">@Session["gdist"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Block:</label>
+                                    <span>@Session["gblock"] </span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Gram panchayat:</label>
+                                    <span>@Session["ggram"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Year:</label>
+                                    <span id="Year">@Session["Year"]</span>
+                                </li>
+                                
+                            </ul>
+                            <ul class="selectbackhome" style="float:right;">
+                                <li>
+                                    <a href="~/WaterSecurityPlan/WSP_HOME"class="btn btn-success">
+                                        Back To WSP Home
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <select class="banner-form" id="goto_page" onchange="goto_page();">
+                            <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--- SELECT PAGE ---</option>
+                            <option value="/WaterSecurityPlan/WSP_gram">Gram Panchayat (Basic Hydrology Info)</option>
+                            <option value="/WaterSecurityPlan/Wsp_Water_Availability">Water Availability</option>
+                            <option value="/WaterSecurityPlan/Water_Utilization">Water Utilization</option>
+                            <option value="/WaterSecurityPlan/Wsp_Balance">Water Balance</option>
+                            <option value="/WaterSecurityPlan/Water_Budget">Water Budget</option>
+                            <option value="/wspDemandSide/DemandSide">Demand Side</option>
+                            <option value="/SupplySide/index">Supply Side</option>
+                            <option value="/PGWM/index">PGWM</option>
+
+                        </select>
+                    </div>
+                    <div class="clearfix tabfirst">
+                        <div class="suface-info active" id="menu-11">
+                            <div class="clearfix">
+                                <div class="container-fluid">
+                                    <div class="col-md-10 col-sm-12 col-lg-12 form-body1">
+                                        <div class="form-div">
+
+                                            <div class="col-md-12 background-border-Database background-border-Database1">
+                                                <div class="row database_trainer_row database_trainer_row1 ">
+                                                    <h2>WSP Remarks</h2>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        Gram Panchayat (Basic Hydrology Info)
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="gp_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        Water Availability
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="wa_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        Water Utilization
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="wu_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        Water Balance
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="wb_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        Water Budget
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="wbu_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        Demand Side
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="ds_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        Supply Side
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="ss_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        PGWM
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <textarea class="form-control" id="pgwm_remarks" rows="6" placeholder="Remarks--" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 last-div-footer" id="btnExport1">
+    <div class="col-md-12 text-center">
+        <a href="~/dpmuDeclaration/declaration" id="dpmu_btn" class="btn btn-danger"> Back</a>
+        <a href="~/PGWM/pgwm_summary" id="pgwm_btn" class="btn btn-danger"> Back</a>
+        @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+        <a href="~/WaterSecurityPlan/Total_WSP_Report" class="btn btn-primary">
+            Go To Final Report
+        </a>
+
+
+    </div>
+</div>
+<script>
+    var StateOfficer = '';
+    $(document).ready(function () {
+        $('#dpmu_btn').hide();
+        $('#pgwm_btn').hide();
+        get_remarks_status();
+        StateOfficer = '@Session["Officer"]';
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            $('#dpmu_btn').show();
+        } else {
+            $('#pgwm_btn').show();
+        }
+    });
+
+    function get_remarks_status() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterSecurityPlan/get_remarks_status",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                @* status_id = @ViewBag.status_id;
+                alert(status_id) *@
+                if (data.gp_remarks != null) {
+                    $('#gp_remarks').val(data.gp_remarks);
+                }
+                if (data.wa_remarks != null) {
+                    $('#wa_remarks').val(data.wa_remarks);
+                }
+                if (data.wu_remarks != null) {
+                    $('#wu_remarks').val(data.wu_remarks);
+                }
+                if (data.wb_remarks != null) {
+                    $('#wb_remarks').val(data.wb_remarks);
+                }
+                if (data.wbu_remarks != null) {
+                    $('#wbu_remarks').val(data.wbu_remarks);
+                }
+                if (data.ds_remarks != null) {
+                    $('#ds_remarks').val(data.ds_remarks);
+                }
+                if (data.ss_remarks != null) {
+                    $('#ss_remarks').val(data.ss_remarks);
+                }
+                if (data.pgwm_remarks != null) {
+                    $('#pgwm_remarks').val(data.pgwm_remarks);
+                }
+            }
+        });
+    }
+
+    function goto_page() {
+
+        var path = $('#goto_page').val();
+        window.location = path;
+    }
+</script>

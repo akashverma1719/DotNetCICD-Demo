@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Gp_information";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<link href="~/Content/wspnewcss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/Content/JS_Files/wsphome.js"></script>
+<link href="~/Content/css/mis_after_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .notice-ribbon {
+        font-size: 14px;
+        background: #3585dc;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+
+        .notice-ribbon p {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 0px;
+        }
+</style>
+<main>
+    <div class="container-fluid notice-ribbon">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mb-0">To clear cache, please refresh this page by pressing Ctrl + F5.</p>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+
+        <div class="col-md-12 Select_option_div">
+
+            <ul class="Select_option pull-right col-md-2 col-sm-2">
+                <li>
+                    <a href="~/WSPHome/Gp_information" class="btn btn-primary">
+                        Back to GP Modules
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix total_div_wsp_home" style="">
+
+
+
+
+
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div">
+            <a href="~/Tracker/index">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            @*<li><img src="~/Content/Agriculture_icons/essstolll.png" /></li>*@
+
+                            <li>
+                                <img src="~/Content/Agriculture_icons/Gp Tracker.png" />
+                            </li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div">
+            <a href="~/Tracker/WspTracker">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            @*<li><img src="~/Content/Agriculture_icons/esssff_re.png" /></li>*@
+                            <li>
+                                <img src="~/Content/Agriculture_icons/Wsp Tracker.png" />
+                            </li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="social_div">
+            <a href="~/Tracker/SocialTracker">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            <li><img src="~/Content/Agriculture_icons/Social Tracker.png" /></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+
+
+
+    </div>
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Tracker</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+
+</main>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <img src="~/Ataljalimages/GP_WSP_under_maintenance.png" />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //$('#myModal').modal('show');
+        SessionInfo();
+
+    });
+    var state = "";
+    function SessionInfo() {
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var arr = data.split(",");
+                state = arr[1];
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+            }
+        });
+    }
+
+</script>

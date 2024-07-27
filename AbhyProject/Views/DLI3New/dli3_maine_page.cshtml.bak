@@ -1,0 +1,178 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Main_page";
+    Layout = null;
+}
+
+<title>DLI3</title>
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<link href="~/Content/wspnewcss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/Content/JS_Files/wsphome.js"></script>
+<link href="~/Content/css/mis_after_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+@*akash_dev_dli3*@
+<style>
+    body {
+        background: #D1E8E2 !important;
+    }
+</style>
+<main>
+
+    <div class="row">
+        <div class="col-md-12 Select_option_div">
+
+            <ul class="Select_option pull-right col-md-2 col-sm-2">
+                <li>
+                    <a href="~/WSPHome/Monitoring_evaluation" class="btn btn-primary">
+                        Back to  Modules
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="clearfix total_div_wsp_home admin_div" style="">
+        <div class=" col-lg-4  col-md-4 col-sm-4 text-center sub_total_div" id="wsp_module_div">
+            <a href="~/Demand_new/Main_page">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+                            <li><img src="~/Content/Agriculture_icons/indicator_old.png" /></li>
+                            <li></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </a>
+        </div>
+
+
+        <div class=" col-lg-4  col-md-4 col-sm-4 text-center sub_total_div" id="dli3new">
+            @*<a href="~/DLI3New/viewdemandsidesupplyside_new">*@
+            <a href="~/Home/under_maintainance">
+                <ul class="ul_image_wsphome text-center">
+                    <li>
+                        <ul class="arrow_ul_css">
+                            <li>  <img src="~/Content/Agriculture_icons/indicator_new.png" /></li>
+                            <li></li>
+                        </ul>
+                    </li>
+                </ul>
+            </a>
+        </div>
+
+    </div>
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab"> DLI 3 Convergence Claim </span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+</main>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <img src="~/Ataljalimages/Water%20Security%20Plan%20Under%20MAintenance.png" />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var StateOfficer = "";
+    var Email = "";
+    $(document).ready(function () {
+        //adminoruser();
+        debugger;
+        var Auth = '@Session["Access_Auth"]';
+        StateOfficer = '@Session["Officer"]';
+        Email = '@Session["Email"]';
+        if (Auth == "WSP") {
+            $("#wsp_approved_div").hide();
+        }
+         if (StateOfficer == "Gram Panchyat Nodal Officer") {
+             $("#document_upload").hide();
+             $("#document_upload_npmu").hide();
+        }
+        if (StateOfficer == "District Level Nodal Officer") {
+            $("#document_upload").show();
+            $("#document_upload_npmu").hide();
+        }
+         if (StateOfficer == "State Level Nodal Officer") {
+             $("#document_upload").hide();
+             $("#document_upload_npmu").show();
+        }
+        if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+            $("#document_upload").hide();
+            $("#document_upload_npmu").show();
+        }
+
+        if (Email == 'atalbhujal.qci@gmail.com' || Email == 'akash.verma@kreatetechnologies.com' || Email == 'ehtashamhusain@gmail.com' || Email == 'balramkrishna2002@gmail.com' || Email == 'vivekvivektiwari80@gmail.com') {
+            $('#dli3new').show();
+        }
+        else {
+            $('#dli3new').show();
+        }
+
+        //$('#myModal')
+        ('show');
+    });
+
+    function adminoruser() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSPHome/Training_mannual_testing',
+            data: '',
+            dataType: 'JSON',
+            success: function (response) {
+                debugger;
+                if (response == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                else {
+                    if (response == "Admin" || response == "National Level Nodal Officer" || response == "State Level Nodal Officer" || response == "District Level Nodal Officer") {
+                        $('.admin_div').show();
+                        $('.user_div').hide();
+                    } else {
+                        $('.user_div').show();
+                        $('.admin_div').hide();
+
+                    }
+                }
+
+
+            }
+        });
+
+    }
+</script>

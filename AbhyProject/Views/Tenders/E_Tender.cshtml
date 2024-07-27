@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AbhyProject.Models.E_Tender>
+@{
+    ViewBag.Title = "E_Tender";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title> E-Tender</title>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .list-group-item {
+        border: 1px solid rgba(0,0,0,125);
+        color: #ffffff !important;
+        border-color: #eee;
+    }
+
+    ul.Etender {
+        margin-top: 20px;
+    }
+
+        ul.Etender > li {
+            padding: 5px 15px;
+            width: 50%;
+        }
+</style>
+<!--Heading-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">E-Tenders </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top:20px;">
+    <!--First line strat-->
+    @*<div class="row">
+            <div class="col-md-12">
+                <p style="font-size:16px; color:black;">
+                    The e-procurement system of all the states wherein Bank has carried out system assessment and found acceptable are as follows:
+                </p>
+                <ul class="Etender">
+                    @foreach (var item in Model)
+                    {
+                        <li class="list-group-item">  <a href="https://@Html.DisplayFor(modelItem => item.url)"><i class="fa fa fa-hand-o-right"></i> &nbsp;  @Html.DisplayFor(modelItem => item.title)</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>*@
+</div>
+<!--First line End-->
+<div class="container">
+    <!--List row Started-->
+    <div class="row">
+
+
+
+    </div>
+    <!--List row End-->
+</div>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:last-child ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:last-child").siblings().removeClass('active');
+</script>

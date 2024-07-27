@@ -1,0 +1,103 @@
+
+/* media quries  */
+@media (max-width: 1200px) {
+    .db-btn {
+        font-size: 17px;
+        width: 35%;
+    }
+
+    .analog_section {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .title {
+        display: inline-block;
+    }
+
+    .project-heading {
+        margin-bottom: 10px;
+    }
+
+    #state {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .sub-second-two {
+        border: 1px solid #004592;
+        margin: 8px 17px 0px 20px;
+    }
+
+    .awp-compo-a-b {
+        border: 1px solid #004592;
+        margin: 7px 10px 6px 11px;
+    }
+
+    .awp-compo-a {
+        border: 1px solid #004592;
+        margin: 6px 10px 6px 11px;
+    }
+
+    .awp-compo-a-b {
+        margin: 7px 17px 10px 20px;
+    }
+
+    .awp-compo-a {
+        margin: 7px 17px 10px 20px;
+    }
+
+    .awp-compo-b {
+        margin: 9px 16px 14px 21px;
+    }
+
+    #finenance {
+        width: 100%;
+    }
+
+    .db-btn {
+        width: 40%;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 768px) {
+    .button_box {
+        margin-top: 5px;
+    }
+
+    .db-btn {
+        width: 100%;
+        top: -5px;
+    }
+
+    button {
+        margin: 5px;
+    }
+
+    .good_heading,
+    .status_heading {
+        font-size: 16px;
+    }
+
+    .project-heading {
+        font-size: 25px;
+    }
+
+    .all_section {
+        margin-right: 1.5rem;
+        margin-left: 0.5rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .pip-parent .pip-heading,
+    .db-btn {
+        font-size: 15px;
+    }
+
+    .project-heading {
+        font-size: 32px;
+    }
+}

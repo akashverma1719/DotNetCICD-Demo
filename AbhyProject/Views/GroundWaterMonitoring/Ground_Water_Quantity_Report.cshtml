@@ -1,0 +1,293 @@
+﻿
+@{
+    ViewBag.Title = "Ground_Water_Quantity_Report";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/GWM_Report_css.css" rel="stylesheet" />
+<script src="~/Scripts/validations.js"></script>
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<div class="container" id="Data1">
+    <div class="col-md-12">
+        <div class="firsttable col-md-12" style="margin-bottom:5px;">
+            <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 report_heading_div" style="margin-bottom:15px;">
+        <div class="col-md-9">
+            <h1>Ground Water Quantity Report </h1>
+        </div>
+        <div class="col-md-3 text-right" id="btnExport">
+            <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+        </div>
+        <div class="col-md-12">
+            <ul class="dateandtime_ul">
+                <li>Date : <span id="demo"></span></li>
+                <li>Time : <span id="demo2"></span></li>
+                <li>
+                    User Name:
+                    @if (Session["UserName"] != null)
+                    {
+                        <span>@Session["UserName"].ToString()</span>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12 state_dist_level">
+        <div class="row" id="Select_dist_level">
+            <ul class="Select_option">
+                @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                {
+
+                    <li>
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate">@Session["gstate"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                }
+                else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                {
+                    <li>
+                        <label id="lblstate">Admin</label>
+
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <label id="lblstate">National Level Nodal Officer</label>
+
+                    </li>
+                }
+
+
+                @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                {
+                    <li>
+
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                }
+
+                @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Block:</label>
+                        <span id="spnblock">@Session["gblock"]</span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                }
+                @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                {
+                    <li>
+
+                        <label>Gram panchayat:</label>
+                        <span id="spngram">@Session["ggram"]</span>
+
+                    </li>
+                }
+
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="col-md-12">
+        <div id="resetinfo" style="padding:5px;">
+            <table class="table Qunatity_report_table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                <thead>
+                    <tr>
+                        <th colspan="4" style="background-color: #337ab7 !important;">Ground Water Scenario</th>
+                    </tr>
+                </thead>
+                <tbody class="tablebaody">
+
+                    <tr>
+                        <td>Location :</td>
+                        <td>@Session["gstate"]</td>
+                        <td>Block :</td>
+                        <td>@Session["gblock"]</td>
+                    </tr>
+                    <tr>
+                        <td>Block Area(sq.km.) :</td>
+                        <td id="Block_area"></td>
+                        <td>Annual Extractable GW Resource(Ham) :</td>
+                        <td id="Annual_GW_Avalibility"></td>
+                    </tr>
+                    <tr>
+                        <td>Total Extraction(Ham):</td>
+                        <td id="Annual_GW_Withdrawal"></td>
+                        <td>Stage of GW Extraction (%):</td>
+                        <td id="Stage_of_GW_Development"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <p class="text-center">
+                .............................
+            </p>
+            <p class="text-justify">
+                The results and analysis contained within the groundwater monitoring report are generated with the help of inputs given by the user as well as existing database. Each component of groundwater monitoring is designed to make understand the users about the processes, parameters and equations involved in the system. The overall goal of groundwater monitoring is therefore to improve the management of ground water resources in priority areas of the country.
+            </p>
+            <p class="text-center">
+                .............................
+            </p>
+        </div>
+        <div class="col-md-12 last-div-footer" id="btnExport1">
+            <div class="col-md-12 text-center">
+                <a href="~/GroundWaterMonitoring/Gwm_Groundwater_Quantity" class="btn btn-danger"> Back</a>
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+                <a href="~/GroundWaterMonitoring/Ground_Water_Total_Report" class="btn btn-primary">Go to Total Report</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    function ReportPdf() {
+        $("#Data1").width(1100);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+            filename: 'Ground_water_Quantity_report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('div.gramReport_div_Data_Collection').addClass('gramReport_div_Data_Collection1');
+        $('div.gramReport_div_Groundwater_Information').addClass('gramReport_div_Groundwater_Information1');
+        $('div.gramReport_div_Groundwater_Information_last').addClass('gramReport_div_Groundwater_Information_last1');
+        $('div.graphheader').addClass('graphheader1');
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        $(".highcharts-credits").css("display", "none");
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $('div.gramReport_div_Data_Collection').removeClass('gramReport_div_Data_Collection1');
+            $('div.gramReport_div_Groundwater_Information').removeClass('gramReport_div_Groundwater_Information1');
+            $('div.gramReport_div_Groundwater_Information_last').removeClass('gramReport_div_Groundwater_Information_last1');
+            $('div.graphheader').removeClass('graphheader1');
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+    }
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+    // date
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        QuantityDetailsIndividual_report();
+    });
+    function QuantityDetailsIndividual_report() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GroundWaterMonitoring/Gwm_Groundwater_Quantity_geting',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                if (data.length != 0) {
+
+
+                    if (data[0].area_sq_km != null) {
+
+                        $('#Block_area').text(parseFloat(data[0].area_sq_km).toFixed(2));
+                    }
+                    if (data[0].avail_ha_m != null) {
+
+                        $('#Annual_GW_Avalibility').text(parseFloat(data[0].avail_ha_m).toFixed(2));
+                    }
+                    if (data[0].gw_dft_ha_m != null) {
+
+                        $('#Annual_GW_Withdrawal').text(parseFloat(data[0].gw_dft_ha_m).toFixed(2));
+                    }
+                    if (data[0].stage__gwdev_percentage != null) {
+
+                        $('#Stage_of_GW_Development').text(parseFloat(data[0].stage__gwdev_percentage).toFixed(2));
+                    }
+
+
+                }
+
+                else {
+
+                    alert("No Data for this State,District,Block and Gram panychayat")
+                }
+            }
+        });
+    }
+
+</script>

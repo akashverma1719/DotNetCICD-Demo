@@ -1,0 +1,977 @@
+﻿
+@{
+    ViewBag.Title = "Photographs";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>>
+<style>
+    .maindiv {
+        width: 100%;
+        margin: auto;
+    }
+
+    .tbl-responsive {
+        overflow-x: inherit;
+    }
+
+    .clearfix:after {
+        align-content f box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    .classic-title {
+        margin: 0 0 16px 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid mediumblue;
+        font-weight: 600;
+        line-height: 1.5em;
+    }
+
+    .panel-group > .panel {
+        -webkit-border-radius: 6px;
+        border: 1px solid #e8e8e8;
+        margin: 5px 0;
+    }
+
+    /*.panel-group > .panel-heading {
+        background-color: #ffad33;
+        padding: 0px;
+    }*/
+
+    .panel-title > a {
+        position: relative;
+        display: block;
+        color: #444 !important;
+        background-color: #fff;
+        padding: 10px 21px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .text-info {
+        color: mediumblue;
+    }
+
+    .panel-title > a > .control-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -11px;
+    }
+
+    .panel-title > a > i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+
+
+    .dataTables_filter, .dataTables_paginate {
+        float: right;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 8px 15px !important;
+        margin-bottom: -1px;
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .panel-inner > ul.list-group > li.list-group-item > a {
+        color: #3a99ed !important;
+    }
+
+        .panel-inner > ul.list-group > li.list-group-item > a:hover {
+            color: #6FB11D !important;
+        }
+
+    span.tablecellhead {
+        font-size: 15px;
+        font-weight: bold;
+        color: mediumblue;
+    }
+
+    .dataTables_empty {
+        text-align: center;
+    }
+
+    .list_table_function {
+        float: none;
+        width: 93%;
+        margin-left: 13px;
+        background: none !important;
+    }
+
+    .cricle_round {
+        background: #30abec;
+        color: white;
+        font-size: 13px;
+        border-radius: 100%;
+        font-weight: bold;
+        padding: 4px;
+        margin: -6px;
+        width: 26px;
+        height: 24px;
+        text-align: center
+    }
+
+    .gujarat-video {
+        display: none;
+    }
+
+    .haryana {
+        display: none;
+    }
+
+    .karnataka {
+        display: none;
+    }
+
+    .MP {
+        display: none;
+    }
+
+    .maharastra {
+        display: none;
+    }
+
+    .rajsthan {
+        display: none;
+    }
+
+
+    .up {
+        display: none;
+    }
+
+    .aud2 {
+        display: none;
+    }
+
+    .aud3 {
+        display: none;
+    }
+
+    .aud4 {
+        display: none;
+    }
+
+    .aud5 {
+        display: none;
+    }
+
+    .aud6 {
+        display: none;
+    }
+
+    .aud7 {
+        display: none;
+    }
+
+    .aud8 {
+        display: none;
+    }
+
+    .box-in {
+        width: 260px;
+        height: calc(100%-10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        .box-in p {
+            margin: 10px 0;
+        }
+
+        .box-in img, .box-in video {
+            width: 100%;
+        }
+</style>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").siblings().removeClass('active');
+
+</script>
+<div class="row m-0">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Photographs</div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="widget widget-categories">
+                <h6 class="classic-title"><span class="text-info">TOPICS</span></h6>
+                <div class="panel-group" id="topic">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-2111">
+                                    <i class="fa fa-angle-down control-icon"></i>
+                                    PHOTOGRAPHS
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="doc1tier-2111" class="panel-body collapse panel_hide" style="padding: 4px;">
+                            <div class="panel-inner">
+                                <ul class="list-group" role="tablist" style="display:inherit !important;">
+
+                                    <li onclick="table16();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">NPMU</a>
+                                        <span class="pull-right  cricle_round">4</span>
+                                    </li>
+                                    <li onclick="table17();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">GUJARAT</a>
+                                        <span class="pull-right  cricle_round">9</span>
+                                    </li>
+                                    <li onclick="table18();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">HARYANA</a>
+                                        <span class="pull-right  cricle_round">12</span>
+                                    </li>
+                                    <li onclick="table19();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">KARNATAKA</a>
+                                        <span class="pull-right  cricle_round">9</span>
+                                    </li>
+                                    <li onclick="table20();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">
+                                            MADHYA PRADESH
+                                        </a>
+                                        <span class="pull-right  cricle_round">9</span>
+                                    </li>
+                                    <li onclick="table21();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">MAHARASHTRA</a>
+                                        <span class="pull-right  cricle_round">5</span>
+                                    </li>
+                                    <li onclick="table22();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">RAJASTHAN</a>
+                                        <span class="pull-right  cricle_round">15</span>
+                                    </li>
+                                    <li onclick="table23();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">UTTAR PRADESH</a>
+                                        <span class="pull-right  cricle_round">0</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" style="margin-bottom:40px;">
+            <div class="vid1 npmu">
+                <div class="row gallery-box">
+                    <div class="box-in">
+
+                        <label>NPMU</label>
+                        <img src="~/Ataljalimages/Photographs/4TH NLSC meeting in Delhi.JPG">
+                        <p>4TH NLSC meeting in Delhi</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>NPMU</label>
+                        <img src="~/Ataljalimages/Photographs/4th NLSC meeting in Delhi 2.JPG">
+                        <p>4TH NLSC meeting in Delhi</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>NPMU</label>
+                        <img src="~/Ataljalimages/Photographs/4th NLSC meeting in Delhi 3.JPG">
+                        <p>4TH NLSC meeting in Delhi</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>NPMU</label>
+                        <img src="~/Ataljalimages/Photographs/4th NLSC meeting4.JPG">
+                        <p>4TH NLSC meeting in Delhi</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="vid2 gujarat-video">
+
+                <div class="row  gallery-box">
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Prabhat Pheri at Mota village of Palanpur Block.jpg">
+                        <p>Prabhat Pheri at Mota village of Palanpur Block</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Training cum Workshops on Data entry in different modules.jpg">
+                        <p>Training cum Workshops on Data entry in different modules (GPDCI, Social Management, IEC and Mobile Application) of MIS for DPMUs and DIPs of 6 Districts of Gujarat</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Nukkad Natak in Sundha Gram Panchayat of Palanpur Block.jpg">
+                        <p>Nukkad Natak in Sundha Gram Panchayat of Palanpur Block</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/20 Bhujal Jankars received on-field training under.jpg">
+                        <p>20 Bhujal Jankars received on-field training under the Atal Bhujal Yojana in Bhesana GP, Mehsana</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Atal Jal Calendar distribution in Vagar Gram Panchayat of Satlasana Block.jpg">
+                        <p>Atal Jal Calendar distribution in Vagar Gram Panchayat of Satlasana Block</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Demonstration of Water Quality Test kit under Atal Bhujal Yojna.jpg">
+                        <p>Demonstration of Water Quality Test kit under Atal Bhujal Yojna   At Block- Deesa District - Banskantha</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Block level training at Bhojak Wadi in Vadgam Taluka of Dist. Banaskantha.jpg">
+                        <p>Block level training at Bhojak Wadi in Vadgam Taluka of Dist. Banaskantha</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Atal Jal Piezometer & Reacharge Tubewell site visit by Shri Rose Mary.jpg">
+                        <p>Atal Jal Piezometer & Reacharge Tubewell site visit by Shri Rose Mary K. Abraham, Director In Ministry of Finance in Deesa Taluka of Banaskantha District</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Gujarat</label>
+                        <img src="~/Ataljalimages/Photographs/Sh. Kunwarjibhai Bavaliya.png">
+                        <p>Sh. Kunwarjibhai Bavaliya, Hon’ble Cabinet Minister, Govt. of Gujarat and Sh. Anirudhbhai Dave MLA Mandvi  visited GP- Maska, Block- Mandvi, District-Kachchh under Atal Bhujal Yojana</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="vid3 haryana">
+
+                <div class="row gallery-box">
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/Felicitation ceremony for Bhujal saheli in Yamuna Nagar district.jpeg">
+                        <p>Felicitation ceremony for Bhujal saheli in Yamuna Nagar district</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/A rally  in Dohlera Gram Panchayat of Nangal Chaudhary block in Mahendragarh district for creating awareness among community for Groundwater Management.jpeg">
+
+                        <p>A rally  in Dohlera Gram Panchayat of Nangal Chaudhary block in Mahendragarh district for creating awareness among community for Groundwater Management</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/Madka Run Competition held in Uncha Chanda gram panchayat for Jal Salehi In Yamuna Nagar district.jpeg">
+
+                        <p>Madka Run Competition held in Uncha Chanda gram panchayat for Jal Salehi In Yamuna Nagar district</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/National Workshop cum training held in HIRMI in Kurukshetra district.jpg">
+
+                        <p>National Workshop cum training held in HIRMI in Kurukshetra district</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/A rally  in Dholera Khwajpura gram panchayat by DPMU & DIP through school children creating awareness about participatory groundwater management.jpeg">
+
+                        <p>A rally  in Dholera Khwajpura gram panchayat by DPMU & DIP through school children creating awareness about participatory groundwater management</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/One day training cum workshop for district level nehru yuva kendra in Yamuna Nagar district.jpeg">
+
+                        <p>One day training cum workshop for district level nehru yuva kendra in Yamuna Nagar district</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/Nukkad Nattak organized in uncha chanda gram panchayat in Yamuna Nagar district.jpeg">
+
+                        <p>Nukkad Nattak organized in uncha chanda gram panchayat in Yamuna Nagar district</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/Piezometer construction in Jhaguri Gram Panchayat in Radour block.jpeg">
+
+                        <p>Piezometer construction in Jhaguri Gram Panchayat in Radour block</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/One day workshop organised in Krishi Vigyan Kendra, Sirsa on millets.jpeg">
+
+                        <p>One day workshop organised in Krishi Vigyan Kendra, Sirsa on millets</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/painting.jpeg">
+
+                        <p>Painting Competition organised in school of Bhankari gram panchayat of Narnaul Block in Mahendragarh district to create awareness among children and acts as a changer in society</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/Stricker sharing in Government senior secondary school of Dholera gram panchayat information about Atal BhuJal Yojana.jpeg">
+
+                        <p>Stricker sharing in Government senior secondary school of Dholera gram panchayat information about Atal BhuJal Yojana</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Haryana</label>
+                        <img src="~/Ataljalimages/Photographs/Prize distribution in Thana GP of Pehowa block of Kurukshetra district for Bhujal Marathon in event of under 14 boys category.jpeg">
+
+                        <p>Prize distribution in Thana GP of Pehowa block of Kurukshetra district for Bhujal Marathon in event of under 14 boys category</p>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="vid4 karnataka">
+
+                <div class="row gallery-box">
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/Two days workshop on Social, Gender and IEC Aspects.png">
+                        <p>Two days workshop on Social, Gender and IEC Aspects</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/Water level monitoring in Vadarahalli Gram Panchyat.png">
+                        <p>Water level monitoring in Vadarahalli Gram Panchyat</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/World water Day celebration at Chitradurga dist. Challakere Block.jpg">
+                        <p>World water Day celebration at Chitradurga dist. Challakere Block</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/Prachar Rath, VAN Publicity in Kolar District .jpg">
+                        <p>Prachar Rath, VAN Publicity in Kolar District</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/Kala Jatha, a drive to create awareness among the community about Atal Bhujal Yojana.jpg">
+                        <p>Kala Jatha, a drive to create awareness among the community about Atal Bhujal Yojana</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/Digital Wall writing in Nilagunda Gram Panchyat .jpg">
+                        <p>Digital Wall writing in Nilagunda Gram Panchyat</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/Data Disclousre Board in Thimmasandra Gram Panchyat.jpg">
+                        <p>Data Disclousre Board in Thimmasandra Gram Panchyat</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/District Chamarjanagara Community IEC Pampleat Distribution.jpg">
+                        <p>District Chamarjanagara Community IEC Pampleat Distribution</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Karnataka</label>
+                        <img src="~/Ataljalimages/Photographs/Meeting of all MLAs and MLCs of Atal Jal implementation blocks in Belagavi .jpg">
+                        <p>Meeting of all MLAs and MLCs of Atal Jal implementation blocks in Belagavi</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="vid5 MP">
+
+                <div class="row gallery-box">
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Awarness Rath Flagoff at Commisner Office Sagar MP.png">
+                        <p>Awarness Rath Flagoff at Commisner Office Sagar MP</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Awarness Rath with PD and SPMU Staff Bhopal MP.png">
+
+                        <p>Awarness Rath with PD and SPMU Staff Bhopal MP</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Awarness Rath with PD SPMU-Bhopal MP.png">
+
+                        <p>Awarness Rath with PD SPMU-Bhopal MP</p>
+
+
+                    </div>
+
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Brochers Distribution by PD  SPMU-MP.png">
+
+                        <p>Brochers Distribution by PD  SPMU-MP</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Community meeting at GP Level MP.png">
+
+                        <p>Community meeting at GP Level MP</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Demonstration of water testing kit  in Chhatarpur District of Madhya Pradeshmp.jpeg">
+
+                        <p>Demonstration of water testing kit  in Chhatarpur District of Madhya Pradeshmp</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Disclousre Data in Sinhpur GP of Madhya Pradesh.jpg">
+
+                        <p>Disclousre Data in Sinhpur GP of Madhya Pradesh</p>
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Folk Song party with the community members in distrcit Sagar, Madhya Pradesh.jpg">
+
+                        <p>Folk Song party with the community members in distrcit Sagar, Madhya Pradesh</p>
+
+
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Madhya Pradesh</label>
+                        <img src="~/Ataljalimages/Photographs/Meeting of VWSC with the community members in Distrcit Panna , Madhya Pradesh.jpeg">
+
+                        <p>Meeting of VWSC with the community members in Distrcit Panna , Madhya Pradesh</p>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="vid6 maharastra">
+
+                <div class="row gallery-box">
+                    <div class="box-in">
+
+                        <label>Maharashtra</label>
+                        <img src="~/Ataljalimages/Photographs/The publication of the leaflet prepared by.jpeg">
+
+                        <p>The publication of the leaflet prepared by SPMU Maharashtra for the promotion and publicity of Atal Bhujal Yojana</p>
+
+                    </div>
+
+                    <div class="box-in">
+
+                        <label>Maharashtra</label>
+                        <img src="~/Ataljalimages/Photographs/Announcement and inauguration ceremony of Atal Bhujal Pakhawada.jpeg">
+
+                        <p>Announcement and inauguration ceremony of Atal Bhujal Pakhawada</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Maharashtra</label>
+                        <img src="~/Ataljalimages/Photographs/Workshop on Best Practices in Groundwater Management.jpeg">
+
+                        <p>Workshop on Best Practices in Groundwater Management and Exposure visit to Model Village Hivare Bazar organised by SPMU, Maharashtra</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Maharashtra</label>
+                        <img src="~/Ataljalimages/Photographs/Bhujal Samrudha Gramm Competition.jpeg">
+
+                        <p>Bhujal Samrudha Gramm Competition</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Maharashtra</label>
+                        <img src="~/Ataljalimages/Photographs/Atal Jal Video Filmmaking Competition 2023.jpeg">
+
+                        <p>Atal Jal Video Filmmaking Competition 2023</p>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="vid7 rajsthan">
+
+                <div class="row gallery-box">
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/Piezometer constructed under Atal Bhujal Yojana at GP Deoli, PS Sangod, District Kota .jpg">
+                        <p>Piezometer constructed under Atal Bhujal Yojana at GP Deoli, PS Sangod, District Kota</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/Bicycle rally to create awareness about Atal Jal.jpg">
+                        <p>Bicycle rally to create awareness about Atal Jal Yojana in different identified Gram Panchayats of Jaisalmer district</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/अटल भूजल जन जागरूकता कार्यक्रम में पुरस्कार.jpg">
+                        <p>अटल भूजल जन जागरूकता कार्यक्रम में पुरस्कार</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/अटल भूजल पखवाड़े के अन्तर्गत नेतावल गढ़ पाछली में आयोजित ग्राम पंचायत स्तरीय रैली.jpg">
+                        <p>अटल भूजल पखवाड़े के अन्तर्गत नेतावल गढ़ पाछली में आयोजित ग्राम पंचायत स्तरीय रैली</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/Training cum Workshop on Participatory Groundwater Management on 21.02.2023 at Rajasthan Agricultural Research Institute Durgapura Jaipur.jpg">
+                        <p>Training cum Workshop on Participatory Groundwater Management on 21.02.2023 at Rajasthan Agricultural Research Institute Durgapura Jaipur</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/एक दिवसीय कार्यशाला का आयोजन.jpg">
+                        <p>एक दिवसीय कार्यशाला का आयोजन</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/ग्राम पंचायत नेतावाल गढ़ पाछली में ग्राम पंचायत स्तरीय प्रशिक्षण कार्यक्रम.jpg">
+                        <p>ग्राम पंचायत नेतावाल गढ़ पाछली में ग्राम पंचायत स्तरीय प्रशिक्षण कार्यक्रम</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/जिला भीलवाड़ा ब्लॉक शाहपुरा में ग्राम पंचायत सुरजपुरा.jpg">
+                        <p>जिला भीलवाड़ा ब्लॉक शाहपुरा में ग्राम पंचायत सुरजपुरा में ग्राम पंचायत स्तरीय प्रशिक्षण के अंतर्गत वाटर टेस्टिंग किट का प्रशिक्षण</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/ग्राम पंचायत भाटोली  में नारा लेखन.jpg">
+                        <p>ग्राम पंचायत भाटोली  में नारा लेखन</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/झुंझुनूं की ग्राम पंचायत, गाडराटा में नारा लेखन.jpg">
+                        <p>झुंझुनूं की ग्राम पंचायत, गाडराटा में नारा लेखन</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/प्रतियोगिता में बालिकाओं ने दिखाया उत्साह.jpg">
+                        <p>प्रतियोगिता में बालिकाओं ने दिखाया उत्साह.jpg</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/ब्लॉक सांगोद की ग्राम पंचायत मंडाप में नरेगा श्रमिको एवम.jpg">
+                        <p>ब्लॉक सांगोद की ग्राम पंचायत मंडाप में नरेगा श्रमिको एवम ग्रामीणों को अटल भू-जल योजना के उद्देश्य, जन सहभागिता से भूजल प्रबंधन के बारे में जानकारी दी गई</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/राजसमंद में अटल भूजल योजना के अंतर्गत ग्राम पंचायत आत्मा में प्रभात फेरी.jpg">
+                        <p>राजसमंद में अटल भूजल योजना के अंतर्गत ग्राम पंचायत आत्मा में प्रभात फेरी</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/राजसमंद में अटल भूजल योजना के अंतर्गत ग्राम पंचायत सांगठ कला में रात्रि चौपाल.jpg">
+                        <p>राजसमंद में अटल भूजल योजना के अंतर्गत ग्राम पंचायत सांगठ कला में रात्रि चौपाल</p>
+
+                    </div>
+                    <div class="box-in">
+
+                        <label>Rajasthan</label>
+                        <img src="~/Ataljalimages/Photographs/राजसमंद में अटल भूजल योजना के अंतर्गत ग्राम पंचायत पड़ासली में चित्रकला प्रतियोगिता.jpg">
+                        <p>राजसमंद में अटल भूजल योजना के अंतर्गत ग्राम पंचायत पड़ासली में चित्रकला प्रतियोगिता</p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="vid8 up">
+
+                <div class="row gallery-box">
+                    <div class="box-in">
+
+                    </div>
+                    <div class="box-in">
+
+                    </div>
+                    @*<div class="col-md-6">
+                            <div>
+                                <label >up</label>
+                                <video controls="controls" width="100%">
+                                    <source src="~/Ataljalimages/Photographs/Video_2021-09-27_3.48.43_PM.mp4" type="video/mp4" />
+                                </video>
+                                <p>जल ही जीवन है</p>
+                            </div>
+                        </div>*@
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.vid1').show();
+        $('.aud1').hide();
+        $('#submenu11').show();
+        $.noConflict();
+        $('table.datainitial').DataTable();
+        $('#submenu12_table').DataTable();
+
+
+    });
+
+    
+
+    function initMasonry() {
+        $(".gallery-box").imagesLoaded(function () {
+            $(".gallery-box").masonry({
+                itemSelector: ".box-in",
+                columnWidth: 270
+            });
+        });
+    }
+
+
+    function table16() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid1').show();
+        initMasonry();
+    }
+    function table17() {
+
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid1').hide()
+        $('.vid2').show();
+        initMasonry()
+    }
+    function table18() {
+        $('.vid2').hide();
+
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid1').hide()
+        $('.vid3').show();
+        initMasonry()
+    }
+    function table19() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid1').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid3').hide()
+        $('.vid4').show();
+        initMasonry()
+    }
+    function table20() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid1').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid4').hide()
+        $('.vid5').show();
+        initMasonry()
+    }
+    function table21() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid1').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid5').hide()
+        $('.vid6').show();
+        initMasonry()
+    }
+    function table22() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid1').hide();
+        $('.vid8').hide();
+        $('.vid6').hide()
+        $('.vid7').show();
+        initMasonry()
+    }
+    function table23() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid1').hide();
+        $('.vid7').hide();
+        $('.vid8').show(); initMasonry()
+    }
+    $(document).ready(function () {
+        initMasonry();
+    });
+</script>

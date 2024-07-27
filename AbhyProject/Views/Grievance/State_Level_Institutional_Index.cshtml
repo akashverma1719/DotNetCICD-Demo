@@ -1,0 +1,678 @@
+﻿
+@{
+    ViewBag.Title = "State_Level_Institutional_Index";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+    <title>Institutional Index</title>
+<style>
+    tbody.tablebaody > tr > th {
+        font-weight: normal;
+        width: 70%;
+    }
+
+    .tableheader1 > td {
+        color: #337ab7;
+    }
+
+    .tableheader1 > th {
+        color: #337ab7;
+        font-weight: bold;
+    }
+
+    .btn-success {
+        width: 100px;
+        float: none;
+        right: 0px;
+    }
+    ul.stateul
+    {
+        text-align:center;
+    }
+    ul.stateul > li {
+        display: inline-block;
+    }
+
+</style>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<form>
+    <div class="" id="Data1">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Institutional Index</div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="stateul">
+                        <li>
+                            <label id="selectid">Please select your state:</label>
+                        </li>
+                        <li>
+                            <select name="state" id="state" class="state form-control" onchange="GettingInfo()"></select>
+                        </li>
+                    </ul>
+
+
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px; height: 355px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">Institutional Capacity Development at State Level</th>
+                                    <td style="text-align:center;font-weight:bold;">Total Positions</td>
+                                    <td style="text-align:center;font-weight:bold;">Filled Positions</td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many permanent GW Specialists are avaialable in your PIA/State ?</th>
+                                    <td><input type="text" id="gw_specialits_tp" name="gw_specialits_tp" class="form-control" /></td>
+                                    <td><input type="text" id="gw_specialits_fp" name="gw_specialits_fp" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many Ground Water Modelers are available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" id="gw_modelers_tp" name="gw_modelers_tp" /></td>
+                                    <td><input type="text" class="form-control" id="gw_modelers_fp" name="gw_modelers_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many permanent RS-GIS Specialists are available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" name="rs_gis_tp" id="rs_gis_tp" /></td>
+                                    <td><input type="text" class="form-control" id="rs_gis_fp" name="rs_gis_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many permanent Social Sciences or Communications Specialist (Social mobilisers) are available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" name="social_tp" id="social_tp" /></td>
+                                    <td><input type="text" class="form-control" name="social_fp" id="social_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many permanent Data analysts are available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" id="data_analystics_tp" name="data_analystics_tp" /></td>
+                                    <td><input type="text" class="form-control" id="data_analystics_fp" name="data_analystics_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many temporary Economics Specialist available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" id="economics_tp" name="economics_tp" /></td>
+                                    <td><input type="text" class="form-control" id="economics_fp" name="economics_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many temporary Chemists are available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" id="chemistry_tp" name="chemistry_tp" /></td>
+                                    <td><input type="text" class="form-control" id="chemistry_fp" name="chemistry_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many temporary Environmental Specialists are available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" id="environment_tp" name="environment_tp" /></td>
+                                    <td><input type="text" class="form-control" id="environment_fp" name="environment_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many temporary Agricultural Specialists are available in your PIA/State ?</th>
+                                    <td><input type="text" class="form-control" id="agricultural_tp" name="agricultural_tp" /></td>
+                                    <td><input type="text" class="form-control" id="agricultural_fp" name="agricultural_fp" /></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">Institutional Capacity Development at Feild Level (District, Block, or GPs )</th>
+                                    <td style="text-align:center;font-weight:bold;">Total Positions</td>
+                                    <td style="text-align:center;font-weight:bold;">Filled Positions</td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many Ground Water Specialists or Hydrogeologists are available at the block level ?</th>
+                                    <td><input type="text" class="form-control" name="gw_specialists_tp" id="gw_specialists_tp" /></td>
+                                    <td><input type="text" class="form-control" name="gw_specialists_fp" id="gw_specialists_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many Social Sciences Specialists are available at the block level ?</th>
+                                    <td><input type="text" class="form-control" name="Social_sciences_Specialists_tp" id="Social_sciences_Specialists_tp" /></td>
+                                    <td><input type="text" class="form-control" name="Social_sciences_Specialists_fp" id="Social_sciences_Specialists_fp" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many Data Entry Operators are available at the block level ?</th>
+                                    <td><input type="text" class="form-control" name="data_entry_operator_tp" id="data_entry_operator_tp" /></td>
+                                    <td><input type="text" class="form-control" name="data_entry_operator_fp" id="data_entry_operator_fp" /></td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1" colspan="2">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">
+                                        Institutional Capacity for Community Based Planning
+                                    </th>
+                                    <td style="text-align:center;font-weight:bold;">Total Number</td>
+                                </tr>
+                                <tr rowspan="2">
+                                    <th style="padding:5px;">Please enter number of Registered Entities/Committees.</th>
+                                    <td><input type="text" class="form-control" name="registered_entities" id="registered_entities" /></td>
+
+                                </tr>
+                                <tr rowspan="2">
+                                    <th style="padding:5px;">Please enter number of Functional Meetings conducted every Month (as per the laid norms).</th>
+                                    <td><input type="text" class="form-control" name="functional_meetings_for_mnth" id="functional_meetings_for_mnth" /></td>
+
+                                </tr>
+                                <tr rowspan="2">
+                                    <th style="padding:5px;">Please enter number of Registered Entities/Committees that has developed financial mechanism for O&M.</th>
+                                    <td><input type="text" class="form-control" name="O_and_M" id="O_and_M" /></td>
+
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">
+                                        Training and Capacity Building Programs
+                                    </th>
+                                    <td style="text-align:center;font-weight:bold;">Total Number</td>
+
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many Specialized Technical Training has been conducted in this year ?</th>
+                                    <td><input type="text" class="form-control" name="technical_Trainings" id="technical_Trainings" /></td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many staffs are trained at State/PIA Level ?</th>
+                                    <td><input type="text" class="form-control" name="Trained_state_or_PIA" id="Trained_state_or_PIA" /></td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many staffs are trained at Gram Panchayat Level ?</th>
+                                    <td><input type="text" class="form-control" name="grampanchayat_level" id="grampanchayat_level" /></td>
+
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px; height: 355px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">Operationalization of Systems for Information Collection, Data Systems, and Reporting – Data Systems</th>
+                                    <td style="text-align:center;font-weight:bold;">Total Number</td>
+                                </tr>
+                               <tr>
+                                   <th style="padding:5px;">Please enter the number of groundwater observation wells in the State?</th>
+                                        <td><input type="text" class="form-control" name="" id="" /></td>
+                                    </tr>
+                                <tr>
+                                    <th style="padding:5px;">Please enter the number of Observation Wells for which Ground Water Level is collected on regular basis ?</th>
+                                    <td><input type="text" class="form-control" name="regular_basics" id="regular_basics" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Please enter the number of Observation Wells that are equipped with Digital Water Level recorder ?</th>
+                                    <td><input type="text" class="form-control" name="no_of_Observation_wells_DWL" id="no_of_Observation_wells_DWL" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Please enter the number of Observation Wells for which Ground Water volumetric (cubic meters) use is collected on regular basis ?</th>
+                                    <td><input type="text" class="form-control" name="no_of_Observation_wells_GV" id="no_of_Observation_wells_GV" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Please enter the number of Observation Wells for which Ground Water energy (Kilowatts) use is collected on regular basis ?</th>
+                                    <td><input type="text" class="form-control" name="no_of_Observation_wells_GE" id="no_of_Observation_wells_GE" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Please enter the number of Observation Wells for which Ground Water Level is not collected on regular basis ?</th>
+                                    <td><input type="text" class="form-control" name="no_of_Observation_wells_GL" id="no_of_Observation_wells_GL" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Please enter the number of Observation Wells for which Ground Water Quality is collected on regular basis ?</th>
+                                    <td><input type="text" class="form-control" name="no_of_Observation_wells_GQ_Collected" id="no_of_Observation_wells_GQ_Collected" /></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Please enter the number of Observation Wells for which Ground Water Quality is not collected on regular basis ?</th>
+                                    <td><input type="text" class="form-control" name="no_of_Observation_wells_GQ_not_collected" id="no_of_Observation_wells_GQ_not_collected" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1" colspan="4">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">
+                                        Operationalization of Systems for Information Collection, Data Systems, and Reporting – Information Collection & Frequency
+                                    </th>
+                                    <td style="text-align:center;font-weight:bold;">Total Number</td>
+                                </tr>
+                                <tr rowspan="2">
+                                    <th style="padding:5px;">For how many stations Ground Water level is collected weekly or monthly ?</th>
+                                    <td><input type="text" class="form-control" name="bi_weekly_or_monthly" id="bi_weekly_or_monthly" /></td>
+                                </tr>
+                                <tr rowspan="2">
+                                    <th style="padding:5px;">For how many stations the Frequency of Data Collection is done twice a year (Pre & Post Monsoon) ?</th>
+                                    <td><input type="text" class="form-control" name="frequecy_data_collection_gw_qulaity_and_Quntity" id="frequecy_data_collection_gw_qulaity_and_Quntity" /></td>
+                                </tr>
+                                <tr rowspan="2">
+                                    <th style="padding:5px;">For how many stations the Frequency of Data Collection is done seasonally (4 times a year every 3 months) ?</th>
+                                    <td><input type="text" class="form-control" name="frequecy_data_collection_is_done_sessionally" id="frequecy_data_collection_is_done_sessionally" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">
+                                        Operationalization of Systems for Information Collection, Data Systems, and Reporting – Information Collection & Quality
+                                    </th>
+
+                                    <td style="text-align:center;font-weight:bold;">Total Number</td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many observation wells has DWLR (Digital Water Level Recorder) installed ?</th>
+                                    <td><input type="text" class="form-control" name="Dwlr_installed" id="Dwlr_installed" /></td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many NABL accredited labs are available for monitoring Ground Water quality ?</th>
+                                    <td><input type="text" class="form-control" name="nabl_accredited_labs" id="nabl_accredited_labs" /></td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">How many observation wells are connected to MIS system and the data is accessible for public viewing ?</th>
+                                    <td><input type="text" class="form-control" name="public_viewing" id="public_viewing" /></td>
+
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;" colspan="2">
+                                        Operationalization of Systems for Information Collection, Data Systems, and Reporting – Public Reporting
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Do you generate annual report for each block regarding data collected for both Water quantity and quality ?</th>
+                                    <td>
+                                        <select class="form-control" name="water_qualityandquantity" id="water_qualityandquantity">
+                                            <option value="">select one</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="NO"> No</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Do you generate annual report for each block regarding Data Collected and its analysis for both Water quantity and quality ?</th>
+                                    <td>
+                                        <select class="form-control" name="analysis_for_qualityandQuantity" id="analysis_for_qualityandQuantity">
+                                            <option value="">select one</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="NO"> No</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Is Pre & Post Monsoon data available as per MIS within 1 month of collection and analysis (block level) ?</th>
+                                    <td>
+                                        <select class="form-control" name="mis_within_1_months" id="mis_within_1_months">
+                                            <option value="">select one</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="NO"> No</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Is Pre & Post Monsoon data available as per MIS within 3 months of collection and analysis (block level) ?</th>
+                                    <td>
+                                        <select class="form-control" name="mis_within_3_months" id="mis_within_3_months">
+                                            <option value="">select one</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="NO"> No</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="text-center">
+                <b><label id="alert11" style="color:red;text-align:center;font-size:20px;"></label></b>
+                <br />
+                <span>
+                    <button class="btn btn-success" id="save" onclick="SaveData()">Save</button>
+                </span>
+                <span>
+                    <button class="btn btn-primary" id="download" onclick="Export()">Generate Report</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <button type="reset" id="btn_reset" style="display: none;"></button>
+</form>
+
+    <script type="text/javascript">
+        var Jsondata = "";
+        $(document).ready(function () {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Dashboard/DashboardJsondata',
+                data: '',
+                dataType: 'JSON',
+                success: function (data) {
+
+                    Jsondata = JSON.parse(data);
+                    $.each(Jsondata, function (i, stateval) {
+                        $("#state").append($('<option></option>').val(stateval.sid).html(stateval.statename));
+                    });
+                    $("#state").prepend($('<option></option>').val("").html("Select State"));
+                    $("#state").val("");
+
+
+                }
+            });
+        });
+
+        
+
+        function GettingInfo() {
+        
+            var Sid = document.getElementById('state').value;
+            Operatiionalization_Of_SystemsInfo();
+            Statelevel_Inistutional_IndexInfo();
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Grievance/Abhy_Inistutional_capacityInfo',
+                data: { 'StateId': Sid },
+                dataType: 'JSON',
+                success: function (data) {
+
+                    
+                    document.getElementById('technical_Trainings').value = data.technical_Trainings;
+                    document.getElementById('registered_entities').value = data.registered_entities;
+                    document.getElementById('gw_specialists_tp').value = data.gw_specialists_tp;
+                    document.getElementById('gw_specialists_fp').value = data.gw_specialists_fp;
+                    document.getElementById('grampanchayat_level').value = data.grampanchayat_level;
+                    document.getElementById('functional_meetings_for_mnth').value = data.functional_meetings_for_mnth;
+
+
+                    document.getElementById('data_entry_operator_tp').value = data.data_entry_operator_tp;
+                    document.getElementById('data_entry_operator_fp').value = data.data_entry_operator_fp;
+                    document.getElementById('Trained_state_or_PIA').value = data.Trained_state_or_PIA;
+                    document.getElementById('Social_sciences_Specialists_tp').value = data.Social_sciences_Specialists_tp;
+                    document.getElementById('Social_sciences_Specialists_fp').value = data.Social_sciences_Specialists_fp;
+                    document.getElementById('O_and_M').value = data.O_and_M;
+                }
+            });
+        }
+
+       function Operatiionalization_Of_SystemsInfo()
+       {
+           var Sid = document.getElementById('state').value;
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Grievance/Operatiionalization_Of_SystemsInfo',
+                data: { 'StateId': Sid },
+                dataType: 'JSON',
+                success: function (data) {
+                    
+                    document.getElementById('bi_weekly_or_monthly').value = data.bi_weekly_or_monthly;
+                    document.getElementById('frequecy_data_collection_gw_qulaity_and_Quntity').value = data.frequecy_data_collection_gw_qulaity_and_Quntity;
+                    document.getElementById('frequecy_data_collection_is_done_sessionally').value = data.frequecy_data_collection_is_done_sessionally;
+                    document.getElementById('Dwlr_installed').value = data.Dwlr_installed;
+                    document.getElementById('nabl_accredited_labs').value = data.nabl_accredited_labs;
+                    document.getElementById('public_viewing').value = data.public_viewing;
+
+                    document.getElementById('no_of_info_collection').value = data.no_of_info_collection;
+                    document.getElementById('regular_basics').value = data.regular_basics;
+
+                    document.getElementById('no_of_Observation_wells_DWL').value = data.no_of_Observation_wells_DWL;
+                    document.getElementById('no_of_Observation_wells_GV').value = data.no_of_Observation_wells_GV;
+                    document.getElementById('no_of_Observation_wells_GE').value = data.no_of_Observation_wells_GE;
+                    document.getElementById('no_of_Observation_wells_GL').value = data.no_of_Observation_wells_GL;
+                    document.getElementById('no_of_Observation_wells_GQ_Collected').value = data.no_of_Observation_wells_GQ_Collected;
+                    document.getElementById('no_of_Observation_wells_GQ_not_collected').value = data.no_of_Observation_wells_GQ_not_collected;
+                }
+            });
+        }
+        function Statelevel_Inistutional_IndexInfo()
+        {
+            var Sid = document.getElementById('state').value;
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Grievance/Statelevel_Inistutional_IndexInfo',
+                data: { 'StateId': Sid },
+                dataType: 'JSON',
+                success: function (data) {
+                    document.getElementById('gw_specialits_tp').value = data.gw_specialits_tp;
+                    document.getElementById('gw_specialits_tp').value = data.gw_specialits_tp;
+                    document.getElementById('gw_specialits_fp').value = data.gw_specialits_fp;
+                    document.getElementById('gw_modelers_tp').value = data.gw_modelers_tp;
+                    document.getElementById('gw_modelers_fp').value = data.gw_modelers_fp;
+                    document.getElementById('rs_gis_tp').value = data.rs_gis_tp;
+
+                    document.getElementById('rs_gis_fp').value = data.rs_gis_fp;
+                    document.getElementById('social_tp').value = data.social_tp;
+
+                    document.getElementById('social_fp').value = data.social_fp;
+                    document.getElementById('data_analystics_tp').value = data.data_analystics_tp;
+                    document.getElementById('data_analystics_fp').value = data.data_analystics_fp;
+                    document.getElementById('economics_tp').value = data.economics_tp;
+                    document.getElementById('economics_fp').value = data.economics_fp;
+                    document.getElementById('chemistry_tp').value = data.chemistry_tp;
+
+                    document.getElementById('chemistry_fp').value = data.chemistry_fp;
+                    document.getElementById('environment_tp').value = data.environment_tp;
+
+                    document.getElementById('environment_fp').value = data.environment_fp;
+
+                    document.getElementById('agricultural_tp').value = data.agricultural_tp;
+                    document.getElementById('agricultural_fp').value = data.agricultural_fp;
+
+                }
+            });
+        }
+    </script>
+
+<script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    function Export() {
+       
+        html2canvas(document.getElementById('Data1'), {
+
+            onrendered: function (canvas) {
+                //$("#download").show();
+                //$("#save").show();
+                $("#selectid").show();
+                var data = canvas.toDataURL();
+
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("Institutional_Index Data.pdf");
+            }
+        });
+        //$("#download").hide();
+        //$("#save").hide();
+        $("#selectid").hide();
+    }
+</script>
+
+<script>
+    function SaveData() {
+        
+        var State = document.getElementById('state').value;
+    
+            var obj = {};
+            var os = {};
+            var Inistutional_capacity = {};
+            var count = 0;
+            obj.gw_specialits_tp = document.getElementById('gw_specialits_tp').value;
+            obj.gw_specialits_fp = document.getElementById('gw_specialits_fp').value;
+            obj.gw_modelers_tp = document.getElementById('gw_modelers_tp').value;
+            obj.gw_modelers_fp = document.getElementById('gw_modelers_fp').value;
+            obj.rs_gis_tp = document.getElementById('rs_gis_tp').value;
+            obj.rs_gis_fp = document.getElementById('rs_gis_fp').value;
+            obj.social_tp = document.getElementById('social_tp').value;
+            obj.social_fp = document.getElementById('social_fp').value;
+            obj.data_analystics_tp = document.getElementById('data_analystics_tp').value;
+            obj.data_analystics_fp = document.getElementById('data_analystics_fp').value;
+            obj.economics_tp = document.getElementById('economics_tp').value;
+            obj.economics_fp = document.getElementById('economics_fp').value;
+            obj.chemistry_tp = document.getElementById('chemistry_tp').value;
+            obj.chemistry_fp = document.getElementById('chemistry_fp').value;
+            obj.environment_tp = document.getElementById('environment_tp').value;
+            obj.environment_fp = document.getElementById('environment_fp').value;
+            obj.agricultural_tp = document.getElementById('agricultural_tp').value;
+            obj.agricultural_fp = document.getElementById('agricultural_fp').value;
+            obj.statename = document.getElementById('state').value;
+            // Inistutional_capacity values
+
+            Inistutional_capacity.Social_sciences_Specialists_fp = document.getElementById('Social_sciences_Specialists_fp').value;
+            Inistutional_capacity.Social_sciences_Specialists_tp = document.getElementById('Social_sciences_Specialists_tp').value;
+            Inistutional_capacity.Trained_state_or_PIA = document.getElementById('Trained_state_or_PIA').value;
+            Inistutional_capacity.data_entry_operator_fp = document.getElementById('data_entry_operator_fp').value;
+            Inistutional_capacity.data_entry_operator_tp = document.getElementById('data_entry_operator_tp').value;
+            Inistutional_capacity.O_and_M = document.getElementById('O_and_M').value;
+            Inistutional_capacity.functional_meetings_for_mnth = document.getElementById('functional_meetings_for_mnth').value;
+            Inistutional_capacity.grampanchayat_level = document.getElementById('grampanchayat_level').value;
+            Inistutional_capacity.gw_specialists_fp = document.getElementById('gw_specialists_fp').value;
+            Inistutional_capacity.gw_specialists_tp = document.getElementById('gw_specialists_tp').value;
+            Inistutional_capacity.registered_entities = document.getElementById('registered_entities').value;
+            Inistutional_capacity.technical_Trainings = document.getElementById('technical_Trainings').value;
+
+
+
+            //Operatiionalization_Of_Systems Values Stored in object
+
+            os.bi_weekly_or_monthly = document.getElementById('bi_weekly_or_monthly').value;
+            os.frequecy_data_collection_gw_qulaity_and_Quntity = document.getElementById('frequecy_data_collection_gw_qulaity_and_Quntity').value;
+            os.frequecy_data_collection_is_done_sessionally = document.getElementById('frequecy_data_collection_is_done_sessionally').value;
+            os.Dwlr_installed = document.getElementById('Dwlr_installed').value;
+            os.nabl_accredited_labs = document.getElementById('nabl_accredited_labs').value;
+            os.public_viewing = document.getElementById('public_viewing').value;
+            os.water_qualityandquantity = document.getElementById('water_qualityandquantity').value;
+            os.analysis_for_qualityandQuantity = document.getElementById('analysis_for_qualityandQuantity').value;
+            os.mis_within_1_months = document.getElementById('mis_within_1_months').value;
+            os.mis_within_3_months = document.getElementById('mis_within_3_months').value;
+            //os.no_of_info_collection = document.getElementById('no_of_info_collection').value;
+            os.regular_basics = document.getElementById('regular_basics').value;
+            os.no_of_Observation_wells_DWL = document.getElementById('no_of_Observation_wells_DWL').value;
+            os.no_of_Observation_wells_GV = document.getElementById('no_of_Observation_wells_GV').value;
+            os.no_of_Observation_wells_GE = document.getElementById('no_of_Observation_wells_GE').value;
+            os.no_of_Observation_wells_GL = document.getElementById('no_of_Observation_wells_GL').value;
+            os.no_of_Observation_wells_GQ_Collected = document.getElementById('no_of_Observation_wells_GQ_Collected').value;
+            os.no_of_Observation_wells_GQ_not_collected = document.getElementById('no_of_Observation_wells_GQ_not_collected').value;
+
+
+
+            
+
+
+
+
+            if (obj != {} && obj != null && obj != "") {
+
+
+                //
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/Grievance/State_Level_Institutional_Index",
+                    // data: "{'stateleveldata':'" + JSON.stringify(obj) + "'}",
+                    data: "{'stateleveldata':'" + JSON.stringify(obj) + "','Inistutional_capacity':'" + JSON.stringify(Inistutional_capacity) + "','Operatiionalization_Of_Systems':'" + JSON.stringify(os) + "'}",
+
+                    dataType: 'JSON',
+                    success: function (response) {
+                        // Getdivation();
+
+                        document.getElementById('alert11').innerHTML = response;
+                        $('#btn_reset').click();
+                        //alert('Process Sucess..');
+                        //Clear();
+                        //document.location = "/WSP/ReWsp_gm";
+                    },
+                    error: function (a) { }
+                });
+
+
+            }
+          
+    }
+</script>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10) > ul.dropdown > li:nth-child(1)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10) > ul.dropdown > li:nth-child(1)").siblings().removeClass('active');
+
+</script>

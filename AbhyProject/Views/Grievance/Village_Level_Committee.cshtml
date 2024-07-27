@@ -1,0 +1,556 @@
+﻿@{
+    ViewBag.Title = "Village_Level_Committee";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title>PGWM Committee</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        var tr = '<tr style="text-align:center;"><td colspan="8">No Data</td></tr>';
+        $("#tbldata").html(tr);
+        var tr1 = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+        $("#tbldata1").html(tr1);
+    });
+
+    function pgwn_Data() {
+        
+        var State_name = document.getElementById('state').value;
+        var District_name = document.getElementById('dist').value;
+        var Block = document.getElementById('block').value;
+        var Gname = document.getElementById('gram').value;
+        //  var Villname = document.getElementById('village').value;
+        var Villname = "";
+        pgwn_Data1();
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance/pgwn_Depdetails',
+            data: { 'state': State_name, 'dist': District_name, 'block': Block, 'gram': Gname, 'vill': Villname },
+            dataType: 'JSON',
+            success: function (data) {
+                
+                a = 1;
+                console.log(data);
+                let tr = "";
+
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        tr += '<tr><td><button onclick="Delete_DeptData(' + data[i].pgwndeptid + ')">Delete</button></td><td>' + data[i].designation + '</td><td>' + data[i].department + '</td><td>' + data[i].countname + '</td><td>' + data[i].activepassive + '</td><td>' + data[i].religon + '</td><td>' + data[i].caste + '</td><td> ' + data[i].gender + '</td></tr>';
+
+                    }
+
+                }
+                else {
+                    tr += '<tr><td colspan="8" style="text-align:center;">No Data</td></tr>';
+                }
+                if (tr == "") {
+                    tr += '<tr><td colspan="8" style="text-align:center;">No Data</td></tr>';
+                }
+
+                $("#tbldata").html(tr);
+
+            }
+        });
+
+    }
+    function pgwn_Data1() {
+        var State_name = document.getElementById('state').value;
+        var District_name = document.getElementById('dist').value;
+        var Block = document.getElementById('block').value;
+        var Gname = document.getElementById('gram').value;
+        //var Villname = document.getElementById('village').value;
+        var Villname = "";
+        var FullData = "";
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance/pgwn_personsdetails',
+            data: { 'state': State_name, 'dist': District_name, 'block': Block, 'gram': Gname, 'vill': Villname },
+            dataType: 'JSON',
+            success: function (data) {
+
+                console.log(data);
+
+                let tr = "";
+                FullData = data;
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        tr += '<tr><td><button onclick="Delete_PersonalData(' + data[i].pgwnpdid + ')">Delete</button></td><td>' + data[i].male_sc + '</td><td>' + data[i].female_sc + '</td><td>' + data[i].male_st + '</td><td>' + data[i].female_st + '</td><td>' + data[i].male_obc + '</td><td>' + data[i].female_obc + '</td><td>' + data[i].male_minority + '</td><td>' + data[i].female_minority + '</td><td>' + data[i].male_other + '</td><td> ' + data[i].female_other + '</td></tr>';
+
+                    }
+
+                }
+                else {
+                    tr += '<tr  style="text-align:center"><td colspan="11">No Data</td></tr>';
+                }
+                if (tr == "") {
+                    tr += '<tr><td colspan="11" style="text-align:center;">No Data</td></tr>';
+                }
+                $("#tbldata1").html(tr);
+
+            }
+        });
+
+    }
+
+
+    function Delete_PersonalData(id) {
+        var obj = {};
+
+        obj.pgwnpdid = id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Grievance/DeletePGWNPersonalDetail",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+
+                document.getElementById('PError').innerHTML = response;
+                pgwn_Data();
+            }
+        });
+
+    }
+
+
+    function Delete_DeptData(id) {
+        var obj = {};
+
+        obj.pgwndeptid = id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/Grievance/DeletePGWNDeptDetail",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                pgwn_Data();
+                document.getElementById('DError').innerHTML = response;
+
+            }
+        });
+    }
+</script>
+<script>
+    function pgwn_personsdetails() {
+        var State = document.getElementById('state').value;
+        if (State != "") {
+
+            var obj = {};
+            obj.state_name = document.getElementById('state').value;
+            obj.district_name = document.getElementById('dist').value;
+            obj.block = document.getElementById('block').value;
+            obj.gname = document.getElementById('gram').value;
+            // obj.villname = document.getElementById('village').value;
+            obj.villname = "";
+            obj.male_sc = document.getElementById('male_sc').value;
+            obj.female_sc = document.getElementById('female_sc').value;
+            obj.male_st = document.getElementById('male_st').value;
+            obj.female_st = document.getElementById('female_st').value;
+            obj.male_obc = document.getElementById('male_obc').value;
+            obj.female_obc = document.getElementById('female_obc').value;
+            obj.male_minority = document.getElementById('male_minority').value;
+            obj.female_minority = document.getElementById('female_minority').value;
+            obj.male_other = document.getElementById('male_other').value;
+            obj.female_other = document.getElementById('female_other').value;
+
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Grievance/PGWN_PersonsDetails",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    pgwn_Data();
+
+                    document.getElementById('PError').innerHTML = response;
+                    canceltwo();
+                    ab = 1;
+                }
+
+
+            });
+
+        }
+        else {
+            alert("Select Dropdowns");
+            canceltwo();
+            ab = 1;
+        }
+
+
+    }
+    function PGWDepDetails() {
+        var State = document.getElementById('state').value;
+        if (State != "") {
+            var obj = {};
+            obj.state_name = document.getElementById('state').value;
+            obj.district_name = document.getElementById('dist').value;
+            obj.block = document.getElementById('block').value;
+            obj.gname = document.getElementById('gram').value;
+            //obj.villname = document.getElementById('village').value;
+            obj.villname = "";
+            obj.designation = document.getElementById('designation').value;
+            obj.department = document.getElementById('department').value;
+            obj.countname = document.getElementById('countname').value;
+            obj.activepassive = document.getElementById('activepassive').value;
+            obj.religon = document.getElementById('religon').value;
+            obj.caste = document.getElementById('caste').value;
+            obj.gender = document.getElementById('gender').value;
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Grievance/PGWN_DepetDetails",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    cancelone();
+                    a = 1;
+                    pgwn_Data();
+                    document.getElementById('DError').innerHTML = response;
+                }
+
+
+            });
+        }
+        else {
+            alert("Select State ");
+            a = 1;
+            cancelone();
+        }
+
+    }
+</script>
+<style>
+    .btn-success {
+        width: 85px;
+        float: none;
+        right: 0;
+    }
+
+    .updatenew {
+        border: 1px solid #000;
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 3px;
+        padding-top: 3px;
+    }
+
+    ul.stateul {
+        text-align: center;
+    }
+
+        ul.stateul > li {
+            display: inline-block;
+            padding: 10px;
+        }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">
+            PGWM Committee
+        </div>
+    </div>
+</div>
+
+
+<div class="clearfix">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <ul class="stateul">
+                    <li>
+                        <label id="selectid">Select your State</label>
+
+                        <select name="state" id="state" class="state form-control"></select>
+                    </li>
+                    <li>
+                        <label id="selectid">Select your District</label>
+
+                        <select name="dist" id="dist" class="dist form-control">
+                            <option value="Select District">Select District</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label id="selectid">Select your Block</label>
+                        <select name="block" id="block" class="block form-control">
+                            <option value="Select Block">Select Block</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label id="selectid">Select your Grampanchayat</label>
+
+                        <select name="gram" id="gram" class="gram form-control">
+                            <option value="Select Panchayati">Select Gram Panchayat</option>
+                        </select>
+                    </li>
+                    @*<li>
+                            <label id="selectid">Select your Village</label>
+
+                            <select name="village" id="village" class="village form-control">
+                                <option value="Select Village">Select Village</option>
+                            </select>
+                        </li>*@
+
+                    <li>
+                        <button class="btn-primary" style="border-radius: 3px;height: 37px;padding: 0px 13px 0px 13px;" onclick="pgwn_Data()">Search</button>
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:hidden;">
+                    <table id="TblData" class="table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center"><span class="updatenew" onclick="addrow()"> New </span></th>
+
+                                <th> Designation</th>
+                                <th> Department</th>
+                                <th> Count/Name</th>
+                                <th> Active_Passive</th>
+                                <th> Religion</th>
+                                <th> Caste</th>
+                                <th> Gender</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata"></tbody>
+                    </table>
+                    <label id="DError" style="text-align:center;color:red;"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12" style="margin-top:15px;">
+            <div class="col-md-12">
+                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:hidden;">
+                    <table id="TblData1" class="table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <thead>
+                            <tr class="info">
+                                <th> <span class="updatenew" onclick="addrowtwo();"> New </span></th>
+
+                                <th> Male (SC)</th>
+                                <th> Female (SC)</th>
+                                <th> Male (ST)</th>
+                                <th> Female (ST)</th>
+                                <th> Male (OBC)</th>
+                                <th> Female (OBC)</th>
+                                <th> Male (Minority)</th>
+                                <th> Female (Minority)</th>
+                                <th> Male (Other)</th>
+                                <th> Female (Other)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata1"></tbody>
+                    </table>
+                    <label id="PError" style="text-align:center;color:red;"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    var a = 1;
+    var ab = 1;
+    function addrow() {
+        
+        var count = 1;
+        if (a == 1) {
+            a = 0;
+            var code = "<tr id='c1_count'><td><button class='btn btn-success' onclick='PGWDepDetails()'>Upadte</button > <button type='button' class='btn btn-danger' onclick='cancelone();'>Cancel</button></td>" +
+                "<td><input type='text' class='form-control' id='designation'/></td>" +
+                "<td><input type='text' class='form-control' id='department'/></td>" +
+                "<td><input type='text' class='form-control' id='countname'/></td> <td> <input type='text' class='form-control' id='activepassive'/></td> <td><input type='text' class='form-control' id='religon'/></td>" +
+                "<td><input type='text' class='form-control' id='caste'/></td>" +
+
+                "<td><select class='form-control' id='gender'><option value='Male'> Male</option><option value='Female'>Female</option><option value='Other'>Other</option></select></tr>";
+
+            $('table#TblData tbody').prepend(code);
+        }
+        //count=count+1;
+        //alert(count);
+    }
+    function addrowtwo() {
+        var count = 1;
+        if (ab == 1) {
+            ab = 0;
+            var code = "<tr id='c1_count'><td><button class='btn btn-success' onclick='pgwn_personsdetails()'>Upadte</button > <button type='button' class='btn btn-danger' onclick='canceltwo();'>Cancel</button></td>" +
+                "<td><input type='text' class='form-control' id='male_sc'/></td>" +
+                "<td><input type='text' class='form-control' id='female_sc'/></td>" +
+                "<td><input type='text' class='form-control' id='male_st'/></td> <td> <input type='text' class='form-control' id='female_st'/></td> <td><input type='text' class='form-control' id='male_obc'/></td>" +
+                "<td><input type='text' class='form-control' id='female_obc'/></td>" +
+
+                "<td><input type='text' class='form-control' id='male_minority'/></td>" +
+                "<td><input type='text' class='form-control' id='female_minority'/></td>" +
+                "<td><input type='text' class='form-control' id='male_other'/></td>" +
+                "<td><input type='text' class='form-control' id='female_other'/></td></tr>";
+            $('table#TblData1 tbody').prepend(code);
+        }
+        //count=count+1;
+        //alert(count);
+    }
+    function cancelone() {
+
+        // addrow();
+        $('table#TblData tbody tr#c1_count').remove();
+        a = 1;
+    }
+    function canceltwo() {
+        // addrow();
+        $('table#TblData1 tbody tr#c1_count').remove();
+        ab = 1;
+
+    }
+</script>
+
+
+
+<script type="text/javascript">
+    var Jsondata = "";
+    $(document).ready(function () {
+        $("#Change").css("display", "none");
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Dashboard/DashboardJsondata',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                Jsondata = JSON.parse(data);
+                $.each(Jsondata, function (i, stateval) {
+                    $("#state").append($('<option></option>').val(stateval.sid).html(stateval.statename));
+                });
+                $("#state").prepend($('<option></option>').val("").html("Select State"));
+                $("#state").val("");
+
+                $("#state").change(function () {
+                    if (this.value != "") {
+                        var distid = this.value;
+                        var distjsondata = Jsondata.filter(m => m.sid == distid);
+                        $("#dist").html("");
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(distjsondata, function (i, dist) {
+                            $.each(dist.abhy_districts, function (j, distval) {
+                                $("#dist").append($('<option></option>').val(distval.did).html(distval.district_name));
+                            });
+                        });
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#dist").val("");
+                    }
+                    else {
+                        $("#dist").html("");
+                        $("#dist").prepend($('<option></option>').val("").html("Select District"));
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#dist").change(function () {
+                    if (this.value != "" && $("#state").val() != "") {
+                        var distjsondata2 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata = distjsondata2[0].abhy_districts.filter(m => m.did == this.value);
+                        $("#block").html("");
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(mandjsondata, function (j, mandval) {
+                            $.each(mandval.abhy_blocks, function (k, mandval2) {
+                                $("#block").append($('<option></option>').val(mandval2.bid).html(mandval2.block_name));
+                            });
+                        });
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#block").val("");
+                    }
+                    else {
+                        $("#block").html("");
+                        $("#block").prepend($('<option></option>').val("").html("Select Block"));
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                $("#block").change(function () {
+                    if (this.value != "" && $("#state").val() != "" && $("#dist").val() != "") {
+                        var distjsondata3 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata2 = distjsondata3[0].abhy_districts.filter(m => m.did == $("#dist").val());
+                        var gramjsonata = mandjsondata2[0].abhy_blocks.filter(m => m.bid == this.value);
+                        $("#gram").html("");
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $.each(gramjsonata, function (j, gramval) {
+                            $.each(gramval.abhy_grampanchayat, function (k, gramval2) {
+                                $("#gram").append($('<option></option>').val(gramval2.gpid).html(gramval2.gpname));
+                            });
+                        });
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#gram").val("");
+                    }
+                    else {
+                        $("#gram").html("");
+                        $("#gram").prepend($('<option></option>').val("").html("Select Gram Panchayat"));
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+                var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+                $("#gram").change(function () {
+                    if (this.value != "" && $("#state").val() != "" && $("#dist").val() != "" && $("#block").val() != "") {
+                        var distjsondata4 = Jsondata.filter(m => m.sid == $("#state").val());
+                        var mandjsondata3 = distjsondata4[0].abhy_districts.filter(m => m.did == $("#dist").val());
+                        var gramjsonata2 = mandjsondata3[0].abhy_blocks.filter(m => m.bid == $("#block").val());
+                        var villagejsondata = data.filter(m => m.sid == $("#state").val() && m.did == $("#dist").val() && m.bid == $("#block").val() && m.gpid == this.value);
+                        //var villagejsondata = gramjsonata2[0].abhy_grampanchayat.filter(m => m.gpid == this.value);
+                        $("#village").html("");
+                        $.each(villagejsondata, function (j, villageval) {
+                            //$.each(villageval.abhy_villages, function (k, villageval2) {
+                            $("#village").append($('<option></option>').val(villageval.vid).html(villageval.viname));
+                           // });
+                        });
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                        $("#village").val("");
+                    }
+                    else {
+                        $("#village").html("");
+                        $("#village").prepend($('<option></option>').val("").html("Select Village"));
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11) > ul.dropdown > li:nth-child(1)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11) > ul.dropdown > li:nth-child(1)").siblings().removeClass('active');
+
+</script>

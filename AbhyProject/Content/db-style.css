@@ -1,0 +1,386 @@
+
+.title {
+    justify-content: space-between;
+}
+
+#state {
+    border: 2px solid #004592;
+    color: #004592;
+    border-radius: 5px;
+}
+
+.sel-state {
+    padding-right: 20px;
+}
+
+.project-heading {
+    font-weight: bold;
+    font-size: 33px;
+    text-align: left;
+    color: #004592;
+}
+/*pip*/
+
+.pip-parent, .awp-parent /*pip and awp parent border define here*/ {
+    border: 1px solid #004592;
+    border-radius: 5px;
+}
+
+.pip-heading, .awp-heading /*pip and awp heading define here*/ {
+    padding: 10px 0px 10px 10px;
+    border-bottom: 1px solid #004592;
+    background-color: #e3f3f8;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.awp-heading {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    color: #004592;
+}
+/*firstchild*/
+.pip-firstchild {
+    border: 1px solid #004592;
+    margin: 8px 20px 8px 20px;
+}
+
+.firstchild-heading {
+    border-bottom: 1px solid #004592;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
+    color: #004592;
+}
+
+.circle,
+.component_a,
+.component_b {
+    height: 100px;
+    width: 100px;
+}
+/*pip second child */
+.sub-second {
+    border: 1px solid #004592;
+    margin: 8px 20px 8px 20px;
+}
+
+.secondchild-heading {
+    border-bottom: 1px solid #004592;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
+    color: #004592;
+}
+
+.sub-second-two {
+    border: 1px solid #004592;
+    margin: 8px 17px 0px -30px;
+}
+
+.two-secondchild-heading {
+    border-bottom: 1px solid #004592;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    color: #004592;
+}
+
+.allocated_component_circle,
+.allocated_component_a1,
+.allocated_component_a5 {
+    height: 100px;
+    width: 100px;
+}
+
+.component_b_circle,
+.component_b_dli {
+    height: 100px;
+    width: 100px;
+}
+/**/
+#finenance {
+    border: 2px solid #004592;
+    color: #004592;
+    border-radius: 5px;
+}
+
+.awp-compo-a-b {
+    border: 1px solid #004592;
+    margin: 7px -20px 10px 20px;
+}
+
+.awp-compo-heading-a-b {
+    font-size: 13px;
+    border-bottom: 1px solid #004592;
+    color: #004592;
+    font-weight: bold;
+}
+
+.awp-compo-a {
+    border: 1px solid #004592;
+    margin: 7px -21px 10px 7px;
+}
+
+.awp-compo-heading-a {
+    font-size: 13px;
+    border-bottom: 1px solid #004592;
+    color: #004592;
+    font-weight: bold;
+}
+
+.awp-compo-b {
+    border: 1px solid #004592;
+    margin: 6px 17px 10px 7px;
+}
+
+.awp-compo-heading-b {
+    font-size: 13px;
+    border-bottom: 1px solid #004592;
+    color: #004592;
+    font-weight: bold;
+}
+
+.total-circle-ab,
+.text-compo-ab {
+    height: 100px;
+    width: 100px;
+}
+/* upper part styling */
+/* lower part styling */
+.parent_div {
+    border: 1px solid #004592;
+    border-radius: 5px;
+    padding: 6px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+.db-btn {
+    background: #4b4b4b;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    width: 30%;
+    margin-top: 0px;
+    /* opacity: 0.8;*/
+    transition: unset;
+    border: unset;
+    border-bottom: 9px solid #6f6f6f;
+}
+
+    .db-btn:hover {
+        color: #f3f3f3;
+    }
+
+.physical_section {
+    display: none;
+}
+
+.tab-active {
+    background: linear-gradient(#66d3fa 0%, #016be1 100%);
+    border-bottom: 9px solid #123459;
+}
+
+.heading_div,
+.heading_div_last,
+.physical_section {
+    border: 1px solid #004592;
+    margin: 6px;
+    border-radius: 5px;
+}
+
+.good_heading,
+.status_heading {
+    border-bottom: 1px solid #004592;
+    padding: 16px;
+    background: #e3f3f8;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    color: #004592;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.pip-parent .pip-heading,
+.awp-heading {
+    padding: 16px;
+    background: #e3f3f8;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    color: #004592;
+}
+
+.analog_section,
+.water_section,
+.work_section,
+.water_quality,
+.water_security {
+    border: 1px solid #004592;
+}
+
+    .analog_section .heading,
+    .water_section .heading,
+    .work_section .heading,
+    .water_quality .heading,
+    .water_security .heading {
+        border-bottom: 1px solid #004592;
+        padding: 10px;
+        font-weight: bold;
+        text-align: left;
+        color: #004592;
+        font-size: 13px;
+    }
+
+    .analog_section .sub_title,
+    .water_section .sub_title,
+    .work_section .sub_title,
+    .water_quality .sub_title,
+    .water_security .sub_title {
+        padding: 10px;
+    }
+
+.second_box {
+    border: 1px solid #004592;
+    margin: 10px;
+}
+/* Second Box end */
+
+/* My Style*/
+.box-container {
+    width: 90%;
+    margin: auto;
+}
+
+#first_pie_chart_id {
+    height: 220px;
+}
+
+#second_pie_chart_id {
+    height: 230px;
+}
+
+#thired_pie_chart_id {
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#fourth_pie_chart_id {
+    height: 180px;
+}
+
+#fifth_pie_chart_id {
+    height: 180px;
+}
+
+#sixth_pie_chart_id {
+    height: 180px;
+}
+
+#first_bar_char_id {
+    height: 550px;
+}
+
+#second_bar_char_id {
+    height: 550px;
+}
+
+#third_bar_char_id {
+    height: 550px;
+}
+
+#fourth_bar_char_id {
+    height: 550px;
+}
+
+#fivth_bar_char_id {
+    height: 550px;
+}
+
+#sixth_bar_char_id {
+    height: 550px;
+}
+
+#seven_bar_char_id {
+    height: 450px;
+}
+
+#eight_bar_char_id {
+    height: 450px;
+}
+
+#nine_bar_char_id {
+    height: 450px;
+}
+
+#ten_bar_char_id {
+    height: 450px;
+}
+
+#eleven_bar_char_id {
+    height: 450px;
+}
+
+.blue-dot {
+    width: 15px;
+    height: 15px;
+    background: #016be1;
+    margin-bottom: 0px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.orange-dot {
+    width: 15px;
+    height: 15px;
+    background: #e0762e;
+    margin-bottom: 0px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dot-ttl {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    color: #010101;
+    margin-bottom: 0px;
+}
+
+.dot-text {
+    font-weight: normal;
+    font-size: 13px;
+    text-align: left;
+    color: #010101;
+    margin-bottom: 0px;
+}
+
+.dot-value-text {
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 26px;
+    text-align: left;
+    color: #010101;
+    margin-bottom: 0px;
+}
+
+/* #END My Style*/
+
+.component-table tr td {
+    padding: 8px 5px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+    color: #010101;
+}

@@ -1,0 +1,1076 @@
+﻿@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Water Security Plan Report</title>
+    <!-- favicon
+    ============================================ -->
+    @*<link rel="shortcut icon" type="image/x-icon" href="~/Content/Website/images/favicon.ico">*@
+
+
+
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+    <!--favicon end-->
+
+    <link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
+
+    <link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">*@
+
+    <link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <!-- jQuery library -->
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+    <script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>*@
+    <!--Pie Chart-->
+    <script src="~/Scripts/all_scripts/highcharts.js"></script>
+    @*<script src="https://code.highcharts.com/highcharts.js"></script>*@
+    <script src="~/Scripts/all_scripts/pareto.js"></script>
+    @*<script src="https://code.highcharts.com/modules/pareto.js"></script>*@
+
+    <!---->
+    <script src="~/Scripts/all_scripts/core.js"></script>
+
+    <script src="~/Scripts/all_scripts/charts.js"></script>
+
+    <script src="~/Scripts/all_scripts/animated.js"></script>
+
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+    
+    <style>
+        .highcharts-point {
+            border-radius: 1px;
+            background-color: #404040;
+            border-color: #337ab7;
+            font-weight: 500 !important;
+            fill: #337ab7;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        p.text-center {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .colorline1 {
+            background: #ddd;
+            background-size: 100% 6px;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin-top: 12px;
+            height: 3px;
+            width: 100%
+        }
+
+        .coll12andcol5 {
+            line-height: 2.0em;
+            font-weight: bold;
+            height: 446px;
+        }
+
+        .col-xs-9 > h1 {
+            font-weight: bold;
+            color: #404040;
+            text-shadow: -1px -1px #000;
+        }
+
+        .col-xs-9 > p {
+            color: #404040;
+        }
+
+        .col12 > .firsttable > h6 {
+            letter-spacing: 0px;
+            padding-left: 10px;
+        }
+
+        .firstptag {
+            padding-left: 4%;
+        }
+
+        body {
+            background-color: #ddd;
+        }
+
+        .clearfixcolor {
+            margin-top: 15px;
+        }
+
+        .col12 {
+            background-color: #fff;
+            padding: 25px;
+        }
+
+        .highcharts-credits {
+            display: none;
+        }
+
+
+
+        .highcharts-button-box {
+            display: none;
+        }
+
+        .highcharts-color-0 {
+            fill: #7bbde3;
+            stroke: #7bbde3;
+        }
+
+        /*.highcharts-color-1 {
+            fill: #2E578C;
+            stroke: #2E578C;6fb01d
+        }*/
+
+        .highcharts-color-2 {
+            fill: #236ab3;
+            stroke: #236ab3;
+        }
+
+        .highcharts-color-3 {
+            fill: #6fb01d;
+            stroke: #6fb01d;
+        }
+
+        .highcharts-color-4 {
+            fill: #8c8c8c;
+            stroke: #8c8c8c;
+        }
+
+        .highcharts-color-5 {
+            fill: #5a5f5e;
+            stroke: #5a5f5e;
+        }
+
+        .highcharts-color-6 {
+            fill: #79ae3d;
+            stroke: #79ae3d;
+        }
+
+        .highcharts-axis.highcharts-color-0 .highcharts-axis-line {
+            stroke: #7cb5ec;
+        }
+
+        .highcharts-axis.highcharts-color-0 text {
+            fill: #7cb5ec;
+        }
+
+        .highcharts-color-1 {
+            fill: #3b99ed;
+            stroke: #3b99ed;
+        }
+
+        .highcharts-axis.highcharts-color-1 .highcharts-axis-line {
+            stroke: #90ed7d;
+        }
+
+        .highcharts-axis.highcharts-color-1 text {
+            fill: #90ed7d;
+        }
+
+        .text-right > .btn-success {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .text-right {
+            padding: 5px;
+        }
+
+            .text-right > .btn-success {
+                padding: 8px 20px 8px 20px;
+                border-radius: 50px;
+                font-size: 18px;
+            }
+
+        .btn-success {
+            color: #fff;
+            background-color: #6fb01d;
+            border-color: #4cae4c;
+        }
+
+        .coll7 {
+            padding-right: 0px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            display: table;
+            padding: 0px 0px 0px 10px;
+            font-size: 15px;
+            margin: 0px;
+        }
+
+            ul.Select_option > li {
+                display: table-cell;
+                padding: 0px 0px 0px 46px;
+                letter-spacing: 2px;
+                word-spacing: 1px;
+            }
+
+                ul.Select_option > li > span > i {
+                    padding: 0px 0px 0px 10px;
+                }
+
+        #Select_dist_level {
+            padding: 10px 0px 5px 15px;
+            text-transform: capitalize;
+        }
+
+        ul.firstimages {
+            display: table;
+            margin-bottom: 0px;
+        }
+
+            ul.firstimages > li {
+                display: table-cell;
+                padding-left: 5px;
+                border: 1px solid #ddd;
+                padding: 10px 10px 5px 10px;
+            }
+
+                ul.firstimages > li > img {
+                    border-left: 2px solid #ddd;
+                }
+
+                /*ul.firstimages > li > span.firstsapn::before {
+                content: "";
+                width: 3px;
+                height: 40px;
+                background: #ddd;
+                background-color: #ddd;
+                position: absolute;
+                top: 1px;
+                right:171px;
+            }
+
+            ul.firstimages > li > span::after {
+                content: "";
+                width: 3px;
+                height: 40px;
+                background: #ddd;
+                background-color: #ddd;
+                position: absolute;
+                top: 1px;
+            }*/
+                ul.firstimages > li > span > img {
+                    width: 25px;
+                    height: 25px;
+                }
+
+        .highcharts-title {
+            font-weight: bold;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+        }
+
+        tspan {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        .firsttable {
+            display: table-cell;
+        }
+
+        .secondtable {
+            display: table-cell;
+            padding-left: 154px;
+        }
+
+        sup {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container" style="background-color:#bfbfbf;padding:0px;" id="Data1">
+        <div class="clearfix" style="background-color:#fff;">
+            <div class="col-md-12 col12" style="background-color:#fff;padding:0px;display:table;border-bottom:2px solid #ddd">
+                <div class="firsttable">
+                    <h6>Atal Bhujal Yojana (ABHY), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation</h6>
+                </div>
+                <div class="secondtable">
+                    <ul class="firstimages">
+                        <li>
+
+                            <span class="firstsapn"> <img src="~/Images/about 12.34.04.png" /></span>
+                        </li>
+                        <li>
+                            <span><img src="~/Images/achievement.png" /></span>
+                        </li>
+                        <li>
+                            <span><img src="~/Images/progress 12.34.04.png" /></span>
+                        </li>
+                        <li>
+                            <span><img src="~/Images/workshop 12.34.04.png" /></span>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+            @*<div class="colorline1" style="margin-top:39px;"></div>*@
+
+            @*<hr/>*@
+            <div class="col-md-12">
+
+                <div class="col-xs-9">
+                    <h1>Water Security Plan Report </h1>
+                    <p class="firstptag">Composition of demand and supply side interventions</p>
+
+
+
+                </div>
+                <div class="col-xs-3 text-right" id="btnExport">
+                    <button class="btn btn-success" id="download">Download</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+
+                    <div class="row" id="Select_dist_level">
+
+
+                        <ul class="Select_option">
+                            @if (Session["DState"] != null && Session["DState"].ToString() != "null" && Session["DState"].ToString() != "")
+                            {
+                                <li>
+                                    <label id="lblstate">State:</label>
+                                    <span id="spnstate">@Session["DState"]</span>
+                                </li>
+                            }
+                            else
+                            {
+                                if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                                {
+                                    <li>
+                                        <label id="lblstate">State:</label>
+                                        <span id="spnstate">@Session["gstate"]</span>
+                                    </li>
+                                }
+                                else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                                {
+                                    if (Session["GM_State"] != null && Session["GM_State"].ToString() != "null" && Session["GM_State"].ToString() != "")
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <label id="lblstate">Admin</label>
+
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li>
+                                        <label id="lblstate">National Level Nodal Officer</label>
+
+                                    </li>
+                                }
+
+
+
+                                if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                                {
+                                    <li>
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label id="lbldistrict">District:</label>
+                                        <span id="spndistrict">@Session["gdist"]</span>
+                                    </li>
+                                }
+
+                                if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                                {
+
+                                    <li>
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Block:</label>
+                                        <span>@Session["gblock"] </span>
+                                    </li>
+                                }
+
+                                if (Session["gsitename"] != null && Session["gsitename"].ToString() != "null" && Session["gsitename"].ToString() != "")
+                                {
+                                    <li>
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Site</label>
+                                        <span>@Session["gsitename"]</span>
+                                    </li>
+                                }
+
+
+                            }
+                            @if (Session["DDist"] != null && Session["DDist"].ToString() != "null" && Session["DDist"].ToString() != "")
+                            {
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label id="lbldistrict">District:</label>
+                                    <span id="spndistrict">@Session["DDist"]</span>
+                                </li>
+                            }
+
+                            @if (Session["Dblock"] != null && Session["Dblock"].ToString() != "null" && Session["Dblock"].ToString() != "")
+                            {
+
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Block:</label>
+                                    <span>@Session["Dblock"] </span>
+                                </li>
+                            }
+
+                            @if (Session["Dgram"] != null && Session["Dgram"].ToString() != "null" && Session["Dgram"].ToString() != "")
+                            {
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>GramPanchayat:</label>
+                                    <span>@Session["Dgram"] </span>
+                                </li>
+                            }
+
+
+
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @*<div class="clearfix">
+                <div class="col-md-12">
+                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto ;background-color:#fff;"></div>
+                </div>
+            </div>*@
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 coll7">
+                            <div class="col-md-12 col12 " style="overflow-x:scroll;overflow-y:hidden;">
+                                <p class="text-center"> Demand Side </p>
+
+                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer  table-bordered table-responsive table-__web-inspector-hide-shortcut__" style="border:1px solid #dddddd; margin-top:10px;">
+
+                                    <thead>
+                                        <tr class="info">
+
+                                            <th>Different Methods </th>
+
+                                            <th> Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Number of Units</th>
+                                            <th>Unit Cost</th>
+                                            <th>Area/Capacity</th>
+                                            <th>Funding</th>
+                                            <th>Department</th>
+                                            <th>Total Budget</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        @if (ViewBag.demandlist != null)
+                                        {
+                                            foreach (var Item in ViewBag.demandlist)
+                                            {
+                                                <tr>
+
+                                                    <td>@Item.activity</td>
+
+
+                                                    <td>@Item.startdate </td>
+                                                    <td>@Item.enddate </td>
+                                                    <td>@Item.number </td>
+                                                    <td>@Item.unitcost </td>
+                                                    <td>@Item.area </td>
+                                                    <td>@Item.funding </td>
+                                                    <td>@Item.implementing </td>
+                                                    <td>@Item.totalbudget </td>
+
+
+
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix clearfixcolor">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-7 coll7">
+                            <div class="col-md-12 col12">
+                                <div id="chartdiv" style="min-width: 400px; height: 400px;"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-5">
+                            <div class="col-md-12" style="background-color:#fff;">
+                                <p class="text-center" style="margin-top:32px;"> Total Budget</p>
+                                <div class="colorline1"></div>
+
+                                <div id="chartdivbar" style="min-width: 310px; height: 378px; max-width: 600px; margin: 0 auto"></div>
+                                @*<div class="colorline1" style="margin-top: 2px;  margin-bottom: 15px;"></div>*@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix clearfixcolor">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 coll7">
+                            <div class="col-md-12 col12 " style="overflow-x:scroll;overflow-y:hidden;">
+                                <p class="text-center"> Supply Side </p>
+
+                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer  table-bordered table-responsive table-__web-inspector-hide-shortcut__" style="border:1px solid #dddddd; margin-top:10px;">
+
+                                    <thead>
+                                        <tr class="info">
+
+                                            <th>Different Methods </th>
+
+                                            <th> Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Number of Units</th>
+                                            <th>Unit Cost</th>
+                                            <th>Area/Capacity</th>
+                                            <th>Funding</th>
+                                            <th>Department</th>
+                                            <th>Total Budget</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @if (ViewBag.suppllylist != null)
+                                        {
+                                            foreach (var Item1 in ViewBag.suppllylist)
+                                            {
+                                                <tr>
+                                                    <td>@Item1.activity</td>
+
+
+                                                    <td>@Item1.startdate </td>
+                                                    <td>@Item1.enddate</td>
+                                                    <td>@Item1.number</td>
+                                                    <td>@Item1.unitcost </td>
+                                                    <td>@Item1.area </td>
+                                                    <td>@Item1.funding </td>
+                                                    <td>@Item1.implementing</td>
+                                                    <td>@Item1.totalbudget</td>
+
+
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix clearfixcolor">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-7 coll7">
+                            <div class="col-md-12 col12">
+                                <div id="chartdiv12" style="min-width: 400px; height: 400px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="col-md-12" style="background-color:#fff;">
+                                <p class="text-center" style="margin-top:32px;"> Total Budget</p>
+                                <div class="colorline1"></div>
+                                @*<div id="container2" style="min-width: 310px; height: 386px; max-width: 600px; margin: 0 auto"></div>*@
+                                <div id="chart-container" style="min-width: 310px; height: 378px; max-width: 600px; margin: 0 auto"></div>
+                                @*<div class="colorline1" style="margin-top: 2px;  margin-bottom: 15px;"></div>*@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="clearfix clearfixcolor ">
+            <div class="row">
+
+                <div class="clearfix">
+                    <div class="col-md-12" style="margin-bottom:15px;">
+                        <div class="col-md-12 col12">
+                            <p class="text-center">
+                                .............................
+                            </p>
+                            <p class="text-justify">
+                                The results and analysis contained within the Water Security Plan Report are generated with the help of inputs given by the
+                                users. The demand and supply components of water security plan are designed to get the total budget required for installing the
+                                water structures on ground. The overall goal of water security plan is therefore to improve the management of ground water
+                                resources in priority areas of the country.
+                            </p>
+                            <p class="text-center">
+                                .............................
+                            </p>
+                        </div>
+                        @if (Session["DState"] != null && Session["DState"].ToString() != "null" && Session["DState"].ToString() != "")
+                        {
+                            <div class="container col12">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-danger" onclick="RejectDemand()">Reject</button>
+                                    <button type="button" class="btn btn-success" onclick="ApproveDemand()">Approve</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    var TotalActivity = [];
+    var categories = [];
+    var TotalBudget = [];
+    var pieChart = [];
+
+    $(document).ready(function () {
+
+
+        $.ajax({
+            type: "GET",
+            url: "/Report/DemandData",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (results) {
+               
+                console.log(results);
+                if (results != null) {
+
+                    for (var i = 0; i < results.length; i++) {
+                        TotalActivity.push(results[i].activity);
+                        TotalBudget.push(parseInt(results[i].totalbudget));
+                        categories.push(results[i].activity);
+                        pieChart.push([
+                            results[i].activity, parseInt(results[i].totalbudget)]);
+                    }
+                    paintChart();
+                    BudgetCirclechart();
+                }
+            }
+        });
+
+    });
+
+
+    function paintChart() {
+       
+        // Create the chart
+        Highcharts.chart('chartdiv', {
+            chart: {
+                renderTo: 'chartdiv',
+                type: 'column'
+            },
+            title: {
+                text: 'Demand Side Funding and  Total Budget of different WSP Methods'
+            },
+            tooltip: {
+                shared: true
+            },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            yAxis: [{
+                title: {
+                    text: ''
+                }
+            }, {
+                title: {
+                    text: ''
+                },
+                minPadding: 0,
+                maxPadding: 0,
+                max: 100,
+                min: 0,
+                opposite: true,
+                labels: {
+                    format: "{value}%"
+                }
+            }],
+            series: [{
+                type: 'pareto',
+                name: 'Funding',
+                yAxis: 1,
+                //zIndex: 10,
+                baseSeries: 1
+            }, {
+                name: 'Total Budget ',
+                type: 'column',
+                //zIndex: 2,
+                data: TotalBudget
+            }]
+        });
+
+    }
+
+</script>
+
+<script>
+    function BudgetCirclechart() {
+        pieChart.push({
+            name: 'Proprietary or Undetectable',
+            y: 0.2,
+            dataLabels: {
+                enabled: false
+            }
+        }
+        )
+        Highcharts.chart('chartdivbar', {
+
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+
+            title: {
+                text: 'Demand Side <br/> Methods',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 30
+
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+
+                    center: ['48%', '56%']
+                }
+            },
+
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                innerSize: '50%',
+                data: pieChart
+            }]
+        });
+    }
+</script>
+
+<script>
+
+    var Supplycategories = [];
+    var SupplyTotalBudget = [];
+    var SupplypieChart = [];
+
+    $(document).ready(function () {
+
+
+        $.ajax({
+            type: "GET",
+            url: "/Report/SupplyData",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (results) {
+               
+                console.log(results);
+                if (results != null) {
+
+                    for (var i = 0; i < results.length; i++) {
+
+                        SupplyTotalBudget.push(parseInt(results[i].totalbudget));
+                        Supplycategories.push(results[i].activity);
+                        SupplypieChart.push([
+                            results[i].activity, parseInt(results[i].totalbudget)]);
+                    }
+                    SupplypaintChart();
+                    SupplyBudgetCirclechart();
+                }
+            }
+        });
+
+    });
+
+
+</script>
+
+<script>
+
+    function SupplypaintChart() {
+        // Create the chart
+        Highcharts.chart('chartdiv12', {
+            chart: {
+                renderTo: 'chartdiv12',
+                type: 'column'
+            },
+            title: {
+                text: 'Supply Side Funding and  Total Budget of different WSP Methods'
+            },
+            tooltip: {
+                shared: true
+            },
+            xAxis: {
+                categories: Supplycategories,
+                crosshair: true
+            },
+            yAxis: [{
+                title: {
+                    text: ''
+                }
+            }, {
+                title: {
+                    text: ''
+                },
+                minPadding: 0,
+                maxPadding: 0,
+                max: 100,
+                min: 0,
+                opposite: true,
+                labels: {
+                    format: "{value}%"
+                }
+            }],
+            series: [{
+                type: 'pareto',
+                name: 'Funding',
+                yAxis: 1,
+                //zIndex: 10,
+                baseSeries: 1
+            }, {
+                name: 'Total Budget',
+                type: 'column',
+                //zIndex: 2,
+                data: SupplyTotalBudget
+            }]
+        });
+    }
+</script>
+
+<script>
+    function SupplyBudgetCirclechart() {
+        SupplypieChart.push({
+            name: 'Proprietary or Undetectable',
+            y: 0.2,
+            dataLabels: {
+                enabled: false
+            }
+        }
+        )
+
+        Highcharts.chart('chart-container', {
+
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+
+            title: {
+                text: 'Supply Side <br/> Methods',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 30
+
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+
+                    center: ['48%', '56%']
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                innerSize: '50%',
+                data: SupplypieChart
+            }]
+        });
+    }
+</script>
+
+
+
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>*@
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script type="text/javascript">
+
+
+    $("#download").click(function () {
+        $("#download").hide();
+        html2canvas(document.querySelector("#Data1")).then(canvas => {
+            var dataURL = canvas.toDataURL();
+            var pdf = new jsPDF();
+            pdf.addImage(dataURL, 'JPEG', 20, 20, 180, 300); //addImage(image, format, x-coordinate, y-coordinate, width, height)
+            pdf.save("Water Security plan Report.pdf");
+        });
+        $("#download").show();
+    });
+</script>
+<script>
+    // Create the chart
+    Highcharts.chart('Demndside', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Water Budgeting Components'
+        },
+        //subtitle: {
+        //    text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+        //},
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Value (mł)'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}%'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br />'
+        },
+
+        series: [
+            {
+                name: "Browsers",
+                colorByPoint: true,
+                data: [
+                    {
+                        name: "Surface Water Availability",
+                        y: 62.74,
+                        //drilldown: "Chrome"
+                    },
+                    {
+                        name: "Ground Water Recharge",
+                        y: 10.57,
+                        //drilldown: "Firefox"
+                    },
+                    {
+                        name: "Water Draft",
+                        y: 7.23,
+                        //drilldown: "Internet Explorer"
+                    },
+                    {
+                        name: "Balance",
+                        y: 5.58,
+                        //drilldown: "Safari"
+                    }
+                ]
+            }
+        ],
+
+    });
+
+</script>
+
+<script>
+    function ApproveDemand() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/ApproveDemand",
+            data: "",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+            }
+        });
+    }
+    function RejectDemand() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/RejectDemand",
+            data: "",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,828 @@
+﻿
+@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Content/css/baseline_gp_js.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    body {
+        font-family: Calibri !important;
+    }
+
+    .page2el2 {
+        margin-top: 50px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .table_img {
+        width: 200px !important;
+    }
+
+    .demandside_text > tbody > tr > td {
+        text-align: right;
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .demanside_padding_heading1 {
+        padding: 0px !important;
+    }
+
+    .supplyside_demandside_space1 > .reportheading > p {
+        margin: 0px 0 6px !important;
+    }
+
+    .gramReport_div_start.col-md-12 {
+        padding: 0px;
+    }
+
+    .demandside_text_123 > tbody > tr > th {
+        font-size: 14px !important;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+
+        .dateandtime_ul > li {
+            display: inline-block;
+            color: #000;
+            font-size: 18px;
+            padding: 0px 15px;
+        }
+
+    .table-striped tbody tr td:last-child {
+        /*text-align: right;*/
+    }
+
+    .pgwmtable tbody tr td:last-child,
+    .demandsidetable tr td:last-child {
+        text-align: left !important;
+    }
+
+    .wateratextiablity_space {
+        margin-top: 186px;
+    }
+
+    .waterdrft_space {
+        margin-top: 18px;
+    }
+
+    .waterdrft_balance {
+        margin-top: 180px;
+    }
+
+    .waterdrft_Budgeting_space {
+        margin-top: 280px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .singnatire_table tbody tr td {
+        height: 100px;
+    }
+
+    .supplyside_demandside_space {
+        margin-top: 340px;
+    }
+
+    .pgwmCommiteee_space {
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .pgwm_range {
+        margin-top: 280px;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+
+
+    .secondtable {
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    .totatal_textue_label {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    .table-condensed {
+        font-weight: 100;
+        text-shadow: none;
+    }
+
+    .tolat_report_color {
+        color: #6FB11D !important;
+    }
+
+    .wateratextiablity_table > thead > tr > td,
+    .wateratextiablity_table > tbody > tr > td {
+        padding: 0px 3px;
+    }
+
+    table > tbody > tr > td {
+        color: #337ab7 !important;
+        font-weight: 500;
+    }
+
+    table > tbody > tr > th {
+        color: #337ab7 !important;
+    }
+
+    table > tbody > tr > td > label {
+        color: #000 !important;
+    }
+
+    table > tbody > tr > td > span {
+        color: #000 !important;
+    }
+
+    .pgwmtable > tbody > tr > td {
+        color: #000 !important;
+    }
+
+    .text_left_left {
+        text-align: left !important;
+        color: #000 !important;
+    }
+</style>
+
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>
+                    Ground Water Level Monitoring
+                </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+                @*<button class="btn btn-success" id="print" onclick="printpage()">Print</button>*@
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demo"></span></li>
+                    <li>Time : <span id="demo2"></span></li>
+                    <li>
+                        User Name:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~//GplevelMobileData/Master_page" class="btn btn-danger"> Back</a>
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat:</label>
+                            <span id="spngram">@Session["ggram"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="gramReport_div_start col-md-12">
+            <div class="text-center reportheading">
+                <p>
+                    Ground Water Level Monitoring
+
+                </p>
+            </div>
+
+            <div class="col-md-12">
+                <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+
+                            <tr>
+                                <td>State:</td>
+                                <td>
+                                    <span id="spnstate">@Session["gstate"]</span>
+                                    @*<span id="state_name"></span>*@
+                                </td>
+                                <td>District:</td>
+                                <td>
+                                    <span id="spndistrict">@Session["gdist"]</span>
+                                    @*<span id="district_name"></span>*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Block / Taluk :</td>
+                                <td>
+                                    <span id="spnblock">@Session["gblock"]</span>
+                                    @*<span id="block_name"></span>*@
+                                </td>
+                                <td>GP Name :</td>
+                                <td>
+                                    <span id="spngram">@Session["ggram"]</span>
+                                    @*<span id="gram_panchayat_name"></span>*@
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4>
+                    <label>
+                        Total Number of Regular Monitoring Wells : <label id="newwell"></label>
+                    </label>
+                </h4>
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table style="width:100%" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <thead>
+                            <tr class="tableheader1"></tr>
+                            <tr class="success">
+                                <th><label>Sr.no</label></th>
+                                <th><label>Village Name</label></th>
+                                <th><label>Location Details</label></th>
+                                <th><label>Latitude</label></th>
+                                <th><label>Longitude</label></th>
+                                <th style="padding: 30px;"><label>Date</label></th>
+                                <th style="padding: 75px;"><label>Well ID</label></th>
+                                <th><label>Type of Well</label></th>
+                                <th><label>Other Well Type</label></th>
+                                <th><label>OwnerShip Type</label></th>
+                                <th><label>Depth of Well(mbmp)</label></th>
+                                <th><label>Depth of Water Level(mbmp)</label></th>
+                                <th><label>Height of Measuring Point(magl)</label></th>
+                                <th><label>Last Recorded WL</label></th>
+                                <th><label>Current WL (mbgl)</label></th>
+                                <th><label>Image Upload</label></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~//GplevelMobileData/Master_page" class="btn btn-danger"> Back</a>
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    function ReportPdf() {
+        $("#Data1").width(1500);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'New_observation_report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A3', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
+    }
+</script>
+
+<script>
+    //Code for print page
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("print");
+        //Set the print button visibility to 'hidden'
+        //printButton.style.visibility = 'hidden';
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        //Print the page content
+        window.print()
+        $('div#btnExport').removeClass('hideDownload');
+        $('div#btnExport1').removeClass('hideDownload');
+        //printButton.style.visibility = 'visible';
+    }
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        report_getting();
+        sarpanch_getting();
+
+
+    });
+
+    function report_getting() {
+        
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/newobservation_getting',
+            data: '',
+            //data: { 'state': State, 'dist': Dist, 'block': Block, 'gram': Gram,'year': Year },
+            //data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+
+                $("#state_name").text(data[0].state);
+                $("#district_name").text(data[0].district);
+                $("#block_name").text(data[0].block);
+                $("#gram_panchayat_name").text(data[0].grampanchayat);
+                //$("#state_name").text(data[0].objgpdata[0].year);
+
+                if (data[0].length != 0) {
+
+
+
+                } else {
+
+                    $('#state_name').text('');
+                    $('#district_name').text('');
+                    $('#block_name').text('');
+                    $('#gram_panchayat_name').text('');
+
+                }
+            }
+        });
+
+        sarpanch_getting();
+
+    }
+
+    function sarpanch_getting() {
+        
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/newobservation_getting',
+            data: '',
+            dataType: 'JSON',
+            success: function (response) {
+                
+                var tr = "";
+                var curr_date;
+                var curr_month;
+                var curr_year;
+                var pre_curr_date;
+                var pre_curr_month;
+                var pre_curr_year;
+                var post_curr_date;
+                var post_curr_month;
+                var post_curr_year;
+                $('#tbldata').html(tr);
+                if (response.length != 0) {
+
+                    for (var i = 0; i < response.length; i++) {
+                        if (response[i].gp['date'] == null) {
+                            curr_date = "";
+                            curr_month = "";
+                            curr_year = "";
+                        } else {
+                            var nowDate = new Date(parseInt(response[i].gp['date'].substr(6)))
+                            curr_date = nowDate.getDate();
+                            curr_month = nowDate.getMonth() + 1;    // months are zero based
+                            curr_year = nowDate.getFullYear();
+                        }
+                        if (response[i].gp['pre_date'] == null) {
+                            pre_curr_date = "";
+                            pre_curr_month = "";
+                            pre_curr_year = "";
+                        } else {
+                            var pre_nowDate = new Date(parseInt(response[i].gp['pre_date'].substr(6)))
+                            pre_curr_date = pre_nowDate.getDate();
+                            pre_curr_month = pre_nowDate.getMonth() + 1;    // months are zero based
+                            pre_curr_year = pre_nowDate.getFullYear();
+                        }
+                        if (response[i].gp['post_date'] == null) {
+                            post_curr_date = "";
+                            post_curr_month = "";
+                            post_curr_year = "";
+                        } else {
+                            var post_nowDate = new Date(parseInt(response[i].gp['post_date'].substr(6)))
+                            post_curr_date = post_nowDate.getDate();
+                            post_curr_month = post_nowDate.getMonth() + 1;    // months are zero based
+                            post_curr_year = post_nowDate.getFullYear();
+                        }
+
+
+
+                        tr += '<tr><td id="srNo_new" rowId = ' + response[i].gp['id'] + '>' + (i + 1) + '</td>';
+                        tr += '<td id="newvill">' + response[i].gp['sitename'] + '</td>';
+                        tr += '<td id="newlocation">' + response[i].gp['locationdetails'] + '</td>';
+                        tr += '<td id="newlatitude">' + response[i].gp['latitude'] + '</td>';
+                        tr += '<td id="newlongtude">' + response[i].gp['longitude'] + '</td>';
+                        tr += '<td id="date">' + curr_date + "-" + curr_month + "-" + curr_year + '</td>';
+                        tr += '<td id="newWellid">' + response[i].gp['wellid'] + '</td>';
+                        tr += '<td id="newtypeofwell">' + response[i].gp['typeofwell'] + '</td>';
+                        tr += '<td id="newothertypeofwell">' + response[i].gp['other_well_type'] + '</td>';
+                        tr += '<td id="newsource">' + response[i].gp['source'] + '</td>';
+                        tr += '<td id="PreMonsoon2019">' + response[i].gp['Diameter_of_Well'] + '</td>';
+                        tr += '<td id="date">' + response[i].gp['Depth_of_Well'] + '</td>';
+                        tr += '<td id="postMonsoon2019">' + response[i].gp['Depth_of_Water_Level'] + '</td>';
+                        tr += '<td id="date">' + response[i].gp['Height_of_Measuring_Point'] + '</td>';
+                        tr += '<td id="newwaterlevel">' + response[i].gp['groundwater_level'] + '</td>';
+                        tr += '<td><a href=' + response[i].gp['image'] + ' id="newimage1">Image</a></td></tr> ';
+
+
+
+                    }
+
+                }
+                if (tr == '') {
+                    tr = '<tr colspan="11"><td colspan="11" style="text-align: center;">No Data</td></tr>';
+                }
+
+                $('#tbldata').html(tr);
+                $('#newwell').text(response.length);
+
+            }
+        });
+    }
+
+</script>

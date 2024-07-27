@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Water_level";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>Water Level</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/JS_Files/disclosure.js"></script>
+<style>
+    .water_level > tbody > tr > td > span {
+        color: red;
+    }
+
+    .water_level > tbody > tr > td {
+        color: #953030;
+        font-weight: 700;
+        padding: 11px 16px;
+        background: #f0f0f0;
+        list-style-type: none;
+        font-size: 15px;
+        text-decoration: none;
+        text-transform: capitalize !important;
+    }
+
+        .water_level > tbody > tr > td:hover {
+            color: #06756d;
+            background: #d4ebe9;
+        }
+
+        .water_level > tbody > tr > td:first-child {
+            text-transform: uppercase;
+        }
+
+    .water_level > tbody > tr:nth-child(odd) > td, .water_level > tbody > tr:nth-child(odd) > th {
+        background-color: #f9f9f9;
+    }
+
+    .top_border_blue {
+        border-top: #337ab7;
+        border-top: 2px solid #337ab7;
+        padding: 30px;
+        background-color: #dfdfdf;
+    }
+
+    .Water_level_ul {
+        padding: 10px 0px;
+    }
+
+        .Water_level_ul > li {
+            display: inline-block;
+        }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Water Level </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="container">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="top_border_blue">
+                <div class="text-center">
+                    <div class="">
+                        <ul class="Water_level_ul">
+                            <li>Select State</li>
+                            <li>
+                                <select class="form-control" id="water_level" onchange="StateWise_water_level_Info()">
+                                    <option value="0">Select State</option>
+                                    
+                                    <option value="Gujarat"> Gujarat </option>
+                                    <option value="Haryana"> Haryana </option>
+                                    <option value="Karnataka"> Karnataka </option>
+                                    <option value="Madhya Pradesh"> Madhya Pradesh </option>
+                                    <option value="Maharashtra"> Maharashtra </option>
+                                    <option value="Rajasthan"> Rajasthan </option>
+                                    <option value="Uttar Pradesh"> Uttar Pradesh </option>
+
+
+                                </select>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <table class="water_level display tablecolor table stripe row-border order-column table-striped table-bordered dataTable no-footer">
+                    <tbody id="Info_alert_Wl">
+                        <tr><td class="text-center">Select state name to download state level Water Level Reports</td></tr>
+                    </tbody>
+                    <tbody id="waterlevel_tbl">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+    $(document).ready(function () {
+        $.noConflict();
+        $("nav#primary-menu > ul.main-menu > li:nth-child(10)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(10)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(10) > ul.dropdown > li:first-child ").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(10) > ul.dropdown > li:first-child").siblings().removeClass('active');
+
+    });
+</script>

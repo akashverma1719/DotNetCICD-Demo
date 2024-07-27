@@ -1,0 +1,438 @@
+﻿@{
+    ViewBag.Title = "Gp_information";
+    //Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ATAL JAL</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
+    <meta name="description" content="" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+    <link rel="stylesheet" href="~/Content/mis_new/libs/bower/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/mis_new/libs/bower/material-design-iconic-font/dist/css/material-design-iconic-font.css">
+    <link rel="stylesheet" href="~/Content/mis_new/assets/css/app.min.css">
+    <link rel="stylesheet" href="../../css.css?family=Raleway:400,500,600,700,800,900,300">
+    <script src="~/Content/mis_new/libs/bower/breakpoints.js/dist/breakpoints.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+
+</head>
+<body class="menubar-left menubar-unfold menubar-light theme-primary">
+    <nav id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary">
+        <div class="navbar-header">
+            <button type="button" id="menubar-toggle-btn" class="navbar-toggle visible-xs-inline-block navbar-toggle-left hamburger hamburger--collapse js-hamburger">
+                <span class="sr-only">Toggle navigation</span> <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+            </button>
+            <button type="button" class="navbar-toggle navbar-toggle-right collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span> <span class="zmdi zmdi-hc-lg zmdi-more"></span></button>
+            <button type="button" class="navbar-toggle navbar-toggle-right collapsed" data-toggle="collapse" data-target="#navbar-search" aria-expanded="false"><span class="sr-only">Toggle navigation</span> <span class="zmdi zmdi-hc-lg zmdi-search"></span></button> <a href="~/mis_new/Agency_dashboard" class="navbar-brand"><span class="brand-icon"><i><img src="~/DashboardStyles/images/atal-jal-logo.png" style="width:57px;" /></i></span> <span class="brand-name">ATAL JAL</span></a>
+        </div>
+        <div class="navbar-container container-fluid">
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <ul class="nav navbar-toolbar navbar-toolbar-left navbar-left">
+                    <li class="hidden-float hidden-menubar-top"><a href="javascript:void(0)" role="button" id="menubar-fold-btn" class="hamburger hamburger--arrowalt is-active js-hamburger"><span class="hamburger-box"><span class="hamburger-inner"></span></span></a></li>
+                    <li>
+                        <h5 class="page-title hidden-menubar-top hidden-float">Atal Bhujal Yojana</h5>
+                    </li>
+                </ul>
+                <ul class="nav navbar-toolbar navbar-toolbar-right navbar-right">
+                    <li class="dropdown">
+                        <a href="~/WSPHome/Monitoring_evaluation" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-hc-lg  fa fa-angle-double-left"> Back To Modules</i> </a>
+
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-hc-lg fa fa-user"></i></a>
+                        <div class="media-group dropdown-menu animated flipInY">
+                            <a href="javascript:void(0)" class="media-group-item">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div class="avatar avatar-xs avatar-circle"><span class="fa fa-list"></span> </div>
+                                    </div>
+                                    <div class="media-body">
+                                        @if (Session["Officer"].ToString() == "State Level Nodal Officer")
+                                        {
+                                            <h5 class="media-heading">@Session["gstate"].ToString()</h5>
+                                        }
+                                        else
+                                        {
+                                            <h5 class="media-heading" id="Gstate"></h5>
+
+                                        }
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)" class="media-group-item">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div class="avatar avatar-xs avatar-circle"><span class="fa fa-user"></span> </div>
+                                    </div>
+                                    <div class="media-body">
+                                        @if (Session["UserName"] != null)
+                                        {
+                                            <h5 class="media-heading">@Session["UserName"].ToString()</h5>
+                                        }
+                                        else
+                                        {
+                                            <h5 class="media-heading">User Name</h5>
+                                        }
+                                    </div>
+                            </a>
+
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-hc-lg  fa fa-power-off"></i></a>
+                        <ul class="dropdown-menu animated flipInY">
+                            <li><a href="~/WspNew/WSP_GWM_HOME"><i class="zmdi m-r-md zmdi-hc-lg fa fa-power-off"></i>Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <aside id="menubar" class="menubar light">
+        <div class="app-user">
+            <div class="media">
+                <div class="media-left">
+                    @*<div class="avatar avatar-md avatar-circle">
+                            <a href="javascript:void(0)"><img class="img-responsive" src="~/Content/Website/images/banner/emblem-dark.png" style="width:42px;" alt="avatar"></a>
+                        </div>*@
+                </div>
+                <div class="media-body">
+                    <div class="foldable">
+                        @if (Session["Officer"].ToString() == "State Level Nodal Officer")
+                        {
+                            <h5><a href="javascript:void(0)" class="username">@Session["gstate"].ToString()</a></h5>
+                        }
+                        else
+                        {
+                            <h5><label id="GstateName1"></label></h5>
+                        }
+                        <ul>
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle usertitle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @if (Session["UserName"] != null)
+                                    {<small>@Session["UserName"].ToString()</small>
+                                }
+                                else
+                                {
+                                    <small>User Name</small>
+                                }
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu animated flipInY">
+
+                                    <li><a class="text-color" href="~/WspNew/WSP_GWM_HOME"><span class="m-r-xs"><i class="fa fa-power-off"></i></span> <span>Log out</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menubar-scroll">
+            <div class="menubar-scroll-inner">
+                <ul class="app-menu">
+                    <li class="" id="hide_dash_div">
+                        <a href="~/mis_new/Agency_dashboard" class=""><i class="menu-icon zmdi fa fa-dashboard zmdi-hc-lg"></i> <span class="menu-text">Dashboard</span> </a>
+                    </li>
+
+                    <li class="has-submenu" id="hide_pip_div">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi fa fa-dashboard zmdi-hc-lg"></i>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <span class="menu-text">Project Implementation Plan (PIP)</span>
+                                <i class="menu-caret zmdi zmdi-hc-sm fa fa-angle-right"></i>
+                            </div>
+
+                        </a>
+                        <ul class="submenu">
+                            <li id="hide_pip_form"><a href="~/mis_new/Pip_form"><span class="menu-text">PIP Form</span></a></li>
+                            <li><a href="~/mis_new/Pip"><span class="menu-text">PIP Data</span></a></li>
+                        </ul>
+                    </li>
+                    @*<li class="has-submenu">
+                            <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-layers zmdi-hc-lg"></i> <span class="menu-text">Layouts</span> <span class="label label-warning menu-label">2</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                            <ul class="submenu">
+                                <li><a href="index.html"><span class="menu-text">Default</span></a></li>
+                                <li><a href="../topbar/index.html"><span class="menu-text">Topbar</span></a></li>
+                            </ul>
+                        </li>*@
+                    <li class="has-submenu" id="hide_awp_div">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi fa fa-puzzle-piece zmdi-hc-lg"></i>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <span class="menu-text">Annual Work Plan (AWP)</span>
+                                <i class="menu-caret zmdi zmdi-hc-sm fa fa-angle-right"></i>
+                            </div>
+
+                        </a>
+                        <ul class="submenu">
+                            <li id="hide_awp_form"><a href="~/mis_new/Awp_form"><span class="menu-text">AWP Form</span></a></li>
+                            <li><a href="~/mis_new/AWP"><span class="menu-text">AWP  Data</span></a></li>
+
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi fa fa-puzzle-piece zmdi-hc-lg"></i>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <span class="menu-text">Financial Monitoring  </span>
+                                <i class="menu-caret zmdi zmdi-hc-sm fa fa-angle-right"></i>
+                            </div>
+                        </a>
+                        <ul class="submenu">
+                            <li id="hide_fm_form"><a href="~/mis_new/php_and_fn"><span class="menu-text">Financial Monitoring Form</span></a></li>
+                            <li><a href="~/mis_new/php_and_fn_report"><span class="menu-text">Financial Monitoring Data</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi fa fa-puzzle-piece zmdi-hc-lg"></i>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <span class="menu-text">Physical Monitoring </span>
+                                <i class="menu-caret zmdi zmdi-hc-sm fa fa-angle-right"></i>
+                            </div>
+                        </a>
+                        <ul class="submenu">
+                            <li id="hide_pm_form"><a href="~/mis_new/physical_monitoring"><span class="menu-text">Physical Monitoring Form</span></a></li>
+                            <li><a href="~/mis_new/physical_monitoring_report"><span class="menu-text">Physical Monitoring Data</span></a></li>
+
+
+                        </ul>
+                    </li>
+                    <li class="has-submenu" id="hide_dli_div">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi fa fa-puzzle-piece zmdi-hc-lg"></i>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <span class="menu-text">Disbursement Linked Indicators(DLIs) Monitoring</span>
+                                <i class="menu-caret zmdi zmdi-hc-sm fa fa-angle-right"></i>
+                            </div>
+                        </a>
+                        <ul class="submenu">
+                            <li id="li_dli"><a href="~/DLI/index"><span class="menu-text">DLIs Form</span></a></li>
+                            <li><a href="~/DLI/Report"><span class="menu-text">DLIs Data</span></a></li>
+
+
+                        </ul>
+                    </li>
+                    <li class="has-submenu" id="hide_pm_div">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi fa fa-puzzle-piece zmdi-hc-lg"></i>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <span class="menu-text">Procurement Details</span>
+                                <i class="menu-caret zmdi zmdi-hc-sm fa fa-angle-right"></i>
+                            </div>
+
+                        </a>
+                        <ul class="submenu">
+                            <li id="hide_prm_form"><a href="~/mis_new/Procurement_milestone"><span class="menu-text">IS & CB Fund (Form)</span></a></li>
+                            <li><a href="~/mis_new/Procurement_milestone_report"><span class="menu-text">IS & CB Fund (Data)</span></a></li>
+
+                            <li id="incentive_foam"><a href="~/mis_new/Incentive_Fund_Utilization"><span class="menu-text">Incentive Fund (Form)</span></a></li>
+                            <li id="incentive_data"><a href="~/mis_new/Incentive_Fund_Utilization_report"><span class="menu-text">Incentive Fund (Data)</span></a></li>
+
+                        </ul>
+                    </li>
+                    <li class="has-submenu" id="hide_frm_div">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi fa fa-sellsy  zmdi-hc-lg"></i>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <span class="menu-text" F> Fund Release Monitoring</span>
+                                <i class="menu-caret zmdi zmdi-hc-sm fa fa-angle-right"></i>
+                            </div>
+                        </a>
+                        <ul class="submenu">
+                            <li id="hide_fr_form"><a href="~/mis_new/Fund_release_Monitoring"><span class="menu-text">Fund Release Monitoring Form</span></a></li>
+                            <li><a href="~/mis_new/Fund_release_Monitoring_report"><span class="menu-text">Fund Release Monitoring Data</span></a></li>
+
+                        </ul>
+                    </li>
+                    <li class="" id="report_li">
+                        <a href="~/mis_new/Agency_reports" class=""><i class="menu-icon zmdi fa fa-dashboard zmdi-hc-lg"></i> <span class="menu-text">Reports</span> </a>
+                    </li>
+                    @*<li><a href="search.web.html"><i class="menu-icon zmdi zmdi-search zmdi-hc-lg"></i> <span class="menu-text">Search</span></a></li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-pages zmdi-hc-lg"></i> <span class="menu-text">Pages</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                            <ul class="submenu">
+                                <li><a href="profile.html"><span class="menu-text">Profile</span></a></li>
+                                <li><a href="price.html"><span class="menu-text">Prices</span></a></li>
+                                <li><a href="invoice.html"><span class="menu-text">Invoice</span></a></li>
+                                <li><a href="gallery.1.html"><span class="menu-text">Gallery</span></a></li>
+                                <li><a href="gallery.2.html"><span class="menu-text">Gallery 2</span></a></li>
+                                <li><a href="support.html"><span class="menu-text">FAQ</span></a></li>
+                                <li class="has-submenu">
+                                    <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-plus zmdi-hc-lg"></i> <span class="menu-text">Misc Pages</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="login.html"><span class="menu-text">Login</span></a></li>
+                                        <li><a href="signup.html"><span class="menu-text">Sign Up</span></a></li>
+                                        <li><a href="password-forget.html"><span class="menu-text">Reset Password</span></a></li>
+                                        <li><a href="unlock.html"><span class="menu-text">Unlock Screen</span></a></li>
+                                        <li><a href="404.html"><span class="menu-text">404 Error</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>*@
+                    @*<li class="has-submenu">
+                            <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-check zmdi-hc-lg"></i> <span class="menu-text">Forms</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                            <ul class="submenu">
+                                <li><a href="form.layouts.html"><span class="menu-text">Form Layouts</span></a></li>
+                                <li><a href="form.elements.html"><span class="menu-text">Form Elements</span></a></li>
+                                <li><a href="form.custom.html"><span class="menu-text">Customized Elements</span></a></li>
+                                <li><a href="form.plugins.html"><span class="menu-text">Form Plugins</span></a></li>
+                                <li><a href="file-upload.html"><span class="menu-text">File Upload</span></a></li>
+                                <li><a href="form.datetime.html"><span class="menu-text">DateTime Pickers</span></a></li>
+                                <li><a href="editors.html"><span class="menu-text">Editors</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-storage zmdi-hc-lg"></i> <span class="menu-text">Tables</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                            <ul class="submenu">
+                                <li><a href="tables.basic.html"><span class="menu-text">Basic Tables</span></a></li>
+                                <li><a href="datatables.html"><span class="menu-text">DataTables</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-chart zmdi-hc-lg"></i> <span class="menu-text">Charts</span> <span class="label label-success menu-label">7</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                            <ul class="submenu">
+                                <li><a href="charts.flot.html"><span class="menu-text">Flot Charts</span></a></li>
+                                <li><a href="echarts.bar.html"><span class="menu-text">Bar echarts</span></a></li>
+                                <li><a href="echarts.pie.html"><span class="menu-text">Pie echarts</span></a></li>
+                                <li><a href="echarts.line.html"><span class="menu-text">Line echarts</span></a></li>
+                                <li><a href="echarts.map.html"><span class="menu-text">Map echarts</span></a></li>
+                                <li><a href="echarts.scatter.html"><span class="menu-text">Scatter echarts</span></a></li>
+                                <li><a href="echarts.custom.html"><span class="menu-text">Custom echarts</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-pin zmdi-hc-lg"></i> <span class="menu-text">Maps</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                            <ul class="submenu">
+                                <li><a href="map-google.html"><span class="menu-text">Google Maps</span></a></li>
+                                <li><a href="map-vector.html"><span class="menu-text">Vector Maps</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="javascript:void(0)" class="submenu-toggle"><i class="menu-icon zmdi zmdi-apps zmdi-hc-lg"></i> <span class="menu-text">Apps</span> <span class="label label-info menu-label">2</span> <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i></a>
+                            <ul class="submenu">
+                                <li><a href="calendar.html"><span class="menu-text">Calendar</span></a></li>
+                                <li><a href="contacts.html"><span class="menu-text">Contacts</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-separator">
+                            <hr>
+                        </li>
+                        <li><a href="documentation.html"><i class="menu-icon zmdi zmdi-file-text zmdi-hc-lg"></i> <span class="menu-text">Documentation</span></a></li>
+                        <li><a href="javascript:void(0)"><i class="menu-icon zmdi zmdi-settings zmdi-hc-lg"></i> <span class="menu-text">Settings</span></a></li>
+                        <li><a href="javascript:void(0)"><i class="menu-icon zmdi zmdi-language-javascript zmdi-hc-lg"></i> <span class="menu-text">Angular Version</span></a></li>*@
+
+                </ul>
+            </div>
+        </div>
+    </aside>
+    @*<div id="navbar-search" class="navbar-search collapse">
+            <div class="navbar-search-inner">
+                <form action="#">
+                    <span class="search-icon"><i class="fa fa-search"></i></span>
+                    <input class="search-field" type="search" placeholder="search...">
+                </form>
+                <button type="button" class="search-close" data-toggle="collapse" data-target="#navbar-search" aria-expanded="false"><i class="fa fa-close"></i></button>
+            </div>
+            <div class="navbar-search-backdrop" data-toggle="collapse" data-target="#navbar-search" aria-expanded="false"></div>
+        </div>*@
+    <div>
+        @RenderBody()
+
+    </div>
+
+</body>
+</html>
+<script src="~/Content/mis_new/assets/js/core.min.js"></script>
+<script src="~/Content/mis_new/assets/js/app.min.js"></script>
+<script src="~/Content/mis_new/libs/bower/moment/moment.js"></script>
+<script src="~/Content/mis_new/libs/bower/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="~/Content/mis_new/assets/js/fullcalendar.js"></script>
+@*<script src="~/Scripts/jquery.min.js"></script>*@
+
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<script>
+    $(".loader").show();
+    $(document).ready(function () {
+
+            var currentUrl = window.location.href;
+            const myArray = currentUrl.split("/");
+            let coun = myArray.length - 1;
+            if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
+                GetCunCurrentUser();
+            }
+    });
+
+        function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+
+                    if (data == "False") {
+
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                    $(".loader").hide();
+                }
+            });
+        }
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var Email = '@Session["Email"]';
+        var StateOfficer = '@Session["Officer"]';
+
+
+        if (StateOfficer == 'National Level Nodal Officer' || StateOfficer == 'Admin') {
+           // Session["gstate"] = "";
+            //Session.Remove("gstate");
+            $('#report_li').show();
+            $('#li_dli').show();
+        }
+        else {
+            $('#report_li').hide();
+            $('#li_dli').hide();
+        }
+        if (Email == 'wbataljal@gmail.com') {
+            //$('#hide_pip_div').hide();
+            //$('#hide_awp_div').hide();
+            //$('#hide_dli_div').hide();
+            //$('#hide_pm_div').hide();
+            //$('#hide_frm_div').hide();
+            //$('#report_li').hide();
+            //$('#hide_dash_div').hide();
+            $('#hide_pip_form').hide();
+            $('#hide_awp_form').hide();
+            $('#hide_pm_form').hide();
+            $('#hide_fm_form').hide();
+            $('#li_dli').hide();
+            $('#hide_prm_form').hide();
+            $('#hide_fr_form').hide();
+        }
+    });
+
+
+</script>

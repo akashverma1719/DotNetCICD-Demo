@@ -1,0 +1,1920 @@
+﻿﻿@{ ViewBag.Title = "Login Info";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml"; }
+<title>Login Info</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+
+<style>
+    .color_database {
+        color: green !important;
+    }
+
+    #imageView label {
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 12px;
+        width: 246px;
+    }
+
+    ul[id$="_menu"] > li > a:hover > label, ul[id$="_menu"] > li > a:focus > label, ul[id$="_menu"] > li.active > a > label {
+        border-color: #337ab7;
+        background-color: #337ab7c7;
+        color: #fff;
+    }
+</style>
+
+
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .social-table .bg-info {
+        background-color: #337ab7 !important;
+    }
+
+    .social-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .social-table tr th {
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 600;
+        color: #fff;
+        /*text-align: center;*/
+    }
+
+    .social-table tr td {
+        font-size: 14px;
+    }
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+    /*table fix code*/
+    .pseudolink {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*ends here*/
+    .new_wd {
+        width: 255px !important;
+    }
+
+    #Surface_menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .Select_option_div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 17px 0px;
+        padding: 20px;
+        border: 1px solid #dfdbdb;
+        border-radius: 10px;
+        background: #edededcc;
+    }
+
+    ul.Select_option {
+        display: flex;
+        justify-content: start;
+        padding: 0px;
+    }
+
+    .alignselect > ul {
+        justify-content: start !important;
+        column-gap: 10px
+    }
+
+        .alignselect > ul select {
+            min-width: 200px;
+            margin: 0px 10px;
+        }
+
+
+        .alignselect > ul:first-of-type {
+            margin-bottom: 10px !important;
+        }
+
+    .StateLabel {
+        padding: 8px;
+    }
+
+    .display_flex {
+        font-size: 12px;
+    }
+
+    .number_count_div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .comn_table {
+        background: #f2f2f2;
+    }
+
+        .comn_table thead th {
+            border: 1px solid #fff;
+        }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    .tbl-responsive {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px !important;
+        background: #f2f2f2 !important;
+        overflow: auto;
+        height: 500px;
+    }
+
+    #currentgeopageno {
+        display: inline !important;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="clearfix">
+    <main>
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>}
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/Home/index">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>Home <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                <label>Login Info </label>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <a href="~/socialeventreport/main_report" class="btn btn-danger">
+                            Back To Module
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    </main>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 2px; font-weight: 900; background-color: #72a230;padding:10px;">
+            Management Information System (MIS) and Mobile Application Users
+        </div>
+    </center>
+    <br />
+
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane fade in active" id="music">
+            <div class="container-fluid">
+
+                <div class="clearfix">
+                    <div class="row " style="margin-top:30px;">
+                        <div class="col-md-12 Select_option_div">
+                            <div class=" alignselect">
+                                <label style="text-align:center;color:red;" id="Error_"></label>
+                                <ul class="Select_option  text-left">
+                                    <li id="">
+
+                                        <select class="form-control" onchange="usersmismobile()" id="users" style="border-radius:5px;">
+                                            <option value="0">Select Users</option>
+                                            <option value="MIS">MIS</option>
+                                            <option value="Mobile">Mobile App</option>
+
+                                        </select>
+                                    </li>
+                                    <li id="">
+
+                                        <select class="form-control" id="nodal" onchange="Nodal()" style="border-radius:5px;">
+                                            <option value="0">Select Nodal Officer</option>
+                                            @*<option value="All">All</option>*@
+                                            <option id="" value="National Level Nodal Officer">National Level Nodal Officer</option>
+                                            <option id="b1" value="State Level Nodal Officer">State Level Nodal Officer</option>
+                                            <option id="c1" value="District Level Nodal Officer">District Level Nodal Officer</option>
+                                            <option id="d1" value="Block Level Nodal Officer">Block Level Nodal Officer</option>
+                                            <option id="" value="Gram Panchyat Nodal Officer">Gram Panchyat Nodal Officer</option>
+                                        </select>
+                                    </li>
+                                    <li id="StateLabel">
+                                        <label id="lblstate">State:</label>
+                                        <span id="spnstate1">@Session["gstate"]</span>
+                                    </li>
+                                    <li id="StateDropdownLabel">
+
+                                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:5px;">
+                                        </select>
+                                    </li>
+
+                                    <li id="DistLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label id="lbldistrict">District:</label>
+                                        <span id="spndistrict">@Session["gdist"]</span>
+                                    </li>
+
+                                    <li id="DistDropdownLabel">
+
+                                        <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:5px;">
+                                        </select>
+                                    </li>
+
+                                    <li id="BlockLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Block:</label>
+                                        <span>@Session["gblock"] </span>
+                                    </li>
+
+                                    <li id="BlockDropdownLabel">
+
+                                        <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:5px;">
+                                        </select>
+                                    </li>
+                                    <li id="GramLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Gram panchayat:</label>
+                                        <span>@Session["ggram"]</span>
+                                    </li>
+
+
+                                </ul>
+
+                                <ul class="Select_option text-center">
+                                    <li id="GramDropdownLabel">
+
+                                        <select class="form-control" id="gram" onchange="Gram_change()" style="border-radius:5px;">
+                                        </select>
+                                    </li>
+
+                                    <li id="DropdownSearch_btn">
+                                        <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+        <p style="margin: 0px;width: fit-content;margin-left: 45px;">Note:- Searching and Export the data in the table using the search criteria as per the dropdown above will only work after the data is populated in the table below.</p>
+    </div>
+    <br />
+    <div id="excel_a" class="text-right btn_hide">
+        <button class="btn btn-success btn_export" onclick="exportTableToExcel('state_ttdata', 'MIS Mobile Report')">Export Excel</button>
+
+    </div>
+
+    <div id="example_filter" class="dataTables_filter" style="margin-bottom: 10px; margin-left: 10%;">
+
+        <div class="row">
+            <label class="col-md-2" style=" margin-top: 18px; position: relative; right:72px; font-size:12px;">
+                Search Data in Table:
+            </label>
+            <div class="col-md-2">
+                <input type="search" id="myInput" class="form-control input-sm" placeholder="Search" style=" border-radius:25px; position: absolute; right: 95px; margin-top: 10px; padding-bottom:8px;" />
+                <input type="text" id="hasspass" hidden />
+
+
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div id="passwodhide" style="margin-left:5%;">
+        <label>Password Strength: </label> <strong id="password_strength"></strong>
+    </div>
+
+    <br />
+    <div id="paginationControls"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12  form-body" style="padding-left:5%;width:95%">
+        <div class="table-responsive" id="style-1" style="overflow:auto; height:500px;">
+            <table id="state_tt" class="table table-striped table-bordered table-striped social-table">
+                <thead>
+                    <tr class="bg-info text-white">
+                        <th>Sl.No.</th>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th style="padding: 40px; padding-bottom: 10px; text-align:center;">Status</th>
+                        <th>Registration Date</th>
+                        <th>First Time Approved by / Rejected by</th>
+                        <th>Last Change Password by</th>
+                        <th>Last Password Change Date</th>
+                        <th>Mobile Number</th>
+                        <th>Department Name</th>
+                        <th>Permissions inside MIS Modules</th>
+                        <th class="hsedit" style="padding: 40px; padding-bottom: 10px; text-align:center;">Edit</th>
+                        <th class="hsedit" style="padding: 40px; padding-bottom: 10px; text-align:center;">Delete</th>
+                    </tr>
+
+                </thead>
+                <tbody id="tbl_state"></tbody>
+            </table>
+            <table hidden id="state_ttdata" class="table table-striped table-bordered table-striped social-table">
+                <thead>
+                    <tr class="bg-info text-white">
+                        <th>Sl.No.</th>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th style="padding: 40px; padding-bottom: 10px; text-align:center;">Status</th>
+                        <th>Registration Date</th>
+                        <th>First Time Approved by</th>
+                        <th>Last Change Password by</th>
+                        <th>Last Password Change Date</th>
+                        <th>Mobile Number</th>
+                        <th>Department Name</th>
+                        <th>Permissions inside MIS Modules</th>
+
+                    </tr>
+
+                </thead>
+                <tbody id="tbl_statedata"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <br /> <br />
+
+    <!--fotter End-->
+    <input hidden="hidden" id="hdnRechargefactor" />
+    <input hidden="hidden" id="hdnSeepagefactor" />
+    <input hidden="hidden" id="hdnareairrigation" />
+</div>
+<div id="imageView">
+
+</div>
+
+<script src="~/Scripts/validations.js"></script>
+<script></script>
+
+<script type="text/javascript">
+    var find_name = "gwl";
+    $(document).ready(function () {
+        $(".loader").hide();
+        $("#passwodhide").hide();
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "") {
+              window.location = "/Home/LogOut";
+        }
+    });
+
+
+</script>
+
+<script src="~/Scripts/validations.js"></script>
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+
+@*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>*@
+
+<script>
+
+   var Jsondata = "";
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var well_loader = "0";
+    var StateOfficer = "";
+    var aaemail = "";
+    var button_click = "0";
+    var image_path = "";
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+        aaemail = '@Session["email"]';
+            if (aaemail == "akash.verma@kreatetechnologies.com" || aaemail == "vivekvivektiwari80@gmail.com" || aaemail == "neetynagi@gmail.com") {
+            $('.hsedit').show();
+        }
+        else {
+            $('.hsedit').hide();
+        }
+        image_path = '@Session["sUploadDirectory"]';
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+             DropDownInfo();
+
+    });
+    function formatDateToYYYYMMDD(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Add leading zero if needed
+        const day = String(date.getDate()).padStart(2, '0'); // Add leading zero if needed
+        return `${year}-${month}-${day}`;
+    }
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+    }
+
+    function CheckPasswordStrength(password) {
+        $("#passwodhide").show();
+        var password_strength = document.getElementById("password_strength");
+
+        //TextBox left blank.
+        if (password.length == 0) {
+            password_strength.innerHTML = "";
+            $("#passwodhide").hide();
+            return;
+        }
+
+        //Regular Expressions.
+        var regex = new Array();
+        regex.push("[A-Z]"); //Uppercase Alphabet.
+        regex.push("[a-z]"); //Lowercase Alphabet.
+        regex.push("[0-9]"); //Digit.
+        regex.push("[$@@$!%*#?&]"); //Special Character.
+
+        var passed = 0;
+
+        //Validate for each Regular Expression.
+        for (var i = 0; i < regex.length; i++) {
+            if (new RegExp(regex[i]).test(password)) {
+                passed++;
+            }
+        }
+
+        //Display status.
+        var color = "";
+        var strength = "";
+        switch (passed) {
+            case 0:
+            case 1:
+            case 2:
+                strength = "Weak";
+                color = "red";
+                break;
+            case 3:
+                strength = "Medium";
+                color = "orange";
+                break;
+            case 4:
+                strength = "Strong";
+                color = "green";
+                break;
+
+        }
+        password_strength.innerHTML = strength;
+        password_strength.style.color = color;
+
+        if (passed <= 2) {
+            document.getElementById('show').disabled = true;
+        } else {
+            document.getElementById('show').disabled = false;
+        }
+
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script src="~/Content/JS_Files/core.js"></script>
+<script src="~/Content/JS_Files/sha256.js"></script>
+@*<script src="~/DashboardStyles/js/custom-script.js"></script>*@
+<script type="text/javascript">
+    var check_table = "";
+    var clickbutton = "";
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                    $(".loader").hide();
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+                    $(".loader").hide();
+
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+
+
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        State_Dropdown_Function();
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Dist_fun();
+                        $(".loader").hide();
+
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Block_fun();
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+                        $(".loader").hide();
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function DropDownInfo() {
+        $(".loader").show();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select State</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select State</option>';
+                        /*optionState = '<option value="All">ALL</option>';*/
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != "Delhi_7") {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                }
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function State_Dropdown_Function() {
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+
+        //if (StateName == "All") {
+        //    State = StateName;
+        //    check_table = 1;
+        //    $('#dist11').prop('disabled', true);
+        //    $('#block1').prop('disabled', true);
+        //    $('#gram').prop('disabled', true);
+
+        //}
+        //else {
+        //    check_table = 2;
+
+        //    $('#dist11').prop('disabled', false);
+        //    $('#block1').prop('disabled', false);
+        //    $('#gram').prop('disabled', false);
+
+        //}
+
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+            Dist = '0';
+            Block = '0';
+            Gram = '0';
+            clickbutton = "";
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                //if (Jsondata[i].district_name == 'Kaithal' ) {
+                //    alert(dist);
+
+                //    return;
+                //}
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+            Block = '0';
+            Gram = '0';
+            clickbutton = "";
+
+        }
+    }
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+            Gram = '0';
+            clickbutton = "";
+        }
+    }
+    function Gram_change() {
+        Gram = $('#gram').val();
+        clickbutton = "";
+
+
+    }
+    function clear() {
+
+        //
+    }
+
+    function Dropdown_Search() {
+        var xx = 0;
+        $("#myInput").val("");
+        $('#alert_waiting').show();
+        var StateName = $("#spnstate").val();
+        var DistrictName = $("#dist11").val();
+        var BlockName = $("#block1").val();
+        var nodal = $("#nodal").val();
+        var users = $("#users").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var date = $('#ddldate').val();
+        if (Gram != "0") {
+
+        }
+        else {
+            Gram = $('#gram').val();
+        }
+        if (users == "0") {
+            alert("Please Select UsersType");
+            xx = 1;
+            return false;
+        }
+        if (nodal == "0") {
+
+            alert("Please Select Nodal Officer");
+            xx = 1;
+            return false;
+        }
+
+        else {
+            if (nodal == "State Level Nodal Officer") {
+                if (StateName == "0") {
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (nodal == "District Level Nodal Officer") {
+                if (StateName == "0") {
+
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+                if (DistrictName == "0") {
+                    alert("Please Select District");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (nodal == "Block Level Nodal Officer") {
+                if (StateName == "0") {
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+                if (DistrictName == "0") {
+                    alert("Please Select District");
+                    xx = 1;
+                    return false;
+                }
+                if (BlockName == "0") {
+                    alert("Please Select Block");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (nodal == "Gram Panchyat Nodal Officer") {
+                if (StateName == "0") {
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+                if (DistrictName == "0") {
+                    alert("Please Select District");
+                    xx = 1;
+                    return false;
+                }
+                if (BlockName == "0") {
+                    alert("Please Select Block");
+                    xx = 1;
+                    return false;
+                }
+                if (Gram == "0") {
+                    alert("Please Select Gram");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (xx == 0) {
+                clickbutton = "1";
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: '/GplevelMobileData/StateLevel_Dropdown',
+                    data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+                    dataType: 'JSON',
+                    success: function (results) {
+                        state_data();
+
+                    }
+                });
+
+            }
+        }
+
+    }
+
+    function usersmismobile() {
+        clickbutton = ""
+        $("#myInput").val("");
+        $("#nodal").val("0");
+        $("#spnstate").val("0");
+        $("#dist11").val("0");
+        $("#block1").val("0");
+        $("#gram").val("0");
+        var users = $('#users').val();
+        if (users == "Mobile") {
+            $('#b1').hide();
+            $('#c1').hide();
+            $('#d1').hide();
+        }
+        else {
+            $('#b1').show();
+            $('#c1').show();
+            $('#d1').show();
+        }
+    }
+    function Nodal() {
+
+        var nodal = $("#nodal").val();
+        clickbutton = ""
+        if (nodal == "All") {
+            $('#StateDropdownLabel').hide();
+            $('#DistDropdownLabel').hide();
+            $('#BlockDropdownLabel').hide();
+            $('#GramDropdownLabel').hide();
+            $("#spnstate").val("0");
+            $("#dist11").val("0");
+            $("#block1").val("0");
+            $("#gram").val("0");
+
+
+        }
+        else if (nodal == "National Level Nodal Officer") {
+            $('#StateDropdownLabel').hide();
+            $('#DistDropdownLabel').hide();
+            $('#BlockDropdownLabel').hide();
+            $('#GramDropdownLabel').hide();
+            $("#spnstate").val("0");
+            $("#dist11").val("0");
+            $("#block1").val("0");
+            $("#gram").val("0");
+        }
+        else if (nodal == "State Level Nodal Officer") {
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').hide();
+            $('#BlockDropdownLabel').hide();
+            $('#GramDropdownLabel').hide();
+            $("#spnstate").val("0");
+            $("#dist11").val("0");
+            $("#block1").val("0");
+            $("#gram").val("0");
+
+        }
+        else if (nodal == "District Level Nodal Officer") {
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+            $('#BlockDropdownLabel').hide();
+            $('#GramDropdownLabel').hide();
+            $("#spnstate").val("0");
+            $("#dist11").val("0");
+            $("#block1").val("0");
+            $("#gram").val("0");
+        }
+        else if (nodal == "Block Level Nodal Officer") {
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+            $('#BlockDropdownLabel').show();
+            $('#GramDropdownLabel').hide();
+            $("#spnstate").val("0");
+            $("#dist11").val("0");
+            $("#block1").val("0");
+            $("#gram").val("0");
+        }
+        else if (nodal == "Gram Panchyat Nodal Officer") {
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+            $('#BlockDropdownLabel').show();
+            $('#GramDropdownLabel').show();
+            $("#spnstate").val("0");
+            $("#dist11").val("0");
+            $("#block1").val("0");
+            $("#gram").val("0");
+        }
+        else if (nodal == "0") {
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+            $('#BlockDropdownLabel').show();
+            $('#GramDropdownLabel').show();
+            $("#spnstate").val("0");
+            $("#dist11").val("0");
+            $("#block1").val("0");
+            $("#gram").val("0");
+        }
+
+    }
+
+
+    function state_data() {
+
+        $(".loader").show();
+        var nodal = $("#nodal").val();
+        var year = $("#year").val();
+        var UserType = $('#users').val();
+        //var date = $('#ddldate').val();
+        //var date_val = $('#ddldate option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WspNew/GetAlluser_info',
+            data: "{'StateName':'" + State + "','District':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','nodal':'" + nodal + "','UserType':'" + UserType + "','NodalOfficer':'" + nodal + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+
+                var Tbodyhtml = '';
+                var Tbodyhtmldata = '';
+                if (data.length != 0) {
+                    //if (date_val != "Select Date") {
+                    for (var i = 0; i < data.length; i++) {
+
+                        var approved_by = data[i].approved_by
+                        if (approved_by == null || approved_by == "NULL") {
+                            approved_by = "";
+                        }
+                        var email = data[i].Email
+                        if (email == null || email == "NULL") {
+                            email = "";
+                        }
+                        var StateName = data[i].StateName
+                        if (StateName == null || StateName == "NULL") {
+                            StateName = "";
+                        }
+                        var DistrictName = data[i].DistrictName
+                        if (DistrictName == null || DistrictName == "NULL") {
+                            DistrictName = "";
+                        }
+                        var BlockName = data[i].BlockName
+                        if (BlockName == null || BlockName == "NULL") {
+                            BlockName = "";
+                        }
+                        var GramPanchayatName = data[i].GramPanchayatName
+                        if (GramPanchayatName == null || GramPanchayatName == "NULL") {
+                            GramPanchayatName = "";
+                        }
+                        var password = data[i].Password
+                        if (password == null || password == "NULL") {
+                            password = "";
+                        }
+                        var username = data[i].UserName
+                        if (username == null || username == "NULL") {
+                            username = "";
+                        }
+                        var userid = data[i].UserId
+                        if (userid == null || userid == "NULL") {
+                            userid = "";
+                        }
+                        var contact = data[i].ContactNumber
+                        if (contact == null || contact == "NULL") {
+                            contact = "";
+                        }
+                        var access_auth = data[i].access_auth
+                        if (access_auth == null || access_auth == "NULL") {
+                            access_auth = "";
+                        }
+                        var Verifiedornot = data[i].Verifiedornot
+                        if (Verifiedornot == null || Verifiedornot == "NULL") {
+                            Verifiedornot = "";
+                        }
+                        else if (Verifiedornot == "True" || Verifiedornot == "true" || Verifiedornot == "Y") {
+                            Verifiedornot = "Approved";
+                        }
+                        else if (Verifiedornot == "False" || Verifiedornot == "false" || Verifiedornot == "N") {
+                            Verifiedornot = "Rejected";
+                        }
+
+                        var department = data[i].DepartmentName
+                        if (department == null || department == "NULL") {
+                            department = "";
+                        }
+                        var registration = data[i].EntryTimeString
+                        if (registration == null || registration == "NULL") {
+                            registration = "";
+                        }
+                        var approved_date = data[i].approve_DateString
+                        if (approved_date == null || approved_date == "NULL") {
+                            approved_date = "";
+                        }
+                        var first_time_approved_by = data[i].first_time_approved_by
+                        if (first_time_approved_by == null || first_time_approved_by == "NULL") {
+                            first_time_approved_by = "";
+                        }
+                        var last_changed_password_by = data[i].last_changed_password_by
+                        if (last_changed_password_by == null || last_changed_password_by == "NULL") {
+                            last_changed_password_by = "";
+                        }
+
+                        if (Verifiedornot == "Rejected") {
+                            last_changed_password_by = "";
+                        }
+
+
+                        if (aaemail == "akash.verma@kreatetechnologies.com" || aaemail == "vivekvivektiwari80@gmail.com" || aaemail == "neetynagi@gmail.com") {
+
+                            Tbodyhtml += '<tr id="AWP1_TR' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                            Tbodyhtml += '<td hidden><label>' + userid + '</label></td>';
+                            Tbodyhtml += '<td><label>' + username + '</label></td>';
+                            Tbodyhtml += '<td><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td><label>' + password + '</label></td>';
+                            Tbodyhtml += '<td><label>' + Verifiedornot + '</label></td>';
+                            Tbodyhtml += '<td><label>' + registration + '</label></td>';
+                            Tbodyhtml += '<td><label>' + first_time_approved_by + '</label></td>';
+                            Tbodyhtml += '<td><label>' + last_changed_password_by + '</label></td>';
+                            Tbodyhtml += '<td><label> ' + approved_date + ' </label></td>';
+                            Tbodyhtml += '<td><label>' + contact + ' </label></td>';
+                            Tbodyhtml += '<td><label>' + department + '</label></td>';
+                            Tbodyhtml += '<td><label>' + access_auth + '</label></td>';
+                            Tbodyhtml += '<td><button class="btn btn-primary"  onclick="editrowcomp_A_Good4(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                            Tbodyhtml += '<td><button class="btn btn-danger" onclick="Delete(' + userid + ')"><i class="fa fa-trash"></i></button></td></tr >';
+
+                            Tbodyhtml += '<tr id="Hide_AWP1_TR' + i + '" style="display:none;" class="displaynone"> <td></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="username' + i + '" value="' + username + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="email' + i + '" value="' + email + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeyup="CheckPasswordStrength(this.value)" id="password' + i + '" value="' + password + '"  ></td>';
+                            Tbodyhtml += '<td><select disabled class="form-control" id="Verifiedornot' + i + '" value="' + Verifiedornot + '" ><option value="Approve" ' + (Verifiedornot === 'Approve' ? ' selected' : '') + '>Approve</option><option value="Reject" ' + (Verifiedornot === 'Reject' ? ' selected' : '') + '>Reject</option><option value="Delete" ' + (Verifiedornot === 'Delete' ? ' selected' : '') + '>Delete</option></select></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="approved_by' + i + '" value="' + registration + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="approved_by' + i + '" value="' + first_time_approved_by + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="approved_by' + i + '" value="' + last_changed_password_by + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="approved_date' + i + '" value="' + approved_date + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="contact' + i + '" value="' + contact + '"  disabled/></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="department' + i + '" value="' + department + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="access_auth' + i + '" value="' + access_auth + '" disabled /></td>';
+
+                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="Update_data(' + userid + ',' + i + ')"> <i class="bi-save"></i></button>' + '<button style="margin-left: 3%; "  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW(' + i + ');"><i class="fa fa-remove"></i></button>' + '</td></tr >';
+
+                            Tbodyhtmldata += '<tr id="AWP1_TR' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                            Tbodyhtmldata += '<td>' + username + '</td>';
+                            Tbodyhtmldata += '<td>' + email + '</td>';
+                            Tbodyhtmldata += '<td>' + password + '</td>';
+                            Tbodyhtmldata += '<td>' + Verifiedornot + '</td>';
+                            Tbodyhtmldata += '<td>' + registration + '</td>';
+                            Tbodyhtmldata += '<td>' + first_time_approved_by + '</td>';
+                            Tbodyhtmldata += '<td>' + last_changed_password_by + '</td>';
+                            Tbodyhtmldata += '<td>' + approved_date + ' </td>';
+                            Tbodyhtmldata += '<td>' + contact + ' </td>';
+                            Tbodyhtmldata += '<td>' + department + '</td>';
+                            Tbodyhtmldata += '<td>' + access_auth + '</td></tr >';
+                        }
+                        else {
+                            Tbodyhtml += '<tr id="AWP1_TR' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                            Tbodyhtml += '<td hidden><label>' + userid + '</label></td>';
+                            Tbodyhtml += '<td><label>' + username + '</label></td>';
+                            Tbodyhtml += '<td><label>' + email + '</label></td>';
+                            Tbodyhtml += '<td><label>' + password + '</label></td>';
+                            Tbodyhtml += '<td><label>' + Verifiedornot + '</label></td>';
+                            Tbodyhtml += '<td><label>' + registration + '</label></td>';
+                            Tbodyhtml += '<td><label>' + first_time_approved_by + '</label></td>';
+                            Tbodyhtml += '<td><label>' + last_changed_password_by + '</label></td>';
+                            Tbodyhtml += '<td><label> ' + approved_date + ' </label></td>';
+                            Tbodyhtml += '<td><label>' + contact + ' </label></td>';
+                            Tbodyhtml += '<td><label>' + department + '</label></td>';
+                            Tbodyhtml += '<td><label>' + access_auth + '</label></td></tr >';
+
+                            Tbodyhtmldata += '<tr id="AWP1_TR' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                            Tbodyhtmldata += '<td>' + username + '</td>';
+                            Tbodyhtmldata += '<td>' + email + '</td>';
+                            Tbodyhtmldata += '<td>' + password + '</td>';
+                            Tbodyhtmldata += '<td>' + Verifiedornot + '</td>';
+                            Tbodyhtmldata += '<td>' + registration + '</td>';
+                            Tbodyhtmldata += '<td>' + first_time_approved_by + '</td>';
+                            Tbodyhtmldata += '<td>' + last_changed_password_by + '</td>';
+                            Tbodyhtmldata += '<td>' + approved_date + ' </td>';
+                            Tbodyhtmldata += '<td>' + contact + ' </td>';
+                            Tbodyhtmldata += '<td>' + department + '</td>';
+                            Tbodyhtmldata += '<td>' + access_auth + '</td></tr >';
+                        }
+
+                    }
+
+                }
+                else {
+                    Tbodyhtml = '<tr colspan="16"><td colspan="16" style="text-align: center;">No Data</td></tr>';
+                    Tbodyhtmldata = '<tr colspan="16"><td colspan="16" style="text-align: center;">No Data</td></tr>';
+                }
+                $('#tbl_state').html(Tbodyhtml);
+                $('#tbl_statedata').html(Tbodyhtmldata);
+                $(".loader").hide();
+
+
+            }
+
+
+        });
+
+
+
+    }
+    var aspassword = "";
+    function editrowcomp_A_Good4(i) {
+        aspassword = $('#password' + i).val();
+        $('#AWP1_TR' + i).hide();
+        $('#Hide_AWP1_TR' + i).show();
+
+    }
+    function cancelcomp_A_Support_NEW(i) {
+        $('#password' + i).val(aspassword);
+        $('#AWP1_TR' + i).show();
+        $('#Hide_AWP1_TR' + i).hide();
+
+    }
+    function Update_data(userid, RowNo) {         //abhi2906
+
+        var i = 0;
+        var id = userid;
+        var password = $('#password' + RowNo).val();
+        var mis_mobile = $('#users').val();
+
+        var new_hashText = CryptoJS.SHA256(password);
+        $('#hasspass').val(new_hashText);
+        var hash_password = $('#hasspass').val();
+
+        if (aspassword == password) {
+            alert("Your old Password and new password is same. please use diffrent password");
+            return false;
+            i = 1;
+        }
+        else if (password != "") {
+            var str = password;
+            if (str.match(/[a-z]/g) && str.match(/[A-Z]/g) && str.match(/[0-9]/g) && str.match(/[^a-zA-Z\d]/g) && str.length >= 8) {
+                i = 0;
+            }
+
+            else {
+                alert("Your  Password should be [Minimum 8 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character]");
+                return false;
+                i = 1;
+            }
+        }
+        else {
+            alert("Please Enter Password");
+            return false;
+            i = 1;
+        }
+
+
+        if (i == 0) {
+
+            if (confirm("Are you sure you want to Update this entry?")) {
+                var formdata = new FormData();
+                formdata.append("id", id);
+                formdata.append("password", password);
+                formdata.append("hash_password", hash_password);
+                formdata.append("mis_mobile", mis_mobile);
+
+                $.ajax({
+                    url: '/WspNew/SaveUserdetails_new',
+                    data: formdata,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        alert(response);
+                        if (response == "Logout") {
+                            window.location = "/Home/LogOut";
+                        }
+                        else if (response == "Update successfully") {
+                            $("#passwodhide").hide();
+                            state_data();
+                        }
+                        else {
+                            $('.loader').hide();
+                        }
+                    },
+                    error: function () {
+                        alert('Update Failed');
+                    }
+                });
+            }
+        }
+    }
+    function Delete(ss) {
+        if (confirm("Are you sure you want to Delete this entry?")) {
+            var obj = {};
+            obj.UserId = ss;
+            obj.UserName = $('#users').val();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                url: "/WspNew/Delete_users",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    if (response == "Logout") {
+                        window.location = "/Home/LogOut";
+                    }
+                    else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
+                        window.location = "/Error/DefaultError";
+                    }
+                    else {
+                        state_data();
+                    }
+                }
+            });
+        }
+    }
+    function yearchange() {
+        $('#month').val("0");
+    }
+
+    function Export_a_Table_old() {
+
+
+        $('.loader').show();
+        //$('#AComponent_Id').click();
+        let UserType = $("#users").val();
+        var StateName = $("#spnstate").val();
+        var DistrictName = $("#dist11").val();
+        var BlockName = $("#block1").val();
+        var nodal = $("#nodal").val();
+        var users = $("#users").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var date = $('#ddldate').val();
+        //alert(nodal);
+        //alert(StateName);
+        //alert(StateName);
+        if (UserType == "0") {
+            alert("Please Select User Type");
+            return false;
+        }
+        else {
+            if (nodal == "0") {
+                alert("Please Select nodal");
+                return false;
+            }
+            else {
+                if ((nodal == "State Level Nodal Officer") && (StateName == "0")) {
+                    alert("Please Select State");
+                    return false;
+                } else {
+                    $.ajax({
+                        type: "GET",
+                        url: "/WspNew/ExcelUser",
+                        contentType: "application/json; charset=utf-8",
+                        data: {
+                            "UserType": `${UserType}`, //'1.1',
+                            "StateName": `${State}`,
+                            "District": `${Dist}`, // 'Banaskantha_441',
+                            "Block": `${Block}`, //'Dantiwada_3735',
+                            "Gram": `${Gram}`, //'Chodungri_155952',
+                            "NodalOfficer": `${nodal}` //'2023-24 Update'
+                        },
+                        success: function (Rdata) {
+                            if (Rdata !== null) {
+                                var bytes = new Uint8Array(Rdata.Rdata.FileContents);
+                                var blob = new Blob([bytes], {
+                                    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                });
+                                var link = document.createElement('a');
+                                link.href = window.URL.createObjectURL(blob);
+                                link.download = Rdata.Rdata.FileDownloadName;
+                                link.click();
+                                $('.loader').hide();
+                                $("#spnstate").val("0");
+                                $("#dist11").val("0");
+                                $("#block1").val("0");
+                                $("#gram").val("0");
+
+                            } else {
+                                $('.loader').show();
+                            }
+
+                        },
+                        error: function (err) {
+
+                        }
+
+                    });
+                }
+                if (nodal == "District Level Nodal Officer") {
+                    if (StateName == "0") {
+                        alert("Please Select State");
+                        return false;
+                    }
+                    else if (DistrictName == "0") {
+                        alert("Please Select District");
+                        return false;
+                    }
+                    else {
+                        $.ajax({
+                            type: "GET",
+                            url: "/WspNew/ExcelUser",
+                            contentType: "application/json; charset=utf-8",
+                            data: {
+                                "UserType": `${UserType}`, //'1.1',
+                                "StateName": `${State}`,
+                                "District": `${Dist}`, // 'Banaskantha_441',
+                                "Block": `${Block}`, //'Dantiwada_3735',
+                                "Gram": `${Gram}`, //'Chodungri_155952',
+                                "NodalOfficer": `${nodal}` //'2023-24 Update'
+                            },
+                            success: function (Rdata) {
+
+                                if (Rdata !== null) {
+                                    var bytes = new Uint8Array(Rdata.FileContents);
+                                    var blob = new Blob([bytes], {
+                                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                    });
+                                    var link = document.createElement('a');
+                                    link.href = window.URL.createObjectURL(blob);
+                                    link.download = Rdata.FileDownloadName;
+                                    link.click();
+                                    $('.loader').hide();
+                                    $("#spnstate").val("0");
+                                    $("#dist11").val("0");
+                                    $("#block1").val("0");
+                                    $("#gram").val("0");
+                                } else {
+                                    $('.loader').show();
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+
+                        });
+                    }
+
+
+                }
+
+                if (nodal == "Block Level Nodal Officer") {
+                    if (StateName == "0") {
+                        alert("Please Select State");
+                        return false;
+                    }
+                    else if (DistrictName == "0") {
+                        alert("Please Select District");
+                        return false;
+                    }
+                    else if (BlockName == "0") {
+                        alert("Please Select Block");
+                        return false;
+                    }
+                    else {
+                        $.ajax({
+                            type: "GET",
+                            url: "/WspNew/ExcelUser",
+                            contentType: "application/json; charset=utf-8",
+                            data: {
+                                "UserType": `${UserType}`, //'1.1',
+                                "StateName": `${State}`,
+                                "District": `${Dist}`, // 'Banaskantha_441',
+                                "Block": `${Block}`, //'Dantiwada_3735',
+                                "Gram": `${Gram}`, //'Chodungri_155952',
+                                "NodalOfficer": `${nodal}` //'2023-24 Update'
+                            },
+                            success: function (Rdata) {
+
+                                if (Rdata !== null) {
+                                    var bytes = new Uint8Array(Rdata.FileContents);
+                                    var blob = new Blob([bytes], {
+                                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                    });
+                                    var link = document.createElement('a');
+                                    link.href = window.URL.createObjectURL(blob);
+                                    link.download = Rdata.FileDownloadName;
+                                    link.click();
+                                    $('.loader').hide();
+                                    $("#spnstate").val("0");
+                                    $("#dist11").val("0");
+                                    $("#block1").val("0");
+                                    $("#gram").val("0");
+
+                                } else {
+                                    $('.loader').show();
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+
+                        });
+                    }
+
+                }
+                if (nodal == "Gram Panchyat Nodal Officer") {
+                    if (StateName == "0") {
+                        alert("Please Select State");
+                        return false;
+                    }
+                    else if (DistrictName == "0") {
+                        alert("Please Select District");
+                        return false;
+                    }
+                    else if (BlockName == "0") {
+                        alert("Please Select Block");
+                        return false;
+                    }
+                    else if (Gram == "0") {
+                        alert("Please Select Gram");
+                        return false;
+                    }
+                    else {
+
+                        $.ajax({
+                            type: "GET",
+                            url: "/WspNew/ExcelUser",
+                            contentType: "application/json; charset=utf-8",
+                            data: {
+                                "UserType": `${UserType}`, //'1.1',
+                                "StateName": `${State}`,
+                                "District": `${Dist}`, // 'Banaskantha_441',
+                                "Block": `${Block}`, //'Dantiwada_3735',
+                                "Gram": `${Gram}`, //'Chodungri_155952',
+                                "NodalOfficer": `${nodal}` //'2023-24 Update'
+                            },
+                            success: function (Rdata) {
+
+                                if (Rdata !== null) {
+                                    var bytes = new Uint8Array(Rdata.FileContents);
+                                    var blob = new Blob([bytes], {
+                                        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                    });
+                                    var link = document.createElement('a');
+                                    link.href = window.URL.createObjectURL(blob);
+                                    link.download = Rdata.FileDownloadName;
+                                    link.click();
+                                    $('.loader').hide();
+                                    $("#spnstate").val("0");
+                                    $("#dist11").val("0");
+                                    $("#block1").val("0");
+                                    $("#gram").val("0");
+
+                                } else {
+                                    $('.loader').show();
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+
+                        });
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Hide all rows with IDs starting with 'Hide_AWP1_TR'
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            if (value == "") {
+                $('.displaynone').hide();
+            }
+            else {
+                $("#tbl_state tr").filter(function () {
+                    $('.displaynone').hide();
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            }
+        });
+    });
+</script>
+<script>
+    function exportTableToExcel(tableID, filename = '') {
+        var xx = 0;
+
+        var StateName = $("#spnstate").val();
+        var DistrictName = $("#dist11").val();
+        var BlockName = $("#block1").val();
+        var nodal = $("#nodal").val();
+        var users = $("#users").val();
+
+        if (users == "0") {
+            alert("Please Select UsersType");
+            xx = 1;
+            return false;
+        }
+        if (nodal == "0") {
+
+            alert("Please Select Nodal Officer");
+            xx = 1;
+            return false;
+        }
+
+        else {
+            if (nodal == "State Level Nodal Officer") {
+                if (StateName == "0") {
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (nodal == "District Level Nodal Officer") {
+                if (StateName == "0") {
+
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+                if (DistrictName == "0") {
+                    alert("Please Select District");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (nodal == "Block Level Nodal Officer") {
+                if (StateName == "0") {
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+                if (DistrictName == "0") {
+                    alert("Please Select District");
+                    xx = 1;
+                    return false;
+                }
+                if (BlockName == "0") {
+                    alert("Please Select Block");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (nodal == "Gram Panchyat Nodal Officer") {
+                if (StateName == "0") {
+                    alert("Please Select State");
+                    xx = 1;
+                    return false;
+                }
+                if (DistrictName == "0") {
+                    alert("Please Select District");
+                    xx = 1;
+                    return false;
+                }
+                if (BlockName == "0") {
+                    alert("Please Select Block");
+                    xx = 1;
+                    return false;
+                }
+                if (Gram == "0") {
+                    alert("Please Select Gram");
+                    xx = 1;
+                    return false;
+                }
+            }
+            if (clickbutton == "1") {
+                if (xx == 0) {
+                    var downloadLink;
+                    var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+                    var tableSelect = document.getElementById(tableID);
+                    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+                    // Specify file name
+                    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+                    // Create download link element
+                    downloadLink = document.createElement("a");
+
+                    document.body.appendChild(downloadLink);
+
+                    var ws = XLSX.utils.table_to_sheet(tableSelect);
+                    var wb = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(wb, ws, "MIS Mobile Report");
+
+                    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+                    function s2ab(s) {
+                        var buf = new ArrayBuffer(s.length);
+                        var view = new Uint8Array(buf);
+                        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                        return buf;
+                    }
+
+                    // Create a Blob from the binary data
+                    var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+                    // Create an object URL for the Blob and set it as the href attribute of the download link
+                    downloadLink.href = URL.createObjectURL(blob);
+
+                    // Set the download attribute of the link to specify the file name
+                    downloadLink.download = filename;
+
+                    // Trigger the download by simulating a click on the download link
+                    downloadLink.click();
+                }
+            }
+            else {
+                alert("Please Click on the Search Button");
+                xx = 1;
+                return false;
+            }
+        }
+    }
+</script>
+
+
+
+

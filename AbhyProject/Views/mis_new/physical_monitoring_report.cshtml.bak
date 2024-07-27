@@ -1,0 +1,865 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "physical_monitoring_report";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<style>
+    .nav-tabs {
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .list_of_firstpanel {
+        list-style: none;
+    }
+
+    ul.list_of_firstpanel > li {
+        display: inline-block
+    }
+
+    .total_label {
+        color: red;
+    }
+
+    .name_label {
+        color: #000;
+    }
+    .hpanel .panel-body {
+        padding: 20px 7px;
+    }
+
+    .hviolet {
+    }
+
+    .hpanel.hviolet .panel-body {
+        border-top: 2px solid #9b59b6;
+    }
+
+    .hpanel.hnavyblue .panel-body {
+        border-top: 2px solid #34495e;
+    }
+</style>
+<style>
+
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+
+
+    /*ends here*/
+
+</style>
+
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/Physical_monitoring_JS.js"></script>
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-primary  text-uppercase">Physical progress Monitoring  </h4>
+                    <h4 class="text-primary padding-bottom ">Component A</h4>
+                </div>
+            </div>
+            <div class="row" id="">
+                <div class="col-lg-12 col-sm-12 col-md-12" style="">
+                    <div class="hpanel horange" style="margin-bottom:0px;">
+                        <div class="panel-body">
+                            <div class="form-group" id="Agency_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li> Agency : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <select name="" class="form-control" id="awp_agency_state_name_1" onchange="PHP_Agency_StateInfo_B()"></select>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title text-center">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name">Name of IA/ Nodal Agency </label></h5>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li class="pull-right">
+                                        <select name="" id="Finacial_Year1" class="form-control" onchange="Financial_year_Admin()">
+                                            <option value="0">Select Year</option>
+                                            <option value="ALL">All 5 Years</option>  @*abhi0206*@
+                                            <option value="2020-21">2020-21</option>
+                                            <option value="2021-22">2021-22</option>
+                                            <option value="2022-23">2022-23</option>
+                                            <option value="2023-24">2023-24</option>
+                                            <option value="2024-25">2024-25</option>
+
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <select name="" id="Finacial_Month1" class="form-control" onchange="Financial_Month_Admin()">
+                                            <option value="0">Select Month</option>
+                                            <option value="January">January</option>
+                                            <option value="February">February</option>
+                                            <option value="March">March</option>
+                                            <option value="April">April</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="August">August</option>
+                                            <option value="September">September</option>
+                                            <option value="October">October</option>
+                                            <option value="November">November</option>
+                                            <option value="December">December</option>
+                                        </select>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="form-group" id="State_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>  StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <label id="pip_dropdown_state_name">
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title text-center">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name1">Agency Name </label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="pull-right">
+                                        <select name="" id="Finacial_Year" class="form-control" onchange="Financial_year_State()">
+                                            <option value="0">Select Year</option>
+                                            <option value="ALL">All 5 Years</option>  @*abhi0206*@
+                                            <option value="2020-21">2020-21</option>
+                                            <option value="2021-22">2021-22</option>
+                                            <option value="2022-23">2022-23</option>
+                                            <option value="2023-24">2023-24</option>
+                                            <option value="2024-25">2024-25</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <select name="" id="Finacial_Month" class="form-control" onchange="Financial_Month_State()">
+                                            <option value="0">Select Month</option>
+                                            <option value="January">January</option>
+                                            <option value="February">February</option>
+                                            <option value="March">March</option>
+                                            <option value="April">April</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="August">August</option>
+                                            <option value="September">September</option>
+                                            <option value="October">October</option>
+                                            <option value="November">November</option>
+                                            <option value="December">December</option>
+                                        </select>
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav nav-tabs">
+                    <li class="active col-lg-3 col-md-3 col-sm-12">
+                        <a data-toggle="tab" href="#home">
+                            <div class="hpanel hgreen contact-panel">
+
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+
+                                        <h5 class="font-extra-bold no-margins text-success">Service: <span id=""></span>  </h5>
+                                        <h5><span id="Support_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="col-lg-3 col-md-3 col-sm-12">
+                        <a data-toggle="tab" href="#menu1">
+                            <div class="hpanel hblue contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-info">Goods:  </h5>
+                                        <h5><span id="Goods_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="col-lg-3 col-md-3 col-sm-12">
+                        <a data-toggle="tab" href="#menu2">
+                            <div class="hpanel horange contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-info">Work:  </h5>
+                                        <h5><span id="Work_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="col-lg-3 col-md-3 col-sm-12">
+                        <a data-toggle="tab" href="#menu3">
+                            <div class="hpanel hviolet  contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-info">Training:  </h5>
+                                        <h5><span id="Training_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    @*Abhishek2*@
+
+                    <li class="col-lg-3 col-md-3 col-sm-12">
+                        <a data-toggle="tab" href="#menu4">
+                            <div class="hpanel horange contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-info">Procurements Of Equipments:  </h5>
+                                        <h5><span id="Procurements_Of_Equipments_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    @*Abhishek2*@
+
+                    <li class="col-lg-3 col-md-3 col-xs-12">
+                        <a data-toggle="tab" href="#menu5">
+                            <div class="hpanel horange contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-info">IEC/Awareness:  </h5>
+                                        <h5><span id="IEC_Awareness_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+
+                    @*Abhishek2*@
+
+                    <li class="col-lg-3 col-md-3 col-xs-12">
+                        <a data-toggle="tab" href="#menu6">
+                            <div class="hpanel horange contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-info">Other Key Activities:  </h5>
+                                        <h5><span id="Other_Key_Activities_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+
+                    @*Abhishek2*@
+
+                    <li class="col-lg-3 col-md-3 col-xs-12">
+                        <a data-toggle="tab" href="#menu7">
+                            <div class="hpanel horange contact-panel">
+                                <div class="panel-body">
+                                    <div class="stats-title text-center border-bottom">
+                                        <h5 class="font-extra-bold no-margins text-info">Social Outreach:  </h5>
+                                        <h5><span id="Social_Outreach_Count">0</span>  </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> Service </h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_a_Table()"> Export In Excel</i></div>
+                                                <input type="button" id="support_report11" onclick="tableToExcel('support_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="support_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> Service</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>StateName</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Type of Support Service</th>
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="support_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> Goods</h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_b_Table()"> Export To Excel</i></div>
+                                                <input type="button" id="goods_report11" onclick="tableToExcel('goods_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="goods_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> Goods</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>State Name</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Brief Description of  Goods</th>
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="goods_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> Work </h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_c_Table()"> Export To Excel</i></div>
+                                                <input type="button" id="work_report11" onclick="tableToExcel('work_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="work_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> Work</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>State Name</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Type of the Work </th>
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="work_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu3" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> Training </h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_d_Table()"> Export To Excel</i></div>
+                                                <input type="button" id="training_report11" onclick="tableToExcel('training_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="training_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> Training</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>State Name</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Name of Support Service</th>
+                                                                <th>Type of Sub Support Service</th>  @*Abhishek2*@
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="training_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Abhishek2*@
+
+                    <div id="menu4" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> Procurements Of Equipments</h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_e_Table()"> Export To Excel</i></div>
+                                                <input type="button" id="procurements_of_Equipments_report11" onclick="tableToExcel('procurements_of_Equipments_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="procurements_of_Equipments_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> Procurements of Equipments</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>State Name</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Name of Support Service</th>
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="procurements_of_Equipments_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Abhishek2*@
+
+                    <div id="menu5" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> IEC/Awareness</h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_f_Table()"> Export To Excel</i></div>
+                                                <input type="button" id="iEC_awareness_report11" onclick="tableToExcel('iEC_awareness_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="iEC_awareness_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> IEC/Awareness</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>State Name</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Name of Support Service</th>
+                                                                <th>Type of Sub Support Service</th>
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="iEC_awareness_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Abhishek2*@
+
+                    <div id="menu6" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> Other Key Activities</h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_g_Table()"> Export To Excel</i></div>
+                                                <input type="button" id="other_key_activities_report11" onclick="tableToExcel('other_key_activities_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="other_key_activities_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> Other Key Activities</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>State Name</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Name of Support Service</th>
+                                                                <th>Type of Sub Support Service</th>
+                                                                <th>Sub Data</th>      @*abhi1606*@
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="other_key_activities_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Abhishek2*@
+
+                    <div id="menu7" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg"><span>Physical progress Monitoring:</span> Social Outreach</h5>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="text-right">
+                                                <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_h_Table()"> Export To Excel</i></div>
+                                                <input type="button" id="social_outreach_report11" onclick="tableToExcel('social_outreach_report1', 'PIP_Data')" hidden />
+                                            </div>
+                                            <div class="">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                                    <table id="social_outreach_report1" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="21" class="text-center"><span>Physical progress Monitoring:</span> Social Outreach</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th>S.No</th>
+                                                                <th>State Name</th>
+                                                                <th>Year</th>
+                                                                <th>Month</th>
+                                                                <th>Name of Support Service</th>
+                                                                <th>Description</th>
+                                                                <th>Item Code</th>
+                                                                <th>Targeted Numbers as per AWP (No)</th>
+                                                                @*<th>Estimated Cost (per year)</th>*@
+                                                                <th>Monthly Achievement</th>
+                                                                @*<th>Total (No)</th>*@      @*abhi1606*@
+                                                                <th>Cumulative Achievement</th>
+                                                                <th>Remark</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="social_outreach_report"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright .Kreate Technologies 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+<script>
+    var Email = '';
+    $(document).ready(function () {
+        SessionInfo1();
+        Email = '@Session["Email"]';
+    });
+</script>
+
+<script>
+    function Export_a_Table() {
+        debugger;
+        if (a_component != 0) {
+            for (var i = 0; i < a_component; i++) {
+                var ss = "#Hide_Support_TR" + i;
+                $(ss).remove();
+            }
+        }
+
+        $('#support_report11').click();
+        physical_monitoring_report_Info();
+    }
+
+    function Export_b_Table() {
+        if (b_component != 0) {
+            for (var i = 0; i < b_component; i++) {
+                var ss = "#Hide_Good_TR" + i;
+                $(ss).remove();
+            }
+        }
+        $('#goods_report11').click();
+
+        physical_monitoring_report_Info();
+
+    }
+    function Export_c_Table() {
+        if (c_component != 0) {
+            for (var i = 0; i < c_component; i++) {
+                var ss = "#Hide_Work_TR" + i;
+                $(ss).remove();
+            }
+        }
+
+        $('#work_report11').click();
+
+        physical_monitoring_report_Info();
+
+    }
+    function Export_d_Table() {
+        if (d_component != 0) {
+            for (var i = 0; i < d_component; i++) {
+                var ss = "#Hide_Training_TR" + i;
+                $(ss).remove();
+            }
+        }
+
+        $('#training_report11').click();
+        physical_monitoring_report_Info();
+    }
+
+    //Abhishek2
+
+    function Export_e_Table() {
+        debugger;
+        if (e_component != 0) {
+            for (var i = 0; i < e_component; i++) {
+                if (i == 27) {
+                    debugger;
+                }
+                var ss = "#Hide_Procurements_Of_Equipments_TR" + i;
+                $(ss).remove();
+            }
+        }
+        $('#procurements_of_Equipments_report11').click();
+        physical_monitoring_report_Info();
+    }
+
+    //Abhishek2
+
+    function Export_f_Table() {
+      
+        if (f_component != 0) {
+            for (var i = 0; i < f_component; i++) {
+                var ss = "#Hide_IEC_Awareness_TR" + i;
+                $(ss).remove();
+            }
+        }
+        $('#iEC_awareness_report11').click();
+        physical_monitoring_report_Info();
+    }
+
+    //Abhishek2
+
+    function Export_g_Table() {
+        if (g_component != 0) {
+            for (var i = 0; i < g_component; i++) {
+                var ss = "#Hide_Other_Key_Activities_TR" + i;
+                $(ss).remove();
+            }
+        }
+
+        $('#other_key_activities_report11').click();
+        physical_monitoring_report_Info();
+    }
+
+    //Abhishek2
+
+    function Export_h_Table() {
+        if (h_component != 0) {
+            for (var i = 0; i < h_component; i++) {
+                var ss = "#Hide_Social_Outreach_TR" + i;
+                $(ss).remove();
+            }
+        }
+
+        $('#social_outreach_report11').click();
+        physical_monitoring_report_Info();
+    }
+
+
+
+    var tableToExcel = (function () {
+        debugger;
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>

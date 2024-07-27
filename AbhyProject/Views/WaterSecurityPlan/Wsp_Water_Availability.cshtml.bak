@@ -1,0 +1,1974 @@
+﻿@{
+    ViewBag.Title = "Water Availability";
+    Layout = null;
+}
+
+<title>Water Availability</title>
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
+<meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
+<meta name="author" content="Codrops" />
+
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+
+
+
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<link href="~/Content/wsptotal.css" rel="stylesheet" />
+
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    #other_source_name {
+        border-color: red;
+    }
+    .btnall1 > li {
+        display: inline-block;
+    }
+
+    .nav-tabs > li {
+        float: none;
+    }
+
+    #progress-ui {
+        text-align: center !important;
+    }
+
+    h3 {
+        font-weight: 600;
+    }
+
+    @@media (min-width: 992px) {
+        .Sider_column {
+            width: 23%;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .hole_column {
+            width: 77%;
+        }
+    }
+
+    @@media (max-width:1491px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 345px !important;
+        }
+    }
+
+    @@media (max-width:1364px) and (min-width:990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 290px !important;
+        }
+    }
+
+    @@media (max-width: 1200px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 200px !important;
+        }
+    }
+
+    table > tbody > tr > td > span {
+        float: right;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target] {
+        display: none;
+    }
+
+    .Sider_column > ul.sider_images_sider:after {
+        position: absolute;
+        content: "";
+        /*height: 10%;*/
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target]:after {
+        position: absolute;
+        content: "";
+        height: 0%;
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target].active {
+        display: block;
+    }
+
+
+
+    .btnprocess {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    .btnprocess1 {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    ul[id$="_menu"] {
+        padding: 0;
+        margin: 0;
+    }
+
+    .Side_Image {
+        padding: 0;
+        margin: auto;
+    }
+
+    ul[id$="_menu"] > li {
+        display: inline-flex;
+        position: relative;
+        width: 100%;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+        ul[id$="_menu"] > li > a {
+            display: block;
+            text-align: center;
+        }
+
+    [id^="menu-"][class*="-info"] {
+        font-size: 21px;
+    }
+
+        [id^="menu-"][class*="-info"] > .clearfix {
+            padding: 15px 0;
+        }
+
+            [id^="menu-"][class*="-info"] > .clearfix:last-child {
+                text-align: center;
+            }
+
+
+
+    ul[id$="_menu"] > li > a > span {
+        border-radius: 50%;
+        border: 1px solid #333;
+        display: inline-block;
+        padding: 10px;
+    }
+
+        ul[id$="_menu"] > li > a > span > img {
+            height: 40px;
+            width: 40px;
+            margin: auto;
+        }
+
+    ul[id$="_menu"] > li > a > label {
+        /*color: #7c3c0b;*/
+        color: #000;
+        font-size: 12px;
+        display: block;
+        border: 2px solid transparent;
+    }
+
+    ul[id$="_menu"] > li > a:hover > label,
+    ul[id$="_menu"] > li > a:focus > label,
+    ul[id$="_menu"] > li.active > a > label {
+        border-color: #337ab7;
+        background-color: #fde0ca;
+    }
+
+    #myTabs.nav-pills > li.active > a:before {
+        content: "";
+        /*height: 2px;*/
+        position: absolute;
+        bottom: 6px;
+        display: inline-block;
+        width: 98%;
+        z-index: 99;
+        left: 2%;
+        background-color: #fff;
+    }
+
+    ul[id$="_menu"] > li > a:active,
+    ul[id$="_menu"] > li > a:focus,
+    ul[id$="_menu"] > li > a:hover {
+        text-decoration: none;
+    }
+
+    ul[id$="_menu"] > li.active > a > span {
+        border-width: 2px;
+        border-color: #337ab7;
+    }
+
+    ul[id$="_menu"] > li.active:after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #337ab7;
+        content: " ";
+        position: absolute;
+        bottom: -10px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    .form-control {
+        border: none;
+        box-shadow: none;
+        border-bottom: 1px solid;
+        border-radius: 0;
+    }
+
+
+    a:hover {
+        color: red;
+        border-bottom: 2px;
+    }
+
+    a:active {
+        color: green;
+    }
+
+    h2 {
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .color_database {
+        color: green !important;
+    }
+
+    .wa_table thead tr th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+</style>
+<style>
+    [id^="menu-"][class*="-info"] {
+        display: none;
+    }
+
+        [id^="menu-"][class*="-info"].active {
+            display: block;
+        }
+
+    @@media(min-width: 992px) {
+        ul[id$="_menu"] > li {
+            /*width: calc(100%/7);
+            float: left;*/
+            width: 11%;
+            float: left;
+            display: block;
+        }
+
+        [id^="menu-"][class*="-info"] {
+            text-align: right;
+        }
+
+        ul.nav-justified {
+            display: table;
+        }
+
+            ul.nav-justified > li {
+                width: auto;
+            }
+        /*ul.nav-justified > li:first-child {
+                    width: 2%;
+                }*/
+        .btn.btn-primary + .btn.btn-primary {
+            margin-left: 5%;
+        }
+
+        #Water_draft_menu {
+            padding: 0px 0px 0px 50px;
+        }
+    }
+
+    @@media (max-width:992px) and (min-width:768px) {
+        ul[id$="_menu"] > li {
+            width: 25%;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .col-md-offset-2 {
+        margin-left: 0;
+    }
+
+
+    .col-md-offset-1 {
+        margin-left: 0;
+    }
+</style>
+
+<style type="text/css">
+    .nav-justified {
+        padding-top: 0;
+    }
+
+    .nav-justified {
+        /*padding-top: 3em;*/
+        text-align: right;
+        padding-bottom: 0.5em;
+        /*margin-bottom: 1em;*/
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 0% !important;
+        }
+    }
+
+    nav-pills > li > a {
+        border-radius: 0px !important;
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 10%;
+        }
+
+            .nav-justified > li {
+                display: inline-block;
+                width: auto;
+            }
+    }
+
+    .nav-justified > li > a,
+    .nav-justified > li > a:hover,
+    .nav-justified > li > a:focus {
+        background-color: transparent;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 0;
+    }
+
+    ul.btnall > li {
+        list-style: none;
+    }
+
+        ul.btnall > li.leftbtnprivous {
+            text-align: right;
+        }
+
+        ul.btnall > li.leftbtnnext {
+            text-align: left;
+        }
+
+    ul.textbox1 > li.leftbtnnext {
+        text-align: left;
+    }
+
+    .database_trainer_row11 > h4 {
+        background-color: none !important;
+        color: #000;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 0px 0px;
+        font-weight: bold;
+    }
+
+    .database_trainer_row11_label > label {
+        color: #000 !important;
+    }
+</style>
+
+
+
+<div class="clearfix mainclearfix">
+    <div class="clearfix">
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                }
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/WaterSecurityPlan/WSP_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>Wsp Home <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/WaterSecurityPlan/WSP_gram">
+                                    <span><img src="~/Content/WspImages/Water Budgeting 2.png" title="GWB"></span>
+                                    <label>Gram Panchayat</label>
+                                </a>
+                            </li>
+                            <li>
+                                <span><img src="~/Content/WspImages/Water Budgeting 2.png" title="GWB"></span>
+                                <label>Water Availability </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul id="myTabs" class="nav nav-pills nav-justified">
+                            <li class="active">
+                                <a href="javascript:;">
+                                    <span><img src="~/Content/WspImages/Recharge new1.png" /></span> Water Availability
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <div class="tab-content">
+            <!--Rainfail_menu Start-->
+            <div role="tabpanel" class="tab-pane fade in active" id="music">
+                <div class="container-fluid">
+                    <!--images Row Started-->
+                    <div class="clearfix">
+                        <div class="row" id="Select_dist_level">
+                            <ul class="Select_option selectbackhome">
+                                <li>
+                                    <label id="lblstate">State:</label>
+                                    <span id="spnstate">@Session["gstate"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label id="lbldistrict">District:</label>
+                                    <span id="spndistrict">@Session["gdist"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Block:</label>
+                                    <span>@Session["gblock"] </span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Gram panchayat:</label>
+                                    <span>@Session["ggram"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Year:</label>
+                                    <span id="Year">@Session["Year"]</span>
+                                </li>
+                                @*<li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>month:</label>
+                                    <span id="month">@Session["month"]</span>
+                                </li>*@
+                            </ul>
+                            <ul class="selectbackhome" style="float:right;">
+                                <li>
+                                    <a href="~/WaterSecurityPlan/WSP_HOME">
+                                        <button class="btn btn-success">Back To WSP Home</button>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="clearfix tabfirst">
+                        <div class="suface-info active" id="menu-11">
+                            <div class="clearfix">
+                                <div class="container-fluid">
+                                    <div class="col-md-10 col-sm-12 col-lg-12 form-body1">
+                                        <div class="form-div">
+
+                                            <div class="col-md-12 background-border-Database background-border-Database1">
+                                                <div class="row database_trainer_row ">
+                                                    <h2>Water Availability</h2>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        1.  Total Available Water From Rainfall
+                                                    </h3>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+
+                                                        <label for="lname">
+                                                            a. Annual Rainfall (mm)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="Data Source: India WRIS, (Period: January - December) 2022">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+                                                    </div>
+                                                    @*abhi0905*@
+                                                <div class="col-md-5 col-sm-6">
+                                                    <input type="text" id="sw_annual_rainfall" class="form-control color_database decimal" oninput="HideShowSource()" maxlength="9" placeholder="Enter Annual Rainfall (mm)..">
+                                                    
+                                                    <!--<select name="" id="AR_DataYear" class="form-control">-->
+                                                    @*<option value="">Select Year</option>*@
+                                                    <!--<option value="2022">2022</option>-->
+                                                    @*<option value="2024">2024</option>
+        <option value="2025">2025</option>*@
+                                                    <!--</select>-->
+
+                                                </div>
+
+
+                                                </div>
+                                                <div class="row database_trainer_row" id="Source_Name_div">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            &nbsp&nbsp Source Name :
+                                                            @*<a href="javascript:;" data-toggle="tooltip" title="(Estimated Volume of Rainfall (ha m)=GP Area *Annual Rainfall(mm)*0.001)">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+        </a>
+        :*@
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" class="form-control" id="other_source_name" placeholder="Enter Other Source Name" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            b. Estimated Volume of Rainfall (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Estimated Volume of Rainfall (ha m)=GP Area *Annual Rainfall(mm)*0.001)">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="sw_tol_water_avail" class="form-control" name="" placeholder="Enter Total Water Available.." readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            c. Evapotranspiration (mm) <a href="javascript:;" data-toggle="tooltip" title="Data Source : India WRIS, (Period: June - October) 2022">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>:
+                                                        </label>
+                                                    </div>
+
+                                                    @*abhi0905*@
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="sw_evapo" class="form-control color_database decimal" maxlength="9" placeholder="Enter Evapotransipiration..">
+
+                                                        <!--<select name="" id="ER_DataYear" class="form-control">-->
+                                                        @*<option value="">Select Year</option>*@
+                                                        <!--<!--<option value="2022">2022</option>-->
+                                                        <!--@*<option value="2024">2024</option>
+                    <option value="2025">2025</option>*@
+            </select>-->
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            d. Estimated Evapotranspiration losses (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Estimated Evapotranspiration losses (ha m)=GP Area *Evapotranspiration rate (mm)*0.001)">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>:
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="number" id="sw_evapo_loses" class="form-control" name="" placeholder="Evapotransipiration Losess" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6 text-left">
+                                                        <div class="tota_value_sufacewater">
+                                                            <label>
+                                                                e. Estimated Water Available From Rainfall (ha m)
+                                                                <a href="javascript:;" data-toggle="tooltip" title=" (Estimated Water Available from Rainfall = Estimated Volume of Rainfall-Estimated Evapotranspiration losses )">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;" id=""></span>
+                                                                </a>:
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-3 text-left tota_value_sufacewater">
+                                                        <label id="total_sw_availble"></label>
+                                                    </div>
+                                                </div>
+
+                                                @*abhi0905*@
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6 text-left">
+                                                        <div class="tota_value_sufacewater">
+                                                            <label>
+                                                                f. Weighted Average Runoff Coefficient <span style="color:red">*</span>
+                                                                <a href="javascript:;" data-toggle="tooltip" title="Source : Table 4.4,Page 25 of Manual on Artificial Recharge of GW, CGWB, 2007">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                                </a>:
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        @*<input type="text" class="form-control decimal" id="weighted_avg_runoff" maxlength="10" data-decimal="4" oninput="enforceNumberValidation(this)" />*@
+                                                        <select class="form-control decimal" id="weighted_avg_runoff" onchange="RainfallCalculation()">
+                                                            <option value="0">--- Select ---</option>
+                                                            <option value="0.1">0.1</option>
+                                                            <option value="0.2">0.2</option>
+                                                            <option value="0.3">0.3</option>
+                                                        </select>
+                                                        @*<label id="weighted_avg_runoff"></label>*@
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6 text-left">
+                                                        <div class="tota_value_sufacewater">
+                                                            <label>
+                                                                g. Rainfall Runoff (ha m)
+                                                                <a href="javascript:;" data-toggle="tooltip" title="(Rainfall Runoff (ha m)= Estimated Water Available from Rainfall  (ha m) * Weighted Average Runoff Coefficient)       Note:- (The Volume of supply side interventions to be restricted up to less than 50% of rainfall roundoff.)">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                                </a>:
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-3 text-left tota_value_sufacewater">
+                                                        <label id="utilizable_rainfall_runoff"></label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        2. Ground Water
+                                                    </h3>
+                                                </div>
+
+                                                <div class="row database_trainer_row database_trainer_row11 ">
+                                                    <h4>
+                                                        a. Ground Water Recharge From Rainfall (ha m)
+                                                        <a href="javascript:;" data-toggle="tooltip" title="(Apportioned to GP Area as per GW Assessment Report-2022)">
+                                                            @*abhi0905*@
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>
+                                                    </h4>
+
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname" style="padding-left:25px">(i) Monsoon:</label>  @*abhi0905*@
+                                                        <a href="javascript:;" data-toggle="tooltip" title="Auto filled entry based on Block Wise GWRA-2022 Ground Water Recharge From Rainfall (Monsoon) For GP=Block Wise recharge from rainfall - Monsoon * GP Area / BlockArea">
+
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="gw_rainfall_monsoon" class="form-control color_database decimal" maxlength="10" placeholder="Enter Monsoon..">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname" style="padding-left:25px">(ii) Non-Monsoon:</label>   @*abhi0905*@
+                                                        <a href="javascript:;" data-toggle="tooltip" title="Auto filled entry based on Block Wise GWRA-2022 Ground Water Recharge From Rainfall(Non-Monsoon) For GP=Block Wise recharge from rainfall - Non-Monsoon * GP Area / Block Area">
+
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="gw_rainfall_nonmonsoon" class="form-control color_database decimal" maxlength="10" placeholder=" From Non-Monsoon..">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            b. Total Ground Water Recharge from rainfall (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Total Ground Water Recharge from rainfall (ha m)= Monsoon + Non-Monsoon)  ">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="number" id="gw_rainfal_tol_recharge" class="form-control" name="" placeholder="Total value" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row11">
+                                                    <h4>
+                                                        c. Ground Water Recharge from other sources (ha m)
+                                                        <a href="javascript:;" data-toggle="tooltip" title="(Apportioned to GP Area as per GW Assessment Report-2022)">
+                                                            @*abhi0905*@
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname" style="padding-left:25px">(i) Monsoon:</label>
+                                                        <a href="javascript:;" data-toggle="tooltip" <a href="javascript:;" data-toggle="tooltip" title="Auto filled entry based on Block Wise GWRA-2022 Ground Water Recharge From Other Sources (Monsoon) For GP = Block Wise Recharge from Other Sources - Monsoon * GP Area / Block Area">
+
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"style="color:blue;"></span>
+</a>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="gw_other_monsoon" class="form-control color_database decimal" maxlength="10" placeholder="Enter Monsoon..">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname" style="padding-left:25px">(ii) Non-Monsoon:</label>
+                                                        <a href="javascript:;" data-toggle="tooltip" <a href="javascript:;" data-toggle="tooltip" title="Auto filled entry based on Block Wise GWRA-2022 Ground Water Recharge From Other Sources (Non-Monsoon) For GP = Block Wise recharge from rainfall - Non-Monsoon * GP Area / Block Area">
+
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"style="color:blue;"></span>
+</a></a>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="gw_other_nonmonsoon" class="form-control color_database decimal" maxlength="10" placeholder=" From Non-Monsoon..">
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            d. Total Ground Water Recharge from other sources (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Total Ground Water Recharge from other sources (ha m)= Monsoon+Non_Monsoon)">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="number" id="gw_other_tol_recharge" class="form-control" name="" placeholder="Total value" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row database_trainer_row11">
+                                                    <div class="col-md-6 col-sm-6 text-left">
+                                                        <div class="tota_value_sufacewater database_trainer_row11_label ">
+                                                            <label>
+                                                                e. Losses Due to Natural Discharge (ha m)
+                                                                <a href="javascript:;" data-toggle="tooltip" title="(Apportioned to GP Area as per GW Assessment Report-2022 / User entry) (Auto Filled entry Based on Block Wise GWRA-2022 Losses Due to Natural Discharges For GP = Block Wise Losses Due to Natural Discharge * GP Area / Block Area) ">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                                </a>
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="natural_losses" class="form-control color_database decimal" name="" placeholder="Losses due to natural discharge (ha m)">
+
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6 text-left">
+                                                        <div class="tota_value_sufacewater">
+                                                            <label>
+                                                                f. Total Ground Water Available (ha m)
+                                                                <a href="javascript:;" data-toggle="tooltip" title="(Total Ground Water Available (ha m)= Total Ground Water Recharge from rainfall (ha m)+Total Ground Water Recharge from other sources (ha m) - Losses due to natural discharge (ha m))">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                                </a>:
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6 text-left tota_value_sufacewater">
+                                                        <label id="total_gw_available"></label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+
+                                                        <label for="lname">
+                                                            g. Ground Water Withdrawal (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Apportioned to GP Area as per GW Assessment Report-2022 /User entry) (Auto Filled entry Based on Block Wise GWRA-2022 Ground Water Withdrawal For GP = Block wise Ground Water Withdrawal * GP Area / Block Area">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="grd_wat_wdl" class="form-control color_database decimal" maxlength="10" name="grd_wat_wdl" placeholder="Enter Ground Water Withdrawal (ha m)..">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row" id="categorization">
+                                                    <div class="col-md-6 col-sm-6">
+
+                                                        <label abel for="lname">
+                                                            h. Categorization
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Over-exploited/Critical/Semi critical/Safe)">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="txt_category" class="form-control" disabled>
+                                                        @*<select name="" id="categori" class="form-control" onchange="categori_onchange()">
+                    <option value="Select1">--Select--</option>
+                    <option value="Over-exploited">Over-exploited</option>
+                    <option value="Critical">Critical</option>
+                    <option value="Semi critical">Semi critical</option>
+                    <option value="Safe">Safe</option>
+                </select>*@
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        3. Surface Water
+                                                    </h3>
+                                                </div>
+                                                @*<div class="row database_trainer_row database_trainer_row1">
+            <table class="firstformtable" id="">
+                <thead id="">
+                    <tr>
+                        <td>
+                            <select class="form-control-plaintext">
+                                <option value="Square Meter">Square Meter</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select>
+                                <option>Ha m</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form_control" />
+                        </td>
+                        <td>
+                            <input type="text" class="form_control" />
+                        </td>
+
+                    </tr>
+                </thead>
+
+            </table>
+        </div>*@
+                                                <div class="row database_trainer_row database_trainer_row11 ">
+
+                                                    <h4>
+                                                        a. Surface Water available in storages
+                                                        @*<a href="javascript:;" data-toggle="tooltip">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                </a>*@
+                                                    </h4>
+                                                </div>
+
+                                                @*<div class="row database_trainer_row">
+            <div class="col-md-6 col-sm-6">
+
+                <label for="lname">
+                    No. of Surface Water Bodies
+                    <a href="javascript:;" data-toggle="tooltip" title="User Entry">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    </a>
+                    :
+                </label>
+
+            </div>
+            <div class="col-md-5 col-sm-6">
+                <input type="text" id="noof_sw_storage_structures" class="form-control color_database" name="noof_sw_storage_structures" placeholder="Enter  No. Of Surface Water Storage Structures..">
+            </div>
+        </div>*@
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-7 col-sm-7">
+                                                        <label for="lname" style="color: #337ab7;">
+                                                            (i) Number of Surface Water Bodies and Storage Capacity (ha m): @*<a href="javascript:;" data-toggle="tooltip" title="(Note:- Enter Sum of storage capacity, if same surface water bodies are more than one.)">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+            </a>*@
+
+
+                                                        </label>
+                                                        <label>
+                                                            <span style="font-weight:100; color:red">Note:- Enter Sum of storage capacity, if same type of structure are more than one.</span>
+                                                        </label>
+                                                        <table class="" id="">
+                                                            <thead id="">
+                                                                <tr>
+                                                                    <td>
+                                                                        <button type="button" id="LivestockAdd" value="click" onclick="Add_row()" hidden class="add-field btn btn-success btn_disabled">Add</button>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="Space-Between" style="width:260px;">
+                                                                        <label>
+                                                                            Type of Structure
+                                                                        </label>
+                                                                    </td>
+                                                                    <td class="Space-Between"style="width:207px;">
+                                                                        <label>
+                                                                            No. of Structures
+                                                                        </label>
+                                                                    </td>
+                                                                    <td class="Space-Between">
+                                                                        <label>
+                                                                            Storage Capacity (ha m)
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </thead>
+
+                                                        </table>
+                                                        <table class="Livestocktable firstformtable" id="livestockTable">
+                                                            <thead id="">
+                                                                <tr>
+
+                                                                </tr>
+                                                                @*<tr>
+                                                                    <td>
+                                                                        <button type="button" id="LivestockAdd" value="click" onclick="Add_row()" hidden class="add-field btn btn-success btn_disabled">Add</button>
+                                                                    </td>
+
+                                                                </tr>*@
+
+                                                            </thead>
+
+                                                        </table>
+                                                        @*Total<input type="number" id="noof_sw_bod" style="margin-top:6px" onkeyup="Total_Numbers()" onkeydown="Total_Numbers()" />
+        <input type="number" id="noof_sw_stcap" style="margin-top:6px" onkeyup="Total_Numbers()" onkeydown="Total_Numbers()" />*@
+
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        @*<select name="" id="noof_wb_st_cap" class="form-control">
+                    <option value="Select">--Select--</option>
+                    <option value="Ponds">Ponds</option>
+                    <option value="Tanks">Tanks</option>
+                    <option value="Others(Pl. specify)">Others(Pl. specify)</option>
+                </select>*@
+                                                        <input type="text" id="txtOthernew" style="margin-top:6px" />
+                                                        @*<input type="number" id="noof_sw_bod" style="margin-top:6px" onkeyup="Total_Numbers()" onkeydown="Total_Numbers()" />
+                <input type="number" id="noof_sw_stcap" style="margin-top:6px" onkeyup="Total_Numbers()" onkeydown="Total_Numbers()" />*@
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+
+                                                        <label for="lname">
+                                                            (ii) Total Storage Capacity of the surface water bodies (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="Sum of capacities of individual structures excluding Rain Water Harvesting  structures">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="total_storage_capacity" class="form-control color_database" name="total_storage_capacity" placeholder="Enter Total Storage Capacity Of Structures.." readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            (iii) Losses if Any (%) :
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        @*<input type="text" id="loss_percentage" class="form-control color_database" name="loss_percentage" placeholder="Enter Losses if any..">*@
+                                                        <select name="" id="loss_percentage" class="form-control" onchange="Twa_cal()">
+                                                            <option value="">--select Percentage--</option>
+                                                            <option value="10">10</option>
+                                                            <option value="15">15</option>
+                                                            <option value="20">20</option>
+                                                            <option value="25">25</option>
+                                                            <option value="30">30</option>
+                                                            <option value="35">35</option>
+                                                            <option value="40">40</option>
+                                                            <option value="45">45</option>
+                                                            <option value="50">50</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            (iv) Surface Water Available in Storages  (ha m)  <a href="javascript:;" data-toggle="tooltip" title="(Surface Water Available in Storages (ha m) = Total Storage Capacity of the surface water bodies (ha m) - (Total Storage Capacity of the surface water bodies (ha m)*(Losses if any (%)/100))">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="sw_available_for_use" class="form-control" name="sw_available_for_use" placeholder="Enter Surface Water Available For Use.." readonly>
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="row database_trainer_row">
+            <div class="col-md-6 col-sm-6 text-left">
+                <div class="tota_value_sufacewater">
+                    <label>
+                        Total Water Available for Utilization(ha m)
+
+                        <a href="javascript:;" data-toggle="tooltip" title="Ground Water Available (ha m) + Surface Water Available(ha m) ">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" id=""></span>
+                        </a>:
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-sm-3 text-left tota_value_sufacewater">
+                <label id="total_water_avaliable_utiilization"></label>
+            </div>
+        </div>
+        <div class="row database_trainer_row">
+            <div class="col-md-6 col-sm-6 text-left">
+                <div class="tota_value_sufacewater">
+                    <label>
+                        Rainfall Available for Future Use(ha m)
+                        <a href="javascript:;" data-toggle="tooltip" title="Water Available From Rainfall  (ha m) - Total Water Available For Utilization (ha m) ">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" id=""></span>
+                        </a>:
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-sm-3 text-left tota_value_sufacewater">
+                <label id="volume_of_runoff"></label>
+            </div>
+        </div>*@
+
+                                                @*abhi0905*@
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+
+                                                        <label for="lname">
+                                                            b. Transported Water from outside GP area (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(including water available from canal/river lift):">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>
+                                                            :
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="trans_wat_ogp" maxlength="10" class="form-control color_database decimal" name="trans_wat_ogp" onkeyup="Total_Numbers2()" onkeydown="Total_Numbers2()" placeholder="Enter Transported Water from outside GP area.." data-decimal="4" oninput="enforceNumberValidation(this)">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            c. Total Surface Water Available (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Total Surface Water Available (ha m)=Surface Water Available in Storages (ha m)+Transported Water from outside GP area (ha m) + Water Available from Canal/River lift (ha m)">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="tot_sur_wat_avail" class="form-control" name="tot_sur_available" placeholder="Enter Total Surface Water Available (ha m).." readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row database_trainer_row database_trainer_row1">
+                                                    <h3>
+                                                        4. Total Water Available
+                                                    </h3>
+                                                </div>
+
+                                                <div class="row database_trainer_row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label for="lname">
+                                                            Total Water Available (ha m)
+                                                            <a href="javascript:;" data-toggle="tooltip" title="(Total Water Available (ha m)=Total Ground Water Available (ha m)+Total Surface Water Available (ha m))">
+                                                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                            </a>:
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-6">
+                                                        <input type="text" id="tot_wat_avail" class="form-control" name="tot_wat_avail" placeholder="Enter TOTAL WATER AVAILABLE (ha m).." readonly>
+                                                    </div>
+                                                </div>
+
+                                                @*abhi0905*@
+                                                <!--<div class="row database_trainer_row">
+    <div class="col-md-6 col-sm-6 text-left">
+        <div class="tota_value_sufacewater">
+            <label>
+                Weighted Average Runoff Coefficient <span style="color:red">*</span>
+
+            </label>
+        </div>
+
+    </div>
+    <div class="col-md-5 col-sm-6">
+        <input type="text" class="form-control" id="weighted_avg_runoff" />-->
+                                                @*<label id="weighted_avg_runoff"></label>*@
+                                                <!--</div>
+    </div>-->
+                                                @*<div class="row database_trainer_row">
+            <div class="col-md-6 col-sm-6 text-left">
+                <div class="tota_value_sufacewater">
+                    <label>
+                        Utilizable Rainfall Runoff(ha m)
+                        <a href="javascript:;" data-toggle="tooltip" title="Rainfall Available For Future Use (ha m) * Weighted Average Runoff Coeficient ">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" id=""></span>
+                        </a>:
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-sm-3 text-left tota_value_sufacewater">
+                <label id="utilizable_rainfall_runoff"></label>
+            </div>
+        </div>*@
+                                                <div class="row database_trainer_row_button">
+                                                    <div id="Wsp_gram_checkbox" style="text-align:center"><input type="checkbox" id="WspTacker_Verification_CheckBox" /><span>The data entered has been checked and verified by DPMU</span></div>
+
+                                                    <div class="col-md-12 col-sm-12 text-center">
+                                                        <div>
+                                                            <span style="color:red">Before going to the summary page or next, click on the save button</span>
+                                                        </div>
+                                                        <a href="~/WaterSecurityPlan/WSp_Gram_Report" class="btn btn-danger">Back</a>
+                                                        <button class="btn btn-success btn_disabled" id="SAVE_BTN" onclick="SaveSurfaceWater_info()">Save</button>
+                                                        <button id="Wsp_gram_submit" class="btn btn-danger" onclick="Save_Full_Info()">Submit</button>
+                                                        <a href="~/WaterSecurityPlan/Water_Aval_Report" class="btn btn-primary">Summary</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                        @*<div class="tbl-responsive" id="wsp_avail_upload">
+                <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                    <tr>
+                        <td>Upload Document if any:</td>
+                        <td>
+                            <input type="file" class="form-control" id="avail_upload_btn" onchange="WSP_AVAIL_UPLOAD(event)" accept=".pdf" />
+                        </td>
+                        <td>
+                            <div id="upload_wsp_avail_file"></div>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </div>*@
+                                                        <div style="text-align:center;color:red;"><label id="ERRor1"></label></div>
+                                                        @*<div class="table-responsive" style="overflow-x:scroll;text-align:left;font-size:15px">
+                                                            <label style="color:red;text-align:left">
+                                                                * Weighted Average Runoff Coefficient
+                                                            </label>
+                                                            <table class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Type of Area</th>
+                                                                        <th>Urban Residential</th>
+                                                                        <th>Forests</th>
+                                                                        <th>Commercial & Industrial</th>
+                                                                        <th>Parks, Farms, Agriculture Fields, Pastures</th>
+                                                                        <th>
+                                                                            Asphalt or Concrete Pavement
+                                                                        </th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Runoff Coefficient</td>
+                                                                        <td>0.3 - 0.5 </td>
+                                                                        <td>0.05 - 0.2 </td>
+                                                                        <td>0.9</td>
+                                                                        <td>0.05 - 0.3 </td>
+                                                                        <td>
+                                                                            0.85
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </thead>
+                                                            </table>
+                                                        </div>*@
+
+
+                                                    </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--RainFall inner End-->
+                    </div>
+                </div>
+            </div>
+
+            <div id="progress">
+                <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+                    <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                        <span class="progress-group-label" data-target="#music" data-toggle="tab"> Water Availability</span>
+
+                        <div class="tri shadow"></div>
+                        <div class="tri"></div>
+                    </li>
+
+
+                </ul>
+
+            </div>
+            <!--fotter End-->
+            <input hidden="hidden" id="hdnRechargefactor" />
+            <input hidden="hidden" id="hdnSeepagefactor" />
+            <input hidden="hidden" id="hdnareairrigation" />
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('li.leftbtnnext > button.btnprocess1').click(function () {
+
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $("ul#myTabs > li > a").on("show.bs.tab", function () {
+
+        $('ul.tabs_menu > li:first-child').trigger('click');
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#categorization").hide();
+        $('[data-toggle="tooltip"]').tooltip();
+        /*Get_wsp_avail();*/
+    });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+
+
+    $('#btnDrftGo').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $('#btngotobalance').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+
+    var WSP_AVAIL_UPLOAD = function (event) {
+
+        //var Dpmu_declaration_pdf_output = document.getElementById('declaration_dpmu');
+        //Dpmu_declaration_pdf_output.src = URL.createObjectURL(event.target.files[0]);
+        //Dpmu_declaration_pdf_output.onload = function () {
+        //    URL.revokeObjectURL(Dpmu_declaration_pdf_output.src) // free memory
+        //}
+        Upload_WSP_AVAIL();
+    };
+
+    function Upload_WSP_AVAIL() {
+        var avail_upload = $("#avail_upload_btn").get(0);
+        var avail_upload_file = avail_upload.files;
+
+        var formdata = new FormData();
+        formdata.append("avail_upload_file", avail_upload_file[0]);
+
+
+        $.ajax({
+            url: '/WaterSecurityPlan/Upload_WSP_AVAIL',
+            data: formdata,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                debugger;
+                alert(response);
+                $('input[type = file]').val('');
+                if (response == "SessionTimeOut") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (response == "Successfully Uploaded") {
+                    Get_wsp_avail();
+                }
+            },
+            error: function () {
+                alert('Update Failed');
+            }
+        });
+    }
+
+    function Get_wsp_avail() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WaterSecurityPlan/Get_wsp_avail',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var tr = '';
+                if (data == "SessionTimeOut") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data[0].avail_upload_file != null && data[0].avail_upload_file != "") {
+                    tr = '<label><a href="' + data[0].avail_upload_dir + '" download="" target="_blank" >' + data[0].avail_upload_file + '</a></label>&nbsp;&nbsp;';
+                    tr += '<button class="btn btn-primary btn_wsp" id="btn_avail_dlt" onclick="Delete_avail_upload()">Delete</button>';
+
+                }
+                $('#upload_wsp_avail_file').html(tr);
+                $("#btn_avail_dlt").attr("id", data[0].id);
+
+            }
+        });
+    }
+
+
+    function Delete_avail_upload() {
+        debugger;
+        var obj = {};
+        obj.IDD = $(".btn_wsp").attr("id");
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterSecurityPlan/Delete_avail_upload",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                Get_wsp_avail();
+            },
+            error: function () {
+                alert("Error While Saving Data")
+            }
+        });
+    }
+
+</script>
+
+
+<script>
+    $('#m1').click(function (e) {
+        $('.subtab2').removeClass('active');
+        $('.subtab3').removeClass('active');
+        $('.subtab4').removeClass('active');
+        $('.subtab5').removeClass('active');
+        $('.subtab6').removeClass('active');
+        $('.subtab7').removeClass('active');
+        $('.subtab1').addClass('active');
+        $('div.tabfirst div.active').removeClass('active');
+        $('#menu-11').addClass('active in');
+        $('li#Surface-water div').removeClass('active');
+        $('li#Surface-water div.subtab1').addClass('active');
+    });
+    $('#m2').click(function (e) {
+        $('.subtab12').removeClass('active');
+        $('.subtab13').removeClass('active');
+        $('.subtab14').removeClass('active');
+        $('.subtab15').removeClass('active');
+        $('.subtab16').removeClass('active');
+        $('.subtab17').removeClass('active');
+        $('.subtab11').addClass('active');
+        $('div.tabsecond div.active').removeClass('active');
+        $('#menu-1').addClass('active in');
+        $('li#indoor-water div').removeClass('active');
+        $('li#indoor-water div.subtab11').addClass('active now');
+    });
+    $('#m3').click(function (e) {
+        $('.subtab22').removeClass('active');
+        $('.subtab23').removeClass('active');
+        $('.subtab24').removeClass('active');
+        $('.subtab21').addClass('active');
+        $('div.tabthrid div.active').removeClass('active');
+        $('#menu-8').addClass('active in');
+        $('li#outdoor-water div').removeClass('active');
+        $('li#outdoor-water  div.subtab21').addClass('active now');
+    });
+
+</script>
+
+
+<script>
+    // start header and footer nav bar changes script
+
+    $('#indoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#indoor-water.progress-group .progress-node').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#outdoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#Surface-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+
+    $('ul#rainfall_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#rainfall_menu li').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+    $('ul#Surface_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Surface_menu li').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('ul#Water_draft_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Water_draft_menu li').removeClass('active');
+        $('.Sider_column > ul.sider_images_sider').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+        $("[data-target=" + tab_id + "]").addClass('active');
+        //$('ul.tabs li').click(function () {
+        //  var tab_id = $(this).attr('data-tab');
+
+        //$('ul.tabs li').removeClass('current');
+
+
+        //$(this).addClass('current');
+
+        //})
+    });
+
+
+
+    $('.btnNext').click(function () {
+        $('.tabs_menu > .active').next('.tab-link').trigger('click');
+        //$('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.btnPrevious').click(function () {
+        $('.tabs_menu > .active').prev('.tab-link').trigger('click');
+        // $('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+
+
+    //$('.tabs_menu > .tab-link').click(function (e) {
+    //    //get selected href
+    //    var href = $(this).attr('data-tab');
+
+    //    // show tab for all tabs that match href
+    //    $('.tabs_menu > .tab-link[data-tab="' + href + '"]').tab('show');
+    //});
+    $('.gwr_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwr_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwr_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwr_menu[class*="-info"]').removeClass('active');
+        $('.gwr_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    $('ul[data-tabs="tabs"] > li > [data-toggle="tab"]').click(function (e) {
+
+        var href = $(this).attr('data-target');
+
+
+        $('ul[data-tabs="tabs"] > li').removeClass('active');
+
+
+        $('ul[data-tabs="tabs"] > li > [data-toggle="tab"][data-target="' + href + '"]').closest('li').addClass('active');
+
+
+        $('.tab-pane').removeClass('active in');
+        $('.tab-pane' + href).addClass('active in');
+    });
+
+    $('.gwd_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwd_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwd_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwd_menu[class*="-info"]').removeClass('active');
+        $('.gwd_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+
+    $('.sru_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.sru_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.sru_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.sru_menu[class*="-info"]').removeClass('active');
+        $('.sru_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    // start header and footer nav bar changes script
+
+</script>
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/JS_Files/water_availability.js"></script>
+<script type="text/javascript">
+
+
+    //document.getElementById("weighted_avg_runoff").focusout = function () {
+
+    //    var input = parseFloat(this.value);
+
+    //    if (input < .1 || input > 1) {
+    //        alert('Enter Value Between 0.1-1.0');
+    //        $("#weighted_avg_runoff").focus();
+    //        $("#weighted_avg_runoff").val("");
+
+    //        $("#utilizable_rainfall_runoff").text("");
+    //    }
+
+    //}
+    function enforceNumberValidation(ele) {
+
+        if ($(ele).data('decimal') != null) {
+            // found valid rule for decimal
+            var decimal = parseInt($(ele).data('decimal')) || 0;
+            var val = $(ele).val();
+            if (decimal > 0) {
+                var splitVal = val.split('.');
+                if (splitVal.length == 2 && splitVal[1].length > decimal) {
+                    // user entered invalid input
+                    $(ele).val(splitVal[0] + '.' + splitVal[1].substr(0, decimal));
+                }
+            } else if (decimal == 0) {
+                // do not allow decimal place
+                var splitVal = val.split('.');
+                if (splitVal.length > 1) {
+                    // user entered invalid input
+                    $(ele).val(splitVal[0]); // always trim everything after '.'
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+     var StateOfficer = "";
+    $(document).ready(function () {
+        $('#Wsp_gram_submit').hide();
+        $('#Wsp_gram_checkbox').hide();
+        $("#txtOthernew").hide();
+        $("#Source_Name_div").hide();
+        StateOfficer = '@Session["Officer"]';
+
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            $('input[type=text]').prop("disabled", true)
+            $('select').prop("disabled", true);
+            $('input[type=file]').prop("disabled", true)
+            $('.btn_disabled').prop("disabled", true);
+        }
+        else if (StateOfficer != "" && StateOfficer != null) {
+
+        } else {
+            window.location = "/WspNew/WSP_GWM_HOME";
+        }
+            //$('#SAVE_BTN').hide();
+            //if (StateOfficer == "District Level Nodal Officer") {
+            //    $('#Wsp_gram_submit').show();
+            //    $('#Wsp_gram_checkbox').show();
+
+            //}
+            ////Water Availability Form
+            //document.getElementById("sw_annual_rainfall").disabled = true;
+            //document.getElementById("sw_evapo").disabled = true;
+            //document.getElementById("gw_rainfall_monsoon").disabled = true;
+            //document.getElementById("gw_rainfall_nonmonsoon").disabled = true;
+            //document.getElementById("gw_other_monsoon").disabled = true;
+            //document.getElementById("gw_other_nonmonsoon").disabled = true;
+            //document.getElementById("natural_losses").disabled = true;
+
+
+
+            //document.getElementById("noof_sw_storage_structures").disabled = true;
+            //document.getElementById("total_storage_capacity").disabled = true;
+            //document.getElementById("loss_percentage").disabled = true;
+            //document.getElementById("weighted_avg_runoff").disabled = true;
+
+
+
+        
+
+    });
+
+
+
+    function Save_Full_Info() {
+
+        var verification_val = 0;
+        var lfckv = document.getElementById("WspTacker_Verification_CheckBox").checked;
+
+        if (lfckv == true) {
+            verification_val = 1;
+        } else {
+            verification_val = 0;
+            alert("Please Check The data entered has been checked and verified by DPMU");
+        }
+
+        var latitude = lat;
+        var longitude = long;
+
+        var gw_rainfall_monsoon = $('#gw_rainfall_monsoon').val();
+        var gw_rainfall_nonmonsoon = $('#gw_rainfall_nonmonsoon').val();
+        var gw_rainfal_tol_recharge = $('#gw_rainfal_tol_recharge').val();
+
+        var gw_other_monsoon = $('#gw_other_monsoon').val();
+        var gw_other_nonmonsoon = $('#gw_other_nonmonsoon').val();
+        var gw_other_tol_recharge = $('#gw_other_tol_recharge').val();
+        var total_gw_available = $('#total_gw_available').text();
+
+        var sw_annual_rainfall = $('#sw_annual_rainfall').val();
+        var sw_tol_water_avail = $('#sw_tol_water_avail').val();
+        var sw_evapo = $('#sw_evapo').val();
+        var sw_evapo_loses = $('#sw_evapo_loses').val();
+        // var  total_gw_racharge = $('#total_gw_racharge').text();
+        var total_sw_availble = $('#total_sw_availble').text();
+
+        //new columns
+        var noof_sw_storage_structures = $('#noof_sw_storage_structures').val();
+        var total_storage_capacity = $('#total_storage_capacity').val();
+        var sw_available_for_use = $('#sw_available_for_use').val();
+        var volume_of_runoff = $('#volume_of_runoff').text();
+
+        var natural_losses = $('#natural_losses').val();
+        var loss_percentage = $('#loss_percentage').val();
+        var categori = $('#categori').val();  // abhi0905
+        var total_water_avaliable_utiilization = $('#total_water_avaliable_utiilization').text();
+
+        var utilizable_rainfall_runoff = $('#utilizable_rainfall_runoff').text();
+        var weighted_avg_runoff = $('#weighted_avg_runoff').val();
+
+
+        if (verification_val == 1) {
+            $.ajax({
+                url: "/WaterSecurityPlan/WaterAvailabiltyInfo__InsertData",
+                type: "POST",
+                data: function () {
+                    var data = new FormData();
+                    data.append("gw_rainfall_monsoon", gw_rainfall_monsoon);
+                    data.append("latitude", lat);
+                    data.append("longitude", long);
+                    data.append("gw_rainfall_nonmonsoon", gw_rainfall_nonmonsoon);
+                    data.append("gw_rainfal_tol_recharge", gw_rainfal_tol_recharge);
+                    data.append("gw_other_monsoon", gw_other_monsoon);
+                    data.append("gw_other_nonmonsoon", gw_other_nonmonsoon);
+                    data.append("gw_other_tol_recharge", gw_other_tol_recharge);
+                    data.append("total_gw_available", total_gw_available);
+                    data.append("sw_annual_rainfall", sw_annual_rainfall);
+                    data.append("sw_tol_water_avail", sw_tol_water_avail);
+                    data.append("sw_evapo", sw_evapo);
+                    data.append("sw_evapo_loses", sw_evapo_loses);
+                    //data.append("total_gw_racharge", total_gw_racharge);
+                    data.append("total_sw_availble", total_sw_availble);
+                    //new columns
+                    data.append("noof_sw_storage_structures", noof_sw_storage_structures);
+                    data.append("total_storage_capacity", total_storage_capacity);
+                    data.append("sw_available_for_use", sw_available_for_use);
+                    data.append("volume_of_runoff", volume_of_runoff);
+                    //new Colums
+                    data.append("natural_losses", natural_losses);
+                    data.append("loss_percentage", loss_percentage);
+                    data.append("categori", categori);    //abhi0905
+                    data.append("total_water_avaliable_utiilization", total_water_avaliable_utiilization);
+                    data.append("utilizable_rainfall_runoff", utilizable_rainfall_runoff);
+                    data.append("weighted_avg_runoff", weighted_avg_runoff);
+                    return data;
+                }(),
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert("Verified Successfully");
+                },
+                error: function (jqXHR, textStatus, errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+        }
+
+    }
+</script>
+
+<script>
+
+    function Total_Numbers() {
+
+        var total = 0;
+        var abc = $('#noof_sw_bod').val();
+        var xyz = $('#noof_sw_stcap').val();
+        var ABC = $('#loss_percentage').val();
+
+        if (abc == "") {
+
+            abc = 0;
+        }
+
+        if (xyz == "") {
+
+            xyz = 0;
+        }
+
+        total = parseFloat(abc) + parseFloat(xyz);
+
+        $('#total_storage_capacity').val(total);
+
+    }
+
+    //abhi0905
+
+    $("#noof_wb_st_cap").change(function () {
+        var bn = $('option:selected', this).text();
+        if (bn == "Others(Pl. specify)") {
+            $("#txtOthernew").show();
+
+        }
+        else {
+            $("#txtOthernew").val("");
+            $("#txtOthernew").hide();
+        }
+    });
+
+    function Twa_cal() {
+
+        var total_storage_capacity = $('#total_storage_capacity').val();
+        if (total_storage_capacity == "") {
+            total_storage_capacity = 0;
+
+        }
+        var Losses_if_any = $('#loss_percentage').val();
+        if (Losses_if_any == "") {
+            Losses_if_any = 0;
+
+        }
+        var Surface_Water_Available = ((total_storage_capacity) * (Losses_if_any / 100));
+        var totalStorages = total_storage_capacity - Surface_Water_Available;
+        $('#sw_available_for_use').val(totalStorages.toFixed(2));
+
+        var gp_area_ham = $('#trans_wat_ogp').val();
+        if (gp_area_ham != '') {
+            $('#tot_sur_wat_avail').val((parseFloat(Surface_Water_Available) + parseFloat(gp_area_ham)).toFixed(2));
+        } else {
+
+            $('#tot_sur_wat_avail').val('0');
+        }
+
+        var total_gw_available = $('#total_gw_available').text();
+        if (total_gw_available != '') {
+            $('#tot_wat_avail').val((parseFloat(total_gw_available) + parseFloat($('#tot_sur_wat_avail').val())).toFixed(2));
+        }
+        else {
+
+            $('#tot_sur_wat_avail').val('0');
+        }
+
+        //var sw_available_for_use = $('#sw_available_for_use').val();
+        //var trans_wat_ogp = $('#trans_wat_ogp').val();
+
+        //var tot_sur_wat_avail = sw_available_for_use + trans_wat_ogp;
+        //$('#tot_sur_wat_avail').val(tot_sur_wat_avail.toFixed(2));
+
+        //var total_gw_available = $('#total_gw_available').val();
+        //var tot_sur_wat_avail = $('#tot_sur_wat_avail').val();
+
+        //var tot_wat_avail = total_gw_available + tot_sur_wat_avail;
+        //$('#tot_wat_avail').val(tot_wat_avail.toFixed(2));
+    }
+
+
+    function Total_Numbers1() {
+
+        var total = 0;
+        var sw_available_for_use = $('#sw_available_for_use').val();
+        var trans_wat_ogp = $('#trans_wat_ogp').val();
+
+        if (sw_available_for_use == "") {
+
+            sw_available_for_use = 0;
+        }
+
+        if (trans_wat_ogp == "") {
+
+            trans_wat_ogp = 0;
+        }
+
+        total = parseFloat(sw_available_for_use) + parseFloat(trans_wat_ogp);
+
+        $('#tot_sur_wat_avail').val(total.toFixed(2));
+
+    }
+
+
+    function Total_Numbers2() {
+
+        Total_Numbers1();
+
+        var total1 = 0;
+        var total_gw_available = $('#total_gw_available').text();
+        var tot_sur_wat_avail = $('#tot_sur_wat_avail').val();
+
+        if (total_gw_available != '' && tot_sur_wat_avail != '') {
+            if (total_gw_available == "") {
+
+                total_gw_available = 0;
+            }
+
+            if (tot_sur_wat_avail == "") {
+
+                tot_sur_wat_avail = 0;
+            }
+
+            total1 = parseFloat(total_gw_available) + parseFloat(tot_sur_wat_avail);
+
+            $('#tot_wat_avail').val(total1.toFixed(2));
+
+        }
+        else {
+            $('#tot_wat_avail').val('0');
+        }
+    }
+
+    function HideShowSource() {
+        $("#Source_Name_div").show();
+    }
+
+</script>

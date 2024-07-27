@@ -1,0 +1,347 @@
+﻿
+@{
+    ViewBag.Title = "Geotagging";
+    Layout = "~/Views/Shared/_Mobile.cshtml";
+}
+
+
+
+<script>
+    $(".subtab4").addClass("active");
+</script>
+
+<style>
+    /*table fix code*/
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*ends here*/
+</style>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+<div class="container">
+
+    <h4>
+        <label>
+            Total Number of Geo-Tagging Artificial Recharge Structures (ARS) &<br /><br />
+            Water Conservation(WCS)-Existing : <label id="gro_total"></label>
+        </label>
+    </h4>
+
+    <div class="row table_head_strip" style="margin:0px; padding-top:5px;">
+        <div class="col-md-6">
+            <div>
+                <h4 class="" style="font-size:13px;">
+
+                    @*Total No Of GWQM Report Filled through FTK : <label id="GWQM_total"></label>*@
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 bg-light text-right d-flex" style="margin-top:5px;">
+                <div class="bg-light text-right display_flex">
+                    <button class="btn btn-primary btn_export btn-sm" id="btnsubmit" onclick="Excel()">
+                        Export (Excel)
+                    </button>
+                </div>
+                <div style="margin-left:10px">
+
+                    <button type="button" id="pdf1" onclick="Report_PDF()" class="btn btn-primary btn-sm"> Export (PDF)</button>
+
+                </div>
+
+
+                @*<div style="margin-right:10px;">
+                        @using (Html.BeginForm("Export", "GplevelMobileData", FormMethod.Post))
+                        {
+                            <input type="hidden" name="TabelName" value="Geotagging" />
+                            <input type="submit" class="btn btn-primary btn_export btn-sm" id="btnSubmit" value="Export" />
+                        }
+                    </div>*@
+
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+            <table id="mainTable" class="table pip_report_table table-hover row-border order-column table-striped table-bordered  no-footer">
+
+                <thead>
+                    <tr style="text-align:center; background-color:goldenrod">
+
+                        <th><label>Sr.no</label></th>
+                        <th><label>Village Name </label></th>
+                        <th><label>Location Details</label></th>
+                        <th><label>Latitude</label></th>
+                        <th><label>Longitude</label></th>
+                        <th><label>Date</label></th>
+                        <th><label>Type of structure</label></th>
+                        <th><label>Storage Capacity (Ha m)</label></th>
+                        <th><label>No of Fillings</label></th>
+                        <th><label>Image Upload </label></th>
+                        <th><label>Image Upload </label></th>
+                        @*<th><label>Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></th>*@
+
+                    </tr>
+                </thead>
+                <tbody id="Tbody"></tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+    <br />
+
+
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="Modelledby" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Data</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data" id="ModalForm">
+
+                        <input type="hidden" id="editId" value="">
+
+                        <div class="form-group">
+                            <label for="Village">Village</label>
+                            <input type="text" name="Village" class="form-control" id="Village" placeholder="Village" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="LocationDetails">Location Details</label>
+                            <input type="text" name="Location Details" class="form-control" id="LocationDetails" placeholder="Location Details" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Latitude">Latitude</label>
+                            <input type="text" name="Latitude" class="form-control" id="Latitude" placeholder="Latitude" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Longitude">Longitude</label>
+                            <input type="text" name="Longitude" class="form-control" id="Longitude" placeholder="Longitude" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Date">Date</label>
+                            <input type="text" name="Date" class="form-control" id="datepicker" placeholder="Date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Typeofstructure">Type of structure</label>
+                            <input type="text" name="Type of structure" class="form-control" id="Typeofstructure" placeholder="Type of structure" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="StorageCapacity">Storage Capacity(Ha m)</label>
+                            <input type="text" name="Storage Capacity(Ha m)" class="form-control" id="StorageCapacity" placeholder="Storage Capacity(Ha m)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="NoofFillings">No of Fillings</label>
+                            <input type="text" name="No of Fillings" class="form-control" id="NoofFillings" placeholder="No of Fillings" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Image Upload">Image Upload</label>
+                            <input type="file" class="form-control" id="txtimage" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Image Upload">Image Upload</label>
+                            <input type="file" class="form-control" id="txtimage1" required>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                    <button type="button" id="updateModalButton" class="btn btn-primary" rowid="" onclick="update()" data-dismiss="modal">Update</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        /*geo();*/
+    });
+
+
+    function geo() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/FetchGeotaggingData',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var Tbodyhtml = '';
+                for (var i = 0; i < data.length; i++) {
+
+                    Tbodyhtml += '<tr><td id="srNo" rowId = ' + data[i].id + '>' + (i + 1) + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].village + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].locationdetail + '</td>';
+                    Tbodyhtml += '<td id="latitude">' + data[i].latitude + '</td>';
+                    Tbodyhtml += '<td id="longtude">' + data[i].longitude + '</td>';
+                    Tbodyhtml += '<td id = "date">' + data[i].date1 + '</td>';
+                    Tbodyhtml += '<td id="type">' + data[i].typeofstructure + '</td>';
+                    Tbodyhtml += '<td id="storage">' + data[i].storagecapacity + '</td>';
+                    Tbodyhtml += '<td id="noof">' + data[i].nooffillings + '</td>';
+                    Tbodyhtml += '<td><a href=' + data[i].image1 + ' id="image">Image</a></td>';
+                    Tbodyhtml += '<td><a href=' + data[i].image2 + ' id="image1">Image</a></td></tr>';
+                    /*Tbodyhtml += '<td><button type = "button" class="btn btn-sm btn-primary glyphicon glyphicon-edit editbtn" data-toggle="modal" data-target="#myModal" onclick="edit(this)"></button> <button type="button"  class="btn btn-sm btn-danger glyphicon glyphicon-trash deletebtn" onclick="deletedata(' + data[i].id + ')"></button></td></tr> ';*/
+
+                }
+                $('#mainTable tbody').html(Tbodyhtml);
+                $('#gro_total').text(data.length);
+            }
+        });
+
+    }
+
+    function update() {
+        
+
+        var id = $('#updateModalButton').attr('rowid');
+        var village = $('#Village').val();
+        var locationdetail = $('#LocationDetails').val();
+        var latitude = $('#Latitude').val();
+        var longitude = $('#Longitude').val();
+        var date = $('#datepicker').val();
+        var typeofstructure = $('#Typeofstructure').val();
+        var storagecapacity = $('#StorageCapacity').val();
+        var nooffillings = $('#NoofFillings').val();
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/Update',
+            data: function () {
+
+                var data = new FormData();
+                data.append("id", id);
+                data.append("village", village);
+                data.append("locationdetail", locationdetail);
+                data.append("latitude", latitude);
+                data.append("longitude", longitude);
+                data.append("date", date);
+                data.append("typeofstructure", typeofstructure);
+                data.append("storagecapacity", storagecapacity);
+                data.append("nooffillings", nooffillings);
+                data.append("txtimage", jQuery("#txtimage").get(0).files[0]);
+                data.append("txtimage1", jQuery("#txtimage1").get(0).files[0]);
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                geo();
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+    function deletedata(id) {
+
+        var obj = {};
+        obj.id = id;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: '/GplevelMobileData/deletedata',
+            data: "{'Id': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                geo();
+            },
+            error: function () {
+                alert('error');
+            },
+        });
+    }
+
+    function edit(param) {
+
+        
+        var tr = $(param).closest("tr");
+        var RowId = tr.find('#srNo').attr('rowId');
+        var village = tr.find('#vill').html();
+        var location = tr.find('#location').html();
+        var latitude = tr.find('#latitude').html();
+        var longtude = tr.find('#longtude').html();
+        var date = tr.find('#date').html();
+        var type = tr.find('#type').html();
+        var storage = tr.find('#storage').html();
+        var noof = tr.find('#noof').html();
+        var image = tr.find('#image1').html();
+        var image1 = tr.find('#image2').html();
+
+
+
+
+
+        $('#Village').val(village);
+        $('#LocationDetails').val(location);
+        $('#Latitude').val(latitude);
+        $('#Longitude').val(longtude);
+        $('#datepicker').val(date);
+        $('#Typeofstructure').val(type);
+        $('#StorageCapacity').val(storage);
+        $('#NoofFillings').val(noof);
+        $('#txtimage').attr('default', image);
+        $('#txtimage1').attr('default1', image1);
+        $('#updateModalButton').attr('rowid', RowId);
+    }
+    function Excel() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/Geotagging_excel";
+        }
+    }
+
+    function Report_PDF() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/Geotagging_Report";
+        }
+    }
+
+
+</script>
+
+
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            dateFormat: 'dd-mm-yy',
+            changeMonth: true,
+            changeYear: true,
+        });
+    });
+</script>
+
+

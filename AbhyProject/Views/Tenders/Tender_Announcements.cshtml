@@ -1,0 +1,1044 @@
+﻿@model IEnumerable<AbhyProject.Models.abhy_procurement_milestone_insertdata>
+@*@model IEnumerable<AbhyProject.Models.E_Tender>*@
+@{
+    ViewBag.Title = "Tender_Announcements";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+    var i = 1;
+    var j = 1;
+    var k = 1;
+    var l = 1;
+    var ii = 1;
+    var jj = 1;
+    var kk = 1;
+    var ll = 1;
+
+}
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+
+<style>
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .tab-pane table > thead > tr > th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+</style>
+<style>
+    .div-w99 {
+        max-width: 97% !important;
+        margin: auto;
+        width: 97% !important;
+        padding: 10px;
+    }
+
+    .Training-blue {
+        color: blue;
+        background: #0000ff24 !important;
+    }
+
+    .training {
+        border: none !important;
+    }
+
+        .training:hover {
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        }
+
+    .Training-green {
+        color: green;
+        background: #0080001c !important;
+    }
+
+    .Training-orange {
+        color: orange;
+        background: #ffa50017 !important;
+    }
+
+    .Training-yellow {
+        background: #ffff001f !important;
+        color: yellow;
+    }
+
+    .panel-body {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid #e4e5e7;
+    }
+
+        .nav-tabs > li > a {
+            font-weight: 600;
+            color: #fff;
+            background-color: #30ABEC;
+            padding: 8px 10px;
+            border: 1px solid #eee;
+            border-bottom: none;
+        }
+
+        .nav-tabs > li a:hover {
+            background: transparent;
+        }
+
+
+    .tab-content {
+        border: 1px solid #cacaca;
+        padding: 12px 16px;
+    }
+
+        .tab-content > .active,
+        .pill-content > .active {
+            display: block;
+        }
+
+        .tab-content p:last-child {
+            margin-bottom: 0;
+        }
+
+    .fade {
+        opacity: 1 !important;
+        transition: opacity .15s linear;
+    }
+
+    #example_wrapper .row:nth-child(2n+1) {
+        width: 100%;
+    }
+
+
+    .nav-tabs > li > a i {
+        margin-right: 1px;
+        padding-right: 5px;
+    }
+
+    ul#myTabs2 > li.active::after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -15px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    ul#myTabs2 > li {
+        background-color: #3A99ED;
+        padding: 0px;
+    }
+
+
+
+        ul#myTabs2 > li > a {
+            color: #fff;
+        }
+
+    body {
+        line-height: 24px;
+    }
+
+
+    .panel-title a .control-icon {
+        position: absolute;
+        right: 33px;
+        margin-top: -11px;
+    }
+
+    .panel-title a i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+    .fa-desktop, .fa-leaf {
+        padding: 5px;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    @@media (min-width: 0) {
+        .g-py-12 {
+            padding-top: 0.85714rem !important;
+            padding-bottom: 0.85714rem !important;
+        }
+
+        .g-px-20 {
+            padding-left: 1.42857rem !important;
+            padding-right: 1.42857rem !important;
+        }
+    }
+
+    .u-btn-primary {
+        color: #fff;
+        background-color: #527bcc;
+    }
+
+    p.btnhover > a:hover,
+    p.btnhover > a:active {
+        background-color: green;
+        color: #fff;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 400;
+        color: #337AB7;
+        font-family: inherit;
+    }
+
+    .Environmental_ul {
+        padding: 5px 5px 5px 40px;
+        list-style: disc;
+    }
+
+        .Environmental_ul > li {
+            list-style: disc;
+            padding: 2px 0px
+        }
+
+    .Environmental_ul_1 {
+        list-style: lower-alpha;
+        padding: 5px 5px 5px 40px;
+    }
+
+        .Environmental_ul_1 > li {
+            list-style: lower-alpha;
+            padding: 2px 0px;
+        }
+
+    .heding_Environmental {
+        padding: 10px 0px;
+        font-family: inherit;
+        color: purple;
+    }
+
+    .list-group-item {
+        border: 1px solid rgba(0,0,0,125);
+        color: #ffffff !important;
+        border-color: #eee;
+    }
+
+    ul.Etender {
+        margin-top: 20px;
+    }
+
+        ul.Etender > li {
+            padding: 5px 15px;
+            width: 50%;
+        }
+
+
+    .marquee-1 {
+        background: #337ab747;
+        padding-top: 10px;
+        margin-top: 20px;
+    }
+</style>
+<title>Tender Announcements</title>
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        $("nav#primary-menu > ul.main-menu > li:nth-child(3)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(3)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:first-child ").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:first-child").siblings().removeClass('active');
+        $('#example').DataTable();
+        $('#example22').DataTable();
+        $('#example33').DataTable();
+        $('#example44').DataTable();
+    });
+</script>
+
+
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+    [class^="Training-"] {
+        background: #fff;
+        border-radius: 2px;
+        border: 2px solid #3498db;
+        position: relative;
+    }
+
+        [class^="Training-"] h3 {
+            font-size: 16px;
+            line-height: 1.4;
+            font-family: 'Open Sans', sans-serif;
+            color: #000;
+            font-weight: 700;
+        }
+
+        [class^="Training-"] .fa {
+            color: #000;
+        }
+
+
+
+    .Training-green {
+        border-color: green;
+    }
+
+    .Training-orange {
+        border-color: orange;
+    }
+
+
+    .Training-yellow {
+        border-color: #e74c3c;
+    }
+
+    .lblValue {
+        font-size: 40px;
+    }
+
+
+    .table.dataTable thead th,
+    table.dataTable thead td {
+        padding: 10px 18px 10px 9px;
+    }
+
+
+    .nav > li > a {
+        padding: 7px 7px;
+    }
+
+    .table_tender_list_div {
+        padding: 20px;
+    }
+
+    .table_tender_pdf_div {
+        padding: 20px;
+    }
+
+    .table_tender_list tr th {
+        background-color: #6FB11D;
+        color: #fff;
+    }
+
+    .table_tender_pdf tr th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Tender Announcements </div>
+    </div>
+
+</div>
+
+
+<div class="container div-w99">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="container-fluid">
+                <!--First Row Start-->
+                <div class="">
+                    <ul id="myTabs1" class="nav nav-pills nav-justified d-flex" role="tablist" data-tabs="tabs">
+
+                        <li id="" class="active col-md-3 blue-box">
+                            <a href="javascript:;" data-target="#Commentary" data-toggle="tab">
+                                <div class="Training-blue training">
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <i class="fa fa-gavel"></i>
+                                            <h3>Active Bids</h3>
+                                            <div class=""><span id="" class="lblValue">@ViewBag.ActiveBids</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="col-md-3">
+                            <a href="javascript:;" data-target="#Videos" data-toggle="tab">
+                                <div class="Training-green training">
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <img src="~/Content/Website/images/banner/auction.png" />
+                                            <h3>Opening Today </h3>
+                                            <div class=""><span id="" class="lblValue">@ViewBag.openingToday</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="" class="col-md-3">
+                            <a href="javascript:;" data-target="#Events" data-toggle="tab">
+                                <div class="Training-orange training">
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <i class="fa fa-close"></i>
+                                            <h3>Closing Today</h3>
+                                            <div class=""><span id="" class="lblValue">@ViewBag.closeToday</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li id="" class="col-md-3">
+                            <a href="javascript:;" data-target="#Music" data-toggle="tab">
+                                <div class="Training-yellow training">
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <i class="fa fa-close"></i>
+                                            <h3>Closing in next 7 days</h3>
+                                            <div class=""><span id="" class="lblValue">@ViewBag.close7daysdata</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="pull-right">
+                        <a href="~/Tenders/E_Tender_Form" class="btn btn-success">Archived</a>
+                    </div>
+                    <div class="marquee-1">
+                        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                            <div class="marquee-content-items">
+
+                                <label style="font-size:18px">
+                                    “For latest updated bid document and other details,
+                                    prospective bidders must visit the relevant e-procurement
+                                    website for which URL is mentioned in the below given
+                                    table.”
+                                </label>
+                            </div>
+                        </marquee>
+                    </div>
+                </div>
+                <!--First Row End-->
+                <!-- 2nd row start-->
+                <div class="row" style="margin-top:40px;">
+                    <div class="col-md-12 ">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                                <div class="table-responsive">
+                                    <table id="example" class="mt-3 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Agency</th>
+                                                <th>Work and Activity</th>
+                                                <th>Method of Selection/Procurement (PP)</th>
+                                                <th>Category of Procurement (As categorised in PP)</th>
+                                                <th>Description of Service/Goods/Work</th>
+                                                <th>Office doing Procurement</th>
+                                                <th>Email address of concerned Office</th>
+                                                <th>Tender Ref. No.</th>
+                                                <th>Estimated Cost (in INR)</th>
+                                                <th>Date of publication of Tender Notice</th>
+                                                <th>Tender Id</th>
+                                                <th>Date of start of sale/download of Bid document</th>
+                                                <th>Date of end of sale/download of Bid document</th>
+                                                @*<th>Date of pre-bid meeting</th>*@
+                                                <th>Number of envelopes</th>
+                                                <th>Deadline of submission of bid</th>
+                                                <th>Bid opening date</th>
+                                                <th>E-procurement Website URL</th>
+                                                <th>Uploaded documents</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @if (ViewBag.activebidsdata != null)
+                                            {
+                                                foreach (var item in ViewBag.activebidsdata)
+                                                {
+                                                    <tr>
+
+                                                        <td>
+                                                            @*<img src="~/Content/WspImages/tendor 3.png" />*@
+                                                            @i
+                                                        </td>
+                                                        <td>
+                                                            @item.agency_name
+                                                        </td>
+                                                        <td>
+                                                            @item.activity_name
+                                                        </td>
+                                                        <td>
+                                                            @item.producrment_selection
+                                                        </td>
+                                                        <td>
+                                                            @item.category_of_procurement
+                                                        </td>
+                                                        <td>
+                                                            @item.description_service
+                                                        </td>
+                                                        <td>
+                                                            @item.rfp_date,@item.district_agency
+                                                        </td>
+                                                        <td>
+                                                            @item.email_office
+                                                        </td>
+                                                        <td>
+                                                            @item.tender_no
+                                                        </td>
+                                                        <td>
+                                                            @item.estimated_cost
+                                                        </td>
+                                                        <td>
+                                                            @item.bid_date
+                                                        </td>
+
+                                                        <td>
+                                                            @item.tender_id
+                                                        </td>
+                                                        <td>
+                                                            @item.bid_evalution_date
+                                                        </td>
+                                                        <td>
+                                                            @item.award_date
+                                                        </td>
+                                                        @*<td>
+                                                                @item.completion_date
+                                                            </td>*@
+
+                                                        <td>
+                                                            @item.noof_envelopes
+                                                        </td>
+                                                        <td>
+                                                            @item.deadline_date
+                                                        </td>
+                                                        <td>
+                                                            @item.bid_open_date
+                                                        </td>
+
+                                                        <td>
+
+                                                            <a href="https://@item.website_url" target="_blank">
+                                                                @item.website_url
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <ul>
+                                                                @{
+                                                                    if (item.filepath != null)
+                                                                    {
+
+                                                                        string[] temp = item.filepath.Split(',');
+
+                                                                        if (temp.Length != 0)
+                                                                        {
+                                                                            ii = 1;
+
+                                                                            foreach (var Abc in temp)
+                                                                            {
+                                                                                if (Abc != "")
+                                                                                {
+                                                                                    <li> @ii  .<a href="@Abc" target="_blank" download="">@item.filename </a></li>
+                                                                                    ii = ii + 1;
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                    }
+
+                                                                }
+                                                            </ul>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    i = i + 1;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr><td colspan="20" style="text-align:center;"> No Data</td> </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Videos">
+                                <div class="tbl-responsive">
+                                    <table id="example22" class=" display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>SNO</th>
+                                                <th>Agency</th>
+                                                <th>Work and Activity</th>
+                                                <th>Method of Selection/Procurement (PP)</th>
+                                                <th>Category of Procurement (As categorised in PP)</th>
+                                                <th>Description of Service/Goods/Work</th>
+                                                <th>Office doing Procurement</th>
+                                                <th>Email address of concerned Office</th>
+                                                <th>Tender Ref. No.</th>
+                                                <th>Estimated Cost (in INR)</th>
+                                                <th>Date of publication of Tender Notice</th>
+                                                <th>Teder Id</th>
+                                                <th>Date of start of sale/download of Bid document</th>
+                                                <th>Date of end of sale/download of Bid document</th>
+                                                @*<th>Date of pre-bid meeting</th>*@
+                                                <th>Number of envelopes</th>
+                                                <th>Deadline of submission of bid</th>
+                                                <th>Bid opening date</th>
+                                                <th>e-procurement Website URL</th>
+                                                <th>Uploaded documents</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (ViewBag.openingTodayData != null)
+                                            {
+                                                foreach (var item1 in ViewBag.openingTodayData)
+                                                {
+                                                    <tr>
+
+                                                        <td>
+                                                            @*<img src="~/Content/WspImages/tendor 3.png" />*@
+                                                            @j
+
+                                                        </td>
+                                                        <td>
+                                                            @item1.agency_name
+                                                        </td>
+                                                        <td>
+                                                            @item1.activity_name
+                                                        </td>
+                                                        <td>
+                                                            @item1.producrment_selection
+                                                        </td>
+                                                        <td>
+                                                            @item1.category_of_procurement
+                                                        </td>
+                                                        <td>
+                                                            @item1.description_service
+                                                        </td>
+                                                        <td>
+                                                            @item1.rfp_date
+                                                        </td>
+                                                        <td>
+                                                            @item1.email_office
+                                                        </td>
+                                                        <td>
+                                                            @item1.tender_no
+                                                        </td>
+                                                        <td>
+                                                            @item1.estimated_cost
+                                                        </td>
+                                                        <td>
+                                                            @item1.bid_date
+                                                        </td>
+
+                                                        <td>
+                                                            @item1.tender_id
+                                                        </td>
+                                                        <td>
+                                                            @item1.bid_evalution_date
+                                                        </td>
+                                                        <td>
+                                                            @item1.award_date
+                                                        </td>
+                                                        @*<td>
+                                                                @item1.completion_date
+                                                            </td>*@
+
+                                                        <td>
+                                                            @item1.noof_envelopes
+                                                        </td>
+                                                        <td>
+                                                            @item1.deadline_date
+                                                        </td>
+                                                        <td>
+                                                            @item1.bid_open_date
+                                                        </td>
+
+                                                        <td>
+
+                                                            <a href="https://@item1.website_url" target="_blank">
+                                                                @item1.website_url
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <ul>
+                                                                @{
+                                                                    if (item1.filepath != null)
+                                                                    {
+
+                                                                        string[] temp = item1.filepath.Split(',');
+
+                                                                        if (temp.Length != 0)
+                                                                        {
+                                                                            jj = 1;
+                                                                            foreach (var Abc in temp)
+                                                                            {
+                                                                                if (Abc != "")
+                                                                                {
+                                                                                    <li> @jj  .<a href="@Abc" target="_blank" download="">@item1.filename </a></li>
+                                                                                    jj = jj + 1;
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                    }
+
+                                                                }
+                                                            </ul>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    j = j + 1;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr> <td colspan="20" style="text-align:center;"> No Data</td> </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Events">
+                                <div class="tbl-responsive">
+                                    <table id="example33" class=" display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>SNO</th>
+                                                <th>Agency</th>
+                                                <th>Work and Activity</th>
+                                                <th>Method of Selection/Procurement (PP)</th>
+                                                <th>Category of Procurement (As categorised in PP)</th>
+                                                <th>Description of Service/Goods/Work</th>
+                                                <th>Office doing Procurement</th>
+                                                <th>Email address of concerned Office</th>
+                                                <th>Tender Ref. No.</th>
+                                                <th>Estimated Cost (in INR)</th>
+                                                <th>Date of publication of Tender Notice</th>
+                                                <th>Teder Id</th>
+                                                <th>Date of start of sale/download of Bid document</th>
+                                                <th>Date of end of sale/download of Bid document</th>
+                                                @*<th>Date of pre-bid meeting</th>*@
+                                                <th>Number of envelopes</th>
+                                                <th>Deadline of submission of bid</th>
+                                                <th>Bid opening date</th>
+                                                <th>e-procurement Website URL</th>
+                                                <th>Uploaded documents</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (ViewBag.closetodaydata != null)
+                                            {
+                                                foreach (var item2 in ViewBag.closetodaydata)
+                                                {
+                                                    <tr>
+
+                                                        <td>
+                                                            @*<img src="~/Content/WspImages/tendor 3.png" />*@
+                                                            @k
+                                                        </td>
+                                                        <td>
+                                                            @item2.agency_name
+                                                        </td>
+                                                        <td>
+                                                            @item2.activity_name
+                                                        </td>
+                                                        <td>
+                                                            @item2.producrment_selection
+                                                        </td>
+                                                        <td>
+                                                            @item2.category_of_procurement
+                                                        </td>
+                                                        <td>
+                                                            @item2.description_service
+                                                        </td>
+                                                        <td>
+                                                            @item2.rfp_date
+                                                        </td>
+                                                        <td>
+                                                            @item2.email_office
+                                                        </td>
+                                                        <td>
+                                                            @item2.tender_no
+                                                        </td>
+                                                        <td>
+                                                            @item2.estimated_cost
+                                                        </td>
+                                                        <td>
+                                                            @item2.bid_date
+                                                        </td>
+
+                                                        <td>
+                                                            @item2.tender_id
+                                                        </td>
+                                                        <td>
+                                                            @item2.bid_evalution_date
+                                                        </td>
+                                                        <td>
+                                                            @item2.award_date
+                                                        </td>
+                                                        @*<td>
+                                                                @item2.completion_date
+                                                            </td>*@
+
+                                                        <td>
+                                                            @item2.noof_envelopes
+                                                        </td>
+                                                        <td>
+                                                            @item2.deadline_date
+                                                        </td>
+                                                        <td>
+                                                            @item2.bid_open_date
+                                                        </td>
+
+                                                        <td>
+
+                                                            <a href="https://@item2.website_url" target="_blank">
+                                                                @item2.website_url
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <ul>
+                                                                @{
+                                                                    if (item2.filepath != null)
+                                                                    {
+
+                                                                        string[] temp = item2.filepath.Split(',');
+
+                                                                        if (temp.Length != 0)
+                                                                        {
+                                                                            kk = 1;
+                                                                            foreach (var Abc in temp)
+                                                                            {
+                                                                                if (Abc != "")
+                                                                                {
+                                                                                    <li> @kk  .<a href="@Abc" target="_blank" download="">@item2.filename </a></li>
+                                                                                    kk = kk + 1;
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                    }
+
+                                                                }
+                                                            </ul>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    k = k + 1;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr> <td colspan="20" style="text-align:center;"> No Data </td></tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Music">
+                                <div class="tbl-responsive">
+                                    <div class="tbl-responsive">
+                                        <table id="example44" class=" display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>SNO</th>
+                                                    <th>Agency</th>
+                                                    <th>Work and Activity</th>
+                                                    <th>Method of Selection/Procurement (PP)</th>
+                                                    <th>Category of Procurement (As categorised in PP)</th>
+                                                    <th>Description of Service/Goods/Work</th>
+                                                    <th>Office doing Procurement</th>
+                                                    <th>Email address of concerned Office</th>
+                                                    <th>Tender Ref. No.</th>
+                                                    <th>Estimated Cost (in INR)</th>
+                                                    <th>Date of publication of Tender Notice</th>
+                                                    <th>Teder Id</th>
+                                                    <th>Date of start of sale/download of Bid document</th>
+                                                    <th>Date of end of sale/download of Bid document</th>
+                                                    @*<th>Date of pre-bid meeting</th>*@
+                                                    <th>Number of envelopes</th>
+                                                    <th>Deadline of submission of bid</th>
+                                                    <th>Bid opening date</th>
+                                                    <th>e-procurement Website URL</th>
+                                                    <th>Uploaded documents</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (ViewBag.close7daysdatas != null)
+                                                {
+                                                    foreach (var item3 in ViewBag.close7daysdatas)
+                                                    {
+                                                        <tr>
+
+                                                            <td>
+                                                                @*<img src="~/Content/WspImages/tendor 3.png" />*@
+                                                                @l
+                                                            </td>
+                                                            <td>
+                                                                @item3.agency_name
+                                                            </td>
+                                                            <td>
+                                                                @item3.activity_name
+                                                            </td>
+                                                            <td>
+                                                                @item3.producrment_selection
+                                                            </td>
+                                                            <td>
+                                                                @item3.category_of_procurement
+                                                            </td>
+                                                            <td>
+                                                                @item3.description_service
+                                                            </td>
+                                                            <td>
+                                                                @item3.rfp_date
+                                                            </td>
+                                                            <td>
+                                                                @item3.email_office
+                                                            </td>
+                                                            <td>
+                                                                @item3.tender_no
+                                                            </td>
+                                                            <td>
+                                                                @item3.estimated_cost
+                                                            </td>
+                                                            <td>
+                                                                @item3.bid_date
+                                                            </td>
+
+                                                            <td>
+                                                                @item3.tender_id
+                                                            </td>
+                                                            <td>
+                                                                @item3.bid_evalution_date
+                                                            </td>
+                                                            <td>
+                                                                @item3.award_date
+                                                            </td>
+                                                            @*<td>
+                                                                    @item3.completion_date
+                                                                </td>*@
+
+                                                            <td>
+                                                                @item3.noof_envelopes
+                                                            </td>
+                                                            <td>
+                                                                @item3.deadline_date
+                                                            </td>
+                                                            <td>
+                                                                @item3.bid_open_date
+                                                            </td>
+
+                                                            <td>
+
+                                                                <a href="https://@item3.website_url" target="_blank">
+                                                                    @item3.website_url
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    @{
+                                                                        if (item3.filepath != null)
+                                                                        {
+
+                                                                            string[] temp = item3.filepath.Split(',');
+                                                                            //string[] temp_path = item3.filename.Split(',');
+
+                                                                            if (temp.Length != 0)
+                                                                            {
+                                                                                ll = 1;
+                                                                                foreach (var Abc in temp)
+                                                                                {
+                                                                                    if (Abc != "")
+                                                                                    {
+                                                                                        <li> @ll  .<a href="@Abc" target="_blank" download="">@item3.filename </a></li>
+                                                                                        ll = ll + 1;
+                                                                                    }
+                                                                                }
+                                                                            }
+
+                                                                        }
+
+                                                                    }
+                                                                </ul>
+                                                            </td>
+
+
+                                                        </tr>
+                                                        l = l + 1;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr><td colspan="20" style="text-align:center;"> No Data </td></tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*<div class="row">
+        <div class="col-md-12 col-sm-12 table_tender_list_div">
+            <table class="display table_tender_list table stripe row-border order-column   table-striped table-bordered dataTable no-footer">
+                <thead>
+                    <tr>
+                        <th>List of Files</th>
+
+                    </tr>
+
+                </thead>
+                <tbody id="Info">
+                </tbody>
+            </table>
+        </div>
+    </div>*@
+
+<script>
+    $(document).ready(function () {
+        Info();
+    });
+
+    function Info() {
+        var tr = '';
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Tenders/TenderImagesInfo',
+            data: '',
+            dataType: 'JSON',
+            success: function (response) {
+                
+                $("Error1").text('');
+                if (response.length != 0) {
+                    for (var i = 0; i < response.length; i++) {
+                        tr += '<tr><td><a href="' + response[i].file_part + '" target="_blank">  <span class="fa fa-eye">' + response[i].titlename + '</span></a></td></tr>';
+                        $('#Info').html(tr);
+                    }
+                }
+            }
+        });
+
+
+    }
+</script>

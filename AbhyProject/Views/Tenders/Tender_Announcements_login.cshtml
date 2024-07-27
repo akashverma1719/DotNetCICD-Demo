@@ -1,0 +1,1192 @@
+﻿@model IEnumerable<AbhyProject.Models.TenderDetails>
+@*@model IEnumerable<AbhyProject.Models.E_Tender>*@
+@{
+    ViewBag.Title = "Tender_Announcements_login";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<link href="/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script src="/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script src="/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+
+<link href="/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="/Scripts/jquery-3.3.1.min.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/tender_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/Tenders.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .msg {
+        color: red !important;
+        font-weight: bold;
+    }
+
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        border-top: 2px solid #62cb31;
+    }
+
+    .hpanel {
+        border: none !important;
+        box-shadow: none;
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+
+    .col-md-6 {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        width: 100px;
+    }
+
+    a.btn-primary {
+        width: 200px;
+    }
+
+    .btnlist {
+        margin-top: 10px;
+    }
+
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    .about-area .col-md-6:last-child {
+        padding-left: 15px;
+    }
+
+    p {
+        margin: 0;
+    }
+</style>
+<style>
+    .div-w99 {
+        max-width: 97% !important;
+        margin: auto;
+        width: 97% !important;
+        padding: 10px;
+    }
+
+
+
+    .nav-tabs {
+        border-bottom: 1px solid #e4e5e7;
+    }
+
+        .nav-tabs > li > a {
+            font-weight: 600;
+            color: #fff;
+            background-color: #30ABEC;
+            padding: 8px 10px;
+            border: 1px solid #eee;
+            border-bottom: none;
+        }
+
+        .nav-tabs > li a:hover {
+            background: transparent;
+        }
+
+        .nav-tabs > li.active > a,
+        .nav-tabs > li.active > a:hover,
+        .nav-tabs > li.active > a:focus {
+            border: 1px solid #e4e5e7;
+            border-bottom-color: transparent;
+        }
+
+    .tab-content {
+        border: 1px solid #cacaca;
+        border-top: none;
+        padding: 12px 16px;
+    }
+
+        .tab-content > .active,
+        .pill-content > .active {
+            display: block;
+        }
+
+        .tab-content p:last-child {
+            margin-bottom: 0;
+        }
+
+    .fade {
+        opacity: 1 !important;
+        transition: opacity .15s linear;
+    }
+
+    .tabs-section ul li > .active {
+        background: #ffffff !important;
+        color: #000000;
+    }
+
+    .nav-tabs > li > a i {
+        margin-right: 1px;
+        padding-right: 5px;
+    }
+
+    ul#myTabs2 > li.active::after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -15px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    ul#myTabs2 > li {
+        background-color: #3A99ED;
+        padding: 0px;
+    }
+
+        ul#myTabs2 > li.active > a,
+        ul#myTabs2 > li.active > a:focus,
+        ul#myTabs2 > li.active > a:hover {
+            color: #fff !important;
+            background-color: #2E578C !important;
+        }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        text-decoration: none;
+        background-color: #6FB11D;
+    }
+
+    ul#myTabs2 > li > a {
+        color: #fff;
+    }
+
+    body {
+        line-height: 24px;
+    }
+
+
+    .panel-title a .control-icon {
+        position: absolute;
+        right: 33px;
+        margin-top: -11px;
+    }
+
+    .panel-title a i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+    .fa-desktop, .fa-leaf {
+        padding: 5px;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    @@media (min-width: 0) {
+        .g-py-12 {
+            padding-top: 0.85714rem !important;
+            padding-bottom: 0.85714rem !important;
+        }
+
+        .g-px-20 {
+            padding-left: 1.42857rem !important;
+            padding-right: 1.42857rem !important;
+        }
+    }
+
+    .u-btn-primary {
+        color: #fff;
+        background-color: #527bcc;
+    }
+
+    p.btnhover > a:hover,
+    p.btnhover > a:active {
+        background-color: green;
+        color: #fff;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 400;
+        color: #337AB7;
+        font-family: inherit;
+    }
+
+    .Environmental_ul {
+        padding: 5px 5px 5px 40px;
+        list-style: disc;
+    }
+
+        .Environmental_ul > li {
+            list-style: disc;
+            padding: 2px 0px
+        }
+
+    .Environmental_ul_1 {
+        list-style: lower-alpha;
+        padding: 5px 5px 5px 40px;
+    }
+
+        .Environmental_ul_1 > li {
+            list-style: lower-alpha;
+            padding: 2px 0px;
+        }
+
+    .heding_Environmental {
+        padding: 10px 0px;
+        font-family: inherit;
+        color: purple;
+    }
+
+    .list-group-item {
+        border: 1px solid rgba(0,0,0,125);
+        color: #ffffff !important;
+        border-color: #eee;
+    }
+
+    ul.Etender {
+        margin-top: 20px;
+    }
+
+        ul.Etender > li {
+            padding: 5px 15px;
+            width: 50%;
+        }
+</style>
+<title>Tender Announcements</title>
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        //$("nav#primary-menu > ul.main-menu > li:nth-child(3)").addClass("active");
+        //$("nav#primary-menu > ul.main-menu > li:nth-child(3)").siblings().removeClass('active');
+        //$("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:first-child ").addClass("active");
+        //$("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:first-child").siblings().removeClass('active');
+        $('#example').DataTable();
+        $('#example22').DataTable();
+        $('#example33').DataTable();
+        $('#example44').DataTable();
+        $('#example55').DataTable();
+    });
+</script>
+
+
+<style>
+    @@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+    [class^="Training-"] {
+        background: #fff;
+        border-radius: 2px;
+        border: 2px solid #3498db;
+        position: relative;
+    }
+
+        [class^="Training-"] h3 {
+            font-size: 1.75rem;
+            line-height: 1.4;
+            font-family: 'Open Sans', sans-serif;
+            color: #000;
+        }
+
+        [class^="Training-"] .fa {
+            color: #000;
+        }
+
+    .Training-blue {
+        border-color: blue;
+    }
+
+    .Training-green {
+        border-color: green;
+    }
+
+    .Training-orange {
+        border-color: orange;
+    }
+
+    .Training-yellow {
+        border-color: #e74c3c;
+    }
+
+    .lblValue {
+        font-size: 40px;
+    }
+
+    .Training-blue .lblValue {
+        color: blue;
+    }
+
+    .Training-green .lblValue {
+        color: green;
+    }
+
+    .Training-orange .lblValue {
+        color: orange;
+    }
+
+    .Training-yellow .lblValue {
+        color: #e74c3c;
+    }
+
+    .table.dataTable thead th,
+    table.dataTable thead td {
+        padding: 10px 18px 10px 9px;
+    }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        text-decoration: none;
+        background-color: #6FB11D;
+    }
+
+    .nav > li > a {
+        padding: 7px 7px;
+    }
+
+    .nav-tabs > li {
+        float: none;
+    }
+</style>
+<div class="clearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/Home/index">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                </span>
+                                <label>Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                <label>WSP Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                            <label>Tender</label>
+
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Tender Announcements </div>
+        </div>
+        <div class="col-md-3" style=" color: #337ab7; font-size: 20px;text-align:right; font-family:raleway;margin-top:20px;font-weight:900">
+            <a href="~/WspNew/WSP_GWM_HOME" style="padding: 10px;"><i class="fa fa-angle-double-left"></i> back</a>
+        </div>
+    </div>
+
+
+    <div class="container div-w99">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabs-section">
+                    <!-- Nav Tabs -->
+                    <ul id="myTabs2" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+                        <li id="" style="margin: 6px 0;" class="active">
+                            <a href="javascript:;" data-target="#Commentary12" data-toggle="tab">
+                                Tender Announcements
+                            </a>
+                        </li>
+                        <li id="" style="margin: 6px 0;">
+                            <a href="javascript:;" data-target="#tender_awd" data-toggle="tab">
+                                Tender Award
+                            </a>
+                        </li>
+                        <li id="" style="margin: 6px 0;">
+                            <a href="javascript:;" data-target="#Videos12" data-toggle="tab">
+                                E-Tender
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tab panels -->
+                    <div class="tab-content">
+                        <!-- Tab Content 1 -->
+                        <div role="tabpanel" class="tab-pane fade in active" id="Commentary12">
+                            <div class="container-fluid" style="margin-top:20px;">
+                                <!--First Row Start-->
+                                <div class="row">
+                                    <ul id="myTabs1" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                                        <li id="" class="active col-md-3">
+                                            <a href="javascript:;" data-target="#Commentary" data-toggle="tab">
+                                                <div class="Training-blue">
+                                                    <div class="panel-body">
+                                                        <div class="text-center">
+                                                            <i class="fa fa-gavel"></i>
+                                                            <h3>Active Bids</h3>
+                                                            <div class=""><span id="tbl_activebitsdays" class="lblValue"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="col-md-3">
+                                            <a href="javascript:;" data-target="#Videos" data-toggle="tab">
+                                                <div class="Training-green">
+                                                    <div class="panel-body">
+                                                        <div class="text-center">
+                                                            <img src="~/Content/Website/images/banner/auction.png" />
+                                                            <h3>Opening Today </h3>
+                                                            <div class=""><span id="tbl_openingdays" class="lblValue"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li id="" class="col-md-3">
+                                            <a href="javascript:;" data-target="#Events" data-toggle="tab">
+                                                <div class="Training-orange">
+                                                    <div class="panel-body">
+                                                        <div class="text-center">
+                                                            <i class="fa fa-close"></i>
+                                                            <h3>Closing Today</h3>
+                                                            <div class=""><span id="tbl_closingdays" class="lblValue"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li id="" class="col-md-3">
+                                            <a href="javascript:;" data-target="#Music" data-toggle="tab">
+                                                <div class="Training-yellow">
+                                                    <div class="panel-body">
+                                                        <div class="text-center">
+                                                            <i class="fa fa-close"></i>
+                                                            <h3>Closing in next 7 days</h3>
+                                                            <div class=""><span id="tbl_closingoneweekdays" class="lblValue"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--First Row End-->
+                                <div class="row">
+                                    <div class="hpanel">
+
+
+                                        <div class="panel-body">
+
+                                            <div class="row">
+                                                <div class="col-md-12 text-right msg">
+                                                    * Fields are mandatory
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Development Area : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="development_area" type="text" maxlength="50" id="development_area" class="form-control alphanum" placeholder="Enter your development area" required>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                Bid Reference Number : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="bid_ref_no" type="text" maxlength="50" id="bid_ref_no" class="form-control alphanum" placeholder="Enter your bid reference number" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Description : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="description" type="text" maxlength="50" id="description" class="form-control" placeholder="Enter your description" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Office Inviting Tender : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="office_inviting_tender" type="text" maxlength="50" id="office_inviting_tender" class="form-control alphanum" placeholder="Enter your office inviting tender" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Office Email Id : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="office_emailid" type="text" maxlength="50" id="office_emailid" class="form-control mail" placeholder="Enter your office email ID " required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Published Date   : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="publish_date" type="date" maxlength="50" id="publish_date" class="form-control" placeholder="Enter your published date " required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Tender Reference Number : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="tender_ref_no" type="text" maxlength="50" id="tender_ref_no" class="form-control alphanum" placeholder="Enter your tender reference number" required>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                Website URL : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                                <input name="url" type="text" maxlength="50" id="url" class="form-control" placeholder="Enter your website URL" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Sale Start Date and Time : <span class="msg">*</span>
+                                                <div class="input-container input-append date form_datetime">
+                                                    <input type='date' class="form-control" name="sale_start_datetime" maxlength="100" id="sale_start_datetime" placeholder="Enter your sale start date and time " required />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                Sale End Date and Time : <span class="msg">*</span>
+                                                <div class="input-container input-append date form_datetime">
+                                                    <input name="sale_end_datetime" type="date" maxlength="100" id="sale_end_datetime" class="form-control" placeholder="Enter your sale end date and time" required>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Last Submission Date and Time : <span class="msg">*</span>
+                                                <div class="input-container input-append date form_datetime">
+                                                    <input name="last_submission_datetime" type="date" maxlength="50" id="last_submission_datetime" class="form-control" placeholder="Enter your last submission date and time" required>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Opening Start Date and Time : <span class="msg">*</span>
+                                                <div class="input-container input-append date form_datetime">
+                                                    <input name="opening_start_datetime" type="date" maxlength="50" id="opening_start_datetime" class="form-control" placeholder="Enter your opening start date and time" required>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group text-center  col-md-12">
+                                                <input type="button" name="" value="Submit" onclick="Save_Tender_Announsements()" id="" class="btn btn-primary " style="font-weight:700">
+
+                                            </div>
+
+                                            <div style="text-align:center;color:red;"><label id="TenderAnnouncements_Error"></label></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- 2nd row start-->
+                                <div class="row" style="margin-top:40px;">
+                                    <div class="col-md-12 ">
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                                                <div class="tbl-responsive">
+                                                    <table id="example" class=" display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Icon
+                                                                </th>
+                                                                <th>
+                                                                    Development Area
+                                                                </th>
+                                                                <th>Bid Reference Number</th>
+                                                                <th>Description</th>
+                                                                <th>Office Inviting Tender</th>
+                                                                <th>Office Email Id</th>
+                                                                <th>Publish Date</th>
+                                                                <th>Tender Reference Number</th>
+                                                                <th>Website URL</th>
+                                                                <th>Sale Start Date and Time</th>
+                                                                <th>Sale End Date and Time</th>
+                                                                <th>Last Submission Date and Time</th>
+                                                                <th>Opening Start Date and Time</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_TenderAnnountsData">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="Videos">
+                                                <div class="tbl-responsive">
+                                                    <table id="example22" class=" display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Icon
+                                                                </th>
+                                                                <th>
+                                                                    Development Area
+                                                                </th>
+                                                                <th>Bid Reference Number</th>
+                                                                <th>Description</th>
+                                                                <th>Office Inviting Tender</th>
+                                                                <th>Office Email Id</th>
+                                                                <th>Publish Date</th>
+                                                                <th>Tender Reference Number</th>
+                                                                <th>Website URL</th>
+                                                                <th>Sale Start Date and Time</th>
+                                                                <th>Sale End Date and Time</th>
+                                                                <th>Last Submission Date and Time</th>
+                                                                <th>Opening Start Date and Time</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @if (ViewBag.openingTodayData != null)
+                                                            {
+                                                                foreach (var item1 in ViewBag.openingTodayData)
+                                                                {
+                                                                    <tr>
+
+                                                                        <td>
+                                                                            <img src="~/Content/WspImages/tendor 3.png" />
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.development_area
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.bid_ref_no
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.description
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.office_inviting_tender
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.office_emailid
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.publish_date
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.tender_ref_no
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <a href="https://@item1.url">
+                                                                                @item1.url
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.sale_start_datetime
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.sale_end_datetime
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.last_submission_datetime
+                                                                        </td>
+                                                                        <td>
+                                                                            @item1.opening_start_datetime
+                                                                        </td>
+
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <tr> <td colspan="11" style="text-align:center;"> No Data</td> </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="Events">
+                                                <div class="tbl-responsive">
+                                                    <table id="example33" class=" display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Icon
+                                                                </th>
+                                                                <th>
+                                                                    Development Area
+                                                                </th>
+                                                                <th>Bid Reference Number</th>
+                                                                <th>Description</th>
+                                                                <th>Office Inviting Tender</th>
+                                                                <th>Office Email Id</th>
+                                                                <th>Publish Date</th>
+                                                                <th>Tender Reference Number</th>
+                                                                <th>Website URL</th>
+                                                                <th>Sale Start Date and Time</th>
+                                                                <th>Sale End Date and Time</th>
+                                                                <th>Last Submission Date and Time</th>
+                                                                <th>Opening Start Date and Time</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @if (ViewBag.closetodaydata != null)
+                                                            {
+                                                                foreach (var item2 in ViewBag.closetodaydata)
+                                                                {
+                                                                    <tr>
+
+                                                                        <td>
+                                                                            <img src="~/Content/WspImages/tendor 3.png" />
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.development_area
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.bid_ref_no
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.description
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.office_inviting_tender
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.office_emailid
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.publish_date
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.tender_ref_no
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <a href="https://@item2.url">
+                                                                                @item2.url
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.sale_start_datetime
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.sale_end_datetime
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.last_submission_datetime
+                                                                        </td>
+                                                                        <td>
+                                                                            @item2.opening_start_datetime
+                                                                        </td>
+
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <tr> <td colspan="11" style="text-align:center;"> No Data </td></tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="Music">
+                                                <div class="tbl-responsive">
+                                                    <div class="tbl-responsive">
+                                                        <table id="example44" class=" display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        Icon
+                                                                    </th>
+                                                                    <th>
+                                                                        Development Area
+                                                                    </th>
+                                                                    <th>Bid Reference Number</th>
+                                                                    <th>Description</th>
+                                                                    <th>Office Inviting Tender</th>
+                                                                    <th>Office Email Id</th>
+                                                                    <th>Publish Date</th>
+                                                                    <th>Tender Reference Number</th>
+                                                                    <th>Website URL</th>
+                                                                    <th>Sale Start Date and Time</th>
+                                                                    <th>Sale End Date and Time</th>
+                                                                    <th>Last Submission Date and Time</th>
+                                                                    <th>Opening Start Date and Time</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (ViewBag.close7daysdatas != null)
+                                                                {
+                                                                    foreach (var item3 in ViewBag.close7daysdatas)
+                                                                    {
+                                                                        <tr>
+
+                                                                            <td>
+                                                                                <img src="~/Content/WspImages/tendor 3.png" />
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.development_area
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.bid_ref_no
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.description
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.office_inviting_tender
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.office_emailid
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.publish_date
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.tender_ref_no
+                                                                            </td>
+                                                                            <td>
+
+                                                                                <a href="https://@item3.url">
+                                                                                    @item3.url
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.sale_start_datetime
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.sale_end_datetime
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.last_submission_datetime
+                                                                            </td>
+                                                                            <td>
+                                                                                @item3.opening_start_datetime
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <tr><td colspan="11" style="text-align:center;"> No Data </td></tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tab Content 3 -->
+                        <div role="tabpanel" class="tab-pane fade" id="tender_awd">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="content">
+                                        <div class="col-lg-12">
+                                            <div class="hpanel">
+
+
+                                                <div class="panel-body">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-right msg">
+                                                            * Fields are mandatory
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        Agency Name : <span class="msg">*</span>
+
+                                                        <input name="agency" type="text" maxlength="50" id="agency" class="form-control alphanum" placeholder="Enter your agency name" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        Tender Awarded Date : <span class="msg">*</span>
+
+                                                        <input name="contract_award_date" type="date" maxlength="100" id="contract_award_date" class="form-control" placeholder="Enter your tender awarded date " required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        Package Number : <span class="msg">*</span>
+                                                        <input name="package_no" type="text" maxlength="50" id="package_no" class="form-control alphanum" placeholder="Enter your package number" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        Tender Amount(in Rs) : <span class="msg">*</span>
+                                                        <input name="contract_amount" type="text" maxlength="100" id="contract_amount" class="form-control decimal" placeholder="Enter your tender amount" required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        Package Name : <span class="msg">*</span>
+
+                                                        <input name="packagename" type="text" maxlength="50" id="packagename" class="form-control alphanum" placeholder="Enter your package name " required>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        Name of Consultant/Supplier/Contractor : <span class="msg">*</span>
+                                                        <input name="name_of_consultant" type="text" maxlength="50" id="name_of_consultant" class="form-control" placeholder="Enter the name of your consultant/supplier/contractor" required>
+                                                    </div>
+
+                                                    <div class="form-group  text-center col-md-12">
+                                                        <input type="button" name="" value="Submit" onclick="Save_Tender_Award()" id="" class="btn btn-primary" style="font-weight: 700;">
+
+                                                    </div>
+
+                                                    <div style="text-align:center;color:red;"><label id="TenderAwardError"></label></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row Training2 upload2 ">
+                                        <div class="col-md-2" style="padding:8px;">
+                                            <label>Agency Name :</label>
+                                        </div>
+
+                                        <div class="col-md-6" style="padding:0px;">
+
+                                            @*@Html.DropDownList("Agency", (IEnumerable<SelectListItem>)ViewBag.DD, "--Select Agency--", new { id = "Agency", @class = "form-control" })*@
+
+                                            <select name="Agency" id="Agency" class="form-control">
+                                                <option value="0">--Select Agency--</option>
+                                                <option>Delhi</option>
+                                                <option>Gujarat</option>
+                                                <option>Haryana</option>
+                                                <option>Karnataka</option>
+                                                <option>Madhya Pradesh</option>
+                                                <option>Maharashtra</option>
+                                                <option>Rajasthan</option>
+                                                <option>Uttar Pradesh</option>
+
+                                            </select>
+
+
+                                            @*@Html.DropDownList("Agency", (IEnumerable<SelectListItem>)ViewBag.DD, "--Select Agency--", new { id = "Agency", @class = "form-control", @onchange = "Checking()" })*@
+
+                                        </div>
+                                        <div class="col-md-2">
+                                            @*<input type="submit" value="search" class="btn btn-primary" style="width:100px;" />*@
+                                            <button type="button" value="search" class="btn btn-primary" onclick="Search_Agency_Info()">search</button>
+                                        </div>
+                                        <div style="text-align:center;color:red;"><label id="TenderAgencyError"></label></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="tbl-responsive">
+                                        <table id="example55" class=" display  table stripe row-border order-column  table-striped table-bordered dataTable no-footer" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Package Number</th>
+                                                    <th>Package Name</th>
+                                                    <th>Tender Awarded Date</th>
+                                                    <th>Tender Amount (in Rs)</th>
+                                                    <th>Name of Consultant/Supplier/Contractor</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbl_tenderawards_Info">
+
+                                                <!--Rows here-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Tab Content 2 -->
+                        <div role="tabpanel" class="tab-pane fade" id="Videos12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="hpanel">
+
+                                        <div class="panel-body">
+
+                                            <div class="row">
+                                                <div class="col-md-12 text-right msg">
+                                                    * Fields are mandatory
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Name : <span class="msg">*</span>
+                                                <input type="text" class="form-control " id="EntenderUserName" placeholder="Enter your Name" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                State : <span class="msg">*</span>
+                                                <input name="CompanyName" type="text" maxlength="50" id="Etenderstate" class="form-control alpha" value="@Session["gstate"]" placeholder="Enter your state" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Title : <span class="msg">*</span>
+                                                <input name="title" type="text" maxlength="100" id="Etendertitle" class="form-control alpha" placeholder="Enter your title " required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                Website URL : <span class="msg">*</span>
+                                                <input name="NodalOfficer" type="text" id="Etenderurl" class="form-control " placeholder="Enter your website URL" required>
+                                            </div>
+
+                                            <div class="form-group text-center  col-md-12">
+                                                <input type="button" name="" value="Submit" onclick="Save_E_Tender_Data()" id="" class="btn btn-primary " style="font-weight:700">
+
+                                            </div>
+
+                                            <div style="text-align:center;color:red;"><label id="Etender_Error"></label></div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <p style="font-size:16px; color:black;">
+                                        The e-procurement system of all the states wherein Bank has carried out system assessment and found acceptable are as follows:
+                                    </p>
+                                    <div class="tbl-responsive">
+                                        <table id="ETender_Tbl" class=" display  table stripe row-border order-column  table-striped table-bordered dataTable no-footer" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.NO</th>
+                                                    <th>Website Name</th>
+                                                    <th>Website Link</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbl_Etender_Info">
+
+                                                <!--Rows here-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Tab Panels -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 table_tender_pdf_div">
+            <table class="display table_tender_pdf  table stripe row-border order-column   table-striped table-bordered dataTable no-footer">
+                <thead>
+                    <tr>
+                        <th>Title of PDF</th>
+                        <th>Upload PDF</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="pdftitle" class="form-control" placeholder="Enter the Title of the pdf" /></td>
+                        <td>
+
+                            <input type="file" name="files" id="files">
+                            <button type="button" class="btn btn-success upload_button" name="submit" onclick="Upload()">Upload</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div style="text-align:center;color:red;"><label id="Error1" style="text-align:center;color:red;"></label></div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 table_tender_list_div">
+            <table class="display table_tender_list table stripe row-border order-column   table-striped table-bordered dataTable no-footer">
+                <thead>
+                    <tr>
+                        <th>List of Files</th>
+
+                    </tr>
+
+                </thead>
+                <tbody id="Info">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Tenders</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+

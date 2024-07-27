@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "External_file_upload";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+<title>MIS Login</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+<!-- Google Fonts
+
+   ============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
+
+<!-- All css files are included here
+============================================ -->
+<!-- Bootstrap CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/bootstrap.min.css">
+
+<!-- This core.css file contents all plugins css file
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/core.css">
+
+<!-- Theme shortcodes/elements style
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/shortcode/shortcodes.css">
+
+<!--  Theme main style
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/style.css">
+
+<!-- Responsive CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/responsive.css">
+
+<!-- Style Customizer CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/Website/css/style-customizer.css">
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+
+<link href="~/Content/css/Ataljalheader.css" rel="stylesheet" />
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<!--favicon end-->
+
+
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-8">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+
+                        <li>
+                            <span>
+                                <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="Javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="https://forms.gle/k5pHsGLwPpPdCbmU7" target="_blank" style="color:#fff;font-size:16px">
+                            Data Disclosure Modalities Questionnaire
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-7" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                            </span>
+                            <label>Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+                    <li>
+
+                        <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                        <label>External File</label>
+
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</header>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Content/JS_Files/core.js"></script>
+<script src="~/Content/JS_Files/ExternalFiles.js"></script>
+
+
+<div class="row container-fluid">
+    <div class="col-md-12 col-sm-12">
+        <div class="selectdistshowoption" id="Select_dist_level">
+            <label style="text-align:center;color:red;" id="Error_"></label>
+            <ul class="Select_option selectbackhome">
+                <li id="StateLabel">
+                    <label id="lblstate">State:</label>
+
+                </li>
+                <li id="StateDropdownLabel">
+                    <select class="form-control" id="drpState" onchange="State_Dropdown_Function(this.value)"></select>
+                </li>
+
+                <li id="DistLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label id="lbldistrict">District:</label>
+
+                </li>
+
+                <li id="DistDropdownLabel">
+
+                    <select class="form-control" id="dist11" onchange="Dist_fun(this.value)"></select>
+                </li>
+
+                <li id="BlockLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Block:</label>
+
+                </li>
+
+                <li id="BlockDropdownLabel">
+
+                    <select class="form-control" id="block1" onchange="Block_fun(this.value)"></select>
+                </li>
+                <li id="GramLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Gram panchayat:</label>
+
+                </li>
+
+                <li id="GramDropdownLabel">
+
+                    <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
+                </li>
+                <li id="DropdownSearch_btn">
+                    <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <div class="row database_trainer_row" style="">
+            <div class="col-md-6 col-sm-6">
+                <label for="lname">Upload File:<span style="color:red">only .csv,.xls,.xlsx files </span></label>
+            </div>
+            <div class="col-md-5 col-sm-6">
+                <input type="file" name="fileToUpload" id="ar_file_upload" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                @*<button type="submit" class="btn btn-primary upload_button_excel" name="Upload"> Upload </button>*@
+                @*<button type="button" class="btn btn-success upload_button_excel" name="Upload" onclick="Download_Ar_File()"> Download Excel </button>*@
+
+            </div>
+        </div>
+
+
+        <div class="row database_trainer_row_button">
+            <div class="col-md-12 col-sm-12 text-center">
+                @*<a href="~/WSPHOME/WspDemandside" class="btn btn-danger">Back</a>*@
+                <button class="btn btn-success" id="SAVE_BTN2" onclick="SaveAR_Info()">Save</button>
+                @*<button class="btn btnNext" id="" name="" type="button">Next</button>*@
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        $(document).ready(function () {
+           Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.StateList));
+           BindStates();
+        });
+
+    </script>
+

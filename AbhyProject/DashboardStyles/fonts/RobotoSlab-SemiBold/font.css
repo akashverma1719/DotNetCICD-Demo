@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'RobotoSlab-SemiBold';
+  src: url('RobotoSlab-SemiBold.eot');
+  src: url('RobotoSlab-SemiBold.eot?#iefix') format('embedded-opentype'),
+       url('RobotoSlab-SemiBold.svg#RobotoSlab-SemiBold') format('svg'),
+       url('RobotoSlab-SemiBold.ttf') format('truetype'),
+       url('RobotoSlab-SemiBold.woff') format('woff'),
+       url('RobotoSlab-SemiBold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

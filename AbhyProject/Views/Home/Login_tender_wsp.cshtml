@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Login_tender_wsp";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .login_tender_wsp_div {
+        /*padding: 30px;
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #ddd;*/
+    }
+
+    .login_tender_wsp_Main_div .box-content {
+        text-align: center;
+    }
+
+    .login_tender_wsp_Main_div {
+        position: absolute;
+        top: 40%;
+        left: 0;
+        right: 0;
+    }
+
+    .backbutton_div {
+        text-align: right;
+        margin-top: 20px;
+    }
+
+        .backbutton_div > ul {
+            list-style: none;
+        }
+
+            .backbutton_div > ul > li {
+                display: inline-block;
+                padding-right: 10px;
+            }
+
+                .backbutton_div > ul > li > a > i {
+                    padding-right: 5px;
+                }
+
+    .login_tender_wsp_Main_div > .col-md-12 > .col-md-4 > .card_img > a > img {
+        width: 100%
+    }
+
+    .card_img:hover {
+        transition: all .2s ease-in-out;
+        transform: scale(1.1);
+        border-radius: 0.7em;
+    }
+</style>
+<div class="clearfix">
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="backbutton_div">
+                <ul>
+                    <li>
+                        <a class="btn btn-primary" href="~/home/index"><i class="fa fa-angle-double-left"></i>Back to Home</a>
+                    </li>
+                    <li><a class="" title="Logout" href="~/home/MisLogin"><i class="fa fa-power-off"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class=" container login_tender_wsp_Main_div">
+            <div class="col-md-12 ">
+                <div class="col-md-4">
+                    <div class="card_img">
+                        <a href="~/Wsp_new/WSPHOME">
+                            <img src="~/Content/images_new/water security_1280.png" />
+                            @*<div class="layout-box login_tender_wsp_div"></div>*@
+                        </a>
+                    </div>
+                    <div class="box-content">
+                        <h3>Water Security Plan</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card_img">
+                        <a href="~/WSP/ReWsp_gm">
+                            <img src="~/Content/images_new/ground water monitering_1280.png" />
+
+                        </a>
+                    </div>
+                    <div class="box-content">
+                        <h3>Ground Water Monitoring</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card_img">
+                        <a href="~/Tenders/Tender_Announcements">
+                            <img src="~/Content/images_new/tendors 1280.png" />
+
+                        </a>
+                    </div>
+                    <div class="box-content">
+                        <h3>Tenders</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

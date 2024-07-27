@@ -1,0 +1,665 @@
+﻿@{
+    ViewBag.Title = "admin_FrameWork_Matrix";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<meta name="viewport" content="width=device-width" />
+<title>FrameWork Matrix</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<link href="~/Content/css/Dli_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .tableheadeer_10 {
+        padding: 8px 40px 8px 8px !important;
+    }
+
+    .tableheadeer_101 {
+        padding: 8px 100px 8px 8px !important;
+    }
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader" style="display:none">
+        <img src="~/Content/WspImages/loader.gif" height="300" width="300" />
+    </div>
+</div>
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+                        <li>
+                            <span>
+                                <a href="http://ataljal.mowr.gov.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                        @if (Session["UserName"] != null)
+                        {
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                        }
+
+                    </li>
+                    <li>
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/WspNew/WSP_GWM_HOME">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                            </span>
+                            <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                        <label>Framework Matrix</label>
+
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul id="myTabs" class="nav nav-pills nav-justified">
+                    <li class="active">
+                        <a href="javascript:;">
+                            <span> @*<img src="~/Content/WspImages/draft new 1.png" />*@</span>Framework Matrix
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section style="padding-bottom:40px;">
+    <div class="clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">
+                    Framework Matrix<span class="pull-right">
+
+                        <a href="~/WSPHome/Monitoring_evaluation" class="btn btn-success"><i class="zmdi zmdi-hc-lg  fa fa-angle-double-left"> </i> Back To Modules</a>
+
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Accordion -->
+                    <div class="panel-group" id="accordion">
+
+                        <div class="panel panel-default">
+                            <div id="collapse-one" class="panel-collapse in">
+                                <div class="panel-body">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="selectdistshowoption">
+                                            <ul class="Select_option selectbackhome">
+                                                <li id="State_Value">
+                                                    <label id="lblstate">State:</label>
+                                                    <span id="spnstate">@Session["gstate"]</span>
+                                                </li>
+                                                <li id="State_Dropdown_value">
+                                                    <select name="State_Dropdownvalue" id="State_Dropdownvalue" class="state form-control">
+                                                        <option value="0">Select State</option>
+                                                        <option textue="ALL">ALL</option>
+                                                        <option textue="Gujarat">Gujarat</option>
+                                                        <option textue="Haryana">Haryana</option>
+                                                        <option textue="Madhya Pradesh">Madhya Pradesh</option>
+                                                        <option textue="Maharashtra">Maharashtra</option>
+                                                        <option textue="Rajasthan">Rajasthan</option>
+                                                        <option textue="Uttar Pradesh">Uttar Pradesh</option>
+                                                        <option textue="Karnataka">Karnataka</option>
+                                                    </select>
+                                                    @*<select id="State_Dropdownvalue" class="form-control"></select>*@
+                                                </li>
+                                                <li>
+                                                    <button class="btn btn-danger btn_disabled" onclick="Download_StateInfo()">Export Excel</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center headeings">
+                                        <h3>Result Area </h3>
+                                        <h4>Atal Bhujal Yojana: Results FrameWork Matrix: Baseline and Target Values of Indicators</h4>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 objectiveclass">
+                                        <h5>Objective: To improve management of groundwater resources in the selected States</h5>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="tbl-responsive">
+                                            <table class="table  FrameWork_Matrix_table  table-hover row-border order-column table-striped table-bordered  no-footer" id="myTable01" style="        border: 1px solid #dddddd;
+        margin-top: 10px;
+">
+                                                <thead>
+                                                    <tr class="tableheader1">
+
+
+                                                        <th> Indicators Name</th>
+                                                        <th>Intermediate Results (IR) Indicators </th>
+                                                        <th>Unit of Measurement</th>
+                                                        <th>Baseline</th>
+                                                        <th>Achievement (2020-2021)</th>
+                                                        <th>Achievement (2021-2022)</th>
+                                                        <th>Achievement (2022-2023)</th>
+                                                        <th>Achievement (2023-2024)</th>
+                                                        <th>Achievement (2024-2025)</th>
+                                                        <th>Cumulative Achievements(2020-2025)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="tablebaody">
+
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                            Indicator 1: States with improved groundwater monitoring and
+                                                            disclosure of groundwater data
+                                                        </td>
+                                                        <td></td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_baseline" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_20_21" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_21_22" class="form-control decimal" placeholder="Enter number"  readonly/> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_22_23" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_23_24" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_24_25" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_cumulative" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td></td>
+                                                        <td>
+                                                            1.1: Blocks with online groundwater
+                                                            quality and water-level monitoring reports made publicly available
+                                                        </td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_1_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_1_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_1_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_1_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_1_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_1_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_1_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td></td>
+                                                        <td>
+                                                            1.2: State-level accredited groundwater
+                                                            quality labs
+                                                        </td>
+
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_2_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_2_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_2_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_2_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_2_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_2_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli1_1_2_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                            Indicator 2: GPs with Community-led
+                                                            WSPs prepared and approved
+                                                        </td>
+                                                        <td></td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td></td>
+                                                        <td>2.1: GP-level water budgets completed</td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_1_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_1_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_1_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_1_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_1_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_1_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_2_1_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                            Indicator 3: Direct Program
+                                                            beneficiaries
+                                                        </td>
+                                                        <td>
+                                                        </td>
+
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                            (3a) of which women
+                                                        </td>
+                                                        <td>
+                                                        </td>
+
+                                                        <td class="tdverticalline">%</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3a_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3a_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3a_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3a_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3a_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3a_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3a_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            3.1: People benefitting from demand-
+                                                            side measures
+                                                        </td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            (3.1a) of which women
+                                                        </td>
+                                                        <td class="tdverticalline">%</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1a_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1a_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1a_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1a_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1a_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1a_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli2_3_1a_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                            Indicator 4: GPs which have adopted participatory groundwater
+                                                            management
+
+                                                        </td>
+                                                        <td></td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td></td>
+                                                        <td>
+                                                            4.1: WUAs or other village-level water
+                                                            committees established and functioning
+                                                        </td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_1_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_1_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_1_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_1_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_1_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_1_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_1_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            4.2: Women’s representation in WUAs
+                                                            or other village-level water committees
+
+                                                        </td>
+
+                                                        <td class="tdverticalline">%</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_2_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_2_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_2_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_2_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_2_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_2_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_2_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            4.3: Women in decision-making roles within WUAs (President, Vice President,
+                                                            Secretary, and Treasurer)
+
+                                                        </td>
+
+                                                        <td class="tdverticalline">%</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_3_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_3_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_3_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_3_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_3_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_3_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_3_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                        </td>
+                                                        <td>
+                                                            4.4: Wells with functioning meters for monitoring groundwater level (observation wells), volumetric water
+                                                            use, or energy use
+
+                                                        </td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_4_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_4_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_4_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_4_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_4_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_4_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli3_4_4_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                            Indicator 5: Area with reduction in
+                                                            water consumption
+                                                        </td>
+                                                        <td></td>
+                                                        <td class="tdverticalline">Hectares</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td></td>
+                                                        <td>
+                                                            5.1: Area provided with new/improved
+                                                            irrigation or drainage services
+                                                            made publicly available
+                                                        </td>
+                                                        <td class="tdverticalline">Hectares</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_1_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_1_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_1_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_1_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_1_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_1_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli4_5_1_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td>
+                                                            Indicator 6: Blocks with arrest in the
+                                                            declining trend of groundwater levels
+
+                                                        </td>
+                                                        <td></td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_baseline" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_20_21" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_21_22" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_22_23" class="form-control decimal" placeholder="Enter number" readonly/> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_23_24" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_24_25" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_cumulative" class="form-control decimal" placeholder="Enter number" readonly /> </td>
+                                                    </tr>
+                                                    <tr class="tableheader1">
+
+                                                        <td></td>
+                                                        <td>
+                                                            6.1: Blocks that show reduction in stage
+                                                            of groundwater development
+
+                                                        </td>
+                                                        <td class="tdverticalline">Number</td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_1_baseline" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_1_20_21" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_1_21_22" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_1_22_23" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_1_23_24" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_1_24_25" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                        <td class="tdverticalline"><input type="text" id="dli5_6_1_cumulative" class="form-control decimal" placeholder="Enter number" /> </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="text-center" style="padding-top:5px;">
+                                        <button class="btn btn-success btn_disabled" onclick="admin_FrameWork_Matrix_Info()"><i class="fa fa-save"></i> Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<section>
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Framework Matrix</span>
+
+            </li>
+        </ul>
+
+    </div>
+</section>
+<script src="~/Scripts/validations.js"></script>
+@*<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>*@
+<script src="~/Content/JS_Files/admin_frameworkmatrix.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>*@
+
+<script src="~/Content/JS_Files/jquery.fixedheadertable.js"></script>
+<script src="~/Content/JS_Files/fixedheadertable.js"></script>
+
+@*<script src="http://www.fixedheadertable.com/js/jquery.fixedheadertable.js"></script>
+    <script src="http://www.fixedheadertable.com/js/fixedheadertable.js"></script>*@
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('[id^="menu-"][class*="-info"]').hide();
+    }, 500);
+    $('#myTable01').fixedHeaderTable({
+        footer: false,
+        //cloneHeadToFoot: true,
+        altClass: 'odd',
+        //autoShow: false
+    });
+
+
+</script>
+
+
+
+
+<script src="jquery-3.6.1.min.js"></script>
+<script>
+    var Session_StateName = "";
+    var Access_Auth = '';
+    $(document).ready(function () {
+        
+        Access_Auth = '@Session["Access_Auth"]';
+        if (Access_Auth == 'readonly') {
+            $('.btn_disabled').prop("disabled", true);
+        }
+        $('#State_Dropdown_value').hide();
+        $('#State_Value').hide();
+        Session_StateName = '@Session["gstate"]';
+        if (Session_StateName == "0") {
+
+            $('#State_Dropdown_value').show();
+            $('#State_Value').hide();
+        }
+       else if (Session_StateName == "") {
+
+            $('#State_Dropdown_value').show();
+            $('#State_Value').hide();
+        }
+        else {
+            $('#State_Dropdown_value').hide();
+            $('#State_Value').show();
+            admin_framematrix();
+            Dli_1_Details();
+            Dli_2_Details();
+            Total_Population_of_the_GP_Info();
+            //Socio_economic_demographic_profile_Info();
+            //vwms_Info();
+            //baselinedata_geting();
+            Dli_4_Details();
+            Dli_5_Details();
+        }
+
+
+    });
+
+
+    $("#State_Dropdownvalue").change(function () {
+
+        $('.loader').show();
+        
+        var Session_StateName1 = $("#State_Dropdownvalue").val();
+        if (Session_StateName1 != "0") {
+            $('#spnstate').text(Session_StateName);
+            Session_StateName = Session_StateName1;
+            admin_framematrix();
+            Dli_1_Details();
+            Dli_2_Details();
+            Total_Population_of_the_GP_Info();
+           // Socio_economic_demographic_profile_Info();
+            //vwms_Info();
+            //baselinedata_geting();
+            Dli_4_Details();
+            Dli_5_Details();
+        }
+        else {
+            alert("Please Select Statename");
+        }
+    });
+
+    function Download_StateInfo() {
+        var Session_StateName1 = $("#State_Dropdownvalue").val();
+        if (Session_StateName1 != "0") {
+            window.location = "/Dliverification/Export_admin_FrameWork_Matrix_ToExcel";
+        } else {
+            alert("Please Select Statename")
+
+        }
+
+    }
+
+</script>
+

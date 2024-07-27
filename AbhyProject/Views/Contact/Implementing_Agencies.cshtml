@@ -1,0 +1,264 @@
+﻿
+@{
+    ViewBag.Title = "Implementing_Agencies";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+<title>Contact details of Implementing Agencies</title>
+<script>
+    $(window).load(function () {
+        $('.loading').hide();
+        $('.ss').show();
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+
+
+    });
+    //function Checking() {
+    //    var Agency = $('#Agency').val();
+    //        $.ajax({
+    //            url: "/Tenders/Tender_Awarded",
+    //            data: { 'Agency': Agency },
+    //       type: "post",
+    //       cache: false,
+    //       success: function (savingStatus) {
+
+    //       },
+    //       error: function (xhr, ajaxOptions, thrownError) {
+    //           $('#lblCommentsNotification').text("Error encountered while saving the comments.");
+    //       }
+    //   });
+    //       }
+</script>
+<style>
+    .Training2 {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        border: 2px solid orange;
+    }
+
+    .upload2 {
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .table.dataTable thead th,
+    table.dataTable thead td {
+        padding: 10px 18px 10px 9px;
+    }
+</style>
+
+<style type="text/css">
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+</style>
+
+<div class="loading-container loading" id="loading">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="300" width="300" />
+    </div>
+</div>
+<div class="ss" style="display:none">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Implementing  Agencies Contact Details</div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin-top:20px;">
+
+
+        <!--Start datatable row-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tbl-responsive">
+                    <table id="example" class=" display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    S.No.
+                                </th>
+                                <th>
+                                    State
+                                </th>
+                                <th>
+                                    Project Coordinator
+                                </th>
+                                <th>
+                                    Designation
+                                </th>
+                                <th>
+                                    Department/Agency
+
+                                </th>
+                                <th>
+                                    Phone No.
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="AgenciesInfo">
+                            <!--Rows here-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11) > ul.dropdown > li:nth-child(2)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(11) > ul.dropdown > li:nth-child(2)").siblings().removeClass('active');
+
+</script>
+<td colspan="5">Project Co-ordinator</td>
+
+<script>
+    $(document).ready(function () {
+        Info();
+        $('#example').DataTable();
+    });
+    function Info() {
+        
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/About/Agencies_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var Divv = "";
+                var Second = "";
+                var j = 1;
+                var k = 1;
+                var Headers = ["Project Co-ordinator", "Project Director/Nodal Officer"];
+                if (data != null) {
+
+                    var Divv1 = "";
+                    var Divv2 = "";
+
+                    for (var i = 0; i < data.length; i++) {
+                        var State = "";
+                        var project_coordinator = "";
+                        var designation = "";
+                        var agency_name = "";
+                        var contact = "";
+                        var contact_details = "";
+
+                        if (data[i].state != null) {
+                            State = data[i].state;
+                        }
+                        if (data[i].project_coordinator != null) {
+                            project_coordinator = data[i].project_coordinator;
+                        }
+                        if (data[i].designation != null) {
+                            designation = data[i].designation;
+                        }
+                        if (data[i].contact != null) {
+                            contact = data[i].contact;
+                        }
+
+                        if (data[i].contact_details != null) {
+                            contact_details = data[i].contact_details;
+                        }
+                        if (data[i].agency_name != null) {
+                            agency_name = data[i].agency_name;
+                        }
+
+
+                        if (data[i].header == "Project Co-ordinator") {
+                            if (j == 1) {
+                                Divv1 += '<tr><th colspan="7">Project Co-ordinator</th></tr> <tr> <td>' + j + '</td><td>' + State + '</td><td>' + project_coordinator + ' </td><td>' + designation + '<td>' + agency_name + '</td>' +
+                                    '<td>' + contact + '</td><td>' + contact_details + '</td></tr>';
+                            }
+                            else {
+                                Divv1 += '<tr>  <td>' + j + '</td><td>' + State + '</td><td>' + project_coordinator + ' </td><td>' + designation + '<td>' + agency_name + '</td>' +
+                                    '<td>' + contact + '</td><td>' + contact_details + '</td></tr>';
+                            }
+                            j = j + 1;
+                        }
+
+                        if (data[i].header == "Project Director/Nodal Officer") {
+                            if (k == 1) {
+                                Divv2 += '<tr><th colspan="7">Project Director/Nodal Officer</th></tr> <tr> <td>' + k + '</td><td>' + State + '</td><td>' + project_coordinator + ' </td><td>' + designation + '<td>' + agency_name + '</td>' +
+                                    '<td>' + contact + '</td><td>' + contact_details + '</td></tr>';
+                            }
+                            else {
+                                Divv2 += '<tr> <td>' + k + '</td><td>' + State + '</td><td>' + project_coordinator + ' </td><td>' + designation + '<td>' + agency_name + '</td>' +
+                                    '<td>' + contact + '</td><td>' + contact_details + '</td></tr>';
+
+                            }
+                            k = k + 1;
+                        }
+
+
+                    }
+
+                    Divv = Divv1 + Divv2;
+                    $('#AgenciesInfo').html(Divv);
+
+                }
+
+                else {
+                    Divv += ' <tr><td colspan="7"> No Data</td> </tr>';
+                    $('#AgenciesInfo').html(Divv);
+
+                }
+
+            }
+        });
+    }
+</script>

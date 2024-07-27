@@ -1,0 +1,3334 @@
+﻿@{
+    ViewBag.Title = "GPlevel";
+    Layout = null;
+}
+
+
+
+<!-- favicon
+============================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*@
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.min.js"></script>
+
+<script src="~/Scripts/sweetalert.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script src="~/Content/css/baseline_gp_js.js"></script>
+@*<script src="~/Content/JS_Files/IdealState.js"></script>*@
+<script name="clear-browser-cache" src='~/Content/JS_Files/clear-browser-cache.js' value="true"></script>
+<!--Sweet Alert-->
+
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #72a230;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    .panel-title {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .ullistdiv_menu {
+        margin: 10px 0px;
+    }
+
+    .firstformtable > thead > tr > td {
+        padding: 5px;
+        font-weight: 600;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #EEEEEE;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        /*background-color: #FAFAFA;
+            border-color: #EEEEEE;*/
+    }
+
+
+
+
+    .panel-title > a {
+        display: block;
+        padding: 7px;
+        text-decoration: none;
+    }
+
+    .more-less {
+        float: right;
+        color: #212121;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+
+
+    .demo-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background-color: #212121;
+        text-align: center;
+    }
+
+        .demo-footer > a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+        }
+
+    .panel-heading {
+        text-align: left;
+        font-size: 19PX;
+    }
+
+    .panel-body {
+        text-align: left;
+    }
+
+    /*for upload button*/
+    .container {
+        display: inline-flex;
+    }
+
+    .fixed {
+        width: 815px;
+    }
+
+    .flex-item {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    #label {
+        background-color: #8c8591;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    #file-chosen {
+        margin-left: 0.3rem;
+        font-family: sans-serif;
+    }
+
+    .firstformt > thead > tr > td {
+        padding-top: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-left: 25px;
+        font-weight: 600;
+    }
+
+    .atal-icon-sec {
+        height: 73px;
+    }
+
+    .atal-logo-sec {
+        height: 60px;
+        margin-left: 9px;
+    }
+
+    .list_style li {
+        line-height: 25px;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<main>
+    <header class="header hederImage">
+
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-6">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                        @*<ul class="clearfix">
+
+                            <li class="ml-2">
+                                <a href="#" class="d-flex align-items-center">
+                                    <img src="~/DashboardStyles/images/atal-jal-logo.png" class="img-fluid atal-icon-sec" alt="logo">
+                                    <img src="~/DashboardStyles/images/logosec1.png" class="img-fluid atal-logo-sec" alt="logo">
+
+                                </a>
+                            </li>
+
+                        </ul>*@
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-left:200px">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <div class="col-md-8" style="padding: 0px 0px 0px 0px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                            <label>GPDCI</label>
+                        </li>
+                    </ul>
+                </div> 
+                <div class="col-md-4 text-right">
+                    <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/UserManual/GPDCI User Manual.pdf" target="_blank">USER MANUAL</a>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+
+    <div class="row container-fluid">
+        <div class="col-md-12 col-sm-12">
+            <div class="selectdistshowoption" id="Select_dist_level">
+                <label style="text-align:center;color:red;" id="Error_"></label>
+                <ul class="Select_option selectbackhome">
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+                    <li id="StateDropdownLabel">
+                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                    </li>
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+                    <li id="DistDropdownLabel">
+
+                        <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                    </li>
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+                    <li id="BlockDropdownLabel">
+
+                        <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                    </li>
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>
+
+                    <li id="GramDropdownLabel">
+
+                        <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
+                    </li>
+                    <li>
+                        <select class="form-control" id="year">
+                            <option value="0">Select Financial Year</option>
+                            @*<option value="2019">2019-20</option>
+                                <option value="2020">2020-21</option>
+                                <option value="2021">2021-22</option>*@
+                            <option value="2023-24">2023-24</option>
+                            @*<option value="2023">2024-25</option>*@
+                            @*<option value="2026">2026</option>*@
+                        </select>
+                    </li>
+                    <!--<li id="MonthLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Month:</label>-->
+                    @*<span>@Session["year"]</span>*@
+                    <!--</li>-->
+
+                    <li id="MonthDropdownLabel">
+
+                        <select class="form-control" id="month" onchange="Month_change()">
+                            <option value="0">Select Month</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                        </select>
+                    </li>
+                    <li id="DropdownSearch_btn">
+                        <a class="btn btn-success" onclick="Dropdown_Search()">Search</a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center alertshowingdiv">
+            <label id="alertrt_aa_part_data"></label>
+        </div>
+
+        @*<div class="col-md-12 text-center ">
+                <button onclick="sarpanchdetails_download1()" class="btn btn-primary">Download</button>
+            </div>*@
+        <div class="col-md-12">
+            <label id="hide_remarks" style="float:left">Remarks : <label id="remarks_txt" style="color:red"></label></label>
+            <label id="sp_remarks" style="float:left">Remarks : <label id="State_txt" style="color:red"></label></label>
+        </div>
+        <div class="col-md-12 text-center ">
+            @*<button class="btn btn-success" id="btn_pdf" onclick="Goto_page()" style="float:right">Go To Page</button>*@
+            <select class="form-control" id="goto_page" onchange="Goto_page()" style="float:right;width:150px">
+                <option value="0">Navigate to</option>
+                <option value="/WaterSecurityPlan/Wsp_Home">WSP Modules</option>
+                <option value="/SocialMointoring_new/Social_management_new">Social Mangement</option>
+                <option value="/WSPHome/Gp_information">Back to GP Modules</option>
+            </select>
+
+            @*<button onclick="baselinedata_download()" class="btn btn-primary">Download</button>*@
+            @*<a href="~/WSPHome/Gp_information" class="btn btn-success pull-right">
+                    Back To GP Modules
+                </a>*@
+
+
+
+
+            @*<label>
+                    Remarks :
+                    <input type="text" id="remarks_label">
+                </label>*@
+
+
+            <a class="btn btn-success" id="btn_pdf" onclick="Report_PDF()" style="float:right">Export (Pdf)</a>
+            @*<button class="btn btn-success" id="btn_Excel" onclick="baselinedata_download()" style="float:right">Export Part-B (Excel)</button>*@
+            <a class="btn btn-success btn_export" onclick="Create_Excel()" id="btnsubmit" style="float:right">Export (Excel)</a>
+            <h5><b><label id="State_txt" style="float:left; font-size:17px">Status : <label id="gp_status"></label></label></b></h5>
+            @*<a href="" class="btn btn-success btn_export" style="float:right">Export Part-A (Excel)</a>*@
+            @*@using (Html.BeginForm("Create_Excel", "GPlevel", FormMethod.Post))  //chetan
+                {
+                    <input type="hidden" name="state1" id="state1" />
+                    <input type="hidden" name="district1" id="district1" />
+                    <input type="hidden" name="block01" id="block01" />
+                    <input type="hidden" name="gp1" id="gp1" />
+                    <input type="hidden" name="year1" id="year1" />
+                    <input type="button" class="btn btn-success btn_export" onclick="Create_Excel()" id="btnsubmit" value="Export Part-A (Excel)" style="float:right" />
+                      }*@
+
+
+
+        </div>
+    </div>
+    <div class="row" id="tablediv">
+        <div class="tab-content">
+            <!--2nd Water Budget Form-->
+            <div role="tabpanel" class="tab-pane fade in active" id="WaterbudgetingformWBF">
+
+                @*<div class="col-md-12 scrollform">*@
+                <div class="col-md-12">
+                    <!-- Accordion -->
+                    <div class="" id="">
+
+                        <div class="" style="padding:0px;overflow-x:scroll;">
+                            <div class="panelbodyheading">
+                                (A)	GRAM PANCHAYAT (GP) PROFILE: ( LATEST AVAILABLE DATA)
+                            </div>
+                            <div class="row database_trainer_row ">
+                                <h3>
+                                    1. Total Number of Villages under the Selected GP
+
+                                </h3>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="container">
+                                    <div class="panel-body fixed">
+
+                                        <table class="firstformtable">
+                                            <thead>
+                                                <tr class="tableheadertr2">
+                                                    <td>1. Total Number of Villages :</td>
+                                                    <td><span id=""> <input type="text" maxlength="3" class="form-control number" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="total_no_of_village" /></span></td>
+                                                </tr>
+
+                                            </thead>
+                                        </table>
+                                        <table class="villagetable firstformtable" id="villagetable">
+                                            <thead id="villagethead">
+                                                <tr>
+                                                    <td><button id="Addvillage" type="button" hidden class="add-field btn btn-success hide_btn" onclick="AddVillage()">Add Village Name</button></td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    @*<div class="flex-item">
+
+                                            <input type="file" name="fileToUpload" id="txtimage" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                            <label for="txtimage" id="label" class="hide_btn">Upload Data Source</label><span id="file-chosen">No file chosen</span>
+                                            <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                            <div id="village_download"></div>
+                                        </div>*@
+
+                                </div>
+                            </div>
+                            @*<div class="container" aria-labelledby="headingOne">
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            1. Total number of villages under the selected GP
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body fixed">
+
+                                        <table class="firstformtable">
+                                            <thead>
+                                                <tr>
+                                                    <td>1. Total number of villages :</td>
+                                                    <td><span id=""> <input type="text" maxlength="3" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="total_no_of_village" placeholder="Enter the numeric value" /></span></td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+
+                                    <div class="flex-item">
+
+                                        <input type="file" name="fileToUpload" tooltip="Upload Souce File" id="txtimage" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, application/pdf">
+                                        <div id="village_download"></div>
+                                    </div>
+
+
+                                </div>*@
+                            <!--bodyof panel-->
+
+                            <div class=" demo">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            2. Demographic Profile
+                                        </h3>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading " role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button">
+
+                                                    2.1 Population
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="container" aria-labelledby="headingOne">
+                                            <div class="panel-body fixed">
+
+                                                <table class="firstformtable">
+                                                    <thead>
+
+                                                        <tr>
+                                                            <td>a. Male  : </td>
+                                                            <td><span id=""><input type="text" maxlength="5" onkeyup="TotalPapulation_fun()" onkeydown="TotalPapulation_fun()" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control decimal" id="male_population" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>b. Female  :</td>
+                                                            <td><span id=""><input type="text" maxlength="5" onkeyup="TotalPapulation_fun()" onkeydown="TotalPapulation_fun()" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control decimal" id="female_population" placeholder="Enter the numeric value" /></span>  </td>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>
+                                                                c. Transgender <a href="javascript:;" data-toggle="tooltip" data-original-title="Transgender" title="Transgender">
+
+                                                                </a>  :
+                                                            </td>
+                                                            <td><span id=""> <input type="text" maxlength="5" onkeyup="TotalPapulation_fun()" onkeydown="TotalPapulation_fun()" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control decimal" id="transgender_population" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>
+                                                                d. Total Population :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Population = Male + Female + Transgender" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""> <input type="text" class="form-control decimal" readonly id="tol_population" /></span></td>
+                                                            <td>
+                                                                <span id="">
+                                                                    <select class="form-control hide_btn" id="source_year">
+                                                                        <option value="">Select Year</option>
+                                                                        <option value="2022-23">2022-23(Data Source Year)</option>
+                                                                    </select>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                <input type="file" name="fileToUpload" id="txtimage1" @*onchage="CheckImageNameLength('txtimage1')"*@ class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage1" id="label">Upload Data Source</label><span id="file-chosen1">No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="population_download"></div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button">
+
+                                                    2.2 Categories
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapseOne" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+
+                                                <table class="firstformt">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>a. SC :</td>
+                                                            <td><span id=""><input type="text" maxlength="5" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="no_of_sc" onkeyup="TotalValidation()" placeholder="Enter the numeric value" /></span>  </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>b. ST :</td>
+                                                            <td><span id=""><input type="text" maxlength="5" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="no_of_st" onkeyup="TotalValidation()" placeholder="Enter the numeric value" /></span>  </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>c. OBC :</td>
+                                                            <td><span id=""><input type="text" maxlength="5" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="no_of_obc" onkeyup="TotalValidation()" placeholder="Enter the numeric value" /></span>  </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>d. General :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="General = (Total Population - (SC + ST + OBC))" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" maxlength="5" class="form-control decimal" readonly oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="no_of_general" onkeyup="TotalValidation()" name="general" /></span>  </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><span id=""><input type="text" class="form-control decimal" id="totalCaste" name="general" placeholder="Enter the numeric value" /></span>  </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading " role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button">
+
+                                                    2.3 Class/Status
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapseOne" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+
+                                                <table class="firstformt">
+                                                    <thead>
+
+                                                        <tr>
+                                                            <td>Number of BPL Card Holders : </td>
+                                                            <td><span id=""><input type="text" maxlength="5" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="no_of_bpl" onkeyup="bpl_validation()" onkeydown="bpl_validation()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button">
+
+                                                    2.4 No. of Households
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo">
+                                            <div class="panel-body">
+
+                                                <table class="firstformt">
+                                                    <thead>
+                                                        <tr class="tableheadertr2">
+                                                            <td>No. of Households  :</td>
+                                                            <td><span id=""> <input type="text" maxlength="5" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="no_of_households" onkeyup="households_validation()" onkeydown="households_validation()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed">
+                                                    2.5 Livestock Population
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="Livestockparentdiv container">
+                                            <div class="panel-body multi-fields fixed">
+                                                <table class="Livestocktable firstformtable" id="livestockTable">
+                                                    <thead id="livestockthead">
+                                                        <tr>
+                                                            <td>
+                                                                <button type="button" id="LivestockAdd" value="click" onclick="validatelivestockadd()" hidden class="add-field btn btn-success hide_btn">Add</button>
+                                                            </td>
+
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                Total Livestock Population :
+                                                            </td>
+                                                            <td><span id=""> <input type="text" class="form-control decimal" readonly id="livestock_population" /></span></td>
+                                                            <td>
+                                                                <span id="">
+                                                                    <select class="form-control hide_btn" id="source_year_liv">
+                                                                        <option value="">Select Year</option>
+                                                                        <option value="2022-23">2022-23(Data Source Year)</option>
+                                                                        @*<option value="2024">2024</option>
+                                                                            <option value="2025">2025</option>*@
+
+                                                                    </select>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                <input type="file" name="fileToUpload" id="txtimage2" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage2" id="label">Upload Data Source</label><span id="file-chosen2"> No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="livestock_download"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            3. GP Area (In ha)
+
+                                        </h3>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="container">
+                                            <div class="panel-body fixed">
+
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr class="tableheadertr2">
+                                                            <td> Total GP Area :</td>
+                                                            <td><span id=""> <input type="text" data-m-dec="4" class="form-control decimal" id="gp_area_in_ha" onkeypress="validate(event)" onkeyup="LandUse_fun()" onkeydown="LandUse_fun()" placeholder="Enter the numeric value" readonly /></span></td>
+                                                        </tr>
+
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            @*<div class="flex-item">
+                                                    <input type="file" name="fileToUpload" id="txtimage3" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                    <label for="txtimage3" id="label">Upload Data Source</label><span id="file-chosen3"> No file chosen</span>
+                                                    <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                    <div id="gparea_download"></div>
+                                                </div>*@
+
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            4. Land Use and  Land Cover (in ha)
+
+                                        </h3>
+                                    </div>
+                                    <div class="panel panel-default">
+
+                                        <div id="collapsefour">
+                                            <div class="panel-body">
+                                                <table class="firstformt">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>a. Forest Area : </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" onkeyup="LandUse_fun()" onkeydown="LandUse_fun()" id="forest_area_in_ha" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>b. Fallow Land : </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" onkeyup="LandUse_fun()" onkeydown="LandUse_fun()" id="fallow_land_in_ha" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>c. Cultivable Land (Excluding Fallow Land):</td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" onkeyup="LandUse_fun()" onkeydown="LandUse_fun()" id="cultivable_land_in_ha" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>
+                                                                d. Other Land Use (Settlement, Barren Land etc.) :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Other Land use = Total GP Area - ( Forest area + Fallow land + Cultivable land )" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" readonly id="other_land_use" /></span></td>
+                                                        </tr>
+
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            5. Net Area (In ha)
+
+                                        </h3>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="container">
+                                            <div class="panel-body fixed">
+
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr class="tableheadertr2">
+                                                            <td>a. Net Sown Area :</td>
+                                                            <td><span id=""> <input type="text" class="form-control decimal" id="net_sown_area" onkeypress="validate(event)" onkeyup="LandUse_fun()" onkeydown="LandUse_fun()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr class="tableheadertr2">
+                                                            <td>b. Net Irrigated Area :</td>
+                                                            <td><span id=""> <input type="text" class="form-control decimal" id="net_irrigated_area" onkeypress="validate(event)" onkeyup="LandUse_fun()" onkeydown="LandUse_fun()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                <input type="file" name="fileToUpload" id="txtimage4" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage4" id="label">Upload Data Source</label><span id="file-chosen4"> No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="sownarea_download"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            6. Area Under Cultivation Kharif/Rabi/Summer (in ha)
+                                        </h3>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading9">
+                                            <h4 class="panel-title">
+                                                <a>
+                                                    6.1 Irrigated Area
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="container">
+                                            <div class="panel-body fixed">
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr class="tableheadertr2">
+                                                            <td>a. Area in Kharif :</td>
+                                                            <td><span id=""> <input type="text" class="form-control decimal" onkeypress="validate(event)" id="irrigated_area_in_kharif" onkeyup="TotalCroppedArea()" onkeydown="TotalCroppedArea()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>b. Area in Rabi : </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" id="irrigated_area_in_rabi" onkeyup="TotalCroppedArea()" onkeydown="TotalCroppedArea()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>c. Area in Summer : </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" id="irrigated_area_in_summer" onkeyup="TotalCroppedArea()" onkeydown="TotalCroppedArea()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                d. Total Irrigated Area :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Irrigated Area = Area in kharif + Area in rabi + Area in summer" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" readonly id="total_irrigated_area" /></span></td>
+                                                        </tr>
+                                                        @*<tr>
+                                                                <td>e. Net Irrigated Area : </td>
+                                                                <td><span id=""><input type="text" class="form-control decimal"  id="net_irrigated_area" placeholder="Enter the numeric value" /></span></td>
+                                                            </tr>*@
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                <input type="file" name="fileToUpload" id="txtimage5" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage5" id="label">Upload Data Source</label><span id="file-chosen5"> No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="irrigated_download"></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="panel-heading" role="tab" id="heading9">
+                                            <h4 class="panel-title">
+                                                <a>
+                                                    6.2 Un-Irrigated / Rainfed Area
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse9">
+                                            <div class="panel-body">
+                                                <table class="firstformt">
+                                                    <thead>
+                                                        <tr class="tableheadertr3">
+                                                            <td>a. Area in Kharif :</td>
+                                                            <td><span id=""> <input type="text" class="form-control decimal" onkeypress="validate(event)" id="un_irrigated_area_in_kharif" onkeyup="TotalCroppedArea()" onkeydown="TotalCroppedArea()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>b. Area in Rabi : </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" id="un_irrigated_area_in_rabi" onkeyup="TotalCroppedArea()" onkeydown="TotalCroppedArea()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>c. Area in Summer : </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" id="un_irrigated_area_in_summer" onkeyup="TotalCroppedArea()" onkeydown="TotalCroppedArea()" placeholder="Enter the numeric value" /></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                d. Total Un-Irrigated Area :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Un-Irrigated Area = Area in kharif + Area in rabi + Area in summer" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" readonly id="total_un_irrigated_area" /></span></td>
+                                                        </tr>
+
+
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="panel-heading" role="tab" id="heading9">
+                                            <h4 class="panel-title">
+                                                <a>
+                                                    6.3 Total Cropped Area
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse9">
+                                            <div class="panel-body">
+                                                <table class="firstformt">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                Total Cropped Area :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Cropped Area = Total Irrigated Area + Total Un-Irrigated Area" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" onkeypress="validate(event)" readonly id="total_cropped_area" /></span></td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            7.Source Wise Irrigated Area (in ha)
+                                        </h3>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading10">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed">
+                                                    7.1 Area Irrigated by Ground Water
+
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="container">
+                                            <div class="panel-body fixed">
+                                                <table class="firstformtable IrriGroundWaterTable" id="IrriGroundWaterTable">
+
+                                                    <thead id="irriggroundwatertr">
+
+                                                        <tr>
+
+                                                            <td><button class="btn btn-success IrrGrounWaterAdd hide_btn" onclick="validateIrriGround()">Add</button></td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                Total Irrigated Area from Ground Water :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total  Irrigation from Ground Water = Dug / Dug-cum-Bore Wells + Bore Wells / Tube Wells + Others" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" readonly id="totalGround" /></span></td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                <input type="file" name="fileToUpload" id="txtimage7" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage7" id="label">Upload Data Source</label><span id="file-chosen7"> No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="ground_download"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading10">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed">
+                                                    7.2 Area Irrigated by Surface Water
+
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="container">
+                                            <div class="panel-body fixed">
+                                                <table class="firstformtable irrisurftable" id="irrisurftable">
+                                                    <thead id="trirrsurfother">
+                                                        <tr>
+                                                            <td><button class="btn btn-success IrrSurAddOther hide_btn" onclick="validateIrriSurface()">Add</button></td>
+                                                        </tr>
+
+                                                    </thead>
+                                                </table>
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                Total Irrigated Area from Surface Water :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Irrigation from Surface Water = Canal + Tanks + Others" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" readonly id="totalSurfaceWater" /></span></td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                <input type="file" name="fileToUpload" id="txtimage6" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage6" id="label">Upload Data Source</label><span id="file-chosen6"> No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="surface_download"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row database_trainer_row ">
+                                        <h3>
+                                            8. Number of Ground Water Abstraction Structures
+
+                                        </h3>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading16">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed">
+
+                                                    8.1 Existing Wells
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="water-field-wrapper container">
+
+                                            <div class="panel-body fixed">
+
+                                                <table class="firstformtable GroundWaterTable" id="GroundWaterTable">
+                                                    <thead id="trgroundwater">
+                                                        <tr>
+                                                            <td>
+                                                                <button type="button" onclick="validateExGroundWater()" class="GroundAdd btn btn-success hide_btn">Add</button>
+                                                            </td>
+                                                        </tr>
+
+                                                    </thead>
+                                                </table>
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                Total Existing Wells :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Existing wells = Dug wells + Bore wells + Tube wells + Dug-cum-Bore Wells + Others" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""><input type="text" class="form-control decimal" readonly id="totalWells" /></span></td>
+
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                <input type="file" name="fileToUpload" id="txtimage8" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage8" id="label">Upload Data Source</label><span id="file-chosen8"> No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="existing_download"></div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading17">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed">
+
+                                                        8.2 Water Lifting Devices
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div class="container">
+                                                <div class="panel-body fixed">
+
+                                                    <table class="firstformtable">
+                                                        <thead>
+
+                                                            <tr>
+                                                                <td>a. Non-energised : </td>
+                                                                <td><span id=""><input type="text" maxlength="4" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'')" id="non_energised" onkeyup="TotalLifting()" onkeydown="TotalLifting()" placeholder="Enter the numeric value" /></span></td>
+                                                            </tr>
+                                                            <tr class="tableheadertr2">
+                                                                <td>b. Diesel Pumps : </td>
+                                                                <td><span id=""> <input type="text" maxlength="4" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'')" id="diesel_pumps" onkeyup="TotalLifting()" onkeydown="TotalLifting()" placeholder="Enter the numeric value" /></span></td>
+                                                            </tr>
+
+
+                                                            <tr>
+                                                                <td>c. Electric Pumps :</td>
+                                                                @*<td><span id=""><input type="text" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'')" id="electric_pump" onkeyup="TotalLifting()" onkeydown="TotalLifting()" placeholder="Enter the numeric value" /></span></td>*@
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-left:30px">1. Centrifugal Pumps :</td>
+                                                                <td><span id=""><input type="text" maxlength="4" class="form-control decimal" id="centrifugal_pumps" oninput="this.value=this.value.replace(/[^0-9]/g,'')" onkeyup="TotalLifting()" onkeydown="TotalLifting()" placeholder="Enter the numeric value" /></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-left:30px">2. Submersible Pumps : </td>
+                                                                <td><span id=""><input type="text" maxlength="4" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'')" id="submersible_pumps" onkeyup="TotalLifting()" onkeydown="TotalLifting()" placeholder="Enter the numeric value" /></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-left:30px">
+                                                                    Total Electric Pumps :
+                                                                    <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Electric Pumps = Centrifugal Pumps + Submersible pumps" style="font-size:24px;color:blue"></i>
+                                                                </td>
+                                                                <td><span id=""><input type="text" maxlength="4" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'')" readonly id="total_electric_pumps" placeholder="Enter the numeric value" /></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>d. Solar Pumps : </td>
+                                                                <td><span id=""><input type="text" maxlength="4" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'')" id="solar_pumps" onkeyup="TotalLifting()" onkeydown="TotalLifting()" placeholder="Enter the numeric value" /></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    Total Water Lifting Devices :
+                                                                    <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Water Lifting Devices = Non-energised + Diesel pumps + Electric pumps(Centrifugal Pumps,Submersible pumps) + Solar pumps" style="font-size:24px;color:blue"></i>
+                                                                </td>
+                                                                <td><span id=""><input type="text" class="form-control decimal" oninput="this.value=this.value.replace(/[^0-9]/g,'')" readonly id="total_water_lifting_devices" /></span></td>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                                <div class="flex-item">
+                                                    <input type="file" name="fileToUpload" id="txtimage9" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                    <label for="txtimage9" id="label">Upload Data Source</label><span id="file-chosen9"> No file chosen</span>
+                                                    <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                    <div id="lifting_download"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row database_trainer_row ">
+                                            <h3>
+                                                9. Water Efficient Practices (Existing) (in ha)
+                                            </h3>
+                                        </div>
+
+                                        <div class="multi-field-wrapper container" id="collapse17">
+                                            <div class="multi-field panel-body fixed">
+                                                <table class="firstformtable WaterEffTable" id="WaterEffTable">
+                                                    <thead id="watereffthead">
+                                                        <tr>
+
+
+                                                            <td>
+                                                                @*<button type="button" onclick="validateGross()" id="AddwatereffGross" class="add-field btn btn-success hide_btn">Add Gross</button>
+                                                                    <span>or</span>*@
+                                                                <button type="button" onclick="validateNet()" id="AddwatereffNet" class="add-field btn btn-success hide_btn">Add</button>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table class="firstformtable">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                Total Water Efficient Practices (Existing) :
+                                                                <i class="fa fa-info-circle" data-toggle="tooltip" title="Total Water Efficient Practices (Existing) = Area under sprinkler irrigation (ha) + Area under drip irrigation (ha) + Others (ha)" style="font-size:24px;color:blue"></i>
+                                                            </td>
+                                                            <td><span id=""> <input type="text" class="form-control decimal" readonly id="total_water_efficient" /></span></td>
+                                                        </tr>
+                                                    </thead>
+
+                                                </table>
+                                            </div>
+                                            <div class="flex-item">
+                                                @*<label for="txtimage10" class="primary  ">Select Image</label>*@
+                                                <input type="file" name="fileToUpload" id="txtimage10" class="hidden hide_btn" accept=".jpg,.jpeg,application/pdf">
+                                                <label for="txtimage10" id="label">Upload Data Source</label><span id="file-chosen10"> No file chosen</span>
+                                                <label style="color:red">Upload Single File (.jpg / .pdf)</label>
+                                                <div id="efficient_download"></div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div><!-- panel-group --><!-- panel-group -->
+
+
+                                </div><!-- container -->
+
+                                <div class="text-center" style="margin:5px 0px 5px 0px;">
+                                    <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                                        <li>
+                                            <a class=" btn btn-success" id="btnFinalSave" onclick="baseline_gp_data_saveing()"><i class="fa fa-save"></i>Save</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+
+
+                                <div class="text-center"><label id="AlertError" style="color:red;text-align:center;"></label></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--2nd Water Budget Form closed-->
+            <!--3rd Water Budgeting page-->
+            @*<div role="tabpanel" class="tab-pane fade in" id="GroundwaterGWM">sankar1</div>*@
+        </div>
+
+        <div>
+            <a href="#" class="scrollup" style="display: inline;"><i class="fa fa-angle-up"></i></a>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="b_part_div">
+            <div class="panelbodyheading">
+                (B) KEY PERSONNEL OF GRAM PANCHAYAT
+            </div>
+
+            <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:300px; font-size:12px;">
+                <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                    <thead>
+                        <tr class="info">
+                            @*<th rowspan="3" class="text-center"><button class="updatenew btn btn-success" onclick="addrow_a_part()"> New </button></th>*@
+                            <th></th>
+                            <th class="text-center">S.No.</th>
+                            <th class="text-center">Designation</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Gender</th>
+                            <th class="text-center">
+                                Mobile Number
+                            </th>
+                        </tr>
+                        <tr>
+                            <td><button class='btn btn-primary' disabled id="sarpanch_save_btn" onclick='aa_table_part_data_saveing()'>Save</button> @*<button type='button' class='btn btn-danger' onclick='cancela_1();'>Cancel</button>*@</td>
+                            <td></td>
+
+                            <td><Select id='designation_name' class='form-control hide_btn sarpanchdropdown'><option value='0'>Select Designation</option><option value='Sarpanch'>Sarpanch</option><option value='Deputy Sarpanch/equivalent'>Deputy Sarpanch/Equivalent</option><option value='PDO/Panchayat Secretary'>PDO/Panchayat Secretary</option></Select></td>
+                            <td><input type='text' class='form-control alpha hide_btn' id='name' /></td>
+                            <td><Select id='gender' class='form-control hide_btn'><option value='0'>Select Gender</option><option value='Male'>Male</option><option value='Female'>Female</option><option value='Transgender'>Transgender</option></Select></td>
+                            <td> <input type='text' class='form-control integer hide_btn' maxlength='10' id='contact_details' /></td>
+                        </tr>
+
+                    </thead>
+                    <tbody id="TblData_abc_part"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @*<label for="Textarea1">Remarks:</label>*@
+        <textarea class="form-control" id="gpdata_remarks" rows="6" placeholder="Remarks--"></textarea>
+    </div>
+    <!--<div class="form-group">-->
+        <!--<textarea class="form-control" id="state_remarks" rows="6" placeholder="Remarks--"></textarea>
+    </div>-->
+    <div class="col-md-12 text-center alertshowingdiv">
+        <label id="alertrtdatacolection1"></label>
+    </div>
+    <div class=" col-md-12">
+
+        <div class="text-center" style="margin-bottom:10px;">
+            <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+                <li>
+                    @*<button type="button" class="btn btn-success" id="approved" onclick="Final_Approved()"><i class="fa fa-save"></i>Approved</button>*@
+                    @*<button type="button" class=" btn btn-success" id="btnFinalSave" onclick="baseline_gp_data_saveing()"><i class="fa fa-save"></i>Save</button>*@
+                <a class="btn btn-success" id="btn_submitspmu" onclick="confirm_SPMU()">Approved</a>
+                </li>
+                <li>
+                    <a class="btn btn-success" id="btn_submitNDO" onclick="confirm_DPMU()"><i class="fa fa-save"></i>Submit to DPMU Nodal Officer</a>
+
+                    <a class="btn btn-success" id="btn_rejectNDO" onclick="rejectNDO_confirm()"><i class="fa fa-arrow-circle-left"></i> Reject</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+
+        <div class="col-md-12 text-center ">
+            @*<button onclick="baselinedata_download()" class="btn btn-primary">Download</button>*@
+            @*<button class="btn btn-success" id="btn_pdf" onclick="Goto_page()" style="float:right">Go To Page</button>*@
+
+            @*<a href="~/WSPHome/Gp_information" class="btn btn-success pull-right">
+                    Back To GP Modules
+                </a>*@
+
+            @*<button class="btn btn-success" id="report_btn" onclick="Report_BTN()" style="float:right">
+                    Report
+                </button>*@
+            @*<button class="btn btn-success" id="btn_Excel" onclick="baselinedata_download()" style="float:right">Download Excel</button>
+                <button class="btn btn-success" id="btn_pdf" onclick="Report_PDF()" style="float:right">Download Pdf</button>*@
+
+        </div>
+    </div>
+
+
+
+
+    <!--WB-->
+    <!--selection script-->
+
+
+
+</main>
+
+<!-- Model Popup -->
+<!--<div class="modal fade" id="modalDialogScrollable_gp" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">Instructions: -</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+
+                <ul>
+                    <li>
+                        Before filling out the information, kindly note the below-mentioned points.
+                    </li>
+                </ul>
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li> Before you start filling the information, keep all the information gathered.</li>
+                    <li>
+                        In this opened GP, the total number of villages, names, and total GP area (in
+                        ha) information has been auto-filled out based on the information received from the
+                        State Program Management Unit (SPMU).
+                    </li>
+                    <li>
+                        Once you start filling the information, fill all the information in this month. If
+                        complete information is not submitted to DPMU for verification in the same month,
+                        then the user will have to fill all the information again in the next month. The
+                        information filled earlier will not be retrieved if not submitted to DPMU for
+                        verification.
+                    </li>
+                    <li>
+                        Please "Save" the filled-out information at least once every 15 minutes. If the
+                        session is idle for 15 minutes, it will automatically log out in the next 15 minutes,
+                        and any filled-out information will not be saved.
+                    </li>
+                    <li>
+                        The button "Submit to DPMU Nodal Officer" will be visible after clicking the first
+                        time on the "Save" button after filling out the information in both the A and B
+                        sections.
+                    </li>
+                    <li>
+                        Based on the information entered and the formula calculation, the grey color-
+                        filled area will be auto-filled. To see the formula, cursor over the <span class="fa fa-info-circle" style="color:blue"></span> icon.
+                    </li>
+                    <li>
+                        Make sure to fill all the information correctly, then hit the "Submit" button to get
+                        all the information verified by DPMU.
+                    </li>
+                    <li>
+                        Once the information is submitted to the DPMU for verification, the user will not
+                        be able to edit or delete the information unless the DPMU rejects the information.
+                    </li>
+                    <li>
+                        In the Gram Panchayat in which you have logged in using the Gram Panchayat
+                        credentials, you can get the filled-out information of only that Gram Panchayat in
+                        the form of Excel or PDF by using the buttons "Export (Excel)" and "Export (Pdf)".
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">निर्देश:-</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+
+                <ul>
+                    <li>
+                        जानकारी भरने से पहले, कृपया नीचे दिए गए बिंदुओं पर ध्यान दें।
+                    </li>
+                </ul>
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li> जानकारी भरना शुरू करने से पहले, सारी जानकारी एकत्रित करके रखें |</li>
+                    <li>
+                        इस खुली ग्राम पंचायत में, राज्य कार्यक्रम प्रबंधन इकाई (एसपीएमयू) से प्राप्त जानकारी के
+                        आधार पर कुल गांवों की संख्या, नाम और कुल ग्राम पंचायत क्षेत्र (हेक्टेयर में) की जानकारी स्वत:
+                        भर दी गई है।
+                    </li>
+                    <li>
+                        एक बार जानकारी भरना शुरू करने के बाद इसी महीने में सम्पूर्ण जानकारी भरे | अगर इसी महीने में सम्पूर्ण
+                        जानकारी भरकर डी पी एम यू को सत्यापन के लिए जमा नहीं की जाएगी तो उपयोगकर्ता को अगले महीने में
+                        पुन: सारी जानकारी भरनी होगी | पहले भरी हुई जानकारी अगर सत्यापन के लिए डी पी एम यू को जमा नहीं
+                        की गयी है तो पुन: प्राप्त नहीं होगी |
+                    </li>
+                    <li>
+                        कृपया भरी हुई जानकारी को हर 15 मिनट में कम से कम एक बार "सेव" करें। यदि सत्र 15
+                        मिनट के लिए निष्क्रिय रहता है, तो यह अगले 15 मिनट में स्वचालित रूप से लॉग आउट हो
+                        जाएगा, और कोई भी भरी हुई जानकारी सहेजी नहीं जाएगी।
+                    </li>
+                    <li>
+                        ए और बी दोनों वर्गों में जानकारी भरने के बाद "सेव" बटन पर पहली बार क्लिक करने पर
+                        "डीपीएमयू नोडल अधिकारी को सबमिट करें" बटन दिखाई देगा।
+                    </li>
+                    <li>
+                        दर्ज की गई जानकारी और सूत्र गणना के आधार पर, ग्रे रंग से भरा क्षेत्र स्वत: भर जाएगा। सूत्र
+                        देखने के लिए, <span class="fa fa-info-circle" style="color:blue"></span> चिह्न पर कर्सर ले जाएँ।
+                    </li>
+                    <li>
+                        सभी सूचनाओं को सही ढंग से भरना सुनिश्चित करें, फिर डी पी एम यू द्वारा सभी सूचनाओं को सत्यापित
+                        कराने के लिए "सबमिट" बटन दबाएं।
+                    </li>
+                    <li>
+                        एक बार जानकारी सत्यापन के लिए डी पी एम यू को जमा करने बाद, उपयोगकर्ता जानकारी को न ही डिलीट
+                        या एडिट कर पाएगा जब तक डी पी एम यू जानकारी को ख़ारिज नहीं कर देता |
+                    </li>
+                    <li>
+                        जिस ग्राम पंचायत में आपने ग्राम पंचायत के क्रेडेंशियल्स का उपयोग करके लॉग इन किया है, आप केवल
+                        उसी ग्राम पंचायत की भरी हुई जानकारी एक्सेल या पीडीएफ के रूप में " एक्सपोर्ट  (एक्सेल)" और " एक्सपोर्ट  पीडीएफ)"
+                        बटन दबाकर प्राप्त कर सकते हैं। ।
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDialogScrollable_block" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+
+
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        You are currently logged in at the block level. At this stage, by selecting various
+                        Gram Panchayats under the block, you can see the information filled in at the GP level that
+                        has been submitted for verification or has already been verified by the district-level nodal
+                        officer and the state-level nodal officer.
+                    </li>
+                    <li>
+                        You can download the filled-out information of all Gram Panchayats under this block in an
+                        excel file by pressing the "Excel (Export)" button. Similarly, each Gram Panchayat in this
+                        block can be selected one by one and downloaded in Excel format.
+                    </li>
+
+                    <li>
+                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+                    </li>
+                    <li>
+                        Through block-level login, the entered information cannot be modified or deleted.
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+
+
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        आप वर्तमान में ब्लॉक स्तर पर लॉग इन हैं। इस स्तर पर ब्लॉक के अंतर्गत विभिन्न ग्राम पंचायतों का चयन कर
+                        आप जीपी स्तर पर भरी गई सूचना देख सकते हैं जो सत्यापन के लिए प्रस्तुत की गई है या जिला-स्तरीय नोडल अधिकारी
+                        और राज्य-स्तरीय नोडल अधिकारी द्वारा पहले ही सत्यापित की जा चुकी है।
+                    </li>
+                    <li>
+                        आप इस ब्लॉक के अंतर्गत आने वाली सभी ग्राम पंचायतों की भरी हुई जानकारी को एक एक्सेल फाइल में "Export (Excel)"
+                        बटन दबाकर डाउनलोड कर सकते हैं। इसी तरह इस ब्लॉक में प्रत्येक ग्राम पंचायत को एक-एक कर सेलेक्ट कर एक्सेल फॉर्मेट में डाउनलोड किया जा सकता हैं |
+                    </li>
+                    <li>
+                        पीडीएफ प्रारूप में केवल एक-एक ग्राम पंचायत की जानकारी ही "Export (Pdf)" बटन को दबाकर डाउनलोड की जा सकती हैं ।
+                    </li>
+                    <li>
+                        ब्लॉक-स्तरीय लॉगिन के माध्यम से दर्ज की गई जानकारी को संशोधित या हटाया नहीं जा सकता है।
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDialogScrollable_dpmu" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+                <ul>
+                    <l>
+                        Before starting to check and accept the filled-out information, please note the points given below.
+                    </l>
+                </ul>
+
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        You are currently logged in at the district level. At this level, by selecting various Gram Panchayats
+                        under District and Block, you can see the information filled at the Gram Panchayat level and also download
+                        it through the "Export (Excel)" and "Export (Pdf)" buttons. That has been submitted to the district-level
+                        nodal officer for verification.
+                    </li>
+                    <li>
+                        Within this login, you will not be able to edit or delete any information. This right is invoked at the GP
+                        level only after the authorised DPMU officer to verify the information filled out at the GP level rejects
+                        the information.
+                    </li>
+
+                    <li>
+                        If you have been authorised to verify the filled-out information in the Gram Panchayats falling under this district,
+                        you are also authorised to use the "Approve" "Reject" and "Submit to SPMU" buttons.
+                    </li>
+                    <li>
+                        If you are the authorised officer to verify the information filled out at the GP level, you would have also received
+                        the auto-generated email to verify the information.
+                    </li>
+                    <li>
+                        If you are not satisfied with the filled-out information and need to rectify, first write your comments under the
+                        "Remarks" box, and then click on the "Reject" button.
+                    </li>
+                    <li>
+                        You either rejected or approved the filled-out information, which will be highlighted at the top of the page next
+                        to the "Status." "Status" information is also sent through an automatically generated email to that Gram Panchayat.
+                        If you were rejected, your comments are highlighted at the top of the page at the GP level.
+                    </li>
+                    <li>
+                        At the GP level, information will be corrected based on your comments and submitted again to you for verification.
+                    </li>
+                    <li>
+                        You can download the filled-out information of all Gram Panchayats under this district in an excel file by pressing the "Excel (Export)"
+                        button. Similarly, each Gram Panchayat in this district can be selected one by one and downloaded in Excel format.
+                    </li>
+                    <li>
+                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+                <ul>
+                    <li>
+                        भरी गई जानकारी को जांचना और स्वीकार करना शुरू करने से पहले, कृपया नीचे दिए गए बिंदुओं पर ध्यान दें।
+                    </li>
+                </ul>
+
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        आप वर्तमान में जिला स्तर पर लॉग इन हैं। इस स्तर पर जिला एवं ब्लॉक के अंतर्गत विभिन्न ग्राम पंचायतों का चयन
+                        कर आप ग्राम पंचायत स्तर पर भरी गई सूचनाओं को देख सकते हैं तथा "Export (Excel)" तथा "Export (Pdf)"
+                        बटन के माध्यम से डाउनलोड भी कर सकते हैं। जिसे सत्यापन के लिए जिला स्तरीय नोडल अधिकारी को प्रस्तुत किया गया है।
+                    </li>
+                    <li>
+                        इस लॉगिन के भीतर, आप किसी भी जानकारी को संपादित करने या हटाने में समर्थ नहीं होंगे। जीपी स्तर पर भरी गई जानकारी
+                        को सत्यापित करने के लिए अधिकृत डीपीएमयू अधिकारी द्वारा सूचना को अस्वीकार करने के बाद ही जीपी स्तर पर यह अधिकार लागू किया जाता है।
+                    </li>
+                    <li>
+                        यदि आपको इस जिले के अंतर्गत आने वाली ग्राम पंचायतों में भरी गई जानकारी को सत्यापित करने के लिए अधिकृत किया गया है, तो आप
+                        "Approved " "Reject" और "Submit to SPMU" बटन का उपयोग करने के लिए भी अधिकृत हैं।
+                    </li>
+                    <li>
+                        यदि आप जीपी स्तर पर भरी गई जानकारी को सत्यापित करने के लिए अधिकृत अधिकारी हैं,
+                        तो आपको जानकारी सत्यापित करने के लिए ऑटो-जेनरेट किया गया ईमेल भी प्राप्त होगा।
+                    </li>
+                    <li>
+                        यदि आप भरी गई जानकारी से संतुष्ट नहीं हैं और सुधार करने की आवश्यकता है, तो पहले
+                        "Remarks" बॉक्स में अपनी टिप्पणी लिखें, और फिर "Reject" बटन पर क्लिक करें।
+                    </li>
+                    <li>
+                        आपने भरी हुई जानकारी को या तो अस्वीकार कर दिया है या अनुमोदित कर दिया है, जिसे "Status"
+                        के बगल में पृष्ठ के शीर्ष पर हाइलाइट किया जाएगा। "Status" की जानकारी उस ग्राम पंचायत को स्वचालित रूप से उत्पन्न ईमेल के माध्यम से भी भेजी जाएगी।
+                        यदि आपने "Remarks" देकर भरी हुई जानकारी को "Reject" कर दिया है, तो आपके "Remarks" जीपी स्तर पर पृष्ठ के शीर्ष पर लाल रंग में दिखाई देगें।
+                    </li>
+                    <li>
+                        जीपी स्तर पर, आपकी टिप्पणियों के आधार पर जानकारी में सुधार किया जाएगा और सत्यापन के लिए आपको फिर से प्रस्तुत किया जाएगा।
+                    </li>
+                    <li>
+                        आप इस जिले के अंतर्गत सभी ग्राम पंचायतों की भरी हुई जानकारी को एक्सेल फाइल में "Excel (Export)" बटन दबाकर डाउनलोड कर सकते हैं।
+                        इसी तरह, इस जिले की प्रत्येक ग्राम पंचायत को एक-एक करके चुना जा सकता है और एक्सेल प्रारूप में डाउनलोड किया जा सकता है।
+                    </li>
+                    <li>
+                        पीडीएफ प्रारूप में केवल एक-एक ग्राम पंचायत की जानकारी ही "Export (Pdf)" बटन को दबाकर डाउनलोड की जा सकती हैं ।
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalDialogScrollable_state" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+
+                <ul>
+                    <li>
+                        Before starting to check and accept the filled-out information, please note the points given below.
+                    </li>
+                </ul>
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        You are currently logged in at the State level. At this level, by selecting various Gram Panchayats
+                        under District and Block, you can see the information filled at the Gram Panchayat level and also download
+                        it through the "Export (Excel)" and "Export (Pdf)" buttons. That has been submitted to the state-level nodal
+                        officer for verification.
+                    </li>
+                    <li>
+                        Within this login, you will not be able to edit or delete any information. This right is invoked at the GP
+                        level only after the authorised DPMU officer to verify the information filled out at the GP level rejects
+                        the information.
+                    </li>
+
+                    <li>
+                        If you have been authorised to verify the filled-out information in the Gram Panchayats falling under
+                        this state, you are also authorised to use the "Approve" and "Reject" buttons.
+                    </li>
+                    <li>
+                        If you are the authorised officer to verify the information filled out at the GP level, after it has been
+                        verified and submitted by the DPMU nodal officer, you would have also received the auto-generated email to verify the information.
+                    </li>
+                    <li>
+                        Here you see the filled-out information at GP level that was submitted to you after being verified and approved by the authorised
+                        official at DPMU level. If you are satisfied with that information, simply click on the "Accept" button. When you have approved
+                        all the information filled out, an auto-generated email will be sent to the authorised official and GP of the DPMU, and the "Status"
+                        at the top of the page will change to "Approved by SPMU."
+                    </li>
+                    <li>
+                        If you are not satisfied with the filled-out information and need to make a correction, first write your comment in the "Comment" box,
+                        and then click on the "Reject" button. The "status" information will also be conveyed to that authorised DPMU Nodal Officer through an
+                        automatically generated email. Your comments will appear at the top of the page at the DPMU level. "Status" will also change, and you
+                        will see "SPMU rejected it, and it is now pending at the DPMU level." The DPMU Nodal Officer will then add his comments and reject it
+                        for correction at the GP level; then "Remarks"will be visible to the GP level also. After correction, the GP level will resubmit it to
+                        DPMU, and DPMU will submit it to you for verification.
+                    </li>
+                    <li>
+                        You can download the filled-out information of all Gram Panchayats in this state in an excel file by pressing the "Excel (Export)" button.
+                        Similarly, each Gram Panchayat in this state can be selected one by one and downloaded in Excel format.
+                    </li>
+                    <li>
+                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+                    </li>
+                    <li>
+                        The filled-in information of the Gram Panchayat under the GPDCI module will be approved at the SPMU level, and after
+                        that, the WSP module will open for that approved Gram Panchayat to update the WSP in 2023–2024.
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+                <ul>
+                    <li>
+                        भरी गई जानकारी को जांचना और स्वीकार करना शुरू करने से पहले, कृपया नीचे दिए गए बिंदुओं पर ध्यान दें।
+                    </li>
+                </ul>
+
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        आप वर्तमान में राज्य स्तर पर लॉग इन हैं। इस स्तर पर जिला एवं ब्लॉक के अंतर्गत विभिन्न ग्राम पंचायतों का चयन कर आप ग्राम पंचायत स्तर
+                        पर भरी गई सूचनाओं को देख सकते हैं तथा "Export (Excel)" तथा "Export (Pdf)" बटन के माध्यम से डाउनलोड भी कर सकते हैं।
+                        जिसे सत्यापन के लिए राज्य स्तरीय नोडल अधिकारी को प्रस्तुत किया गया है।
+                    </li>
+                    <li>
+                        इस लॉगिन के भीतर, आप किसी भी जानकारी को संपादित करने या हटाने में समर्थ नहीं होंगे। जीपी स्तर पर भरी गई जानकारी को सत्यापित
+                        करने के लिए अधिकृत डीपीएमयू अधिकारी द्वारा सूचना को अस्वीकार करने के बाद ही जीपी स्तर पर यह अधिकार लागू किया जाता है।
+                    </li>
+                    <li>
+                        यदि आपको इस राज्य के अंतर्गत आने वाली ग्राम पंचायतों में भरी गई जानकारी को सत्यापित करने के लिए अधिकृत किया गया है,
+                        तो आप "Approved" और "Reject" बटन का उपयोग करने के लिए भी अधिकृत हैं।
+                    </li>
+                    <li>
+                        यदि आप GP स्तर पर भरी गई जानकारी को सत्यापित करने के लिए अधिकृत अधिकारी हैं, तो इसे DPMU नोडल अधिकारी द्वारा सत्यापित
+                        और प्रस्तुत करने के बाद, आपको जानकारी सत्यापित करने के लिए ऑटो-जेनरेट किया गया ईमेल भी प्राप्त होगा।
+                    </li>
+                    <li>
+                        यहां आप GP स्तर पर भरी हुई जानकारी देखते हैं जो DPMU स्तर पर अधिकृत अधिकारी द्वारा सत्यापित और अनुमोदित होने के बाद आपको
+                        प्रस्तुत की गई थी। यदि आप उस जानकारी से संतुष्ट हैं, तो बस "Approved" बटन पर क्लिक करें। जब आपने भरी गई सभी सूचनाओं
+                        को मंजूरी दे दी है, तो एक ऑटो-जेनरेट किया गया ईमेल डीपीएमयू के अधिकृत अधिकारी और जीपी को भेजा जाएगा, और पृष्ठ के शीर्ष
+                        पर स्थित "Status" बदलकर "Approved by SPMU" हो जाएगी।
+                    </li>
+                    <li>
+                        यदि आप भरी गई जानकारी से संतुष्ट नहीं हैं और सुधार करने की आवश्यकता है, तो पहले "Remarks" बॉक्स में अपनी टिप्पणी लिखें, और फिर
+                        "Reject" बटन पर क्लिक करें। "Status" की जानकारी उस अधिकृत DPMU नोडल अधिकारी को स्वचालित रूप से उत्पन्न ईमेल के
+                        माध्यम से भी बताई जाएगी। आपकी टिप्पणियाँ DPMU स्तर पर पृष्ठ के शीर्ष पर दिखाई देंगी। "Status" भी बदल जाएगी, और आप
+                        देखेंगे "SPMU rejected it, and it is now pending at the DPMU level." डीपीएमयू नोडल अधिकारी तब अपनी टिप्पणी
+                        जोड़ेंगे और जीपी स्तर पर सुधार के लिए इसे “Reject” कर देंगे; तब "Remarks" जीपी स्तर पर भी दिखाई देगी। सुधार के बाद,
+                        जीपी स्तर इसे डीपीएमयू को फिर से जमा करेगा, और डीपीएमयू इसे सत्यापन के लिए आपके पास जमा करेगा।
+                    </li>
+                    <li>
+                        आप इस राज्य की सभी ग्राम पंचायतों की भरी हुई जानकारी को एक्सेल फाइल में "Excel (Export)" बटन दबाकर
+                        डाउनलोड कर सकते हैं। इसी तरह, इस राज्य में प्रत्येक ग्राम पंचायत को एक-एक करके चुना जा सकता है और
+                        एक्सेल प्रारूप में डाउनलोड किया जा सकता है।
+                    </li>
+                    <li>
+                        पीडीएफ प्रारूप में केवल एक-एक ग्राम पंचायत की जानकारी ही "Export (Pdf)" बटन को दबाकर डाउनलोड की जा सकती हैं ।
+                    </li>
+                    <li>
+                        GPDCI मॉड्यूल के तहत ग्राम पंचायत की भरी हुई जानकारी को SPMU स्तर पर अनुमोदित किया जाएगा, और उसके बाद,
+                        2023-2024 में WSP को अपडेट करने के लिए उस अनुमोदित ग्राम पंचायत के लिए WSP मॉड्यूल खुल जाएगा।
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDialogScrollable_npmu" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        You are currently logged in at the NPMU level. At this stage,
+                        by selecting various Gram Panchayats under the State, Districts and Blocks,
+                        you can see the information filled in at the GP level that has been submitted for
+                        verification or has already been verified by the State-level nodal officer.
+                    </li>
+                    <li>
+                        You can download the filled-out information of all Gram Panchayats under any states
+                        in an excel file by pressing the "Excel (Export)" button. Similarly, each Gram Panchayat in
+                        this states can be selected one by one and downloaded in Excel format.
+                    </li>
+
+                    <li>
+                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+                    </li>
+                    <li>
+                        Through NPMU-level login, the entered information cannot be modified or deleted.
+                    </li>
+                </ul>
+
+
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            <!--</div>
+            <div class="modal-body">
+
+
+                <ul class="list_style" style="list-style-type:decimal;">
+                    <li>
+                        आप वर्तमान में एनपीएमयू स्तर पर लॉग इन हैं। इस स्तर पर, राज्य, जिलों और ब्लॉकों के तहत विभिन्न ग्राम
+                        पंचायतों का चयन करके, आप जीपी स्तर पर भरी गई जानकारी देख सकते हैं जो सत्यापन के लिए प्रस्तुत की
+                        गई है या राज्य-स्तरीय नोडल अधिकारी द्वारा पहले ही सत्यापित की जा चुकी है।
+                    </li>
+                    <li>
+                        आप " Excel (Export)" बटन दबाकर किसी भी राज्य के अंतर्गत सभी ग्राम पंचायतों की भरी हुई
+                        जानकारी को एक एक्सेल फाइल में डाउनलोड कर सकते हैं। इसी तरह, इस राज्य में प्रत्येक ग्राम पंचायत को
+                        एक-एक करके चुना जा सकता है और एक्सेल प्रारूप में डाउनलोड किया जा सकता है।
+                    </li>
+                    <li>
+                        पीडीएफ प्रारूप में केवल एक-एक ग्राम पंचायत की जानकारी ही "Export (Pdf)" बटन को दबाकर डाउनलोड की जा सकती हैं ।
+                    </li>
+                    <li>
+                        एनपीएमयू-स्तरीय लॉगिन के माध्यम से दर्ज की गई जानकारी को संशोधित या हटाया नहीं जा सकता है।
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Model Popup -->
+
+<script src="~/Scripts/validations.js"></script>
+<script>
+    window.onload = function () {
+        inactivityTime();
+    }
+
+    $(document).ready(function () {
+        //$("#modalDialogScrollable_gp").modal("hide");
+        //$("#modalDialogScrollable_block").modal("hide");
+        //$("#modalDialogScrollable_dpmu").modal("hide");
+        //$("#modalDialogScrollable_state").modal("hide");
+        //$("#modalDialogScrollable_npmu").modal("hide");
+        $("#MonthDropdownLabel").hide();
+        $('.loader').hide();
+        var fin_year = getCurrentFiscalYear();
+
+        var year = "";
+        if (fin_year == "2022-23") {
+            year = "2022-23"
+        } else if (fin_year == "2023-24") {
+            year = "2023-24";
+        } else if (fin_year == "2024-25") {
+            year = "2024-25"
+        }
+        
+        $("#year").val(year);
+        document.getElementById("source_year").value = "2022-23";
+        document.getElementById("source_year_liv").value = "2022-23";
+        debugger;
+        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const m = new Date();
+        let MonthName = month[m.getUTCMonth()];
+        $("#month").val(MonthName);
+
+    });
+
+    function Session_month_year() {
+        var month = $('#month').val();
+        var year = $('#year').val();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/GPlevel/Session_month_year",
+            data: '{"Year": "' + year + '","Month": "' + month + '"}',
+            success: function (data) {
+                Get_gp_block_area();
+            }
+        })
+    }
+
+    function getCurrentFiscalYear() {
+        //get current date
+        var today = new Date();
+        if ((today.getMonth() + 1) <= 3) {
+            fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+        } else {
+            fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+        }
+
+        if (fiscalyear == "2020-2021") {
+            fincalyear = 2020;
+        } else if (fiscalyear == "2021-2022") {
+            fincalyear = 2021;
+        } else if (fiscalyear == "2022-2023") {
+            fincalyear = 2022;
+        } else if (fiscalyear == "2023-2024") {
+            fincalyear = 2023;
+        } else if (fiscalyear == "2024-2025") {
+            fincalyear = 2024;
+        }
+
+        if (fiscalyear == "2020-2021") {
+            fiscalyear = "2020-21";
+        } else if (fiscalyear == "2021-2022") {
+            fiscalyear = "2021-22";
+        } else if (fiscalyear == "2022-2023") {
+            fiscalyear = "2022-23";
+        } else if (fiscalyear == "2023-2024") {
+            fiscalyear = "2023-24";
+        } else if (fiscalyear == "2024-2025") {
+            fiscalyear = "2024-25";
+        }
+
+        return (fiscalyear);
+    }
+</script>
+<script>
+    debugger;
+    $("#approved").hide();
+    $('#btn_rejectNDO').hide();
+    $('#gpdata_remarks').hide();
+    //$('#state_remarks').hide();
+    $('#hide_remarks').hide();
+    $('#sp_remarks').hide();
+    $('#btn_submitspmu').hide();
+    var year = new Date().getFullYear();
+    var  StateOfficer = '@Session["Officer"]';
+    $('#year').prop("disabled", true);
+    $('#month').prop("disabled", true);
+
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var Jsondata = "";
+    $(document).ready(function () {
+        debugger;
+         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        //$('#DropdownSearch_btn').hide();
+        $('#alert_waiting').hide();
+        //$('.livestocknumericvalue').hide();
+        //$('#LivestockAdd').hide();
+        $("#sarpanch_save_btn").prop("disabled", false);
+        DropDownInfo();
+        $('#otherNumeric').hide();
+        $('#other_irrigation').hide();
+        $('#btnAdd').hide();
+        $('#no_of_others_or_general').hide();
+        $('.OtherGroundWaterNumeric').hide();
+        //$('.IrrGroundWaterName').hide();
+        //$('.IrrGroundWaterNumeric').hide();
+        //$('.IrrSurOtherNumeric').hide();
+        $('#totalCaste').hide();
+        
+
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            $('#year').prop("disabled", false);
+            $('#month').prop("disabled", false);
+
+        }
+        debugger;
+        //if (StateOfficer == "Gram Panchyat Nodal Officer") {
+        //    $("#sarpanch_save_btn").prop("disabled", false);
+        //    $("#modalDialogScrollable_gp").modal("show");
+        //} else if (StateOfficer == "Block Level Nodal Officer") {
+        //    $("#modalDialogScrollable_block").modal("show");
+        //} else if (StateOfficer == "District Level Nodal Officer") {
+        //    $("#modalDialogScrollable_dpmu").modal("show");
+        //} else if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin") {
+        //    $("#modalDialogScrollable_npmu").modal("show");
+        //} else if (StateOfficer == "State Level Nodal Officer") {
+        //    $("#modalDialogScrollable_state").modal("show");
+        //}
+        if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin" || StateOfficer == "Block Level Nodal Officer") {
+            $('#btn_submitNDO').hide();
+            $('#btn_submitspmu').hide();
+            $('#btnFinalSave').hide();
+
+        }
+        $(".number").autoNumeric();
+
+        //code by abhijeet for livestock other section
+        //$(document).on('change', '.livestockOtherName', function () {
+        //    var destination = $(this).closest('tr');
+        //    $(destination).find('.livestocknumericvalue').val('');
+        //    var selected_attraction_or_activity = $(this).find(":selected").val();
+
+        //    if (selected_attraction_or_activity !== null) {
+
+        //        $(destination).find('.livestocknumericvalue').show();
+        //        $(destination).find('#LivestockAdd').show();
+        //    }
+
+        //});
+
+        //$(document).on('input', '.watereffothername', function () { // when the attraction_OR_activity dropdown is selected
+
+        //    var destination = $(this).closest('tr');
+
+        //    $(destination).find('.watereffothernumeric').html('');
+
+        //    var selected_attraction_or_activity = $(destination).find('.watereffothername').text();
+
+        //    if (selected_attraction_or_activity !== null) {
+
+        //        $(destination).find('.watereffothernumeric').show();
+        //        $(destination).find('#waterEffAdd').show();
+        //    }
+
+
+
+        //});
+
+        //$(document).on('input', '.OtherGroundWaterName', function () {
+
+        //    var destination = $(this).closest('tr');
+        //    $(destination).find('.OtherGroundWaterNumeric').html('');
+
+        //    var selected_attraction_or_activity = $(destination).find('.OtherGroundWaterName').text();
+
+        //    if (selected_attraction_or_activity !== null) {
+        //        $(destination).find('.OtherGroundWaterNumeric').show();
+        //        $(destination).find('.GroundAdd').show();
+        //    }
+
+        //});
+
+    //    $(document).on('input', '.IrrGroundWaterName', function () {
+
+    //        var destination = $(this).closest('tr');
+    //        $(destination).find('.IrrGroundWaterNumeric').html('');
+
+    //        var selected_attraction_or_activity = $(destination).find('.IrrGroundWaterName').text();
+
+    //        if (selected_attraction_or_activity !== null) {
+    //            $(destination).find('.IrrGroundWaterNumeric').show();
+    //            $(destination).find('.IrrGrounWaterAdd').show();
+    //        } else {
+    //            $(destination).find('.IrrGroundWaterNumeric').hide();
+
+    //        }
+
+    //    });
+
+
+    //    $(document).on('input', '.IrrSurOtherName', function () {
+
+    //        var destination = $(this).closest('tr');
+    //        $(destination).find('.IrrSurOtherNumeric').html('');
+
+    //        var IrrSurOtherName = $(destination).find('.IrrSurOtherName').text();
+
+    //        if (IrrSurOtherName !== null) {
+    //            $(destination).find('.IrrSurOtherNumeric').show();
+    //            $(destination).find('.IrrSurAddOther').show();
+    //        } else {
+    //            $(destination).find('.IrrSurOtherNumeric').hide();
+
+    //        }
+
+    //    });
+
+    });
+
+
+
+
+    var n = 1;
+    var ddd = 0;
+    function adddonordetails() {
+
+        $('#DUError').text("");
+        if (ddd == 0) {
+            ddd = 1;
+            //$('#tdata1111 tbody tr').length;
+            for (var a = 0; a < n; a++) {
+                $('#tdata1111 tr:first').after('<tr id="abc_' + a + '"><tr class="trbordercolor"><td colspan="1">Category:</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">Total Households:</td><td colspan="6"><input type="text" class="form-control" /></td></tr><tr class="trbordercolor"><td colspan="1">SC (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">SC (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr><tr class="trbordercolor"><td colspan="1">ST (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">ST (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr>    <tr class="trbordercolor"><td colspan="1">OBC (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">OBC (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr>   <tr class="trbordercolor"><td colspan="1">Minority (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">Minority (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr><tr class="trbordercolor"><td colspan="1">Others (M):</td><td colspan="4"><input type="text" class="form-control" /></td><td colspan="3">Others (F):</td><td colspan="6"><input type="text" class="form-control" /></td></tr> <tr class="trbordercolor"><td><button type="button" class=" btn btn-primary" onclick="SaveDonarDetails(' + a + ')">Save</button></td><td><button type="button" class=" btn btn-danger" onclick="cancel();">Cancel</button></td></tr></tr>');
+                //$('.donarclass').first().show();
+            }
+        }
+        //a = a + 1;
+        //DonarDetails();
+    }
+    function cancel() {
+
+        $('.trbordercolor').remove();
+    }
+    var Data;
+</script>
+<script>
+    function cancelonedit(i) {
+        $('#hiderowonedit_' + i).show();
+        $('#trn' + i).hide();
+    }
+    function editrow(i) {
+        $('#DUError').text("");
+        $('#trn' + i).show();
+        $('#hiderowonedit_' + i).hide();
+    }
+
+    //get Gp Area in Ha
+    var villageCount = 0;
+    function Get_gp_block_area() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_new/Get_gp_block_area',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+
+                if (data.length != 0) {
+                    if (data[0].gp_area != null) {
+                        $('#gp_area_in_ha').val(parseFloat(data[0].gp_area).toFixed(2));
+                    }
+                    if (data[0].village_name != null && data[0].village_name != "") {
+                        var VillageName = data[0].village_name.split(',');
+                        $('#villagethead').empty('');
+                        var html = "";
+                        let j = 3;
+                        villageCount = VillageName.length;
+                        for (var i = 0; i < VillageName.length; i++) {
+                            debugger;
+                            if (0 == (j % 3)) {
+                                /*html = '<tr ><td><button id="Addvillage" type="button" hidden class="add-field btn btn-success hide_btn" onclick="AddVillage()">Add Village Name</button></td></tr>';*/
+                                html += '<tr class = "remove_tr_village"><td><span id=""><input class="VillageName form-control" id="VillageName"  value="' + VillageName[i] + '" name = "VillageName" type=text  onchange = "village_name_validate()" /></span></td>';
+                                html += '<td><a href="" onclick="return Dtlvillage(this)" class="Village_remove_field hide_btn_village">Remove</a></td>';
+                            } else if (1 == (j % 3)) {
+
+                                html += '<td><span id=""><input class="VillageName form-control" id="VillageName"  value="' + VillageName[i] + '" name = "VillageName" type=text  onchange = "village_name_validate()" /></span></td>';
+                                html += '<td><a href="" onclick="return Dtlvillage(this)" class="Village_remove_field hide_btn_village">Remove</a></td>';
+                            } else {
+                                html += '<td><span id=""><input class="VillageName form-control" id="VillageName"  value="' + VillageName[i] + '" name = "VillageName" type=text  onchange = "village_name_validate()" /></span></td>';
+                                html += '<td><a href="" onclick="return Dtlvillage(this)" class="Village_remove_field hide_btn_village">Remove</a></td></tr>';
+
+                            }
+                            j++;
+
+                        }
+                        $('#villagethead').append(html);
+                        $(".VillageName").prop("disabled", true);
+                        $('.hide_btn_village').hide();
+                        $('#total_no_of_village').val(VillageName.length);
+                        $('#total_no_of_village').prop("disabled", true);
+                        $('#Addvillage').prop("disabled", true);
+                        baseline_gp_data(villageCount);
+
+                    }
+
+                } else {
+                    baseline_gp_data(villageCount);
+                }
+
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+
+    $('li.leftbtnnext > button.btnprocess1').click(function () {
+
+
+        $('ul#myTabsss.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#WaterbudgetingWB' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $('button.btnprocess2').click(function () {
+
+
+        $('ul#myTabsss.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#WatersecurityplanWSP' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabsss.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $("ul#myTabsss > li > a").on("show.bs.tab", function () {
+
+        $('ul.tabs_menu > li:first-child').trigger('click');
+    });
+</script>
+<script>
+    var WSPFORMID = "";
+    var statename = "";
+    var distname = "";
+    var blockname = "";
+    var gramname = "";
+    function HouseholdsDetails(s, d, b, g) {
+        statename = s;
+        distname = d;
+        blockname = b;
+        gramname = g;
+
+
+
+        cancel();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Wsp_total/HouseholdDetails',
+            data: '{"state": "' + s + '","dist": "' + d + '","block": "' + b + '","gram": "' + g + '"}',
+            dataType: 'JSON',
+            success: function (data) {
+
+                var tr = "";
+
+                if (data != null) {
+                    var count = data.length;
+                    for (var i = 0; i < data.length; i++) {
+                        tr +=
+                            '<tr id="trn' + i + '" class="donarclass"  role="row" style="display:none">' +
+                            '<tr class="trhideclass' + i + '" style="display:none" ><td colspan="2">Category</td><td colspan="5" class="tdborder"><input type="text" id="Category' + i + '" value="' + data[i].category + '" /></td>' +
+                            '<td colspan="2">Total_Households</td><td colspan="5" class="tdborder"><input type="text" id="Total_Households' + i + '" value="' + data[i].tol_households + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">SC(M)</td><td colspan="5" class="tdborder"><input type="text" id="sc_m' + i + '" value="' + data[i].sc_m + '" /></td>' +
+                            '<td colspan="2">SC(F)</td><td colspan="5" class="tdborder"><input type="text" id="sc_f' + i + '" value="' + data[i].sc_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">ST(M)</td><td colspan="5" class="tdborder"><input type="text" id="st_m' + i + '" value="' + data[i].st_m + '" /></td>' +
+                            '<td colspan="2">ST(F)</td><td colspan="5" class="tdborder"><input type="text" id="st_f' + i + '" value="' + data[i].st_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">OBC(M)</td><td colspan="5" class="tdborder"><input type="text" id="obc_m' + i + '" value="' + data[i].obc_m + '" /></td>' +
+                            '<td colspan="2">OBC(F)</td><td colspan="5" class="tdborder"><input type="text" id="obc_f' + i + '" value="' + data[i].obc_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">Minority(M)</td><td colspan="5" class="tdborder"><input type="text" id="minority_m' + i + '" value="' + data[i].minority_m + '" /></td>' +
+                            '<td colspan="2">Minority(F)</td><td colspan="5" class="tdborder"><input type="text" id="minority_f' + i + '" value="' + data[i].minority_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td colspan="2">Others(M)</td><td colspan="5" class="tdborder"><input type="text" id="others_m' + i + '" value="' + data[i].others_m + '" /></td>' +
+                            '<td colspan="2">Others(F)</td><td colspan="5" class="tdborder"><input type="text" id="others_f' + i + '" value="' + data[i].others_f + '" /></td></tr>' +
+                            '<tr class="trhideclass' + i + '" style="display:none"><td><button type="button" class="btn btn-success" onclick="update_detail(' + data[i].hlid + ',' + i + ')">Update</button>' + '</td><td><button type="button" class="btn btn-danger" onclick="cancelonedit(' + i + ');">Cancel</button>' + '</td>' +
+                            '</tr>' + '</tr>' +
+                            '<tr role="row"  id="hiderowonedit_' + i + '"><td><button type="submit" class="btn btn-primary" onclick=editrow(' + i + ');> Edit </button></td>' + '<td><button type="button"  class="btn btn-danger" onclick = "delete_detail(' + data[i].hlid + ',' + i + ')" > Delete</button ></td> ' + ' <td > ' + data[i].category + '</td> <td>' + data[i].tol_households + '</td> <td>' + data[i].sc_m + '</td> <td>' + data[i].sc_f + '</td><td>' + data[i].st_m + '</td> <td>' + data[i].st_f + '</td> <td>' + data[i].obc_m + '</td> <td>' + data[i].obc_f + '</td> <td>' + data[i].minority_m + '</td> <td>' + data[i].minority_f + '</td> <td>' + data[i].others_m + '</td> <td>' + data[i].others_f + '</td></tr>'
+                    }
+
+                }
+                else {
+                    tr += '<tr  role="row"><td colspan="2">No Data</td></tr>';
+                }
+
+                $("#tblHouseholdsDetails").html(tr);
+
+
+            }
+        });
+    }
+    function cancel() {
+        ddd = 0;
+        $('.trbordercolor').remove();
+    }
+    function SaveHDetails() {
+        ddd = 0;
+        var obj = {};
+        obj.category = $("#gpicat").val();
+        obj.tol_households = $("#gpith").val();
+        obj.sc_m = $("#gpiscm").val();
+        obj.sc_f = $("#gpiscf").val();
+        obj.st_m = $("#gpistm").val();
+        obj.st_f = $("#gpistf").val();
+        obj.obc_m = $("#gpiobcm").val();
+        obj.obc_f = $("#gpiobcf").val();
+        obj.minority_m = $("#minorm").val();
+        obj.minority_f = $("#minorf").val();
+        obj.others_m = $("#gpiothersm").val();
+        obj.others_f = $("#gpiothersf").val();
+
+        obj.state_name = statename;
+        obj.district_name = distname;
+        obj.block = blockname;
+        obj.gname = gramname;
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Wsp_total/SaveHouseHolds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                HouseholdsDetails();
+                document.getElementById('AlertError').innerHTML = response;
+            }
+        });
+    }
+    function delete_detail(IDD, i) {
+        $('.trhideclass' + i).hide();
+        var obj = {};
+        obj.hlid = IDD;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP/DeleteHouseholds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                document.getElementById('AlertError').innerHTML = response;
+                HouseholdsDetails();
+            }
+        });
+    }
+    function update_detail(Id, i) {
+
+        var obj = {};
+        obj.category = $('#Category' + i).val();
+        obj.tol_households = $('#Total_Households' + i).val();
+        obj.sc_m = $('#sc_m' + i).val();
+        obj.sc_f = $('#sc_f' + i).val();
+        obj.st_m = $('#st_m' + i).val();
+        obj.st_f = $('#st_f' + i).val();
+        obj.obc_m = $('#obc_m' + i).val();
+        obj.obc_f = $('#obc_f' + i).val();
+        obj.minority_m = $('#minority_m' + i).val();
+        obj.minority_f = $('#minority_f' + i).val();
+        obj.others_m = $('#others_m' + i).val();
+        obj.others_f = $('#others_f' + i).val();
+        obj.hlid = Id;
+        //obj.ttkid = DID;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            url: "/WSP/UpdateHouseholds",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                document.getElementById('AlertError').innerHTML = response;
+                $('.trhideclass' + i).hide();
+                HouseholdsDetails();
+            }
+        });
+
+
+    }
+    function cancelonedit(i) {
+        $('.trhideclass' + i).hide();
+        $('#hiderowonedit_' + i).show();
+        $('#trn' + i).hide();
+    }
+    function editrow(i) {
+        $('#DUError').text("");
+        $('#trn' + i).show();
+        $('#hiderowonedit_' + i).hide();
+        $('.trhideclass' + i).show();
+
+
+    }
+
+    $('#resetdata').click(function () {
+        if (confirm("You want to Delete the data ?")) {
+            /*Clear all input type="text" box*/
+            $('#resetinfo input[type="text"]').val('');
+            /*Clear textarea using id */
+            $('#resetinfo #txtAddress').val('');
+            document.getElementById('AlertError').innerHTML = "Deleted Successfully";
+        }
+    });
+
+    //   $("#reset").bind("click", function () {
+    //    $("input[type=text], textarea").val("");
+    //    document.getElementById('AlertError').innerHTML = "Deleted Successfully";
+    //});
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    function toggleIcon(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find(".more-less")
+            .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+
+
+
+    function Report_PDF() {
+        var xx = 0;
+        if (State != "0" && State != "") {
+            if (Dist != "0" && Dist != "") {
+                if (Block != "0" && Block != "") {
+                    if (Gram != "0" && Gram != "") {
+                        if (year != "0" && year != "") {
+                        } else {
+                            xx == 1;
+                            alert("Please Select Year");
+                        }
+                    } else {
+                        xx = 1;
+                        alert("Please Select Gram Panchayat");
+                    }
+                } else {
+                    xx = 1;
+                    alert("Please Select Block");
+                }
+            } else {
+                xx = 1;
+                alert("Please Select District");
+            }
+        } else {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+
+
+
+        if (xx == 0) {
+            window.location = "/GPlevel/GPlevel_Report";
+
+        }
+    }
+</script>
+
+
+
+
+@*EHTASHAM*@
+
+<script>
+
+    function confirm_SPMU() {
+        debugger;
+        var gpdata_remarks = $("#gpdata_remarks").val();
+        if (gpdata_remarks != "") {
+            alert("If you want submit to SPMU, please remove the remarks first; if you accidentally clicked the Submit button, click the Cancel button first, then the Reject button");
+            return;
+        }
+        swal({
+            title: "Are you sure to submit the information for verification to SPMU?",
+            text: "",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    submitNDO();
+                } else {
+
+                }
+            });
+
+    }
+
+    function confirm_DPMU() {
+        debugger;
+        swal({
+            title: "Are you sure to submit the information for verification?",
+            text: "Check: If you are certain that all of the information you have entered is correct, click the 'OK' button. You will no longer be able to edit or modify any information before it is rejected by DPMU after that.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    submitNDO();
+                } else {
+
+                }
+            });
+
+    }
+
+    function rejectNDO_confirm() {
+        debugger;
+        swal({
+            title: "Are you sure to reject the current submitted information for that selected GP in GPDCI ?",
+            text: "",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    rejectNDO();
+                } else {
+
+                }
+            });
+
+    }
+
+    function Final_Approved() {
+        debugger;
+        var state_remarks = $("#state_remarks").val();
+        if (state_remarks != "") {
+            alert('Check: If you want to submit to SPMU, please remove the remarks first; if you accidentally clicked the "Submit" button, click the "OK" button first, then the "Reject" button.');
+            return;
+        }
+        var proceed = confirm("Are you sure to approved the current submitted GPDCI.");
+        if (proceed) {
+            var year = $("#year").val();
+
+            var xx = 0;
+            if (State == "0") {
+                xx = 1;
+                alert("Please Select State");
+            } else if (Dist == "0") {
+                xx = 1;
+                alert("Please Select District");
+            }
+            else if (Block == "0") {
+                xx = 1;
+                alert("Please Select Block");
+            } else if (Gram == "0") {
+                xx = 1;
+                alert("Please Select Gram Panchayat");
+            } else if (year == "0") {
+                xx = 1;
+                alert("Please Select Year")
+                $("#year").focus();
+            }
+            if (xx == 0) {
+                var obj = {};
+                obj.state_name = State;
+                obj.district_name = Dist;
+                obj.block_name = Block;
+                obj.gpname = Gram;
+                obj.year = $("#year").val();
+                $('.loader').show();
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/GPlevel/baselinedata_approved",
+                    data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        $('.loader').hide();
+                        if (response != "Successfully Approved") {
+                            window.location = "/Error/DefaultError";
+                        }
+                        if (response == "Logout") {
+                            window.location = "/WspNew/WSP_GWM_HOME";
+                        }
+                        $('#btn_rejectNDO').hide();
+                        $("#approved").hide();
+                        alert("Successfully Approved");
+                        swal("", "Successfully Approved", "success", {
+                            button: "OK",
+                        });
+                        baseline_gp_data(villageCount);
+                    }
+                });
+            }
+        }
+    }
+
+
+
+    function submitNDO() {
+        debugger;
+
+        //$('input[type="text"]').attr('disabled', true).eq(count++).attr('disabled', false);
+        var year = $("#year").val();
+
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select State");
+        } else if (Dist == "0") {
+            xx = 1;
+            alert("Please Select District");
+        }
+        else if (Block == "0") {
+            xx = 1;
+            alert("Please Select Block");
+        } else if (Gram == "0") {
+            xx = 1;
+            alert("Please Select Gram Panchayat");
+        } else if (year == "0") {
+            xx = 1;
+            alert("Please Select Year")
+            $("#year").focus();
+        }
+        if (xx == 0) {
+            if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                baseline_gp_data_saveing();
+            }
+            var obj = {};
+            obj.state_name = State;
+            obj.district_name = Dist;
+            obj.block_name = Block;
+            obj.gpname = Gram;
+            obj.year = $("#year").val();
+            $('.loader').show();
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/GPlevel/baselinedata_submit_ndo",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    $('.loader').hide();
+                    if (response == "Error") {
+                        window.location = "/Error/DefaultError";
+                    }
+                    if (response == "Logout") {
+                        window.location = "/WspNew/WSP_GWM_HOME";
+                    }
+                    if (response == "Please complete all of the fields in Sections (A) and (B)") {
+                        alert(response);
+                    } else {
+                        $('#btn_submitNDO').hide();
+                        $('#btnFinalSave').hide();
+                        $('#btn_submitspmu').hide();
+                        $('#btn_rejectNDO').hide();
+                        $("#sarpanch_save_btn").prop("disabled", true);
+                        $(".sarpanch_dlt_btn").prop("disabled", true);
+                        if (StateOfficer == "District Level Nodal Officer") {
+                            swal("", "Filled-out information has been successfully submitted to the State Level Nodal Officer for verification.", "success", {
+                                button: "OK",
+                            });
+                        } else {
+                            swal("", "Filled-out information has been successfully submitted to the District Level Nodal Officer for verification.", "success", {
+                                button: "OK",
+                            });
+                        }
+
+                        
+                    }
+
+
+                    baseline_gp_data(villageCount);
+
+                }
+            });
+        }
+        //$('input[type="text"]').attr('disabled', true).eq(count++).attr('disabled', false);
+        //$('#btnFinalSave').hide();
+        //$('#LivestockAdd').disable;
+        //$('#IrrSurAddOther').disable;
+        //$('#IrrGrounWaterAdd').disable;
+        //$('#GroundWaterAdd').disable;
+        //$('#AddWaterEffElement').disable;
+    }
+
+</script>
+
+<script>
+    function rejectNDO() {
+
+
+        if (StateOfficer == "District Level Nodal Officer") {
+            var gpdata_remarks = $('#gpdata_remarks').val();
+
+            if (gpdata_remarks == "") {
+                alert("Please write your remarks before rejecting the submitted information.");
+                $('#gpdata_remarks').focus();
+                return;
+            }
+        }
+        //if (StateOfficer == "State Level Nodal Officer") {
+        //    var state_remarks = $('#state_remarks').val();
+
+        //    if (state_remarks == "") {
+        //        alert("Please write your remarks before rejecting the submitted information.");
+        //        $('#state_remarks').focus();
+        //        return;
+        //    }
+        //}
+
+        var obj = {};
+        obj.state_name = State;
+        obj.district_name = Dist;
+        obj.block_name = Block;
+        obj.gpname = Gram;
+        obj.year = $("#year").val();
+        obj.gpdata_remarks = gpdata_remarks;
+        //obj.state_remarks = state_remarks;
+        $('.loader').show();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/GPlevel/baselinedata_reject_ndo",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                $('.loader').hide();
+                if (response != "Successfully Rejected") {
+                    window.location = "/Error/DefaultError";
+                }
+                if (response == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+
+                document.getElementById('alertrtdatacolection1').innerHTML = response;
+                $('#alertrtdatacolection1').css('display', 'block');
+                $('#alertrtdatacolection1').fadeIn(5000, function () {
+
+                });
+                $('#alertrtdatacolection1').fadeOut(5000, function () {
+
+                });
+                //$('#approved').hide();
+                $('#btnFinalSave').hide();
+                $('#btn_submitspmu').hide();
+                $('#btn_rejectNDO').hide();
+                swal("", "Successfully Rejected Base Line GP Data", "success", {
+                    button: "OK",
+                });
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                baseline_gp_data(villageCount);
+            }
+
+        });
+
+
+    }
+</script>
+
+<script>
+    // code for sum of livestockpopulation
+    $(document).ready(function () {
+        debugger;
+        $("#livestockTable").on('input', '.livestocknumericvalue', function () {
+            var calculated_total_sum = 0;
+
+            $("#livestockTable .livestocknumericvalue").each(function () {
+                var get_textbox_value = $(this).val();
+                if ($.isNumeric(get_textbox_value)) {
+                    calculated_total_sum += parseFloat(get_textbox_value);
+                }
+            });
+            $("#livestock_population").val(calculated_total_sum);
+        });
+
+        //code for sum of irrigation surface water
+        $("#irrisurftable").on('input', '.IrrSurOtherNumeric', function () {
+            var calculated_total_sum = 0;
+
+            $("#irrisurftable .IrrSurOtherNumeric").each(function () {
+                var get_textbox_value = $(this).val();
+                if ($.isNumeric(get_textbox_value)) {
+                    calculated_total_sum += parseFloat(get_textbox_value);
+                }
+            });
+            $("#totalSurfaceWater").val(parseFloat(calculated_total_sum).toFixed(2));
+        });
+
+        //code for sum of irrigation groud water
+        $("#IrriGroundWaterTable").on('input', '.IrrGroundWaterNumeric', function () {
+            var calculated_total_sum = 0;
+
+            $("#IrriGroundWaterTable .IrrGroundWaterNumeric").each(function () {
+                var get_textbox_value = $(this).val();
+                if ($.isNumeric(get_textbox_value)) {
+                    calculated_total_sum += parseFloat(get_textbox_value);
+                }
+            });
+            $("#totalGround").val(parseFloat(calculated_total_sum).toFixed(2));
+        });
+
+        //code for sum of Existing wells
+        $("#GroundWaterTable").on('input', '.OtherGroundWaterNumeric', function () {
+            var calculated_total_sum = 0;
+
+            $("#GroundWaterTable .OtherGroundWaterNumeric").each(function () {
+                var get_textbox_value = $(this).val();
+                if ($.isNumeric(get_textbox_value)) {
+                    calculated_total_sum += parseFloat(get_textbox_value);
+                }
+            });
+            $("#totalWells").val(calculated_total_sum);
+        });
+
+        //code for sum of water efficient
+        $("#WaterEffTable").on('input', '.watereffothernumeric', function () {
+            var calculated_total_sum = 0;
+
+            $("#WaterEffTable .watereffothernumeric").each(function () {
+                var get_textbox_value = $(this).val();
+                if ($.isNumeric(get_textbox_value)) {
+                    calculated_total_sum += parseFloat(get_textbox_value);
+                }
+            });
+            $("#total_water_efficient").val(parseFloat(calculated_total_sum).toFixed(2));
+        });
+
+
+
+        // code for dropdown(select a option only one time)
+        $("#livestockTable").on('change', '.ddControl', function () {
+            debugger;
+            var selected = $(this).val();
+            if (selected != "ot") {
+                if (selected) {
+                    var otherselected = $('.ddControl').not($(this)).find('option[value="' + selected + '"]:selected');
+                    if (otherselected.length > 0) {
+                        alert(selected + ' is already selected. Please select another option');
+                        $(this).val("");
+                    }
+                } else {
+                    $('.hide_livestockName2').show();
+                    $('#hide_livestockname').hide();
+                }
+            }
+
+        });
+
+
+        $("#irrisurftable").on('change', '.ddControl', function () {
+            debugger;
+            var selected = $(this).val();
+            if (selected != "ot") {
+                if (selected) {
+                    var otherselected = $('.ddControl').not($(this)).find('option[value="' + selected + '"]:selected');
+                    if (otherselected.length > 0) {
+                        alert(selected + ' is already selected. Please select another option');
+                        $(this).val("");
+                    }
+                }
+            }
+        });
+
+        $("#IrriGroundWaterTable").on('change', '.ddControl', function () {
+            debugger;
+            var selected = $(this).val();
+            if (selected != "ot") {
+                if (selected) {
+                    var otherselected = $('.ddControl').not($(this)).find('option[value="' + selected + '"]:selected');
+                    if (otherselected.length > 0) {
+                        alert(selected + ' is already selected. Please select another option');
+                        $(this).val("");
+                    }
+                }
+            }
+        });
+
+        $("#GroundWaterTable").on('change', '.ddControl', function () {
+            debugger;
+            var selected = $(this).val();
+            if (selected != "ot") {
+                if (selected) {
+                    var otherselected = $('.ddControl').not($(this)).find('option[value="' + selected + '"]:selected');
+                    if (otherselected.length > 0) {
+                        alert(selected + ' is already selected. Please select another option');
+                        $(this).val("");
+                    }
+                }
+            }
+        });
+
+        $("#WaterEffTable").on('change', '.ddControl', function () {
+            debugger;
+            var selected = $(this).val();
+            if (selected != "ot") {
+                if (selected) {
+                    var otherselected = $('.ddControl').not($(this)).find('option[value="' + selected + '"]:selected');
+                    if (otherselected.length > 0) {
+                        alert(selected + ' is already selected. Please select another option');
+                        $(this).val("");
+                    }
+                }
+            }
+        });
+
+
+        $("#designation_name").on('change', '.sarpanchdropdown', function () {
+            debugger;
+            var selected = $(this).val();
+            if (selected) {
+                var otherselected = $('.sarpanchdropdown').not($(this)).find('option[value="' + selected + '"]:selected');
+                if (otherselected.length > 0) {
+                    alert(selected + ' is already selected. Please select another option');
+                    $(this).val("");
+                }
+            }
+        });
+
+    });
+
+</script>
+
+<script>
+    // Numbers only
+    $(document).on("input", ".livestocknumericvalue", function () {
+        this.value = this.value.replace(/\D/g, '');
+    });
+</script>
+<script>
+
+    $(document).on("input", ".OtherGroundWaterNumeric", function () {
+        this.value = this.value.replace(/\D/g, '');
+    });
+</script>
+
+<script>
+    function validate(e) {
+        debugger;
+        var c = 0;
+        var { value } = event.target;
+        var count1 = 0;
+
+        for (var i = 0; i < value.length; i++) {
+            count1++;
+            if (value[i] != '.') {
+                if (count1 == 6 && value[i] != '.') {
+
+                    e.preventDefault();
+                }
+            } else {
+                var count = 0, point = false;
+                for (var i = 0; i < value.length; i++) {
+
+                    if (value[i] == '.' || point) {
+                        count++;
+                        point = true;
+                    }
+                    if (count > 2) {
+                        e.preventDefault();
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    function Create_Excel() {
+        debugger;
+        $('.loader').show();
+        var year = $("#year").val();
+        var month = $("#month").val();
+        //var obj = {};
+        //obj.state_name = State;
+        //obj.district_name = Dist;
+        //obj.block_name = Block;
+        //obj.gpname = Gram;
+        //obj.year = year;
+        if (State == "0") {
+            alert("Please Select State");
+            $('.loader').hide();
+            return false;
+        } else if (year == "0") {
+            alert("Please Select Year");
+            $('.loader').hide();
+            return false;
+        }
+            
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/GPlevel/Create_Excel",
+            /*data: { state1: State, district1: Dist, block01: Block, gp1: Gram, year1: year },*/
+            data: '{"state1": "' + State + '","district1": "' + Dist + '","block01": "' + Block + '","gp1": "' + Gram + '","year1": "' + year + '"}',
+            success: function (response) {
+                debugger;
+                //alert(response);
+                $('.loader').hide();
+                window.location.href = response;
+            }
+        });
+        
+        //window.location.href = "/GPlevel/Create_Excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year;
+        //$('.loader').hide();
+        }
+    
+
+
+    //const actualBtn = document.getElementById('txtimage');
+
+    //const fileChosen = document.getElementById('file-chosen');
+
+    //actualBtn.addEventListener('change', function () {
+    //    fileChosen.textContent = this.files[0].name
+    //})
+
+    const actualBtn1 = document.getElementById('txtimage1');
+
+    const fileChosen1 = document.getElementById('file-chosen1');
+
+    actualBtn1.addEventListener('change', function () {
+        debugger;
+        fileChosen1.textContent = this.files[0].name
+        if (fileChosen1.textContent.length > 40) {
+            var char = fileChosen1.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen1.textContent = "";
+            
+            
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+        
+    })
+
+    const actualBtn2 = document.getElementById('txtimage2');
+
+    const fileChosen2 = document.getElementById('file-chosen2');
+
+    actualBtn2.addEventListener('change', function () {
+        fileChosen2.textContent = this.files[0].name
+        if (fileChosen2.textContent.length > 40) {
+            var char = fileChosen2.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen2.textContent = "";
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    //const actualBtn3 = document.getElementById('txtimage3');
+
+    //const fileChosen3 = document.getElementById('file-chosen3');
+
+    //actualBtn3.addEventListener('change', function () {
+    //    fileChosen3.textContent = this.files[0].name
+    //})
+
+    const actualBtn4 = document.getElementById('txtimage4');
+
+    const fileChosen4 = document.getElementById('file-chosen4');
+
+    actualBtn4.addEventListener('change', function () {
+        fileChosen4.textContent = this.files[0].name
+        if (fileChosen4.textContent.length > 40) {
+            var char = fileChosen4.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen4.textContent = "";
+            
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    const actualBtn5 = document.getElementById('txtimage5');
+
+    const fileChosen5 = document.getElementById('file-chosen5');
+
+    actualBtn5.addEventListener('change', function () {
+        fileChosen5.textContent = this.files[0].name
+        if (fileChosen5.textContent.length > 40) {
+            var char = fileChosen5.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen5.textContent = "";
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    const actualBtn6 = document.getElementById('txtimage6');
+
+    const fileChosen6 = document.getElementById('file-chosen6');
+
+    actualBtn6.addEventListener('change', function () {
+        fileChosen6.textContent = this.files[0].name
+        if (fileChosen6.textContent.length > 40) {
+            var char = fileChosen6.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen6.textContent = "";
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    const actualBtn7 = document.getElementById('txtimage7');
+
+    const fileChosen7 = document.getElementById('file-chosen7');
+
+    actualBtn7.addEventListener('change', function () {
+        fileChosen7.textContent = this.files[0].name
+        if (fileChosen7.textContent.length > 40) {
+            var char = fileChosen7.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen7.textContent = "";
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    const actualBtn8 = document.getElementById('txtimage8');
+
+    const fileChosen8 = document.getElementById('file-chosen8');
+
+    actualBtn8.addEventListener('change', function () {
+        fileChosen8.textContent = this.files[0].name
+        if (fileChosen8.textContent.length > 40) {
+            var char = fileChosen8.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen8.textContent = "";
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    const actualBtn9 = document.getElementById('txtimage9');
+
+    const fileChosen9 = document.getElementById('file-chosen9');
+
+    actualBtn9.addEventListener('change', function () {
+        fileChosen9.textContent = this.files[0].name
+        if (fileChosen9.textContent.length > 40) {
+            var char = fileChosen9.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen9.textContent = "";
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    const actualBtn10 = document.getElementById('txtimage10');
+
+    const fileChosen10 = document.getElementById('file-chosen10');
+
+    actualBtn10.addEventListener('change', function () {
+        fileChosen10.textContent = this.files[0].name
+        if (fileChosen10.textContent.length > 40) {
+            var char = fileChosen10.textContent.length;
+            alert("File Name should not be more than 40 characters, your file has " + char + " characters");
+            fileChosen10.textContent = "";
+            //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
+        }
+    })
+
+    function Goto_page() {
+        debugger;
+        var path = "";
+        if ($('#goto_page').val() != "0") {
+            var path = $('#goto_page').val();
+            window.location = path;
+        } else {
+            var path = $('#goto_page1').val();
+        }
+    }
+
+    function DeleteImage(SectionName, id) {
+        swal({
+            title: "Are you sure to delete the current uploaded image / pdf ?",
+            text: "",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json; chatset=utf-8',
+                        url: "/GPlevel/DeleteImage_From_baseline_gp_upload",
+                        data: '{"SectionName": "' + SectionName + '","id": "' + id + '"}',
+                        success: function (data) {
+                            alert(data);
+                            var total_no_of_village = $("#total_no_of_village").val();
+                            baseline_gp_data(total_no_of_village);
+                        }
+                    })
+                } else {
+                }
+            });
+    }
+
+
+</script>

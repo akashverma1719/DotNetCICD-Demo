@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = "~/Views/Shared/WebsiteLayout_hindi.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
+    <meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
+    <meta name="author" content="Codrops" />
+    <title>Institutional Strengthening & Capacity Building </title>
+
+    <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+    <script>
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3) ").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3)> ul.inside-menu > li:first-child").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3)> ul.inside-menu > li:first-child").siblings().removeClass('active');
+
+    </script>
+
+</head>
+<body>
+
+
+    <div class="ss">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:sans-serif;margin-top:20px;font-weight:900">संस्थागत सुदृढ़ीकरण और क्षमता निर्माण घटक (1,400 करोड़ रुपये): </div>
+            </div>
+        </div>
+        <div class="container-fluid div-w99">
+            <div class="row">
+                <div class="col-md-12" style="padding-top:20px">
+
+                    <div class="col-md-12" style="margin-bottom:20px;">
+                        <h5 style="line-height:1.5em;font-size:16px;">
+                            यह घटक राज्यों में संस्थागत व्यवस्थाओं और क्षमताओं को मजबूत करने के लिए है ताकि वे अपने भूजल का सतत प्रबंधन कर सकें। घटकों में राज्यों, जिलों, ब्लॉकों और ग्राम पंचायतों सहित सभी स्तरों पर संस्थागत क्षमता को मजबूत करने, जल सुरक्षा योजना की तैयारी में सामुदायिक भागीदारी बढ़ाने, कौशल में सुधार करने और स्थायी भूजल प्रबंधन के लिए सूचना, शिक्षा और संचार के माध्यम से व्यवहार परिवर्तन को शामिल करने की परिकल्पना की गई है। घटक के तहत कुल परिव्यय रुपये है. भारत सरकार द्वारा 1400 करोड़ का योगदान।
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        function openPopUp(popupId) {
+            $('#' + popupId).modal('show');
+        }
+
+        document.getElementById('compS1').childNodes[1].setAttribute("class", "active");
+        document.getElementById('compS1').childNodes[1].children[0].setAttribute("class", "active");
+        document.getElementById('compS1Desc').childNodes[1].setAttribute("class", "tab-pane fade active in");
+        var opt = location.href.substring(location.href.length - 1, location.href.length);
+        document.getElementById("ISTable" + opt).style.display = "table";
+    </script>
+
+</body>
+</html>

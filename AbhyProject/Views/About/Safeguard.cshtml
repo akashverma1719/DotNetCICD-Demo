@@ -1,0 +1,407 @@
+﻿
+@{
+    ViewBag.Title = "Safeguard";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<style>
+    .div-w99 {
+        max-width: 97% !important;
+        margin: auto;
+        width: 97% !important;
+        padding: 10px;
+    }
+
+    .tab-content p {
+        line-height: 2;
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid #e4e5e7;
+    }
+
+        .nav-tabs > li > a {
+            font-weight: 600;
+            color: #fff;
+            background-color: #30ABEC;
+            padding: 8px 10px;
+            border: 1px solid #eee;
+            border-bottom: none;
+        }
+
+        .nav-tabs > li a:hover {
+            background: transparent;
+        }
+
+        .nav-tabs > li.active > a,
+        .nav-tabs > li.active > a:hover,
+        .nav-tabs > li.active > a:focus {
+            border: 1px solid #e4e5e7;
+            border-bottom-color: transparent;
+        }
+
+    .tab-content {
+        border: 1px solid #cacaca;
+        border-top: none;
+        padding: 12px 16px;
+    }
+
+        .tab-content > .active,
+        .pill-content > .active {
+            display: block;
+        }
+
+        .tab-content p:last-child {
+            margin-bottom: 0;
+        }
+
+    .fade {
+        opacity: 1 !important;
+        transition: opacity .15s linear;
+    }
+
+    .tabs-section ul li > .active {
+        color: #000000;
+    }
+
+    .nav-tabs > li > a i {
+        margin-right: 1px;
+        padding-right: 5px;
+    }
+
+    ul#myTabs1 > li.active::after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -15px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    ul#myTabs1 > li {
+        background-color: #3A99ED;
+        padding: 10px;
+        margin-right: 2px;
+    }
+
+        ul#myTabs1 > li.active > a,
+        ul#myTabs1 > li.active > a:focus,
+        ul#myTabs1 > li.active > a:hover {
+            color: #fff !important;
+        }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        text-decoration: none;
+        background-color: #6FB11D;
+    }
+
+    /* ul#myTabs1 > li > a {
+        color: #fff;
+    }*/
+
+    body {
+        line-height: 24px;
+    }
+
+
+    .panel-title a .control-icon {
+        position: absolute;
+        right: 33px;
+        margin-top: -11px;
+    }
+
+    .panel-title a i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+    .fa-desktop, .fa-leaf {
+        padding: 5px;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    @@media (min-width: 0) {
+        .g-py-12 {
+            padding-top: 0.85714rem !important;
+            padding-bottom: 0.85714rem !important;
+        }
+
+        .g-px-20 {
+            padding-left: 1.42857rem !important;
+            padding-right: 1.42857rem !important;
+        }
+    }
+
+    .u-btn-primary {
+        color: #fff;
+        background-color: #527bcc;
+    }
+
+    p.btnhover > a:hover,
+    p.btnhover > a:active {
+        background-color: green;
+        color: #fff;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 400;
+        color: #337AB7;
+        font-family: inherit;
+    }
+
+    .Environmental_ul {
+        padding: 5px 5px 5px 40px;
+        list-style: disc;
+    }
+
+        .Environmental_ul > li {
+            list-style: disc;
+            padding: 2px 0px
+        }
+
+    .Environmental_ul_1 {
+        list-style: lower-alpha;
+        padding: 5px 5px 5px 40px;
+    }
+
+        .Environmental_ul_1 > li {
+            list-style: lower-alpha;
+            padding: 2px 0px;
+        }
+
+    .heding_Environmental {
+        padding: 10px 0px;
+        font-family: inherit;
+        color: purple;
+    }
+</style>
+<title>Assessment Summary</title>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px; margin-left: 10px; font-family: raleway; margin-top: 20px; font-weight: 900 ">Assessment Summary</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabs-section">
+
+                <!-- Nav Tabs -->
+
+                <ul id="myTabs1" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                    <li id="" class="active">
+                        <a href="javascript:;" data-target="#Commentary" data-toggle="tab">
+                            <i class="fa fa-leaf"></i>Environmental
+
+
+                        </a>
+                    </li>
+                    <li id="">
+                        <a href="javascript:;" data-target="#Videos" data-toggle="tab">
+                            <i class="fa fa-users"></i>Social
+                        </a>
+                    </li>
+
+                </ul>
+
+
+                <!-- Tab panels -->
+                <div class="tab-content" style="margin-bottom:18px;">
+                    <!-- Tab Content 1 -->
+                    <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                        <h4 class="heding_Environmental">Environmental Management </h4>
+                        <p>
+                            1. The principal environmental risks of the individual investments stem from potential impacts and risks during the construction and operational phases of the scheme. These risks are typical of small-scale civil works projects and will not pose unprecedented or unusual operational challenges. All environmental impacts can be managed with known mitigation measures, which are within the capacity of identified implementing agencies
+                        </p>
+                        <h3 class="mt-2">1.1. Rules and Procedures : </h3>
+                        <p>
+                            2. The key process to be followed for environmental management of the scheme consists of the following steps and each of the steps is further elaborated in the following sections
+                        </p>
+                        <ul class="Environmental_ul">
+                            <li>
+                                Institutional responsibility in environmental management. The SPMUs will have adequate environmental staff for overall planning and implementation of environmental management of the scheme. Detailed responsibilities of these staff are given in section 1.2.
+                            </li>
+                            <li>
+                                Environmental screening process for proposed investments. An environmental checklist (presented in section 1.3) will be used to avoid any potential impacts associated with selection of potential sites for recharge and identification of recharge structure.
+                            </li>
+                            <li>
+                                Potential investments to be excluded from Atal Bhujal Yojana. A list of investments that will be excluded from the scope of Atal Bhujal Yojana are given in section 1.4.
+                            </li>
+                            <li>
+                                Environmental management clauses in construction contracts. Bidding documents of all construction works to be carried out under Atal Bhujal Yojana will include standard environmental specifications (as detailed in section 1.5) to mitigate impacts related to occupational health and safety; pollution from wastes; and air, soil, and water pollution.
+                            </li>
+                            <li>
+                                Water quality monitoring. Water quality monitoring frequency is explained in section 1.6. The groundwater quality of the nearby water wells will also be monitored. The water quality laboratories of all agencies available, including the Drinking Water Supply departments as well as the surveillance activity envisaged under Jal Jeevan Mission (JJM) shall be used for this purpose. Additionally, in all participating states, water quality testing laboratories will be updated to respond to Atal Bhujal Yojana and related needs. These laboratories shall be suitably upgraded and shall be accredited by the National Accreditation Board for Testing and Calibration Laboratories (NABL), to assure reliability and accuracy of reports, and systematic integration of laboratory safety and waste management standards into laboratory operations.
+                            </li>
+                            <li>
+                                Adequate budgetary provisions for maintenance of recharge structures. The recharge interventions to be built under this scheme require regular inspection and maintenance activities. The implementing agencies in the states will include adequate budgetary provision for repair and maintenance activities as part of the Detailed Project Reports (DPRs) of each structure.
+                            </li>
+                        </ul>
+                        <h3>1.2. Institutional Responsibility of Environmental Management </h3>
+                        <p>
+                            3. Environmental specialists in the NPMU/SPMUs will coordinate with the line departments for implementation of environmental procedures during screening, monitoring, and construction activities and implementation of recommendations proposed.
+                        </p>
+                        <p class="mt-2">
+                            4. The technical staff of implementing agencies and the village water user committees should be provided with training related to environmental issues associated with the scheme.
+                        </p>
+                        <h3 class="mt-2">1.3. Environmental Screening of Proposed Investments </h3>
+                        <p>
+                            5. A screening checklist has been prepared for identification of high-risk investments and potential impacts associated with those investments. The screening process will also consider impacts on the downstream water users, ecological flows, flooding and submergence, water logging and stream erosion, community acceptance, chemical quality of recharging water and need for any treatment, availability of borrow material for construction, sites for disposal of spoils, and so on.
+                        </p>
+                        <h3 class="mt-2">1.4. Potential Investments to be excluded from Atal Bhujal Yojana </h3>
+                        <p>
+                            6. The following investments related to the augmentation of groundwater recharge will be excluded from Atal Bhujal Yojana:
+                        </p>
+                        <ul class="Environmental_ul_1">
+                            <li> Construction of major dams and new large-scale irrigation systems </li>
+                            <li>Industrial wastewater collection, treatment, and using it for recharging ground water. </li>
+                            <li>Any investments that could fall under paragraph 9 of the PforR Policy as “Activities that are judged to be likely to have significant adverse impacts that are sensitive, diverse, or unprecedented on the environment and/or affected people are not eligible for the Financing and are excluded from the Scheme” </li>
+                        </ul>
+
+                        <h3>
+                            1.5. Environmental Management Clauses in Construction Contracts
+                        </h3>
+                        <p>
+                            7. The following environmental conditions will be included in all the bidding documents of the project to avoid, minimize, and mitigate any adverse/environmental impacts and also to address community and workers’ health and safety. A lump-sum provision will be made in the bills of quantities of the contracts for implementation of these environmental management measures.
+                        </p>
+                        <h3 class="mt-2">
+                            1.6. Environmental Monitoring
+                        </h3>
+                        <p>
+                            8. SPMU shall carry out sample inspections at six-monthly intervals to check if all safeguard requirements are met and to identify any issues that need to be addressed. The sample will mainly cover the schemes that have substantial environmental impacts. There would be an initial baseline monitoring followed by six-monthly monitoring for the following:
+                        </p>
+                        <ul class="Environmental_ul">
+                            <li>
+                                Monitoring of fertilizers and pesticides in recharging water and groundwater quality for the investments proposed for groundwater recharge wells in extensive agricultural land use areas.
+                            </li>
+                            <li>Monitoring of presence of contaminants including toxic elements in areas where recharging takes place through saline rich or contaminated soils. </li>
+                            <li>Monitoring of presence of contaminants including toxic elements in identified sample of surface water sources located in surface water quality hotspots (such as in/near the river sites having very bad water quality).</li>
+                            <li>Monitoring of contaminants for the treated municipal waste water that is proposed for irrigation, should ensure compliance with GoI standards for effluent quality on irrigation use. </li>
+                        </ul>
+                        <h3>1.7. Environmental Auditing </h3>
+                        <p>
+                            9. Twice during the scheme period (in years 2 and 5), the NPMU will appoint an external agency (government agency or independent consulting agency) to undertake an independent audit of the environmental performance of all Atal Bhujal Yojana activities with sample covering adequate number of schemes implemented by the states, that have substantial environmental risks.
+                        </p>
+
+                    </div>
+                    <!-- Tab Content 2 -->
+                    <div role="tabpanel" class="tab-pane fade" id="Videos">
+                        <h4 class="heding_Environmental">Social Management  </h4>
+                        <h3>2.1. Guiding Principles of Social Management </h3>
+                        <p>
+                            10. Inclusion. All supply and demand related activities in Atal Bhujal Yojana will be designed to ensure that the vulnerable, scheduled castes, scheduled tribes, women (particularly single women and households headed by women), minorities, small and medium farmers, and landless get included in the planning process and receive equitable access to benefits.
+                        </p>
+                        <p>11. Participation. The provisions of the 73rd Constitutional Amendment Act and the corresponding state acts providing rights to participate directly and indirectly in the processes of economic development and social justice should be complied with. SPMUs/DPMUs shall ensure that provisions to support Panchayats in ensuring participatory processes and social inclusion is facilitated by Panchayat subcommittees dealing with water and WUAs.  </p>
+                        <p>
+                            12. Transparency and accountability. The other available practices of information disclosure and social accountability in the ongoing flagship programs of the GoI will be the guiding principles in ensuring that people are aware and duly informed of the development works in their village. NPMU/SPMU/DPMUs will ensure
+                        </p>
+                        <ul class="Environmental_ul_1">
+                            <li>
+                                compliance with provisions under The Right to Information Act
+                            </li>
+                            <li>
+                                strong accountability mechanisms including vigilance systems,
+                            </li>
+                            <li>
+                                community monitoring systems, and d) Dedicated, accessible, and responsive Grievance Redressal Systems.
+                            </li>
+
+                        </ul>
+                        <h3>2.2. Implementation Actions for Social Management </h3>
+                        <p>
+                            13. Land management. Land acquisition and its related adverse social impacts are not foreseen because of the type of program investments. Implementation of WSPs for groundwater management may require land for say drainage line treatment. These small structures such as nalah bund or check dams will be located on public/government/GP/common land. Hence, land acquisition is not envisaged in the Program.
+                        </p>
+                        <p>
+                            14. Rights and interests of indigenous people and vulnerable groups. The socially vulnerable groups that are severely affected due to depleting quantity of groundwater including small and marginal farmers shall be supported through establishment of water sharing mechanisms that take into account that the limited resources ae also made available to the most vulnerable.
+                        </p>
+
+                        <p>
+                            15. Participation, inclusions, and accountability:
+                        </p>
+
+                        <ul class="Environmental_ul_1">
+                            <li> SPMU/DPMUs shall ensure that the GPs and other community-based institutions such as the water user groups foster participatory management, planning, and implementation of participatory and community-led methodologies for effective local and regional impacts of the Program. The local-level budgeting and planning will use  inclusive and participatory tools to ensure that all sections are included for collective ownership in the WSPs developed.  </li>
+                            <li>NPMU/SPMU/DPMUs shall promote social audit or other tools to assess its impact in terms of equity, access, benefit sharing, and accountability.  </li>
+                            <li>Access to GRM system under the Program MIS will be widely disseminated for submission of grievances /complaints for redressal. </li>
+                        </ul>
+                        <p>16. Fragility and social conflict. Water dispute management is not expected to be a significant issue with Atal Bhujal Yojana as communication strategy will help in bringing about a collective change in perception about participatory management. Should an issue arise, the same shall be resolved at the appropriate level by the competent authority, considering the interests of all parties concerned. </p>
+                        <h3>
+                            2.3. Institutional responsibility of Social Management National
+                        </h3>
+                        <ul class="Environmental_ul_1">
+                            <li>Prepare, manage, and build capacities of states on information monitoring systems to track social processes </li>
+                            <li>Provide guidelines for engaging consultants and DIPs at state and district level</li>
+                            <li>Prepare national-level IEC/behavior change campaigns with guidelines to states on statespecific activities </li>
+                            <li>Manage and update capacity development calendar </li>
+                            <li>Develop indicators and reporting mechanisms on social processes </li>
+                            <li>Develop and streamline grievance redressal mechanisms</li>
+                            <li>Coordinate with other departments </li>
+                        </ul>
+                        <p>17. State </p>
+                        <ul class="Environmental_ul_1">
+                            <li> Engage consultants at state and district level for managing and support in management of social processes </li>
+                            <li> Carry out capacity development activities </li>
+                            <li>Carry out IEC/behavior change activities </li>
+                            <li>Update MIS on social processes </li>
+                            <li>Manage and collate grievances </li>
+                            <li>Coordinate with other departments </li>
+
+                        </ul>
+                        <p>18. District </p>
+                        <ul class="Environmental_ul_1">
+                            <li>Report to state level on social processes </li>
+                            <li>Support the GPs on social processes</li>
+                            <li>Manage water-sharing agreements across the GPs</li>
+
+                        </ul>
+                        <p> 19. GP </p>
+                        <ul class="Environmental_ul_1">
+                            <li> Support local-level planning and implementation committees to carry out the activities for groundwater management  </li>
+                            <li> Prepare participatory plans  </li>
+                            <li>Facilitate social inclusion </li>
+                            <li>Ensure community monitoring </li>
+                        </ul>
+
+                        <h3>
+                            2.4. Gender Strategy
+                        </h3>
+                        <p>
+                            20. SPMUs/DPMUs shall ensure participation of women in water budgeting and water security planning exercises by mandating the presence of at least 33 percent female members in the GP-level WUAs. Women will be trained on budgeting and planning, as well as monitoring implementation progress. Additionally, gender issues will be addressed in the meetings of the WUAs. Specific training and exposure visits will be organized to engage women in the project activities. To this effect, the Results Framework of the scheme will track the participation of women in the committee and Panchayat-level meetings, the gender disaggregated data on scheme beneficiaries and also the number of women-headed user committees shall be recorded for confirmation of participation of women in the scheme.
+                        </p>
+                        <h3>2.5. Governance and Accountability</h3>
+                        <p>21. The existing accountability mechanisms under the Right to Information Act and Rights to Services Act will be applicable during the implementation of Atal Bhujal Yojana.</p>
+
+                        <h3>2.6. Atal Bhujal Yojana Communication Strategy </h3>
+                        <p>
+                            22. The key objective of the IEC will be to raise awareness about deteriorating groundwater levels and the associated and impending impacts. Importance of the role of participation from all stakeholders, especially end users on the field will be presented. Based on principles of inclusion, transparency, and accountability, the IEC strategy should aim to enhance the ability of stakeholders to engage, influence local-level institutions and hold them accountable for their work.
+                        </p>
+                        <p>23. The communications model advocated shall be a community-owned communication strategy that encourages civic engagement, where the community is part of the planning and monitoring process of the schemes. The methodology should be to seek to foster social, political, and institutional changes at different levels by building trust among implementers and the users, promoting a two-way communication, and exchanging knowledge and skills for a sustainable change in both availability of services and behavior that is consistent with facts on the ground. The detailed communication plans will be drawn out after an assessment of the communication needs. </p>
+                        <h3>2.7. Operations, Maintenance, and Withdrawal</h3>
+                        <p>24. The objective is to ensure that the assets created during the Program implementation phase are sustained and continue to yield benefits in the years to come. NPMU & SPMUs shall play key roles in ensuring that capacities at various levels shall be enhanced to make the program interventions self-sustainable. This will include both training and installation of the systems required to manage, inventory, and plan for maintenance.</p>
+                    </div>
+
+
+                    <!-- End Tab Panels -->
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown >  li:nth-child(4)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2) > ul.dropdown >  li:nth-child(4)").siblings().removeClass('active');
+</script>

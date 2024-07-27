@@ -1,0 +1,472 @@
+﻿
+@{
+    ViewBag.Title = "Well_Inventory";
+    Layout = "~/Views/Shared/_Mobile.cshtml";
+}
+<script src="~/Content/JS_Files/DLI_details.js"></script>
+
+
+
+
+<script>
+    $(".subtab1").addClass("active");
+    DLI_Data();
+</script>
+
+
+
+<style>
+
+    table thead tr th {
+        vertical-align: middle !important;
+        color: black;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    td {
+        vertical-align: middle !important;
+        font-size: 10px;
+    }
+</style>
+<style>
+    /*table fix code*/
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*ends here*/
+</style>
+
+
+<div class="container">
+    <h3>
+        <label>
+            Total No Of Well Inventory : <label id="well_total">0</label>
+        </label>
+    </h3>
+
+    <div class="row table_head_strip" style="margin:0px;padding-top:5px;">
+        <div class="col-md-6">
+            <div>
+                <h4 class="" style="font-size:13px;">
+                    @*Total No Of GWQM Report Filled through FTK : <label id="GWQM_total"></label>*@
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 bg-light text-right d-flex" style="margin-top:5px;">
+                <div class="bg-light text-right display_flex">
+                    <button class="btn btn-primary btn_export btn-sm" id="btnsubmit" onclick="Excel()">
+                        Export (Excel)
+                    </button>
+                </div>
+                <div style="margin-left:10px">
+
+                    <button type="button" id="pdf1" onclick="Report_PDF()" class="btn btn-primary btn-sm"> Export (PDF)</button>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+            <table id="mainTable" class="table table-boarderd comn_table">
+
+                <thead>
+                    <tr style="text-align: center; background-color: goldenrod;">
+
+                        <th>Sr.No.</th>
+                        <th>Village Name</th>
+                        <th>Location Details</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Date</th>
+                        <th>Well id</th>
+                        <th>Type of well</th>
+                        <th>Other Type of well</th>
+                        <th>Owner Name</th>
+                        <th>Diameter of  Well (m)</th>
+                        <th>Depth of  Well (m.bmp)</th>
+                        <th>Depth of Water Level (m.bmp)</th>
+                        <th>Height of measuring Point (mag I)</th>
+                        <th>Well Water Portable</th>
+                        <th>Use (Drinking / Domastic) / Irrigation / Both</th>
+                        <th>Pump Installed</th>
+                        <th>Volumetric/Electricity Meter Installed</th>
+                        <th>Image Upload</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tblmain"></tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editId" value="">
+
+                <div class="form-group">
+                    <label for="editVillage">Village</label>
+                    <input type="text" name="village" class="form-control" id="editVillage" placeholder="Village Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editLocation">Location Details</label>
+                    <input type="text" name="location" class="form-control" id="editLocation" placeholder="Location Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editLatitude">Latitude</label>
+                    <input type="text" name="latitude" class="form-control" id="editLatitude" placeholder="Latitude Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editLongitude">Longitude</label>
+                    <input type="text" name="longitude" class="form-control" id="editLongitude" placeholder="Longitude Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDate">Date</label>
+                    <input type="date" name="datenew" class="form-control" id="editDate" placeholder="Longitude Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editWellID">Well ID.</label>
+                    <input type="text" name="wellID" class="form-control" id="editWellID" placeholder="WellID Details" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editWellType">Type of well</label>
+                    <input type="text" name="wellType" class="form-control" id="editWellType" placeholder="Type of well" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editOwnerName">Owner Name</label>
+                    <input type="text" name="ownerName" class="form-control" id="editOwnerName" placeholder="Owner Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDiameter">Diameter of the Well (m)</label>
+                    <input type="text" name="diameter" class="form-control" id="editDiameter" placeholder="Diameter of the Well (m)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDepth">Depth of the Well (m.bmp)</label>
+                    <input type="text" name="depth" class="form-control" id="editDepth" placeholder="Depth of the Well (m.bmp)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editHeight">Height of measuring Point(mag I)</label>
+                    <input type="text" name="height" class="form-control" id="editHeight" placeholder="Height of measuring Point(mag I)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editWwp">Well Water Portability</label>
+                    <input type="text" name="wwp" class="form-control" id="editWwp" placeholder="Height of measuring Point(mag I)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editDepthLevel">Depth of Water Level(m.bmp)</label>
+                    <input type="text" name="depthLevel" class="form-control" id="editDepthLevel" placeholder="Depth of Water Level(m.bmp)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editUse">Use</label>
+                    <input type="text" name="use" class="form-control" id="editUse" placeholder="Use" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPump">Pump Installed</label>
+                    <input type="text" name="pumpInstalled" class="form-control" id="editPump" placeholder="Pump Installed" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editVolumetric">Volumetric/Electricity Meter Installed</label>
+                    <input type="text" name="volumetric" class="form-control" id="editVolumetric" placeholder="Volumetric/Electricity Meter Installed" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editImage">Image Upload</label>
+                    <input type="file" value="" id="editImage" name="fileUpload" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="updatemodalbtn" rowid="" data-dismiss="modal" onclick="updateData()">Update</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        GetData();
+    });
+
+    function Excel() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/wellinventory";
+        }
+    }
+    function Report_PDF() {
+        
+        var xx = 0;
+        if (xx == 0) {
+            window.location = "/GplevelMobileData/wellinventory_report";
+        }
+    }
+
+
+    function GetData() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/Fetch_Well_Inventory',
+            data: {},
+            dataType: 'JSON',
+            success: function (data) {
+                /*alert(data.length);*/   //abhi2406
+
+                var Tbodyhtml = '';
+                for (var i = 0; i < data.length; i++) {     //abhi2406
+                    Tbodyhtml += '<tr><td id="SrNo1" Rowid=' + data[i].gid + '>' + (i + 1) + '</td>';
+                    Tbodyhtml += '<td id="villa1">' + data[i].village + '</td>';
+                    Tbodyhtml += '<td id="loc1">' + data[i].locationdetails + '</td>';
+                    Tbodyhtml += '<td id="lati1">' + data[i].latitude + '</td>';
+                    Tbodyhtml += '<td id="longi1">' + data[i].longitude + '</td>';
+                    Tbodyhtml += '<td id="dat1">' + data[i].date + '</td>';
+                    Tbodyhtml += '<td id="wno1">' + data[i].wellno + '</td>';
+                    Tbodyhtml += '<td id="wtype1">' + data[i].welltype + '</td>';
+                    Tbodyhtml += '<td id="wtype1">' + data[i].well_type_other + '</td>';
+                    Tbodyhtml += '<td id="oname1">' + data[i].ownername + '</td>';
+                    Tbodyhtml += '<td id="wdiameter1">' + data[i].welldiameter + '</td>';
+                    Tbodyhtml += '<td id="wdepth1">' + data[i].welldepth + '</td>';
+                    Tbodyhtml += '<td id="wld1">' + data[i].waterleveldepth + '</td>';
+                    Tbodyhtml += '<td id="hmp1">' + data[i].measuringpoint + '</td>';
+                    Tbodyhtml += '<td id="wwp1">' + data[i].wellwaterpotable + '</td>';
+                    Tbodyhtml += '<td id="use1">' + data[i].use + '</td>';
+                    Tbodyhtml += '<td id="pinstall1">' + data[i].pumpinstalled + '</td>';
+                    Tbodyhtml += '<td id="electri1">' + data[i].electricmeterselecteditem + '</td>';
+                    Tbodyhtml += '<td id="img1"><a href="' + data[i].image + '">Image</a></td></tr>';
+                    /*Tbodyhtml += '<td><button type = "button" class="btn btn-sm btn-primary glyphicon glyphicon-edit editbtn" data-toggle="modal" data-target="#myModal" onclick="editData(this)"></button> <button type="button"  class="btn btn-sm btn-danger glyphicon glyphicon-trash deletebtn" onclick="deleteData(' + data[i].gid + ')"></button></td></tr> ';*/
+
+                }
+                $('#tblmain').html(Tbodyhtml);
+                $('#well_total').text(data.length);    //abhi2406
+
+            },
+            error: function () {
+                alert('Getdata to failed');
+            }
+        });
+    }
+
+    function editData(event) {
+
+        var tr = $(event).closest("tr");
+        var ID = tr.find('#SrNo1').attr('Rowid');
+        /* alert(ID);*/
+        var sno = tr.find('#SrNo1').html();
+        var villa = tr.find('#villa1').html();
+        var loca = tr.find('#loc1').html();
+        var lat = tr.find('#lati1').html();
+        var long = tr.find('#longi1').html();
+        var dat = tr.find('#dat1').html();
+        var welli = tr.find('#wno1').html();
+        var welltyp = tr.find('#wtype1').html();
+        var owner = tr.find('#oname1').html();
+        var dia = tr.find('#wdiameter1').html();
+        var dep = tr.find('#wdepth1').html();
+        var heig = tr.find('#hmp1').html();
+        var wlwp = tr.find('#wwp1').html();
+        var dow = tr.find('#wld1').html();
+        var usee = tr.find('#use1').html();
+        var pum = tr.find('#pinstall1').html();
+        var volu = tr.find('#electri1').html();
+        var imag = tr.find('#img1').html();
+
+        $('#editVillage').val(villa);
+        $('#editLocation').val(loca);
+        $('#editLatitude').val(lat);
+        $('#editLongitude').val(long);
+        $('#editDate').val(dat);
+        $('#editWellID').val(welli);
+        $('#editWellType').val(welltyp);
+        $('#editOwnerName').val(owner);
+        $('#editDiameter').val(dia);
+        $('#editDepth').val(dep);
+        $('#editHeight').val(heig);
+        $('#editWwp').val(wlwp);
+        $('#editDepthLevel').val(dow);
+        $('#editUse').val(usee);
+        $('#editPump').val(pum);
+        $('#editVolumetric').val(volu);
+        $('#editImage').attr('default', imag);
+        $('#updatemodalbtn').attr('Rowid', ID);
+
+    }
+
+    function deleteData(gid) {
+        if (confirm('Are you want to delete?')) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/GplevelMobileData/DeleteData_WI',
+                data: "{ID: '" + gid + "'}",
+                dataType: 'JSON',
+                success: function () {
+                    GetData();
+                },
+                error: function () {
+                    alert('Delete Failed');
+                }
+            });
+        }
+    }
+
+    function updateData() {
+        //var obj = {};
+
+        //obj.gid = $('#updatemodalbtn').attr('Rowid');
+        //obj.village = $('#editVillage').val();
+        //obj.locationdetails = $('#editLocation').val();
+        //obj.latitude = $('#editLatitude').val();
+        //obj.longitude = $('#editLongitude').val();
+        //obj.date = $('#editDate').val();
+        //obj.wellno = $('#editWellID').val();
+        //obj.welltype = $('#editWellType').val();
+        //obj.ownername = $('#editOwnerName').val();
+        //obj.welldiameter = $('#editDiameter').val();
+        //obj.welldepth = $('#editDepth').val();
+        //obj.measuringpoint = $('#editHeight').val();
+        //obj.wellwaterpotable = $('#editWwp').val();
+        //obj.waterleveldepth = $('#editDepthLevel').val();
+        //obj.use = $('#editUse').val();
+        //obj.pumpinstalled = $('#editPump').val();
+        //obj.electricmeterselecteditem = $('#editVolumetric').val();
+
+        //if ($('#editImage').val() == '') {
+        //    obj.image = $('#editImage').attr('default');
+        //}
+        //else {
+        //    obj.image = $('#editImage').val();
+        //}
+
+        var id3 = $('#updatemodalbtn').attr('Rowid');  // new
+        var editVillage = $('#editVillage').val();
+        var editLocation = $('#editLocation').val();
+        var editLatitude = $('#editLatitude').val();
+        var editLongitude = $('#editLongitude').val();
+        var editDate = $('#editDate').val();
+        var editWellID = $('#editWellID').val();
+        var editWellType = $('#editWellType').val();
+        var editOwnerName = $('#editOwnerName').val();
+        var editDiameter = $('#editDiameter').val();
+        var editDepth = $('#editDepth').val();
+        var editHeight = $('#editHeight').val();
+        var editWwp = $('#editWwp').val();
+        var editDepthLevel = $('#editDepthLevel').val();
+        var editUse = $('#editUse').val();
+        var editPump = $('#editPump').val();
+        var editVolumetric = $('#editVolumetric').val();
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/UpdateData_WI',
+            dataType: 'JSON',
+            data: function () {
+                var data = new FormData();
+                data.append("id3", id3);
+                data.append("editVillage", editVillage);
+                data.append("editLocation", editLocation);
+                data.append("editLatitude", editLatitude);
+                data.append("editLongitude", editLongitude);
+                data.append("editDate", editDate);
+                data.append("editWellID", editWellID);
+                data.append("editWellType", editWellType);
+                data.append("editOwnerName", editOwnerName);
+                data.append("editDiameter", editDiameter);
+                data.append("editDepth", editDepth);
+                data.append("editHeight", editHeight);
+                data.append("editWwp", editWwp);
+                data.append("editDepthLevel", editDepthLevel);
+                data.append("editUse", editUse);
+                data.append("editPump", editPump);
+                data.append("editVolumetric", editVolumetric);
+                data.append("editImage", jQuery("#editImage").get(0).files[0]);
+
+                return data;
+            }(),
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+                GetData();
+            },
+            error: function () {
+                alert('Update Failed');
+            }
+        });
+
+
+
+
+    }
+
+</script>
+
+<style>
+
+    .display_flex {
+        display: flex;
+        margin-top: auto;
+    }
+
+    .display_flex_justify {
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 10px;
+    }
+
+    .input_one {
+        margin-right: 10px;
+    }
+</style>

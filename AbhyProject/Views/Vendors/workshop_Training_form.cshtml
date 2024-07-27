@@ -1,0 +1,681 @@
+﻿@model AbhyProject.Models.Abhy_Training_Workshops
+
+@{
+    ViewBag.Title = "workshop_Training_form";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>Event Calendar</title>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Content/JS_Files/Master_DRP.js"></script>
+
+<style>
+    .form-horizontal .control-label {
+        margin-bottom: 6px;
+        font-weight: 600;
+    }
+
+    .table_tender_pdf tr th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .form-horizontal .form-group {
+        margin-left: 10px;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+</style>
+<style>
+    .aa > div > input,
+    .bb > div > span > input {
+        width: 21px;
+        height: 18px;
+    }
+
+    /*.labelcheckbox {
+        padding-left: 0px !important;
+        font-size: 18px;
+    }*/
+
+    .msg {
+        color: red !important;
+        font-weight: bold;
+    }
+
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        border-top: 2px solid #62cb31;
+    }
+
+    .hpanel {
+        border: none !important;
+        box-shadow: none;
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+
+    .col-md-6 {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        width: 100px;
+    }
+
+    a.btn-primary {
+        width: 200px;
+    }
+
+    .btnlist {
+        margin-top: 10px;
+    }
+
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    .about-area .col-md-6:last-child {
+        padding-left: 15px;
+    }
+
+    p {
+        margin: 0;
+    }
+</style>
+
+<style>
+    .maindiv {
+        width: 100%;
+        margin: auto;
+    }
+
+    .tbl-responsive {
+        overflow-x: inherit;
+    }
+
+    .clearfix:after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    .classic-title {
+        margin: 0 0 16px 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid mediumblue;
+        font-weight: 600;
+        line-height: 1.5em;
+    }
+
+    .panel-group > .panel {
+        -webkit-border-radius: 6px;
+        border: 1px solid #e8e8e8;
+        margin: 5px 0;
+    }
+
+    /*.panel-group > .panel-heading {
+        background-color: #ffad33;
+        padding: 0px;
+    }*/
+
+    .panel-title > a {
+        position: relative;
+        display: block;
+        color: #444 !important;
+        background-color: #fff;
+        padding: 10px 21px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .text-info {
+        color: mediumblue;
+    }
+
+    .panel-title > a > .control-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -11px;
+    }
+
+    .panel-title > a > i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+
+
+    .dataTables_filter, .dataTables_paginate {
+        float: right;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 8px 15px !important;
+        margin-bottom: -1px;
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .panel-inner > ul.list-group > li.list-group-item > a {
+        color: #3a99ed !important;
+    }
+
+        .panel-inner > ul.list-group > li.list-group-item > a:hover {
+            color: #6FB11D !important;
+        }
+
+    span.tablecellhead {
+        font-size: 15px;
+        font-weight: bold;
+        color: mediumblue;
+    }
+
+    .dataTables_empty {
+        text-align: center;
+    }
+
+    .list_table_function {
+        float: none;
+        width: 93%;
+        margin-left: 13px;
+        background: none !important;
+    }
+
+    .cricle_round {
+        background: #30abec;
+        color: white;
+        font-size: 13px;
+        border-radius: 100%;
+        font-weight: bold;
+        padding: 4px;
+        margin: -6px;
+        width: 26px;
+        height: 24px;
+        text-align: center
+    }
+
+    .tbl-responsive thead {
+        position: sticky;
+        top: 0px;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<br />
+<br />
+<div class="row" style="text-align:center" colspan="12">
+    <div class="col-md-12" style="background-color: #337ab7; text-align: center;">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #e4e5e7; font-size: 20px; margin-left: 10px; font-family: raleway; margin-top: 10px; font-weight: 900;">EVENTS CALENDAR</div>
+    </div>
+</div>
+
+
+
+
+<div class="row" style=" display: contents;">
+    <div id="content">
+        <div class="row container maindiv" style=" display: flex; justify-content: center;">
+            <div class="call-action call-action-style2 clearfix" style="padding-top: 25px">
+                <div class="widget widget-categories" style=" display: flex; gap: 20px; ">
+
+                    <div>
+                        <select name="Event Calendar" id="event_calendar" class="form-control" onchange="event_calendar_Dropdown()" style="width: 180px; border-radius: 25px;">
+                            @*<option value="0">--Select Event Calendar--</option>*@
+                            <option value="All">All</option>
+                            <option value="NPMU (Delhi)">NPMU (Delhi)</option>
+                            <option value="Gujarat_24">Gujarat</option>
+                            <option value="Haryana_6">Haryana</option>
+                            <option value="Karnataka_29">Karnataka</option>
+                            <option value="Madhya Pradesh_23">Madhya Pradesh</option>
+                            <option value="Maharashtra_27">Maharashtra</option>
+                            <option value="Rajasthan_8">Rajasthan</option>
+                            <option value="Uttar Pradesh_9">Uttar Pradesh</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <select name="Event Calendar Year" id="event_calendar_year" class="form-control" onchange="event_calendar_year_Dropdown()" style="width: 180px; border-radius: 25px">
+                            <option value="0">--Select Event Calendar Year--</option>
+                            @*<option value="2020-2021">2020-2021</option>
+        <option value="2021-2022">2021-2022</option>*@
+                            <option value="2022-23">2022-23</option>
+                            <option value="2023-24" selected>2023-24</option>
+                            <option value="2024-25" selected>2024-25</option>
+                            @*<option value="2024">2024-2025</option>*@
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="margin-top:30px">
+    <div class="row">
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="col-lg-12">
+                    <div class="">
+                        <div class="">
+                            <div class="d-flex justify-content-between">
+
+                                @*<div>
+                                        <div>
+                                            <div class="dataTables_filter" id="example_length" style=" margin-top: 20px">
+                                                <label class="d-flex align-items-center">
+                                                    Show
+                                                    <select name="example_length" aria-controls="example" class="form-control input-sm">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select>
+                                                    <label> entries</label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                @*<div>
+                                    <div id="example_filter" class="dataTables_filter" style="margin-top: 20px">
+                                        <label class="d-flex align-items-center" style="font-size:16px">
+                                            Search:
+                                            <input type="search" id="myInput" class="form-control input-sm" placeholder="Search..." style="margin-left: 5px; border-radius: 25px" />
+                                        </label>
+                                    </div>
+                                </div>*@
+                            </div>
+
+
+                            <div class="tbl-responsive" style="height: 500px; overflow-x: scroll; font-size: 15px;">
+                                <table id="example" class=" display  table stripe row-border order-column table-striped table-bordered dataTable no-footer table_tender_pdf">
+                                    <thead>
+                                        <tr class="text-center" style="text-align:center">
+                                            <th class="text-center" style="text-align:center" colspan="12">List of Events Calendar</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">S.No</th>
+                                            <th class="text-center">NPMU and State</th>
+                                            <th class="text-center">Current Event year</th>
+                                            <th class="text-center">Event Details</th>
+                                            <th class="text-center">Download</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="Training_Workshop_New"></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div><label id="Error" style="text-align:center;color:red;margin-left: 50%;font-size:20px;"></label></div>
+
+@*<script src="~/Scripts/validations.js"></script>*@
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:nth-child(6) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:nth-child(6) ").siblings().removeClass('active');
+</script>
+<script>
+
+    $(document).ready(function () {
+        //Get_Newregs_Training_Info11();
+        /*Get_Training_Working_Information();*/
+        event_calendar_info();
+        /*$("#event_calendar_year").hide();*/
+
+
+
+
+    });
+
+    var Full_Info = "";
+    var EventName = "";
+    var evnt_count = 0;
+
+    //function Get_Training_Working_Information() {
+
+    //    $.ajax({
+    //        type: 'GET',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/Vendors/Get_Training_Working_Info',
+    //        data: '',
+    //        dataType: 'JSON',
+    //        success: function (response) {
+    //            var tr = '';
+
+    //            if (response == "Logout") {
+    //                  window.location = "/Home/LogOut";
+    //            }
+    //            if (response.length != 0) {
+
+    //                for (var j = 0; j < response.length; j++) {
+
+    //                    var StateName = response[j].state_name;
+    //                    if (StateName == "Other") {
+    //                        StateName = response[j].other_state_name;
+    //                    }
+    //                    evnt_count = 0;
+    //                    EventName = response[j].p_training_name;
+
+    //                    Event_Count();
+
+    //                    tr += '<tr><td> ' + (j + 1) + '</td><td>' + response[j].p_training_name + '</td><td id="">' + response[j].from_date + '</td><td id="">' + response[j].to_date + '</td><td id="">' + response[j].training_status + '</td><td id="">' + StateName + '</td><td>' + evnt_count + '</td> <td></td> <td></td> <td></td> <td></td> </tr>';
+    //                    EventName = "";
+
+    //                }
+
+    //                $('#Training_Workshop').html(tr);
+    //            }
+    //            else if (tr == '') {
+    //                tr = '<tr colspan="6"><td colspan="6" style="text-align: center;">No Data</td></tr>';
+
+    //                $('#Training_Workshop').html(tr);
+    //            }
+
+    //        }
+    //    });
+    //}
+
+
+    function Get_Newregs_Training_Info11() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Vendors/Get_Newregs_Training_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (response) {
+                
+                var tr = '';
+
+                if (response == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                if (response.length != 0) {
+                    Full_Info = response;
+                }
+
+            }
+        });
+    }
+
+    function Event_Count() {
+
+        if (Full_Info.length != 0) {
+            for (var i = 0; i < Full_Info.length; i++) {
+                if (EventName == Full_Info[i].p_training_name) {
+                    evnt_count += 1;
+                }
+            }
+        }
+
+    }
+
+    function event_calendar_info() {          //abhi
+        
+        var event_calendar = $("#event_calendar option:selected").val();
+        var event_calendar_year = $("#event_calendar_year").val();
+
+        $.ajax({
+
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/MasterDropDown/event_calendar_Data',
+            data: { Event_Calendar: event_calendar, YEAR: event_calendar_year },
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+
+                }
+                var tr = '';
+                var tr_npmu = '';
+                var j = 0;
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        var download1 = "";
+                        var StateName = data[i].current_event.split("_");
+
+                        if (data[i].download != null) {
+                            download1 = data[i].download;
+                        }
+                        if (data[i].event_calendar == null) {
+                            data[i].event_calendar = "";
+                        }
+                        if (data[i].current_event_year == null) {
+                            data[i].current_event_year = "";
+                        }
+                        if (data[i].current_event == null) {
+                            data[i].current_event = "";
+                        }
+                        if (data[i].current_event == "NPMU (Delhi)") {
+                            tr_npmu = '<tr><td>' + (data.length) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                        } else {
+                            tr += '<tr><td>' + (++j) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                        }
+                        
+                    }
+                }
+                if (tr == '' && tr_npmu == '') {
+                    
+                    tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                    $('#Training_Workshop_New').html(tr);
+                }
+                else {
+                    tr += tr_npmu;
+                    $('#Training_Workshop_New').html(tr);
+                }
+                $('.loader').hide();
+            }
+        });
+    }
+
+
+    function event_calendar_Dropdown() {         //abhi
+        /*alert('2');*/
+        /*$("#event_calendar_year").show();*/
+        
+        var event_calendar = $("#event_calendar option:selected").val();
+        var event_calendar_year = $("#event_calendar_year").val();
+
+        $.ajax({
+            url: '/MasterDropDown/event_calendar_selection',
+            type: 'GET',
+            data: { STATE: event_calendar, YEAR: event_calendar_year },
+            dataType: 'json',
+            contentType: 'application/json',
+
+            success: function (data) {
+                
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                var tr = '';
+                var tr_npmu = '';
+                var j = 0;
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var download1 = "";
+                        var StateName = data[i].current_event.split("_");
+                        if (data[i].download != null) {
+                            download1 = data[i].download;
+                        }
+                        if (data[i].event_calendar == null) {
+                            data[i].event_calendar = "";
+                        }
+                        if (data[i].current_event_year == null) {
+                            data[i].current_event_year = "";
+                        }
+                        if (data[i].current_event == null) {
+                            data[i].current_event = "";
+                        }
+                        if (event_calendar == "All") {
+                            if (data[i].current_event == "NPMU (Delhi)") {
+                                tr_npmu = '<tr><td>' + (data.length) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                            } else {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                            }
+                        } else {
+                            tr += '<tr><td>' + (i + 1) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                        }
+                        
+                    }
+                }
+                if (tr == '' && tr_npmu == '') {
+                    tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                    $('#Training_Workshop_New').html(tr);
+                }
+                else {
+                    if (tr_npmu != '') {
+                        tr += tr_npmu;
+                        $('#Training_Workshop_New').html(tr);
+                    } else {
+                        $('#Training_Workshop_New').html(tr);
+                    }
+                    
+                }
+
+            }
+        });
+    }
+
+
+    function event_calendar_year_Dropdown() {         //abhi
+        /*  alert('2');*/
+        
+        var event_calendar = $("#event_calendar option:selected").val();
+        /* var event_calendar_year = $("#event_calendar_year option:selected").text();*/
+        var event_calendar_year = $("#event_calendar_year").val();
+
+        $.ajax({
+            url: '/MasterDropDown/event_calendar_year_Dropdown_selection',
+            type: 'GET',
+            data: { STATE: event_calendar, YEAR: event_calendar_year },
+            dataType: 'json',
+            contentType: 'application/json',
+
+            success: function (data) {
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+
+                }
+                
+                var tr = '';
+                var tr_npmu = '';
+                var j = 0;
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var StateName = data[i].current_event.split("_");
+                        var download1 = "";
+                        if (data[i].download != null) {
+                            download1 = data[i].download;
+                        }
+                        if (data[i].event_calendar == null) {
+                            data[i].event_calendar = "";
+                        }
+                        if (data[i].current_event_year == null) {
+                            data[i].current_event_year = "";
+                        }
+                        if (data[i].current_event == null) {
+                            data[i].current_event = "";
+                        }
+                        if (event_calendar == "All") {
+                            if (data[i].current_event == "NPMU (Delhi)") {
+                                tr_npmu = '<tr><td>' + (data.length) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                            } else {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                            }
+                        } else {
+                            tr += '<tr><td>' + (i + 1) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a  href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                        }
+                    }
+                }
+                if (tr == '' && tr_npmu == '') {
+                    tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                    $('#Training_Workshop_New').html(tr);
+                }
+                else {
+                    if (tr_npmu != '') {
+                        tr += tr_npmu;
+                        $('#Training_Workshop_New').html(tr);
+                    } else {
+                        $('#Training_Workshop_New').html(tr);
+                    }
+                }
+
+            }
+        });
+    }
+
+
+
+</script>
+
+@*for search the data from event table*@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#Training_Workshop_New tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

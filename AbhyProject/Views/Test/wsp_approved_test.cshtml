@@ -1,0 +1,363 @@
+﻿
+@{
+    ViewBag.Title = "wsp_approved";
+    Layout = null;
+
+}
+@*<head>
+        @Scripts.Render("~/Content/JS_Files")
+    </head>*@
+<title>Approved WSP Test</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .color_database {
+        color: green !important;
+    }
+
+    .total_wsp_count > label {
+        background-color: #f5ae91;
+        color: #000;
+        padding: 10px 10px 0px 10px;
+    }
+
+    tr.info th {
+        background-color: #337ab7 !important;
+        color: #fff;
+        text-align: center;
+    }
+
+    body {
+        background: #D1E8E2 !important;
+    }
+
+    .color_red_pdf {
+        color: red;
+        font-style: normal;
+    }
+</style>
+
+
+<div class="clearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                            <span style="color:#fff;">:@Session["UserName"]</span>
+                        </li>
+                        <li>
+
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" /></span>
+                            <label>Approved WSP</label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="clearfix padding-top-10">
+
+        <div class="col-md-12  Select_option_div">
+            <div style="text-align:center;color:red;"><label id="Error_123"></label></div>
+            <ul class="Select_option col-md-8 col-sm-8  text-left">
+                <li id="StateLabel">
+                    <label id="lblstate">State:</label>
+                    <span id="spnstate1">@Session["gstate"]</span>
+                </li>
+                <li id="StateDropdownLabel">
+
+                    <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                </li>
+
+                <li id="DistLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label id="lbldistrict">District:</label>
+                    <span id="spndistrict">@Session["gdist"]</span>
+                </li>
+
+                <li id="DistDropdownLabel">
+
+                    <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                </li>
+
+                <li id="BlockLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Block:</label>
+                    <span>@Session["gblock"] </span>
+                </li>
+
+                <li id="BlockDropdownLabel">
+
+                    <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                </li>
+                <li id="GramLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Gram panchayat:</label>
+                    <span>@Session["ggram"]</span>
+                </li>
+
+                <li id="GramDropdownLabel">
+
+                    <select class="form-control" id="gram" onchange="Gram_fun()"></select>
+                </li>
+
+            </ul>
+            <ul class="Select_option text-right col-md-2 col-sm-2">
+
+                <li>
+                    <a href="~/WSPHome/Gp_information" class="btn btn-primary">
+                        Back To GP Modules
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="clearfix">
+            <div class="col-md-12 col-sm-12">
+                <div class="total_wsp_count">
+                    <label>
+                        Total Number of Water Security Plans Approved : <label id="Approved_count"></label>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding:10px 15px">
+                <div class="form-div background-border-Database">
+                    <div class="table-responsive">
+                        <table class="Table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                            <thead>
+                                <tr class="info">
+                                    <th class="text-center">S.No.</th>
+                                    <th class="text-center">Year of Report</th>
+                                    <th id="">Upload The Report</th>
+                                    <th class="text-center">Downoload The Report </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">2021</td>
+                                    <td id="">
+                                        Select Report to upload <i class="color_red_pdf">Only .pdf</i>
+                                        <input type="file" name="report_2021" id="report_2021" accept="application/pdf">
+                                        @*<input type="button" disabled value="Upload " id="btn_2021" class="btn btn-primary" onclick="report_2021()" name="submit" />*@
+                                        <input type="button" value="Upload " id="btn_2021" class="btn btn-primary" onclick="report_2021()" name="submit" />
+                                    </td>
+                                    <td id="report_2021_download"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">2022</td>
+                                    <td id="">
+                                        Select Report to upload <i class="color_red_pdf">Only .pdf</i>
+                                        <input type="file" name="report_2022" id="report_2022" accept="application/pdf">
+                                        <input type="button" value="Upload " id="btn_2022" class="btn btn-primary" onclick="report_2022()" name="submit" />
+
+                                    </td>
+                                    <td id="report_2022_download"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">2023</td>
+                                    <td id="">
+                                        Select Report to upload <i class="color_red_pdf">Only .pdf</i>
+                                        <input type="file" name="report_2023" id="report_2023" accept=" return application/pdf">
+                                        <input type="button" value="Upload " id="btn_2023" class="btn btn-primary" onclick="report_2023()" name="submit" />
+
+                                    </td>
+                                    <td id="report_2023_download"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">2024</td>
+                                    <td id="">
+                                        Select Report to upload <i class="color_red_pdf">Only .pdf</i>
+                                        <input type="file" name="report_2024" id="report_2024" accept="return application/pdf">
+                                        <input type="button" value="Upload" id="btn_2024" class="btn btn-primary" onclick="report_2024()" name="submit" />
+
+                                    </td>
+                                    <td id="report_2024_download"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">5</td>
+                                    <td class="text-center">2025</td>
+                                    <td id="">
+                                        Select Report to upload <i class="color_red_pdf">Only .pdf</i>
+                                        <input type="file" name="report_2025" id="report_2025" accept="return application/pdf">
+                                        <input type="button" value="Upload" id="btn_2025" class="btn btn-primary" onclick="report_2025()" name="submit" />
+
+                                    </td>
+                                    <td id="report_2025_download"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @*<div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:400px; font-size:12px;">*@
+        <div class="table-responsive" style="overflow-y:auto">
+            <table class="Table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" id="TblData_abc_part1">
+                <thead>
+                    <tr class="info">
+                        <th class="text-center">S.No.</th>
+                        <th class="text-center">State Name</th>
+                        <th class="text-center">District Name</th>
+                        <th class="text-center">Block Name</th>
+                        <th class="text-center">GP Name</th>
+                        <th class="text-center">Uploaded Date</th>
+                        <th class="text-center">Download report</th>
+                        @*<th class="text-center">Status</th>*@
+
+                    </tr>
+                </thead>
+                <tbody id="tbl_details"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab"> Approved WSP</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="~/Content/JS_Files/wap_approved_test.js"></script>
+<script>
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+        //if (StateOfficer != "National Level Nodal Officer" && StateOfficer != "Admin") {
+        //    document.getElementById("report_2021").disabled = true;
+        //    document.getElementById("report_2022").disabled = true;
+        //    document.getElementById("report_2023").disabled = true;
+        //    document.getElementById("report_2024").disabled = true;
+        //    document.getElementById("report_2025").disabled = true;
+        //} else {
+
+        Email = '@Session["Email"]';
+        debugger;
+        if (Email == "vivekvivektiwari80@gmail.com" || Email == "dpbcse@gmail.com") {
+            document.getElementById("report_2021").disabled = false;
+            document.getElementById("btn_2021").disabled = false;
+            document.getElementById("report_2022").disabled = true;
+            document.getElementById("btn_2022").disabled = true;
+            document.getElementById("report_2023").disabled = true;
+            document.getElementById("btn_2023").disabled = true;
+            document.getElementById("report_2024").disabled = true;
+            document.getElementById("btn_2024").disabled = true;
+            document.getElementById("report_2025").disabled = true;
+            document.getElementById("btn_2025").disabled = true;
+        }
+        else {
+            document.getElementById("report_2021").disabled = true;
+            document.getElementById("btn_2021").disabled = true;
+            document.getElementById("report_2022").disabled = true;
+            document.getElementById("btn_2022").disabled = true;
+            document.getElementById("report_2023").disabled = true;
+            document.getElementById("btn_2023").disabled = true;
+            document.getElementById("report_2024").disabled = true;
+            document.getElementById("btn_2024").disabled = true;
+            document.getElementById("report_2025").disabled = true;
+            document.getElementById("btn_2025").disabled = true;
+        }
+        //}
+
+    Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+
+    var year = new Date().getFullYear();
+
+    $('#Error_123').text("States Information is Loading....");
+    $('#StateLabel').hide();
+    $('#StateDropdownLabel').hide();
+    $('#DistLabel').hide();
+    $('#DistDropdownLabel').hide();
+    $('#BlockLabel').hide();
+    $('#BlockDropdownLabel').hide();
+    $('#GramLabel').hide();
+    $('#GramDropdownLabel').hide();
+    $('#DropdownSearch_btn').hide();
+
+    DropDownInfo();
+
+});
+
+</script>
+

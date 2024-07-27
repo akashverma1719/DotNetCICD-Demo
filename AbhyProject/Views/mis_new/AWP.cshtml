@@ -1,0 +1,502 @@
+﻿
+@{
+    ViewBag.Title = "AWP";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<style>
+    .pl-0 {
+        padding-left: 0;
+    }
+
+    .pr-0 {
+        padding-right: 0
+    }
+
+    .nav-tabs > li > a {
+        padding: 14px 0px;
+    }
+
+    .grid-css {
+        display: grid;
+        grid-template-columns: repeat(4, 4fr );
+        column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+</style>
+<style>
+
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+
+
+    /*ends here*/
+
+</style>
+<script src="~/Content/JS_Files/Pip_js.js"></script>
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-primary padding-bottom">ANNUAL WORK PLAN (AWP)</h4>
+                </div>
+            </div>
+            <div class="row" id="">
+                <div class="col-lg-12 col-sm-12 col-md-12" style="">
+                    <div class="hpanel horange" style="margin-bottom:0px;">
+                        <div class="panel-body">
+                            <div class="form-group" id="Agency_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li> Agency : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <select name="" class="form-control" id="awp_agency_state_name_1" onchange="AWP_Agency_StateInfo_B()"></select>
+                                    </li>
+
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name">Name of IA/ Nodal Agency </label></h5>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <select class="form-control" onchange="Year_Wise_PIP_Info()" id="PIP_Financial_Year">
+                                                <option value="0">Select Financial Year</option>
+                                                <option value="ALL">All 5 Years</option>
+                                                <option value="2020-21">2020-2021</option>
+                                                <option value="2021-22">2021-2022</option>
+                                                <option value="2022-23">2022-2023</option>
+                                                <option value="2023-24">2023-2024</option>
+                                                <option value="2024-25">2024-2025</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Allocated : </label></h5>
+                                                <span id="AWP_Total_value"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="form-group" id="State_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>  StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <label id="pip_dropdown_state_name">
+                                        </label>
+                                    </li>
+
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name1">Agency Name </label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <select class="form-control" onchange="Year_Wise_AWP_Info()" id="AWP_Financial_Year">
+                                                <option value="0">Select Financial Year</option>
+                                                <option value="ALL">All 5 Years</option>
+                                                <option value="2020-21">2020-2021</option>
+                                                <option value="2021-22">2021-2022</option>
+                                                <option value="2022-23">2022-2023</option>
+                                                <option value="2023-24">2023-2024</option>
+                                                <option value="2024-25">2024-2025</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Allocated : </label></h5>
+                                                <span id="AWP_Total_value1"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active col-lg-8 col-md-8 col-sm-12 pl-0">
+                            <a data-toggle="tab" href="#home">
+                                <div class="hpanel hgreen contact-panel">
+                                    <div class="panel-body">
+                                        <div class="stats-title text-center border-bottom">
+                                            <h5 class="font-extra-bold no-margins text-success">Component A: INSTITUTIONAL STRENGTHENING & CAPACITY BUILDING <span id=""></span> </h5>
+                                            <h5><span id="AWP_A_Value_Total"></span></h5>
+                                        </div>
+                                        <div class="grid-css">
+                                            <div class="" id="div_A1">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> A1: IS & CB </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-4 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1.1 </div> <strong> <span id="Awp_A1_1"></span></strong></div> </div>
+                                                        <div class="col-md-4 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1.2 </div> <strong> <span id="Awp_A1_2"></span></strong></div> </div>
+                                                        <div class="col-md-4 " style=""> <div class="contact-stat font-extra-bold"><div>A1.3 </div> <strong> <span id="Awp_A1_3"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A2">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize">  A2: Equipment</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A2.1</div> <strong> <span id="Awp_A2"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A3">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> A3: Works </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A3.1</div> <strong> <span id="Awp_A3"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A4">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> A4: IEC </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A4.1</div> <strong> <span id="Awp_A4"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A5">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h6 class="font-extra-bold no-margins text-info add_fontsize"> A5: TRAINING </h6>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A5.1</div> <strong> <span id="Awp_A5"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A6">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize">   A6: Lab & data center  </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A6.1</div> <strong> <span id="Awp_A6"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_npmu">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> 26: NPMU </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>26.02</div> <strong> <span id="Awp_T6"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="col-lg-4 col-md-4 col-sm-12 pr-0" id="Div_comP_b_b">
+                            <a data-toggle="tab" href="#menu1">
+                                <div class="hpanel hblue contact-panel">
+                                    <div class="panel-body" style="height:200px;">
+                                        <div class="stats-title pull-left">
+                                            <h5 class="font-extra-bold no-margins text-info">Component B: INCENTIVE </h5>
+                                        </div>
+                                        <div class="stats-title pull-right"><i class="fa fa-area-chart fa-4x text-info"></i></div>
+                                        <div class="cle"></div>
+                                        <h5 class="m-top15"> <span id="Awp_B_total" class="font-bold count">0</span></h5>
+                                        <h4>
+                                            <div class="text-muted font-bold m-b-xs left"> </div>
+                                            <div class="text-muted font-bold m-b-xs right"></div>
+                                        </h4><h4></h4>
+                                        <h4></h4>
+                                        <h4></h4>
+
+                                    </div>
+                                    <div class="panel-footer contact-footer">
+                                        <div class="row">
+                                            <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI1 </div> <strong> <span id="Awp_B1"></span></strong></div> </div>
+                                            <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI2 </div> <strong> <span id="Awp_B2"></span></strong></div> </div>
+                                            <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI3 </div> <strong>  <span id="Awp_B3"></span></strong></div> </div>
+                                            <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI4 </div> <strong>   <span id="Awp_B4"></span></strong></div> </div>
+                                            <div class="col-md-2 " style=""> <div class="contact-stat font-extra-bold"><div>DLI5 </div> <strong>   <span id="Awp_B5"></span></strong></div> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg">
+                                <div class="col-md-12 col-sm-12">
+                                    <div>
+                                        <div class="text-right btn_hide">
+                                            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_a_Table()"> Export To Excel</i></div>
+                                            <input type="button" id="AComponent_Id" onclick="tableToExcel('abccc', 'AWP_Data', 'AWP_Componant_A.xls')" hidden />
+
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                            <table id="abccc" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                <thead>
+                                                    <tr class="info text-center">
+                                                        <th colspan="22" class="text-center text-capitalize">ANNUAL WORK PLAN (AWP) Component A </th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th rowspan="2">S.No</th>
+                                                        <th rowspan="2">State Name</th>
+                                                        <th rowspan="2">AWPID</th>
+
+                                                        <th rowspan="2">Category</th>
+                                                        <th rowspan="2">Component ID</th>
+                                                        <th rowspan="2">Activity ID</th>
+                                                        <th rowspan="2">Activity Name</th>
+                                                        <th rowspan="2">Total Target (no.)</th>
+                                                        <th rowspan="2">Estimated cost for 5 years:</th>
+
+                                                        <th colspan="2" class="text-center">Financial Year (2020-21)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2021-22)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2022-23)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2023-24)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2024-25)</th>
+                                                        <th rowspan="2" id="th_edit">Edit</th>
+                                                        <th rowspan="2" id="th_delete">Delete</th>
+
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbody_AWP_Data"></tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg">
+                                <div class="col-md-12 col-sm-12">
+                                    <div>
+                                        <div class="text-right btn_hide">
+                                            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_b_Table()"> Export To Excel</i></div>
+                                            <input type="button" id="BComponent_Id" onclick="tableToExcel('AWp_B_Tbl', 'AWP_Data', 'AWP_Componant_B.xls')" hidden />
+
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:500px;">
+                                            <table id="AWp_B_Tbl" class="table pip_report_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                <thead>
+                                                    <tr class="info text-center">
+                                                        <th colspan="23" class="text-center text-capitalize">ANNUAL WORK PLAN (AWP)Component B</th>
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th rowspan="2">S.No</th>
+                                                        <th rowspan="2">State Name</th>
+                                                        <th rowspan="2">AWPID</th>
+
+                                                        <th rowspan="2">Component ID</th>
+                                                        <th rowspan="2">Activity ID</th>
+                                                        <th rowspan="2">Activity Name</th>
+                                                        <th rowspan="2">Total Target (no.)</th>
+                                                        <th rowspan="2">Estimated cost for 5 years:</th>
+
+                                                        <th colspan="2" class="text-center">Financial Year (2020-21)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2021-22)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2022-23)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2023-24)</th>
+                                                        <th colspan="2" class="text-center">Financial Year (2024-25)</th>
+                                                        <th rowspan="2">Edit</th>
+                                                        <th rowspan="2">Delete</th>
+
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+                                                        <th class="text-center">Physical</th>
+                                                        <th class="text-center">Financial</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbody_AWP_B_Data"></tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright .Kreate Technologies 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script>
+    var Email = '@Session["Email"]';
+    var Access_Auth = '';
+    $(document).ready(function () {
+        Access_Auth = '@Session["Access_Auth"]';
+
+        if (Access_Auth == 'readonly') {
+            $('.btn_hide').hide();
+        }
+        AWP_SessionInfo();
+    });
+
+</script>
+
+
+<script>
+
+    function Export_a_Table() {
+        $('#th_edit').hide();
+        $('#th_delete').hide();
+        if (awp_a_component != 0) {
+            for (var i = 0; i < awp_a_component; i++) {
+                var ss = "#Hide_AWP1_TR" + i;
+                $(ss).remove();
+            }
+        }
+
+        $('#AComponent_Id').click();
+        AWP_Info();
+        $('#th_edit').show();
+        $('#th_delete').show();
+    }
+    function Export_b_Table() {
+        
+        if (awp_b_component != 0) {
+            for (var i = 0; i < awp_b_component; i++) {
+                var ss = "#Hide_AWP2_TR" + i;
+                $(ss).remove();
+            }
+        }
+        $('#BComponent_Id').click();
+        AWP_B_Info();
+    }
+
+    //var tableToExcel = (function () {
+    //    var uri = 'data:application/vnd.ms-excel;base64,'
+    //        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+    //        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    //        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+    //    return function (table, name) {
+    //        if (!table.nodeType) table = document.getElementById(table)
+    //        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+    //        window.location.href = uri + base64(format(template, ctx))
+    //    }
+    //})()
+
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            var link = document.createElement('a');
+            link.href = uri + base64(format(template, ctx));
+            link.download = filename || 'download.xls';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    })();
+
+</script>
+

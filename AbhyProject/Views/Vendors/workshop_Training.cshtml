@@ -1,0 +1,293 @@
+﻿@*@model IEnumerable<AbhyProject.Models.Abhy_Training_Workshops>*@
+@{
+
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training/Workshop</title>
+    <style>
+
+        .table_tender_pdf tr th {
+            background-color: #337ab7;
+            color: #fff;
+        }
+
+        .g-brd-gray-light-v4 {
+            border-color: #72c02c78 !important;
+        }
+
+        .cf-99 {
+            text-align: center;
+            /*height: 137px;
+            margin-bottom: 20px;*/
+            color: #337ab7;
+        }
+
+            .cf-99 > h1 {
+                padding: 25px;
+                font-size: 29px;
+                color: #337ab7;
+                padding-right: 38px;
+            }
+
+        label.col-md-1 {
+            padding: 10px;
+        }
+
+        .cc-99 {
+            border: none;
+        }
+
+            .cc-99 > label {
+                margin-top: 25px;
+                margin-bottom: 15px;
+                font-weight: bold;
+                color: #000;
+                font-size: 17px;
+            }
+
+        h6 {
+            color: #1f223e;
+            font-family: inherit;
+            font-weight: 500;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .anchorlinktraining {
+            font-size: 1.8rem !important;
+        }
+
+        .justify-content-between {
+            -ms-flex-pack: justify !important;
+            justify-content: space-between !important;
+        }
+
+        @@media (min-width: 992px) {
+            .d-lg-flex {
+                display: flex !important;
+            }
+
+            .g-mr-30 {
+                margin-right: 2.14286rem !important;
+            }
+
+            .g-mr-5 {
+                margin-right: 0.35714rem !important;
+            }
+        }
+    </style>
+    <style>
+        .form-group .form-control {
+            margin-top: 5px;
+        }
+
+        .btn-success,
+        .btn-danger {
+            float: none;
+            right: 0px;
+            width: 100px;
+        }
+
+        .msg {
+            color: red !important;
+            font-weight: bold;
+        }
+
+        .body {
+            font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+
+
+        .hpanel .panel-body {
+            background: #fff;
+            border: 1px solid #e4e5e7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+            border-top: 2px solid #62cb31;
+        }
+
+        .hpanel {
+            border: none !important;
+            box-shadow: none;
+            margin-bottom: 25px;
+        }
+
+        .col-md-12 {
+            font-size: 16px;
+        }
+
+        .about-area .col-md-6 img {
+            margin-top: 0px;
+        }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        .refreshicon {
+            position: relative;
+            right: 21px;
+            top: -12px;
+        }
+
+        .highlight {
+            color: red;
+        }
+    </style>
+
+    <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Content/JS_Files/training_workshop.js"></script>
+    <script>
+        $("nav#primary-menu > ul.main-menu > li:nth-child(5)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(5)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:first-child ").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:first-child ").siblings().removeClass('active');
+
+    </script>
+</head>
+<body>
+    <div class="ss">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Training/Workshop</div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="content">
+                <div class="col-lg-12" style="background-color:#fff;">
+                    <div class="hpanel">
+                        <div class="panel-body">
+                            <div class="row">
+
+
+                                <div class="col-md-12 text-right msg">
+                                    * Fields are mandatory
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <section class="content-header">
+                                    </section>
+                                    <div class="hpanel hgreen">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    Event/training : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    @*<span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>*@
+                                                    <input type="text" id="p_training_name" name="p_training_name" class="form-control" required="required" placeholder="Enter your Event/Course" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    From Date  : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    @*<span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>*@
+                                                    <input type="date" id="from_date" name="from_date" class="form-control" required="required" placeholder="Enter your subject" />
+
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    To Date  : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    @*<span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters</span>*@
+                                                    <input type="date" id="to_date" name="to_date" class="form-control" required="required" placeholder="Enter " />
+
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    Status : <span class="msg">*</span>
+                                                    <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    @*<span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>*@
+                                                    <input type="text" class="form-control" id="training_status" name="training_status" required="required" placeholder="Enter your Status" />
+
+
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    State : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <select name="state_name" id="state_name" class="form-control" onchange="Event_State_Chnage()">
+                                                        <option value="0">Select State Name</option>
+                                                        <option value="Gujarat">Gujarat</option>
+                                                        <option value="Haryana">Haryana</option>
+                                                        <option value="Maharashtra">Maharashtra</option>
+                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                        <option value="Karnataka">Karnataka</option>
+                                                        <option value="Rajasthan">Rajasthan</option>
+                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                        <option value="Other">Other</option>
+
+                                                    </select>
+                                                    <input type="text" class="form-control" id="other_state_name" name="other_state_name" required="required" placeholder="Enter your State" />
+
+
+                                                </div>
+
+                                                <div class="form-group col-md-12 text-center">
+                                                    <button type="button" name="" value="Save" id="btnSubmit" onclick="Save_Training_Working_Info()" class="btn btn-success btn-sm ">Submit</button>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="tbl-responsive" style="height:400px;">
+                <table id="example" class=" display  table stripe row-border order-column table-striped table-bordered dataTable no-footer table_tender_pdf">
+                    <thead>
+
+                        <tr>
+                            <th class="text-center">S.No</th>
+                            <th class="text-center">Event/training</th>
+                            <th class="text-center">From Date</th>
+                            <th class="text-center">To Date</th>
+
+                            <th class="text-center">Status</th>
+                            <th class="text-center">State</th>
+                            @*<th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>*@
+                        </tr>
+                    </thead>
+                    <tbody id="Training_Workshop">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+
+<script>
+
+
+    $(document).ready(function () {
+        $('#other_state_name').hide();
+        Get_Training_Working_Info();
+
+    });
+
+</script>

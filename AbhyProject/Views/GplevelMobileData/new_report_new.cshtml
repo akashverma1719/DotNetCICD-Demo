@@ -1,0 +1,2811 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "WSPgram";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<title>MADB Report</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/table2excel.js"></script>
+
+<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
+
+
+<style>
+    .color_database {
+        color: green !important;
+    }
+
+    #imageView label {
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 12px;
+        width: 246px;
+    }
+
+    ul[id$="_menu"] > li > a:hover > label, ul[id$="_menu"] > li > a:focus > label, ul[id$="_menu"] > li.active > a > label {
+        border-color: #337ab7;
+        background-color: #337ab7c7;
+        color: #fff;
+    }
+</style>
+
+
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+    /*table fix code*/
+    .pseudolink {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*ends here*/
+    .new_wd {
+        width: 255px !important;
+    }
+
+    #Surface_menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .Select_option_div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 17px 0px;
+        padding: 20px;
+        border: 1px solid #dfdbdb;
+        border-radius: 10px;
+        background: linear-gradient(to right, #ece9e6, #ffffff);
+    }
+
+    ul.Select_option {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .StateLabel {
+        padding: 8px;
+    }
+
+    .display_flex {
+        font-size: 12px;
+    }
+
+    .number_count_div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .comn_table {
+        background: #f2f2f2;
+    }
+
+        .comn_table thead th td {
+            border: 1px solid #fff;
+        }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    .tbl-responsive {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px !important;
+        background: #f2f2f2 !important;
+        overflow: auto;
+        height: 500px;
+    }
+
+    #currentgeopageno {
+        display: inline !important;
+    }
+
+    .notice-ribbon {
+        font-size: 14px;
+        background: #3585dc;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+
+        .notice-ribbon p {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 0px;
+        }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="clearfix">
+    <main>
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                }
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/Home/index">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>Home <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="WSP & GWM" />
+                                    </span>
+                                    <label>Mobile Application DataBase Report (MADB) <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                <label>MADB Report </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 pull-right">
+
+                        <a href="~/GplevelMobileData/MobileData" class="btn btn-danger">
+                            Back To MADB Home
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    </main>
+    <div class="container-fluid notice-ribbon">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mb-0">To clear cache, please refresh this page by pressing Ctrl + F5.</p>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content">
+        <!--Rainfail_menu Start-->
+        <div role="tabpanel" class="tab-pane fade in active" id="music">
+            <div class="container-fluid">
+                <!--images Row Started-->
+                <div class="clearfix">
+                    <br />
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12 col-lg-12">
+                            <ul class="tabs_menu sru_menu" id="Surface_menu">
+                                <li class="tab-link active subtab1 new_wd" data-tab="menu-11">
+                                    <a href="javascript:;">
+                                        <label onclick="gwl_click()" style="height: 90px; border: 2px solid black; padding: 25px; border-radius: 25px; ">Ground Water Level Monitoring</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab3 new_wd" data-tab="menu-12">
+                                    <a href="javascript:;">
+                                        <label onclick="gwq_click()" style="height: 90px; border: 2px solid black; padding: 15px; border-radius: 25px; ">Ground Water Quality Monitoring Through Field Testing Kit</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab4 new_wd" data-tab="menu-13">
+                                    <a href="javascript:;">
+                                        <label onclick="geo_click()" style="height: 90px; border: 2px solid black; padding: 6px; border-radius: 25px; ">Geo Tagging of Artifical Recharge Structure(ARS) & Water Conservation Structures (WSC)- (Existing)</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab5 new_wd" data-tab="menu-14">
+                                    <a href="javascript:;">
+                                        <label onclick="rainfall_click()" style="height: 90px; border: 2px solid black; padding: 31px; border-radius: 25px; ">Rain Gauge Station</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab5 new_wd" data-tab="menu-15">
+                                    <a href="javascript:;">
+                                        <label onclick="waterflow_click()" style="height: 90px; border: 2px solid black; padding: 30px; border-radius: 25px; ">Water Flow Meter</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab5 new_wd" data-tab="menu-16">
+                                    <a href="javascript:;">
+                                        <label onclick="well_click()" style="height:90px;border: 2px solid black; padding: 32px; border-radius: 25px;">Well Inventory</label>
+                                    </a>
+                                </li>
+                                <li class="tab-link subtab5 new_wd" data-tab="menu-17">
+                                    <a href="javascript:;">
+                                        <label onclick="social_click()" style="height:90px;border: 2px solid black; padding: 33px; border-radius: 25px;">Social Event</label>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="container-fluid notice-ribbon">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p class="mb-0">MADB Report</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md-12 Select_option_div">
+                        <ul class="Select_option col-md-12 col-sm-8  text-left">
+                            <li id="StateLabel">
+                                <label id="lblstate">State:</label>
+                                <span id="spnstate1">@Session["gstate"]</span>
+                            </li>
+                            <li id="StateDropdownLabel">
+
+                                <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:5px;">
+                                </select>
+                            </li>
+
+                            <li id="DistLabel">
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                            </li>
+
+                            <li id="DistDropdownLabel">
+
+                                <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:5px;">
+                                </select>
+                            </li>
+
+                            <li id="BlockLabel">
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Block:</label>
+                                <span>@Session["gblock"] </span>
+                            </li>
+
+                            <li id="BlockDropdownLabel">
+
+                                <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:5px;">
+                                </select>
+                            </li>
+
+                            <li>
+                                <select class="form-control" id="year" style="border-radius:5px;">
+                                    <option value="0">Select  Year</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    @*
+                                    <option value="2025">2025</option>*@
+
+                                </select>
+                            </li>
+                            <li id="MonthDropdownLabel">
+
+                                <select class="form-control" id="month" onchange="Month_change()" style="border-radius:5px;">
+                                    <option value="0">Select Month</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </li>
+                            <li id="DropdownSearch_btn">
+                                <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix tabfirst">
+                    <div class="suface-info active" id="menu-11">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12  form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+                                        <div class="container-fluid">
+
+                                            <div class="bg-light text-right display_flex">
+                                                <button class="btn btn-success btn_export" onclick="exportTableToExcel('gwl_tbl', 'MADB Summary Ground Water Level')">Export Excel</button>
+                                               
+                                            </div>
+                                            <br />
+                                            <div class="tbl-responsive" id="style-1" style="overflow:auto; height:500px;">
+                                                <table id="gwl_tbl" class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                                    <thead>
+                                                        <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                                            <th style="padding-bottom: 10px;"><label>Sr.No.</label></th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">State</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">District</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Block</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Year</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Month</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of GPs</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of Wells/Stations</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs covered</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs with no data</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Static Data Validation (%)</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">No. of Dynamic Data Entries</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Dynamic Data Validation (%)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="exesitingwell" class="text-center"></tbody>
+                                                </table>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-12">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-md-12 col-sm-12 form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+                                        <div class="container-fluid">
+
+
+                                            <div class="bg-light text-right display_flex">
+                                                <button class="btn btn-success btn_export" onclick="exportTableToExcelgwq('tbl_quality', 'MADB Summary Ground Water Quality')">Export Excel</button>
+
+                                            </div>
+                                            <br />
+
+                                            <div class="tbl-responsive" id="style-1" style="overflow: auto; height: 500px;">
+                                                <table id="tbl_quality" class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                                    <thead>
+
+                                                        <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                                            <th style="padding-bottom: 10px;">Sr.No.</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">State</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">District</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Block</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Year</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Month</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of GPs</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of Wells/Stations</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs covered</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs with no data</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Static Data Validation (%)</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">No. of Dynamic Data Entries</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Dynamic Data Validation (%)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblmain_quality" class="text-center"></tbody>
+                                                </table>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-13">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+                                        <div class="container-fluid">
+
+                                            <div class="bg-light text-right display_flex">
+                                                <button class="btn btn-success btn_export" onclick="exportTableToExcelgeo('tbl_geo', 'MADB Summary Geotagging')">Export Excel</button>
+
+                                            </div>
+                                            <br />
+                                            <div class="tbl-responsive" id="style-1">
+                                                <table id="tbl_geo" class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                                    <thead>
+                                                        <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                                            <th style="padding-bottom: 10px;">Sr.No.</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">State</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">District</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Block</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Year</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Month</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of GPs</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of Wells/Stations</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs covered</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs with no data</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Static Data Validation (%)</th>
+                                                            @*
+                                                            <th style="padding:10px 20px; min-width:120px;">No. of Dynamic Data Entries</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Dynamic Data Validation (%)</th>*@
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblmain_geo" class="text-center"></tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-14">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+
+                                        <div class="container-fluid">
+
+
+                                            <div class="bg-light text-right display_flex">
+                                                <button class="btn btn-success btn_export" onclick="exportTableToExcelrainfall('tbl_rainfall', 'MADB Summary Rainfall')">Export Excel</button>
+
+                                            </div>
+                                            <br />
+
+                                            <div class="tbl-responsive" id="style-1">
+                                                <table id="tbl_rainfall" class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                                    <thead>
+                                                        <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                                            <th style="padding-bottom: 10px;">Sr.No.</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">State</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">District</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Block</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Year</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Month</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of GPs</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of Wells/Stations</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs covered</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs with no data</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Static Data Validation (%)</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">No. of Dynamic Data Entries</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Dynamic Data Validation (%)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblmain_rainfall"></tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-15">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+                                        <div class="container-fluid">
+                                            <div class="bg-light text-right display_flex">
+                                                <button class="btn btn-success btn_export" onclick="exportTableToExcelwaterflow('tbl_waterflow', 'MADB Summary Water Flow')">Export Excel</button>
+
+                                            </div>
+                                            <br />
+                                            <div class="tbl-responsive" id="style-1">
+                                                <table id="tbl_waterflow" class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                                    <thead>
+                                                        <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                                            <th style="padding-bottom: 10px;">Sr.No.</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">State</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">District</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Block</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Year</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Month</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of GPs</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of Wells/Stations</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs covered</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs with no data</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Static Data Validation (%)</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">No. of Dynamic Data Entries</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Dynamic Data Validation (%)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblmain_waterflow"></tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-16">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+                                        <div class="container-fluid">
+                                            <div class="bg-light text-right display_flex">
+                                                <button class="btn btn-success btn_export" onclick="exportTableToExcelwell('tbl_wellinventory', 'MADB Summary Wellinventory')">Export Excel</button>
+
+                                            </div>
+                                            <br />
+                                            <div class="tbl-responsive" id="style-1">
+                                                <table id="tbl_wellinventory" class="table table-bordered comn_table" style="margin-bottom: 0px;">
+                                                    <thead>
+                                                        <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                                            <th style="padding-bottom: 10px;">Sr.No.</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">State</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">District</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Block</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Year</th>
+                                                            <th style="padding:10px 20px;min-width:fit-content;">Month</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of GPs</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Total No. of Wells/Stations</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs covered</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">GPs with no data</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Static Data Validation (%)</th>
+                                                            @*
+                                                            <th style="padding:10px 20px; min-width:120px;">No. of Dynamic Data Entries</th>
+                                                            <th style="padding:10px 20px; min-width:120px;">Dynamic Data Validation (%)</th>*@
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblmain_well"></tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hair-info" id="menu-17">
+                        <div class="clearfix">
+                            <div class="container-fluid">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding: 10px 15px">
+                                    <div class="form-div">
+                                        <div class="container-fluid">
+
+                                            <div class="bg-light text-right display_flex">
+                                                <button class="btn btn-success btn_export" onclick="exportTableToExcelsocial('tbl_socialevent', 'MADB Summary Sociel Event')">Export Excel</button>
+
+                                            </div>
+                                            <br />
+
+                                            <div>
+                                                <div class="tbl-responsive" id="style-1" style="overflow: auto; height: 500px; box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px; background: #f2f2f2; ">
+                                                    <table id="tbl_socialevent" class="table table-boarderd comn_table">
+
+                                                        <thead>
+                                                            <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                                                                <th style="padding-bottom: 10px;">Sr.No.</th>
+                                                                <th style="padding:10px 20px;min-width:fit-content;">State</th>
+                                                                <th style="padding:10px 20px;min-width:fit-content;">District</th>
+                                                                <th style="padding:10px 20px;min-width:fit-content;">Block</th>
+                                                                <th style="padding:10px 20px;min-width:fit-content;">Year</th>
+                                                                <th style="padding:10px 20px;min-width:fit-content;">Month</th>
+                                                                <th style="padding:10px 20px; min-width:120px;">Total No. of GPs</th>
+                                                                <th style="padding:10px 20px; min-width:120px;">Total No. of Events</th>
+                                                                <th style="padding:10px 20px; min-width:120px;">GPs covered</th>
+                                                                <th style="padding:10px 20px; min-width:120px;">GPs with no data</th>
+                                                                <th style="padding:10px 20px; min-width:120px;">Static Data Validation (%)</th>
+                                                                @*
+                                                                <th style="padding:10px 20px; min-width:120px;">No. of Dynamic Data Entries</th>
+                                                                <th style="padding:10px 20px; min-width:120px;">Dynamic Data Validation (%)</th>*@
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tblmain_social"></tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="progress" style="text-align:center;">
+        <center>
+            <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px;justify-content:center;display:flex">
+
+                <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                    <span class="progress-group-label" data-target="#music" data-toggle="tab">Mobile Application DataBase Report (MADB)</span>
+                    <div class="progress-node answering active now tab-link subtab1" data-tab="menu-11">
+                        <div class="progress-label">Mobile Application DataBase Report (MADB)<span class="pointer"></span></div>
+                    </div>
+                    <div class="progress-node tab-link subtab2" data-tab="menu-12">
+                        <div class="progress-label">PGWM<span class="pointer"></span></div>
+                    </div>
+                    <div class="progress-node tab-link subtab3" data-tab="menu-13">
+                        <div class="progress-label">Image Upload<span class="pointer"></span></div>
+                    </div>
+                    <div class="progress-node tab-link subtab4" data-tab="menu-14">
+                        <div class="progress-label">Location<span class="pointer"></span></div>
+                    </div>
+
+                    <div class="tri shadow"></div>
+                    <div class="tri"></div>
+                </li>
+
+
+            </ul>
+        </center>
+    </div>
+    <!--fotter End-->
+    <input hidden="hidden" id="hdnRechargefactor" />
+    <input hidden="hidden" id="hdnSeepagefactor" />
+    <input hidden="hidden" id="hdnareairrigation" />
+</div>
+<div id="imageView">
+
+</div>
+
+<script src="~/Scripts/validations.js"></script>
+<script></script>
+
+<script type="text/javascript">
+    var find_name = "gwl";
+    $(document).ready(function () {
+        $(".loader").hide();
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "") {
+            window.location = "/WspNew/WSP_GWM_HOME";
+        }
+
+        const d = new Date();
+        let year = d.getFullYear();
+        /*$("#year").val(year);*/
+        const month = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+        const m = new Date()
+        let MonthName = month[m.getUTCMonth()];
+    });
+
+    function well_click() {
+        find_name = "well";
+
+    }
+    function gwl_click() {
+        find_name = "gwl";
+
+    }
+    function gwq_click() {
+        find_name = "gwq";
+
+    }
+    function geo_click() {
+        find_name = "geo";
+
+    }
+    function rainfall_click() {
+        find_name = "rainfall";
+
+
+    }
+    function waterflow_click() {
+        find_name = "waterflow";
+
+
+    }
+    function social_click() {
+        find_name = "social";
+
+
+    }
+
+
+</script>
+<script type="text/javascript">
+    $('li.leftbtnnext > button.btnprocess1').click(function () {
+
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+    $("ul#myTabs > li > a").on("show.bs.tab", function () {
+        $('ul.tabs_menu > li:first-child').trigger('click');
+    });
+</script>
+<script>
+
+    $('#btnDrftGo').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+    $('#btngotobalance').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+</script>
+<script>
+    //$(document).ready(function () {
+
+    //    $('[data-toggle="tooltip"]').tooltip();
+    //    $('[data-toggle="tooltip1"]').tooltip();
+    //});
+
+</script>
+<script>
+    $('#m1').click(function (e) {
+        $('.subtab2').removeClass('active');
+        $('.subtab3').removeClass('active');
+        $('.subtab4').removeClass('active');
+        $('.subtab5').removeClass('active');
+        $('.subtab6').removeClass('active');
+        $('.subtab7').removeClass('active');
+        $('.subtab1').addClass('active');
+        $('div.tabfirst div.active').removeClass('active');
+        $('#menu-11').addClass('active in');
+        $('li#Surface-water div').removeClass('active');
+        $('li#Surface-water div.subtab1').addClass('active');
+    });
+    $('#m2').click(function (e) {
+        $('.subtab12').removeClass('active');
+        $('.subtab13').removeClass('active');
+        $('.subtab14').removeClass('active');
+        $('.subtab15').removeClass('active');
+        $('.subtab16').removeClass('active');
+        $('.subtab17').removeClass('active');
+        $('.subtab11').addClass('active');
+        $('div.tabsecond div.active').removeClass('active');
+        $('#menu-1').addClass('active in');
+        $('li#indoor-water div').removeClass('active');
+        $('li#indoor-water div.subtab11').addClass('active now');
+    });
+    $('#m3').click(function (e) {
+        $('.subtab22').removeClass('active');
+        $('.subtab23').removeClass('active');
+        $('.subtab24').removeClass('active');
+        $('.subtab21').addClass('active');
+        $('div.tabthrid div.active').removeClass('active');
+        $('#menu-8').addClass('active in');
+        $('li#outdoor-water div').removeClass('active');
+        $('li#outdoor-water  div.subtab21').addClass('active now');
+    });
+
+</script>
+<script>
+    // start header and footer nav bar changes script
+    $('#indoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#indoor-water.progress-group .progress-node').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#outdoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#Surface-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('ul#rainfall_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#rainfall_menu li').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+    $('ul#Surface_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Surface_menu li').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('ul#Water_draft_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Water_draft_menu li').removeClass('active');
+        $('.Sider_column > ul.sider_images_sider').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+        $("[data-target=" + tab_id + "]").addClass('active');
+        //$('ul.tabs li').click(function () {
+        //  var tab_id = $(this).attr('data-tab');
+
+        //$('ul.tabs li').removeClass('current');
+
+
+        //$(this).addClass('current');
+
+        //})
+    });
+    $('.btnNext').click(function () {
+        $('.tabs_menu > .active').next('.tab-link').trigger('click');
+        //$('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.btnPrevious').click(function () {
+        $('.tabs_menu > .active').prev('.tab-link').trigger('click');
+        // $('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.gwr_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwr_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwr_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwr_menu[class*="-info"]').removeClass('active');
+        $('.gwr_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    $('ul[data-tabs="tabs"] > li > [data-toggle="tab"]').click(function (e) {
+
+        var href = $(this).attr('data-target');
+
+
+        $('ul[data-tabs="tabs"] > li').removeClass('active');
+
+
+        $('ul[data-tabs="tabs"] > li > [data-toggle="tab"][data-target="' + href + '"]').closest('li').addClass('active');
+
+
+        $('.tab-pane').removeClass('active in');
+        $('.tab-pane' + href).addClass('active in');
+    });
+
+    $('.gwd_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwd_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwd_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwd_menu[class*="-info"]').removeClass('active');
+        $('.gwd_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+
+    $('.sru_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.sru_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.sru_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.sru_menu[class*="-info"]').removeClass('active');
+        $('.sru_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    // start header and footer nav bar changes script
+</script>
+
+<script src="~/Scripts/validations.js"></script>
+@*
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
+
+<script>
+
+    var Jsondata = "";
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var well_loader = "0";
+    var StateOfficer = "";
+    var button_click = "0";
+    var image_path = "";
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+        image_path = '@Session["sUploadDirectory"]';
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+
+
+
+        DropDownInfo();
+
+
+    });
+
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+    }
+
+
+
+</script>
+
+<script type="text/javascript">
+
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                    $(".loader").hide();
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+
+                    $(".loader").hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                        $(".loader").hide();
+
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                        State_Dropdown_Function();
+
+                        button_click = "1";
+                        if (find_name == "well") {
+                            wellinventory_data();
+                        }
+                        else if (find_name == "gwl") {
+                            gwl_data();
+                        }
+                        else if (find_name == "gwq") {
+                            wq_data();
+                        }
+                        else if (find_name == "geo") {
+                            geo_data();
+                        }
+                        else if (find_name == "rainfall") {
+                            rainfall_data();
+                        }
+                        else if (find_name == "waterflow") {
+                            waterflow_data();
+                        }
+                        else if (find_name == "social") {
+                            socialevent_data();
+                        }
+
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                        Dist_fun();
+
+                        button_click = "1";
+                        if (find_name == "well") {
+                            wellinventory_data();
+                        }
+                        else if (find_name == "gwl") {
+                            gwl_data();
+                        }
+                        else if (find_name == "gwq") {
+                            wq_data();
+                        }
+                        else if (find_name == "geo") {
+                            geo_data();
+                        }
+                        else if (find_name == "rainfall") {
+                            rainfall_data();
+                        }
+                        else if (find_name == "waterflow") {
+                            waterflow_data();
+                        }
+                        else if (find_name == "social") {
+                            socialevent_data();
+                        }
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                        Block_fun();
+
+                        button_click = "1";
+                        if (find_name == "well") {
+                            wellinventory_data();
+                        }
+                        else if (find_name == "gwl") {
+                            gwl_data();
+                        }
+                        else if (find_name == "gwq") {
+                            wq_data();
+                        }
+                        else if (find_name == "geo") {
+                            geo_data();
+                        }
+                        else if (find_name == "rainfall") {
+                            rainfall_data();
+                        }
+                        else if (find_name == "waterflow") {
+                            waterflow_data();
+                        }
+                        else if (find_name == "social") {
+                            socialevent_data();
+                        }
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+
+                        button_click = "1";
+                        if (find_name == "well") {
+                            wellinventory_data();
+                        }
+                        else if (find_name == "gwl") {
+                            gwl_data();
+                        }
+                        else if (find_name == "gwq") {
+                            wq_data();
+                        }
+                        else if (find_name == "geo") {
+                            geo_data();
+                        }
+                        else if (find_name == "rainfall") {
+                            rainfall_data();
+                        }
+                        else if (find_name == "waterflow") {
+                            waterflow_data();
+                        }
+                        else if (find_name == "social") {
+                            socialevent_data();
+                        }
+
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function DropDownInfo() {
+        $(".loader").show();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/GplevelMobileData/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select StateName</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select StateName</option>';
+                        optionState += '<option value="All">All</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != "Delhi_7") {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                }
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function State_Dropdown_Function() {
+
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+        if (State == "All") {
+            $("#DistDropdownLabel").hide();
+            $("#BlockDropdownLabel").hide();
+        }
+        else {
+            $("#DistDropdownLabel").show();
+            $("#BlockDropdownLabel").show();
+
+        }
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+            optionDist += '<option value="All">All</option>';
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+            Dist = '0';
+            Block = '0';
+            Gram = '0';
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        if (Dist == "All") {
+
+            $("#BlockDropdownLabel").hide();
+        }
+        else {
+
+            $("#BlockDropdownLabel").show();
+
+        }
+
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                //if (Jsondata[i].district_name == 'Kaithal' ) {
+                //    alert(dist);
+
+                //    return;
+                //}
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+            optionDist += '<option value="All">All</option>';
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+            Block = '0';
+            Gram = '0';
+
+        }
+    }
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+            Gram = '0';
+        }
+    }
+    function Gram_change() {
+        var Gram1 = $("#gram").val();
+        Gram = $('#gram').val();
+
+    }
+    function Dropdown_Search() {
+        $('#alert_waiting').show();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        if (Gram != "0") {
+
+        }
+        else {
+            Gram = $('#gram').val();
+        }
+        if (year == "0") {
+            if (month != "0") {
+                alert("Please Select Year");
+                return false;
+            }
+        }
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        if (xx == 0) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/GplevelMobileData/StateLevel_Dropdown',
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','year':'" + year + "','Month':'" + month + "'}",
+                dataType: 'JSON',
+                success: function (results) {
+
+                    button_click = "1";
+                    if (find_name == "well") {
+                        $(".loader").show();
+                        wellinventory_data();
+                    }
+                    else if (find_name == "gwl") {
+                        $(".loader").show();
+                        gwl_data();
+                    }
+                    else if (find_name == "gwq") {
+                        $(".loader").show();
+                        wq_data();
+                    }
+                    else if (find_name == "geo") {
+                        $(".loader").show();
+                        geo_data();
+                    }
+                    else if (find_name == "rainfall") {
+                        $(".loader").show();
+                        rainfall_data();
+                    }
+                    else if (find_name == "waterflow") {
+                        $(".loader").show();
+                        waterflow_data();
+                    }
+                    else if (find_name == "social") {
+                        $(".loader").show();
+                        socialevent_data();
+                    }
+
+                }
+            });
+        }
+    }
+
+    function gwl_data() {
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var monthaa = $('#month').find('option:selected').text();
+
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/GplevelMobileData/state_npmu_data_report',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                var Tbodyhtml = '';
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr colspan="8"><td colspan="8" style="text-align: center;">No Data</td></tr>';
+                    $('#exesitingwell').html(Tbodyhtml);
+
+                }
+                else {
+
+                    var a = 0;
+                    var b = 0;
+                    var c = 0;
+                    var d = 0;
+                    var e = 0;
+                    var f = 0;
+                    var g = 0;
+
+                    for (var i = 0; i < results.length; i++) {
+
+                        var ss = results[i].state;
+                        var ssname = ss.split('_');
+                        ss = ssname[0];
+                        var district = results[i].district;
+                        if (district == '0') {
+                            district = 'All District'
+                        }
+                        else {
+                            var districtname = district.split('_');
+                            district = districtname[0];
+                        }
+
+                        var bblock = results[i].block;
+                        if (bblock == '0' || bblock == undefined) {
+                            bblock = 'All Block'
+                        }
+                        else {
+                            var blockname = bblock.split('_');
+                            bblock = blockname[0];
+                        }
+                        var yy = year;
+                        if (yy == '0') {
+                            yy = 'All Year'
+                        }
+                        var mm = monthaa;
+                        if (mm == 'Select Month') {
+                            mm = 'All Month'
+                        }
+                        var aa = 0;
+                        if (results[i].total_no_of_wells_sations != 0) {
+                            aa = (results[i].static_approved_data / results[i].total_no_of_wells_sations) * 100;
+                        }
+                        var bb = 0;
+                        if (results[i].no_of_dynamic_data_entries != 0) {
+                            bb = (results[i].dynamic_approved_data / results[i].no_of_dynamic_data_entries) * 100;
+                        }
+                        a += results[i].total_gp_count;
+                        b += results[i].total_no_of_wells_sations;
+                        c += results[i].gp_covered;
+                        d += results[i].gp_with_no_data;
+                        f += results[i].no_of_dynamic_data_entries;
+                        e += aa;
+                        g += bb;
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ss + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + district + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bblock + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_gp_count + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_no_of_wells_sations + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_covered + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_with_no_data + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + aa.toFixed(2) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].no_of_dynamic_data_entries + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb.toFixed(2) + '</label></td></tr>';
+
+
+                    }
+
+                    if (results.length != 1) {
+
+                        Tbodyhtml += '<tr><td colspan="6"><label>' + "Total" + '</label></td>';
+
+                        Tbodyhtml += '<td><label>' + a + '</label></td>';
+                        Tbodyhtml += '<td><label>' + b + '</label></td>';
+                        Tbodyhtml += '<td><label>' + c + '</label></td>';
+                        Tbodyhtml += '<td><label>' + d + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td>';
+                        Tbodyhtml += '<td><label>' + f + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td></tr>';
+                    }
+                    $('#exesitingwell').html(Tbodyhtml);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    function rainfall_data() {
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var monthaa = $('#month').find('option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/GplevelMobileData/state_npmu_data_report_rainfall',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                var Tbodyhtml = '';
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr colspan="8"><td colspan="8" style="text-align: center;">No Data</td></tr>';
+                    $('#tblmain_rainfall').html(Tbodyhtml);
+
+                }
+                else {
+                    var a = 0;
+                    var b = 0;
+                    var c = 0;
+                    var d = 0;
+                    var e = 0;
+                    var f = 0;
+                    var g = 0;
+                    for (var i = 0; i < results.length; i++) {
+                        
+                        var ss = results[i].state;
+                        var ssname = ss.split('_');
+                        ss = ssname[0];
+                        var district = results[i].district;
+                        if (district == '0') {
+                            district = 'All District'
+                        }
+                        else {
+                            var districtname = district.split('_');
+                            district = districtname[0];
+                        }
+
+                        var bblock = results[i].block;
+                        if (bblock == '0' || bblock == undefined) {
+                            bblock = 'All Block'
+                        }
+                        else {
+                            var blockname = bblock.split('_');
+                            bblock = blockname[0];
+                        }
+                        var yy = year;
+                        if (yy == '0') {
+                            yy = 'All Year'
+                        }
+                        var mm = monthaa;
+                        if (mm == 'Select Month') {
+                            mm = 'All Month'
+                        }
+                        var aa = 0;
+                        if (results[i].total_no_of_wells_sations != 0) {
+                            aa = (results[i].static_approved_data / results[i].total_no_of_wells_sations) * 100;
+                        }
+                        var bb = 0;
+                        if (results[i].no_of_dynamic_data_entries != 0) {
+                            bb = (results[i].dynamic_approved_data / results[i].no_of_dynamic_data_entries) * 100;
+                        }
+                        a += results[i].total_gp_count;
+                        b += results[i].total_no_of_wells_sations;
+                        c += results[i].gp_covered;
+                        d += results[i].gp_with_no_data;
+                        f += results[i].no_of_dynamic_data_entries;
+                        e += aa;
+                        g += bb;
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ss + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + district + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bblock + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_gp_count + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_no_of_wells_sations + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_covered + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_with_no_data + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + aa.toFixed(2) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].no_of_dynamic_data_entries + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb.toFixed(2) + '</label></td></tr>';
+
+                    }
+
+                    if (results.length != 1) {
+
+                        Tbodyhtml += '<tr><td colspan="6"><label>' + "Total" + '</label></td>';
+
+                        Tbodyhtml += '<td><label>' + a + '</label></td>';
+                        Tbodyhtml += '<td><label>' + b + '</label></td>';
+                        Tbodyhtml += '<td><label>' + c + '</label></td>';
+                        Tbodyhtml += '<td><label>' + d + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td>';
+                        Tbodyhtml += '<td><label>' + f + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td></tr>';
+                    }
+                    $('#tblmain_rainfall').html(Tbodyhtml);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    function wq_data() {
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var monthaa = $('#month').find('option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/GplevelMobileData/state_npmu_data_report_water_wq',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                var Tbodyhtml = '';
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr colspan="8"><td colspan="8" style="text-align: center;">No Data</td></tr>';
+                    $('#tblmain_quality').html(Tbodyhtml);
+
+                }
+                else {
+
+                    var a = 0;
+                    var b = 0;
+                    var c = 0;
+                    var d = 0;
+                    var e = 0;
+                    var f = 0;
+                    var g = 0;
+
+                    for (var i = 0; i < results.length; i++) {
+                        
+                        var ss = results[i].state;
+                        var ssname = ss.split('_');
+                        ss = ssname[0];
+                        var district = results[i].district;
+                        if (district == '0') {
+                            district = 'All District'
+                        }
+                        else {
+                            var districtname = district.split('_');
+                            district = districtname[0];
+                        }
+
+                        var bblock = results[i].block;
+                        if (bblock == '0' || bblock == undefined) {
+                            bblock = 'All Block'
+                        }
+                        else {
+                            var blockname = bblock.split('_');
+                            bblock = blockname[0];
+                        }
+                        var yy = year;
+                        if (yy == '0') {
+                            yy = 'All Year'
+                        }
+                        var mm = monthaa;
+                        if (mm == 'Select Month') {
+                            mm = 'All Month'
+                        }
+                        var aa = 0;
+                        if (results[i].total_no_of_wells_sations != 0) {
+                            aa = (results[i].static_approved_data / results[i].total_no_of_wells_sations) * 100;
+                        }
+                        var bb = 0;
+                        if (results[i].no_of_dynamic_data_entries != 0) {
+                            bb = (results[i].dynamic_approved_data / results[i].no_of_dynamic_data_entries) * 100;
+                        }
+                        a += results[i].total_gp_count;
+                        b += results[i].total_no_of_wells_sations;
+                        c += results[i].gp_covered;
+                        d += results[i].gp_with_no_data;
+                        f += results[i].no_of_dynamic_data_entries;
+                        e += aa;
+                        g += bb;
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ss + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + district + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bblock + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_gp_count + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_no_of_wells_sations + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_covered + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_with_no_data + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + aa.toFixed(2) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].no_of_dynamic_data_entries + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb.toFixed(2) + '</label></td></tr>';
+
+                    }
+                    if (results.length != 1) {
+
+                        Tbodyhtml += '<tr><td colspan="6"><label>' + "Total" + '</label></td>';
+
+                        Tbodyhtml += '<td><label>' + a + '</label></td>';
+                        Tbodyhtml += '<td><label>' + b + '</label></td>';
+                        Tbodyhtml += '<td><label>' + c + '</label></td>';
+                        Tbodyhtml += '<td><label>' + d + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td>';
+                        Tbodyhtml += '<td><label>' + f + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td></tr>';
+                    }
+                    $('#tblmain_quality').html(Tbodyhtml);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    function waterflow_data() {
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var monthaa = $('#month').find('option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/GplevelMobileData/state_npmu_data_report_waterflow',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                var Tbodyhtml = '';
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr colspan="8"><td colspan="8" style="text-align: center;">No Data</td></tr>';
+                    $('#tblmain_waterflow').html(Tbodyhtml);
+
+                }
+                else {
+
+                    var a = 0;
+                    var b = 0;
+                    var c = 0;
+                    var d = 0;
+                    var e = 0;
+                    var f = 0;
+                    var g = 0;
+
+                    for (var i = 0; i < results.length; i++) {
+                        
+                        var ss = results[i].state;
+                        var ssname = ss.split('_');
+                        ss = ssname[0];
+                        var district = results[i].district;
+                        if (district == '0') {
+                            district = 'All District'
+                        }
+                        else {
+                            var districtname = district.split('_');
+                            district = districtname[0];
+                        }
+
+                        var bblock = results[i].block;
+                        if (bblock == '0' || bblock == undefined) {
+                            bblock = 'All Block'
+                        }
+                        else {
+                            var blockname = bblock.split('_');
+                            bblock = blockname[0];
+                        }
+                        var yy = year;
+                        if (yy == '0') {
+                            yy = 'All Year'
+                        }
+                        var mm = monthaa;
+                        if (mm == 'Select Month') {
+                            mm = 'All Month'
+                        }
+                        var aa = 0;
+                        if (results[i].total_no_of_wells_sations != 0) {
+                            aa = (results[i].static_approved_data / results[i].total_no_of_wells_sations) * 100;
+                        }
+                        var bb = 0;
+                        if (results[i].no_of_dynamic_data_entries != 0) {
+                            bb = (results[i].dynamic_approved_data / results[i].no_of_dynamic_data_entries) * 100;
+                        }
+                        a += results[i].total_gp_count;
+                        b += results[i].total_no_of_wells_sations;
+                        c += results[i].gp_covered;
+                        d += results[i].gp_with_no_data;
+                        f += results[i].no_of_dynamic_data_entries;
+                        e += aa;
+                        g += bb;
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ss + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + district + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bblock + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_gp_count + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_no_of_wells_sations + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_covered + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_with_no_data + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + aa.toFixed(2) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].no_of_dynamic_data_entries + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb.toFixed(2) + '</label></td></tr>';
+
+                    }
+                    if (results.length != 1) {
+
+                        Tbodyhtml += '<tr><td colspan="6"><label>' + "Total" + '</label></td>';
+
+                        Tbodyhtml += '<td><label>' + a + '</label></td>';
+                        Tbodyhtml += '<td><label>' + b + '</label></td>';
+                        Tbodyhtml += '<td><label>' + c + '</label></td>';
+                        Tbodyhtml += '<td><label>' + d + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td>';
+                        Tbodyhtml += '<td><label>' + f + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td></tr>';
+                    }
+                    $('#tblmain_waterflow').html(Tbodyhtml);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    function wellinventory_data() {
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var monthaa = $('#month').find('option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/GplevelMobileData/state_npmu_data_report_wellinvenorty',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                var Tbodyhtml = '';
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr colspan="8"><td colspan="8" style="text-align: center;">No Data</td></tr>';
+                    $('#tblmain_well').html(Tbodyhtml);
+
+                }
+                else {
+
+                    var a = 0;
+                    var b = 0;
+                    var c = 0;
+                    var d = 0;
+                    var e = 0;
+                    
+
+                    for (var i = 0; i < results.length; i++) {
+                        var ss = results[i].state;
+                        var ssname = ss.split('_');
+                        ss = ssname[0];
+                        var district = results[i].district;
+                        if (district == '0') {
+                            district = 'All District'
+                        }
+                        else {
+                            var districtname = district.split('_');
+                            district = districtname[0];
+                        }
+
+                        var bblock = results[i].block;
+                        if (bblock == '0' || bblock == undefined) {
+                            bblock = 'All Block'
+                        }
+                        else {
+                            var blockname = bblock.split('_');
+                            bblock = blockname[0];
+                        }
+                        var yy = year;
+                        if (yy == '0') {
+                            yy = 'All Year'
+                        }
+                        var mm = monthaa;
+                        if (mm == 'Select Month') {
+                            mm = 'All Month'
+                        }
+                        var aa = 0;
+                        if (results[i].total_no_of_wells_sations != 0) {
+                            aa = (results[i].static_approved_data / results[i].total_no_of_wells_sations) * 100;
+                        }
+                        a += results[i].total_gp_count;
+                        b += results[i].total_no_of_wells_sations;
+                        c += results[i].gp_covered;
+                        d += results[i].gp_with_no_data;
+                        e += aa;
+
+
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ss + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + district + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bblock + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_gp_count + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_no_of_wells_sations + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_covered + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_with_no_data + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + aa.toFixed(2) + '</label></td></tr>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + results[i].no_of_dynamic_data_entries + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + results[i].dynamic_approved_data + '</label></td></tr>';
+
+                    }
+                    if (results.length != 1) {
+
+                        Tbodyhtml += '<tr><td colspan="6"><label>' + "Total" + '</label></td>';
+
+                        Tbodyhtml += '<td><label>' + a + '</label></td>';
+                        Tbodyhtml += '<td><label>' + b + '</label></td>';
+                        Tbodyhtml += '<td><label>' + c + '</label></td>';
+                        Tbodyhtml += '<td><label>' + d + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td></tr>';
+                    }
+                    $('#tblmain_well').html(Tbodyhtml);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    function socialevent_data() {
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var monthaa = $('#month').find('option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/GplevelMobileData/state_npmu_data_report_social_event',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                var Tbodyhtml = '';
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr colspan="8"><td colspan="8" style="text-align: center;">No Data</td></tr>';
+                    $('#tblmain_social').html(Tbodyhtml);
+
+                }
+                else {
+
+                    var a = 0;
+                    var b = 0;
+                    var c = 0;
+                    var d = 0;
+                    var e = 0;
+
+
+                    for (var i = 0; i < results.length; i++) {
+                        
+                        var ss = results[i].state;
+                        var ssname = ss.split('_');
+                        ss = ssname[0];
+                        var district = results[i].district;
+                        if (district == '0') {
+                            district = 'All District'
+                        }
+                        else {
+                            var districtname = district.split('_');
+                            district = districtname[0];
+                        }
+
+                        var bblock = results[i].block;
+                        if (bblock == '0' || bblock == undefined) {
+                            bblock = 'All Block'
+                        }
+                        else {
+                            var blockname = bblock.split('_');
+                            bblock = blockname[0];
+                        }
+                        var yy = year;
+                        if (yy == '0') {
+                            yy = 'All Year'
+                        }
+                        var mm = monthaa;
+                        if (mm == 'Select Month') {
+                            mm = 'All Month'
+                        }
+                        var aa = 0;
+                        if (results[i].total_no_of_wells_sations != 0) {
+                            aa = (results[i].static_approved_data / results[i].total_no_of_wells_sations) * 100;
+                        }
+                        a += results[i].total_gp_count;
+                        b += results[i].total_no_of_wells_sations;
+                        c += results[i].gp_covered;
+                        d += results[i].gp_with_no_data;
+                        e += aa;
+
+
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ss + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + district + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bblock + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_gp_count + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_no_of_wells_sations + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_covered + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_with_no_data + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + aa.toFixed(2) + '</label></td></tr>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + results[i].no_of_dynamic_data_entries + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + results[i].dynamic_approved_data + '</label></td>';
+
+                    }
+                    if (results.length != 1) {
+
+                        Tbodyhtml += '<tr><td colspan="6"><label>' + "Total" + '</label></td>';
+
+                        Tbodyhtml += '<td><label>' + a + '</label></td>';
+                        Tbodyhtml += '<td><label>' + b + '</label></td>';
+                        Tbodyhtml += '<td><label>' + c + '</label></td>';
+                        Tbodyhtml += '<td><label>' + d + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td></tr>';
+                    }
+                    $('#tblmain_social').html(Tbodyhtml);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    function geo_data() {
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var monthaa = $('#month').find('option:selected').text();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/GplevelMobileData/state_npmu_data_report_geo',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                var Tbodyhtml = '';
+                if (results == "No Data") {
+                    Tbodyhtml = '<tr colspan="8"><td colspan="8" style="text-align: center;">No Data</td></tr>';
+                    $('#tblmain_geo').html(Tbodyhtml);
+
+                }
+                else {
+
+                    var a = 0;
+                    var b = 0;
+                    var c = 0;
+                    var d = 0;
+                    var e = 0;
+
+
+                    for (var i = 0; i < results.length; i++) {
+                        
+                        var ss = results[i].state;
+                        var ssname = ss.split('_');
+                        ss = ssname[0];
+                        var district = results[i].district;
+                        if (district == '0') {
+                            district = 'All District'
+                        }
+                        else {
+                            var districtname = district.split('_');
+                            district = districtname[0];
+                        }
+
+                        var bblock = results[i].block;
+                        if (bblock == '0' || bblock == undefined) {
+                            bblock = 'All Block'
+                        }
+                        else {
+                            var blockname = bblock.split('_');
+                            bblock = blockname[0];
+                        }
+                        var yy = year;
+                        if (yy == '0') {
+                            yy = 'All Year'
+                        }
+                        var mm = monthaa;
+                        if (mm == 'Select Month') {
+                            mm = 'All Month'
+                        }
+                        var aa = 0;
+                        if (results[i].total_no_of_wells_sations != 0) {
+                            aa = (results[i].static_approved_data / results[i].total_no_of_wells_sations) * 100;
+                        }
+                        a += results[i].total_gp_count;
+                        b += results[i].total_no_of_wells_sations;
+                        c += results[i].gp_covered;
+                        d += results[i].gp_with_no_data;
+                        e += aa;
+
+
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ss + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + district + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bblock + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_gp_count + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].total_no_of_wells_sations + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_covered + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + results[i].gp_with_no_data + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + aa.toFixed(2) + '</label></td></tr>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + results[i].no_of_dynamic_data_entries + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + results[i].dynamic_approved_data + '</label></td>';
+
+                    }
+                    if (results.length != 1) {
+
+                        Tbodyhtml += '<tr><td colspan="6"><label>' + "Total" + '</label></td>';
+
+                        Tbodyhtml += '<td><label>' + a + '</label></td>';
+                        Tbodyhtml += '<td><label>' + b + '</label></td>';
+                        Tbodyhtml += '<td><label>' + c + '</label></td>';
+                        Tbodyhtml += '<td><label>' + d + '</label></td>';
+                        Tbodyhtml += '<td><label></label></td></tr>';
+                    }
+                    $('#tblmain_geo').html(Tbodyhtml);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+
+
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnRedirect").click(function () {
+            window.location.href = "@Url.Action("WspWaterAvailability", "WspNew")";
+        });
+    });
+    $(function () {
+        $("#btnRedirectDraft").click(function () {
+            window.location.href = "@Url.Action("WspDraft", "WspNew")";
+        });
+    });
+
+
+
+</script>
+<script>
+    function exportTableToExcel(tableID, filename = '') {
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        else {
+            var downloadLink;
+            var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            var ws = XLSX.utils.table_to_sheet(tableSelect);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Ground Water Level");
+
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Create a Blob from the binary data
+            var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+            // Create an object URL for the Blob and set it as the href attribute of the download link
+            downloadLink.href = URL.createObjectURL(blob);
+
+            // Set the download attribute of the link to specify the file name
+            downloadLink.download = filename;
+
+            // Trigger the download by simulating a click on the download link
+            downloadLink.click();
+        }
+    }
+    function exportTableToExcelgwq(tableID, filename = '') {
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        else {
+            var downloadLink;
+            var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            var ws = XLSX.utils.table_to_sheet(tableSelect);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Ground Water Quality");
+
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Create a Blob from the binary data
+            var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+            // Create an object URL for the Blob and set it as the href attribute of the download link
+            downloadLink.href = URL.createObjectURL(blob);
+
+            // Set the download attribute of the link to specify the file name
+            downloadLink.download = filename;
+
+            // Trigger the download by simulating a click on the download link
+            downloadLink.click();
+        }
+    }
+    function exportTableToExcelgeo(tableID, filename = '') {
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        else {
+            var downloadLink;
+            var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            var ws = XLSX.utils.table_to_sheet(tableSelect);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Geotagging");
+
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Create a Blob from the binary data
+            var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+            // Create an object URL for the Blob and set it as the href attribute of the download link
+            downloadLink.href = URL.createObjectURL(blob);
+
+            // Set the download attribute of the link to specify the file name
+            downloadLink.download = filename;
+
+            // Trigger the download by simulating a click on the download link
+            downloadLink.click();
+        }
+    }
+    function exportTableToExcelrainfall(tableID, filename = '') {
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        else {
+            var downloadLink;
+            var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            var ws = XLSX.utils.table_to_sheet(tableSelect);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Rainfall");
+
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Create a Blob from the binary data
+            var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+            // Create an object URL for the Blob and set it as the href attribute of the download link
+            downloadLink.href = URL.createObjectURL(blob);
+
+            // Set the download attribute of the link to specify the file name
+            downloadLink.download = filename;
+
+            // Trigger the download by simulating a click on the download link
+            downloadLink.click();
+        }
+    }
+    function exportTableToExcelwaterflow(tableID, filename = '') {
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        else {
+            var downloadLink;
+            var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            var ws = XLSX.utils.table_to_sheet(tableSelect);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Water Flow");
+
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Create a Blob from the binary data
+            var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+            // Create an object URL for the Blob and set it as the href attribute of the download link
+            downloadLink.href = URL.createObjectURL(blob);
+
+            // Set the download attribute of the link to specify the file name
+            downloadLink.download = filename;
+
+            // Trigger the download by simulating a click on the download link
+            downloadLink.click();
+        }
+    }
+    function exportTableToExcelwell(tableID, filename = '') {
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        else {
+            var downloadLink;
+            var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            var ws = XLSX.utils.table_to_sheet(tableSelect);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Wellinventory");
+
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Create a Blob from the binary data
+            var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+            // Create an object URL for the Blob and set it as the href attribute of the download link
+            downloadLink.href = URL.createObjectURL(blob);
+
+            // Set the download attribute of the link to specify the file name
+            downloadLink.download = filename;
+
+            // Trigger the download by simulating a click on the download link
+            downloadLink.click();
+        }
+    }
+    function exportTableToExcelsocial(tableID, filename = '') {
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+        else {
+            var downloadLink;
+            var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx'; // Change file extension to .xlsx for compatibility with XLSX.write
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            var ws = XLSX.utils.table_to_sheet(tableSelect);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "MADB Summary Sociel Event");
+
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Create a Blob from the binary data
+            var blob = new Blob([s2ab(wbout)], { type: dataType });
+
+            // Create an object URL for the Blob and set it as the href attribute of the download link
+            downloadLink.href = URL.createObjectURL(blob);
+
+            // Set the download attribute of the link to specify the file name
+            downloadLink.download = filename;
+
+            // Trigger the download by simulating a click on the download link
+            downloadLink.click();
+        }
+    }
+</script>
+<script type="text/javascript">
+
+    
+</script>
+

@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "Catalogue_Search";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.3.7.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+<title>Catalog Search</title>
+
+<style>
+    #seachoptions > li {
+        display: inline-table;
+        margin-top: 20px;
+        border-radius: 0.25em;
+    }
+
+    ul#seachoptions > li > a:hover {
+        background-color: #6FB11D;
+    }
+
+    .nav-pills > li.active {
+        background-color: #2e578c;
+    }
+
+    #seachoptions > li > a {
+        color: #ffffff;
+        padding: 15px;
+    }
+
+    .table-striped tbody tr:nth-of-type(2n+1) {
+        background-color: #f7f7f7;
+    }
+
+    /*.row {
+        margin: 0px;
+        padding: 0px;
+    }*/
+
+    .hpanel.hblue .panel-body {
+        border-top: 2px solid #3498db;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 24px 13px 0 0;
+        margin-top: -21px;
+    }
+
+    th {
+        background-color: white;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        margin: 2px 0;
+        white-space: nowrap;
+        justify-content: flex-end;
+    }
+
+    .dataTables_filter, .dataTables_paginate {
+        float: right;
+    }
+
+    .tbl-responsive {
+        overflow-x: initial;
+    }
+
+    .dataTables_empty {
+        text-align: center;
+    }
+
+    .listof_searchbox {
+        text-align: center;
+        display: block;
+    }
+
+        .listof_searchbox > li {
+            display: inline-block;
+        }
+</style>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(2) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(2) ").siblings().removeClass('active');
+
+</script>
+
+<div class="row somerow">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Catalog Search</div>
+    </div>
+</div>
+
+<div class="clearfix">
+    <div class="row">
+
+        <div class="container text-center">
+            <ul class="listof_searchbox">
+                <li class="col-md-3"></li>
+                <li class="col-md-4 col-sm-7">
+                    <div class=" ">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input id="search_id" type="text" class="form-control " placeholder="Search...">
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-2 col-sm-5"> <button type="button" onclick="Search()" class="btn btn-primary">Search</button></li>
+            </ul>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    function Search() {
+        
+        var search_id = $('#search_id').val();
+        if (search_id != "") {
+            var Search_Item = search_id.toLowerCase();
+            var Search_Itemm1 = Search_Item.trim().split(" ").join("");
+
+            if (Search_Itemm1 == "home") {
+                window.location = "/Home/Index";
+            }
+            else if (Search_Itemm1 == "about") {
+                window.location = "/About/About";
+            }
+            else if (Search_Itemm1 == "aboutataljal") {
+                window.location = "/About/About";
+            }
+            else if (Search_Itemm1 == "mislogin") {
+                  window.location = "/Home/LogOut";
+            }
+            else if (Search_Itemm1 == "tenderannouncements") {
+                window.location = "/Tenders/Tender_Announcements";
+            }
+            else if (Search_Itemm1 == "tenderawarded") {
+                window.location = "/Tenders/Tender_Awarded";
+            }
+            else if (Search_Itemm1 == "etenders") {
+                window.location = "/Tenders/E_Tender";
+            }
+            else if (Search_Itemm1 == "newgrievanceregistration") {
+                window.location = "/Grievance/Index";
+            }
+            else if (Search_Itemm1 == "newappealregistration") {
+                window.location = "/Grievance/Appeal_Registration";
+            }
+            else if (Search_Itemm1 == "grievancestatus") {
+                window.location = "/Grievance/Grievance_Tracking";
+            }
+            else if (Search_Itemm1 == "dashboard") {
+                window.location = "/Dashboard/Dashboard";
+            }
+            else if (Search_Itemm1 == "contactus") {
+                window.location = "/Home/Contact";
+            }
+            else if (Search_Itemm1 == "faqs") {
+                window.location = "/Home/FAQs";
+            }
+            else if (Search_Itemm1 == "mapview") {
+                window.location = "http://ataljal-mapdata.mowr.gov.in/index.php";
+            }
+            else if (Search_Itemm1 == "additionalcontacts") {
+                window.location = "/Contact/Additional_Contacts";
+            }
+            else {
+                alert("Name is Not Matched");
+            }
+        }
+    }
+</script>
+
+
+

@@ -1,0 +1,805 @@
+﻿
+@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Content/css/baseline_gp_js.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    body {
+        /*font-family: Calibri !important;*/
+    }
+
+    .page2el2 {
+        margin-top: 50px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .table_img {
+        width: 200px !important;
+    }
+
+    .demandside_text > tbody > tr > td {
+        text-align: right;
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .demanside_padding_heading1 {
+        padding: 0px !important;
+    }
+
+    .supplyside_demandside_space1 > .reportheading > p {
+        margin: 0px 0 6px !important;
+    }
+
+    .gramReport_div_start.col-md-12 {
+        padding: 0px;
+    }
+
+    .demandside_text_123 > tbody > tr > th {
+        font-size: 14px !important;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+
+        .dateandtime_ul > li {
+            display: inline-block;
+            color: #000;
+            font-size: 18px;
+            padding: 0px 15px;
+        }
+
+    .table-striped tbody tr td:last-child {
+        /*text-align: right;*/
+    }
+
+    .pgwmtable tbody tr td:last-child,
+    .demandsidetable tr td:last-child {
+        text-align: left !important;
+    }
+
+    .wateratextiablity_space {
+        margin-top: 186px;
+    }
+
+    .waterdrft_space {
+        margin-top: 18px;
+    }
+
+    .waterdrft_balance {
+        margin-top: 180px;
+    }
+
+    .waterdrft_Budgeting_space {
+        margin-top: 280px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .singnatire_table tbody tr td {
+        height: 100px;
+    }
+
+    .supplyside_demandside_space {
+        margin-top: 340px;
+    }
+
+    .pgwmCommiteee_space {
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .pgwm_range {
+        margin-top: 280px;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 12px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+
+
+    .secondtable {
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    .totatal_textue_label {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    .table-condensed {
+        font-weight: 100;
+        text-shadow: none;
+    }
+
+    .tolat_report_color {
+        color: #6FB11D !important;
+    }
+
+    .wateratextiablity_table > thead > tr > td,
+    .wateratextiablity_table > tbody > tr > td {
+        padding: 0px 3px;
+    }
+
+    table > tbody > tr > td {
+        color: #337ab7 !important;
+        font-weight: 500;
+    }
+
+    table > tbody > tr > th {
+        color: #337ab7 !important;
+    }
+
+    table > tbody > tr > td > label {
+        color: #000 !important;
+    }
+
+    table > tbody > tr > td > span {
+        color: #000 !important;
+    }
+
+    .pgwmtable > tbody > tr > td {
+        color: #000 !important;
+    }
+
+    .text_left_left {
+        text-align: left !important;
+        color: #000 !important;
+    }
+</style>
+
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>
+                    IEC State Level
+                </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+                @*<button class="btn btn-success" id="print" onclick="printpage()">Print</button>*@
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demo"></span></li>
+                    <li>Time : <span id="demo2"></span></li>
+                    <li>
+                        User Name:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/IEC/IEC_Module" class="btn btn-danger"> Back</a>
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    <li>
+
+                        <label>State:</label>
+                        <span id="spnstate"></span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                    <li>
+
+                        <label>Year:</label>
+                        <span id="spnyear"></span>
+                        <i class="fas fa fa-angle-double-right"></i>
+                    </li>
+                    <li>
+
+                        <label>Month:</label>
+                        <span id="spnmonth"></span>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="gramReport_div_start col-md-12">
+            <div class="text-center reportheading">
+                <p>
+                    IEC State Level
+
+                </p>
+            </div>
+
+            <div class="col-md-12">
+                <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebody">
+
+                            <tr>
+                                <td>State:</td>
+                                <td>
+                                    <span id="state_name"></span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Year :</td>
+                                <td>
+                                    <span id="year"></span>
+                                </td>
+                                <td>Month :</td>
+                                <td>
+                                    <span id="spnmonth1"></span>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                @*<h4>
+                        <label>
+                            Total Number of Events / Workshop / Others  : <label id="social_total"></label>
+                        </label>
+                    </h4>*@
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table style="width:100%" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <thead>
+                            <tr class="tableheader1"></tr>
+                            <tr class="success">
+                                <td style="text-align:center">Sr. No.</td>
+                                <td style="text-align: center; padding-right: 70px;">State</td>
+                                <td style="text-align: center; padding-right: 80px;">Activity</td>
+                                <td style="text-align:center">Activity Other</td>
+                                <td style="text-align: center; padding-right: 80px;">Sub Activity</td>
+                                <td style="text-align:center">Sub Activity Other</td>
+                                <td style="text-align:center">Number</td>
+                                <td style="text-align:center">Cumulative Total</td>
+                                <td style="text-align:center">IEC Activity Detail</td>
+                                <td style="text-align:center">Remarks</td>
+                                <td style="text-align:center">Approve Status</td>
+                                <td style="text-align:center">Reject Status</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @*<div class="page2el11">
+                <div class="">
+                    <div class="col-md-12 ">
+                        <div class="text-center reportheading">
+                            <p>
+                                Social Event
+                            </p>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/IEC/IEC_Module" class="btn btn-danger"> Back</a>
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    function ReportPdf() {
+        $("#Data1").width(1095);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'IEC State Level.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+    }
+</script>
+
+<script>
+    //Code for print page
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("print");
+        //Set the print button visibility to 'hidden'
+        //printButton.style.visibility = 'hidden';
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        //Print the page content
+        window.print()
+        $('div#btnExport').removeClass('hideDownload');
+        $('div#btnExport1').removeClass('hideDownload');
+        //printButton.style.visibility = 'visible';
+    }
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+<script>
+    var state_name1 = "0";
+    var year1 = "0";
+    var month1 = "0";
+    var State = "0";
+
+    $(document).ready(function () {
+        
+        var StateOfficer = '@Session["Officer"]';
+        State = '@Session["gstate"]';
+        state_name1 = '@Session["state_name"]';
+        year1 = '@Session["year1"]';
+        month1 = '@Session["month1"]';
+
+        if (state_name1 != '') {
+            $('#state_name').text(state_name1);
+            $('#spnstate').text(state_name1);
+        }
+        else {
+            $('#state_name').text("@Session["gstate"]");
+            $('#spnstate').text("@Session["gstate"]");
+        }
+        if (year1 == 'All') {
+            $('#year').text("");
+            $('#spnyear').text("");
+        } else {
+            $('#year').text(year1);
+            $('#spnyear').text(year1);
+        }
+        if (month1 == 0) {
+            $('#spnmonth').text("");
+            $('#spnmonth1').text("");
+        } else {
+            $('#spnmonth').text(month1);
+            $('#spnmonth1').text(month1);
+        }
+
+        var uri = window.location.href.toString();
+        if (uri.indexOf("?") > 0) {
+            var clean_uri = uri.substring(0, uri.indexOf("?"));
+            window.history.replaceState({}, document.title, clean_uri);
+        }
+
+        var month_name = Get_Month_Number(month1)
+        //$('#state_name').text(month_name);
+        //$('#spnmonth1').text(month_name);
+        if (StateOfficer == "") {
+              window.location = "/Home/LogOut";
+        }
+
+        Data_state();
+
+
+    });
+
+
+    function Get_Month_Number(month) {
+        
+        var month_num = "";
+        switch (month) {
+            case "1":
+                month_num = 'April';
+                break;
+            case "2":
+                month_num = 'May';
+                break;
+            case "3":
+                month_num = "June";
+                break;
+            case "4":
+                month_num = "July";
+                break;
+            case "5":
+                month_num = "August";
+                break;
+            case "6":
+                month_num = "September";
+                break;
+            case "7":
+                month_num = "October";
+                break;
+            case "8":
+                month_num = "November";
+                break;
+            case "9":
+                month_num = "December";
+                break;
+            case "10":
+                month_num = "January";
+                break;
+            case "11":
+                month_num = "February";
+                break;
+            case "12":
+                month_num = "March";
+                break;
+        }
+        return month_num;
+    }
+
+    function Data_state() {
+        
+        //var year = year1;
+        //var month = month1;
+        var year_state = year1;
+        var month_state = month1;
+        var state_name = state_name1;
+        var State1 = "@Session["gstate"]";
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/IEC/Data_state_report',
+            data: "{'state_name':'" + state_name + "' ,'State1':'" + State1 + "', 'year_state':'" + year_state + "' , 'month_state':'" + month_state + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+
+                var tr = '';
+                var a = 0;
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var reject_status = data[i].reject_status;
+                        if (reject_status == null) {
+                            reject_status = "";
+                        }
+                        var approve_status = data[i].approve_status;
+                        if (approve_status == null) {
+                            approve_status = "";
+                        }
+
+                        tr += '<tr id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].activity + '</td><td>' + data[i].activity_other + '</td><td>' + data[i].sub_activity + '</td><td>' + data[i].sub_activity_other + '</td><td>' + data[i].number + '</td><td>' + data[i].cumulative_total + '</td><td>' + data[i].IEC_activity + '</td><td>' + data[i].remark + '</td><td>' + approve_status + '</td><td>' + reject_status + '</td></tr> ';
+
+                    }
+                }
+                if (tr == '') {
+                    tr = '<tr style="text-align:center;"><td colspan="15">No Data</td></tr>';
+                    $('#tbldata').html(tr);
+                }
+                else {
+                    $('#tbldata').html(tr);
+                }
+
+            }
+        });
+    }
+
+
+
+</script>

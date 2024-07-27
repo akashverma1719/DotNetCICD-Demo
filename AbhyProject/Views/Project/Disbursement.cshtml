@@ -1,0 +1,995 @@
+﻿@{
+    ViewBag.Title = "Disbursement";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title>Disbursement</title>
+<style>
+    ul.stateul {
+        text-align: center;
+    }
+
+        ul.stateul > li {
+            display: inline-block;
+        }
+
+    .tableheader1 > th {
+        padding: 5px;
+        font-weight: bold;
+    }
+
+    .btn-success {
+        width: 100px;
+        float: none;
+        right: 0px;
+    }
+
+    .fa-trash,
+    .fa-save {
+        padding-right: 5px;
+    }
+
+    tbody.tablebaody > tr > th {
+        width: 10%;
+    }
+
+    tbody.tablebaody > tr > td {
+        width: 10%;
+    }
+
+    .tableheader1 {
+        background-color: goldenrod !important;
+    }
+</style>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<div class="clearfix">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Disbursement Linked Indicators, Disbursement Arrangements and Verification Protocols</div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <ul class="stateul">
+                                        <li>
+                                            <label id="selectid">Please select your state:</label>
+                                        </li>
+                                        <li>
+                                            <select class="form-control" id="ddldisbursementstate">
+                                                <option value="SelectyourState">Select your State</option>
+                                                <option value="gujarat">Gujarat</option>
+                                                <option value="haryana">Haryana</option>
+                                                <option value="karnataka">Karnataka</option>
+                                                <option value="madhyapradesh">Madhyapradesh</option>
+                                                <option value="maharashtra">Maharashtra</option>
+                                                <option value="rajasthan">Rajasthan</option>
+                                                <option value="uttarpradesh">Uttarpradesh</option>
+
+                                            </select>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12" style="overflow-y: scroll;overflow-x:scroll; height:430px;">
+                                    <div class="col-md-12 col12">
+                                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px; height: 355px;">
+                                            <tbody class="tablebaody" id="tbodydisbursment">
+                                                <tr class="tableheader1">
+                                                    <th style="padding:5px;font-weight:bold;" rowspan="2">
+                                                        Allocated amount for DLI's
+                                                    </th>
+                                                    <th style="text-align:center;" rowspan="2">Total Financing Allocated to DLI(INR ₹)</th>
+                                                    <th style="text-align:center;" rowspan="2">As % of Total Financing Amount(INR ₹)</th>
+                                                    <th style="text-align:center;" rowspan="2">DLI Baseline(INR ₹)</th>
+                                                    <th style="text-align:center;" colspan="6">Indicative timeline for DLI achievement</th>
+                                                </tr>
+                                                <tr class="tableheader1">
+                                                    <th>2020-21(INR ₹)</th>
+                                                    <th>2021-22(INR ₹)</th>
+                                                    <th>2022-23(INR ₹)</th>
+                                                    <th>2023-24(INR ₹)</th>
+                                                    <th>2024-25(INR ₹)</th>
+                                                    <th>2025-26(INR ₹)</th>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">DLI 1</th>
+                                                    <td colspan="3">Public disclosure of ground water data/information and reports</td>
+                                                    <td colspan="6">IVA reports on reduction in ground water stress, measured by ground water levels at observation wells. Funds are released to MoWR, RD&GR based on report.</td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">Amount:</th>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtgwldeclinefinancealloc" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtgwldeclinefinanceamount" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtgwldeclinefinancebaseline" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1718dli1" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1819dli1" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1920dli1" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2021dli1" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2122dli1" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2223dli1" name="" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">DLI 2</th>
+                                                    <td colspan="3">Preparation of Community-led Water Security Plans </td>
+                                                    <td colspan="6">IVA conducts GP level random sample surveys in each State. Funds are released to MoWR, RD & GR based on report.</td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">Amount:</th>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtwspfinancealloc" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtwspfinanceamount" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtwspfinancebaseline" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1718dli2" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1819dli2" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1920dli2" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2021dli2" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2122dli2" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2223dli2" name="" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">DLI 3</th>
+                                                    <td colspan="3">Public financing of approved Water Security Plans through convergence of ongoing/new schemes</td>
+                                                    <td colspan="6">IVA conducts GP level random sample surveys in each State to check against multiple criteria (refer below). Funds are released to MoWR, RD & GR based on report.</td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">Amount:</th>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtgwmAdoptionfinancealloc" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtgwmAdoptionfinanceamount" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtgwmAdoptionfinancebaseline" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1718dli3" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1819dli3" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1920dli3" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2021dli3" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2122dli3" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2223dli3" name="" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">DLI 4</th>
+                                                    <td colspan="3">Adoption of practices for efficient water use</td>
+                                                    <td colspan="6">IVA estimates hectares that benefit from improved irrigation and agricultural practices in the participating States. The estimation will be based on combination of State agriculture data, remote sensing, and sample surveys. Funds are released to MoWR, RD &GR based on report.</td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">Amount:</th>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtReducedwtrconfinancealloc" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtReducedwtrconfinanceamount" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtReducedwtrconfinancebaseline" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1718dli4" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1819dli4" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1920dli4" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2021dli4" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2122dli4" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2223dli4" name="" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">DLI 5</th>
+                                                    <td colspan="3">
+                                                        Improvement in the rate of decline of groundwater levels
+                                                    </td>
+                                                    <td colspan="6">IVA reviews State expenditure on ground water management and physically verifies a limited random sample of interventions. Funds are released to MoWR, RD &GR based on report.</td>
+                                                </tr>
+                                                <tr>
+                                                    <th style="padding:5px;">Amount:</th>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtOpcsfinancealloc" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtOpcsfinanceamount" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txtOpcsfinancebaseline" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1718dli5" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1819dli5" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt1920dli5" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2021dli5" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2122dli5" name="" /></td>
+                                                    <td><input type="text" class="form-control decimal" placeholder="Enter number" id="txt2223dli5" name="" /></td>
+                                                </tr>
+                                                @*<tr>
+                                                        <th style="padding:5px;">DLI 6</th>
+                                                        <td colspan="3">
+                                                            Operationalization of Participatory Groundwater Management by MoWR, RD&GR and selected States
+                                                        </td>
+                                                        <td colspan="6">
+                                                            Establishment and staffing of SPV at national level ? Establishment and strengthening of Management Information Systems (MIS) and M&E unit, including operational MIS for procurement and contract management ? Establishment of National Technical Support Agency ? Establishment of State Technical Support Agency & Support Organizations Funds are released to MoWR, RD&GR based on progress report
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="padding:5px;">Amount:</th>
+                                                        <td><input type="text" class="form-control" id="txtmowrRdgrfinancealloc" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txtmowrRdgrfinanceamount" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txtmowrRdgrfinancebaseline" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt1718dli6" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt1819dli6" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt1920dli6" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt2021dli6" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt2122dli6" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt2223dli6" name="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="padding:5px;">DLI 7</th>
+                                                        <td colspan="3">
+                                                            Groundwater management units strengthened, operational, and equipped with modern information systems in selected States
+                                                        </td>
+                                                        <td colspan="6">
+                                                            IVA undertakes institutional performance reviews in the participating States and submits a report. Funds are released to MoWR, RD &GR based on report.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="padding:5px;">Amount:</th>
+                                                        <td><input type="text" class="form-control" id="txtgwmUnitsfinancealloc" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txtgwmUnitsfinanceamount" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txtgwmUnitsfinancebaseline" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt1718dli7" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt1819dli7" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt1920dli7" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt2021dli7" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt2122dli7" name="" /></td>
+                                                        <td><input type="text" class="form-control" id="txt2223dli7" name="" /></td>
+                                                    </tr>*@
+                                                <tr id="totalfintr">
+                                                    <th style="padding:5px;">Total Financing Amount:</th>
+                                                    <td><input type="text" class="form-control" id="txttotalfinancealloc" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotalfinanceamount" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotalfinancebaseline" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotal1718dli8" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotal1819dli8" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotal1920dli8" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotal2021dli8" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotal2122dli8" name="" readonly /></td>
+                                                    <td><input type="text" class="form-control" id="txttotal2223dli8" name="" readonly /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class=" col-md-12" style="margin-bottom:20px;">
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-success" id="btnsaveorupdate"><i class="fa fa-save"></i>Save</button>
+                                            <button type="button" class="btn btn-danger" id="btndelete"> <i class="fa fa-trash"></i>Delete</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#totalfintr').hide();
+        $('#ddldisbursementstate').on('change', function () {
+            getddlstatewisedata(this.value);
+        });
+        $('#btnsaveorupdate').click(function () {
+            getsavedata();
+        });
+        $('#btndelete').click(function () {
+            getdelete();
+        });
+    });
+    function getddlstatewisedata(id) {
+        var ddlval = "";
+        if (id != "SelectyourState") {
+            ddlval = id;
+        }
+        else {
+            alert('Please Select State Name');
+            $('#ddldisbursementstate').focus();
+            return false();
+        }
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Project/Disbursement1',
+            data: '{"ddlstate":"' + ddlval + '"}',
+            dataType: 'JSON',
+            success: function (data) {
+                var jsndata = "";
+                if (data != "ok") {
+                    jsndata = data;
+                    $('#txtgwldeclinefinancealloc').val(jsndata[0]["dli1_finance_alloc_gwl_decline"]);
+                    $('#txtgwldeclinefinanceamount').val(jsndata[0]["dli1_finance_amt_gwl_decline"]);
+                    $('#txtgwldeclinefinancebaseline').val(jsndata[0]["dli1_baseline_gwl_decline"]);
+                    $('#txt1718dli1').val(jsndata[0]["dli1_17_18"]);
+                    $('#txt1819dli1').val(jsndata[0]["dli1_18_19"]);
+                    $('#txt1920dli1').val(jsndata[0]["dli1_19_20"]);
+                    $('#txt2021dli1').val(jsndata[0]["dli1_20_21"]);
+                    $('#txt2122dli1').val(jsndata[0]["dli1_21_22"]);
+                    $('#txt2223dli1').val(jsndata[0]["dli1_22_23"]);
+
+                    $('#txtwspfinancealloc').val(jsndata[0]["dli1_finance_alloc_gwl_decline"]);
+                    $('#txtwspfinanceamount').val(jsndata[0]["dli1_finance_amt_gwl_decline"]);
+                    $('#txtwspfinancebaseline').val(jsndata[0]["dli1_baseline_gwl_decline"]);
+                    $('#txt1718dli2').val(jsndata[0]["dli2_17_18"]);
+                    $('#txt1819dli2').val(jsndata[0]["dli2_18_19"]);
+                    $('#txt1920dli2').val(jsndata[0]["dli2_19_20"]);
+                    $('#txt2021dli2').val(jsndata[0]["dli2_20_21"]);
+                    $('#txt2122dli2').val(jsndata[0]["dli2_21_22"]);
+                    $('#txt2223dli2').val(jsndata[0]["dli2_22_23"]);
+
+                    $('#txtgwmAdoptionfinancealloc').val(jsndata[0]["dli3_finance_alloc_gw_adoption"]);
+                    $('#txtgwmAdoptionfinanceamount').val(jsndata[0]["dli3_finance_amt_wsp_adoption"]);
+                    $('#txtgwmAdoptionfinancebaseline').val(jsndata[0]["dli3_baseline_wsp_adoption"]);
+                    $('#txt1718dli3').val(jsndata[0]["dli3_17_18"]);
+                    $('#txt1819dli3').val(jsndata[0]["dli3_18_19"]);
+                    $('#txt1920dli3').val(jsndata[0]["dli3_19_20"]);
+                    $('#txt2021dli3').val(jsndata[0]["dli3_20_21"]);
+                    $('#txt2122dli3').val(jsndata[0]["dli3_21_22"]);
+                    $('#txt2223dli3').val(jsndata[0]["dli3_22_23"]);
+
+                    $('#txtReducedwtrconfinancealloc').val(jsndata[0]["dli4_finance_alloc_reduced_wtr_con"]);
+                    $('#txtReducedwtrconfinanceamount').val(jsndata[0]["dli4_finance_amt_reduced_wtr_con"]);
+                    $('#txtReducedwtrconfinancebaseline').val(jsndata[0]["dli4_baseline_reduced_wtr_con"]);
+                    $('#txt1718dli4').val(jsndata[0]["dli4_17_18"]);
+                    $('#txt1819dli4').val(jsndata[0]["dli4_18_19"]);
+                    $('#txt1920dli4').val(jsndata[0]["dli4_19_20"]);
+                    $('#txt2021dli4').val(jsndata[0]["dli4_20_21"]);
+                    $('#txt2122dli4').val(jsndata[0]["dli4_21_22"]);
+                    $('#txt2223dli4').val(jsndata[0]["dli4_22_23"]);
+
+                    $('#txtOpcsfinancealloc').val(jsndata[0]["dli5_finance_alloc_wsp_pending_opcs"]);
+                    $('#txtOpcsfinanceamount').val(jsndata[0]["dli5_finance_amt_wsp_pending_opcs"]);
+                    $('#txtOpcsfinancebaseline').val(jsndata[0]["dli5_baseline_wsp_pending_opcs"]);
+                    $('#txt1718dli5').val(jsndata[0]["dli5_17_18"]);
+                    $('#txt1819dli5').val(jsndata[0]["dli5_18_19"]);
+                    $('#txt1920dli5').val(jsndata[0]["dli5_19_20"]);
+                    $('#txt2021dli5').val(jsndata[0]["dli5_20_21"]);
+                    $('#txt2122dli5').val(jsndata[0]["dli5_21_22"]);
+                    $('#txt2223dli5').val(jsndata[0]["dli5_22_23"]);
+
+                    //$('#txtmowrRdgrfinancealloc').val(jsndata[0]["dli6_finance_alloc_gwmu_mis"]);
+                    //$('#txtmowrRdgrfinanceamount').val(jsndata[0]["dli6_finance_amt_gwmu_mis"]);
+                    //$('#txtmowrRdgrfinancebaseline').val(jsndata[0]["dli6_baseline_gwmu_mis"]);
+                    //$('#txt1718dli6').val(jsndata[0]["dli6_17_18"]);
+                    //$('#txt1819dli6').val(jsndata[0]["dli6_18_19"]);
+                    //$('#txt1920dli6').val(jsndata[0]["dli6_19_20"]);
+                    //$('#txt2021dli6').val(jsndata[0]["dli6_20_21"]);
+                    //$('#txt2122dli6').val(jsndata[0]["dli6_21_22"]);
+                    //$('#txt2223dli6').val(jsndata[0]["dli6_22_23"]);
+
+                    //$('#txtgwmUnitsfinancealloc').val(jsndata[0]["dli7_finance_alloc_gwm_mowr_rd_gr"]);
+                    //$('#txtgwmUnitsfinanceamount').val(jsndata[0]["dli7_finance_amt_gwm_mowr_rd_gr"]);
+                    //$('#txtgwmUnitsfinancebaseline').val(jsndata[0]["dli7_baseline_gwm_mowr_rd_gr"]);
+                    //$('#txt1718dli7').val(jsndata[0]["dli7_17_18"]);
+                    //$('#txt1819dli7').val(jsndata[0]["dli7_18_19"]);
+                    //$('#txt1920dli7').val(jsndata[0]["dli7_19_20"]);
+                    //$('#txt2021dli7').val(jsndata[0]["dli7_20_21"]);
+                    //$('#txt2122dli7').val(jsndata[0]["dli7_21_22"]);
+                    //$('#txt2223dli7').val(jsndata[0]["dli7_22_23"]);
+
+                    var gwldeclinefinancealloc = $('#txtgwldeclinefinancealloc').val();
+                    var wspfinancealloc = $('#txtwspfinancealloc').val();
+                    var gwmAdoptionfinancealloc = $('#txtgwmAdoptionfinancealloc').val();
+                    var Reducedwtrconfinancealloc = $('#txtReducedwtrconfinancealloc').val();
+                    var Opcsfinancealloc = $('#txtOpcsfinancealloc').val();
+                    //var mowrRdgrfinancealloc = $('#txtmowrRdgrfinancealloc').val();
+                    //var gwmUnitsfinancealloc = $('#txtgwmUnitsfinancealloc').val();
+
+                    var gwldeclinefinanceamount = $('#txtgwldeclinefinanceamount').val();
+                    var wspfinanceamount = $('#txtwspfinanceamount').val();
+                    var gwmAdoptionfinanceamount = $('#txtgwmAdoptionfinanceamount').val();
+                    var Reducedwtrconfinanceamount = $('#txtReducedwtrconfinanceamount').val();
+                    var Opcsfinanceamount = $('#txtOpcsfinanceamount').val();
+                    //var mowrRdgrfinanceamount = $('#txtmowrRdgrfinanceamount').val();
+                    //var gwmUnitsfinanceamount = $('#txtgwmUnitsfinanceamount').val();
+
+                    var gwldeclinefinancebaseline = $('#txtgwldeclinefinancebaseline').val();
+                    var wspfinancebaseline = $('#txtwspfinancebaseline').val();
+                    var gwmAdoptionfinancebaseline = $('#txtgwmAdoptionfinancebaseline').val();
+                    var Reducedwtrconfinancebaseline = $('#txtReducedwtrconfinancebaseline').val();
+                    var Opcsfinancebaseline = $('#txtOpcsfinancebaseline').val();
+                    //var mowrRdgrfinancebaseline = $('#txtmowrRdgrfinancebaseline').val();
+                    //var gwmUnitsfinancebaseline = $('#txtgwmUnitsfinancebaseline').val();
+
+                    var txt1718dli1 = $('#txt1718dli1').val();
+                    var txt1718dli2 = $('#txt1718dli2').val();
+                    var txt1718dli3 = $('#txt1718dli3').val();
+                    var txt1718dli4 = $('#txt1718dli4').val();
+                    var txt1718dli5 = $('#txt1718dli5').val();
+                    //var txt1718dli6 = $('#txt1718dli6').val();
+                    //var txt1718dli7 = $('#txt1718dli7').val();
+
+                    var txt1819dli1 = $('#txt1819dli1').val();
+                    var txt1819dli2 = $('#txt1819dli2').val();
+                    var txt1819dli3 = $('#txt1819dli3').val();
+                    var txt1819dli4 = $('#txt1819dli4').val();
+                    var txt1819dli5 = $('#txt1819dli5').val();
+                    //var txt1819dli6 = $('#txt1819dli6').val();
+                    //var txt1819dli7 = $('#txt1819dli7').val();
+
+                    var txt1920dli1 = $('#txt1920dli1').val();
+                    var txt1920dli2 = $('#txt1920dli2').val();
+                    var txt1920dli3 = $('#txt1920dli3').val();
+                    var txt1920dli4 = $('#txt1920dli4').val();
+                    var txt1920dli5 = $('#txt1920dli5').val();
+                    //var txt1920dli6 = $('#txt1920dli6').val();
+                    //var txt1920dli7 = $('#txt1920dli7').val();
+
+                    var txt2021dli1 = $('#txt2021dli1').val();
+                    var txt2021dli2 = $('#txt2021dli2').val();
+                    var txt2021dli3 = $('#txt2021dli3').val();
+                    var txt2021dli4 = $('#txt2021dli4').val();
+                    var txt2021dli5 = $('#txt2021dli5').val();
+                    //var txt2021dli6 = $('#txt2021dli6').val();
+                    //var txt2021dli7 = $('#txt2021dli7').val();
+
+                    var txt2122dli1 = $('#txt2122dli1').val();
+                    var txt2122dli2 = $('#txt2122dli2').val();
+                    var txt2122dli3 = $('#txt2122dli3').val();
+                    var txt2122dli4 = $('#txt2122dli4').val();
+                    var txt2122dli5 = $('#txt2122dli5').val();
+                    //var txt2122dli6 = $('#txt2122dli6').val();
+                    //var txt2122dli7 = $('#txt2122dli7').val();
+
+                    var txt2223dli1 = $('#txt2223dli1').val();
+                    var txt2223dli2 = $('#txt2223dli2').val();
+                    var txt2223dli3 = $('#txt2223dli3').val();
+                    var txt2223dli4 = $('#txt2223dli4').val();
+                    var txt2223dli5 = $('#txt2223dli5').val();
+                    //var txt2223dli6 = $('#txt2223dli6').val();
+                    //var txt2223dli7=$('#txt2223dli7').val();
+
+                    var totaldli = parseFloat(parseFloat(gwldeclinefinancealloc) + parseFloat(wspfinancealloc) + parseFloat(gwmAdoptionfinancealloc) + parseFloat(Reducedwtrconfinancealloc) + parseFloat(Opcsfinancealloc)).toFixed(2);//+ parseFloat(mowrRdgrfinancealloc) + parseFloat(gwmUnitsfinancealloc)
+                    var totalamount = parseFloat(parseFloat(gwldeclinefinanceamount) + parseFloat(wspfinanceamount) + parseFloat(gwmAdoptionfinanceamount) + parseFloat(Reducedwtrconfinanceamount) + parseFloat(Opcsfinanceamount)).toFixed(2);// + parseFloat(mowrRdgrfinanceamount) + parseFloat(gwmUnitsfinanceamount)
+                    var totalbaseline = parseFloat(parseFloat(gwldeclinefinancebaseline) + parseFloat(wspfinancebaseline) + parseFloat(gwmAdoptionfinancebaseline) + parseFloat(Reducedwtrconfinancebaseline) + parseFloat(Opcsfinancebaseline)).toFixed(2);// + parseFloat(mowrRdgrfinancebaseline) + parseFloat(gwmUnitsfinancebaseline)
+                    var total1718dli = parseFloat(parseFloat(txt1718dli1) + parseFloat(txt1718dli2) + parseFloat(txt1718dli3) + parseFloat(txt1718dli4) + parseFloat(txt1718dli5)).toFixed(2);//+ parseFloat(txt1718dli6) + parseFloat(txt1718dli7)
+                    var total1819dli = parseFloat(parseFloat(txt1819dli1) + parseFloat(txt1819dli2) + parseFloat(txt1819dli3) + parseFloat(txt1819dli4) + parseFloat(txt1819dli5)).toFixed(2);// + parseFloat(txt1819dli6) + parseFloat(txt1819dli7)
+                    var total1920dli = parseFloat(parseFloat(txt1920dli1) + parseFloat(txt1920dli2) + parseFloat(txt1920dli3) + parseFloat(txt1920dli4) + parseFloat(txt1920dli5)).toFixed(2);//+ parseFloat(txt1920dli6) + parseFloat(txt1920dli7)
+                    var total2021dli = parseFloat(parseFloat(txt2021dli1) + parseFloat(txt2021dli2) + parseFloat(txt2021dli3) + parseFloat(txt2021dli4) + parseFloat(txt2021dli5)).toFixed(2);//+ parseFloat(txt2021dli6) + parseFloat(txt2021dli7)
+                    var total2122dli = parseFloat(parseFloat(txt2122dli1) + parseFloat(txt2122dli2) + parseFloat(txt2122dli3) + parseFloat(txt2122dli4) + parseFloat(txt2122dli5)).toFixed(2);//+ parseFloat(txt2122dli6) + parseFloat(txt2122dli7)
+                    var total2223dli = parseFloat(parseFloat(txt2223dli1) + parseFloat(txt2223dli2) + parseFloat(txt2223dli3) + parseFloat(txt2223dli4) + parseFloat(txt2223dli5)).toFixed(2);//+ parseFloat(txt2223dli6) + parseFloat(txt2223dli7)
+                    if (totaldli != "" && totalamount != "" && totalbaseline != "" && total1718dli != "") {
+                        $('#totalfintr').show();
+                        $('#txttotalfinancealloc').val(totaldli);
+                        $('#txttotalfinanceamount').val(totalamount);
+                        $('#txttotalfinancebaseline').val(totalbaseline);
+                        $('#txttotal1718dli8').val(total1718dli);
+                        $('#txttotal1819dli8').val(total1819dli);
+                        $('#txttotal1920dli8').val(total1920dli);
+                        $('#txttotal2021dli8').val(total2021dli);
+                        $('#txttotal2122dli8').val(total2122dli);
+                        $('#txttotal2223dli8').val(total2223dli);
+                    }
+                    else {
+                        $('#totalfintr').hide();
+                    }
+
+                }
+                else {
+                    $('#txtgwldeclinefinancealloc').val('');
+                    $('#txtgwldeclinefinanceamount').val('');
+                    $('#txtgwldeclinefinancebaseline').val('');
+                    $('#txt1718dli1').val('');
+                    $('#txt1819dli1').val('');
+                    $('#txt1920dli1').val('');
+                    $('#txt2021dli1').val('');
+                    $('#txt2122dli1').val('');
+                    $('#txt2223dli1').val('');
+
+                    $('#txtwspfinancealloc').val('');
+                    $('#txtwspfinanceamount').val('');
+                    $('#txtwspfinancebaseline').val('');
+                    $('#txt1718dli2').val('');
+                    $('#txt1819dli2').val('');
+                    $('#txt1920dli2').val('');
+                    $('#txt2021dli2').val('');
+                    $('#txt2122dli2').val('');
+                    $('#txt2223dli2').val('');
+                    $('#txtgwmAdoptionfinancealloc').val('');
+                    $('#txtgwmAdoptionfinanceamount').val('');
+                    $('#txtgwmAdoptionfinancebaseline').val('');
+                    $('#txt1718dli3').val('');
+                    $('#txt1819dli3').val('');
+                    $('#txt1920dli3').val('');
+                    $('#txt2021dli3').val('');
+                    $('#txt2122dli3').val('');
+                    $('#txt2223dli3').val('');
+
+                    $('#txtReducedwtrconfinancealloc').val('');
+                    $('#txtReducedwtrconfinanceamount').val('');
+                    $('#txtReducedwtrconfinancebaseline').val('');
+                    $('#txt1718dli4').val('');
+                    $('#txt1819dli4').val('');
+                    $('#txt1920dli4').val('');
+                    $('#txt2021dli4').val('');
+                    $('#txt2122dli4').val('');
+                    $('#txt2223dli4').val('');
+                    $('#txtOpcsfinancealloc').val('');
+                    $('#txtOpcsfinanceamount').val('');
+                    $('#txtOpcsfinancebaseline').val('');
+                    $('#txt1718dli5').val('');
+                    $('#txt1819dli5').val('');
+                    $('#txt1920dli5').val('');
+                    $('#txt2021dli5').val('');
+                    $('#txt2122dli5').val('');
+                    $('#txt2223dli5').val('');
+                    //$('#txtmowrRdgrfinancealloc').val('');
+                    //$('#txtmowrRdgrfinanceamount').val('');
+                    //$('#txtmowrRdgrfinancebaseline').val('');
+                    //$('#txt1718dli6').val('');
+                    //$('#txt1819dli6').val('');
+                    //$('#txt1920dli6').val('');
+                    //$('#txt2021dli6').val('');
+                    //$('#txt2122dli6').val('');
+                    //$('#txt2223dli6').val('');
+                    //$('#txtgwmUnitsfinancealloc').val('');
+                    //$('#txtgwmUnitsfinanceamount').val('');
+                    //$('#txtgwmUnitsfinancebaseline').val('');
+                    //$('#txt1718dli7').val('');
+                    //$('#txt1819dli7').val('');
+                    //$('#txt1920dli7').val('');
+                    //$('#txt2021dli7').val('');
+                    //$('#txt2122dli7').val('');
+                    //$('#txt2223dli7').val('');
+                    $('#totalfintr').hide();
+                }
+            }
+        });
+    }
+
+    function getsavedata() {
+        var obj = {};
+        if ($('#ddldisbursementstate').val() != "SelectyourState") {
+            obj.state_name = $('#ddldisbursementstate').val();
+        }
+        else {
+            alert('Please Select State Name');
+            $('#ddldisbursementstate').focus();
+            return false;
+        }
+        obj.district_name = 0;
+        obj.block = 0;
+        obj.gname = 0;
+        obj.villname = 0;
+        if ($('#txtgwldeclinefinancealloc').val() != "") {
+            obj.dli1_finance_alloc_gwl_decline = $('#txtgwldeclinefinancealloc').val();
+        }
+        else {
+            obj.dli1_finance_alloc_gwl_decline = 0;
+        }
+        if ($('#txtgwldeclinefinanceamount').val() != "") {
+            obj.dli1_finance_amt_gwl_decline = $('#txtgwldeclinefinanceamount').val();
+        }
+        else {
+            obj.dli1_finance_amt_gwl_decline = 0;
+        }
+        if ($('#txtgwldeclinefinancebaseline').val() != "") {
+            obj.dli1_baseline_gwl_decline = $('#txtgwldeclinefinancebaseline').val();
+        }
+        else {
+            obj.dli1_baseline_gwl_decline = 0;
+        }
+        if ($('#txt1718dli1').val() != "") {
+            obj.dli1_17_18 = $('#txt1718dli1').val();
+        }
+        else {
+            obj.dli1_17_18 = 0;
+        }
+        if ($('#txt1819dli1').val() != "") {
+            obj.dli1_18_19 = $('#txt1819dli1').val();
+        }
+        else {
+            obj.dli1_18_19 = 0;
+        }
+        if ($('#txt1920dli1').val() != "") {
+            obj.dli1_19_20 = $('#txt1920dli1').val();
+        }
+        else {
+            obj.dli1_19_20 = 0;
+        }
+        if ($('#txt2021dli1').val() != "") {
+            obj.dli1_20_21 = $('#txt2021dli1').val();
+        }
+        else {
+            obj.dli1_20_21 = 0;
+        }
+        if ($('#txt2122dli1').val() != "") {
+            obj.dli1_21_22 = $('#txt2122dli1').val();
+        }
+        else {
+            obj.dli1_21_22 = 0;
+        }
+        if ($('#txt2223dli1').val() != "") {
+            obj.dli1_22_23 = $('#txt2223dli1').val();
+        }
+        else {
+            obj.dli1_22_23 = 0;
+        }
+        if ($('#txtwspfinancealloc').val() != "") {
+            obj.dli2_finance_alloc_wsp_community = $('#txtwspfinancealloc').val();
+        }
+        else {
+            obj.dli2_finance_alloc_wsp_community = 0;
+        }
+        if ($('#txtwspfinanceamount').val() != "") {
+            obj.dli2_finance_amt_wsp_community = $('#txtwspfinanceamount').val();
+        }
+        else {
+            obj.dli2_finance_amt_wsp_community = 0;
+        }
+        if ($('#txtwspfinancebaseline').val() != "") {
+            obj.dli2_baseline_wsp_community = $('#txtwspfinancebaseline').val();
+        }
+        else {
+            obj.dli2_baseline_wsp_community = 0;
+        }
+        if ($('#txt1718dli2').val() != "") {
+            obj.dli2_17_18 = $('#txt1718dli2').val();
+        }
+        else {
+            obj.dli2_17_18 = 0;
+        }
+        if ($('#txt1819dli2').val() != "") {
+            obj.dli2_18_19 = $('#txt1819dli2').val();
+        }
+        else {
+            obj.dli2_18_19 = 0;
+        }
+        if ($('#txt1920dli2').val() != "") {
+            obj.dli2_19_20 = $('#txt1920dli2').val();
+        }
+        else {
+            obj.dli2_19_20 = 0;
+        }
+        if ($('#txt2021dli2').val() != "") {
+            obj.dli2_20_21 = $('#txt2021dli2').val();
+        }
+        else {
+            obj.dli2_20_21 = 0;
+        }
+        if ($('#txt2122dli2').val() != "") {
+            obj.dli2_21_22 = $('#txt2122dli2').val();
+        }
+        else {
+            obj.dli2_21_22 = 0;
+        }
+        if ($('#txt2223dli2').val() != "") {
+            obj.dli2_22_23 = $('#txt2223dli2').val();
+        }
+        else {
+            obj.dli2_22_23 = 0;
+        }
+        if ($('#txtgwmAdoptionfinancealloc').val() != "") {
+            obj.dli3_finance_alloc_gw_adoption = $('#txtgwmAdoptionfinancealloc').val();
+        }
+        else {
+            obj.dli3_finance_alloc_gw_adoption = 0;
+        }
+        if ($('#txtgwmAdoptionfinanceamount').val() != "") {
+            obj.dli3_finance_amt_wsp_adoption = $('#txtgwmAdoptionfinanceamount').val();
+        }
+        else {
+            obj.dli3_finance_amt_wsp_adoption = 0;
+        }
+        if ($('#txtgwmAdoptionfinancebaseline').val() != "") {
+            obj.dli3_baseline_wsp_adoption = $('#txtgwmAdoptionfinancebaseline').val();
+        }
+        else {
+            obj.dli3_baseline_wsp_adoption = 0;
+        }
+        if ($('#txt1718dli3').val() != "") {
+            obj.dli3_17_18 = $('#txt1718dli3').val();
+        }
+        else {
+            obj.dli3_17_18 = 0;
+        }
+        if ($('#txt1819dli3').val() != "") {
+            obj.dli3_18_19 = $('#txt1819dli3').val();
+        }
+        else {
+            obj.dli3_18_19 = 0;
+        }
+        if ($('#txt1920dli3').val() != "") {
+            obj.dli3_19_20 = $('#txt1920dli3').val();
+        }
+        else {
+            obj.dli3_19_20 = 0;
+        }
+        if ($('#txt2021dli3').val() != "") {
+            obj.dli3_20_21 = $('#txt2021dli3').val();
+        }
+        else {
+            obj.dli3_20_21 = 0;
+        }
+        if ($('#txt2122dli3').val() != "") {
+            obj.dli3_21_22 = $('#txt2122dli3').val();
+        }
+        else {
+            obj.dli3_21_22 = 0;
+        }
+        if ($('#txt2223dli3').val() != "") {
+            obj.dli3_22_23 = $('#txt2223dli3').val();
+        }
+        else {
+            obj.dli3_22_23 = 0;
+        }
+        if ($('#txtReducedwtrconfinancealloc').val() != "") {
+            obj.dli4_finance_alloc_reduced_wtr_con = $('#txtReducedwtrconfinancealloc').val();
+        }
+        else {
+            obj.dli4_finance_alloc_reduced_wtr_con = 0;
+        }
+        if ($('#txtReducedwtrconfinanceamount').val() != "") {
+            obj.dli4_finance_amt_reduced_wtr_con = $('#txtReducedwtrconfinanceamount').val();
+        }
+        else {
+            obj.dli4_finance_amt_reduced_wtr_con = 0;
+        }
+        if ($('#txtReducedwtrconfinancebaseline').val() != "") {
+            obj.dli4_baseline_reduced_wtr_con = $('#txtReducedwtrconfinancebaseline').val();
+        }
+        else {
+            obj.dli4_baseline_reduced_wtr_con = 0;
+        }
+        if ($('#txt1718dli4').val() != "") {
+            obj.dli4_17_18 = $('#txt1718dli4').val();
+        }
+        else {
+            obj.dli4_17_18 = 0;
+        }
+        if ($('#txt1819dli4').val() != "") {
+            obj.dli4_18_19 = $('#txt1819dli4').val();
+        }
+        else {
+            obj.dli4_18_19 = 0;
+        }
+        if ($('#txt1920dli4').val() != "") {
+            obj.dli4_19_20 = $('#txt1920dli4').val();
+        }
+        else {
+            obj.dli4_19_20 = 0;
+        }
+        if ($('#txt2021dli4').val() != "") {
+            obj.dli4_20_21 = $('#txt2021dli4').val();
+        }
+        else {
+            obj.dli4_20_21 = 0;
+        }
+        if ($('#txt2122dli4').val() != "") {
+            obj.dli4_21_22 = $('#txt2122dli4').val();
+        }
+        else {
+            obj.dli4_21_22 = 0;
+        }
+        if ($('#txt2223dli4').val() != "") {
+            obj.dli4_22_23 = $('#txt2223dli4').val();
+        }
+        else {
+            obj.dli4_22_23 = 0;
+        }
+        if ($('#txtOpcsfinancealloc').val() != "") {
+            obj.dli5_finance_alloc_wsp_pending_opcs = $('#txtOpcsfinancealloc').val();
+        }
+        else {
+            obj.dli5_finance_alloc_wsp_pending_opcs = 0;
+        }
+        if ($('#txtOpcsfinanceamount').val() != "") {
+            obj.dli5_finance_amt_wsp_pending_opcs = $('#txtOpcsfinanceamount').val();
+        }
+        else {
+            obj.dli5_finance_amt_wsp_pending_opcs = 0;
+        }
+        if ($('#txtOpcsfinancebaseline').val() != "") {
+            obj.dli5_baseline_wsp_pending_opcs = $('#txtOpcsfinancebaseline').val();
+        }
+        else {
+            obj.dli5_baseline_wsp_pending_opcs = 0;
+        }
+        if ($('#txt1718dli5').val() != "") {
+            obj.dli5_17_18 = $('#txt1718dli5').val();
+        }
+        else {
+            obj.dli5_17_18 = 0;
+        }
+        if ($('#txt1819dli5').val() != "") {
+            obj.dli5_18_19 = $('#txt1819dli5').val();
+        }
+        else {
+            obj.dli5_18_19 = 0;
+        }
+        if ($('#txt1920dli5').val() != "") {
+            obj.dli5_19_20 = $('#txt1920dli5').val();
+        }
+        else {
+            obj.dli5_19_20 = 0;
+        }
+        if ($('#txt2021dli5').val() != "") {
+            obj.dli5_20_21 = $('#txt2021dli5').val();
+        }
+        else {
+            obj.dli5_20_21 = 0;
+        }
+        if ($('#txt2122dli5').val() != "") {
+            obj.dli5_21_22 = $('#txt2122dli5').val();
+        }
+        else {
+            obj.dli5_21_22 = 0;
+        }
+        if ($('#txt2223dli5').val() != "") {
+            obj.dli5_22_23 = $('#txt2223dli5').val();
+        }
+        else {
+            obj.dli5_22_23 = 0;
+        }
+        //if ($('#txtmowrRdgrfinancealloc').val() != "") {
+        //    obj.dli6_finance_alloc_gwmu_mis = $('#txtmowrRdgrfinancealloc').val();
+        //}
+        //else {
+        //    obj.dli6_finance_alloc_gwmu_mis = 0;
+        //}
+        //if ($('#txtmowrRdgrfinanceamount').val() != "") {
+        //    obj.dli6_finance_amt_gwmu_mis = $('#txtmowrRdgrfinanceamount').val();
+        //}
+        //else {
+        //    obj.dli6_finance_amt_gwmu_mis = 0;
+        //}
+        //if ($('#txtmowrRdgrfinancebaseline').val() != "") {
+        //    obj.dli6_baseline_gwmu_mis = $('#txtmowrRdgrfinancebaseline').val();
+        //}
+        //else {
+        //    obj.dli6_baseline_gwmu_mis = 0;
+        //}
+        //if ($('#txt1718dli6').val() != "") {
+        //    obj.dli6_17_18 = $('#txt1718dli6').val();
+        //}
+        //else {
+        //    obj.dli6_17_18 = 0;
+        //}
+        //if ($('#txt1819dli6').val() != "") {
+        //    obj.dli6_18_19 = $('#txt1819dli6').val();
+        //}
+        //else {
+        //    obj.dli6_18_19 = 0;
+        //}
+        //if ($('#txt1920dli6').val() != "") {
+        //    obj.dli6_19_20 = $('#txt1920dli6').val();
+        //}
+        //else {
+        //    obj.dli6_19_20 = 0;
+        //}
+        //if ($('#txt2021dli6').val() != "") {
+        //    obj.dli6_20_21 = $('#txt2021dli6').val();
+        //}
+        //else {
+        //    obj.dli6_20_21 = 0;
+        //}
+        //if ($('#txt2122dli6').val() != "") {
+        //    obj.dli6_21_22 = $('#txt2122dli6').val();
+        //}
+        //else {
+        //    obj.dli6_21_22 = 0;
+        //}
+        //if ($('#txt2223dli6').val() != "") {
+        //    obj.dli6_22_23 = $('#txt2223dli6').val();
+        //}
+        //else {
+        //    obj.dli6_22_23 = 0;
+        //}
+        //if ($('#txtgwmUnitsfinancealloc').val() != "") {
+        //    obj.dli7_finance_alloc_gwm_mowr_rd_gr = $('#txtgwmUnitsfinancealloc').val();
+        //}
+        //else {
+        //    obj.dli7_finance_alloc_gwm_mowr_rd_gr = 0;
+        //}
+        //if ($('#txtgwmUnitsfinanceamount').val() != "") {
+        //    obj.dli7_finance_amt_gwm_mowr_rd_gr = $('#txtgwmUnitsfinanceamount').val();
+        //}
+        //else {
+        //    obj.dli7_finance_amt_gwm_mowr_rd_gr = 0;
+        //}
+        //if ($('#txtgwmUnitsfinancebaseline').val() != "") {
+        //    obj.dli7_baseline_gwm_mowr_rd_gr = $('#txtgwmUnitsfinancebaseline').val();
+        //}
+        //else {
+        //    obj.dli7_baseline_gwm_mowr_rd_gr = 0;
+        //}
+        //if ($('#txt1718dli7').val() != "") {
+        //    obj.dli7_17_18 = $('#txt1718dli7').val();
+        //}
+        //else {
+        //    obj.dli7_17_18 = 0;
+        //}
+        //if ($('#txt1819dli7').val() != "") {
+        //    obj.dli7_18_19 = $('#txt1819dli7').val();
+        //}
+        //else {
+        //    obj.dli7_18_19 = 0;
+        //}
+        //if ($('#txt1920dli7').val() != "") {
+        //    obj.dli7_19_20 = $('#txt1920dli7').val();
+        //}
+        //else {
+        //    obj.dli7_19_20 = 0;
+        //}
+        //if ($('#txt2021dli7').val() != "") {
+        //    obj.dli7_20_21 = $('#txt2021dli7').val();
+        //}
+        //else {
+        //    obj.dli7_20_21 = 0;
+        //}
+
+        //if ($('#txt2122dli7').val() != "") {
+        //    obj.dli7_21_22 = $('#txt2122dli7').val();
+        //}
+        //else {
+        //    obj.dli7_21_22 = 0;
+        //}
+        //if ($('#txt2223dli7').val() != "") {
+        //    obj.dli7_22_23 = $('#txt2223dli7').val();
+        //}
+        //else {
+        //    obj.dli7_22_23 = 0;
+        //}
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Project/Disbursement2",
+            data: "{'disburseobj':'" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                var resp = response;
+                if (resp === "insert") {
+                    alert('Inserted Success..');
+                }
+                if (resp === "Updated") {
+                    alert('Updated Success..');
+                }
+                if ($('#ddldisbursementstate').val() != "SelectyourState") {
+                    var returnddlval = $('#ddldisbursementstate').val();
+                    getddlstatewisedata(returnddlval);
+                }
+            },
+            error: function (a) { }
+        });
+    }
+
+    function getdelete() {
+        var state_name = "";
+        if ($('#ddldisbursementstate').val() != "SelectyourState") {
+            state_name = $('#ddldisbursementstate').val();
+        }
+        else {
+            alert('Please Select State Name');
+            $('#ddldisbursementstate').focus();
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Project/disbursedelete",
+            data: "{'statename':'" + state_name + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                var resp = response;
+                if (resp === "Delete") {
+                    alert('Delete Success..');
+                }
+                if (resp === "Nodata") {
+                    alert('No Data Available..');
+                }
+                if ($('#ddldisbursementstate').val() != "SelectyourState") {
+                    var returnddlval1 = $('#ddldisbursementstate').val();
+                    getddlstatewisedata(returnddlval1);
+                }
+            },
+            error: function (a) { }
+        });
+    }
+</script>
+<script src="~/Scripts/validations.js"></script>
+
+
+<script type="text/javascript">
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown >  li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(2) > ul.dropdown >  li:nth-child(5)").siblings().removeClass('active');
+</script>

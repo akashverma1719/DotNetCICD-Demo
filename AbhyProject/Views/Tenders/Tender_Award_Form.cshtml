@@ -1,0 +1,170 @@
+﻿@model AbhyProject.Models.TenderAwards
+
+@{
+    ViewBag.Title = "Tender_Awarded_Form";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>Tender Award Form </title>
+
+<style>
+    input[type=date]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+
+    .aa > div > input,
+    .bb > div > span > input {
+        width: 21px;
+        height: 18px;
+    }
+
+    /*.labelcheckbox {
+        padding-left: 0px !important;
+        font-size: 18px;
+    }*/
+
+    .msg {
+        color: red !important;
+        font-weight: bold;
+    }
+
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        border-top: 2px solid #62cb31;
+    }
+
+    .hpanel {
+        border: none !important;
+        box-shadow: none;
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+
+    .col-md-6 {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        width: 100px;
+    }
+
+    a.btn-primary {
+        width: 200px;
+    }
+
+    .btnlist {
+        margin-top: 10px;
+    }
+
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    .about-area .col-md-6:last-child {
+        padding-left: 15px;
+    }
+
+    p {
+        margin: 0;
+    }
+</style>
+
+<script type="text/javascript">
+    //auto expand textarea
+    function adjust_textarea(h) {
+        h.style.height = "20px";
+        h.style.height = (h.scrollHeight) + "px";
+    }
+</script>
+
+<!--Heading-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Tender Award Form </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="content-wrapper">
+                <div class="content">
+                    <div class="col-lg-12">
+                        <div class="hpanel">
+                            @using (Html.BeginForm("Tender_Award_Form", "Tenders", FormMethod.Post, new { @class = "form-style-7" }))
+                            {
+
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-right msg">
+                                            * Fields are mandatory
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        Agency Name : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="agency" type="text" maxlength="50" id="agency" class="form-control alphanum" placeholder="Enter your agency name" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Tender Awarded Date : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                                        <input name="contract_award_date" type="date" maxlength="100" id="contract_award_date" class="form-control" placeholder="Enter your tender awarded date " required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Package Number : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="package_no" type="text" maxlength="50" id="package_no" class="form-control alphanum" placeholder="Enter your package number" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Tender Amount(in Rs) : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                                        <input name="contract_amount" type="text" maxlength="100" id="contract_amount" class="form-control decimal" placeholder="Enter your tender amount" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Package Name : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="packagename" type="text" maxlength="50" id="packagename" class="form-control alphanum" placeholder="Enter your package name " required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Name of Consultant/Supplier/Contractor : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="name_of_consultant" type="text" maxlength="50" id="name_of_consultant alpha" class="form-control" placeholder="Enter the name of your consultant/supplier/contractor" required>
+                                    </div>
+
+
+
+                                    <div class="form-group  col-md-12">
+                                        <input type="submit" name="" value="Submit" onclick="" id="" class="btn btn-primary pull-left " style="font-weight: 700;">
+
+                                    </div>
+
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:nth-child(5)").siblings().removeClass('active');
+</script>

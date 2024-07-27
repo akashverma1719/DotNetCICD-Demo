@@ -1,0 +1,828 @@
+﻿@{
+    ViewBag.Title = "Project_Documents_Abhy1";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+
+
+
+<style>
+    .dataTables_empty {
+        text-align: center;
+    }
+    .maindiv {
+        max-width: 970% !important;
+        margin: auto;
+    }
+
+    .tbl-responsive {
+        overflow-x: inherit;
+    }
+
+    .clearfix:after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    .classic-title {
+        margin: 0 0 16px 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid mediumblue;
+        font-weight: 600;
+        line-height: 1.5em;
+    }
+
+    .panel-group > .panel {
+        -webkit-border-radius: 6px;
+        border: 1px solid #e8e8e8;
+        margin: 5px 0;
+    }
+
+    /*.panel-group > .panel-heading {
+        background-color: #ffad33;
+        padding: 0px;
+    }*/
+
+    .panel-title > a {
+        position: relative;
+        display: block;
+        color: #444 !important;
+        background-color: #fff;
+        padding: 10px 21px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .text-info {
+        color: mediumblue;
+    }
+
+    .panel-title > a > .control-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -11px;
+    }
+
+    .panel-title > a > i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+    .col-md-9 {
+        width: 145px;
+    }
+
+    .dataTables_filter, .dataTables_paginate {
+        float: right;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 8px 15px !important;
+        margin-bottom: -1px;
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .panel-inner > ul.list-group > li.list-group-item > a {
+        color: mediumblue !important;
+    }
+
+        .panel-inner > ul.list-group > li.list-group-item > a:hover {
+            color: forestgreen !important;
+        }
+
+    span.tablecellhead {
+        font-size: 15px;
+        font-weight: bold;
+        color: mediumblue;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">ABHY1Documents</div>
+    </div>
+</div>
+<div class="row">
+    <div id="content">
+        <div class="row container maindiv" style="width: 100%;padding-right: 15px;padding-left: 15px;">
+
+            <div class="col-md-3 call-action call-action-style2 clearfix" style="padding-top: 10px">
+                <div class="widget widget-categories">
+                    <h6 class="classic-title"><span class="text-info">TOPICS</span></h6>
+                    <div class="panel-group" id="topic">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-24">
+                                        <i class="fa fa-angle-up control-icon"></i>
+                                        CIRCULAR/GOVERNMENT ORDER (GO)
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-24" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group" role="tablist" style="display:inherit !important;">
+
+                                        <li onclick="table1();" class="list-group-item" style="float: none; width: 93%; margin-left: 13px;background:none !important;">
+                                            <a href="#submenu1" style="color: #000; display: initial">CIRCULAR/GOVERNMENT ORDER (GO)</a>
+
+                                            <span class="pull-right" style="background: #30abec; color:white;font-size:13px;border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 4px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-25">
+                                        <i class="fa fa-angle-up control-icon"></i>
+                                        ADVISORIES
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-25" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group " style="display:inherit !important;">
+
+                                        <li onclick="table2();" id="" class="list-group-item" style="float: none; padding: 8px 2px; width: 93%;margin-left: 13px; background:none !important;">
+                                            <a href="#submenu2" style="color: #000; display: initial">ADVISORIES</a>
+                                            <span class="pull-right" style="background: #30abec; color:white;font-size:13px;border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 4px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-26">
+                                        <i class="fa fa-angle-up control-icon"></i>
+                                        MODEL BIDDING DOCUMENT
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-26" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group" style="display:inherit !important;">
+                                        <li id="" onclick="table3();" class="list-group-item" style="float: none; padding: 8px 2px; width: 93%;margin-left: 13px; background:none !important;">
+                                            <a href="#submenu3" style="color: #000; display: initial">MODEL BIDDING DOCUMENT</a>
+                                            <span class="pull-right" style="background: #30abec;color:white;font-size:13px; border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 4px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-27">
+                                        <i class="fa fa-angle-up control-icon"></i>
+                                        STANDARD BIDDING DOCUMENT
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-27" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group " style="display:inherit !important;">
+
+                                        <li id="" onclick="table4();" class="list-group-item" style="float: none; padding: 8px 2px; width: 93%;margin-left: 13px; background:none !important;">
+                                            <a href="#submenu4" style="color: #000; display: initial">STANDARD BIDDING DOCUMENT</a>
+                                            <span class="pull-right" style="background: #30abec; color:white;font-size:13px;border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 4px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-29">
+                                        <i class="fa fa-angle-up control-icon"></i>
+                                        TECHNICAL DOCUMENT
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-29" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group " role="tablist" style="display:inherit !important;">
+
+                                        <li id="" onclick="table5();" class="list-group-item" style="float: none; padding: 8px 2px; width: 93%;margin-left: 13px; background:none !important;">
+                                            <a href="#submenu5" style="color: #000; display: initial">GENERAL</a>
+                                            <span class="pull-right" style="background: #30abec;color:white;font-size:13px; border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 4px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+
+                                        <li id="" onclick="table6();" class="list-group-item" style="float: none; padding: 8px 2px; width: 93%;margin-left: 13px; background:none !important;">
+                                            <a href="#submenu6" style="color: #000; display: initial">GUIDELINES</a>
+                                            <span class="pull-right" style="background: #30abec; color:white;font-size:13px;border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 4px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+
+                                        <li id="" onclick="table7();" class="list-group-item" style="float: none; padding: 8px 2px; width: 93%;margin-left: 13px; background:none !important;">
+                                            <a href="#submenu7" style="color: #000; display: initial">MANUALS</a>
+                                            <span class="pull-right" style="background: #30abec;color:white;font-size:13px; border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 4px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-33">
+                                        <i class="fa fa-angle-up control-icon"></i>
+                                        MISCELLANEOUS
+                                    </a>
+                                </h4>
+                            </div>
+
+                            <div id="doc1tier-33" class="panel-body collapse" style="padding: 4px;">
+                                <div class="panel-inner">
+                                    <ul class="list-group" style="display:inherit !important;">
+
+                                        <li id="" onclick="table8();" class="list-group-item" style="float: none; padding: 8px 2px; width: 93%;margin-left: 13px; background:none !important;">
+                                            <a href="#submenu7" style="color: #000; display: initial">MISCELLANEOUS</a>
+                                            <span class="pull-right" style="background: #30abec;color:white;font-size:13px;border-radius: 100%; font-weight: bold; padding: 5px 19px 0px 10px;margin: -6px; width: 26px; height: 24px; text-align: center">0</span>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in" id="firstsubmenu">
+                        <div class="row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:700px;">Documents</th>
+
+                                                <th style="width:100px;">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr role="row">
+                                                <td>32</td>
+                                                <td>
+                                                    <span class="tablecellhead">Hydrology Phase - 1 Implementation Completion Report</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>52</td>
+                                                <td>
+                                                    <span class="tablecellhead">Tender Document for DSC</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="secondsubmenu">
+                        <div class=" row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:800px;">Documents</th>
+                                                <th style="width:100px;">Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="thirdsubmenu">
+                        <div class=" row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:800px;">Documents</th>
+                                                <th style="width:100px;">Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr role="row">
+                                                <td>32</td>
+                                                <td>
+                                                    <span class="tablecellhead">Hydrology Phase - 1 Implementation Completion Report</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>52</td>
+                                                <td>
+                                                    <span class="tablecellhead">Tender Document for DSC</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="fourthsubmenu">
+                        <div class=" row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:800px;">Documents</th>
+                                                <th style="width:100px;">Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="fifthsubmenu">
+                        <div class=" row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:800px;">Documents</th>
+                                                <th style="width:100px;">Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="sixthsubmenu">
+                        <div class=" row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:800px;">Documents</th>
+                                                <th style="width:100px;">Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="seventhsubmenu">
+                        <div class=" row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:800px;">Documents</th>
+                                                <th style="width:100px;">Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr role="row">
+                                                <td>32</td>
+                                                <td>
+                                                    <span class="tablecellhead">Hydrology Phase - 1 Implementation Completion Report</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>52</td>
+                                                <td>
+                                                    <span class="tablecellhead">Tender Document for DSC</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="eighthsubmenu">
+                        <div class=" row container maindiv">
+                            <div class="col-md-12">
+                                <div class="tbl-responsive">
+                                    <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th style="width:90px;">S.No</th>
+                                                <th style="width:800px;">Documents</th>
+                                                <th style="width:100px;">Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+                                            <tr role="row">
+                                                <td>21</td>
+                                                <td>
+                                                    <span class="tablecellhead">INTEGRATED BATHYMETRIC SYSTEM for RESERVOIR SEDIMENTAITON SURVEY</span>
+                                                    <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                        The report describe about Project Data, Principal Performance Ratings, Assessment of Development Objective and Design, Achievement of Objective and Outputs , Major Factors Affecting Implementation and Outcome, Sustainability , Bank and Borrower Performance etc
+                                                        <a href="" style="float:right">
+                                                            <i class="fa fa-file-pdf-o" style="color:#f36520;font-size: 30px;"></i>  <span href="">440 KB</span>
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:11px;"><i class="fa fa fa-user" style="color:#f36520"></i> Created by: Vice President (The World Bank): Praful C. Pate</div>
+                                                    <div style="font-size:11px;"><i class="fa fa-calendar" style="color:#f36520"></i> [17-10-2016 19:18:00]</div>
+                                                </td>
+                                                <td>2016.11.15</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#firstsubmenu').show();
+        $.noConflict();
+        $('table.datainitial').DataTable();
+    });
+    function table1() {
+        $('#firstsubmenu').show(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table2() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').show(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table3() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').show(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table4() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').show();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table5() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').show(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table6() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').show(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').hide();
+    }
+    function table7() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').show(); $('#eighthsubmenu').hide();
+    }
+    function table8() {
+        $('#firstsubmenu').hide(); $('#secondsubmenu').hide(); $('#thirdsubmenu').hide(); $('#fourthsubmenu').hide();
+        $('#fifthsubmenu').hide(); $('#sixthsubmenu').hide(); $('#seventhsubmenu').hide(); $('#eighthsubmenu').show();
+    }
+</script>
+

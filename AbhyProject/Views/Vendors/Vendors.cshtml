@@ -1,0 +1,391 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc;
+@{
+    /**/
+
+    ViewBag.Title = "Vendors";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:nth-child(2) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:nth-child(2) ").siblings().removeClass('active');
+
+</script>
+<title>Vendor Registration</title>
+<script>
+    function refress() {
+
+        var img = document.getElementById("captchaimg");
+        img.src = "/Contact/GetCaptchaImage?query=" + Math.random();
+
+
+    }
+</script>
+<script>
+   var s = 0;
+    function Checking() {
+
+
+        $.post("@Url.Action("CustomCaptcha", "Vendors")",
+        {
+            clientCaptcha: $("#clientCaptcha").val(),
+
+        },
+        function (data) {
+        if (data == 0) {
+        $("#status").html('<font color="Green"> Not Matched</font>');
+            refress();
+        }
+        else {
+        $("#status").html('<font color="Red">Captch process is Succesfully</font>');
+
+        }
+
+        });
+        }
+
+</script>
+<style>
+    .aa > div > input,
+    .bb > div > span > input {
+        width: 21px;
+        height: 18px;
+    }
+
+    /*.labelcheckbox {
+        padding-left: 0px !important;
+        font-size: 18px;
+    }*/
+
+    .msg {
+        color: red !important;
+        font-weight: bold;
+    }
+
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        border-top: 2px solid #62cb31;
+    }
+
+    .hpanel {
+        border: none !important;
+        box-shadow: none;
+        margin-bottom: 25px;
+    }
+
+    .col-md-6 {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        width: 100px;
+    }
+
+    a.btn-primary {
+        width: 200px;
+    }
+
+    .btnlist {
+        margin-top: 10px;
+    }
+
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    span.someinput {
+        position: absolute;
+    }
+
+        span.someinput > input {
+            height: 16px;
+            width: 18px;
+            margin-top: -1px;
+        }
+
+    span.someinputvalue {
+        padding-left: 20px;
+    }
+
+    .refreshicon {
+        position: relative;
+        right: 21px;
+        top: -12px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Vendor Registration </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="col-lg-12">
+                    <div class="hpanel">
+                        <div class="row btnlist">
+                            <div class="col-md-12 text-right">
+                                <a href="~/Vendors/VendorList " class="btn btn-primary">List of Registered Vendors </a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-md-12 text-right msg">
+                                    * Fields are mandatory
+                                </div>
+                            </div>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true)
+                                <div class="form-group col-md-6">
+                                    Company Name : <span class="msg">*</span>
+                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                    <input name="CompanyName" type="text" maxlength="50" id="CompanyName" class="form-control alpha" placeholder="Enter your company name" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    Email ID : <span class="msg">*</span>
+                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                                    <input name="Email" type="text" maxlength="100" id="Email" class="form-control mail" placeholder="Enter your email ID" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    Nodal Officer : <span class="msg">*</span>
+                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                    <input name="NodalOfficer" type="text" maxlength="50" id="NodalOfficer" class="form-control alpha" placeholder="Enter your nodal officer" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    Website Link : <span class="msg">*</span>
+                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                                    <input name="WebsiteLink" type="text" maxlength="100" id="WebsiteLink" class="form-control" placeholder="Enter your website link" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    Phone Number:
+                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                    <input name="PhoneNumber" type="text" maxlength="10" id="PhoneNumber" class="form-control integer" placeholder="Enter your phone number">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    Mobile Number : <span class="msg">*</span>
+                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                    <input name="MobileNumber" type="text" maxlength="10" id="MobileNumber" class="form-control integer" placeholder="Enter your mobile number" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    Address : <span class="msg">*</span>
+                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                    <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
+                                    <textarea name="Address" rows="2" cols="20" id="Address" class="form-control" placeholder="Enter your address" required></textarea>
+                                </div>
+
+                                <div class="row">
+                                    &nbsp;
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div style="background-color: #3AAFED; padding: 8px; color: #fff; font-size: 14px;"><b>Are you a</b></div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row" style="padding: 10px;">
+                                    <div class="col-md-12">
+                                        <div class="bs-example">
+                                            <div class="aa">
+                                                <div>
+                                                    <sapn class="someinput" style="position:absolute;margin-top:-4px;"> <input class="areyou" type="checkbox" id="ck1" name="ck1" value="System Integrator" style="width:16px;height:16px;" /> </sapn><span class="someinputvalue">System Integrator</span>
+
+
+                                                    <span class="someinput"> <input class="areyou" type="checkbox" id="ck1" name="ck1" value="Manufacturer" /></span><span class="someinputvalue">Manufacturer</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">&nbsp;</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div style="background-color: #3AAFED; padding: 8px; color: #fff; font-size: 14px;"><b>Category of Hydromet Systems</b></div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="padding: 10px;">
+                                    <div class="col-md-12">
+                                        <div class="bs-example">
+                                            <div class="aa">
+                                                <div>
+                                                    <span class="someinput"> <input class="hydro" type="checkbox" id="ck3" name="ck3" value="Meteorological" /></span> <span class="someinputvalue">Meteorological</span>
+
+
+
+
+                                                    <span class="someinput">
+                                                        <input class="hydro" type="checkbox" id="ck3" name="ck3" value="Ground Water" />
+                                                    </span><span class="someinputvalue">Ground Water</span>
+                                                    <span class="someinput">  <input class="hydro" type="checkbox" id="ck3" name="ck3" value="Water Quality" /></span>
+                                                    <span class="someinputvalue">Water Quality</span>
+
+
+                                                    <span class="someinput">  <input class="hydro" type="checkbox" id="ck3" name="ck3" value="SCADA" /></span><span class="someinputvalue">SCADA</span>
+
+
+                                                    <span class="someinput"> <input class="hydro" type="checkbox" id="ck3" name="ck3" value="Telemetry" /></span><span class="someinputvalue">Telemetry</span>
+
+
+
+                                                    <span class="someinput"><input class="hydro" type="checkbox" id="ck3" name="ck3" value="Any Other" /></span><span class="someinputvalue">Any Other</span>
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+                                </div>
+
+
+
+
+
+
+                                <div class="row">
+                                    &nbsp;
+                                </div>
+                                <div id="otherElem" class="text" style="display:none">
+                                    <input name="category" type="text" id="category" class="form-control" placeholder="Catgory Name (in case of others)"><br>
+                                    <textarea name="description" rows="3" cols="20" id="description" class="form-control" placeholder="Description"></textarea>
+
+                                </div>
+                                <br />
+                                <div class="row">
+
+                                    <div class="form-group col-xs-6">
+                                        <div>
+                                            <img src="/Contact/GetCaptchaImage" id="captchaimg" class="" title="Captcha" style="width:150px;height: 50px;padding: 0px 0px 16px 16px;" />
+                                            <span class="refreshicon"><i class="fa fa-refresh" onclick="refress()"></i></span>
+                                            <input type="text" class="col-xs-3 form-control" style="width:60%;" name="clientCaptcha" id="clientCaptcha" onchange="Checking()"placeholder="Type the text" required />
+
+
+                                            <p style="font-weight:bold;color:red;">@ViewBag.CaptchaError</p>
+                                            <p style="font-weight:bold;color:red;">@ViewBag.CaptchaError1</p>
+                                            <p id="status" style="font-weight:bold;color:red;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3" style="padding:0">
+                                        @*<input type="submit" name="save" value="Submit" id="save" class="btn btn-primary">*@
+                                        <button type="submit" value="Submit" name="save" id="save" class="btn btn-primary">Register</button>
+                                    </div>
+
+                                    <h5 style="text-align:center;color:red;">@ViewBag.Success</h5>
+                                </div>
+
+
+
+
+
+
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script>
+
+        @* please dont delete below code for enable /disable  for areyou*@
+
+        $(function () {
+            $('.areyou').click(function () {
+
+                if ($('.areyou').eq(0).is(':checked') || $('.areyou').eq(1).is(':checked')) {
+                    $('.areyou').not($(this)).attr('disabled', true);
+                }
+                else {
+
+                    $('.areyou').not($(this)).attr('disabled', false);
+                }
+
+            });
+        });
+        @* please dont delete below code for enable / disable  for hydro *@
+        $(function () {
+            $('.hydro').click(function () {
+
+
+
+
+                if ($('.hydro').eq(0).is(':checked') || $('.hydro').eq(1).is(':checked') || $('.hydro').eq(2).is(':checked') || $('.hydro').eq(3).is(':checked') || $('.hydro').eq(4).is(':checked') || $('.hydro').eq(5).is(':checked')) {
+                    $('.hydro').not($(this)).attr('disabled', true);
+
+                }
+                else {
+
+                    $('.hydro').not($(this)).attr('disabled', false);
+                }
+
+
+            });
+        });
+        @* please dont delete below code for enable / disable textbox/textarea of ANY OTHER *@
+        $(function () {
+            $('.hydro').click(function () {
+
+
+                if ($('.hydro').eq(6).is(':checked')) {
+                    $('.hydro').not($(this)).attr('disabled', true);
+
+                    $('.hydro').change(function () {
+                        if ($(this).is(':checked')) $('div.text').show();
+                        else $('div.text').hide();
+                    }).change();
+                }
+                else {
+
+                    $('.hydro').not($(this)).attr('disabled', false);
+                }
+
+            });
+        });
+</script>

@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "atal_jal_overview";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/admin_css.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+                        <li>
+                            <span>
+                                <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                   style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                        @if (Session["UserName"] != null)
+                        {
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                        }
+
+                    </li>
+                    <li>
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                            </span>
+                            <label>Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/Aminview/admin">
+                            <span><img src="~/Content/WspImages/WSP Home.png" /></span>
+                            <label>Admin</label>
+                        </a>
+                    </li>
+
+                    <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" /></span>
+                            <label>Atal Jal Overview </label>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div class=" container login_tender_wsp_Main_div">
+    <div class="col-md-12 ">
+        <div class="col-md-4 col-sm-4">
+            <div class="card_img">
+                <a href="javascript:;">
+                    <img src="~/Content/images_new/tendors 1280.png" />
+
+                </a>
+            </div>
+            <div class="box-content">
+                <h3>GP Information </h3>
+            </div>
+        </div>
+        <div class="col-md-4  col-sm-4">
+            <div class="card_img">
+                <a href="javascript:;">
+                    <img src="~/Content/images_new/water security_1280.png" />
+                    @*<div class="layout-box login_tender_wsp_div"></div>*@
+                </a>
+            </div>
+            <div class="box-content">
+                <h3>Water Security Plan</h3>
+            </div>
+        </div>
+        <div class="col-md-4  col-sm-4">
+            <div class="card_img">
+                <a href="javascript:;">
+                    <img src="~/Content/images_new/ground water monitering_1280.png" />
+                </a>
+            </div>
+            <div class="box-content">
+                <h3>Ground Water Monitoring</h3>
+            </div>
+        </div>
+
+    </div>
+</div>

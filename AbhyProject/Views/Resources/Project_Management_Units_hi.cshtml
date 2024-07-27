@@ -1,0 +1,99 @@
+﻿
+
+@{
+    ViewBag.Title = "Project_Management_Units";
+    Layout = "~/Views/Shared/WebsiteLayout_hindi.cshtml";
+
+}
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)> ul.dropdown > li:nth-child(4) ").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(4)").siblings().removeClass('active');
+        
+
+    });
+
+</script>
+<style>
+    .Training2 {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        border: 2px solid orange;
+    }
+
+    .upload2 {
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    @@media (min-width: 0) {
+        .g-mb-20 {
+            margin-bottom: 1.42857rem !important;
+        }
+    }
+
+    .div-w99 {
+        max-width: 97% !important;
+        margin: auto;
+    }
+    /*.div-w99 {
+        border: 1px solid #cacaca;
+        border-top: none;
+        padding: 12px 16px;
+    }*/
+    .list-group {
+        flex-direction: row !important;
+        display: inline-flex;
+    }
+
+    .list-group-item:first-child {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 0.5rem 1.25rem;
+        margin-bottom: -1px;
+    }
+
+    ul#ulTopics > li > a {
+        color: #fff;
+    }
+    #ulTopics {
+        height: 50px;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">
+            Institutional Framework of Program Management
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid div-w99" style="margin-top:20px;">
+
+    <div class="col-md-12 text-center">
+        <div class="image_project_unit">
+            <img src="~/Content/images_new/pic.png" />
+        </div>
+    </div>
+</div>

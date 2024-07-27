@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewBag.Title = "Gp_information";
+    Layout = null;
+}
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<link href="~/Content/wspnewcss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/Content/JS_Files/wsphome.js"></script>
+<link href="~/Content/css/mis_after_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<main>
+    <div class="clearfix">
+
+        <div class="col-md-12 Select_option_div">
+
+            <ul class="Select_option pull-right col-md-2 col-sm-2">
+                <li>
+                    <a href="~/Home/LogOut" class="btn btn-primary">
+                        Back to Mis Login
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix total_div_wsp_home" style="">
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="gpdci_div">
+            <a href="~/Gplevel/Gplevel">
+            @*<a href="~/Home/under_maintainance">*@
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            <li><img src="~/Content/Agriculture_icons/Gp_1Information.png" /></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="wsp_div">
+            @*<a href="~/Home/under_maintainance">*@
+            <a href="~/project/wsp_page">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            <li><img src="~/Content/Agriculture_icons/Security WaterPlan.png" /></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="social_div">
+                <a href="~/SocialMointoring/Social_management">
+                    <ul class="ul_image_wsphome ">
+                        <li>
+                            <ul class="arrow_ul_css">
+
+                                <li><img src="~/Content/Agriculture_icons/Social_Management_old.png" /></li>
+                                <li><i class="fa fa-angle-double-right"></i></li>
+                            </ul>
+
+                        </li>
+                        <li><span></span></li>
+                    </ul>
+                </a>
+            </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="social_div_new">
+            <a href="~/SocialMointoring_new/Social_management_new">
+            @*<a href="~/Home/under_maintainance">*@
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            <li><img src="~/Content/Agriculture_icons/Social_Management_info.png" /></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div">
+            <a href="~/IEC/IEC_Module">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+                            <li>
+                                <img src="~/Content/Agriculture_icons/information-education_New.png" />
+                            </li>
+
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div">
+            <a href="~/Vendors/Environmental_Safeguards_Tool">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            @*<li><img src="~/Content/Agriculture_icons/essstolll.png" /></li>*@
+
+                            <li>
+                                <img src="~/Content/Agriculture_icons/environmental_New.png" />
+                            </li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div">
+            <a href="~/GplevelMobileData/MobileData">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            @*<li><img src="~/Content/Agriculture_icons/esssff_re.png" /></li>*@
+                            <li>
+                                <img src="~/Content/Agriculture_icons/mobile-app_New.png" />
+                            </li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+
+    </div>
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Gram Panchayat</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+</main>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <img src="~/Ataljalimages/GP_WSP_under_maintenance.png" />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //$('#myModal').modal('show');
+        SessionInfo();
+        debugger;
+        var Auth = '@Session["Access_Auth"]';
+
+        if (Auth == "Training-SM") {
+            $('#gpdci_div').hide();
+            $('#wsp_div').hide();
+            $('#esstool_div').hide();
+            $('#social_div_new').hide();
+        }
+        else if (Auth == "WSP") {
+            $('#gpdci_div').hide();
+            /*$('#wsp_div').hide();*/
+            $('#esstool_div').hide();
+            $('#social_div').hide();
+            $('#social_div_new').hide();
+        }
+
+
+
+    });
+    var state = "";
+    function SessionInfo() {
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var arr = data.split(",");
+                state = arr[1];
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+            }
+        });
+    }
+
+</script>

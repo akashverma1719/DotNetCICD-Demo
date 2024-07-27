@@ -1,0 +1,2082 @@
+﻿@{
+    ViewBag.Title = "Water Utilization";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<title> Water Demand </title>
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
+<meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
+<meta name="author" content="Codrops" />
+
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<link href="~/Content/wsptotal.css" rel="stylesheet" />
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>*@
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .alledit {
+        margin-bottom: 5px;
+    }
+
+    .nav-tabs > li {
+        float: none;
+    }
+
+    #progress-ui {
+        text-align: center !important;
+    }
+
+    h3 {
+        font-weight: 600;
+    }
+
+    .btn.btn-dark {
+        background: #000000b3 !important;
+        font-weight: 500;
+        color: #fff;
+    }
+
+    .tabcontent label {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 7px;
+        position: relative;
+        background: #337ab7;
+        display: block;
+        color: #fff;
+        padding: 6px;
+    }
+
+    @@media (min-width: 992px) {
+        .Sider_column {
+            width: 23%;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .hole_column {
+            width: 77%;
+        }
+    }
+
+    @@media (max-width:1491px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+
+    @@media (max-width:1364px) and (min-width:990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 290px !important;
+        }
+    }
+
+    @@media (max-width: 1200px) and (min-width: 990px) {
+        .imgdiv2 > img {
+            width: 100% !important;
+            height: 200px !important;
+        }
+    }
+
+    @@media (max-width: 990px) and (min-width: 360px) {
+        .imgdiv2 > img {
+            width: 300px !important;
+            height: 200px !important;
+            text-align: center;
+        }
+    }
+
+    table > tbody > tr > td > span {
+        float: right;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target] {
+        display: none;
+    }
+
+    .Sider_column > ul.sider_images_sider:after {
+        position: absolute;
+        content: "";
+        /*height: 10%;*/
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target]:after {
+        position: absolute;
+        content: "";
+        height: 0%;
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    .Sider_column > ul.sider_images_sider[data-target].active {
+        display: block;
+    }
+
+
+
+    .btnprocess {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    .btnprocess1 {
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        /*background-color: #fff !important;*/
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    ul[id$="_menu"] {
+        padding: 0;
+        margin: 0;
+    }
+
+    .Side_Image {
+        padding: 0;
+        margin: auto;
+    }
+
+    ul[id$="_menu"] > li {
+        display: inline-flex;
+        position: relative;
+        width: 100%;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+        ul[id$="_menu"] > li > a {
+            display: block;
+            text-align: center;
+        }
+
+    [id^="menu-"][class*="-info"] {
+        font-size: 21px;
+    }
+
+        [id^="menu-"][class*="-info"] > .clearfix {
+            padding: 15px 0;
+        }
+
+            [id^="menu-"][class*="-info"] > .clearfix:last-child {
+                text-align: center;
+            }
+
+
+
+    ul[id$="_menu"] > li > a > span {
+        border-radius: 50%;
+        border: 1px solid #333;
+        display: inline-block;
+        padding: 10px;
+    }
+
+        ul[id$="_menu"] > li > a > span > img {
+            height: 40px;
+            width: 40px;
+            margin: auto;
+        }
+
+    ul[id$="_menu"] > li > a > label {
+        /*color: #7c3c0b;*/
+        color: #000;
+        font-size: 12px;
+        display: block;
+        border: 2px solid transparent;
+    }
+
+    ul[id$="_menu"] > li > a:hover > label,
+    ul[id$="_menu"] > li > a:focus > label,
+    ul[id$="_menu"] > li.active > a > label {
+        border-color: #337ab7;
+        background-color: #fde0ca;
+    }
+
+    #myTabs.nav-pills > li.active > a:before {
+        content: "";
+        /*height: 2px;*/
+        position: absolute;
+        bottom: 6px;
+        display: inline-block;
+        width: 98%;
+        z-index: 99;
+        left: 2%;
+        background-color: #fff;
+    }
+
+    ul[id$="_menu"] > li > a:active,
+    ul[id$="_menu"] > li > a:focus,
+    ul[id$="_menu"] > li > a:hover {
+        text-decoration: none;
+    }
+
+    ul[id$="_menu"] > li.active > a > span {
+        border-width: 2px;
+        border-color: #337ab7;
+    }
+
+    ul[id$="_menu"] > li.active:after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #337ab7;
+        content: " ";
+        position: absolute;
+        bottom: -10px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    .form-control {
+        border: none;
+        box-shadow: none;
+        border-bottom: 1px solid;
+        border-radius: 0;
+    }
+
+
+    a:hover {
+        color: red;
+        border-bottom: 2px;
+    }
+
+    a:active {
+        color: green;
+    }
+
+    h2 {
+        text-align: center;
+        font-weight: 600;
+    }
+</style>
+<style>
+
+    .form-control {
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+    .sub_title {
+        padding-left: 100px;
+    }
+
+    .second_fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .tabel {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        grid-template-rows: repeat(3,1fr);
+        grid-column-gap: 10px;
+    }
+</style>
+<style>
+    [id^="menu-"][class*="-info"] {
+        display: none;
+    }
+
+        [id^="menu-"][class*="-info"].active {
+            display: block;
+        }
+
+    @@media(min-width: 992px) {
+        ul[id$="_menu"] > li {
+            /*width: calc(100%/7);
+            float: left;*/
+            width: 14%;
+            float: left;
+            display: block;
+        }
+
+        [id^="menu-"][class*="-info"] {
+            text-align: right;
+        }
+
+        ul.nav-justified {
+            display: table;
+        }
+
+            ul.nav-justified > li {
+                width: auto;
+            }
+        /*ul.nav-justified > li:first-child {
+                    width: 2%;
+                }*/
+        .btn.btn-primary + .btn.btn-primary {
+            margin-left: 5%;
+        }
+
+        #Water_draft_menu {
+            padding: 0px 0px 0px 50px;
+        }
+    }
+
+    @@media (max-width:992px) and (min-width:768px) {
+        ul[id$="_menu"] > li {
+            width: 25%;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .col-md-offset-2 {
+        margin-left: 0;
+    }
+
+
+    .col-md-offset-1 {
+        margin-left: 0;
+    }
+</style>
+
+<style type="text/css">
+    .color_database {
+        color: green !important;
+    }
+
+    .nav-justified {
+        padding-top: 0;
+    }
+
+    .nav-justified {
+        /*padding-top: 3em;*/
+        text-align: right;
+        padding-bottom: 0.5em;
+        /*margin-bottom: 1em;*/
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 0% !important;
+        }
+    }
+
+    nav-pills > li > a {
+        border-radius: 0px !important;
+    }
+
+    @@media (min-width: 768px) {
+        .nav-justified {
+            padding-right: 10%;
+        }
+
+            .nav-justified > li {
+                display: inline-block;
+                width: auto;
+            }
+    }
+
+    .nav-justified > li > a,
+    .nav-justified > li > a:hover,
+    .nav-justified > li > a:focus {
+        background-color: transparent;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 0;
+    }
+
+    .btnNext2 {
+        font-size: 15px;
+        font-weight: 600;
+        /* background-color: #fff !important; */
+        border: none;
+        /* border: none; */
+        background-color: #03A9F4 !important;
+        color: #fff !important;
+    }
+
+    ul.btnall > li {
+        list-style: none;
+    }
+
+        ul.btnall > li.leftbtnprivous {
+            text-align: right;
+        }
+
+        ul.btnall > li.leftbtnnext {
+            text-align: left;
+        }
+
+    ul.textbox1 > li.leftbtnnext {
+        text-align: left;
+    }
+
+
+    #tbody_BindData > tr > td {
+        text-align: center;
+    }
+
+    tr.info th {
+        background-color: #337ab7 !important;
+        color: #fff;
+        text-align: center;
+    }
+
+    .drinkinganddomestic {
+        margin: 20px 0px;
+    }
+
+    .industry_table > tbody > tr > td {
+        text-align: center;
+    }
+
+    .tabcontent12 label {
+        font-size: 16px;
+        margin-top: 8px;
+    }
+
+    .tabcontent12 .sub_title label {
+        font-size: 13px;
+    }
+
+    .sub_title {
+        padding-left: 0px !important;
+    }
+</style>
+
+<div class="clearfix mainclearfix">
+    <div class="clearfix">
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                }
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                    </span>
+                                    <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+
+
+                            <li>
+                                <a href="~/WSP_23_24_updation/Wsp_Water_Availability">
+                                    <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                    <label>WSP Availablity <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <span><img src="~/Content/WspImages/WSP Home.png" /></span>
+                                <label>Water Demand</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul id="myTabs" class="nav nav-pills nav-justified">
+                            <li class="active">
+                                <a href="javascript:;">
+                                    <span> <img src="~/Content/WspImages/draft new 1.png" /></span>Water Demand
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="tab-content">
+            <!--Rainfail_menu Start-->
+            <div role="tabpanel" class="tab-pane fade in active" id="music">
+                <div class="container-fluid">
+                    <!--images Row Started-->
+                    <div class="clearfix">
+                        <div class="row" id="Select_dist_level">
+                            <ul class="Select_option  selectbackhome">
+                                <li>
+                                    <label id="lblstate">State:</label>
+                                    <span id="spnstate">@Session["gstate"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label id="lbldistrict">District:</label>
+                                    <span id="spndistrict">@Session["gdist"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Block:</label>
+                                    <span id="spnblock">@Session["gblock"] </span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Gram panchayat:</label>
+                                    <span id="spngram">@Session["ggram"]</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa fa-angle-double-right"></i>
+                                    <label>Year:</label>
+                                    <span id="Year">@Session["Year"]</span>
+                                </li>
+                                @*<li>
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>month:</label>
+                                        <span id="month">@Session["month"]</span>
+                                    </li>*@
+                            </ul>
+                            <ul class="selectbackhome" style="float:right;">
+                                <li>
+                                    <a href="~/WSP_23_24_updation/WSP_HOME" class="btn btn-success">
+                                        Back To WSP Home
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-12 col-lg-12">
+                                <ul class="tabs_menu sru_menu" id="Surface_menu">
+                                    <li class="tab-link active subtab1" data-tab="menu-11">
+                                        <a href="javascript:;">
+                                            <span> <img src="~/Content/WspImages/WSPplan/drinking Purpose 2 (1).png" /></span>
+                                            <label>Drinking/Domestic(L/day)</label>
+                                        </a>
+                                    </li>
+
+                                    <li class="tab-link subtab2" data-tab="menu-12">
+                                        <a href="javascript:;">
+                                            <span>  <img src="~/Content/Agriculture_icons/Agri_consumption_1.png"></span>
+                                            <label>Irrigation(ha m)</label>
+
+                                        </a>
+                                    </li>
+                                    <li class="tab-link subtab3" data-tab="menu-13">
+                                        <a href="javascript:;">
+                                            <span><img src="~/Content/Agriculture_icons/Industry_consumption.png" /></span>
+                                            <label>Industrial Use(ha m)</label>
+
+                                        </a>
+                                    </li>
+
+
+                                    <li class="tab-link subtab4" data-tab="menu-14">
+                                        <a href="javascript:;">
+                                            <span><img src="~/Content/Agriculture_icons/Other uses_1.png" /></span>
+                                            <label>
+                                                Other Uses (if any)(ha m)
+                                            </label>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="clearfix tabfirst">
+                        <div class="suface-info active" id="menu-11">
+                            <div class="container-fluid">
+
+                                <div id="" class="tabcontent12">
+                                    <div class="col-md-12 d-flex " style="justify-content:space-between">
+                                        <img src="~/Content/Agriculture_icons/population-icon.png" style="height: 100px; margin-left: 10px;" ; />
+                                        <div class="col-md-5">
+                                            <div class="row" style="margin:10px">
+                                                <div class="col-md-7 col-sm-8 text-left" style="padding: 0px;">
+                                                    <label for="total_population_of_human" class="">
+                                                        A. Total Human Population :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="number" id="total_population_of_human" class="form-control" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="margin:10px;">
+                                                <div class="col-md-7 col-sm-8 sub_title text-left">
+                                                    <label for=" Daily_water_requirement">
+                                                        Daily water requirement (LPCD)<span class="Required_star">*</span>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="text" id="Daily_water_requirement" placeholder="Enter Daily water requirement (LPCD)" onpaste="return false" maxlength="2" class="form-control" oninput="Auto_Calc(event)">
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="margin:10px; ">
+                                                <div class="col-md-7 col-sm-8 sub_title text-left">
+                                                    <label for="Total_Water_Required_For_Humans">
+                                                        Total Water Required For Humans (L/day) <a href="javascript:;" data-toggle="tooltip" title="(Total Human Population * Daily water requirement (LPCD))">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="number" id="Total_Water_Required_For_Humans" placeholder="Enter Total Water Required For Humans (L/day)" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="~/Content/Agriculture_icons/livestock.png" style="height: 100px" ; />
+                                        <div lass="col-md-7">
+                                            <div class="row" style="margin:10px">
+                                                <div class="col-md-8 col-sm-8 text-left" style="padding:0px;">
+                                                    <label for="total_population_of_Livestock">
+                                                        B. Total Livestock Population :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="number" id="total_population_of_Livestock" class="form-control" style="width:145px;" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="row " style="margin:10px">
+                                                <div class="col-md-8 col-sm-8 sub_title text-left">
+                                                    <label for="Average_water_requirement">
+                                                        Daily Average water requirement (LPCD) <a href="javascript:;" data-toggle="tooltip" title="(Total Daily water requirement / Total Livestock Population)">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 sub_">
+                                                    <input type="number" id="Average_water_requirement" style="width:145px;" placeholder="Enter Daily Average water requirement (LPCD)" class="form-control" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="margin:10px;">
+                                                <div class="col-md-8 col-sm-8 sub_title text-left">
+                                                    <label for="Total_Water_Required_For_Livestock">
+                                                        Total Water Required for Livestock (L/day) <a href="javascript:;" data-toggle="tooltip" title="(Total Livestock Population * Average water requirement (LPCD))">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>:
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <input type="number" id="Total_Water_Required_For_Livestock" style="width:145px;" placeholder="Enter Total Water Required for Livestock (L/day)" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div id="tbl_live_info">
+                                    <div class="tbl-responsive">
+                                        <table style="overflow-x: scroll; overflow-y: scroll; height: 200px;" id="" class="GWL_deviation_table table-striped table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                                            <thead>
+
+                                                <tr class="info">
+
+                                                    <th class="text-center" style="padding: 40px;">Sr. No.</th>
+                                                    <th class="text-center" style="padding: 40px;">Livestock</th>
+                                                    <th class="text-center" style="padding: 40px;">Total Number</th>
+                                                    <th class="text-center" style="padding: 40px;">Daily water requirement (LPCD) for Livestock</th>
+                                                    <th class="text-center" style="padding: 40px;">
+                                                        Total Daily water requirement (L/Day)    <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Total Number * Daily water requirement (LPCD) for Livestock">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color: blue;"></span>
+                                                        </a>:
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="livestock_Info"></tbody>
+
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 " style="padding:0px;">
+                                    <div class="tbl-responsive" style="overflow-x:scroll">
+                                        <table id="" class="table table-bordered table-striped table-striped table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                            <thead>
+                                                <tr class="info text-center">
+                                                    <th colspan="10" class="text-center">Drinking/Domestic</th>
+                                                </tr>
+                                                <tr class="info">
+                                                    <th rowspan="2">Category</th>
+                                                    <th rowspan="2">
+                                                        Annual Water Requirement (ha m)<a href="javascript:;" data-toggle="tooltip" title="" data-original-title="(i) For Human= (Total Water Requirement For Human (L / day )* 365) / 0.0000001 , (ii) For Livestock=(Total Water Requirement For Livestock (L / day )* 365) / 0.0000001">
+
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue"></span>
+                                                        </a>
+                                                    </th>
+
+                                                    <th colspan="8">Water Demand Met From (ha m) </th>
+                                                </tr>
+
+                                                <tr class="">
+                                                    <th colspan="2" class="text-center">% of Water Demand Met From Ground Water<span class="Required_star">*</span></th>
+                                                    <th colspan="2" class="text-center">
+                                                        Water Demand Met From Ground Water (ha m)<a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Annual Water Requirement (ha m)* % of Water Demand Met From Ground Water (User Entry Between 1-100) / 100">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>
+                                                    </th>
+                                                    <th colspan="2" class="text-center">% of Water Demand Met From Surface Water<span class="Required_star">*</span></th>
+                                                    <th colspan="2" class="text-center">
+                                                        Water Demand Met From Surface Water (ha m)<a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Annual Water Requirement (ha m)* % of Water Demand Met From Surfaces Water (User Entry Between 1-100) / 100">
+                                                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                        </a>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbody_BindData">
+                                                <tr>
+                                                    <td>Human</td>
+                                                    <td id="Water_for_human_2"></td>
+                                                    <td><input type="text" class="" id="per_water_gw_human" onpaste="return false" maxlength="6" style="width:100px;" onkeypress="return check(event,value)" oninput="checkLength()" /></td>
+
+                                                    <td id="domestic_annual_req_people_auto"></td>
+                                                    <td><input type="text" class="" id="demand_met_gw_human" maxlength="6" style="width: 100px; " disabled /></td>
+
+                                                    <td id="domestic_demand_ground_water"> </td>
+                                                    <td><input type="text" class="" id="per_demand_met_sw_human" onpaste="return false" maxlength="6" style="width:100px;" onKeyPress="return check(event,value)" oninput="checkLength2()" /></td>
+
+                                                    <td id="domestic_demand_ground_water_auto"> </td>
+                                                    <td><input type="text" class="" id="demand_met_sw_human" maxlength="6" style="width: 100px;" disabled /></td>
+
+                                                    <td id="domestic_demand_surface_water"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Livestock</td>
+                                                    <td id="Water_for_livestock_2"></td>
+                                                    <td><input type="text" class="" id="per_water_gw_livestock" onpaste="return false" maxlength="6" style="width:100px;" onKeyPress="return check(event,value)" oninput="checkLength3()" /></td>
+
+                                                    <td id="domestic_annual_req_livestock_auto"></td>
+                                                    <td><input type="text" class="" id="demand_met_gw_livestock" maxlength="6" style="width: 100px;" disabled /></td>
+
+                                                    <td id="domestic_demand_ground_water_livestock_auto"> </td>
+                                                    <td><input type="text" class="" id="per_demand_met_sw_livestock" onpaste="return false" maxlength="6" style="width:100px;" onKeyPress="return check(event,value)" oninput="checkLength4()" /></td>
+
+                                                    <td id="domestic_demand_ground_water_livestock"> </td>
+                                                    <td><input type="text" class="" id="demand_met_sw_livestock" maxlength="6" style="width:100px;" disabled /></td>
+                                                    <td id="domestic_demand_surface_water_livestock"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <td><input type="text" class="" id="domestic_annual_req_total_value" style="width:100px;" disabled /></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input type="text" id="sum_gw" style="width: 100px;" disabled /></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input type="text" id="sum_sw" style="width: 100px; " disabled /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center" style="margin:5px 0px;padding:0px;">
+                                    <div>
+                                        <span style="color:red">Before going to the summary page or next, click on the save button</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;">
+                                        <div class="col-md-4 col-lg-4 col-sm-12 text-left"><a href="~/WSP_23_24_updation/Water_Aval_Report" class="btn btn-dark">Back</a></div>
+                                        <div class="col-md-4 col-lg-4 col-sm-12 text-center"> <button class="btn btn-success btn_disabled" id="SAVE_BTN1" onclick="Domestic_Info_save()">Save</button></div>
+                                        <div class="col-md-4 col-lg-4 col-sm-12 text-right"> <button class="btn btnNext" id="next_domestic" style="display:none" name="" type="button">Next</button></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="text-align:center;color:red;"><label id="Domestic_Error"></label></div>
+                        <div class="hair-info" id="menu-12">
+                            <div class="container-fluid">
+                                @*For Side Bars All*@
+                                <div class="col-md-3 col-sm-12 ">
+                                    <div class="tab-side">
+
+                                        <div class="tablinks class_active_one" onclick="openCity(event, 'London')" id="defaultOpen">
+                                            <ul class="tabs_ul">
+                                                <li>
+                                                    <ul>
+                                                        <li> <img src="~/Content/Agriculture_icons/Kharif.png" /></li>
+                                                        <li>
+                                                            <label>
+                                                                Water Demand (ha m)
+                                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Water Demand = Crop Area (ha) * Net Irrigation Requirement (mm) / 1000">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color: blue;"></span>
+                                                                </a>:
+                                                                <span id="irri_kharif_waterdemand"></span>
+                                                            </label>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li>
+                                                            <label> Kharif Crops</label>
+                                                        </li>
+
+                                                    </ul>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="tablinks class_active_two" onclick="openCity(event, 'Paris')">
+                                            <ul class="tabs_ul">
+                                                <li>
+                                                    <ul>
+                                                        <li> <img src="~/Content/Agriculture_icons/Rabi.png" /></li>
+                                                        <li>
+                                                            <label>
+                                                                Water Demand (ha m)
+                                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Water Demand = Crop Area (ha) * Net Irrigation Requirement (mm) / 1000">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color: blue;"></span>
+                                                                </a>:
+                                                                <span id="irri_rabi_waterdemand"></span>
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li>
+                                                            <label> Rabi Crops</label>
+                                                        </li>
+
+                                                    </ul>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="tablinks class_active_three" onclick="openCity(event, 'Tokyo')">
+                                            <ul class="tabs_ul">
+                                                <li>
+                                                    <ul>
+                                                        <li> <img src="~/Content/Agriculture_icons/Summer crop.png" /></li>
+                                                        <li>
+                                                            <label>
+                                                                Water Demand (ha m)
+                                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Water Demand = Crop Area (ha) * Net Irrigation Requirement (mm) / 1000">
+                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color: blue;"></span>
+                                                                </a>:
+                                                                <span id="irri_summer_waterdemand"></span>
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <ul>
+                                                        <li>
+                                                            <label> Summer Crops</label>
+                                                        </li>
+
+                                                    </ul>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="output_div output_div_side">
+                                            <label>
+                                                @*Annual Water Demand(ha m)<span>*@
+                                                Total Water Demand (ha m)<span>
+                                                    <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Total Water Demand (ha m) = Kharif Crops Water Demand + Rabi Crops Water Demand + Summer Crops Water Demand">
+                                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color: blue;"></span>
+                                                    </a>:<span id="total_water_dem"></span>
+                                                    @*<input type="text" id="total_water_dem" class="form-control" />*@
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="div_kharif_demo">
+
+                                            <div class="output_div output_div_side">
+                                                <label>
+                                                    % of demand met from Ground Water   <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="User Entry (Allowed between 1-100 in %)">
+                                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                    </a>
+                                                    <input type="text" class="form-control number" onpaste="return false" id="txgrdwater" onkeypress="validate(event)" oninput="Auto_CheckVal(event,1,100)" />
+                                                </label>
+                                            </div>
+                                            <div class="output_div output_div_side">
+                                                <label>
+                                                    % of demand met from Surface Water
+                                                    <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="% of demand met from Surface Water = 100 - (% of demand met from Ground Water)">
+                                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                    </a>
+                                                    <input type="text" class="form-control number" onpaste="return false" id="txsurwater" disabled />
+                                                    @*<span id="txsurwater"></span>*@
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="output_div output_div_side">
+                                            <ul class="suface_water_ground_ul">
+                                                <li>
+                                                    Demand From Ground Water (ha m) <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Demand from Ground Water(ha m) = [ Total Water Demand * (% of demand met from Ground Water / 100)]">
+                                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                    </a>
+                                                </li>
+                                                <li><input type="text" class="form-control" onpaste="return false" id="uti_ground_water_kharif" readonly /></li>
+                                            </ul>
+                                            @*<label>Utilization from Ground Water : <span id="irri_utili_ground_water">0000</span></label>*@
+                                        </div>
+                                        <div class="output_div output_div_side">
+                                            <ul class="suface_water_ground_ul">
+                                                <li>
+                                                    Demand From Surface Water (ha m) <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Demand from Surface Water(ha m) = [ Total Water Demand * (% of demand met from Surface Water / 100)]">
+                                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                    </a> <span id=""> </span>
+                                                </li>
+                                                <li><input type="text" class="form-control" id="uti_surface_water_kharif" readonly /></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-12">
+                                    <div id="London" class="tabcontent">
+                                        <div class="row text-center">
+
+                                            <label for="total_population_of_human">
+                                                Kharif Crops
+                                            </label>
+                                            <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:350px;">
+                                                <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-striped table-responsive table-__web-inspector-hide-shortcut__">
+                                                    <thead>
+                                                        <tr class="info">
+                                                            <th colspan="6"> Kharif Crops</th>
+                                                        </tr>
+                                                        <tr class="info red">
+                                                            <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_a_part_kharif()"> New </button></th>
+                                                            @*<th class="text-center">S.No.</th>*@
+                                                            <th class="text-center">Crop Category</th>
+                                                            <th class="text-center">Crop Type</th>
+                                                            <th class="text-center">Crop Name</th>
+                                                            <th class="text-center">Crop Area (ha)</th>
+                                                            <th class="text-center">Net Irrigation Requirement (mm)</th>
+                                                            @*<th>Total water demand (ha m)</th>*@
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="TblData_GRAM_PANCHAYAT_DATABASE_a"></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="tbl-responsive" style="overflow-x:scroll;">
+                                                        <table id="tbl_kharif_edit" class="table industry_table table-bordered table-striped table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                            <thead>
+                                                                <tr class="info text-center">
+                                                                    <th colspan="11" class="text-center">Kharif Crops</th>
+                                                                </tr>
+                                                                <tr class="info">
+                                                                    <th class="text-center">S.No.</th>
+                                                                    <th class="text-center">Crop Category</th>
+                                                                    <th class="text-center">Crop Type</th>
+                                                                    <th class="text-center">Crop Name</th>
+                                                                    <th class="text-center">Crop Area (ha)</th>
+                                                                    <th class="text-center">Net Irrigation Requirement (mm)</th>
+                                                                    <th>Delete</th>
+
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody id="kharif_Table"></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 text-center" style="display: flex; justify-content: space-between; margin-top: 20px;padding:0px;">
+                                                <button class="btn btn-dark btnPrevious ">Back</button>
+                                                <button class="btn btn-info btnNext_tab_rabi">Next </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="Paris" class="tabcontent">
+
+                                        <div class="row text-center">
+
+                                            <label for="total_population_of_human">
+                                                Rabi Crops
+                                            </label>
+                                            <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:350px;">
+                                                <table id="TblData_abc_part2" class="GWL_deviation_table table table-striped table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                                                    <thead>
+                                                        <tr class="info red">
+                                                            <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_a_part_rabi()"> New </button></th>
+                                                            @*<th class="text-center">S.No.</th>*@
+                                                            <th class="text-center">Crop Category</th>
+                                                            <th class="text-center">Crop Type</th>
+                                                            <th class="text-center">Crop Name</th>
+                                                            <th class="text-center">Crop Area (ha)</th>
+                                                            <th class="text-center">Net Irrigation Requirement (mm)</th>
+                                                            @*<th>Total water demand (ha m)</th>*@
+
+                                                        </tr>
+
+
+                                                    </thead>
+                                                    <tbody id="TblData_GRAM_PANCHAYAT_DATABASE_b"></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12" style="padding:0px;">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;">
+                                                    <table id="tbl_rabi_edit" class="table industry_table table-striped table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="11" class="text-center">Rabi Crops</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th class="text-center">S.No.</th>
+                                                                <th class="text-center">Crop Category</th>
+                                                                <th class="text-center">Crop Type</th>
+                                                                <th class="text-center">Crop Name</th>
+                                                                <th class="text-center">Crop Area (ha)</th>
+                                                                <th class="text-center">Net Irrigation Requirement (mm)</th>
+                                                                <th>Delete</th>
+
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="rabi_Table"></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @*<div class="row output_row">
+                                                <div class="col-md-12 text-center">
+                                                    <div class="output_div">
+                                                        <label>Total Water Demand for Rabi Crops <span id="irri_rabi_total_waterdemand_rabicrops"></span></label>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 text-center" style="display:flex;justify-content:space-between;margin-top:20px;padding:0px;">
+                                                <button class="btn btn-dark btnPrevious_tab_rabi">Back</button>
+                                                <button class="btn btn-info btnNext_tab_rabi">Next </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="Tokyo" class="tabcontent">
+
+                                        <div class="row text-center">
+
+                                            <label for="total_population_of_human">
+                                                Summer Crops
+                                            </label>
+                                            <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll; height:350px;">
+                                                <table id="TblData_abc_part3" class="GWL_deviation_table table-striped table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                                                    <thead>
+                                                        <tr class="info red">
+                                                            <th rowspan="3" class="text-center"><button class="updatenew btn btn-success btn_disabled" onclick="addrow_a_part_Summer()"> New </button></th>
+                                                            @*<th class="text-center">S.No.</th>*@
+                                                            <th class="text-center">Crop Category</th>
+                                                            <th class="text-center">Crop Type</th>
+                                                            <th class="text-center">Crop Name</th>
+                                                            <th class="text-center">Crop Area (ha)</th>
+                                                            <th class="text-center">Net Irrigation Requirement (mm)</th>
+                                                            @*<th>Total water demand (ha m)</th>*@
+
+                                                        </tr>
+
+
+                                                    </thead>
+                                                    <tbody id="TblData_GRAM_PANCHAYAT_DATABASE_c"></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12" style="padding:0px;">
+                                                <div class="tbl-responsive" style="overflow-x:scroll;">
+                                                    <table id="tbl_summer_edit" class="table industry_table table-striped table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                                        <thead>
+                                                            <tr class="info text-center">
+                                                                <th colspan="11" class="text-center">Summer Crops</th>
+                                                            </tr>
+                                                            <tr class="info">
+                                                                <th class="text-center">S.No.</th>
+                                                                <th class="text-center">Crop Category</th>
+                                                                <th class="text-center">Crop Type</th>
+                                                                <th class="text-center">Crop Name</th>
+                                                                <th class="text-center">Crop Area (ha)</th>
+                                                                <th class="text-center">Net Irrigation Requirement (mm)</th>
+                                                                <th>Delete</th>
+
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody id="summer_Table"></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @*<div class="row output_row">
+                                                <div class="col-md-12 text-center">
+                                                    <div class="output_div">
+                                                        <label>Total Water Demand for Summer Crops <span id="irri_summer_total_waterdemand_summercrops"></span></label>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        <div class="row">
+                                            <div class="col-md-12 text-center" style="margin:10px 0px;display:flex;justify-content:space-between;padding:0px;">
+                                                <button class="btn btn-dark btnPrevious_tab_rabi">Back</button>
+                                                <button class="btn btn-success btn_disabled" id="SAVE_BTN2" onclick="Save_AllData()">Save All</button>
+                                                <button class="btn btnNext2" id="" name="" type="button">Next</button>
+
+                                            </div>
+                                        </div>
+                                        <div><label style="text-align:center;color:red;background:#fff;" id="Drinking_Domestic_error"></label></div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="tank-info" id="menu-13">
+                            <div class="clearfix" style="padding:0px!important;">
+                                <div class="col-md-9 col-lg-7">
+                                    <div class="clearfix text-center">
+                                        <h3>Industrial Water Demand</h3>
+                                    </div>
+                                    <div class="clearfix alledit" style="margin-bottom:5px; margin-top:10px;">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Industry Name<span class="Required_star">*</span>
+
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_name" onkeypress="return onlyAlphabets(event,this);" name="" maxlength="20" class="form-control " placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+
+                                                Daily Water Requirement (l/day)<span class="Required_star">*</span>
+
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_daily_water_req" onpaste="return false" onkeypress="validate(event)" oninput="annual_ind_cal()" name="" class="form-control decimal" maxlength="10" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                No. of Days in Use<span class="Required_star">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_days_use" onpaste="return false" name="" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="annual_ind_cal()" class="form-control" maxlength="3" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Total Industrial Water Demand (ha m)
+                                                <a href="javascript:;" data-toggle="tooltip" title="Total Industrial Water Demand (ha m) = Daily Water Requirement (L / Day) * No. Of Days in Use * 0.0000001">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_waterdemand" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                % of Water Demand met from Ground Water<span class="Required_star">*</span>
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="User Entry (Allowed between 1-100 in %)">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_demand_ground_water" onpaste="return false" name="" class="form-control decimal" maxlength="10" placeholder="" oninput="Auto_CheckVal_all()" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                % of Water Demand met from Surface Water
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="% of Water Demand met from Surface Water = 100 - ( % of demand met from Ground water)">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_demand_surface_water" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Water Demand met from Ground Water (ha m)
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Water Demand met from Ground Water (ha m) = Total Industrial water demand * ( % of Water Demand met from Ground Water / 100)">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_demand_ground_water_val" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Water Demand met from Surface Water (ha m)
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title=" Water Demand met from Surface Water (ha m) = Total Industrial water demand * ( % of water Demand met from Surface Water / 100)">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>:
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="industry_demand_surface_water_val" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix text-center row" style="margin-top:5px;">
+                                        @*<div>
+                                                <span style="color:red;font-size:15px;">Before going to the summary page or next, click on the save button</span>
+                                            </div>*@
+
+                                        <div class="col-md-8 text-right" style="padding-top: 6px; padding-right: 0; margin-left: 18px;">
+                                            <button class="btn btn-success btn_disabled" id="SAVE_BTN3" onclick="Industry_Uses_Save()">Save</button>
+                                        </div>
+
+
+                                    </div>
+                                    <div style="color:red;" class="text-center">
+                                        <label id="IndustryError"></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-lg-5 imgdiv2">
+                                    <img src="~/Images/3d_images1/industry_1.2.png" width="460" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="tbl-responsive" style="overflow-x:scroll;">
+                                    <table id="" class="table industry_table table-striped table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                        <thead>
+                                            <tr class="info text-center">
+                                                <th colspan="12" class="text-center">Industrial Water Demand</th>
+                                            </tr>
+                                            <tr class="info">
+                                                <th rowspan="2">Sr No</th>
+                                                <th rowspan="2">Industry Name</th>
+                                                <th rowspan="2">Daily Water Requirement (l/day)</th>
+                                                <th class="text-center">No. Of Days in Use </th>
+                                                <th class="text-center">Total Industrial Water Demand (ha m)</th>
+                                                <th class="text-center">% of Water Demand met from Ground Water</th>
+                                                <th class="text-center">% of Water Demand met from Surface Water</th>
+                                                <th class="text-center">Water Demand met from Ground Water (ha m)</th>
+                                                <th class="text-center">Water Demand met from Surface Water (ha m)</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody id="IndustryData_Table"></tbody>
+
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center" style="justify-content: space-between; margin-top:18px;">
+                                    <button class="btn btn-dark btnPrevious" id="" name="" type="button">Back</button>
+                                    <button class="btn btnNext" id="" name="" type="button">Next</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tank1-info" id="menu-14">
+                            <div class="clearfix" style="padding:0px!important;">
+                                <div class="col-md-9 col-lg-7">
+                                    <div class="clearfix text-center">
+                                        <h3>
+                                            Other Uses (if any)
+                                        </h3>
+                                    </div>
+                                    <div class="clearfix alledit" style="margin-top:10px;">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Type of Use<span class="Required_star">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_type_of_use" onkeypress="return onlyAlphabets(event,this);" name="" class="form-control" maxlength="20" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+
+                                                Daily Water Requirement (l/day)<span class="Required_star">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_daily_water_req" onkeypress="validate(event)" onpaste="return false" name="" oninput="annual_ind_cal_other()" class="form-control decimal" maxlength="10" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+
+                                                No. of Days in Use<span class="Required_star">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_days_use" onpaste="return false" name="" class="form-control number" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="annual_ind_cal_other()" maxlength="3" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Total Water Requirement (ha m)
+                                                <a href="javascript:;" data-toggle="tooltip" title="Total Water Requirement (ha m) = Daily Water Requirement (L / Day) * No. Of Days in Use * 0.0000001">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_annual_req" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                % of Water Demand met from Ground Water<span class="Required_star">*</span>
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="User Entry (Allowed between 1-100 in %)">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_demand_ground_water" onpaste="return false" name="" oninput="Auto_CheckVal_all_others()" class="form-control decimal" maxlength="10" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                % of Water Demand met from Surface Water
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="% of Water Demand met from Surface Water = 100 - (% of Demand met from Ground Water">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_demand_surface_water" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Water Demand met from Ground Water (ha m)
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title=" Water Demand met from Ground Water (ha m) = Total Water requirement * ( % of water Demand met from Ground water / 100)">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_demand_surface_water_val" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix alledit">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <label>
+                                                Water Demand met from Surface Water (ha m)
+                                                <a href="javascript:;" data-toggle="tooltip" title="" data-original-title="Water Demand met from Surface Water (ha m) = Total Water Requirement * ( % of Water Demand met from Surface Water / 100)">
+                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:blue;"></span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="other_demand_ground_water_val" name="" class="form-control decimal" maxlength="10" placeholder="" readonly />
+                                        </div>
+                                    </div>
+                                    @*<div id="Wsp_gram_checkbox" style="text-align:center"><input type="checkbox" id="WspTacker_Verification_CheckBox" /><span>The data entered has been checked and verified by DPMU</span></div>*@
+                                    <div class="clearfix text-center row" style="margin-top:5px;">
+                                        @*<div>
+                                                <span style="color:red;font-size:15px;">Before going to the summary page or next, click on the save button</span>
+                                            </div>*@
+                                        <div class="col-md-8 text-right" style="margin-left: 25px;">
+                                            @*<button class="btn btn-danger" id="Wsp_gram_submit" onclick="Save_Full_Info()">Submit</button>*@
+                                            <button class="btn btn-success btn_disabled" id="SAVE_BTN" onclick="Other_uses_Save()">Save</button>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:center;color:red;"> <label id="OtherError"></label></div>
+                                </div>
+
+
+                                <div class="col-md-3 col-lg-5 imgdiv2">
+                                    <img src="~/Content/Agriculture_icons/recreational_activities_infographics_final_1.png" width="460" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+
+
+                                <div class="tbl-responsive" style="overflow-x:scroll;">
+                                    <table id="" class="table industry_table table-striped table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                                        <thead>
+                                            <tr class="info text-center">
+                                                <th colspan="12" class="text-center"> Other Uses (if any)</th>
+                                            </tr>
+                                            <tr class="info">
+                                                <th rowspan="2">Sr No</th>
+                                                <th rowspan="2">Type of Use</th>
+                                                <th rowspan="2">Daily Water Requirement (l/day)</th>
+                                                <th class="text-center">No. of Days in Use </th>
+                                                <th class="text-center">Total Water Requirement (ha m)</th>
+                                                <th class="text-center">% of Water Demand met from Ground Water</th>
+                                                <th class="text-center">% of Water Demand met from Surface Water</th>
+                                                <th class="text-center">Water Demand met from Ground Water (ha m)</th>
+                                                <th class="text-center">Water Demand met from Surface Water (ha m)</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="OtherUseageData_Table"></tbody>
+
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+
+                                    </table>
+                                </div>
+
+                                <div class="d-flex" style="justify-content: space-between; margin-top: 18px;">
+                                    <button class="btn btn-dark btnPrevious" id="" name="" type="button">Back</button>
+                                    @*<button class="btn btn-danger" id="Wsp_gram_submit" onclick="Save_Full_Info()">Submit</button>*@
+                                    <button class="btn btn-primary" onclick="CheckDataWaterutilization()">Summary</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="progress">
+                <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+                    <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                        <span class="progress-group-label" data-target="#music" data-toggle="tab"> Water Utilisation </span>
+                        <div class="progress-node answering active now tab-link subtab1" data-tab="menu-11">
+                            <div class="progress-label">Drinking/Domestic(ha m)<span class="pointer"></span></div>
+                        </div>
+                        <div class="progress-node tab-link subtab2" data-tab="menu-12">
+                            <div class="progress-label">Irrigation(ha m)<span class="pointer"></span></div>
+                        </div>
+                        <div class="progress-node tab-link subtab3" data-tab="menu-13">
+                            <div class="progress-label">Industrial Use(ha m)<span class="pointer"></span></div>
+                        </div>
+
+                        <div class="progress-node tab-link subtab4" data-tab="menu-14">
+                            <div class="progress-label">Other Uses (if any)(ha m)<span class="pointer"></span></div>
+                        </div>
+
+                        <div class="tri shadow"></div>
+                        <div class="tri"></div>
+                    </li>
+
+
+                </ul>
+
+            </div>
+            <!--fotter End-->
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/sweetalert.js"></script>
+<script src="~/Content/Scripts/Wsp_Comman.js"></script>
+
+<script src="~/Content/Scripts/WaterUtilisation_24.js" type="text/javascript"></script>
+<script src="~/Scripts/validations.js"></script>
+
+
+<script type="text/javascript">
+
+    $('li.leftbtnnext > button.btnprocess1').click(function () {
+
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').next('li').addClass('active');
+        //$('ul#myTabs.nav-pills.nav-justified > li.active').siblings('li').removeClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $("ul#myTabs > li > a").on("show.bs.tab", function () {
+
+        $('ul.tabs_menu > li:first-child').trigger('click');
+    });
+</script>
+
+<script>
+    var StateOfficer = "";
+    var access_auth = "";
+    $(document).ready(function () {
+        access_auth = '@Session["access_auth"]';
+
+        StateOfficer = '@Session["Officer"]';
+
+        if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            $('input[type=text]').prop("disabled", true)
+            $('select').prop("disabled", true);
+            $('input[type=file]').prop("disabled", true)
+            $('.btn_disabled').prop("disabled", true);
+        }
+        else if (StateOfficer != "" && StateOfficer != null) {
+
+        } else {
+              window.location = "/Home/LogOut";
+        }
+        Get_Livestock_info();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+
+
+    $('#btnDrftGo').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+    $('#btngotobalance').click(function () {
+        $('ul#myTabs.nav-pills.nav-justified > li').siblings('li').removeClass('active');
+        var fine = $(this).closest("div[role=tabpanel]").attr("id");
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next("li").addClass('active');
+        $('#' + fine + '').tab('show');
+        $('ul#myTabs.nav-pills.nav-justified > li > a[data-target="#' + fine + '"]').parent('li').next('li').find('a').trigger('click');
+    });
+
+</script>
+
+<script>
+    $('#m1').click(function (e) {
+        $('.subtab2').removeClass('active');
+        $('.subtab3').removeClass('active');
+        $('.subtab4').removeClass('active');
+        $('.subtab5').removeClass('active');
+        $('.subtab6').removeClass('active');
+        $('.subtab7').removeClass('active');
+        $('.subtab1').addClass('active');
+        $('div.tabfirst div.active').removeClass('active');
+        $('#menu-11').addClass('active in');
+        $('li#Surface-water div').removeClass('active');
+        $('li#Surface-water div.subtab1').addClass('active');
+    });
+    $('#m2').click(function (e) {
+        $('.subtab12').removeClass('active');
+        $('.subtab13').removeClass('active');
+        $('.subtab14').removeClass('active');
+        $('.subtab15').removeClass('active');
+        $('.subtab16').removeClass('active');
+        $('.subtab17').removeClass('active');
+        $('.subtab11').addClass('active');
+        $('div.tabsecond div.active').removeClass('active');
+        $('#menu-1').addClass('active in');
+        $('li#indoor-water div').removeClass('active');
+        $('li#indoor-water div.subtab11').addClass('active now');
+    });
+    $('#m3').click(function (e) {
+        $('.subtab22').removeClass('active');
+        $('.subtab23').removeClass('active');
+        $('.subtab24').removeClass('active');
+        $('.subtab21').addClass('active');
+        $('div.tabthrid div.active').removeClass('active');
+        $('#menu-8').addClass('active in');
+        $('li#outdoor-water div').removeClass('active');
+        $('li#outdoor-water  div.subtab21').addClass('active now');
+    });
+
+</script>
+<script>
+
+    // start header and footer nav bar changes script
+
+    $('#indoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#indoor-water.progress-group .progress-node').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#outdoor-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    $('#Surface-water.progress-group .progress-node').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('#outdoor-water.progress-group .progress-node').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+
+    Surface_menu
+    $('ul#rainfall_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#rainfall_menu li').removeClass('active');
+        $('#Commentary [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+    });
+    $('ul#Surface_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Surface_menu li').removeClass('active');
+        $('#music [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+        if (tab_id == "menu-12") {
+            $("#" + tab_id + ".active").find('.tab-side > .tablinks:first-child').trigger('click');
+        }
+    });
+
+    $('ul#Water_draft_menu li').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('ul#Water_draft_menu li').removeClass('active');
+        $('.Sider_column > ul.sider_images_sider').removeClass('active');
+        $('#Videos [id^="menu-"][class*="-info"]').removeClass('active');
+
+        $(this).addClass('active');
+        $("#" + tab_id).addClass('active');
+        $("[data-target=" + tab_id + "]").addClass('active');
+        //$('ul.tabs li').click(function () {
+        //  var tab_id = $(this).attr('data-tab');
+
+        //$('ul.tabs li').removeClass('current');
+
+
+        //$(this).addClass('current');
+
+        //})
+    });
+
+
+
+    $('.btnNext').click(function () {
+        $('.tabs_menu > .active').next('.tab-link').trigger('click');
+        //$('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+    $('.btnNext2').click(function () {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_23_24_updation/CheckDataWaterUtilisation",
+            dataType: 'JSON',
+            success: function (response) {
+                debugger;
+                if (response.result == true) {
+                    $('.tabs_menu > .active').next('.tab-link').trigger('click');
+                } else {
+                    alert("You didn't saved the data, Please click on save all button");
+                }
+            }
+        });
+        //$('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+    $('.btnPrevious').click(function () {
+        $('.tabs_menu > .active').prev('.tab-link').trigger('click');
+        // $('.tabs_menu > .active').next('div.progress-node').find('div.progress-link').trigger('click');
+    });
+
+
+
+    //$('.tabs_menu > .tab-link').click(function (e) {
+    //    //get selected href
+    //    var href = $(this).attr('data-tab');
+
+    //    // show tab for all tabs that match href
+    //    $('.tabs_menu > .tab-link[data-tab="' + href + '"]').tab('show');
+    //});
+    $('.gwr_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwr_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwr_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwr_menu[class*="-info"]').removeClass('active');
+        $('.gwr_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    $('ul[data-tabs="tabs"] > li > [data-toggle="tab"]').click(function (e) {
+
+        var href = $(this).attr('data-target');
+
+
+        $('ul[data-tabs="tabs"] > li').removeClass('active');
+
+
+        $('ul[data-tabs="tabs"] > li > [data-toggle="tab"][data-target="' + href + '"]').closest('li').addClass('active');
+
+
+        $('.tab-pane').removeClass('active in');
+        $('.tab-pane' + href).addClass('active in');
+    });
+
+    $('.gwd_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.gwd_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.gwd_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.gwd_menu[class*="-info"]').removeClass('active');
+        $('.gwd_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+
+    $('.sru_menu.tabs_menu > .tab-link').click(function (e) {
+
+        var href = $(this).attr('data-tab');
+
+
+        $('.sru_menu.tabs_menu > .tab-link').removeClass('active');
+
+
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.sru_menu.tabs_menu > .tab-link[data-tab="' + href + '"]').addClass('active');
+
+        $('.sru_menu[class*="-info"]').removeClass('active');
+        $('.sru_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    // start header and footer nav bar changes script
+
+</script>
+
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        if (cityName == 'London') {
+            $('#div_kharif_demo').show();
+            $('#div_rabi_demo').hide();
+            $('#div_summer_demo').hide();
+        }
+        if (cityName == 'Paris') {
+            $('#div_kharif_demo').hide();
+            $('#div_rabi_demo').show();
+            $('#div_summer_demo').hide();
+        }
+        if (cityName == 'Tokyo') {
+            $('#div_kharif_demo').hide();
+            $('#div_rabi_demo').hide();
+            $('#div_summer_demo').show();
+        }
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    $('.btnNext_tab_rabi').click(function () {
+
+        $('.tab-side > .tablinks.active').next('.tablinks').trigger('click');
+    });
+
+    $('.btnPrevious_tab_rabi').click(function () {
+        $('.tab-side > .tablinks.active').prev('.tablinks').trigger('click');
+    });
+    $('.tab-side > .tablinks').click(function (e) {
+
+        var href = $(this).attr('class');
+        $('.tab-side > .tablinks').removeClass('active');
+        //$('.tabs_menu').closest('.tab-link[data-tab="' + href + '"]').addClass('active');
+        $('.tab-side > .tablinks[data-tab="' + href + '"]').addClass('active');
+
+        //   $('.sru_menu[class*="-info"]').removeClass('active');
+        //   $('.sru_menu[class*="-info"][id=' + href + '').addClass('active');
+    });
+    $('.class_active_one').click(function (e) {
+
+        $('.tab-side > .class_active_one').addClass('active');
+    });
+    $('.class_active_two').click(function (e) {
+
+        $('.tab-side > .class_active_two').addClass('active');
+    });
+    $('.class_active_three').click(function (e) {
+
+        $('.tab-side > .class_active_three').addClass('active');
+    });
+
+    function water_uti_count() {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSP_23_24_updation/Water_Utilization_Count',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                //alert(data);
+                const response = data.split(',');
+                if (response[0] != "" && response[0]) {
+                    $('#total_population_of_human').val(response[0]);
+                }
+                if (response[1] != "" && response[1]) {
+                    $('#total_population_of_Livestock').val(response[1]);
+                }
+            }
+        });
+    }
+
+
+    // TAKE ONLY 1-100
+    var point = false;
+    var count = 0;
+    function check(e, value) {
+
+        //Check Charater
+
+        if (count == 3) return false;
+        var unicode = e.charCode ? e.charCode : e.keyCode;
+
+        if (unicode == 46 && point == true)
+            return false;
+        if (unicode == 46 && point == false) {
+            point = true;
+        }
+        if (unicode != 8) if ((unicode < 48 || unicode > 57) && unicode != 46) return false;
+        if (point == true) count++;
+    }
+
+    function checkLength() {
+
+        var fieldVal = document.getElementById('per_water_gw_human').value;
+        //Suppose u want 3 number of character
+        if (fieldVal <= 100) {
+            Auto_CheckVal_drink_dom_grd(event, 1, 100);
+            return true;
+        }
+        else {
+            var str = document.getElementById('per_water_gw_human').value;
+            str = str.substring(0, str.length - 1);
+            document.getElementById('per_water_gw_human').value = str;
+            alert("Enter Value Between 1 - 100")
+        }
+    }
+
+    function checkLength2() {
+
+        var fieldVal = document.getElementById('per_demand_met_sw_human').value;
+        //Suppose u want 3 number of character
+        if (fieldVal <= 100) {
+            Auto_CheckVal_drink_dom_sur(event, 1, 100);
+            return true;
+        }
+        else {
+            var str = document.getElementById('per_demand_met_sw_human').value;
+            str = str.substring(0, str.length - 1);
+            document.getElementById('per_demand_met_sw_human').value = str;
+            alert("Enter Value Between 1 - 100")
+        }
+    }
+
+    function checkLength3() {
+
+        var fieldVal = document.getElementById('per_water_gw_livestock').value;
+        //Suppose u want 3 number of character
+        if (fieldVal <= 100) {
+            Auto_CheckVal_drink_dom_grd_liv(event, 1, 100);
+            return true;
+        }
+        else {
+            var str = document.getElementById('per_water_gw_livestock').value;
+            str = str.substring(0, str.length - 1);
+            document.getElementById('per_water_gw_livestock').value = str;
+            alert("Enter Value Between 1 - 100")
+        }
+    }
+
+    function checkLength4() {
+
+        var fieldVal = document.getElementById('per_demand_met_sw_livestock').value;
+        //Suppose u want 3 number of character
+        if (fieldVal <= 100) {
+            Auto_CheckVal_drink_dom_sur_liv(event, 1, 100);
+            return true;
+        }
+        else {
+            var str = document.getElementById('per_demand_met_sw_livestock').value;
+            str = str.substring(0, str.length - 1);
+            document.getElementById('per_demand_met_sw_livestock').value = str;
+            alert("Enter Value Between 1 - 100")
+        }
+    }
+
+    function onlyAlphabets(e, t) {
+        var regexp = new RegExp(/^[a-zA-Z0-9-]*$/);
+        if (window.event) {
+            keynum = e.keyCode;
+        } else if (e.which) {
+            keynum = e.which;
+        }
+        var test = regexp.test(String.fromCharCode(keynum));
+        return test;
+
+    }
+</script>
+
+
+

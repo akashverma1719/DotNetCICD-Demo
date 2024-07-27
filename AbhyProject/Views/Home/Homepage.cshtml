@@ -1,0 +1,396 @@
+﻿
+@{
+    ViewBag.Title = "Homepage";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>Home Page</title>
+<style>
+    .capital {
+        width: 200px !important;
+    }
+
+    #today h2 {
+        color: #fff;
+        width: 600px !important;
+    }
+
+    .capital h3 {
+        text-align: center;
+        font-size: 18px !important;
+    }
+
+    p.wind {
+        margin: 10px;
+        text-align: center;
+        color: #fff;
+    }
+
+    p.minmax {
+        padding: 0px !important;
+        font-size: 14px !important;
+        text-align: center;
+        color: #fff;
+    }
+
+    .capital > a > h4 {
+        text-align: center;
+        color: #dbda63;
+    }
+
+    .capital > a:after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 1px;
+        display: block;
+        background-color: black;
+        right: -1px;
+    }
+
+    #today {
+        background: linear-gradient(45deg,#3699ea,#0a6dbe, #146eb7,#146eb7) !important;
+    }
+
+    caption {
+        top: 156px !important;
+    }
+</style>
+
+<link href="~/Content/homepagecss.css" rel="stylesheet" />
+<div class="clearfix">
+    <div class="clearfix">
+        <div class="col-md-12">
+            <section id="banner" class="clearfix" style="background: #110f34 url(/gms/IDE00135.201904191530.jpg) no-repeat -70px -35px;">
+
+                <div class="mask">
+
+                    <div class="radar">
+
+                        <h4>Abhy</h4>
+
+
+
+                    </div>
+
+                </div>
+
+            </section>
+            <section id="today">
+
+                <div id="today_refresh">
+                    <h2>Ground Water Level for  <sapn id="pagewrap"></sapn></h2>
+                    <div class="col-sm-4 time_date">
+                        <div>
+                            <h2>Ground Water Level for  <sapn id="demo"></sapn></h2>
+
+                            @*<span>&nbsp; | &nbsp;</span> <b>Time :</b>
+                                <p id="demo2"></p>*@
+                        </div>
+                    </div>
+
+                    <div class="city">
+
+                        <ul class="sf-menu">
+                            <li class="closed">
+                                <a href="#" class="noclick">City observations</a>
+                                <ul>
+                                    <li><a href="javascript:;">Gujarat</a></li>
+                                    <li><a href="javascript:;">Haryana</a></li>
+                                    <li><a href="javascript:;">Karnataka</a></li>
+                                    <li><a href="javascript:;">Madhya Pradesh</a></li>
+                                    <li><a href="javascript:;">Maharashtra</a></li>
+                                    <li><a href="javascript:;">Rajasthan</a></li>
+                                    <li><a href="javascript:;">Uttar Pradesh</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="capitals clearfix">
+                        <div class="capital">
+
+                            <a href="javascript:;" title="Gujarat " class="tip">
+
+                                <h3>Gujarat </h3>
+
+                                @*<p class="now">Now<span class="val">17.6&deg;</span></p>*@
+
+                                <p class="wind">Site:Gandhinagar </p>
+
+                                <p class="minmax">Lat : 23’’30’</p>
+
+                                <p class="minmax">Lon : 78’’56’ </p>
+                                <h4>20m</h4>
+                            </a>
+
+
+
+                        </div>
+                        <div class="capital">
+
+                            <a href="javascript:;" title="Haryana " class="tip">
+
+                                <h3>Haryana  </h3>
+
+                                @*<p class="now">Now<span class="val">17.6&deg;</span></p>*@
+
+                                <p class="wind">Site:Chandigarh </p>
+
+                                <p class="minmax">Lat : 23’’30’</p>
+
+                                <p class="minmax">Lon : 78’’56’ </p>
+                                <h4>20m</h4>
+
+                            </a>
+
+
+
+                        </div>
+
+                        <div class="capital">
+
+                            <a href="javascript:;" title="Karnataka " class="tip">
+
+                                <h3>Karnataka  </h3>
+
+                                @*<p class="now">Now<span class="val">17.6&deg;</span></p>*@
+
+                                <p class="wind">Site:Bangalore </p>
+
+                                <p class="minmax">Lat : 23’’30’</p>
+
+                                <p class="minmax">Lon : 78’’56’ </p>
+                                <h4>20m</h4>
+
+                            </a>
+
+
+
+                        </div>
+
+                        <div class="capital">
+                            <a href="javascript:;" title="Madhya Pradesh " class="tip">
+
+                                <h3>Madhya Pradesh  </h3>
+
+                                @*<p class="now">Now<span class="val">17.6&deg;</span></p>*@
+
+                                <p class="wind">Site:Bhopal  </p>
+
+                                <p class="minmax">Lat : 23’’30’</p>
+
+                                <p class="minmax">Lon : 78’’56’ </p>
+                                <h4>20m</h4>
+
+                            </a>
+
+
+
+                        </div>
+
+                        <div class="capital">
+
+                            <a href="javascript:;" title="Maharashtra" class="tip">
+
+                                <h3>Maharashtra </h3>
+
+                                @*<p class="now">Now<span class="val">17.6&deg;</span></p>*@
+
+                                <p class="wind">Site:Mumbai  </p>
+
+                                <p class="minmax">Lat : 23’’30’</p>
+
+                                <p class="minmax">Lon : 78’’56’ </p>
+                                <h4>20m</h4>
+
+                            </a>
+
+
+
+                        </div>
+
+                        <div class="capital">
+
+                            <a href="javascript:;" title="Rajasthan" class="tip">
+
+                                <h3>Rajasthan </h3>
+
+                                @*<p class="now">Now<span class="val">17.6&deg;</span></p>*@
+
+                                <p class="wind">Site:Jaipur  </p>
+
+                                <p class="minmax">Lat : 23’’30’</p>
+
+                                <p class="minmax">Lon : 78’’56’ </p>
+                                <h4>20m</h4>
+
+                            </a>
+
+
+
+                        </div>
+
+                        <div class="capital last">
+                            <a href="javascript:;" title="Uttar Pradesh" class="tip">
+
+                                <h3>Uttar Pradesh</h3>
+
+                                @*<p class="now">Now<span class="val">17.6&deg;</span></p>*@
+
+                                <p class="wind"> Site:Lucknow </p>
+
+                                <p class="minmax">Lat : 23’’30’</p>
+
+                                <p class="minmax">Lon : 78’’56’ </p>
+                                <h4>20m</h4>
+
+                            </a>
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section id="services">
+
+                <h2>Explore our Services</h2>
+
+                <ul>
+                    <li class="awal col-md-4">
+                        <a href="#" title="Weather and the land meteorological information for primary industry and natural resources management" class="tip">Water <br>Budgeting</a>
+                        <div class="tooltip fade  top in" style="top:786.2px;left:28.5px;display:block;">
+                            <img src="~/Content/WspImages/contact.png" alt="123" />
+                        </div>
+                    </li>
+
+                    <li class="capw col-md-4"><a href="#" title="Climate outlooks, analysis and information" class="tip">Ground Water <br>Monitoring</a></li>
+
+                    <li class="wain col-md-4"><a href="#" title="Data, reports, forecasts, flood warnings and hydrometeorological services" class="tip">Water <br>Security Plan</a></li>
+
+                </ul>
+
+            </section>
+            <section id="promo" class="clearfix">
+
+
+                <h2>What’s on the News</h2>
+                <div class="col-md-12 clearfix">
+                    <div class="col-md-3">
+                        <a href="">
+
+                            <img src="~/Content/WspImages/tile-heatwave.jpg" width="350" height="173" alt="1">
+                            <p class="caption" style="top:156px;"><strong>Heatwave Forecast</strong></p>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="">
+
+                            <img src="~/Content/WspImages/websitetilestrength.png" width="350" height="173" alt="2">
+                            <p class="caption" style="top:156px;">Strengthening our public <br>services</p>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <a href="">
+
+                            <img src="~/Content/WspImages/tile-bom-weather-app.jpg" width="350" height="173" alt="3">
+                            <p class="caption" style="top:156px;"><strong>BOM Weather</strong><br>App available now</p>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="">
+
+                            <img width="350" height="173" alt="4" src="~/Content/WspImages/tile-business-solutions.jpg">
+                            <p class="caption" style="top:156px;">Business and Public Sector Solutions</p>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/ ' + mm + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+
+        // for accessibility reasons, we only want this function if css is enabled
+        if ($("#pagewrap").width() != 1003) { // this width is set via css
+            var has_css = false;
+        } else {
+            var has_css = true;
+        }
+
+        if (has_css) {
+
+            // reload dynamic data every 300 secs
+            setInterval(function () {
+                $.ajax({
+                    cache: false,
+                    url: '/index.php',
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function (data) {
+                        var banner_bg = $('<div />', { html: data }).find('#banner').css('background-image');
+                        $('#banner').css('background-image', banner_bg); // radar image
+                        $('#current').empty().append($('#current_refresh', data)); // warnings
+                        $('#today').empty().append($('#today_refresh', data)); // weather for cities
+                        $.getScript('/assets-140/js/home.js'); // reload this script so stuff like tooltips still work after reload (script must be separate)
+                    }
+                });
+            }, 300000);
+
+        }
+
+    });
+</script>

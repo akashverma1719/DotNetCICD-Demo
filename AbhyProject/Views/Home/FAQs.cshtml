@@ -1,0 +1,849 @@
+﻿
+@{
+    ViewBag.Title = "FAQs";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>FAQ</title>
+<style>
+    .blur_wrapper {
+        height: 100%;
+        width: 100%;
+    }
+
+    .stacks_div {
+  position: relative;
+  display: block;
+}
+
+.stacks_out {
+  position: relative;
+  display: block;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.stacks_in {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+.stacks_in > p {
+  margin-top: 0;
+}
+
+.stacks_empty .stacks_in {
+  display: none;
+}
+
+.stacks_top {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+.centered_image {
+  position: relative;
+  display: block;
+  text-align: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.centered_image .imageStyle {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.stacks_float_left {
+  float: left;
+  margin-right: 20px;
+}
+
+.stacks_float_right {
+  float: right;
+  margin-left: 20px;
+}
+
+.stacks_clearer {
+  position: relative;
+  display: block;
+  clear: both;
+}
+
+.stacks_clear_left {
+  position: relative;
+  display: block;
+  clear: left;
+}
+
+.stacks_clear_right {
+  position: relative;
+  display: block;
+  clear: right;
+}
+
+@@media only screen and (min-width: 771px) {
+  .stacks_l_hidden {
+    display: none;
+  }
+}
+@@media only screen and (max-width: 770px) and (min-width: 441px) {
+  .stacks_m_hidden {
+    display: none;
+  }
+}
+@@media only screen and (max-width: 440px) {
+  .stacks_s_hidden {
+    display: none;
+  }
+}
+.s3_row,
+.s3_column {
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+}
+
+.s3_row {
+  width: auto;
+}
+
+.s3_column {
+  float: left;
+}
+
+.s3_column_right {
+  float: right;
+}
+
+
+
+    .vegas-overlay {
+        /*opacity: .5;*/
+        background: transparent url(overlays/02.png) center center repeat;
+    }
+
+    .vegas-wrapper, .vegas-overlay, .vegas-timer, .vegas-slide, .vegas-slide-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    .vegas-wrapper, .vegas-overlay, .vegas-timer, .vegas-slide, .vegas-slide-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    #stacks_in_165_page9 .bkg_inner {
+        display: table;
+        height: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 10;
+        width: 100%;
+    }
+    #stacks_in_165_page9 .bkg_content {
+        display: table-cell;
+        vertical-align: middle;
+        text-align:center;
+    }
+    #stacks_in_165_page9 .foundry-background .bkg_content_width {
+    max-width: 1140px;
+}
+
+    @@media (min-width: 1200px) {
+
+        .container {
+            max-width: 1140px;
+        }
+    }
+    @@media (min-width: 992px) {
+        .container {
+            max-width: 940px;
+        }
+    }
+    @@media (min-width: 768px) {
+        .container {
+            max-width: 720px;
+        }
+    }
+    @@media (min-width: 544px) {
+        .container {
+            max-width: 576px;
+        }
+    }
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+}
+    .page-header{
+        border-bottom:none;
+    }
+
+    #stacks_in_460_page9 h2
+    {
+        color:#337ab7;
+    }
+    @@media (min-width: 62em) {
+        #stacks_in_305_page9 .accordion_title {
+            font-size: 16px !important;
+        }
+    }
+    h1, h2, h3, h4, h5, h6
+    {
+        font-weight:600;    
+    }
+    #stacks_in_20_page9 .page-header h3 {
+        color: #21869f;
+    }
+    span.closed-item-icon > img
+    {
+        width:16px;
+    }
+    span.open-item-icon > img{
+        width:16px;
+    }
+</style>
+<link href="~/Scripts/stacks_page_page9.css" rel="stylesheet" />
+<body class="antialiased foundry-typeface-three foundry-typeface-three-page-wide-headers show_admin_on" data-gr-c-s-loaded="true" data-go-swatch="blue">
+    <div class="blur_wrapper">
+
+        <div id="stacks_out_1_page9" class="stacks_top" style="overflow: visible;">
+            <div id="stacks_in_1_page9" class="" style="overflow: visible;">
+                <div id="stacks_out_2_page9" class="stacks_out">
+                    <div id="stacks_in_2_page9" class="stacks_in ">
+                        <div id="stacks_out_p2_n1_page9" class="stacks_out">
+                            <div id="stacks_in_p2_n1_page9" class="stacks_in stack_stack">
+                                <div id="stacks_out_p2_n2_page9" class="stacks_out">
+                                    <div id="stacks_in_p2_n2_page9" class="stacks_in com_elixir_stacks_foundry_stack">
+
+
+
+
+                                        <!-- Foundry -->
+
+
+                                    </div>
+                                </div><div id="stacks_out_p2_n3_page9" class="stacks_out">
+                                    <div id="stacks_in_p2_n3_page9" class="stacks_in com_elixir_stacks_foundryTypeface_stack">
+
+
+
+
+
+
+                                        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i," rel="stylesheet">
+
+
+
+                                        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700," rel="stylesheet">
+
+
+
+                                        <link href="https://fonts.googleapis.com/css?family=Asap:400,400i,500,500i,600,600i,700,700i," rel="stylesheet">
+
+
+
+                                        <link href="https://fonts.googleapis.com/css?family=Alfa Slab One:400," rel="stylesheet">
+
+
+
+                                        <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700," rel="stylesheet">
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><div id="stacks_out_165_page9" class="stacks_out" style="overflow: visible;">
+                    <div id="stacks_in_165_page9" class="stacks_in com_elixir_stacks_foundryMotion_stack" style="overflow: visible;">
+
+                        
+
+                        <div class="banner nav_pairing" style="overflow: visible;">
+                        
+                            <div class="foundry-background vegas-container" style="overflow: visible; height: 500px;">
+                                <div class="vegas-slide vegas-transition-fade vegas-transition-fade-in" style="transition: all 2000ms ease 0s;"><div class="vegas-slide-inner vegas-animation-kenburns" style="background-image: url(&quot;files/image_stack_img_167.jpg&quot;); background-color: rgba(0, 0, 0, 0); background-position: center center; background-size: cover; animation-duration: 8000ms;"></div></div><div class="vegas-overlay" style="background-image:url('../../Images/FAQ_1.png');background-size:cover;background-repeat:no-repeat;"></div><div class="vegas-wrapper" style="overflow: visible; padding: 0px;">
+                                    <div class="bkg_inner" style="overflow: visible;">
+                                        <div class="bkg_content" style="overflow: visible;">
+                                            <div class="bkg_content_width container" style="overflow: visible;">
+                                                <div id="stacks_out_26_page9" class="stacks_out" style="overflow: visible;"><div id="stacks_in_26_page9" class="stacks_in " style="overflow: visible;"><div id="stacks_out_p26_n1_page9" class="stacks_out" style="overflow: visible;"></div></div></div><div id="stacks_out_20_page9" class="stacks_out">
+                                                    <div id="stacks_in_20_page9" class="stacks_in com_elixir_stacks_foundryPageHeader_stack">
+
+
+
+
+
+
+                                                        <div class="page-header text-xs-center">
+
+                                                            @*<h3 class="custom  foundry-typeface-three">
+
+                                                                FAQ                              </h3>*@
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="the-images" style="display: none;">
+                            <img src="~/Images/4.1 IMG.png">
+
+                        </div>
+                    </div>
+                </div><div id="stacks_out_457_page9" class="stacks_out" style="overflow: visible;">
+                    <div id="stacks_in_457_page9" class="stacks_in com_elixir_stacks_foundryMargins_stack" style="overflow: visible;">
+
+                        <div class="margins" style="overflow: visible;">
+                            <div id="stacks_out_458_page9" class="stacks_out" style="overflow: visible;">
+                                <div id="stacks_in_458_page9" class="stacks_in com_elixir_stacks_foundryContainer_stack" style="overflow: visible;">
+
+
+                                    <div class="container" style="overflow: visible;">
+
+                                        <div id="stacks_out_459_page9" class="stacks_out" style="overflow: visible;">
+                                            <div id="stacks_in_459_page9" class="stacks_in com_elixir_stacks_foundryReveal_stack" style="overflow: visible;">
+
+
+                                                <div class="foundry_reveal fadeIn" data-wow-duration="1500ms" data-wow-offset="0" data-wow-delay="500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 500ms; animation-name: fadeIn;">
+                                                    <div id="stacks_out_460_page9" class="stacks_out">
+                                                        <div id="stacks_in_460_page9" class="stacks_in com_elixir_stacks_foundryHeader_stack">
+
+                                                            <div class="text-xs-center">
+                                                                <h2 class="  foundry-typeface-three">Frequently Asked Questions</h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="stacks_out_27_page9" class="stacks_out" style="overflow: visible;">
+                    <div id="stacks_in_27_page9" class="stacks_in com_elixir_stacks_foundryBackdrop_stack" style="overflow: visible;">
+
+                        <div class="foundry-backdrop " style="overflow: visible;">
+                            <div class="foundry-backdrop-overlay" style="overflow: visible;">
+                                <div class="foundry-backdrop-content" style="overflow: visible;">
+                                    <div id="stacks_out_28_page9" class="stacks_out" style="overflow: visible;">
+                                        <div id="stacks_in_28_page9" class="stacks_in com_elixir_stacks_foundryMargins_stack" style="overflow: visible;">
+
+                                            <div class="margins" style="overflow: visible;">
+                                                <div id="stacks_out_230_page9" class="stacks_out" style="overflow: visible;">
+                                                    <div id="stacks_in_230_page9" class="stacks_in com_elixir_stacks_foundryContainer_stack" style="overflow: visible;">
+
+
+                                                        <div class="container">
+
+                                                            <div id="stacks_out_305_page9" class="stacks_out">
+                                                                <div id="stacks_in_305_page9" class="stacks_in com_elixir_stacks_foundryAccordion_stack">
+
+                                                                    <div id="stacks_in_305_page9_accordion" class="foundry-accordion-title-bar-custom" aria-multiselectable="true">
+                                                                        <div class="accordion_item unique_stacks_in_277_page9 panel" role="tab" id="heading_stacks_in_277_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_277_page9_collapse" aria-expanded="false" aria-controls="stacks_in_277_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/1 (1).png" /></span><span class="open-item-icon"><img src="~/Images/1 (1).png" /></span> What is Atal Bhujal Yojana (ABHY) ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_277_page9_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_stacks_in_277_page9" aria-expanded="false" style="height: 0px;">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_297_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_297_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                A central sector scheme of the Ministry of Water Resources, River Development and Ganga Rejuvenation to improve ground water management in priority areas in the country through community participation.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_479_page9 panel" role="tab" id="heading_stacks_in_479_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_479_page9_collapse" aria-expanded="false" aria-controls="stacks_in_479_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/2 (1).png" /></span><span class="open-item-icon"><img src="~/Images/2 (1).png" /></span> What is ABHY’s Management Information System (MIS) ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_479_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_479_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_512_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_512_page9" class="stacks_in com_joeworkman_stacks_fontawesome_list_stack">
+                                                                                            <ul class="fa-ul custom   " style="margin-left:0px;"> <li class="custom" style="font-size:14px;">@*<i class="fa-li fa fa-trash"></i>*@The MIS System is a user-friendly information portal designed for people working in the areas of ground water and related fields. It gives easier access to hydrogeological information alongside information about weather, geology and water harvesting structures for water budgeting and water security planning in the long run.</li>  </ul>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_282_page9 panel" role="tab" id="heading_stacks_in_282_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_282_page9_collapse" aria-expanded="false" aria-controls="stacks_in_282_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/3 (1).png" /></span><span class="open-item-icon"><img src="~/Images/3 (1).png" /></span> What is special about ABHY’s MIS System ?
+
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_282_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_282_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_299_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_299_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                The system is inbuilt with special purpose data analytics, which will be used to operationalize and standardize the preparation of Water Security Plans (WSPs), Water Budgeting, Monitoring of Ground Water Levels, Quantity and Quality, and reporting on the progress in implementation of WSPs
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_287_page9 panel" role="tab" id="heading_stacks_in_287_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_287_page9_collapse" aria-expanded="false" aria-controls="stacks_in_287_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/4.png" /></span><span class="open-item-icon"><img src="~/Images/4.png" /></span>  How do I access the services under Water Security Plan (WSP) Module ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_287_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_287_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_301_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_301_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                In order to use the Water Security Plan (WSP) Module, one has to be registered and obtain an access code to activate the account. The “log in | register” form appears the first time you try to open the WSP module. To register one has to provide few personal information included in the system. The access code needed to activate the account will be sent to the provided E-mail address
+
+<p></p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_292_page9 panel" role="tab" id="heading_stacks_in_292_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_292_page9_collapse" aria-expanded="false" aria-controls="stacks_in_292_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/5.png" /></span><span class="open-item-icon"><img src="~/Images/5.png" /></span> I do not have an account with ABHY’s MIS System ?
+
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_292_page9_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_stacks_in_292_page9" aria-expanded="false" style="height: 0px;">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_303_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_303_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                You are welcome to open it now. It is very easy to open an account with ABHY’s MIS System. You can directly go to the “MIS Login” page and click on the register button and provide few personal information included in the system. A link will be sent to your registered email address. You can login with the same credentials in the future.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_327_page9 panel" role="tab" id="heading_stacks_in_327_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_327_page9_collapse" aria-expanded="false" aria-controls="stacks_in_327_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/6.png" /></span><span class="open-item-icon"><img src="~/Images/6.png" /></span>  What if I forget the password of MIS Login ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_327_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_327_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_329_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_329_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                It is always possible to request your access code by using the “Forgotten your password/access code”? Click on “Forgotten your password ?” link to get it back.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_332_page9 panel" role="tab" id="heading_stacks_in_332_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_332_page9_collapse" aria-expanded="false" aria-controls="stacks_in_332_page9_collapse">
+                                                                                    <span class="closed-item-icon"><i class="fa fa-money fa-fw"></i></span><span class="open-item-icon"><i class="fa fa-money fa-fw"></i></span>What is special about the Ground Water Monitoring System of MIS ?
+
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_332_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_332_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_334_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_334_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                The Ground Water Monitoring System of MIS helps in understanding the changing water storage conditions at a particular place. The data collected by monitoring ground water is used to determine its availability, usage and deviation from rainfall with user specific location information.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_337_page9 panel" role="tab" id="heading_stacks_in_337_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_337_page9_collapse" aria-expanded="false" aria-controls="stacks_in_337_page9_collapse">
+                                                                                    <span class="closed-item-icon"><i class="fa fa-comment fa-fw"></i></span><span class="open-item-icon"><i class="fa fa-comment fa-fw"></i></span>What is special about the Water Budgeting System of MIS ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_337_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_337_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_339_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_339_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                ater Budgeting System gives an account of all the water that flows into and out of an area. The main function of water budgeting tool is to estimate the amount of water a landscape will have, based on its recharge and draft capacity. Water budgeting parameters takes into account reference rainfall data, irrigated landscape area, water sources data and, the purpose and functionality of the landscape
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_342_page9 panel" role="tab" id="heading_stacks_in_342_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_342_page9_collapse" aria-expanded="false" aria-controls="stacks_in_342_page9_collapse">
+                                                                                    <span class="closed-item-icon"><i class="fa fa-camera fa-fw"></i></span><span class="open-item-icon"><i class="fa fa-camera fa-fw"></i></span> What is special about the Water Security System of MIS ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_342_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_342_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_344_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_344_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                Water Security System helps in safeguarding adequate quantities of quality water for sustaining livelihoods, human well-being, and socio-economic development. The main purpose of ABHY’s Water Security tool is to estimate the total water budget required for managing adequate quantities of water resources based on its demand and supply.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_347_page9 panel" role="tab" id="heading_stacks_in_347_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_347_page9_collapse" aria-expanded="false" aria-controls="stacks_in_347_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/10.png" /></span><span class="open-item-icon"><img src="~/Images/10.png" /></span> Who is responsible for maintaining the official website of ABHY’s MIS System?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_347_page9_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_stacks_in_347_page9" aria-expanded="false" style="height: 0px;">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_349_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_349_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                Geo Climate Risk Solutions Pvt Ltd is responsible for maintaining the website. It is responsible for design, development, maintenance, upgradation of content as per the requirements of the program.</p>
+</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_352_page9 panel" role="tab" id="heading_stacks_in_352_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_352_page9_collapse" aria-expanded="false" aria-controls="stacks_in_352_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/11.png" /></span><span class="open-item-icon"><img src="~/Images/11.png" /></span>My question is not listed here under FAQ. How can my query be addressed ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_352_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_352_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_354_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_354_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                Feedback option under “Contact” page of the website can be used to send your query or question, the same will be replied and can be added to the FAQ section, within 2 working days.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_357_page9 panel" role="tab" id="heading_stacks_in_357_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_357_page9_collapse" aria-expanded="false" aria-controls="stacks_in_357_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/12.png" /></span><span class="open-item-icon"><img src="~/Images/12.png" /></span> How can I view all content available on this website in one go ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_357_page9_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_stacks_in_357_page9" aria-expanded="false" style="height: 0px;">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_359_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_359_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+                                                                                                The Site map page of the website lists all content of the website in one go in index format and this ‘Site Map’ link is available at top right corner of every page of the website
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_362_page9 panel" role="tab" id="heading_stacks_in_362_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_362_page9_collapse" aria-expanded="false" aria-controls="stacks_in_362_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/13.png" /></span><span class="open-item-icon"><img src="~/Images/13.png" /></span> How can I register my complaint/grievance under the MIS System ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_362_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_362_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_364_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_364_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                In order to register a complaint/grievance you have to provide some information like the subject, grievance type, grievance addressed to etc. with a supported document. This complaint will be further directed to the concerned department for a quick review and the necessary remedies will be taken.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_367_page9 panel" role="tab" id="heading_stacks_in_367_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_367_page9_collapse" aria-expanded="false" aria-controls="stacks_in_367_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/14.png" /></span><span class="open-item-icon"><img src="~/Images/14.png" /></span> What is the significance of the “Dashboard Module” ?
+
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_367_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_367_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_369_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_369_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                The “Dashboard Module” of ABHY is a complete suite of state specific water information. It provides a platform where users can get information about the annual water budget, annual water availability/recharge, annual water draft, annual gap assessment etc. of all the states at one glance. This data not only supports enhanced decision making but also identifies the gaps between states in managing their water resources.
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_372_page9 panel" role="tab" id="heading_stacks_in_372_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_372_page9_collapse" aria-expanded="false" aria-controls="stacks_in_372_page9_collapse">
+                                                                                    <span class="closed-item-icon"><img src="~/Images/15.png" /></span><span class="open-item-icon"><img src="~/Images/15.png" /></span>What can I use the ABHY Web Portal for?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_372_page9_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_stacks_in_372_page9" aria-expanded="false" style="height: 0px;">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_374_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_374_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+
+                                                                                                You can use the Portal for a range of different tasks including:
+
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                •	Information regarding tenders announcements, awards and related information
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                •	Documents, manuals, advisory, circulars and other external resources
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                •	Submitting complaints/grievances regarding the project
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                •	Registration for any training/workshop, organised/supported by ABHY
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                •	Contact details of all the implementing agencies and departments
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                •	Monitoring Ground Water Levels, Quality and Quantity
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                •	Preparing Water Budgets and Water Security Plans (WSPs)
+                                                                                            </p>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="accordion_item unique_stacks_in_377_page9 panel" role="tab" id="heading_stacks_in_377_page9">
+                                                                            <h4 class="accordion_title">
+                                                                                <a class="accordion_toggle collapsed" data-parent="#stacks_in_305_page9_accordion" data-toggle="collapse" href="#stacks_in_377_page9_collapse" aria-expanded="false" aria-controls="stacks_in_377_page9_collapse">
+                                                                                    <span class="closed-item-icon"><i class="fa fa-download "></i></span><span class="open-item-icon"><i class="fa fa-download "></i></span> Can I download the Water Security Plan (WSP) Report ?
+                                                                                </a>
+                                                                            </h4>
+                                                                            <div id="stacks_in_377_page9_collapse" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="heading_stacks_in_377_page9" aria-expanded="false">
+                                                                                <div class="accordion_content">
+                                                                                    <div id="stacks_out_379_page9" class="stacks_out">
+                                                                                        <div id="stacks_in_379_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                                                            <p class="theme_style  theme_style  text-xs-left ">
+
+                                                                                                You can download the Water Security Plan (WSP) Report once you have provided all the information in the Surface Water Availability, Ground Water Recharge, Water Draft Components. The system will direct you to the Balance page where all your information is stored in the table and the graph, you can go back anytime and change the inputs that you have provided and further click on the download option to get a print of the table of water budgeting parameters and a graph reflecting the same information
+
+                                                                                            </p>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="stacks_out_468_page9" class="stacks_out" style="overflow: visible;">
+                    <div id="stacks_in_468_page9" class="stacks_in com_elixir_stacks_foundryMargins_stack" style="overflow: visible;">
+
+                        <div class="margins" style="overflow: visible;">
+                            <div id="stacks_out_469_page9" class="stacks_out" style="overflow: visible;">
+                                <div id="stacks_in_469_page9" class="stacks_in com_elixir_stacks_foundryContainer_stack" style="overflow: visible;">
+
+
+                                    <div class="container" style="overflow: visible;">
+
+                                        <div id="stacks_out_176_page9" class="stacks_out" style="overflow: visible;">
+                                            <div id="stacks_in_176_page9" class="stacks_in com_elixir_stacks_foundryReveal_stack" style="overflow: visible;">
+
+
+                                                <div class="foundry_reveal fadeIn" data-wow-duration="1500ms" data-wow-offset="0" data-wow-delay="1000ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 1000ms; animation-name: fadeIn;">
+                                                    <div id="stacks_out_173_page9" class="stacks_out">
+                                                        <div id="stacks_in_173_page9" class="stacks_in com_elixir_stacks_foundryParagraph_stack">
+
+                                                            <p class="theme_style lead theme_style lead text-xs-center foundry-typeface-three">
+
+                                                                Have another question? <a href="~/Contact/FeedBack" target="_blank">Please send it by the feedback page.</a>
+
+                                                            </p>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div id="stacks_out_478_page9" class="stacks_out"><div id="stacks_in_478_page9" class="stacks_in "></div></div>
+            </div>
+        </div>
+        <!-- GO CMS UNLIMITED -->
+ 
+    </div>
+
+    <script>
+		// Initializes dropdowns
+		$('.dropdown-toggle').dropdown();
+
+		// Initializes popovers
+		$(function () {
+		  $('[data-toggle="popover"]').popover()
+		});
+    </script>
+
+    <!-- Foundry v1.0.1 -->
+</body>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(7)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(7)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(7) > ul.dropdown > li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(7) > ul.dropdown > li:nth-child(5)").siblings().removeClass('active');
+
+</script>

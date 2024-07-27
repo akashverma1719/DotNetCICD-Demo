@@ -1,0 +1,175 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atal Jal</title>
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/nav-style.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/global.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/font.css">
+    <link href="~/Content/css/abhycss.css" rel="stylesheet" />
+    <link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,700i,900&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <!-- #header top div -->
+    <div class="clearfix">
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            @*<li>
+                                    <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                                    <span style="color:#fff;">:@Session["UserName"]</span>
+                                </li>
+                                <li>
+
+                                    <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                                </li>*@
+
+                        </ul>
+                    </div>
+                    <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/WspNew/WSP_GWM_HOME">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                                    </span>
+                                    <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="~/Wsp_new/WSPHOME">
+                                    <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                                    <label>Grievance Management <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+
+                            <li>
+                                <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                <label>New Grievance Registration</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </header>
+    </div>
+
+
+
+    <div class="content-wrapper p-0 container-fluid">
+        @RenderBody()
+    </div>
+    <footer>
+    </footer>
+
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="~/DashboardStyles/js/swiper.min.js"></script>
+    <script src="~/DashboardStyles/js/custom-script.js"></script>
+
+    <script src="~/DashboardStyles/js/nav-script.js"></script>
+
+
+
+</body>
+
+</html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Grm_layout</title>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>
+<script>
+    $(".loader").show();
+    $(document).ready(function () {
+
+            var currentUrl = window.location.href;
+            const myArray = currentUrl.split("/");
+            let coun = myArray.length - 1;
+            if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
+                GetCunCurrentUser();
+            }
+    });
+
+        function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+
+                    if (data == "False") {
+
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                    $(".loader").hide();
+                }
+            });
+        }
+</script>

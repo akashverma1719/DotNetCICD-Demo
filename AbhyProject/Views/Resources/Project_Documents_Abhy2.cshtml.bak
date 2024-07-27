@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Project_Documents_Abhy2";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title> Audio Visual | Atal Jal</title>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .list-group-item {
+        border: 1px solid rgba(0,0,0,125);
+        color: #ffffff !important;
+        border-color: #eee;
+    }
+
+    ul.Etender {
+        margin-top: 20px;
+    }
+
+        ul.Etender > li {
+            padding: 5px 15px;
+            width: 50%;
+        }
+</style>
+<!--Heading-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Audio Visual</div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top:20px;">
+
+</div>
+<!--First line End-->
+<div class="container">
+    <!--List row Started-->
+    <div class="row">
+
+        <video controls="controls" width="50%">
+            <source src="https://ataljal.in/Ataljalimages/Video_2021-09-27_3.48.43_PM.mp4" type="video/mp4" />
+        </video>
+
+    </div>
+    <!--List row End-->
+</div>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").siblings().removeClass('active');
+
+</script>
+

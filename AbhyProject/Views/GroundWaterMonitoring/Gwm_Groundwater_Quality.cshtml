@@ -1,0 +1,819 @@
+﻿
+@{
+    ViewBag.Title = "Gwm_Groundwater_Quality";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/Gwm_css.css" rel="stylesheet" />
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/css/Js_gwm.js"></script>
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<title>Ground Water Quality</title>
+<div class="clearfix mainclearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+                        <li>
+                            <span>
+                                <a href="http://ataljal.mowr.gov.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                        @if (Session["UserName"] != null)
+                        {
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                        }
+
+                    </li>
+                    <li>
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-9" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                            </span>
+                            <label>Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/GroundWaterMonitoring/Gwm_Home">
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                            <label>GWM Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/GroundWaterMonitoring/Gwm_Home">
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                            <label>Ground Water Monitoring <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <span><img src="~/Content/WspImages/Water Budgeting 2.png" title="GWB"></span>
+                        <label>Ground Water Quality</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul id="myTabs" class="nav nav-pills nav-justified">
+                    <li class="active"><a href="javascript:;"><span><img src="~/Content/WspImages/balance new 1.png" /></span>Ground Water Quality</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="col-md-12 col-sm-12">
+        <div class="clearfix" id="Select_dist_level">
+            <ul class="Select_option selectbackhome text-center">
+                <li>
+                    <label id="lblstate">State:</label>
+                    <span id="spnstate">@Session["gstate"]</span>
+                </li>
+                <li>
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label id="lbldistrict">District:</label>
+                    <span id="spndistrict">@Session["gdist"]</span>
+                </li>
+                <li>
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Block:</label>
+                    <span>@Session["gblock"] </span>
+                </li>
+                <li>
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Gram panchayat:</label>
+                    <span>@Session["ggram"]</span>
+                </li>
+            </ul>
+            <ul class="selectbackhome" style="float:right;">
+                <li>
+                    <a href="~/GroundWaterMonitoring/Gwm_Home" class="btn btn-success">
+                        Back To GWM Home
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div role="tabpanel" class="tab-pane fade in active" id="Events">
+            <div class="container-fluid">
+                <div class="clearfix">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="panel-group" id="accordion"
+                             style="padding:0px;">
+                            <!-- Start Accordion 1 -->
+                            <div class="panel panel-default">
+                                <!-- Toggle Heading -->
+                                <!-- Toggle Content -->
+                                <div id="collapse-one"
+                                     class="panel-collapse in">
+                                    <div class="panel-body">
+
+                                        <div class="tbl-responsive" style="overflow-x:scroll;overflow-y:scroll;height:500px; font-size:12px;">
+                                            <table id="TblData" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                                                <thead>
+                                                    <tr class="info">
+                                                        <th rowspan="3">S. No.</th>
+                                                        <th rowspan="3">Constituents</th>
+                                                        <th rowspan="3">2019 Value </th>
+
+                                                        <th colspan="2" class="text-center">BIS standard</th>
+                                                        <th rowspan="3">Analysis</th>
+                                                        <th rowspan="3">Suitable/Unsuitable for Drinking</th>
+
+                                                    </tr>
+                                                    <tr class="info">
+                                                        <th class="text-center">Acceptable Limit</th>
+                                                        <th class="text-center">Permissible Limit</th>
+
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody id="">
+                                                    <tr>
+                                                        <th colspan="5">Physical Parameters</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Color </td>
+                                                        <td> </td>
+                                                        <td>5</td>
+                                                        <td>15</td>
+                                                        <td>Field</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Odour </td>
+                                                        <td></td>
+                                                        <td>Agreeable </td>
+                                                        <td>Agreeable</td>
+                                                        <td>Field</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Taste </td>
+                                                        <td></td>
+                                                        <td>Agreeable </td>
+                                                        <td>Agreeable</td>
+                                                        <td>Field</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Turbidity(NTU) </td>
+                                                        <td></td>
+                                                        <td>1 </td>
+                                                        <td>5</td>
+                                                        <td>Field</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>pH Value</td>
+                                                        <td id="ph"></td>
+                                                        <td>6.5 – 8.5 </td>
+                                                        <td>No relaxation</td>
+                                                        <td>Field</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="5">Chemical constituents to assess the potability of water for drinking & domestic purpose</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Electrical Conductivity (EC)</td>
+                                                        <td id="ec"></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Field</td>
+                                                        <td id="ec_succusss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Total Dissolved Solids (TDS) (mg/Litre)</td>
+                                                        <td id="tds"></td>
+                                                        <td>500</td>
+                                                        <td>2000</td>
+                                                        <td>Computed</td>
+                                                        <td id="tds_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td>Total Hardness (TH) (mg/Litre)</td>
+                                                        <td id="th"></td>
+                                                        <td>200</td>
+                                                        <td>600</td>
+                                                        <td>Computed</td>
+                                                        <td id="th_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td>Calcium (mg/Litre)</td>
+                                                        <td id="ca"></td>
+                                                        <td>75</td>
+                                                        <td>200</td>
+                                                        <td>Lab</td>
+                                                        <td id="calcium_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td>Magnesium (mg/litre)</td>
+                                                        <td id="mg"></td>
+                                                        <td>30</td>
+                                                        <td>100</td>
+                                                        <td>Lab</td>
+                                                        <td id="Magnesium_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>11</td>
+                                                        <td>Sodium (mg/Litre)</td>
+                                                        <td id="na"></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Lab</td>
+                                                        <td id="Sodium_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12</td>
+                                                        <td>Potassium (mg/Litre)</td>
+                                                        <td id="k"></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Lab</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>13</td>
+                                                        <td>
+                                                            Carbonate
+                                                            (Total alkalinity as Calcium Carbonate) mg/Litre
+                                                        </td>
+                                                        <td id="carbonate"></td>
+                                                        <td>200</td>
+                                                        <td>600</td>
+                                                        <td>Lab</td>
+                                                        <td id="Carbonate_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>
+                                                            Bicarbonate	mg/Litre
+                                                        </td>
+                                                        <td id="bicarbonate"></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Lab</td>
+                                                        <td id=""></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>15</td>
+                                                        <td>
+                                                            Chloride mg/Litre
+                                                        </td>
+                                                        <td id="chloride"></td>
+                                                        <td>250</td>
+                                                        <td>1000</td>
+                                                        <td>Lab</td>
+                                                        <td id="Chloride_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>16</td>
+                                                        <td>
+                                                            Sulphate mg/Litre
+                                                        </td>
+                                                        <td id="sulphate"></td>
+                                                        <td>200</td>
+                                                        <td>400</td>
+                                                        <td>Lab</td>
+                                                        <td id="sulphate_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>17</td>
+                                                        <td>
+                                                            Fluoride mg/litre
+                                                        </td>
+                                                        <td id="fluoride"></td>
+                                                        <td>1</td>
+                                                        <td>1.5</td>
+                                                        <td>Lab</td>
+                                                        <td id="fluoride_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>18</td>
+                                                        <td>
+                                                            Nitrate mg/Litre
+                                                        </td>
+                                                        <td id="nitrate"></td>
+                                                        <td>45</td>
+                                                        <td>No relaxation</td>
+                                                        <td>Lab</td>
+                                                        <td id="nitrate_succuss"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th colspan="7">
+                                                            Other Parameters (As per requirement)
+                                                        </th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>19</td>
+                                                        <td>
+                                                            Trace elements (Arsenic, etc.)
+                                                        </td>
+                                                        <td id=""></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>20</td>
+                                                        <td>
+                                                            Pesticides
+                                                        </td>
+                                                        <td id="pesticides"></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>21</td>
+                                                        <td>
+                                                            Fertilizers
+                                                        </td>
+                                                        <td id=""></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>22</td>
+                                                        <td>
+                                                            Organic constituents
+                                                        </td>
+                                                        <td id=""></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>23</td>
+                                                        <td>
+                                                            Others
+                                                        </td>
+                                                        <td id=""></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <!-- End Accordion 1 -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <p class="text-center">Note: The above data is available from CGWB. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+                <div class="col-md-12 text-center">
+                    <a href="~/GroundWaterMonitoring/Ground_Water_Monitoring_Report" class="btn btn-danger"> Back</a>
+                    <button class="btn btn-success">Save</button>
+                    <a href="~/GroundWaterMonitoring/Ground_Water_Quality_Report" class="btn btn-primary">Result</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Ground Water Quality</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        QualityDetails();
+    });
+    function QualityDetails() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GroundWaterMonitoring/Gwm_Groundwater_Quality_geting',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                if (data.length != 0) {
+                    
+
+                    var ph1 = 0, tds1 = 0, ec1 = 0, th1 = 0, ca1 = 0, mg1 = 0, k1 = 0, carbonate1 = 0, chloride1 = 0, fluoride1 = 0, nitrate1 = 0;
+                    //tds
+                    if (data[0].tds != null && data[0].tds != '') {
+
+                        tds1 = tds1 + parseFloat((data[0].tds));
+                    }
+                    if (tds1 >= 500 && tds1 <= 20000) {
+                        $('#tds_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#tds_succuss').append("Un Suitable")
+
+                    }
+                    // th
+
+                    if (data[0].th != null && data[0].th != '') {
+
+                        th1 = th1 + parseFloat((data[0].th));
+                    }
+                    if (th1 >= 200 && th1 <= 600) {
+                        $('#th_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#th_succuss').append("Un Suitable")
+
+                    }
+                    //calcium_succuss
+
+                    if (data[0].ca != null && data[0].ca != '') {
+
+                        ca1 = ca1 + parseFloat((data[0].ca));
+                    }
+                    if (ca1 >= 75 && th1 <= 200) {
+                        $('#calcium_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#calcium_succuss').append("Un Suitable")
+
+                    }
+                    //Magnesium_succuss
+                    if (data[0].mg != null && data[0].mg != '') {
+
+                        mg1 = mg1 + parseFloat((data[0].mg));
+                    }
+                    if (ca1 >= 30 && th1 <= 100) {
+                        $('#Magnesium_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#Magnesium_succuss').append("Un Suitable")
+                    }
+                    //Sodium  succuss
+                    //Carbonate  succuss
+                    if (data[0].carbonate != null && data[0].carbonate != '') {
+
+                        carbonate1 = carbonate1 + parseFloat((data[0].carbonate));
+                    }
+                    if (carbonate1 >= 200 && carbonate1 <= 600) {
+                        $('#Carbonate_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#Carbonate_succuss').append("Un Suitable")
+                    }
+                    //Chloride_succuss
+                    if (data[0].chloride != null && data[0].chloride != '') {
+
+                        chloride1 = chloride1 + parseFloat((data[0].chloride));
+                    }
+                    if (chloride1 >= 200 && chloride1 <= 600) {
+                        $('#Chloride_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#Chloride_succuss').append("Un Suitable")
+                    }
+
+                    //Sulphate  succusss
+                    if (data[0].chloride != null && data[0].chloride != '') {
+
+                        chloride1 = chloride1 + parseFloat((data[0].chloride));
+                    }
+                    if (chloride1 >= 200 && chloride1 <= 600) {
+                        $('#sulphate_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#sulphate_succuss').append("Un Suitable")
+                    }
+                    //fluoride_succuss
+                    if (data[0].fluoride != null && data[0].fluoride != '') {
+
+                        fluoride1 = fluoride1 + parseFloat((data[0].fluoride));
+                    }
+                    if (fluoride1 >= 1 && fluoride1 <= 1.5) {
+                        $('#fluoride_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#fluoride_succuss').append("Un Suitable")
+                    }
+                    //nitrate_succuss
+                    if (data[0].nitrate != null && data[0].nitrate != '') {
+
+                        nitrate1 = nitrate1 + parseFloat((data[0].nitrate));
+                    }
+                    if (nitrate1 >= 45 && nitrate1 <= 45) {
+                        $('#nitrate_succuss').append("Suitable")
+                    }
+                    else {
+                        $('#nitrate_succuss').append("Un Suitable")
+                    }
+
+                    if (data[0].ph != null) {
+                        if (data[0].ph == "ND") {
+                            $('#ph').text(data[0].ph);
+                        }
+                        else
+                            $('#ph').text(parseFloat(data[0].ph).toFixed(2));
+                    }
+                    if (data[0].tds != null) {
+                        if (data[0].tds == "ND") {
+                            $('#tds').text(data[0].tds);
+                        }
+                        else
+                            $('#tds').text(parseFloat(data[0].tds).toFixed(2));
+                    }
+                    if (data[0].ec != null) {
+                        if (data[0].ec == "ND") {
+                            $('#ec').text(data[0].ec);
+                        }
+                        else
+                            $('#ec').text(parseFloat(data[0].ec).toFixed(2));
+                    }
+                    if (data[0].th != null) {
+                        if (data[0].th == "ND") {
+                            $('#th').text(data[0].th);
+                        }
+                        else
+                            $('#th').text(parseFloat(data[0].th).toFixed(2));
+                    }
+                    if (data[0].tot_alkalinity != null) {
+                        if (data[0].tot_alkalinity == "ND") {
+                            $('#tot_alkalinity').text(data[0].tot_alkalinity);
+                        }
+                        else
+                            $('#tot_alkalinity').text(parseFloat(data[0].tot_alkalinity).toFixed(2));
+                    }
+                    if (data[0].ca != null) {
+                        if (data[0].ca == "ND") {
+                            $('#ca').text(data[0].ca);
+                        }
+                        else
+                            $('#ca').text(parseFloat(data[0].ca).toFixed(2));
+                    }
+                    if (data[0].mg != null) {
+                        if (data[0].mg == "ND") {
+                            $('#mg').text(data[0].mg);
+                        }
+                        else
+                            $('#mg').text(parseFloat(data[0].mg).toFixed(2));
+                    }
+                    if (data[0].na != null) {
+                        if (data[0].na == "ND") {
+                            $('#na').text(data[0].na);
+                        }
+                        $('#na').text(parseFloat(data[0].na).toFixed(2));
+                    }
+                    if (data[0].k != null) {
+                        if (data[0].k == "ND") {
+                            $('#k').text(data[0].k);
+                        }
+                        else
+                            $('#k').text(parseFloat(data[0].k).toFixed(2));
+                    }
+                    if (data[0].fe != null) {
+                        if (data[0].fe == "ND") {
+                            $('#fe').text(data[0].fe);
+                        }
+                        $('#fe').text(parseFloat(data[0].fe).toFixed(2));
+                    }
+                    if (data[0].carbonate != null) {
+                        if (data[0].carbonate == "ND") {
+                            $('#carbonate').text(data[0].carbonate);
+                        }
+                        else
+                            $('#carbonate').text(parseFloat(data[0].carbonate).toFixed(2));
+                    }
+                    if (data[0].bicarbonate != null) {
+                        if (data[0].bicarbonate == "ND") {
+                            $('#bicarbonate').text(data[0].bicarbonate);
+                        }
+                        $('#bicarbonate').text(parseFloat(data[0].bicarbonate).toFixed(2));
+                    }
+                    if (data[0].chloride != null) {
+                        if (data[0].chloride == "ND") {
+                            $('#chloride').text(data[0].chloride);
+                        }
+                        else
+                            $('#chloride').text(parseFloat(data[0].chloride).toFixed(2));
+                    }
+                    if (data[0].sulphate != null) {
+                        if (data[0].sulphate == "ND") {
+                            $('#sulphate').text(data[0].sulphate);
+                        }
+                        else
+                            $('#sulphate').text(parseFloat(data[0].sulphate).toFixed(2));
+                    }
+                    if (data[0].nitrate != null) {
+                        if (data[0].nitrate == "ND") {
+                            $('#nitrate').text(data[0].nitrate);
+                        }
+                        else
+                            $('#nitrate').text(parseFloat(data[0].nitrate).toFixed(2));
+                    }
+                    if (data[0].fluoride != null) {
+                        if (data[0].fluoride == "ND") {
+                            $('#fluoride').text(data[0].fluoride);
+                        }
+                        else
+                            $('#fluoride').text(parseFloat(data[0].fluoride).toFixed(2));
+                    }
+                    if (data[0].sar != null) {
+                        if (data[0].sar == "ND") {
+                            $('#sar').text(data[0].sar);
+                        }
+                        else
+                            $('#sar').text(parseFloat(data[0].sar).toFixed(2));
+                    }
+
+                    if (data[0].rsc != null) {
+                        if (data[0].rsc == "ND") {
+                            $('#rsc').text(data[0].rsc);
+                        }
+                        else
+                            $('#rsc').text(parseFloat(data[0].rsc).toFixed(2));
+                    }
+
+                    if (data[0].cd != null) {
+                        if (data[0].cd == "ND") {
+                            $('#cd').text(data[0].cd);
+                        }
+                        else
+                            $('#cd').text(parseFloat(data[0].cd).toFixed(2));
+                    }
+
+                    if (data[0].cn != null) {
+                        if (data[0].cn == "ND") {
+                            $('#cn').text(data[0].cd);
+                        }
+                        else
+                            $('#cn').text(parseFloat(data[0].cn).toFixed(2));
+                    }
+                    if (data[0].pb != null) {
+                        if (data[0].pb == "ND") {
+                            $('#pb').text(data[0].pb);
+                        }
+                        else
+                            $('#pb').text(parseFloat(data[0].pb).toFixed(2));
+                    }
+                    if (data[0].hg != null) {
+                        if (data[0].hg == "ND") {
+                            $('#hg').text(data[0].hg);
+                        }
+                        else
+                            $('#hg').text(parseFloat(data[0].hg).toFixed(2));
+                    }
+                    if (data[0].mo != null) {
+                        if (data[0].mo == "ND") {
+                            $('#mo').text(data[0].mo);
+                        }
+                        else
+                            $('#mo').text(parseFloat(data[0].mo).toFixed(2));
+                    }
+                    if (data[0].ni != null) {
+                        if (data[0].ni == "ND") {
+                            $('#ni').text(data[0].ni);
+                        }
+                        else
+                            $('#ni').text(parseFloat(data[0].ni).toFixed(2));
+                    }
+                    if (data[0].pesticides != null) {
+                        if (data[0].pesticides == "ND") {
+                            $('#pesticides').text(data[0].pesticides);
+                        }
+                        else
+                            $('#pesticides').text(parseFloat(data[0].pesticides).toFixed(2));
+                    }
+                    if (data[0].biphenyls != null) {
+                        if (data[0].biphenyls == "ND") {
+                            $('#biphenyls').text(data[0].biphenyls);
+                        }
+                        else
+                            $('#biphenyls').text(parseFloat(data[0].biphenyls).toFixed(2));
+                    }
+                    if (data[0].pah != null) {
+                        if (data[0].pah == "ND") {
+                            $('#pah').text(data[0].pah);
+                        }
+                        else
+                            $('#pah').text(parseFloat(data[0].pah).toFixed(2));
+                    }
+                    if (data[0].total_arsenic != null) {
+                        if (data[0].total_arsenic == "ND") {
+                            $('#total_arsenic').text(data[0].total_arsenic);
+                        }
+                        else
+                            $('#total_arsenic').text(parseFloat(data[0].total_arsenic).toFixed(2));
+                    }
+                    if (data[0].cr != null) {
+                        if (data[0].cr == "ND") {
+                            $('#cr').text(data[0].cr);
+                        }
+                        else
+                            $('#cr').text(parseFloat(data[0].cr).toFixed(2));
+                    }
+                    if (data[0].bromoform != null) {
+                        if (data[0].bromoform == "ND") {
+                            $('#bromoform').text(data[0].bromoform);
+                        }
+                        else
+                            $('#bromoform').text(parseFloat(data[0].mo).toFixed(2));
+                    }
+                    if (data[0].dibromochloromethane != null) {
+                        if (data[0].dibromochloromethane == "ND") {
+                            $('#dibromochloromethane').text(data[0].dibromochloromethane);
+                        }
+                        else
+                            $('#dibromochloromethane').text(parseFloat(data[0].dibromochloromethane).toFixed(2));
+                    }
+                    if (data[0].bromodichloromethane != null) {
+                        if (data[0].bromodichloromethane == "ND") {
+                            $('#bromodichloromethane').text(data[0].bromodichloromethane);
+                        }
+                        else
+                            $('#bromodichloromethane').text(parseFloat(data[0].bromodichloromethane).toFixed(2));
+                    }
+                    if (data[0].chloroform != null) {
+                        if (data[0].chloroform == "ND") {
+                            $('#chloroform').text(data[0].chloroform);
+                        }
+                        else
+                            $('#chloroform').text(parseFloat(data[0].chloroform).toFixed(2));
+                    }
+                }
+
+                else {
+
+                    alert("No Data for this State,District,Block and Gram panychayat")
+                }
+            }
+        });
+    }
+
+</script>

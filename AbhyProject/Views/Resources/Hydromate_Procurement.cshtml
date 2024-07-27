@@ -1,0 +1,367 @@
+﻿
+@{
+    ViewBag.Title = "Hydromate_Procurement";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>Hydromet Procurement</title>
+<style>
+    .hpanel.hgreen .panel-body {
+        border-top: 2px solid #62cb31;
+    }
+
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    @@media (min-width: 768px) {
+        .col-md-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid #e4e5e7;
+    }
+
+    .tab-content {
+        border: 1px solid #cacaca;
+        border-top: none;
+        padding: 12px 16px;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, .h7, h1, h2, h3, h4, h5, h6 {
+        line-height: 1.4;
+    }
+
+    .tab-content p {
+        margin-bottom: 1rem;
+        margin-top: 0;
+    }
+
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    ul#myTabs > li.active::after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -15px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    ul#myTabs > li {
+        background-color: #3A99ED;
+        padding: 0px;
+    }
+
+        ul#myTabs > li > a {
+            color: #fff;
+        }
+
+        ul#myTabs > li.active > a,
+        ul#myTabs > li.active > a:focus,
+        ul#myTabs > li.active > a:hover {
+            color: #fff !important;
+            background-color: #2E578C !important;
+        }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        text-decoration: none;
+        background-color: #6FB11D;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        line-height: 2.4;
+    }
+</style>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4)").addClass("active");
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4)").siblings().removeClass('active');
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(4) ").addClass("active");
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(4) ").siblings().removeClass('active');
+
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Hydromet Procurement</div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div id="l" class="hpanel hgreen" style="min-height: 600px;">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                            <li class="active">
+                                <a href="javascript:;" data-target="#Commentary" data-toggle="tab">
+                                    Hydrological Network
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-target="#Videos" data-toggle="tab">
+                                    Meteorological Network
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-target="#Events" data-toggle="tab">
+                                    Site Selection
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-target="#Music" data-toggle="tab">
+                                    Manual
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-target="#Songs" data-toggle="tab">
+                                    Videos and Webinars
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                                <h3>Hydrological Network Design</h3>
+                                <p>
+                                    <strong>Minimum Hydrological Stations Density as per WMO</strong>
+                                </p>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="2"><strong>Type of Region</strong></td>
+                                            <td colspan="2"><strong>Measurement Variable</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Density for Minimum Network</strong></td>
+                                            <td><strong>Tolerable Density in Difficult Conditions</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Flat regions of temperate Mediterranean and tropical zones.</td>
+                                            <td>1000-2500</td>
+                                            <td>3000-10000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mountainous regions of temperate, Mediterranean and tropical zones.</td>
+                                            <td>300-1000</td>
+                                            <td>1000-5000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Small mountainous islands with very irregular precipitations very dense hydrographic network.</td>
+                                            <td>140-300</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Arid and polar zones</td>
+                                            <td>5000-20000</td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                The detailed Network Design criteria and guidelines are available in the Network Design Manual [<a href="#" target="_blank">Weblink</a> / <a href="#" target="_blank">PDF</a>]
+                                <p></p>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="Videos">
+                                <h3>Meteorological Network</h3>
+                                <p>
+                                    <strong>Minimum Meteorological Stations Density as per WMO</strong>
+                                </p>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="2"><strong>Physiographic unit</strong></td>
+                                            <td colspan="2"><strong>Minimum density per station (area in km2 per station)</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Non-recording</strong></td>
+                                            <td><strong>Recording</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coastal</td>
+                                            <td>900</td>
+                                            <td>9,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mountainous</td>
+                                            <td>250</td>
+                                            <td>2,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Interior Plains</td>
+                                            <td>575</td>
+                                            <td>5,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hilly/undulating</td>
+                                            <td>575</td>
+                                            <td>5,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Small islands</td>
+                                            <td>25</td>
+                                            <td>250</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Urban areas</td>
+                                            <td></td>
+                                            <td>10-20</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Polar/arid</td>
+                                            <td>10,000</td>
+                                            <td>100,000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                The detailed Network Design criteria and guidelines are available in the Network Design Manual [<a href="" target="_blank">Weblink</a> / <a href="" target="_blank">PDF</a>]
+                                <p></p>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="Events">
+                                <h3>Site Selection</h3>
+
+                                <div class="box" style="width: 90%; padding-left: 150px; margin-top: 100px; margin-bottom: 100px;">
+                                    <div class="row">
+
+                                        <a class="col-md-3 btn btn-primary btn-lg" href="#">
+                                            <span class="fa fa-tint" aria-hidden="true"></span>
+                                            <br>
+                                            Rainfall
+                                        </a>
+                                        <div class="col-md-1">&nbsp;</div>
+
+                                        <a class="col-md-3 btn btn-primary btn-lg" href="#">
+                                            <span class="fa fa-bolt" aria-hidden="true"></span>
+                                            <br>
+                                            Automatic Weather
+                                        </a>
+                                        <div class="col-md-1">&nbsp;</div>
+
+
+                                        <a class="col-md-3 btn btn-primary btn-lg" href="#">
+                                            <span class="fa fa-globe" aria-hidden="true"></span>
+                                            <br>
+                                            Water Level
+                                        </a>
+                                        <div class="col-md-1">&nbsp;</div>
+
+                                    </div>
+                                    <div class="row">&nbsp;</div>
+                                    <div class="row">
+
+                                        <a class="col-md-3 btn btn-primary btn-lg" href="#">
+                                            <span class="fa fa-sign-out" aria-hidden="true"></span>
+                                            <br>
+                                            Discharge
+                                        </a>
+                                        <div class="col-md-1">&nbsp;</div>
+
+                                        <a class="col-md-3 btn btn-primary btn-lg" href="#">
+                                            <span class="fa fa-check-square-o" aria-hidden="true"></span>
+                                            <br>
+                                            Water Quality
+                                        </a>
+                                        <div class="col-md-1">&nbsp;</div>
+
+                                        <a class="col-md-3 btn btn-primary btn-lg" href="#">
+                                            <span class="fa fa-gg-circle" aria-hidden="true"></span>
+                                            <br>
+                                            Ground Water
+                                        </a>
+                                        <div class="col-md-1">&nbsp;</div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="Music">
+                                <h3>Manual</h3>
+                                <a href="Manual/Hydromet_Manual.pdf" target="_blank">Hydromet Manual</a>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="Songs">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><b>Videos and Webinars</b></div>
+                                            <div class="panel-body">
+                                                <ul class="fa-ul">
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>The RDI River Pro ADCP: Combining cutting-edge technology with ease-of-use for the ultimate discharge measurement solution.</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>How to setup and carry out a StreamPro ADCP gauging with a NiwaTraveller, including MB tests and examples</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>Advances in Non-Contacting Flow Measurement Technology in Open Channels</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>Remote Data Telemetry and Data Hosting, featuring In-Situ's Tube &amp; Cube Transmitters with Hydro Vu.</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>This is a recorded webinar from November 19, 2015 titled: Innovations in Multi Parameter Water Quality Monitoring</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><b>Downloads (PDF)</b></div>
+                                            <div class="panel-body">
+                                                <ul class="fa-ul">
+                                                    <li><a class="prodmenulink" href="#" target="_blank"><span class="fa-li fa fa-youtube-play"></span>Hydrological Network Design Criteria</a></li>
+                                                    <li><a class="prodmenulink" href="#" target="_blank"><span class="fa-li fa fa-youtube-play"></span>Hydrological Network Design Guidelines</a></li>
+                                                </ul>
+                                                <i>*May take several minutes to download, depending on your internet connection speed.</i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><b>Other Reference Material</b></div>
+                                            <div class="panel-body">
+                                                <ul class="fa-ul">
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>The RDI River Pro ADCP: Combining cutting-edge technology with ease-of-use for the ultimate discharge measurement solution.</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>How to setup and carry out a StreamPro ADCP gauging with a NiwaTraveller, including MB tests and examples</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>Advances in Non-Contacting Flow Measurement Technology in Open Channels</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>Remote Data Telemetry and Data Hosting, featuring In-Situ's Tube &amp; Cube Transmitters with Hydro Vu.</a></li>
+                                                    <li><a class="prodmenulink" href="#"><span class="fa-li fa fa-youtube-play"></span>This is a recorded webinar from November 19, 2015 titled: Innovations in Multi Parameter Water Quality Monitoring</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

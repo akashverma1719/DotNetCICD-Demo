@@ -1,0 +1,619 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Awp_form";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<style>
+    .grid-css {
+        display: grid;
+        grid-template-columns: repeat(4, 4fr );
+        column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .pl-0 {
+        padding-left: 0;
+    }
+
+    .pr-0 {
+        padding-right: 0
+    }
+
+    .nav-tabs > li > a {
+        padding: 14px 0px;
+    }
+    thead {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+</style>
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/Pip_js.js"></script>
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-primary padding-bottom">ANNUAL WORK PLAN (AWP)</h4>
+                </div>
+            </div>
+            <div class="row" id="">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <div class="hpanel horange" style="margin-bottom:0px;">
+                        <div class="panel-body">
+                            <div class="form-group" id="Agency_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li> Agency : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <select name="" class="form-control" id="awp_agency_state_name_1" onchange="AWP_Agency_StateInfo_B('@Session["Email"]', '@Session["Access_Auth"]')"></select>
+                                    </li>
+
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name">Name of IA/ Nodal Agency </label></h5>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <select class="form-control" onchange="Year_Wise_PIP_Info()" id="PIP_Financial_Year">
+                                                <option value="0">Select Financial Year</option>
+                                                <option value="ALL">All 5 Years</option>
+                                                <option value="2020-21">2020-2021</option>
+                                                <option value="2021-22">2021-2022</option>
+                                                <option value="2022-23">2022-2023</option>
+                                                <option value="2023-24">2023-2024</option>
+                                                <option value="2024-25">2024-2025</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Allocated : </label></h5>
+                                                @*<span id="AWP_Total_value"></span>*@
+                                                <h5><span id="AWP_Total_value">000</span></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="form-group" id="State_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>  StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <label id="pip_dropdown_state_name">
+                                        </label>
+                                    </li>
+
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name1">Agency Name </label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <select class="form-control" onchange="Year_Wise_AWP_Info()" id="AWP_Financial_Year">
+                                                <option value="0">Select Financial Year</option>
+                                                <option value="ALL">All 5 Years</option>
+                                                <option value="2020-21">2020-2021</option>
+                                                <option value="2021-22">2021-2022</option>
+                                                <option value="2022-23">2022-2023</option>
+                                                <option value="2023-24">2023-2024</option>
+                                                <option value="2024-25">2024-2025</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title pull-left">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label class="total_label">Total Allocated : </label></h5>
+                                                <span id="AWP_Total_value1"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active col-lg-8 col-md-8 col-sm-12 pl-0">
+                            <a data-toggle="tab" href="#home">
+                                <div class="hpanel hgreen contact-panel">
+                                    <div class="panel-body ">
+                                        <div class="stats-title text-center border-bottom">
+
+                                            <h5 class="font-extra-bold no-margins text-success">Component A: INSTITUTIONAL STRENGTHENING & CAPACITY BUILDING <span id=""></span> </h5>
+                                            @*<h5><span id="AWP_A_Value_Total"></span> </h5>*@
+                                            <h5><span id="AWP_A_Value_Total">000</span></h5>
+                                        </div>
+                                        <div class="grid-css">
+                                            <div id="div_A1">
+                                                <div class="panel-body">
+
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold  text-info add_fontsize"> A1: IS & CB </h5>
+                                                    </div>
+
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-4 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1.1 </div> <strong> <span id="Awp_A1_1"></span></strong></div> </div>
+                                                        <div class="col-md-4 border-right" style=""> <div class="contact-stat font-extra-bold"><div>A1.2 </div> <strong> <span id="Awp_A1_2"></span></strong></div> </div>
+                                                        <div class="col-md-4 " style=""> <div class="contact-stat font-extra-bold"><div>A1.3 </div> <strong> <span id="Awp_A1_3"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A2">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> A2: Equipment</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A2.1</div> <strong> <span id="Awp_A2"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A3">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> A3: Works </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A3.1</div> <strong> <span id="Awp_A3"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A4">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> A4: IEC </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A4.1</div> <strong> <span id="Awp_A4"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A5">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h6 class="font-extra-bold no-margins text-info add_fontsize"> A5: TRAINING </h6>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A5.1</div> <strong> <span id="Awp_A5"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="div_A6">
+                                                <div class="panel-body">
+                                                    <div class="stats-title pull-left">
+                                                        <h5 class="font-extra-bold no-margins text-info add_fontsize"> A6:  Lab & data center </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer contact-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>A6.1</div> <strong> <span id="Awp_A6"></span></strong></div> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*//PRATEEK*@
+                                            @*<div class="" id="div_npmu">
+                                                    <div class="panel-body">
+                                                        <div class="stats-title pull-left">
+                                                            <h5 class="font-extra-bold no-margins text-info add_fontsize"> 26: NPMU </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-footer contact-footer">
+                                                        <div class="row">
+                                                            <div class="col-md-12" style=""> <div class="contact-stat font-extra-bold"><div>26.02</div> <strong> <span id="Awp_T6"></span></strong></div> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="col-lg-4 col-md-4 col-sm-12 pr-0" id="Div_comP_b_b">
+                            <a data-toggle="tab" href="#menu1">
+                                <div class="hpanel hblue contact-panel">
+                                    <div class="panel-body" style="height:200px;">
+
+                                        <div class="stats-title pull-left">
+
+                                            <h5 class="font-extra-bold no-margins text-info">Component B: INCENTIVE </h5>
+                                        </div>
+                                        <div class="stats-title pull-right"><i class="fa fa-area-chart fa-4x text-info"></i></div>
+                                        <div class="cle"></div>
+                                        <h5 class="m-top15"> <span id="Awp_B_total" class="font-bold count">0</span></h5>
+                                        <h4>
+                                            <div class="text-muted font-bold m-b-xs left"> </div>
+                                            <div class="text-muted font-bold m-b-xs right"></div>
+                                        </h4><h4></h4>
+                                        <h4></h4>
+                                        <h4></h4>
+
+                                    </div>
+                                    <div class="panel-footer contact-footer">
+                                        <div class="row">
+                                            <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI1 </div> <strong> <span id="Awp_B1"></span></strong></div> </div>
+                                            <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI2 </div> <strong> <span id="Awp_B2"></span></strong></div> </div>
+                                            <div class="col-md-3 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI3 </div> <strong>  <span id="Awp_B3"></span></strong></div> </div>
+                                            <div class="col-md-2 border-right" style=""> <div class="contact-stat font-extra-bold"><div>DLI4 </div> <strong>   <span id="Awp_B4"></span></strong></div> </div>
+                                            <div class="col-md-2 " style=""> <div class="contact-stat font-extra-bold"><div>DLI5 </div> <strong>   <span id="Awp_B5"></span></strong></div> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row" id="div_form_insert">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class=" col-lg-offset-1 col-md-11  col-sm-12">
+                                    <div>
+                                        <h3 class="widget-title fz-md text-primary m-b-lg text-capitalize">ANNUAL WORK PLAN (AWP) Component A Form </h3>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Work and Activity <span class="Required_star">*</span>:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <select class="form-control" id="awp_workactivity" onchange="AWP_Activity_Name_Info(); Enter_val();"></select>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Category:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" class="form-control" id="awp_category" placeholder="Category" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Component Id:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" class="form-control" id="awp_component" placeholder="Component Id" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Activity code:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" class="form-control" id="awp_activity_id" placeholder="Activity code" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Item code:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" class="form-control decimal" id="awp_item_code" placeholder="Item code" readonly />
+                                            </div>
+                                        </div>
+
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Total Target (no.):
+
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_total" class="form-control decimal" placeholder="Enter Total" />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Estimated cost for 5 years(in Crore):
+
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_estimated_cost_for_five_years" class="form-control decimal" placeholder=" Enter Estimated cost for 5 years(in Crore)" />
+                                            </div>
+                                        </div>
+                                        @*<div class="row database_trainer_row">
+                                                <div class="col-md-3 col-sm-4">
+                                                    <label for="lname">
+                                                        Month
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control" id="awp_month">
+                                                        <option value="0">Select Month</option>
+                                                        <option value="January">January</option>
+                                                        <option value="February">February</option>
+                                                        <option value="March">March</option>
+                                                        <option value="April">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="June">June</option>
+                                                        <option value="July">July</option>
+                                                        <option value="August">August</option>
+                                                        <option value="September">September</option>
+                                                        <option value="October">October</option>
+                                                        <option value="November">November</option>
+                                                        <option value="December">December</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>*@
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Financial Year
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <select class="form-control" id="awp_fin_year" onchange="AwP_A_Financial_Year()">
+                                                    <option value="0">Select Financial Year</option>
+                                                    <option value="2020-21">2020-21</option>
+                                                    <option value="2021-22">2021-22</option>
+                                                    <option value="2022-23">2022-23</option>
+                                                    <option value="2023-24">2023-24</option>
+                                                    <option value="2024-25">2024-25</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            @*prateek*@
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Financial:
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_financial_year_20_21" class="form-control decimal" placeholder="Enter Financial(in Crore)" />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Physical (target):
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_physical_year_20_21" class="form-control decimal" placeholder="Enter Physical" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row database_trainer_row">
+                                            <div class="text-center">
+                                                <button class="btn btn-primary disabled_btn" id="SAVE_BTN" onclick="Save_AWP_Form_Info()" disabled>Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class=" col-lg-offset-1 col-md-11  col-sm-12">
+                                    <div>
+                                        <h3 class="widget-title fz-md text-primary m-b-lg text-capitalize">ANNUAL WORK PLAN (AWP) B Component Form </h3>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Work and Activity <span class="Required_star">*</span>:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <select class="form-control" id="awp_b_workactivity" onchange="AWP_B_Activity_Name_Info()"></select>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Component Id:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" class="form-control" id="awp_b_component" placeholder="Component Id" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Activity code:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" class="form-control" id="awp_b_activity_id" placeholder="Activity code" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="" class=""> Item code:</label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" class="form-control decimal" id="awp_b_item_code" placeholder="Item code" readonly />
+                                            </div>
+                                        </div>
+
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Total Target (no.):
+
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_b_total" class="form-control decimal" placeholder="Enter Total" />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Estimated cost for 5 years(in Crore):
+
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_b_estimated_cost_for_five_years" class="form-control decimal" placeholder=" Enter Estimated cost for 5 years(in Crore)" />
+                                            </div>
+                                        </div>
+                                        @*<div class="row database_trainer_row">
+                                                <div class="col-md-3 col-sm-4">
+                                                    <label for="lname">
+                                                        Month
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <select class="form-control" id="awp_b_month">
+                                                        <option value="0">Select Month</option>
+                                                        <option value="January">January</option>
+                                                        <option value="February">February</option>
+                                                        <option value="March">March</option>
+                                                        <option value="April">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="June">June</option>
+                                                        <option value="July">July</option>
+                                                        <option value="August">August</option>
+                                                        <option value="September">September</option>
+                                                        <option value="October">October</option>
+                                                        <option value="November">November</option>
+                                                        <option value="December">December</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>*@
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Financial Year
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <select class="form-control" id="awp_fin_b__year" onchange="AwP_B_Financial_Year()">
+                                                    <option value="0">Select Financial Year</option>
+                                                    <option value="2020-21">2020-21</option>
+                                                    <option value="2021-22">2021-22</option>
+                                                    <option value="2022-23">2022-23</option>
+                                                    <option value="2023-24">2023-24</option>
+                                                    <option value="2024-25">2024-25</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Physical (target):
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_b_physical_year_20_21" class="form-control decimal" placeholder="Enter Physical" />
+                                            </div>
+                                        </div>
+                                        <div class="row database_trainer_row">
+                                            <div class="col-md-3 col-sm-4">
+                                                <label for="lname">
+                                                    Financial:
+                                                </label>
+                                            </div>
+                                            <div class="col-md-7 col-sm-8">
+                                                <input type="text" id="awp_b_financial_year_20_21" class="form-control decimal" placeholder="Enter Financial(in Crore)" />
+                                            </div>
+                                        </div>
+                                        @*<div class="row database_trainer_row">
+                                                <div class="col-md-3 col-sm-4">
+                                                    <label for="lname">
+                                                        Physical  Cumulative :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input type="text" id="awp_b_cumulative" class="form-control decimal" placeholder="Enter Cumulative " />
+                                                </div>
+                                            </div><div class="row database_trainer_row">
+                                                <div class="col-md-3 col-sm-4">
+                                                    <label for="lname">
+                                                        Financial Cumulative :
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-7 col-sm-8">
+                                                    <input type="text" id="" class="form-control decimal" placeholder="Enter Cumulative " />
+                                                </div>
+                                            </div>*@
+
+
+                                        <div class="row database_trainer_row">
+                                            <div class="text-center">
+                                                <button class="btn btn-primary disabled_btn" onclick="Save_AWP_B_Form_Info()">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+
+                @*<div class="copyright pull-left">Copyright .Kreate Technologies 2021 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script>
+    var access = "";
+    $(document).ready(function () {
+        access = '@Session["Access_Auth"]';
+        if (access == "readonly") {
+            $(".disabled_btn").hide()
+        }
+        AWP_SessionInfo();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip1"]').tooltip();
+    });
+    $('body').on('keypress', ".decimal", function (event) {
+
+        if (event.which === 8 || event.keyCode === 39)
+            return true;
+
+        else if ((event.which !== 46 || $(this).val().indexOf('.') !== -1) && (event.which < 48 || event.which > 57))
+            event.preventDefault();
+        //comment
+    });
+</script>

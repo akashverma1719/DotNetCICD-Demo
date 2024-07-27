@@ -1,0 +1,331 @@
+﻿
+@{
+    ViewBag.Title = "Salient_features";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+    <title>Farmer Water School(FWS) Modules</title>
+<style>
+    tbody.tablebaody > tr > th {
+        font-weight: normal;
+        width: 70%;
+    }
+
+    tbody.tablebaody > tr > td {
+        width: 15%
+    }
+
+    .tableheader1 > td {
+        color: #337ab7;
+    }
+
+    .tableheader1 > th {
+        color: #337ab7;
+        font-weight: bold;
+    }
+
+    .btn-success {
+        width: 100px;
+        float: none;
+        right: 0px;
+    }
+</style>
+
+<script>
+    function SaveData() {
+
+        var obj = {};
+
+
+        obj.hydrological_year_bl = document.getElementById('hydrological_year_bl').value;
+        obj.hydrological_year_cy = document.getElementById('hydrological_year_cy').value;
+        obj.farmers_participate_bl = document.getElementById('farmers_participate_bl').value;
+        obj.farmers_participate_cy = document.getElementById('farmers_participate_cy').value;
+        obj.farmers_meet_bl = document.getElementById('farmers_meet_bl').value;
+        obj.farmers_meet_cy = document.getElementById('farmers_meet_cy').value;
+        obj.primary_learning_material_bl = document.getElementById('primary_learning_material_bl').value;
+        obj.primary_learning_material_cy = document.getElementById('primary_learning_material_cy').value;
+        obj.farming_plotss_bl = document.getElementById('farming_plotss_bl').value;
+        obj.farming_plotss_cy = document.getElementById('farming_plotss_cy').value;
+        obj.educational_methods_bl = document.getElementById('educational_methods_bl').value;
+        obj.educational_methods_cy = document.getElementById('educational_methods_cy').value;
+        obj.hydro_ecosystem_analysis_bl = document.getElementById('hydro_ecosystem_analysis_bl').value;
+        obj.hydro_ecosystem_analysis_cy = document.getElementById('hydro_ecosystem_analysis_cy').value;
+        obj.experimental_plots_bl = document.getElementById('experimental_plots_bl').value;
+        obj.experimental_plots_cy = document.getElementById('experimental_plots_cy').value;
+
+        if (obj != {} && obj != null && obj != "") {
+
+
+            //
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Grievance/Salient_features",
+                // data: "{'stateleveldata':'" + JSON.stringify(obj) + "'}",
+                data: "{'fwsData':'" + JSON.stringify(obj) + "'}",
+
+                dataType: 'JSON',
+                success: function (response) {
+                    // Getdivation();
+
+
+                    document.getElementById('alert').innerHTML = "Saved Successfully...";
+
+
+                },
+                error: function (a) { }
+            });
+
+
+        }
+    }
+
+</script>
+<div class="clearfix" id="data1">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">
+                Farmer Water School(FWS) Modules
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="clearfix">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="col-md-12 col12">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                            <tbody class="tablebaody">
+                                <tr class="tableheader1">
+                                    <th style="padding:5px;font-weight:bold;color:#337ab7;">
+                                        Salient features of a typical FWS
+                                    </th>
+                                    <td style="text-align:center;font-weight:bold;">Baseline</td>
+                                    <td style="text-align:center;font-weight:bold;">Current Year</td>
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Lasts a full hydrological year [June–May]</th>
+                                    <td>
+                                        <select class="form-control" id="hydrological_year_bl" name="hydrological_year_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="hydrological_year_cy" name="hydrological_year_cy">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Between 25 and 30 farmers participate in an FWS</th>
+                                    <td>
+                                        <select class="form-control" id="farmers_participate_bl" name="farmers_participate_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="farmers_participate_cy" name="farmers_participate_cy">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Farmers meet once every 15/20 days</th>
+                                    <td>
+                                        <select class="form-control" id="farmers_meet_bl" name="farmers_meet_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="farmers_meet_cy" name="farmers_meet_cy">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Primary learning material: HU and farmers' fields</th>
+                                    <td>
+                                        <select class="form-control" id="primary_learning_material_bl" name="primary_learning_material_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="primary_learning_material_cy" id="primary_learning_material_cy">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th style="padding:5px;">Field school adjacent to farming plots</th>
+                                    <td>
+                                        <select class="form-control" id="farming_plotss_bl" name="farming_plotss_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="farming_plotss_cy" name="farming_plotss_cy">
+                                            <option value="">select one</option>    
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">FWS educational methods are experiential, participatory and learner-centered</th>
+                                    <td>
+                                        <select class="form-control" id="educational_methods_bl" name="educational_methods_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="educational_methods_cy" name="educational_methods_cy">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">Each FWS meeting includes at least three activities: hydro-ecosystem analysis, a special topic, and a group dynamics activity</th>
+                                    <td>
+                                        <select class="form-control" id="hydro_ecosystem_analysis_bl" name="hydro_ecosystem_analysis_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="hydro_ecosystem_analysis_cy" name="hydro_ecosystem_analysis_cy">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th style="padding:5px;">FWS participants conduct a study comparing farmer and experimental plots</th>
+                                    <td>
+                                        <select class="form-control" id="experimental_plots_bl" name="experimental_plots_bl">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes"> Yes</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" id="experimental_plots_cy" name="experimental_plots_cy">
+                                            <option value="">select one</option>
+                                            <option value="No">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="text-center">
+            <b><label id="alert" style="color:red;text-align:center;font-size: 20px;"></label></b><br />
+            <span>
+                <button class="btn btn-success" id="save1" onclick="SaveData()">Save</button>
+            </span>
+            <span>
+                <button class="btn btn-danger" id="Delete1" onclick="Delete()">Clear</button>
+            </span>
+            <span>
+                <button class="btn btn-primary" id="download" onclick="Export()">Generate Report</button>
+            </span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    function Export() {
+
+        html2canvas(document.getElementById('data1'), {
+
+            onrendered: function (canvas) {
+                //$("#download").show();
+                //$("#save1").show();
+                //$("#Delete1").show();
+                var data = canvas.toDataURL();
+
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+
+                    }]
+                };
+
+                pdfMake.createPdf(docDefinition).download("Farmer Water School Modules.pdf");
+            }
+        });
+        //$("#download").hide();
+        //$("#save1").hide();
+        //$("#Delete1").hide();
+
+    }
+</script>
+
+<script>
+    function Delete() {
+        $("select").each(function () { this.selectedIndex = 0 });
+        document.getElementById('alert').innerHTML = "Cleared All Data Succesfully";
+    }
+</script>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10) > ul.dropdown > li:nth-child(2)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(10) > ul.dropdown > li:nth-child(2)").siblings().removeClass('active');
+
+</script>

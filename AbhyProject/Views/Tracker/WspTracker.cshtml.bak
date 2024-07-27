@@ -1,0 +1,1292 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tracker | WSP Tracker</title>
+</head>
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*@
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.min.js"></script>
+
+<script src="~/Scripts/sweetalert.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@*<script src="~/Content/JS_Files/IdealState.js"></script>*@
+<script name="clear-browser-cache" src='~/Content/JS_Files/clear-browser-cache.js' value="true"></script>
+<!--Sweet Alert-->
+@*<script src="~/Scripts/validations.js"></script>*@
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #72a230;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    .comn_table {
+        background: #f2f2f2;
+    }
+
+        .comn_table thead th {
+            border: 1px solid #fff;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    .d-flex {
+        display: flex;
+    }
+
+        .d-flex .c {
+            margin-right: 5px;
+        }
+
+    .select_width_set {
+        width: 166px !important;
+    }
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+</style>
+<style>
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    .tbl-responsive {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px !important;
+        background: #f2f2f2 !important;
+        overflow: auto;
+        height: 500px;
+    }
+
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    .panel-title {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .ullistdiv_menu {
+        margin: 10px 0px;
+    }
+
+    .firstformtable > thead > tr > td {
+        padding: 5px;
+        font-weight: 600;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #EEEEEE;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        /*background-color: #FAFAFA;
+            border-color: #EEEEEE;*/
+    }
+
+
+
+
+    .panel-title > a {
+        display: block;
+        padding: 7px;
+        text-decoration: none;
+    }
+
+    .more-less {
+        float: right;
+        color: #212121;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+
+    .demo-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background-color: #212121;
+        text-align: center;
+    }
+
+        .demo-footer > a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+        }
+
+    .panel-heading {
+        text-align: left;
+        font-size: 19PX;
+    }
+
+    .panel-body {
+        text-align: left;
+    }
+
+    /*for upload button*/
+    .container {
+        display: inline-flex;
+    }
+
+    .fixed {
+        width: 750px;
+    }
+
+    .flex-item {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    #label {
+        background-color: #8c8591;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    #file-chosen {
+        margin-left: 0.3rem;
+        font-family: sans-serif;
+    }
+
+    .firstformt > thead > tr > td {
+        padding-top: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-left: 25px;
+        font-weight: 600;
+    }
+
+    .atal-icon-sec {
+        height: 73px;
+    }
+
+    .atal-logo-sec {
+        height: 60px;
+        margin-left: 9px;
+    }
+
+    .list_style li {
+        line-height: 25px;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<main>
+    <header class="header hederImage">
+
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-6">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                        @*<ul class="clearfix">
+
+                                <li class="ml-2">
+                                    <a href="#" class="d-flex align-items-center">
+                                        <img src="~/DashboardStyles/images/atal-jal-logo.png" class="img-fluid atal-icon-sec" alt="logo">
+                                        <img src="~/DashboardStyles/images/logosec1.png" class="img-fluid atal-logo-sec" alt="logo">
+
+                                    </a>
+                                </li>
+
+                            </ul>*@
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-left:200px">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <div class="col-md-8" style="padding: 0px 0px 0px 0px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                            <label>WSP Tracker</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div>
+        <ul style="color:white;">
+            <li style=" text-align: right; margin-top:10px;">
+                <a href="~/Tracker/AllTracker" class="btn btn-danger">
+                    Back To Module
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="row container-fluid">
+        <div class="col-md-12 col-sm-12">
+            <div class="selectdistshowoption" id="Select_dist_level">
+                <label style="text-align:center;color:red;" id="Error_"></label>
+                <ul class="Select_option selectbackhome">
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+                    <li id="StateDropdownLabel">
+                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                    </li>
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+                    <li id="DistDropdownLabel">
+
+                        <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                    </li>
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+                    <li id="BlockDropdownLabel">
+
+                        <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                    </li>
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>
+
+                    <li id="GramDropdownLabel">
+
+                        <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
+                    </li>
+                    <li>
+                        <select class="form-control" id="year" readonly>
+                            <option value="0">Select Financial Year</option>
+                            @*<option value="2019">2019-20</option>
+                                <option value="2020">2020-21</option>
+                                <option value="2021">2021-22</option>*@
+                            <option value="2023-24" selected>2023-24</option>
+
+                            @*<option value="2023">2024-25</option>*@
+                            @*<option value="2026">2026</option>*@
+                        </select>
+                    </li>
+
+                    @*<li id="MonthDropdownLabel">
+
+                            <select class="form-control" id="month" onchange="Month_change()">
+                                <option value="0">Select Month</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                            </select>
+                        </li>*@
+                    <li id="DropdownSearch_btn">
+                        <a class="btn btn-success" onclick="Dropdown_Search()">Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 text-center alertshowingdiv">
+            <label id="alertrt_aa_part_data"></label>
+        </div>
+    </div>
+    <div class="text-right btn_hide">
+        <button class="btn btn-success download1" id="btnexcel" onclick="Excel()">Export To Excel</button>
+
+    </div>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+            WSP Tracker
+        </div>
+    </center>
+    <div class="row" id="tablediv">
+        <div class="tab-content">
+            <!--2nd Water Budget Form-->
+            <div role="tabpanel" class="tab-pane fade in active" id="WaterbudgetingformWBF">
+
+                @*<div class="col-md-12 scrollform">*@
+                <div class="col-md-12">
+                    <!-- Accordion -->
+                    <div class="col-md-15">
+                        <table id="wsp_report" class="table demandsidetable demandside_text demandside_text_123 table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:1px;">
+                            <thead>
+                                <tr>
+                                    <th colspan="12" style="background-color:#337ab7;color:#fff !important" class="text-center">
+                                        Tracker
+                                    </th>
+                                </tr>
+                                <tr class="tableheader1 tableheader_text">
+
+                                    <th>S.No.</th>
+                                    <th>State Name</th>
+                                    <th>Total Districts</th>
+                                    <th>Total Blocks</th>
+                                    <th>Total GPs</th>
+                                    <th>Number of GPs for which data has been entered</th>
+                                    <th>Number of GPs for which data has been submitted to DPMU</th>
+                                    <th>Number of GPs for which data has been rejected By DPMU</th>
+                                    <th>Number of GPs for which data has been approved by DPMU </th>
+                                    <th>Number of GPs for which data has been rejected By SPMU</th>
+                                    <th>Number of GPs for which data has been approved by SPMU </th>
+                                </tr>
+
+                            </thead>
+                            <tbody id="WSP_TrackData">
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--2nd Water Budget Form closed-->
+            <!--3rd Water Budgeting page-->
+            @*<div role="tabpanel" class="tab-pane fade in" id="GroundwaterGWM">sankar1</div>*@
+        </div>
+
+    </div>
+
+
+
+</main>
+
+<div class="col-md-2">
+
+    <select class="form-control" id="StateForGp" onchange="GetWspDataByGP()">
+        <option value="0">--Select State Name--</option>
+
+        <option value="Delhi_07">Delhi_07</option>
+        <option value="Gujarat_24">Gujarat_24</option>
+        <option value="Haryana_6">Haryana_6</option>
+        <option value="Karnataka_29">Karnataka_29</option>
+        <option value="Madhya Pradesh_23">Madhya Pradesh_23</option>
+        <option value="Maharashtra_27">Maharashtra_27</option>
+        <option value="Rajasthan_8">Rajasthan_8</option>
+        <option value="Uttar Pradesh_9">Uttar Pradesh_9</option>
+    </select>
+
+</div>
+<div class="col-md-2">
+
+    <select class="form-control" id="FinYearForGp" onchange="GetWspDataByGP()">
+        <option value="0">--Select Year--</option>
+        <option value="2023-24" selected>2023-24</option>
+        <option value="2023-24">2024-25</option>
+    </select>
+
+</div>
+<div class="col-md-2">
+
+    <select class="form-control" id="Status" onchange="GetWspDataByGP()">
+        <option value="0">--Select Status--</option>
+        <option value="1">Gp Level</option>
+        <option value="3">Distrcit Level</option>
+        <option value="4">State Level</option>
+        <option value="5">Approved</option>
+    </select>
+
+
+</div>
+<div class="text-right btn_hide">
+    <button class="btn btn-success download1" id="btnexcel_data" onclick="Excel()">Export To Excel</button>
+
+</div>
+<div class="tbl-responsive col-md-12" id="style-1" style="overflow:auto; height:450px;">
+    <table id="wsp_report_data" class="table table-bordered comn_table" style="margin-bottom: 10px;">
+        <thead>
+            <tr style="text-align:center; background-color: #337ab7; color:#fff;">
+                <th>Sr.No.</th>
+                <th style="padding: 50px; padding-bottom: 10px;">State Name</th>
+                <th style="padding: 50px; padding-bottom: 10px;">District Name</th>
+                <th style="padding: 50px; padding-bottom: 10px;">Block Name</th>
+                <th style="padding: 50px; padding-bottom: 10px;">GramPanchayat Name</th>
+                <th style="padding: 50px; padding-bottom: 10px;">Year</th>
+                <th style="padding: 30px; padding-bottom: 10px;">Status</th>
+            </tr>
+        </thead>
+        <tbody id="WspTrackerGpWise" class="text-center"></tbody>
+    </table>
+</div>
+<script>
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var NodalOfficer = "";
+    $(document).ready(function () {
+        DropDownInfo_ef();
+    });
+
+    function Dropdown_Search() {
+        
+        var year = $("#year").val();
+
+
+        //else if (Dist == "0") {
+        //    alert("Plase select district name");
+        //    return false;
+        //} else if (Block == "0") {
+        //    alert("Plase select block name");
+        //    return false;
+        //} else if (Gram == "0") {
+        //    alert("Plase select gram panchayat name");
+        //    return false;
+        //}
+        if (year == "0") {
+            alert("Plase select year");
+            return false;
+        }
+
+        $("#state").val(State);
+        $("#district").val(Dist);
+        $("#block").val(Block);
+        $("#gram1").val(Gram);
+        $("#year1").val(year);
+
+        GetWSPData();
+    }
+
+    function DropDownInfo_ef() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select State Name</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select Gram Panchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select State Name</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo_ef();
+
+
+            }
+        });
+    }
+    function GetWspDataByGP() {
+        
+
+        var Status = $("#Status").val();
+        var StateName = $("#StateForGp").val();
+
+        var Year = $("#FinYearForGp").val();
+        if (StateName == "0") {
+            alert("Please Select State Name");
+            $("#StateForGp").focus();
+
+            return false;
+        } else if (StateName == "0") {
+            alert("Please Select Year");
+            $("#FinYearForGp").focus();
+            return false;
+        }
+        $(".loader").show();
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Tracker/GetWspDataByGP",
+            data: "{'StateName': '" + StateName + "','Status': '" + Status + "','Year': '" + Year + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var tr = "";
+                var j = 1;
+                var status = "";
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        //if (data[i].status_id == 1) {
+                        //    status = "At Gp"
+                        //}
+                        //else if (data[i].status_id == 3) {
+                        //    status = "At DPMU"
+                        //} else if (data[i].status_id == 4) {
+                        //    status = "At SPMU"
+                        //} else if (data[i].status_id == 5) {
+                        //    status = "Approved"
+                        //}
+                        tr += '<tr><td>' + j++ + '</td>'
+                        tr += '<td>' + data[i].state_name + '</td>'
+                        tr += '<td>' + data[i].district_name + '</td>'
+                        tr += '<td>' + data[i].block_name + '</td>'
+                        tr += '<td>' + data[i].gp_name + '</td>'
+                        tr += '<td>' + data[i].year + '</td>'
+                        //tr += '<td>' + data[i].month + '</td>'
+
+                        if (data[i].status_id == 1 && data[i].reject_status == "Rejected By District") {
+                            status = "Rejected By District"
+                            tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
+                        } else if (data[i].status_id == 3 && data[i].reject_status == "Rejected By State") {
+                            status = "Rejected By District"
+                            tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
+                        }
+                        else if (data[i].status_id == 1) {
+                            status = "At Gp"
+                            tr += '<td><label style="color: blue;">' + status + '</label></td></tr>'
+                        }
+                        else if (data[i].status_id == 3) {
+                            status = "At DPMU"
+                            tr += '<td><label style="color: orange;">' + status + '</label></td></tr>'
+                        } else if (data[i].status_id == 4) {
+                            status = "At SPMU"
+                            tr += '<td><label style="color: Tomato;">' + status + '</label></td></tr>'
+                        } else if (data[i].status_id == 5) {
+                            status = "Approved"
+                            tr += '<td><label style="color: green;">' + status + '</label></td></tr>'
+                        }
+                    }
+                    $("#WspTrackerGpWise").html(tr);
+                    $(".loader").hide();
+                }
+
+            }
+        });
+    }
+
+    function SessionInfo_ef() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                //apl_bpl();
+                //Categories_scstobc();
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    //$('#DropdownSearch_btn').hide();
+
+                    var Str = data.split(',');
+                    NodalOfficer = Str[0];
+                    if (Str[0] == "Admin" || Str[0] == "National Level Nodal Officer") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $("#StateForGp").prop("disabled", true);
+                        $("#StateForGp").val(State);
+                        State_Dropdown_Function();
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $("#StateForGp").prop("disabled", true);
+                        $("#StateForGp").val(State);
+                        Dist_fun();
+                        Dist_fun();
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $('#btn_submitNDO').hide();
+                        $("#StateForGp").prop("disabled", true);
+                        $("#StateForGp").val(State);
+                        Block_fun();
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+                        $("#StateForGp").prop("disabled", true);
+                        $("#StateForGp").val(State);
+                    }
+
+                }
+                GetWSPData();
+
+            }
+
+        });
+
+    }
+
+    function State_Dropdown_Function() {
+
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select Gram Panchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+        $("#state").val(State);
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        $("#district").val(Dist);
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select Gram Panchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+        $("#block").val(Block);
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+
+    function Gram_Fun() {
+        var Gram1 = $("#gram").val();
+        if (Gram1 == "0") {
+            alert("Please Select Grampanchayat");
+        } else {
+            Gram = $('#gram').val();
+        }
+        $("#gram1").val(Gram);
+        $("#year1").val(year);
+    }
+
+    function GetWSPData() {
+        
+        $(".loader").show();
+        var year = $("#year").val();
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Tracker/GetWSPData",
+            data: "{'state': '" + State + "','district': '" + Dist + "','block': '" + Block + "','gram': '" + Gram + "','year': '" + year + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var tr = '';
+                var j = 1;
+                var TotDistrinctCount = 0;
+                var TotBlockCount = 0;
+                var TotGpCount = 0;
+                var TotSavedGP = 0;
+                var TotSubmitGP = 0;
+                var TotRejectGP = 0;
+                var TotApprovedGP = 0;
+                var TotRejectBySPMU = 0;
+                var TotApprovedBySPMU = 0;
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        TotDistrinctCount += data[i].DistrinctCount;
+                        TotBlockCount += data[i].BlockCount;
+                        TotGpCount += data[i].GpCount;
+                        TotSavedGP += data[i].SavedGP;
+                        TotSubmitGP += data[i].SubmitGP;
+                        TotRejectGP += data[i].RejectGP;
+                        TotApprovedGP += data[i].ApprovedGP;
+                        TotRejectBySPMU += data[i].RejectBySPMU;
+                        TotApprovedBySPMU += data[i].ApprovedBySPMU;
+                        tr += '<tr><td>' + j++ + '</td>';
+                        tr += '<td>' + data[i].StateName + '</td>';
+                        tr += '<td>' + data[i].DistrinctCount + '</td>';
+                        tr += '<td>' + data[i].BlockCount + '</td>';
+                        tr += '<td>' + data[i].GpCount + '</td>';
+                        tr += '<td>' + data[i].SavedGP + '</td>';
+                        tr += '<td>' + data[i].SubmitGP + '</td>';
+                        tr += '<td>' + data[i].RejectGP + '</td>';
+                        tr += '<td>' + data[i].ApprovedGP + '</td>';
+                        tr += '<td>' + data[i].RejectBySPMU + '</td>';
+                        tr += '<td>' + data[i].ApprovedBySPMU + '</td></tr>';
+                    }
+                } else {
+                    tr = '<tr style="text-align:center;"><td colspan="8" style="text-align:center;">No Data</td></tr>';
+                }
+                if (NodalOfficer == "National Level Nodal Officer" || NodalOfficer == "Admin") {
+                    if (j > 2) {
+                        tr += '<tr><td style="background-color:orange;color:#fff">Total</td><td></td><td>' + TotDistrinctCount + '</td><td>' + TotBlockCount + '</td><td>' + TotGpCount + '</td><td>' + TotSavedGP + '</td><td>' + TotSubmitGP + '</td><td>' + TotRejectGP + '</td><td>' + TotApprovedGP + '</td><td>' + TotRejectBySPMU + '</td><td>' + TotApprovedBySPMU + '</td></tr>'
+                    }
+                }
+                $("#WSP_TrackData").html(tr);
+                $(".loader").hide();
+            }
+        });
+    }
+
+
+    //function Export_a_Table() {
+    //    
+
+
+    //    $('#support_report11').click();
+    //    GetWSPData()
+    //}
+</script>
+<script src="~/Content/JS_Files/table2excel.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnexcel").click(function () {
+            
+
+            var x = 0;
+            if (x == 0) {
+                $("#wsp_report").table2excel({
+                    filename: "WSP Report.xls"
+                });
+
+                
+                let table = document.getElementsByTagName("#wsp_report");
+                table2excel.convert(table[0], { // html code may contain multiple tables so here we are refering to 1st table tag
+                    name: `WSP Report.xls`, // fileName you could use any name
+                    sheet: {
+                        name: 'WSP Report' // sheetName
+                    }
+                });
+            }
+        });
+    });
+    $(function () {
+        $("#btnexcel_data").click(function () {
+            
+
+            var x = 0;
+            if (x == 0) {
+                $("#wsp_report_data").table2excel({
+                    filename: "WSP Report Data.xls"
+                });
+
+                
+                let table = document.getElementsByTagName("#wsp_report_data");
+                table2excel.convert(table[0], { // html code may contain multiple tables so here we are refering to 1st table tag
+                    name: `WSP Report Data.xls`, // fileName you could use any name
+                    sheet: {
+                        name: 'WSP Report Data' // sheetName
+                    }
+                });
+            }
+        });
+    });
+</script>

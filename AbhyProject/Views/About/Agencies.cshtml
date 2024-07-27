@@ -1,0 +1,410 @@
+﻿
+
+@{
+    /**/
+
+    ViewBag.Title = "abhy_agencies1";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title>Implementing Agencies</title>
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)> ul.dropdown > li:nth-child(2) ").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(2)").siblings().removeClass('active');
+        $('#example').DataTable();
+        $('#agenctTable').DataTable();
+        $('#agenctTable1').DataTable();
+        $('#agenctTable2').DataTable();
+
+
+    });
+
+</script>
+<style>
+    .Training2 {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        border: 2px solid orange;
+    }
+
+    .upload2 {
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    @@media (min-width: 0) {
+        .g-mb-20 {
+            margin-bottom: 1.42857rem !important;
+        }
+    }
+
+    .div-w99 {
+        max-width: 97% !important;
+        margin: auto;
+    }
+    /*.div-w99 {
+        border: 1px solid #cacaca;
+        border-top: none;
+        padding: 12px 16px;
+    }*/
+    .list-group {
+        flex-direction: row !important;
+        display: inline-flex;
+    }
+
+    .list-group-item:first-child {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 0.5rem 1.25rem;
+        margin-bottom: -1px;
+    }
+
+    ul#ulTopics > li > a {
+        color: #fff;
+    }
+
+    #ulTopics {
+        height: 50px;
+    }
+
+    li.list-group-item {
+        background-color: #337ab7
+    }
+
+    li.nav-link:focus,
+    li.nav-link:hover,
+    li.nav-link:active {
+        text-decoration: none;
+        background-color: #6FB11D;
+    }
+
+    li.nav-link:active {
+        background-color: #2e578c;
+    }
+    /*table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:after {
+        right: 1em;
+        content: "\2191";
+    }
+    table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+        right: 0.5em;
+        content: "\2193";
+    }*/
+    /*table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:before, table.dataTable thead .sorting_desc_disabled:after {
+        position: absolute;
+        bottom: 0.9em;
+        display: block;
+        opacity: 0.3;
+    }*/
+
+</style>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">
+            Implementing Agencies
+
+
+        </div>
+    </div>
+</div>
+<div class="col-md-12 call-action call-action-boxed call-action-style1 clearfix" style="padding: 18px 0px;">
+    <div class="col-md-12">
+        <ul id="ulTopics" class="g-brd-bottom--md g-brd-primary  list-group ">
+            @*<li class="nav-link list-group-item tab Active" style="color:#fff;float: none; font-weight: bold;padding-top:15px;">
+                    <a href="#Tname2" data-toggle="tab">Central :</a> <span class="" style="color:#fff; position:relative;top:1px;">@ViewBag.cacount</span>
+                </li>*@
+
+            <li class=" nav-link list-group-item  " style="float: none; font-weight: bold;padding-top:15px;">
+                <a href="#Tname1" data-toggle="tab">States : </a> <span class="" style="color:#fff; position:relative;top:1px;" id="states_count"></span>
+            </li>
+
+            @*<li class="nav-link list-group-item" style="float: none; font-weight: bold;padding-top:15px;"><a href="#Tname3" data-toggle="tab">Union Territories : </a> <span class="" style=" border-radius: 100%; font-weight: bold; width: 26px; height: 26px; text-align: center;position:relative;top:2px;">@ViewBag.utcount</span></li>
+
+
+
+                <li class="nav-link list-group-item" style="float: none; font-weight: bold; padding-top:15px;"><a href="#Tname4" data-toggle="tab">River Basins : </a> <span class="" style=" border-radius: 100%; font-weight: bold; width: 26px; height: 26px; text-align: center;position:relative;top:2px;">@ViewBag.rbcount</span></li>*@
+
+        </ul>
+
+        <span id="ContentPlaceHolder1_lbltotal" class="pull-right" style=" color: #fff;background-color:#337ab7;padding:19px;margin-left:10px;font-weight:900">Total Implementing Agencies : @ViewBag.count</span>
+
+
+
+
+    </div>
+</div>
+<div class="container-fluid div-w99" style="margin-top:20px;">
+
+    <div class="row">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <!--Start datatable row-->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="tabTNameDesc" class="tab-content">
+
+                            <div class="tbl-responsive tab-pane active text-justify" id="Tname1">
+                                <table id="example" class="tab-pane text-justify  display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                S.No.
+                                            </th>
+                                            <th>
+                                                State
+                                            </th>
+                                            <th>
+                                                Project Coordinator
+                                            </th>
+
+
+                                            <th>
+                                                Email Id
+                                            </th>
+
+                                            <th>
+                                                Nodal Officer/ Project Director
+                                            </th>
+                                            <th>
+                                                Name of Agency
+                                            </th>
+                                            <th>
+                                                Contact Details
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="AgenciesInfo">
+                                        <!--Rows here-->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade text-justify" id="Tname2">
+                                <table id="agenctTable" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>Agencies</th>
+                                            <th>Address</th>
+                                            <th>Website Link</th>
+                                            <th>Email Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (ViewBag.ca != null)
+                                        {
+
+
+                                            foreach (var item1 in ViewBag.ca)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item1.aid
+                                                    </td>
+                                                    <td>
+                                                        @item1.agencies
+                                                    </td>
+                                                    <td>
+                                                        @item1.address
+                                                    </td>
+                                                    <td>
+                                                        <a href="@item1.weblink">@item1.weblink</a>
+                                                    </td>
+                                                    <td>
+                                                        @item1.emailid
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                                <input type="hidden" name="ctl00$ContentPlaceHolder1$rptAname$ctl01$hdnaid" id="ContentPlaceHolder1_rptAname_hdnaid_1" value="2">
+                            </div>
+                            @*<div class="tab-pane fade text-justify" id="Tname3">
+                                    <table id="agenctTable1" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Agencies</th>
+                                                <th>Address</th>
+                                                <th>Website Link</th>
+                                                <th>Email-Id</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (ViewBag.ca != null)
+                                            {
+
+
+                                                foreach (var item1 in ViewBag.ca)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @item1.aid
+                                                        </td>
+                                                        <td>
+                                                            @item1.agencies
+                                                        </td>
+                                                        <td>
+                                                            @item1.address
+                                                        </td>
+                                                        <td>
+                                                            @item1.weblink
+                                                        </td>
+                                                        <td>
+                                                            @item1.emailid
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$rptAname$ctl02$hdnaid" id="ContentPlaceHolder1_rptAname_hdnaid_2" value="3">
+                                </div>
+
+                                <div class="tab-pane fade text-justify" id="Tname4">
+                                    <table id="agenctTable2" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Agencies</th>
+                                                <th>Address</th>
+                                                <th>Website Link</th>
+                                                <th>Email-Id</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (ViewBag.rb != null)
+                                            {
+
+
+                                                foreach (var item1 in ViewBag.rb)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @item1.aid
+                                                        </td>
+                                                        <td>
+                                                            @item1.agencies
+                                                        </td>
+                                                        <td>
+                                                            @item1.address
+                                                        </td>
+                                                        <td>
+                                                            @item1.weblink
+                                                        </td>
+                                                        <td>
+                                                            @item1.emailid
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$rptAname$ctl03$hdnaid" id="ContentPlaceHolder1_rptAname_hdnaid_3" value="4">
+                                </div>*@
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        Info();
+        $('#example').DataTable();
+    });
+    function Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/About/Agencies_Info',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                var Divv = "";
+                var ddlst = {};
+                var all_dists = [];
+                if (data != null) {
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        var project_coordinator = data[i].project_coordinator;
+                        if (project_coordinator == null) {
+                            project_coordinator = "";
+
+                        }
+                        var contact_details = data[i].contact_details;
+                        if (contact_details == null) {
+                            contact_details = "";
+
+                        }
+                        var nodel_officer_project_director = data[i].nodel_officer_project_director;
+                        if (nodel_officer_project_director == null) {
+                            nodel_officer_project_director = "";
+
+                        }
+                        var agency_name = data[i].agency_name;
+                        if (agency_name == null) {
+                            agency_name = "";
+
+                        }
+
+                        if (!ddlst[data[i].state]) {
+                            all_dists.push(data[i].state);
+                            ddlst[data[i].state] = data[i].state;
+
+                        }
+
+                        Divv += ' <tr> <td>' + (i + 1) + '</td><td>' + data[i].state + '</td><td>' + project_coordinator + ' </td><td>' + contact_details + '<td>' + nodel_officer_project_director + '</td>' +
+                            '<td>' + agency_name + '</td><td></td></tr>';
+                    }
+                    $('#AgenciesInfo').html(Divv);
+                }
+                else {
+                    Divv += ' <tr><td colspan="7"> No Data</td> </tr>';
+                    $('#AgenciesInfo').html(Divv);
+
+                }
+
+                $('#states_count').text(all_dists.length);
+            }
+        });
+    }
+</script>

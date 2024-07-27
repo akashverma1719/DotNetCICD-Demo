@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atal Jal</title>
+    <link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/nav-style.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/global.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/DashboardStyles/css/font.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,700i,900&display=swap" rel="stylesheet">
+
+    <link href="~/Content/css/darkmode.min.css" rel="stylesheet" />
+    <style>
+        .new_twitter {
+            font-size: 14px;
+            background: black;
+            height: 24px;
+            width: 25px;
+            display: flex;
+            border-radius: 5px;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .new_twitter img {
+                height: 15px;
+                filter: invert(1);
+            }
+    </style>
+</head>
+
+<body class="day">
+    <div class="page-wrapper flex">
+        <!-- #header top div -->
+        <div class="flex-top-header-fix">
+            <header>
+                <div class="top-header">
+                    <div class="container-fluid md-plr-10 top-banner-bg">
+                        <div class="container-wrapper">
+                            <div class="row align-items-center m-0">
+
+                                <div class="col-md-7 display-none-sm">
+
+                                    <ul class="topbar_rightsec mb-0 ">
+                                        <li class="ml-2  mr-2">
+                                            <a href="#main-content" class="topscreenreader_txt pr-2 display-none-sm">मुख्य विषयवस्तु में जाएं</a>
+                                        </li>
+                                        <li class="ml-2  mr-2">
+                                            <a href="/Home/SiteMAp" class="topscreenreader_txt pr-2">साइट मैप</a>
+                                        </li>
+                                        <li class="ml-2  mr-2" id="blink">
+                                            <a href="#" class="topscreenreader_txt pr-2">
+                                                शिकायत के लिए टोल फ्री नंबर पंजीकरण : 1800110121
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+
+                                </div>
+                                <div class="col-md-5">
+                                    <ul class="topbar_leftsec mb-0 ">
+                                        <li class="aceesbility-div">
+                                            <div class="d-flex align-items-center ml-2 mr-2 display-none-sm ">
+                                                <a href="javascript:void(0);" class="topscreenreader_txt zoomin" id="btn-decrease">
+                                                    A
+                                                    +
+                                                </a>
+                                                <a href="javascript:void(0);" class="topscreenreader_txt  smallLargeFont" id="btn-orig"> A </a>
+                                                <a href="javascript:void(0);" class="topscreenreader_txt zoomout" id="btn-increase">
+                                                    A
+                                                    -
+                                                </a>
+                                            </div>
+
+                                        </li>
+                                        <li class="aceesbility-div display-none-sm">
+                                            <div class="d-flex align-items-center display-none-sm ">
+                                                <a href="javascript:void(0);" onclick="myFunction1();" id="whiteContrastView"
+                                                   class="topbar_whitebox"></a>
+                                                <a href="javascript:void(0);" onclick="myFunction();" id="blackContrastView"
+                                                   class="topbar_blackbox  mr-2"></a>
+                                            </div>
+                                        </li>
+                                        @*<li class="mx-2">
+                                                <select class="form-control form-control-sm" style="width: 108px; height: 26px;">
+                                                    <option selected="">English</option>
+                                                    <option>Hindi</option>
+
+                                                </select>
+
+                                            </li>*@
+                                        <li class="mr-3 display-none-sm">
+                                            <a href="javascript:void(0);" class="" title="अभिगम्यता" id="accessbitlity-icon">
+                                                <i class="fa fa-wheelchair-alt" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        @*<li>
+
+                                            <a class="btn btn-sm mx-2 btn-light px-2 py-0 rounded-0" href="/WspNew/WSP_GWM_HOME" role="button">English</a>
+                                        </li>*@
+                                        <li>
+                                            <ul class="d-flex">
+                                                <li>
+                                                    <a href="/Content/Pdf_files/Vol_6_Newsletter Atal Bhujal Yojana Oct-Dec 2023.pdf"
+                                                       target="_blank"><span><img class="" src="~/Images/newsletter.gif" alt="image"></span></a>
+                                                </li>
+                                                <li class="ml-3">
+                                                    &nbsp;<a href="https://www.facebook.com/ataljal.yojna" title="फेसबुक"
+                                                             class="fa fa-facebook social-icons "></a>&nbsp;
+                                                </li>
+                                                <li><a href="https://twitter.com/AtalJal" title="ट्विटर" class="new_twitter "><img src="~/DashboardStyles/images/twitter.png" /></a></li>
+                                                <li>&nbsp;<a href="https://www.youtube.com/channel/UCP8KHLogoLZa3ELxcAQ6DOw" title="यूट्यूब" class="fa fa-youtube-play social-icons"></a>&nbsp;</li>
+                                                <li>&nbsp;<a href="https://www.instagram.com/ataljal2025/" title="इंस्टाग्राम" class="fa fa-instagram social-icons"></a>&nbsp;</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!----Marquee -->
+                <sup></sup>
+                <!-- <div class="container-fluid marquee_bg_color"> -->
+                <!-- <div class="row"> -->
+                <!-- <marquee direction="left" ; behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();"> -->
+                <!-- <p class="content__text_marquee"><label style="color:red;font-weight:bold">कृपया ध्यान दें कि वेब सर्वर से डीबी सर्वर पर डेटाबेस माइग्रेशन के कारण अटल जल वेब पोर्टल और मोबाइल ऐप आज आधी रात से 23 जून 2024 तक अस्थायी रूप से अनुपलब्ध रहेंगे। इसकी वजह से हो सकने वाली किसी भी असुविधा के लिए हमें खेद है। आपकी समझ और धैर्य के लिए धन्यवाद।</label></p> -->
+                <!-- </marquee> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!----Marquee -->
+
+
+                <div class="header-wrapper header-wrap-bg">
+                    <div class="container-fluid">
+                        <div class="container-wrapper">
+                            <div class="d-flex align-items-center pt-1 pb-1 sm-flex-direc-column">
+                                <div class="col-md-6">
+                                    <ul class="d-flex align-items-center sm-flex-wrap">
+                                        <li>
+                                            <a class="d-flex align-items-center logo-right-brd display-none-sm pr-5">
+                                                <img src="~/DashboardStyles/images/atal-logo2.png" alt="logo"
+                                                     style="height:81px;">
+                                                <img src="~/DashboardStyles/images/atal-logo.png" class="img-fluid " alt="logo"
+                                                     style="height:50px;">
+
+                                            </a>
+                                        </li>
+                                        <li class="ml-2">
+                                            <a class="d-flex align-items-center">
+                                                <img src="~/DashboardStyles/images/atal-jal-logo.png" class="img-fluid atal-icon-sec" alt="logo">
+                                                <img src="~/DashboardStyles/images/logosec1.png" class="img-fluid atal-logo-sec" alt="logo">
+
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 display-none-sm">
+                                    <ul class="d-flex align-items-center">
+                                        <li>
+                                            <a href="https://amritmahotsav.nic.in/" target="blank" class="d-flex align-items-center pr-5 ">
+                                                <img src="~/DashboardStyles/images/azadi.png" class="logoimg img-fluid" alt="logo">
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://swachhbharatmission.gov.in/sbmcms/index.htm" target="blank" class="d-flex align-items-center ">
+                                                <img src="~/DashboardStyles/images/swachh-bharat.png" class="logoimg img-fluid" alt="logo">
+
+                                            </a>
+                                        </li>
+                                        <li style=" margin-left: -27px;">
+                                            <a href="https://www.g20.org/en/" target="blank" class="d-flex align-items-center ">
+                                                <img src="~/DashboardStyles/images/G20-n.png" class="logoimg img-fluid" alt="logo">
+
+                                            </a>
+                                        </li>
+                                        <li class="display-none-sm">
+                                            <div class="d-flex align-items-center">
+
+                                                <div class="mr-2">
+                                                    <a href="#" onClick="this.href='/Dashboard/Dashboard?clear=' + (new Date().getTime());" title="डैशबोर्ड ">
+                                                        <div class="external-link-icon">
+                                                            <img src="~/DashboardStyles/images/dashboard-icon.png" class=" link-icon-width" alt="Atal jal App">
+                                                        </div>
+                                                        @*<p class="external-link-p">Dashboard</p>*@
+                                                    </a>
+                                                </div>
+                                                <div class="mr-2">
+                                                    <a class="link-col" href="/mapview/Public_View" title="पब्लिक व्यू">
+                                                        <div class="external-link-icon">
+                                                            <img src="~/DashboardStyles/images/map-view-icon.png" class=" link-icon-width" alt="Atal jal App">
+                                                        </div>
+                                                        @*<p class="external-link-p">Map View</p>*@
+                                                    </a>
+                                                </div>
+                                                <div class="mr-2">
+                                                    <a class="link-col" href="https://play.google.com/store/apps/details?id=in.co.gcrs.ataljal&hl=en" target="_blank" title="एंड्रॉइड ऐप">
+                                                        <div class="external-link-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20.527" height="20" viewBox="0 0 28.527 35.776">
+                                                                <g id="android" transform="translate(-54.372 -69.239)">
+                                                                    <path id="Path_122328" data-name="Path 122328" d="M55.991,72.7a1.615,1.615,0,0,0-1.619,1.611v7.8a1.615,1.615,0,1,0,3.229,0v-7.8A1.611,1.611,0,0,0,55.991,72.7Z" transform="translate(0 9.74)" />
+                                                                    <path id="Path_122329" data-name="Path 122329" d="M62.611,72.7A1.611,1.611,0,0,0,61,74.307v7.8a1.613,1.613,0,1,0,3.226,0v-7.8A1.615,1.615,0,0,0,62.611,72.7Z" transform="translate(18.673 9.74)" />
+                                                                    <path id="Path_122330" data-name="Path 122330" d="M55.6,72.7V87.145a2.414,2.414,0,0,0,2.416,2.413H60.6v4.1a1.615,1.615,0,1,0,3.229,0v-4.1H66.58v4.1a1.615,1.615,0,1,0,3.229,0v-4.1H72.39a2.414,2.414,0,0,0,2.42-2.413V72.757L74.8,72.7Z" transform="translate(3.451 9.74)" />
+                                                                    <path id="Path_122331" data-name="Path 122331" d="M69.845,72.644l1.725-3.21-.355-.195-1.729,3.214a9.547,9.547,0,0,0-8.467-.1l-1.676-3.119-.359.195,1.672,3.1a9.561,9.561,0,0,0-5.043,8.356H74.7A9.551,9.551,0,0,0,69.845,72.644Zm-9.608,4.569a.909.909,0,1,1,.912-.9A.915.915,0,0,1,60.237,77.214Zm9.673,0a.909.909,0,1,1,.909-.9A.909.909,0,0,1,69.91,77.214Z" transform="translate(3.499 0)" />
+                                                                </g>
+                                                            </svg>
+                                                            @*<img src="~/DashboardStyles/images/atal-jal-icon.png" class=" link-icon-width" alt="Atal jal App">*@
+                                                        </div>
+                                                        @*<p class="external-link-p">Android APP</p>*@
+                                                    </a>
+                                                </div>
+                                                <div class="mr-2">
+                                                    <a class="link-col" href="https://apps.apple.com/in/app/atal-jal/id1618758592" target="_blank" title="ऐप स्टोर">
+                                                        <div class="external-link-icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20.782" height="20.708" viewBox="0 0 29.782 34.708">
+                                                                <g id="appstore" transform="translate(-75.822 -69.341)">
+                                                                    <path id="Path_122332" data-name="Path 122332" d="M84.671,71.289a9.621,9.621,0,0,1,3.335.673c.648.222,1.292.472,1.952.635a5.677,5.677,0,0,0,3.5-.255,17.594,17.594,0,0,1,2.491-.832,8,8,0,0,1,6.951,1.58,9.025,9.025,0,0,1,1.542,1.471c.184.209.176.255-.063.41a7.167,7.167,0,0,0-3.624,5.73,7.533,7.533,0,0,0,2.132,6.1,7.456,7.456,0,0,0,2.483,1.7c.268.1.276.15.163.4a25.9,25.9,0,0,1-4.18,6.679,8.093,8.093,0,0,1-2.081,1.735,4.2,4.2,0,0,1-3.87.15c-.543-.226-1.062-.506-1.618-.694a7.59,7.59,0,0,0-5.35.23c-.46.192-.915.4-1.379.568a4.5,4.5,0,0,1-4.61-.857,11.786,11.786,0,0,1-2.178-2.336,23.132,23.132,0,0,1-3.406-6.483,19.33,19.33,0,0,1-1.011-5.149,12.4,12.4,0,0,1,.819-5.651,9.474,9.474,0,0,1,6.265-5.584A5.323,5.323,0,0,1,84.671,71.289Z" transform="translate(0 6.177)" fill-rule="evenodd" />
+                                                                    <path id="Path_122333" data-name="Path 122333" d="M86.45,70.126a7.707,7.707,0,0,1-1.375,4.334,7.4,7.4,0,0,1-3.925,2.976,5.025,5.025,0,0,1-1.555.251c-.209,0-.288-.079-.305-.288a6.2,6.2,0,0,1,.644-3.415,8.264,8.264,0,0,1,4.874-4.326,8.356,8.356,0,0,1,1.363-.309c.2-.038.238.088.251.238A2.972,2.972,0,0,1,86.45,70.126Z" transform="translate(10.914 0)" fill-rule="evenodd" />
+                                                                </g>
+                                                            </svg>
+                                                            @*<img src="~/DashboardStyles/images/atal-jal-icon.png" class=" link-icon-width" alt="Atal jal App">*@
+                                                        </div>
+                                                        @*<p class="external-link-p">App Store</p>*@
+                                                    </a>
+                                                </div>
+                                                <div class="mr-2">
+                                                    <a class="link-col" href="~/WspNew/WSP_GWM_HOME_new" title="एमआईएस लॉगिन">
+                                                        <div class="external-link-icon">
+                                                            <img src="~/DashboardStyles/images/admin-icon.png" class=" link-icon-width" alt="Atal jal App">
+                                                        </div>
+                                                        @*<p class="external-link-p">MIS Login</p>*@
+                                                    </a>
+                                                </div>
+
+
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="container-fluid nav-bg-clr">
+            <div class="container-wrapper">
+                <div class="row align-items-center ">
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-start align-items-md-center flex-column flex-md-row justify-content-between pt-1 pb-1">
+                            <nav>
+                                <a id="resp-menu" class="responsive-menu" href="#" onclick="meutoggle(this)">
+                                    <div class="bar1"></div>
+                                    <div class="bar2"></div>
+                                    <div class="bar3"></div>
+
+                                </a>
+                                <ul class="menu mb-0 mt-md-0 mt-3 pl-0">
+                                    <li>
+                                        @*<a href="~/Home/hi">*@
+                                        <a id="AlertLink" href="https://ataljal.mowr.gov.in/">
+                                            <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="18px">    <path d="M 25 1.0507812 C 24.7825 1.0507812 24.565859 1.1197656 24.380859 1.2597656 L 1.3808594 19.210938 C 0.95085938 19.550938 0.8709375 20.179141 1.2109375 20.619141 C 1.5509375 21.049141 2.1791406 21.129062 2.6191406 20.789062 L 4 19.710938 L 4 46 C 4 46.55 4.45 47 5 47 L 19 47 L 19 29 L 31 29 L 31 47 L 45 47 C 45.55 47 46 46.55 46 46 L 46 19.710938 L 47.380859 20.789062 C 47.570859 20.929063 47.78 21 48 21 C 48.3 21 48.589063 20.869141 48.789062 20.619141 C 49.129063 20.179141 49.049141 19.550938 48.619141 19.210938 L 25.619141 1.2597656 C 25.434141 1.1197656 25.2175 1.0507812 25 1.0507812 z M 35 5 L 35 6.0507812 L 41 10.730469 L 41 5 L 35 5 z" /></svg>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href='javascript:void(0);'>
+                                            प्रशिक्षण और कार्यशाला <i class="fa fa-caret-down " aria-hidden="true"></i>
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="~/Vendors/workshop_Training_form">कार्यक्रम का कैलेंडर</a>-->   @*abhi phase2*@
+                                            </li>
+                                            <li>
+                                                <a href="~/Vendors/workshop_Training_form_new">वर्तमान घटनाएं / पंजीकरण फॉर्म</a>-->   @*abhi phase2*@
+                                            </li>
+                                            <li>
+                                                <a href="~/Contact/FeedBack">प्रतिक्रिया</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="">
+                                        <a href='javascript:void(0);'>आईईसी गतिविधियां <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                        <ul>
+                                            <li>
+                                                <a href="~/Home/Pakhwada">पखवाड़ा</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Home/IEC_Material">आईईसी सामग्री</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Home/Audio_Visual">श्रव्य दृश्य</a>
+                                            </li>
+                                            <li>
+                                                <a href="~/Home/Photographs">फोटो</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class=''>
+                                        <a href='javascript:void(0);'>शिकायत <i class="fa fa-caret-down pl-1" aria-hidden="true"></i></a>
+                                        <ul>
+                                            <li>
+                                                <a href="~/Grievance_new/Index">शिकायत पंजीकरण</a>
+                                            </li>
+
+
+                                            <li>
+                                                <a href="~/GRM/Grievance_Tracking">शिकायत की स्थिति</a>
+
+                                            </li>
+                                            <!-- <li> -->
+                                            <!-- <a href="~/Grievance/Appeal_Registration"> अपील पंजीकरण</a> -->
+                                            <!-- </li> -->
+
+                                        </ul>
+                                    </li>
+
+
+                                    <li>
+                                        <a href='javascript:void(0)'>निविदाये <i class="fa fa-caret-down " aria-hidden="true"></i> </a>
+                                        <ul>
+
+                                            <li>
+                                                <a href="~/Tenders/Tender_Announcements">निविदा घोषणाएं</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="~/Tenders/Tender_Awarded">टेंडर्स दिया गया</a>
+                                            </li>
+
+                                            @*<li><a href="~/Tenders/E_Tender">E-Tenders</a></li>*@
+
+                                        </ul>
+                                    </li>
+                                    <li><a href="#" onClick="this.href='/Dashboard/Dashboard?clear=' + (new Date().getTime());">डैशबोर्ड</a></li>
+                                    @*<li><a href="~/Home/under_maintainance">Dashboard</a></li>*@
+                                    <li><a href="/mapview/Public_View" target="_blank">पब्लिक व्यू</a></li>
+
+
+                                    <li><a href="~/WspNew/WSP_GWM_HOME_new" class="mislogin-btn">एमआईएस लॉगिन</a></li>
+
+                                </ul>
+                            </nav>
+                            @*<div class="wrapper">
+                                <div class="searchBar">
+                                    <input id="searchQueryInput" type="text" name="searchQueryInput"
+                                           placeholder="खोज" spellcheck="true" value="" />
+                                    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-wrapper p-0 container-fluid">
+            @RenderBody()
+        </div>
+        <div class="container-fluid bg-dark">
+            <div class="container footer-top_links p-2">
+                <ul class="d-flex justify-content-center align-items-center">
+                    <li>
+                        <a href="/Home/policy_hi" class="footer_top_links">वेब नीतिया </a>
+                    </li>
+                    @*<li>
+                            <a href="/Home/Help_hi" class="footer_top_links">सहायता</a>
+                        </li>*@
+                    <li><a href="/Home/contact_hi" class="footer_top_links">संपर्क करें</a></li>
+                    <li>
+                        <a href="/Home/Feedback_hi" class="footer_top_links">प्रतिपुष्टी </a>
+                    </li>
+                    <li>
+                        <a href="/Home/web_information_hi" class="footer_top_links">वेब सूचना प्रबंधक</a>
+                    </li>
+                    @*<li>
+                            <a href="/Home/content_policy_hi" class="footer_top_links">सामग्री गोपनीयता नीति </a>
+                        </li>
+                        <li>
+                            <a href="/Home/hyper_policy_hi" class="footer_top_links">हाइपरलिंकिंग नीति </a>
+                        </li>
+                        <li>
+                            <a href="/Home/content_policy_new_hi" class="footer_top_links">कॉपीराइट नीति </a>
+                        </li>*@
+                    <li> <a href="/Home/term_condition_hi" class="footer_top_links">उपयोग की शर्तें </a></li>
+                </ul>
+            </div>
+        </div>
+        <footer>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row pt-50">
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="footer-col">
+                                <h3 class="footer-heading">त्वरित संपर्क </h3>
+                                <div class="d-flex flex-column mb-3">
+                                    <a href="/About/About_hi" class="footer_links">अटल जल के बारे में</a>
+                                    <a href="/About/Project_Components_A_WRMS_hi" class="footer_links">कार्यक्रम के घटक</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-4 col-sm-12">
+                            <div class="footer-col">
+                                <h3 class="footer-heading">संपर्क करें</h3>
+                                <address>
+
+                                    अटल भूजल योजना (अटल जल),<br>
+                                    छठी मंजिल, रियर विंग, एमडीएसएस  (एमटीएनएल) बिल्डिंग,<br>
+                                    9 सीजीओ कॉम्प्लेक्स,<br>
+                                    गेट न. 13 जेएलएन स्टेडियम के सामने,<br>
+                                    दिल्ली - 110003<br>
+
+                                    ईमेल: atal-jal@gov.in <br>
+
+                                    वेब: ataljal.mowr.gov.in
+
+                                </address>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-12">
+                            <!-- <h4 class="footer-heading">INFORMATION SYSTEMS</h4>
+                            <p><a href="#">India-WRIS</a></p>
+                            <p><a href="#">Bhuvan</a></p>
+                            <p><a href="#">IMD</a></p>
+                            <p><a href="#">Census of India</a></p>
+                            <p><a href="#">Grammanchitra</a></p> -->
+                            <div class="footer-col">
+                                <h3 class="footer-heading">जानकारी की प्रणाली</h3>
+                                <div class="d-flex flex-column">
+                                    <a href="https://indiawris.gov.in/wris/" class="footer_links">भारत-डब्ल्यूआरआईएस</a>
+                                    <a href="https://bhuvan.nrsc.gov.in/bhuvan_links.php" class="footer_links">भुवन</a>
+                                    <a href="https://mausam.imd.gov.in/" class="footer_links">आईएमडी</a>
+                                    <a href="https://www.censusindia.gov.in/" class="footer_links"> भारत की जनगणना</a>
+                                    <a href="https://grammanchitra.gov.in/" class="footer_links">ग्राम मानचित्र</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="visitors pb-3">
+                        <span>आगंतुकों की संख्या</span>
+                        <span class="number ml-3">
+                            <a href="javascript:;">
+                                <img src="https://hitwebcounter.com/counter/counter.php?page=7175535&style=0032&nbdigits=3&type=page&initCount=0" title="Counter" Alt="hit web counter.com" border="0">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid copyright p-2">
+                <div class="text-center ">&copy 2021 अटल भुजल योजना (अटल जल), सर्वाधिकार सुरक्षित</div>
+                <div class="text-center ">आखरी अपडेट : 04 मार्च 2024</div>
+            </div>
+
+
+        </footer>
+    </div>
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="~/DashboardStyles/js/swiper.min.js"></script>
+    <script src="~/DashboardStyles/js/nav-script.js"></script>
+    <script src="~/DashboardStyles/js/custom-script.js"></script>
+    <script>
+        $('body').FontSize({
+            increaseTimes: 3,
+            reduceTimes: 3,
+        });
+            //function alertfunction(e) {
+            //    e.preventDefault();
+            //    if (confirm("यह लिंक आपको वेबसाइट के बाहर एक पेज पर ले जाएगा। लिंक किए गए पृष्ठ की सामग्री के संबंध में किसी भी प्रश्न के लिए, कृपया संबंधित वेबसाइट के वेबमास्टर से संपर्क करें।")) {
+            //        window.open("https://ataljal.mowr.gov.in/", "_blank");
+            //    }
+            //}
+
+            //window.onload = function () {
+            //    document.getElementById('AlertLink').addEventListener('click', alertfunction);
+            //}
+    </script>
+
+    <!--scripting for banner more-btn smooth scrolling -->
+    <!-- <script>
+                $(document).ready(function() {
+                    $('a[href*=\\#externalLink]').on('click', function(e){
+                        e.preventDefault();
+                        $('html, body').animate({
+                            scrollTop : $(this.hash).offset().top
+                        }, 1000);
+                    });
+                });
+
+
+
+            </script>
+
+                <script>
+                        $('.drop-down').hover(function() {
+                        var dropdownList = $('ul.sub-menu');
+                        var dropdownOffset = $(this).offset();
+                        var offsetLeft = dropdownOffset.left;
+                        var dropdownWidth = dropdownList.width();
+                        var docWidth = $(window).width();
+                        var subDropdown = $('ul.sub-menu').eq(2);
+                        var subDropdownWidth = subDropdown.width();
+                        var isDropdownVisible = (offsetLeft + dropdownWidth <= docWidth);
+                        var isSubDropdownVisible = (offsetLeft + dropdownWidth + subDropdownWidth <= docWidth);
+                        if (!isDropdownVisible || !isSubDropdownVisible) {
+                            $('ul.sub-menu').addClass('right-menu');
+                        } else {
+                            $('ul.sub-menu').removeClass('right-menu');
+                        }
+                    });
+        </script>
+      -->
+
+</body>
+
+</html>

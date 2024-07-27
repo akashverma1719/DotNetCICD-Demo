@@ -1,0 +1,1030 @@
+﻿
+@{
+    ViewBag.Title = "FeedBack";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script src="~/Content/Website/js/bootstrap.min.js"></script>
+<script src="~/Content/JS_Files/FeedBack.js"></script>
+<title>Feedback</title>
+<style>
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        border: 2px solid #337ab7;
+        border-top: 2px solid #337ab7;
+    }
+
+    .refreshicon {
+        position: relative;
+        /* right: 21px; */
+        top: -39px;
+        left: 91px;
+    }
+
+    .highlight {
+        color: red;
+    }
+
+
+
+    .hpanel {
+        border: none !important;
+        box-shadow: none;
+        margin-bottom: 25px;
+    }
+
+    .feedback_table tbody tr td {
+        padding: 10px 0px;
+    }
+
+    .td_graph {
+        width: 20px;
+    }
+
+    .text_span {
+        color: #000;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .red_band {
+        color: red;
+    }
+
+    .requrid_star {
+        color: red;
+    }
+
+    .font-16 {
+        font-size: 16px;
+    }
+
+    .chk, .chk1, .chk2, .chk3, .chk4, .chk5, .chk6, .chk7, .chk8 {
+        width: 25px;
+        height: 25px;
+        vertical-align: middle;
+    }
+
+    .check-font {
+        font-size: 14px;
+        vertical-align: middle;
+        padding-left: 5px;
+    }
+
+    .width-17 {
+        width: 118%;
+    }
+
+    @@media (max-width: 767px) {
+        .container, .wrapper.boxed-layout, .wrapper.box-layout {
+            width: 350px;
+        }
+    }
+</style>
+
+<div class="ss">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 25px;margin-left:109px; font-family:raleway;margin-top:20px;font-weight:900">Feedback</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <div class="col-md-12 col-sm-12">
+                @*<p class="font-size: 16px">Feedback is an integral part of a training programme. It helps in knowing whether the programme was liked by the participants. It also enables the training coordinator to identify the limitations in the programme management, which can be improved upon in future such programmes.</p>
+                    <br />
+                    <p class="font-size: 16px">To know the honest feedback, expectations of the participants have to be collected at the beginning of the training program. At the end of the programme feedback about the program through proper questionnaires must be collected and matched with the expectations. The task then is to summarize the feedback and plan for necessary action to be taken to improve the program next time. A sample feedback format (questionnaire) is given below:</p>
+                    <br />*@
+
+                <ul>
+                    <li>
+                        Feedback is an integral part of a training programme. It helps in knowing whether the programme was liked by the participants. It also enables the training coordinator to identify the limitations in the programme management, which can be improved upon in future such programmes.
+                    </li>
+                </ul>
+                @*<br />*@
+                <ul>
+                    <li>
+                        To know the honest feedback, expectations of the participants have to be collected at the beginning of the training program. At the end of the programme feedback about the program through proper questionnaires must be collected and matched with the expectations. The task then is to summarize the feedback and plan for necessary action to be taken to improve the program next time.
+                    </li>
+                    <br />
+
+                </ul>
+            </div>
+            <div class="content">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="hpanel">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 ">
+                                    <div class="tbl-responsive" style="overflow-x:scroll;">
+                                        <table class="feedback_table">
+                                            <tbody>
+
+                                                <tr>
+                                                    <td class="text_span">  Registration No: <span class="requrid_star">*</span></td>
+                                                    <td colspan="2"><input type="text" id="registration_no" class="form-control alphanum" /></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-success btn-sm" id="btnSearch" style="margin-left:40px" onclick="Search_Info()">Search</button>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td class="text_span" style="padding-left: 10px;">Topic Of Event : </td>
+                                                    <td colspan="2"><input type="text" id="p_training_name" name="p_training_name" class="form-control alpha" readonly /></td>
+                                                    <td class="text_span" style="padding-left: 60px;">Name of the Participant : </td>
+                                                    <td colspan="2"><input type="text" id="participant_name" name="participant_name" class="form-control alpha" readonly /></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text_span">  State (Event / Training) : </td>
+                                                    <td colspan="2"><input type="text" id="level_event" class="form-control alphanum" readonly /></td>
+                                                    <td class="text_span" style="padding-left: 60px;">District (Event / Training) : </td>
+                                                    <td colspan="2"><input type="text" id="level_event_dist" name="participant_name" class="form-control alpha" readonly /></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="text_span">  Block (Event / Training): </td>
+                                                    <td colspan="2"><input type="text" id="level_event_block" class="form-control alphanum" readonly /></td>
+                                                    <td class="text_span" style="padding-left: 33px;">Event Platform : </td>
+                                                    <td colspan="2"><input type="text" id="event_platform" name="event_platform" class="form-control alpha" readonly /></td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text_span" style="padding-left: 10px;">From Date : </td>
+                                                    <td><input type="text" id="from_date" name="from_date" class="form-control alpha" readonly placeholder="MM/DD/YYYY" /></td>
+
+                                                    <td class="text_span" style="padding-left: 33px;">To Date :</td>
+                                                    <td><input type="text" id="to_date" name="to_date" class="form-control" style="margin-left: -46px; padding-left: 6px;" readonly placeholder="MM/DD/YYYY" /></td>
+                                                    <td class="text_span" style="padding-left: 10px;">Total No. Of Days:</td>
+                                                    <td><input type="text" id="total_days" name="total_days" class="form-control alphanum" readonly /></td>
+
+                                                </tr>
+
+
+                                                @*<tr><th colspan="20" class="text_span">I. Ratings by participants on the scale of 10.</th></tr>
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td><input type="text" id="ten" name="ten" class="form-control text-center" value="10" readonly /></td>
+                                                        <td><input type="text" id="nine" name="nine" class="form-control text-center" value="9" readonly /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="text" id="eight" name="eight" class="form-control text-center" value="8" readonly /></td>
+                                                        <td><input type="text" id="seven" name="seven" class="form-control text-center" value="7" readonly /></td>
+                                                        <td><input type="text" id="six" name="six" class="form-control text-center" value="6" readonly /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="text" id="five" name="five" class="form-control text-center" value="5" readonly /></td>
+                                                        <td><input type="text" id="four" name="four" class="form-control text-center" value="4" readonly /></td>
+                                                        <td><input type="text" id="three" nmae="three" class="form-control text-center" value="3" readonly /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="text" id="two" name="two" class="form-control text-center" value="2" readonly /></td>
+                                                        <td><input type="text" id="one" nmae="one" class="form-control text-center" value="1" readonly /></td>
+                                                        <td><input type="text" id="zero" name="zero" class="form-control text-center" value="0" readonly /></td>
+
+                                                    </tr>*@
+                                                <tr>
+                                                    <td colspan="22" class="text-center text_span"><span class="red_band"><<‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐ Tick mark in relevant boxes ‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐>></span></td>
+                                                </tr>
+
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">1.Structure Of Training Program:<span class="requrid_star">*</span> </td>
+                                                    <td style="width:150px;">
+                                                        <input type="checkbox" id="Very Well Planned" name="structure_of_training" value="" class="chk" /><span class="check-font">Very Well Planned</span>
+
+                                                    </td>
+
+                                                    <td style="width:150px;">
+                                                        <input type="checkbox" id="Well Planned" name="structure_of_training" value="" class="chk" /><span class="check-font"> Well Planned</span>
+                                                    </td>
+                                                    <td style="width:150px;">
+                                                        <input type="checkbox" id="Less Planned" name="structure_of_trainingm" value="" class="chk" /><span class="check-font"> Less Planned</span>
+                                                    </td>
+                                                    <td style="width:150px;">
+                                                        <input type="checkbox" id="No Planning" name="structure_of_training" value="" class="chk" /><span class="check-font"> No Planning</span>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">2.Course Material:<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Very Relevant" name="course_material" value="" class="chk1" /><span class="check-font"> Very Relevant</span>
+                                                    </td>
+
+                                                    <td class="check">
+                                                        <input type="checkbox" id="Relevant" name="course_material" value="" class="chk1" /><span class="check-font">Relevant</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Less Relevant" name="course_material" value="" class="chk1" /><span class="check-font"> Less Relevant</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Not Relevant" name="course_material" value="" class="chk1" /><span class="check-font"> Not Relevant</span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">3.Interaction With Trainner:<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Excellent" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Excellent</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Very Good" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Very Good</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Good" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Good</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Poor" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Poor</span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">4.Hands on Practice/practical Session:<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Very Useful" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Very Useful</span>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="checkbox" id="Useful" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Useful</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Less Useful" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Less Useful</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Not Useful" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Not Useful</span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">5.Usefullness Of Contents:<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Very Useful" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font">Very Useful</span>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="checkbox" id="Useful" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font"> Useful</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Less Useful" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font"> Less Useful</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Not Useful" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font"> Not Useful</span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">6.Information presented was clearly explained:<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Strongly Agree" name="information_presented" value="" class="chk5" /><span class="check-font">Strongly Agree</span>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="checkbox" id="Agree" name="information_presented" value="" class="chk5" /><span class="check-font"> Agree</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Neutral" name="information_presented" value="" class="chk5" /><span class="check-font"> Neutral</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Disagree" name="information_presented" value="" class="chk5" /><span class="check-font">Disagree</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Strongly Disagree" name="information_presented" value="" class="chk5" /><span class="check-font"> Strongly Disagree</span>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">7.Participant questions were clearly answered:<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Strongly Agree" name="participant_questions" value="" class="chk6" /><span class="check-font"> Strongly Agree</span>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="checkbox" id="Agree" name="participant_questions" value="" class="chk6" /><span class="check-font"> Agree</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Neutral" name="participant_questions" value="" class="chk6" /><span class="check-font"> Neutral</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Disagree" name="participant_questions" value="" class="chk6" /><span class="check-font"> Disagree</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Strongly Disagree" name="participant_questions" value="" class="chk6" /><span class="check-font"> Strongly Disagree</span>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">8.Food Quality/Lodging Facilities (If Applicable):<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Excellent" name="food_quality" value="" class="chk7" /><span class="check-font"> Excellent</span>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="checkbox" id="Very Good" name="food_quality" value="" class="chk7" /><span class="check-font"> Very Good</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Good" name="food_quality" value="" class="chk7" /><span class="check-font"> Good</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Poor" name="food_quality" value="" class="chk7" /><span class="check-font"> Poor</span>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <th colspan="20" class="text_span font-16">9. What was the most interesting thing you learned? <span class="requrid_star">*</span></th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="20">
+                                                        <textarea class="form-control alphanum" id="most_interesting_thing" name="most_interesting_thing" placeholder="Enter your Comments" rows="2"></textarea>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="text_span chkAll">
+                                                    <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Very Beneficial" name="overall_impression" value="" class="chk8" /><span class="check-font"> Very Beneficial</span>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="checkbox" id="Beneficial" name="overall_impression" value="" class="chk8" /><span class="check-font"> Beneficial</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Less Beneficial" name="overall_impression" value="" class="chk8" /><span class="check-font"> Less Beneficial</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="Not Beneficial" name="overall_impression" value="" class="chk8" /><span class="check-font"> Not Beneficial</span>
+                                                    </td>
+                                                </tr>
+
+
+
+
+                                                @*<tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Very well Planned</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Well Planned</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Less Planned</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">No Planning</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">1.Structure of course</td>
+                                                        <td><input type="checkbox" id="structure10" name="Structure1" onclick="Structure_of_Cource('Very well Planned','10')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="structure9" name="Structure2" onclick="Structure_of_Cource('Very well Planned','9')" class="form-control text-center Structure" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="structure8" name="Structure3" onclick="Structure_of_Cource('Well Planned','8')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="structure7" name="Structure4" onclick="Structure_of_Cource('Well Planned','7')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="structure6" name="Structure5" onclick="Structure_of_Cource('Well Planned','6')" class="form-control text-center Structure" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="structure5" name="Structure6" onclick="Structure_of_Cource('Less Planned','5')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="structure4" name="Structure7" onclick="Structure_of_Cource('Less Planned','4')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="structure3" name="Structure8" onclick="Structure_of_Cource('Less Planned','3')" class="form-control text-center Structure" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="structure2" name="Structure9" onclick="Structure_of_Cource('No Planned','2')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="structure1" name="Structure10" onclick="Structure_of_Cource('No Planned','1')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="structure0" name="Structure11" onclick="Structure_of_Cource('No Planned','0')" class="form-control text-center Structure" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Very Relevant</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Relevant</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Less Relevant</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Not Relevant</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">2. Course Material</td>
+                                                        <td><input type="checkbox" id="Course_Material10" name="Course_Material1" onclick="Course_Material('Very Relevant','10')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="Course_Material9" name="SCourse_Material2" onclick="Course_Material('Very Relevant','9')" class="form-control text-center Structure" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Course_Material8" name="Course_Material3" onclick="Course_Material('Relevant','8')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="Course_Material7" name="Course_Material4" onclick="Course_Material('Relevant','7')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="Course_Material6" name="Course_Material5" onclick="Course_Material('Relevant','6')" class="form-control text-center Structure" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Course_Material5" name="Course_Material6" onclick="Course_Material('Less Relevant','5')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="Course_Material4" name="Course_Material7" onclick="Course_Material('Less Relevant','4')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="Course_Material3" name="Course_Material8" onclick="Course_Material('Less Relevant','3')" class="form-control text-center Structure" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Course_Material2" name="Course_Material9" onclick="Course_Material('No Relevant','2')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="Course_Material1" name="Course_Material10" onclick="Course_Material('No Relevant','1')" class="form-control text-center Structure" /></td>
+                                                        <td><input type="checkbox" id="Course_Material0" name="Course_Material11" onclick="Course_Material('No Relevant','0')" class="form-control text-center Structure" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Very Effective</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Effective</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Less Effective</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Not Effective</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">3.Teaching Faculty</td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty10" name="Teaching_Faculty1" onclick="Teaching_Faculty('Very Effective','10')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty9" name="STeaching_Faculty2" onclick="Teaching_Faculty('Very Effective','9')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty8" name="Teaching_Faculty3" onclick="Teaching_Faculty('Effective','8')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty7" name="Teaching_Faculty4" onclick="Teaching_Faculty('Effective','7')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty6" name="Teaching_Faculty5" onclick="Teaching_Faculty('Effective','6')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty5" name="Teaching_Faculty6" onclick="Teaching_Faculty('Less Effective','5')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty4" name="Teaching_Faculty7" onclick="Teaching_Faculty('Less Effective','4')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty3" name="Teaching_Faculty8" onclick="Teaching_Faculty('Less Effective','3')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty2" name="Teaching_Faculty9" onclick="Teaching_Faculty('No Effective','2')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty1" name="Teaching_Faculty10" onclick="Teaching_Faculty('No Effective','1')" class="form-control text-center Teaching_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Teaching_Faculty0" name="Teaching_Faculty11" onclick="Teaching_Faculty('No Effective','0')" class="form-control text-center Teaching_Faculty" /></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Very Useful</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Useful</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Less Useful</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Not Useful</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">4.Practical session</td>
+                                                        <td><input type="checkbox" id="Practical_session10" name="Practical_session1" onclick="Practical_session('Very Useful','10')" class="form-control text-center Practical_session" /></td>
+                                                        <td><input type="checkbox" id="Practical_session9" name="SPractical_session2" onclick="Practical_session('Very Useful','9')" class="form-control text-center Practical_session" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Practical_session8" name="Practical_session3" onclick="Practical_session('Useful','8')" class="form-control text-center Practical_session" /></td>
+                                                        <td><input type="checkbox" id="Practical_session7" name="Practical_session4" onclick="Practical_session('Useful','7')" class="form-control text-center Practical_session" /></td>
+                                                        <td><input type="checkbox" id="Practical_session6" name="Practical_session5" onclick="Practical_session('Useful','6')" class="form-control text-center Practical_session" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Practical_session5" name="Practical_session6" onclick="Practical_session('Less Useful','5')" class="form-control text-center Practical_session" /></td>
+                                                        <td><input type="checkbox" id="Practical_session4" name="Practical_session7" onclick="Practical_session('Less Useful','4')" class="form-control text-center Practical_session" /></td>
+                                                        <td><input type="checkbox" id="Practical_session3" name="Practical_session8" onclick="Practical_session('Less Useful','3')" class="form-control text-center Practical_session" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Practical_session2" name="Practical_session9" onclick="Practical_session('No Useful','2')" class="form-control text-center Practical_session" /></td>
+                                                        <td><input type="checkbox" id="Practical_session1" name="Practical_session10" onclick="Practical_session('No Useful','1')" class="form-control text-center Practical_session" /></td>
+                                                        <td><input type="checkbox" id="Practical_session0" name="Practical_session11" onclick="Practical_session('No Useful','0')" class="form-control text-center Practical_session" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Excellent</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Very Good</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Just OK</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Poor</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">5. Food Quality/Logging Facilities (if applicable)</td>
+                                                        <td><input type="checkbox" id="Food_Quality10" name="Food_Quality1" onclick="Food_Quality('Excellent','10')" class="form-control text-center Food_Quality" /></td>
+                                                        <td><input type="checkbox" id="Food_Quality9" name="Food_Quality2" onclick="Food_Quality('Excellent','9')" class="form-control text-center Food_Quality" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Food_Quality8" name="Food_Quality3" onclick="Food_Quality('Very Good','8')" class="form-control text-center Food_Quality" /></td>
+                                                        <td><input type="checkbox" id="Food_Quality7" name="Food_Quality4" onclick="Food_Quality('Very Good','7')" class="form-control text-center Food_Quality" /></td>
+                                                        <td><input type="checkbox" id="Food_Quality6" name="Food_Quality5" onclick="Food_Quality('Very Good','6')" class="form-control text-center Food_Quality" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Food_Quality5" name="Food_Quality6" onclick="Food_Quality('Just OK','5')" class="form-control text-center Food_Quality" /></td>
+                                                        <td><input type="checkbox" id="Food_Quality4" name="Food_Quality7" onclick="Food_Quality('Just OK','4')" class="form-control text-center Food_Quality" /></td>
+                                                        <td><input type="checkbox" id="Food_Quality3" name="Food_Quality8" onclick="Food_Quality('Just OK','3')" class="form-control text-center Food_Quality" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Food_Quality2" name="Food_Quality9" onclick="Food_Quality('Poor','2')" class="form-control text-center Food_Quality" /></td>
+                                                        <td><input type="checkbox" id="Food_Quality1" name="Food_Quality10" onclick="Food_Quality('Poor','1')" class="form-control text-center Food_Quality" /></td>
+                                                        <td><input type="checkbox" id="Food_Quality0" name="Food_Quality11" onclick="Food_Quality('Poor','0')" class="form-control text-center Food_Quality" /></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Excellent</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Very Good</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Just OK</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Poor</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">6. Interaction with Faculty  </td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty10" name="Interaction_with_Faculty1" onclick="Interaction_with_Faculty('Excellent','10')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty9" name="SInteraction_with_Faculty2" onclick="Interaction_with_Faculty('Excellent','9')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty8" name="Interaction_with_Faculty3" onclick="Interaction_with_Faculty('Very Good','8')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty7" name="Interaction_with_Faculty4" onclick="Interaction_with_Faculty('Very Good','7')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty6" name="Interaction_with_Faculty5" onclick="Interaction_with_Faculty('Very Good','6')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty5" name="Interaction_with_Faculty6" onclick="Interaction_with_Faculty('Just OK','5')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty4" name="Interaction_with_Faculty7" onclick="Interaction_with_Faculty('Just OK','4')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty3" name="Interaction_with_Faculty8" onclick="Interaction_with_Faculty('Just OK','3')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty2" name="Interaction_with_Faculty9" onclick="Interaction_with_Faculty('Poor','2')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty1" name="Interaction_with_Faculty10" onclick="Interaction_with_Faculty('Poor','1')" class="form-control text-center Interaction_with_Faculty" /></td>
+                                                        <td><input type="checkbox" id="Interaction_with_Faculty0" name="Interaction_with_Faculty11" onclick="Interaction_with_Faculty('Poor','0')" class="form-control text-center Interaction_with_Faculty" /></td>
+
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Very Useful</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Useful</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Less Useful</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Not Useful</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">7. Usefulness of Course  </td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course10" name="Usefulness_of_Course1" onclick="Usefulness_of_Course('Very Useful','10')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course9" name="SUsefulness_of_Course2" onclick="Usefulness_of_Course('Very Useful','9')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course8" name="Usefulness_of_Course3" onclick="Usefulness_of_Course('Useful','8')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course7" name="Usefulness_of_Course4" onclick="Usefulness_of_Course('Useful','7')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course6" name="Usefulness_of_Course5" onclick="Usefulness_of_Course('Useful','6')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course5" name="Usefulness_of_Course6" onclick="Usefulness_of_Course('Less Useful','5')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course4" name="Usefulness_of_Course7" onclick="Usefulness_of_Course('Less Useful','4')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course3" name="Usefulness_of_Course8" onclick="Usefulness_of_Course('Less Useful','3')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course2" name="Usefulness_of_Course9" onclick="Usefulness_of_Course('No Useful','2')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course1" name="Usefulness_of_Course10" onclick="Usefulness_of_Course('No Useful','1')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                        <td><input type="checkbox" id="Usefulness_of_Course0" name="Usefulness_of_Course11" onclick="Usefulness_of_Course('No Useful','0')" class="form-control text-center Usefulness_of_Course" /></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="6"></td>
+                                                        <td colspan="2" class="text-center text_span">Very beneficial</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Beneficial</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Less Beneficial</td>
+                                                        <td class="td_graph"></td>
+                                                        <td colspan="3" class="text-center text_span">Not Beneficial</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="text_span">8. Overall impression</td>
+                                                        <td><input type="checkbox" id="Overall_impression10" name="Overall_impression1" onclick="Overall_impression('Very beneficial','10')" class="form-control text-center Overall_impression" /></td>
+                                                        <td><input type="checkbox" id="Overall_impression9" name="SOverall_impression2" onclick="Overall_impression('Very beneficial','9')" class="form-control text-center Overall_impression" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Overall_impression8" name="Overall_impression3" onclick="Overall_impression('Beneficial','8')" class="form-control text-center Overall_impression" /></td>
+                                                        <td><input type="checkbox" id="Overall_impression7" name="Overall_impression4" onclick="Overall_impression('Beneficial','7')" class="form-control text-center Overall_impression" /></td>
+                                                        <td><input type="checkbox" id="Overall_impression6" name="Overall_impression5" onclick="Overall_impression('Beneficial','6')" class="form-control text-center Overall_impression" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Overall_impression5" name="Overall_impression6" onclick="Overall_impression('Less Beneficial','5')" class="form-control text-center Overall_impression" /></td>
+                                                        <td><input type="checkbox" id="Overall_impression4" name="Overall_impression7" onclick="Overall_impression('Less Beneficial','4')" class="form-control text-center Overall_impression" /></td>
+                                                        <td><input type="checkbox" id="Overall_impression3" name="Overall_impression8" onclick="Overall_impression('Less Beneficial','3')" class="form-control text-center Overall_impression" /></td>
+                                                        <td class="td_graph"></td>
+                                                        <td><input type="checkbox" id="Overall_impression2" name="Overall_impression9" onclick="Overall_impression('No Beneficial','2')" class="form-control text-center Overall_impression" /></td>
+                                                        <td><input type="checkbox" id="Overall_impression1" name="Overall_impression10" onclick="Overall_impression('No Beneficial','1')" class="form-control text-center Overall_impression" /></td>
+                                                        <td><input type="checkbox" id="Overall_impression0" name="Overall_impression11" onclick="Overall_impression('No Beneficial','0')" class="form-control text-center Overall_impression" /></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="10"></td>
+                                                        <td colspan="5" class="text-center text_span">Most Useful </td>
+
+                                                        <td colspan="5" class="text-center text_span">Useful </td>
+
+                                                    </tr>*@
+                                                @*<tr>
+                                                        <th colspan="10" class="text_span">II. Which topic of the Course You found</th>
+                                                        <td colspan="5"> <textarea id="course_found1" name="course_found1" class="form-control alphanum" placeholder="Enter your Comments" rows="2"></textarea></td>
+                                                        <td colspan="5"> <textarea id="course_found2" name="course_found2" class="form-control alphanum" placeholder="Enter your Comments" rows="2"></textarea></td>
+
+                                                    </tr>*@
+                                                <tr>
+                                                    <th colspan="20" class="text_span font-16">Your suggestions /Comments for further improvements<span class="requrid_star">*</span></th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="20">
+                                                        <textarea class="form-control alphanum" id="your_suggestions" name="your_suggestions" placeholder="Enter your Comments" rows="2"></textarea>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td></td>
+                                                    <td>
+                                                        @*<img src="/Contact/GetCaptchaImage" id="captchaimg" class="" title="Captcha" style="" />*@
+
+                                                        <div class="d-flex" style=" margin-top: 10px;">
+                                                            <div style=" margin-top: 10px; margin-left: 60px;"><img src="@Url.Action("GetCaptchaImage","Home")" id="C_img1" /></div>
+                                                            <div style=" margin-top: 10px;"><span style=" margin-top: 56px; margin-left: -75px;" class="refreshicon fa fa-refresh" onclick="refress()"></span></div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control width-17" style="margin-left: 50px; margin-top: -6px; " name="clientCaptcha" id="clientCaptcha" placeholder="Enter the code here" required />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="15" class="text-center">
+                                                        <p id="status" class="error_captch" style="font-weight: bold; color: red; margin-left: -80px; margin-top: -40px;"></p>
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <div class="form-group col-md-12 text-center mt-2">
+                                            <button class="btn btn-success btn-md" id="btnSubmit" style="margin-top: -48px; margin-left: -110px;" onclick="Checking()">Submit</button>
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+                                            <p id="feed_msg" class="" style="font-weight:bold;color:forestgreen;margin-bottom:10px;"></p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script>
+
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:nth-child(3)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:nth-child(3)").siblings().removeClass('active');
+    var s = 0;
+    var CapchaInfo = "";
+    function Checking() {
+ $.post("@Url.Action("CustomCaptcha_feedback", "Contact")",
+        //$.post("~/CustomCaptcha_feedback/Contact"),
+        {
+            clientCaptcha: $("#clientCaptcha").val(),
+
+        },
+          function (data) {
+           $('#btnSubmit').prop('disabled', false);
+                
+                if (data == 0) {
+                    CapchaInfo = "Not Matched";
+                    $("#status").html('<font color="red"> Not Matched</font>');
+                    refress();
+                }
+                else {
+                    //CapchaInfo = "Matched";
+                    //$("#status").html('<font color="green">Captch process is Succesfully</font>');
+
+                    Save_Info_New();
+                }
+
+            });
+    }
+
+    function refress() {
+        $('#C_img1').attr('src', $('#C_img1').attr('src') + '#');
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    $('input.chk').on('change', function () {
+        $('input.chk').not(this).prop('checked', false);
+    });
+    $('input.chk1').on('change', function () {
+        $('input.chk1').not(this).prop('checked', false);
+    });
+    $('input.chk2').on('change', function () {
+        $('input.chk2').not(this).prop('checked', false);
+    });
+    $('input.chk3').on('change', function () {
+        $('input.chk3').not(this).prop('checked', false);
+    });
+    $('input.chk4').on('change', function () {
+        $('input.chk4').not(this).prop('checked', false);
+    });
+    $('input.chk5').on('change', function () {
+        $('input.chk5').not(this).prop('checked', false);
+    });
+
+    $('input.chk6').on('change', function () {
+        $('input.chk6').not(this).prop('checked', false);
+    });
+    $('input.chk7').on('change', function () {
+        $('input.chk7').not(this).prop('checked', false);
+    });
+    $('input.chk8').on('change', function () {
+        $('input.chk8').not(this).prop('checked', false);
+    });
+
+
+
+    function Search_Info() {
+        /* alert('1');*/
+        /* */
+
+        var reg = $("#registration_no").val();
+
+        $.ajax({
+            url: '/Contact/registration_selection',
+            type: 'GET',
+            data: { REG: reg },
+            dataType: 'json',
+            contentType: 'application/json',
+
+            success: function (data) {
+                
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+
+                if (data != null) {
+
+                    $('#p_training_name').val(data.p_training_name);
+                    $('#participant_name').val(data.p_name);
+                    $('#level_event').val(data.level_event);
+                    $('#level_event_dist').val(data.district);
+                    $('#level_event_block').val(data.block);
+                    $('#event_platform').val(data.event_platform);
+                    var date1 = $('#from_date').val(data.from_date);
+                    var date2 = $('#to_date').val(data.to_date);
+
+                    var fromdate = $('#from_date').val();
+                    var todate = $('#to_date').val();
+
+                    var dt1 = new Date(fromdate);      //for total no. of days count
+                    var dt2 = new Date(todate);
+
+                    var diff = dt2.getTime() - dt1.getTime();
+
+                    var days_diff = [diff / (1000 * 3600 * 24)];
+                    var iNum = parseInt(days_diff)
+                    var DAY_DIFF = iNum + 1;            // add 1 bcz of last day is also count for registration
+                    $('#total_days').val(DAY_DIFF);
+
+
+                }
+
+            },
+            error:
+                function (response) {
+                    console.dir(response)
+                    //alert("Error: " + response);
+                }
+        });
+    }
+
+    function Save_Info_New() {
+        
+        var feed_msg = "Thank You for Submit the Feedback"
+
+        var reg_no = $('#registration_no').val();
+        if (reg_no == "") {
+            alert('Enter Registration Number');
+            return;
+        }
+        var TOE = $('#p_training_name').val();
+        //if (TOE == "") {
+        //    alert('Enter Topic Of Event');
+        //    return;
+        //}
+        var PA = $('#participant_name').val();
+        ////if (PA == "") {
+        ////    alert('Enter Participant Name');
+        ////    return;
+        ////}
+        var LOE = $('#level_event').val();
+        //if (LOE == "") {
+        //    alert('Enter Level Of Event');
+        //    return;
+        //}
+        var EP = $('#event_platform').val();
+        //if (EP == "") {
+        //    alert('Enter Event Platform');
+        //    return;
+        //}
+        var FD = $('#from_date').val();
+        //if (FD == "") {
+        //    alert('Enter From Date');
+        //    return;
+        //}
+        var TD = $('#to_date').val();
+        //if (TD == "") {
+        //    alert('Enter To Date');
+        //    return;
+        //}
+        var Tot_days = $('#total_days').val();
+        //if (Tot_days == "") {
+        //    alert('Enter Total Days');
+        //    return;
+        //}
+
+        var abc = ($('input[class="chk"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Structure Of Training Program Feedback');
+            return;
+        }
+        var abc = ($('input[class="chk1"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Course Material Feedback');
+            return;
+        }
+        var abc = ($('input[class="chk2"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Interaction With Trainer Feedback');
+            return;
+        }
+        var abc = ($('input[class="chk3"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Hands on Practice/practical Session Feedback');
+            return;
+        }
+        var abc = ($('input[class="chk4"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Usefullness Of Contents Feedback');
+            return;
+        }
+        var abc = ($('input[class="chk5"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Information presented was clearly explained Feedback');
+            return;
+        }
+        var abc = ($('input[class="chk6"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Participant questions were clearly answered Feedback');
+            return;
+        }
+        //var abc = ($('input[class="chk7"]:checked').length > 0);
+        //if (abc == false) {
+        //    alert('Choose Food Quality/Lodging Facilities Feedback');
+        //    return;
+        //}
+        var MIT = $('#most_interesting_thing').val();
+        if (MIT == "") {
+            alert('Enter most interesting thing you learned ');
+            return;
+        }
+        var abc = ($('input[class="chk8"]:checked').length > 0);
+        if (abc == false) {
+            alert('Choose Overall Impression Feedback');
+            return;
+        }
+        var YS = $('#your_suggestions').val();
+        if (YS == "") {
+            alert('Enter Your suggestions /Comments ');
+            return;
+        }
+
+        var client_cap = $('#clientCaptcha').val();
+        if (client_cap == "") {
+            alert('Enter Capcha');
+            return;
+
+        }
+
+        var structure_of_training = "";
+        var course_material = "";
+        var interaction_with_trainer = "";
+        var hands_on_practice = "";
+        var usefulness_of_contents = "";
+        var information_presented = "";
+        var participant_questions = "";
+        var food_quality = "";
+        var overall_impression = "";
+
+        $($('.chkAll')).each(function () {
+
+            var li = $(this).find('td')
+            li.each(function () {
+                var aa = $(this).find('input[type=checkbox],select');
+                if (aa.prop('checked') == true) {
+
+                    var id = aa.attr("id")
+                    var name = aa.attr("name")
+                    if (name == "structure_of_training") {
+                        structure_of_training = id;
+                    }
+                    if (name == "course_material") {
+                        course_material = id;
+                    }
+                    if (name == "interaction_with_trainer") {
+                        interaction_with_trainer = id;
+                    }
+                    if (name == "hands_on_practice") {
+                        hands_on_practice = id;
+                    }
+                    if (name == "usefulness_of_contents") {
+                        usefulness_of_contents = id;
+                    }
+                    if (name == "information_presented") {
+                        information_presented = id;
+                    }
+                    if (name == "participant_questions") {
+                        participant_questions = id;
+                    }
+                    if (name == "food_quality") {
+                        food_quality = id;
+                    }
+                    if (name == "overall_impression") {
+                        overall_impression = id;
+                    }
+                    if (name == "client_cap") {
+                        client_cap = id;
+                    }
+                }
+
+            })
+
+        })
+
+        var Items_final = [];
+        
+        Items_final.push({
+            registration_no: $('#registration_no').val(),
+            p_training_name: $('#p_training_name').val(),
+            participant_name: $('#participant_name').val(),
+            level_of_event: $('#level_event').val(),
+            dist: $('#level_event_dist').val(),
+            block: $('#level_event_block').val(),
+            event_platform: $('#event_platform').val(),
+            from_date: $('#from_date').val(),
+            to_date: $('#to_date').val(),
+            total_days: $('#total_days').val(),
+            structure_of_training: structure_of_training,
+            course_material: course_material,
+            interaction_with_trainer: interaction_with_trainer,
+            hands_on_practice: hands_on_practice,
+            usefulness_of_contents: usefulness_of_contents,
+            information_presented: information_presented,
+            participant_questions: participant_questions,
+            food_quality: food_quality,
+            most_interesting_thing: $('#most_interesting_thing').val(),
+            overall_impression: overall_impression,
+            your_suggestions: $('#your_suggestions').val(),
+
+            client_cap: $('#clientCaptcha').val(),
+        });
+        var a = JSON.stringify(Items_final);
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Contact/Save_Feedback',
+            data: JSON.stringify(Items_final),
+            dataType: 'JSON',
+            success: function (response) {
+
+                
+                alert(response);
+                $('#registration_no').val(""),
+                    $('#p_training_name').val(""),
+                    $('#participant_name').val(""),
+                    $('#level_event').val(""),
+                    $('#level_event_dist').val(""),
+                    $('#level_event_block').val(""),
+                    $('#event_platform').val(""),
+                    $('#from_date').val(""),
+                    $('#to_date').val(""),
+                    $('#total_days').val(""),
+                    $('#most_interesting_thing').val(""),
+                    $('#your_suggestions').val(""),
+                    $('#clientCaptcha').val(""),
+                    $('#status').text("");
+                /*alert('Feedback Saved Successfully');*/
+                refress();
+                if (response == "You have already submitted your Feedback") {
+                    $('#feed_msg').text("");
+                    /*$('#btnSubmit').prop('disabled', true);*/
+                }
+                else {
+                    $('#feed_msg').text(feed_msg);
+                    $('#btnSubmit').prop('disabled', true);
+                }
+            },
+            error: function (err) {
+                //tata.error('Error', "Error !!!");
+                //location.reload();
+                alert('Feedback Not Saved');
+                refress();
+            }
+
+        });
+
+        $('input[type=checkbox]').prop('checked', false);    // for uncheck checkbox
+    }
+
+
+</script>
+

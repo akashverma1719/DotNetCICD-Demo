@@ -1,0 +1,315 @@
+﻿@model AbhyProject.Models.TenderDetails
+
+@{
+    ViewBag.Title = "Tender_Details_Form";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+    <title>Tender Announcement Form </title>
+<style>
+    input[type=date]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+
+    .aa > div > input,
+    .bb > div > span > input {
+        width: 21px;
+        height: 18px;
+    }
+
+    /*.labelcheckbox {
+        padding-left: 0px !important;
+        font-size: 18px;
+    }*/
+
+    .msg {
+        color: red !important;
+        font-weight: bold;
+    }
+
+    .hpanel .panel-body {
+        background: #fff;
+        border: 1px solid #e4e5e7;
+        border-radius: 2px;
+        padding: 20px;
+        position: relative;
+        border-top: 2px solid #62cb31;
+    }
+
+    .hpanel {
+        border: none !important;
+        box-shadow: none;
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+
+    .col-md-6 {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        width: 100px;
+    }
+
+    a.btn-primary {
+        width: 200px;
+    }
+
+    .btnlist {
+        margin-top: 10px;
+    }
+
+    .about-area .col-md-6 img {
+        margin-top: 0px;
+    }
+
+    .about-area .col-md-6:last-child {
+        padding-left: 15px;
+    }
+
+    p {
+        margin: 0;
+    }
+</style>
+<style>
+
+        .table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+            padding: 7px;
+        }
+
+        .input-container {
+            display: -ms-flexbox;
+            / IE10 / display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .icon {
+            padding: 10px;
+            background: #eeeeee;
+            color: #5d5a59;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            outline: none;
+        }
+
+            .input-field:focus {
+                border: 2px solid dodgerblue;
+            }
+
+        /*.datetimepicker {
+            left: 683px !important;
+        }*/
+        /*.datetimepicker1
+    {
+        left: 1226px !important;
+    }*/
+        .input-append.date .add-on i, .input-prepend.date .add-on i, .input-group.date .input-group-addon span {
+            cursor: pointer;
+            width: 14px;
+            height: 34px !important;
+        }
+
+        .add-on {
+            position: absolute;
+            right: 16px;
+            top:16px;
+        }
+</style>
+
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    //auto expand textarea
+    function adjust_textarea(h) {
+        h.style.height = "20px";
+        h.style.height = (h.scrollHeight) + "px";
+    }
+</script>
+<!--Heading-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900;">Tender Announcement Form </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="content-wrapper">
+                <div class="content">
+                    <div class="col-lg-12">
+                        <div class="hpanel">
+                            @using (Html.BeginForm("Tender_Details_Form", "Tenders", FormMethod.Post, new { @class = "form-style-7" }))
+                            {
+
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-right msg">
+                                            * Fields are mandatory
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Development Area : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="development_area" type="text" maxlength="50" id="development_area" class="form-control alphanum" placeholder="Enter your development area" required>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        Bid Reference Number : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="bid_ref_no" type="text" maxlength="50" id="bid_ref_no" class="form-control alphanum" placeholder="Enter your bid reference number" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Description : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="description" type="text" maxlength="50" id="description" class="form-control" placeholder="Enter your description" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Office Inviting Tender : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="office_inviting_tender" type="text" maxlength="50" id="office_inviting_tender" class="form-control alphanum" placeholder="Enter your office inviting tender" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Office Email Id : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="office_emailid" type="text" maxlength="50" id="office_emailid" class="form-control mail" placeholder="Enter your office email ID " required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Published Date   : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="publish_date" type="date" maxlength="50" id="publish_date" class="form-control" placeholder="Enter your published date " required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Tender Reference Number : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="tender_ref_no" type="text" maxlength="50" id="tender_ref_no" class="form-control alphanum" placeholder="Enter your tender reference number" required>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        Website URL : <span class="msg">*</span>
+                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                        <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
+                                        <input name="url" type="text" maxlength="50" id="url" class="form-control" placeholder="Enter your website URL" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Sale Start Date and Time : <span class="msg">*</span>
+                                        <div class="input-container input-append date form_datetime">
+                                            <input type='text' class="form-control" name="sale_start_datetime" maxlength="100" id="sale_start_datetime" placeholder="Enter your sale start date and time " required />
+                                            <span class="add-on">
+                                                <i class="fa fa-calendar icon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        Sale End Date and Time : <span class="msg">*</span>
+                                        <div class="input-container input-append date form_datetime">
+                                            <input name="sale_end_datetime" type="text" maxlength="100" id="sale_end_datetime" class="form-control" placeholder="Enter your sale end date and time" required>
+                                            <span class="add-on">
+                                                <i class="fa fa-calendar icon"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Last Submission Date and Time : <span class="msg">*</span>
+                                        <div class="input-container input-append date form_datetime">
+                                            <input name="last_submission_datetime" type="text" maxlength="50" id="last_submission_datetime" class="form-control" placeholder="Enter your last submission date and time" required>
+                                            <span class="add-on">
+                                                <i class="fa fa-calendar icon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        Opening Start Date and Time : <span class="msg">*</span>
+                                        <div class="input-container input-append date form_datetime">
+                                            <input name="opening_start_datetime" type="text" maxlength="50" id="opening_start_datetime" class="form-control" placeholder="Enter your opening start date and time" required>
+                                            <span class="add-on">
+                                                <i class="fa fa-calendar icon"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+                                    <div class="form-group  col-md-12">
+                                        <input type="submit" name="" value="Submit" onclick="" id="" class="btn btn-primary pull-left " style="font-weight:700">
+
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Scripts/Scriptsabhy/jquery-1.8.3.min.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.fr.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+</script>
+
+    <script>
+        $("nav#primary-menu > ul.main-menu > li:nth-child(3)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(3)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:nth-child(4)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(3) > ul.dropdown > li:nth-child(4)").siblings().removeClass('active');
+</script>

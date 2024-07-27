@@ -1,0 +1,115 @@
+﻿
+
+.total_row {
+    padding: 0px;
+    border-radius: 10px;
+    /* border: 1px solid #ddd; */
+}
+
+#Data1 {
+    background-color: #fff;
+}
+
+.row_padding_10 {
+    /*padding: 10px;*/
+}
+
+.state_dist_level {
+    background-color: #337ab7;
+    color: #fff;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+#resetinfo table thead th,
+.Water_Availability_table_individual thead tr th,
+.water_draft_individual_table thead tr th,
+.balance_table_individual thead tr th,
+.wb_table_individual thead tr th {
+    background-color: #ddd !important;
+    padding: 8px;
+}
+
+.Water_Availability_table_individual {
+    margin: 10px 0px
+}
+
+table thead tr.success td {
+    background-color: #337ab7 !important;
+    color: #fff;
+}
+
+.heading_second_one_pgwm {
+    color: #000;
+    font-size: 20px;
+    background-color: #ddd;
+    padding: 2px 8px;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.main_heading_pgwm1 {
+    margin-top: 220px;
+    margin-bottom: 200px;
+}
+
+.main_heading_sm1 {
+    margin-top: 400px;
+}
+
+.main_heading_pgwm_change1 {
+    margin-top: 300px;
+}
+
+.gramReport_div_start,
+.wateravaliablity_space1,
+.waterdrft_space1,
+.waterdrft_balance1,
+.waterdrft_Budgeting_space1,
+.supplyside_demandside_space1,
+.pgwmCommiteee_space1 {
+    padding: 0px;
+    border-radius: 10px;
+}
+
+.reportheading {
+    background: #ddd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.wateravaliablity_table > thead > tr > td,
+.demandsidetable > thead > tr > td,
+.wateravaliablity_table > tbody > tr > td,
+.demandsidetable > tbody > tr > td {
+    padding: 4px;
+    page-break-inside: avoid !important;
+}
+
+@media print {
+    .page-break-avoid {
+        page-break-inside: avoid !important;
+    }
+
+    .table-condensed {
+        page-break-inside: avoid !important;
+        /*background:#000 !important;*/
+    }
+
+        .table-condensed tr td {
+            page-break-inside: avoid !important;
+            white-space: nowrap;
+        }
+}
+
+#pdf_container_photo canvas {
+    width: 100% !important;
+}
+
+#pdf_container_res canvas {
+    width: 100% !important;
+}
+
+#pdf_container_atten canvas {
+    width: 100% !important;
+}

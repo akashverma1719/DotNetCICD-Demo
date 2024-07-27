@@ -1,0 +1,73 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Training Details Report</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="46" class="text-center"> Training Details</th>
+                            </tr>
+                            <tr style="">
+                                <th rowspan="3">SL. No.</th>
+                                <th rowspan="3">State</th>
+                                <th id="ddldist" rowspan="3" style="display: none;">District</th>
+                                <th id="ddlblock" rowspan="3" style="display: none;">Block</th>
+                                <th id="ddlgram" rowspan="3" style="display: none;">Gram Panchayat</th>
+                                <th colspan="40" class="text-center bg-warning">Number of Trainings</th>
+                            </tr>
+                            <tr>
+                                <th id="statel1" colspan="3" class="bg-success">State level</th>
+                                <th id="statel2" colspan="5" class="bg-success">Participants details </th>
+                                <th id="distl1" colspan="3" class="bg-success">District level</th>
+                                <th id="distl2" colspan="5" class="bg-success">Participants details </th>
+                                <th id="blockl1" colspan="3" class="bg-success">Block Level</th>
+                                <th id="blockl2" colspan="5" class="bg-success">Participants details </th>
+                                <th id="graml1" colspan="3" class="bg-success">GP level </th>
+                                <th id="graml2" colspan="5" class="bg-success">Participants details</th>
+                                <th colspan="3" style="background-color: #094080; color: #fff;">Total </th>
+                                <th colspan="5" style="background-color: #094080; color: #fff;">Toal Participants</th>
+
+                            </tr>
+                            <tr class="vertical">
+                                <th id="state1">Total Targets</th>
+                                <th id="state2">Achievement during the month</th>
+                                <th id="state3">Cumulative Achievement</th>
+                                <th id="state4">Male</th>
+                                <th id="state5">Female</th>
+                                <th id="state6">Transgender</th>
+                                <th id="state7">Total</th>
+                                <th id="state8">Percentage of Females</th>
+                                <th id="dist1">Total Targets</th>
+                                <th id="dist2">Achievement during the month</th>
+                                <th id="dist3">Cumulative Achievement</th>
+                                <th id="dist4">Male</th>
+                                <th id="dist5">Female</th>
+                                <th id="dist6">Transgender</th>
+                                <th id="dist7">Total</th>
+                                <th id="dist8">Percentage of Females</th>
+                                <th id="block11">Total Targets</th>
+                                <th id="block21">Achievement during the month</th>
+                                <th id="block31">Cumulative Achievement</th>
+                                <th id="block41">Male</th>
+                                <th id="block51">Female</th>
+                                <th id="block61">Transgender</th>
+                                <th id="block71">Total</th>
+                                <th id="block81">Percentage of Females</th>
+                                <th id="gram1">Total Targets</th>
+                                <th id="gram2">Achievement during the month</th>
+                                <th id="gram3">Cumulative Achievement</th>
+                                <th id="gram4">Male</th>
+                                <th id="gram5">Female</th>
+                                <th id="gram6">Transgender</th>
+                                <th id="gram7">Total</th>
+                                <th id="gram8">Percentage of Females</th>
+                                <th>Total Targets</th>
+                                <th>Achievement during the month</th>
+                                <th>Cumulative Achievement</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Transgender</th>
+                                <th>Total</th>
+                                <th>Percentage of Females</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="tbldata"><tr><td id="srNo"><label>1</label></td><td id="rainfall"><label>Gujarat_24</label></td><td id="rainfall"><label>505</label></td><td id="rainfall"><label>5</label></td><td id="rainfall"><label>11</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>216</label></td><td id="rainfall"><label>30</label></td><td id="rainfall"><label>97</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>1496</label></td><td id="rainfall"><label>127</label></td><td id="rainfall"><label>433</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>209196</label></td><td id="rainfall"><label>7520</label></td><td id="rainfall"><label>20556</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>211413</label></td><td id="rainfall"><label>7682</label></td><td id="rainfall"><label>21097</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td><td id="rainfall"><label>0</label></td></tr></tbody>
+                    </table></body></html>

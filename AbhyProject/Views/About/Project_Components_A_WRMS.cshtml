@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
+    <meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
+    <meta name="author" content="Codrops" />
+    <title>Institutional Strengthening & Capacity Building </title>
+
+    <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+    <script>
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3) ").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3)").siblings().removeClass('active');
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3)> ul.inside-menu > li:first-child").addClass("active");
+        $("nav#primary-menu > ul.main-menu > li:nth-child(2) > ul.dropdown > li:nth-child(3)> ul.inside-menu > li:first-child").siblings().removeClass('active');
+
+    </script>
+
+</head>
+<body>
+
+
+    <div class="ss">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:sans-serif;margin-top:20px;font-weight:900">Institutional Strengthening & Capacity Building Component (Rs. 1,400 crore): </div>
+            </div>
+        </div>
+        <div class="container-fluid div-w99">
+            <div class="row">
+                <div class="col-md-12" style="padding-top:20px">
+
+                    <div class="col-md-12" style="margin-bottom:20px;">
+                        <h5 style="line-height:1.5em;font-size:16px;">
+                            This component is for strengthening institutional arrangements and capacities in the states for enabling them to sustainably manage their groundwater. The components envisage strengthening institutional capacity at all levels including states, districts, blocks and gram panchayats, enhance community participation in preparation of water security plan, improving skills and inculcating behavioural change through information, education and communication towards sustainable groundwater management. Total outlay under the component is Rs. 1400 Crore contributed by Government of India.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        function openPopUp(popupId) {
+            $('#' + popupId).modal('show');
+        }
+
+        document.getElementById('compS1').childNodes[1].setAttribute("class", "active");
+        document.getElementById('compS1').childNodes[1].children[0].setAttribute("class", "active");
+        document.getElementById('compS1Desc').childNodes[1].setAttribute("class", "tab-pane fade active in");
+        var opt = location.href.substring(location.href.length - 1, location.href.length);
+        document.getElementById("ISTable" + opt).style.display = "table";
+    </script>
+
+</body>
+</html>

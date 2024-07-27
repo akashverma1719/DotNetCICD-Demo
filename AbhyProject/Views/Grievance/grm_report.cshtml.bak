@@ -1,0 +1,719 @@
+﻿
+@{
+    ViewBag.Title = "grm_report";
+    Layout = null;
+}
+
+
+<meta name="viewport" content="width=device-width" />
+<title>Grievance Management  Report</title>
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+<!--Pie Chart-->
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<!--pie chart-->
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+<!--favicon end-->
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .GWL_deviation_table1 thead tr.info1 th {
+        background-color: #337ab7 !important;
+        color: #fff;
+    }
+
+    .GWL_deviation_table1 > tbody > tr > td,
+    .GWL_deviation_table1 > thead > tr > th {
+        border: 1 px solid #ddd;
+        font-size: 10px;
+    }
+
+    .main_heading_pgwm2 {
+        margin-top: 125px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .dateandtime_ul > li {
+        display: inline-block;
+        color: #000;
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+
+    .tablebaody input {
+        text-transform: capitalize;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .row {
+        margin: 0px;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    /*  .firsttable {
+        display: table-cell;
+    }*/
+
+    .secondtable {
+        /* display: table-cell;*/
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 10px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+</style>
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12 ">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>Grievance Management Report </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demogram"></span></li>
+                    <li>Time : <span id="demogram2"></span></li>
+                    <li>
+                        Username:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 state_dist_level">
+            <div class="row text-center" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["GRM_STATE"] != null && Session["GRM_STATE"].ToString() != "null" && Session["GRM_STATE"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["GRM_STATE"]</span>
+
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        @*<div class="col-md-12 " style="display:none;">*@
+        <div class="col-md-12">
+            <div class="text-center reportheading ">
+                <p>GRM Monthly Status </p>
+            </div>
+
+
+            <div class="col-lg-offset-3 col-md-6 col-sm-6 col-lg-offset-2">
+                <div class="pie_chart_div">
+                    <div id="PGWM_pie_chart" style="height: 380px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-12 col-sm-12 main_heading_pgwm11">
+            <div id="" style="overflow-x:scroll;">
+
+                <table class="GWL_deviation_table1 table table-bordered table-responsive table-__web-inspector-hide-shortcut__ no-footer" style="border:1px solid #dddddd;">
+                    <div class="text-center reportheading ">
+                        <p>Grievance Management Report</p>
+                    </div>
+                    <thead>
+                        <tr class="info1">
+                            <th class="text-center">S.No.</th>
+                            <th class="text-center">Grievance ID</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Grievance Type</th>
+                            <th class="text-center">Grievance Description</th>
+                            <th class="text-center">Subject</th>
+                            <th class="text-center">Grievance Addressed to</th>
+                            <th class="text-center">Complainant Name</th>
+                            <th class="text-center">Stage of Application</th>
+                            <th class="text-center">Officer Name</th>
+                            <th class="text-center">Grievance Status</th>
+                        </tr>
+
+
+                    </thead>
+                    <tbody id="TblData_abc_part">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        /*<div class="col-md-12" style="margin-bottom:15px;">
+            <div class="text-center">
+                <label class="text-center">
+                    .............................
+                </label>
+                <p class="text-justify">
+                    The results and analysis contained within the Water Budgeting Report are generated with the help of inputs given by the
+                    user as well as existing database. Each component of water budgeting is designed to make understand the users about
+                    the processes, parameters and equations involved in the system. The overall goal of water budgeting is therefore to
+                    improve the management of ground water resources in priority areas of the country.
+                </p>
+                <label class="text-center">
+                    .............................
+                </label>
+            </div>*/
+
+            <div class="col-md-12 last-div-footer hidediv" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/Grievance/grm_dashboard" class="btn btn-danger">
+                        Back
+                    </a>
+
+                   /* <button type="button" class="btn btn-success" onclick="ReportPdf();">Download</button>*/
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+
+    function ReportPdf() {
+
+        $("#Data1").width(1110);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'Grievance_Management_Report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('div.demandsidesupplyside_space1').addClass('demandsidesupplyside_space');
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        $('div.main_heading_pgwm11').addClass('main_heading_pgwm2');
+        $('div.main_heading_sm').addClass('main_heading_sm1');
+        $('div.main_heading_pgwm_change').addClass('main_heading_pgwm_change1');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $('div.demandsidesupplyside_space1').removeClass('demandsidesupplyside_space');
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+            $('div.main_heading_pgwm11').removeClass('main_heading_pgwm2');
+            $('div.main_heading_sm').removeClass('main_heading_sm1');
+            $('div.main_heading_pgwm_change').removeClass('main_heading_pgwm_change1');
+        }, 2000);
+    }
+
+    var StateName = "";
+
+
+    $(document).ready(function () {
+        debugger;
+        StateName = '@Session["GRM_STATE"]';
+        debugger;
+        var spnstate = $('#spnstate').text();
+        if (spnstate == "0") {
+            $('#spnstate').text(spnstate);
+        }
+        if (StateName == "") {
+            StateName = "ALL";
+        }
+        Info1();
+
+    });
+    var Total = 0;
+    var Approved_total = 0;
+    var Pending_total = 0;
+    var OfficersInfo = "";
+
+    function Info1() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance/Grievance_Info_statewise_Officers_List',
+            data: { 'StateName': StateName },
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data.length != 0) {
+
+                    OfficersInfo = data;
+                }
+                Info();
+            }
+        });
+    }
+
+    var A1 = 0;
+    var A2 = 0;
+    var A3 = 0;
+    function Info() {
+
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance/Grievance_Info_statewise_GrmDB',
+            data: { 'StateName': StateName },
+            dataType: 'JSON',
+            success: function (data) {
+
+                var Total = 0;
+                var Approved_total = 0;
+                var Pending_total = 0;
+
+
+                var tr = '';
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                if (data.length != 0) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        Total = data.length;
+                        if (data[i].accept == "Approved") {
+                            Approved_total += 1;
+                        }
+                        else if (data[i].accept == "Pending") {
+                            Pending_total += 1;
+                        } else if (data[i].accept == "Decline") {
+
+                            Pending_total += 1;
+
+                        } else {
+                            Pending_total += 1;
+                        }
+
+
+                        var Status = "";
+                        if (data[i].accept == null) {
+                            Status = "Pending";
+                        }
+                        else if (data[i].accept == "Decline") {
+                            Status = "Pending";
+
+                        }
+                        else if (data[i].accept == "Approved") {
+                            Status = "Approved";
+
+                        }
+
+
+
+                        var off = "";
+
+                        if (data[i].mail_count_date == null) {
+                            off = "1st Officer";
+                        } else if (data[i].mail_count1_date == null) {
+                            off = "2nd Officer";
+                        }
+                        else if (data[i].mail_count2_date == null) {
+                            off = "3rd Officer";
+                        }
+                        else {
+                            off = "4th Officer";
+                        }
+
+                        var OfficerName = "";
+                        if (OfficersInfo.length != 0) {
+                            for (var j = 0; j < OfficersInfo.length; j++) {
+                                debugger;
+                                if (OfficersInfo[j].state_name == data[i].grievance_address_to) {
+                                    if (off == "1st Officer") {
+                                        OfficerName = OfficersInfo[j].first_officername;
+                                    }
+                                    else if (off == "2nd Officer") {
+                                        OfficerName = OfficersInfo[j].second_officername;
+                                    }
+                                    else if (off == "3rd Officer") {
+                                        OfficerName = OfficersInfo[j].third_officername;
+                                    }
+
+                                    else {
+                                        OfficerName = OfficersInfo[j].fourth_officername;
+                                    }
+                                }
+                            }
+                        }
+
+                        tr += '<tr><td>' + (i + 1) + '</td><td>' + data[i].IdentificationId + '</td><td>' + data[i].reg_date + '</td><td>' + data[i].grievance_type + '</td><td>' + data[i].grivance_description + '</td><td>' + data[i].subject + '</td><td>' + data[i].grievance_address_to + '</td><td>' + data[i].complaint_name + '</td><td>' + off + '</td><td>' + OfficerName + '</td><td>' + Status + '</td></tr>';
+
+                    }
+                }
+
+
+                if (tr == '') {
+                    tr += '<tr><td colspan="9" style="text-align:center;"> No Data</td></tr>';
+                    $('#TblData_abc_part').html(tr);
+                }
+                else {
+                    $('#TblData_abc_part').html(tr);
+                }
+
+                $('#Approved_users').text(Approved_total);
+                $('#Total_Users').text(Total);
+                $('#Pending_users').text(Pending_total);
+                var Approved_Data = parseFloat(Approved_total).toFixed(2);
+                var Pending_Data = parseFloat(Pending_total).toFixed(2);
+                var Total_Data = parseFloat(Total).toFixed(2);
+
+                A1 = 0;
+                A2 = 0;
+                A3 = 0;
+
+                A1 = parseFloat(Approved_Data);
+                A2 = parseFloat(Pending_Data);
+                A3 = parseFloat(Total_Data);
+
+                Report_chart();
+            }
+        });
+    }
+
+    function Report_chart() {
+
+        $(function () {
+            Highcharts.setOptions({
+                chart: {
+                    style: {
+                        fontFamily: 'Arial, Helvetica, sans-serif',
+                        fontSize: '2em',
+                        color: '#f00'
+                    }
+                }
+            });
+
+            $('#PGWM_pie_chart').highcharts({
+                chart: {
+                    type: 'pie'
+                },
+                colors: [
+                    '#ED5565',
+                    '#5D9CEC',
+                    '#A0D468'
+                ],
+                title: {
+                    text: 'GRM State Status',
+                    style: {
+                        color: '#555'
+                    }
+                },
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0,
+                    backgroundColor: '#FFFFFF'
+                },
+
+                yAxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    shared: false,
+                    valueSuffix: 'points'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    areaspline: {
+                        fillOpacity: 0.1
+                    },
+                    series: {
+                        groupPadding: .15
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Grievance Management',
+                    data: [
+                        ['Pending', A2],
+                        ['Resolved ', A1],
+                        ['Total', A3]
+                    ]
+
+                }]
+            });
+        });
+
+    }
+
+</script>
+
+
+
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demogram2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demogram").innerHTML = today;
+</script>
+

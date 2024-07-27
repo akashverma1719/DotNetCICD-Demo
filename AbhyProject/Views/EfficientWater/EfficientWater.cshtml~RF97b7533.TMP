@@ -1,0 +1,1545 @@
+﻿@model AbhyProject.Models.dli4_area_with_crop_shifting
+
+@{
+    ViewBag.Title = "EfficientWater";
+    Layout = null;
+}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*@
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery.min.js"></script>
+
+<script src="~/Scripts/sweetalert.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@*<script src="~/Content/JS_Files/IdealState.js"></script>*@
+<script name="clear-browser-cache" src='~/Content/JS_Files/clear-browser-cache.js' value="true"></script>
+<!--Sweet Alert-->
+@*<script src="~/Scripts/validations.js"></script>*@
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #72a230;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    .panel-title {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .ullistdiv_menu {
+        margin: 10px 0px;
+    }
+
+    .firstformtable > thead > tr > td {
+        padding: 5px;
+        font-weight: 600;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #EEEEEE;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        /*background-color: #FAFAFA;
+            border-color: #EEEEEE;*/
+    }
+
+
+
+
+    .panel-title > a {
+        display: block;
+        padding: 7px;
+        text-decoration: none;
+    }
+
+    .more-less {
+        float: right;
+        color: #212121;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+
+    .demo-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background-color: #212121;
+        text-align: center;
+    }
+
+        .demo-footer > a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+        }
+
+    .panel-heading {
+        text-align: left;
+        font-size: 19PX;
+    }
+
+    .panel-body {
+        text-align: left;
+    }
+
+    /*for upload button*/
+    .container {
+        display: inline-flex;
+    }
+
+    .fixed {
+        width: 750px;
+    }
+
+    .flex-item {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    #label {
+        background-color: #8c8591;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    #file-chosen {
+        margin-left: 0.3rem;
+        font-family: sans-serif;
+    }
+
+    .firstformt > thead > tr > td {
+        padding-top: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-left: 25px;
+        font-weight: 600;
+    }
+
+    .atal-icon-sec {
+        height: 73px;
+    }
+
+    .atal-logo-sec {
+        height: 60px;
+        margin-left: 9px;
+    }
+
+    .list_style li {
+        line-height: 25px;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<main>
+    <header class="header hederImage">
+
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-6">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                        @*<ul class="clearfix">
+
+                                <li class="ml-2">
+                                    <a href="#" class="d-flex align-items-center">
+                                        <img src="~/DashboardStyles/images/atal-jal-logo.png" class="img-fluid atal-icon-sec" alt="logo">
+                                        <img src="~/DashboardStyles/images/logosec1.png" class="img-fluid atal-logo-sec" alt="logo">
+
+                                    </a>
+                                </li>
+
+                            </ul>*@
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-left:200px">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <div class="col-md-8" style="padding: 0px 0px 0px 0px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                            <label>Adoption of Efficient Water Use Practices</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="row container-fluid">
+        <div class="col-md-12 col-sm-12">
+            <div class="selectdistshowoption" id="Select_dist_level">
+                <label style="text-align:center;color:red;" id="Error_"></label>
+                <ul class="Select_option selectbackhome">
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+                    <li id="StateDropdownLabel">
+                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                    </li>
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+                    <li id="DistDropdownLabel">
+
+                        <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                    </li>
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+                    <li id="BlockDropdownLabel">
+
+                        <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                    </li>
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>
+
+                    <li id="GramDropdownLabel">
+
+                        <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
+                    </li>
+                    <li>
+                        <select class="form-control" id="year">
+                            <option value="0">Select Financial Year</option>
+                            @*<option value="2019">2019-20</option>
+                                <option value="2020">2020-21</option>
+                                <option value="2021">2021-22</option>*@
+                            <option value="2022-23">2022-23</option>
+
+                            @*<option value="2023">2024-25</option>*@
+                            @*<option value="2026">2026</option>*@
+                        </select>
+                    </li>
+
+
+                    @*<li id="MonthDropdownLabel">
+
+                            <select class="form-control" id="month" onchange="Month_change()">
+                                <option value="0">Select Month</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                            </select>
+                        </li>*@
+                    <li id="DropdownSearch_btn">
+                        <a class="btn btn-success" onclick="Dropdown_Search()">Search</a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center alertshowingdiv">
+            <label id="alertrt_aa_part_data"></label>
+        </div>
+
+
+
+    </div>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230">
+            Adoption of Efficient Water Use Practices
+        </div>
+
+    </center>
+    <div class="col-md-12 text-center " style="margin-top: 10px;">
+
+
+        @*<a href="~/WSPHome/Gp_information" class="btn btn-success pull-right">
+                Back To GP Modules
+            </a>*@
+
+
+
+
+
+        <!--<a class="btn btn-success" id="btn_pdf" onclick="Report_PDF()" style="float:right">Export (Pdf)</a>-->
+        @*<button class="btn btn-success" id="btn_Excel" onclick="baselinedata_download()" style="float:right">Export Part-B (Excel)</button>*@
+        <!--<a class="btn btn-success btn_export" onclick="Create_Excel()" id="btnsubmit" style="float:right">Export (Excel)</a>-->
+
+
+
+
+    </div>
+    <div class="row" id="tablediv">
+        <div class="tab-content">
+            <!--2nd Water Budget Form-->
+            <div role="tabpanel" class="tab-pane fade in active" id="WaterbudgetingformWBF">
+
+                @*<div class="col-md-12 scrollform">*@
+                <div class="col-md-12">
+                    <!-- Accordion -->
+                    <div class="" id="">
+                        <div class="col-md-15">
+                            <table class="table demandsidetable demandside_text demandside_text_123 table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:1px;">
+                                <tbody>
+                                    <tr>
+                                        <th colspan="6" style="background-color:#337ab7;color:#fff !important" class="text-center">
+                                            Increase in area with efficient irrigation system (Ha)
+                                        </th>
+                                    </tr>
+                                    <tr class="tableheader1 tableheader_text">
+
+                                        <th>Irrigation System</th>
+                                        <th>Area covered through convergence</th>
+                                        <th>Area covered exclusively through Atal Jal Incentive</th>
+                                        <th>Area covered exclusively through self/private financing</th>
+                                        <th>Total area</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sprinkler</th>
+
+                                        <td><input type="text" class="form-control" id="sprinkler_convergence" onkeypress="validate(event)" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="sprinkler_incentive" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="sprinkler_financing" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        @*<td><span  class="form-control decimal" id="sprinkler_total" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>*@
+                                        <td><span><label id="sprinkler_total"></label></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Drip</th>
+
+                                        <td><input type="text" class="form-control decimal" id="drip_convergence" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="drip_incentive" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="drip_financing" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        @*<td><input type="text" class="form-control decimal" id="drip_total" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>*@
+                                        <td><span><label id="drip_total"></label></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pipeline Irrigation</th>
+
+                                        <td><input type="text" class="form-control decimal" id="pipeline_convergence" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="pipeline_incentive" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="pipeline_financing" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>
+                                        @*<td><input type="text" class="form-control decimal" id="pipeline_total" onkeyup="sum_of_all()" onkeydown="sum_of_all()" /></td>*@
+                                        <td><span><label id="pipeline_total"></label></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color:orange;color:#fff">Total</th>
+                                        @*<td><input type="text" class="form-control decimal" id="total_convergence" /></td>
+                                            <td><input type="text" class="form-control decimal" id="total_incentive" /></td>
+                                            <td><input type="text" class="form-control decimal" id="total_financing" /></td>
+                                            <td><input type="text" class="form-control decimal" id="all_irrigation_total" /></td>*@
+                                        <td><span><label id="total_convergence"></label></span></td>
+                                        <td><span><label id="total_incentive"></label></span></td>
+                                        <td><span><label id="total_financing"></label></span></td>
+                                        <td><span><label id="all_irrigation_total"></label></span></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--2nd Water Budget Form closed-->
+            <!--3rd Water Budgeting page-->
+            @*<div role="tabpanel" class="tab-pane fade in" id="GroundwaterGWM">sankar1</div>*@
+        </div>
+
+    </div>
+
+    <div class="text-center" style="margin:5px 0px 5px 0px;">
+        <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+            <li>
+                <a class=" btn btn-success" id="btnFinalSave"><i class="fa fa-save"></i>Save</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row" id="tablediv" style="margin-top: 40px;">
+        <div class="tab-content">
+            <!--2nd Water Budget Form-->
+            <div role="tabpanel" class="tab-pane fade in active" id="WaterbudgetingformWBF">
+
+                @*<div class="col-md-12 scrollform">*@
+                <div class="col-md-12">
+                    <!-- Accordion -->
+                    <div class="" id="">
+                        <div class="col-md-15">
+                            <table class="table demandsidetable demandside_text demandside_text_123 table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:1px;">
+                                <tbody>
+                                    <tr>
+                                        <th colspan="6" style="background-color:#337ab7;color:#fff !important" class="text-center">
+                                            Increase in area with crop shifting (Ha)
+                                        </th>
+                                    </tr>
+                                    <tr class="tableheader1 tableheader_text">
+
+                                        <th class="text-center">Name of existing high water consuming crop</th>
+                                        <th class="text-center">Name of replacing low water consuming crop</th>
+                                        <th class="text-center">Area with shifting from high to low water consuming crop</th>
+                                        <th class="text-center">Name of Department</th>
+                                        <th class="text-center">Name of Scheme</th>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--2nd Water Budget Form closed-->
+            <!--3rd Water Budgeting page-->
+            @*<div role="tabpanel" class="tab-pane fade in" id="GroundwaterGWM">sankar1</div>*@
+        </div>
+
+    </div>
+
+    <div class="text-center" style="margin:5px 0px 5px 0px;">
+        <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+            <li>
+                <a class=" btn btn-success" id="btnFinalSave2" onclick="openmodel()"><i class="fa fa-save"></i>Save</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="row" id="tablediv" style="margin-top: 40px;">
+        <div class="tab-content">
+            <!--2nd Water Budget Form-->
+            <div role="tabpanel" class="tab-pane fade in active" id="WaterbudgetingformWBF">
+
+                @*<div class="col-md-12 scrollform">*@
+                <div class="col-md-12">
+                    <!-- Accordion -->
+                    <div class="" id="">
+                        <div class="col-md-15">
+                            <table class="table demandsidetable demandside_text demandside_text_123 table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:1px;">
+                                <tbody>
+                                    <tr>
+                                        <th colspan="5" style="background-color:#337ab7;color:#fff !important" class="text-center">
+                                            Increase in area under other water saving agriculture method
+                                        </th>
+                                    </tr>
+                                    <tr class="tableheader1 tableheader_text">
+
+                                        <th class="text-center">Water Saving Methods</th>
+                                        <th class="text-center">Area covered through convergence</th>
+                                        <th class="text-center">Area covered through Atal Jal incentive</th>
+                                        <th class="text-center">Area covered through self/private financing</th>
+                                        <th class="text-center">Total Area</th>
+                                    </tr>
+                                    <tr>
+
+                                        <th><span id="dsr">DSR</span></th>
+                                        <td><input type="text" class="form-control decimal" id="dsr_area_covered_through_convergence" onkeypress="validate(event)" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="dsr_area_covered_through_incentive" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="dsr_area_covered_through_financing" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <th><sapn id="dsr_total_area"></sapn></th>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <th><span id="laser_land_levelling">Laser Land Levelling</span></th>
+                                        <td><input type="text" class="form-control decimal" id="lll_area_covered_through_convergence" onkeypress="validate(event)" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="lll_area_covered_through_incentive" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="lll_area_covered_through_financing" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <th><sapn id="lll_total_area"></sapn></th>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <th><span id="mulching">Mulching</span></th>
+                                        <td><input type="text" class="form-control decimal" id="mulching_area_covered_through_convergence" onkeypress="validate(event)" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="mulching_area_covered_through_incentive" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="mulching_area_covered_through_financing" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <th><sapn id="mulching_total_area"></sapn></th>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <th><span id="polyhouse">Polyhouse/green house/shadenet</span></th>
+                                        <td><input type="text" class="form-control decimal" id="polyhouse_area_covered_through_convergence" onkeypress="validate(event)" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="polyhouse_area_covered_through_incentive" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="polyhouse_area_covered_through_financing" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <th><sapn id="polyhouse_total_area"></sapn></th>
+                                    </tr>
+                                    <tr>
+
+                                        <td><input type="text" id="other_water_saving_method1" class="form-control" placeholder="Enter other Water Saving Methods" /></td>
+                                        <td><input type="text" class="form-control decimal" id="other_area_covered_through_convergence1" onkeypress="validate(event)" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="other_area_covered_through_incentive1" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="other_area_covered_through_financing1" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <th><sapn id="other_total_area1"></sapn></th>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td><input type="text" id="other_water_saving_method2" class="form-control" placeholder="Enter other Water Saving Methods" /></td>
+                                        <td><input type="text" class="form-control decimal" id="other_area_covered_through_convergence2" onkeypress="validate(event)" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="other_area_covered_through_incentive2" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <td><input type="text" class="form-control decimal" id="other_area_covered_through_financing2" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
+                                        <th><sapn id="other_total_area2"></sapn></th>
+
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color:orange;color:#fff"><sapn id="other_total_methods">Total</sapn></th>
+                                        <th><sapn id="convergence_total_area"></sapn></th>
+                                        <th><sapn id="incentive_total_area"></sapn></th>
+                                        <th><sapn id="financing_total_area"></sapn></th>
+                                        <th><sapn id="all_total_area"></sapn></th>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--2nd Water Budget Form closed-->
+            <!--3rd Water Budgeting page-->
+            @*<div role="tabpanel" class="tab-pane fade in" id="GroundwaterGWM">sankar1</div>*@
+        </div>
+
+    </div>
+    <div class="text-center" style="margin:5px 0px 5px 0px;">
+        <ul class="clearfix btnall" style=" list-style-type: none; margin: 0;  padding: 0;  overflow: hidden;">
+            <li>
+                <a class=" btn btn-success" id="btnFinalSave3"><i class="fa fa-save"></i>Save</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row text-center" style="margin-top: 40px;">
+
+        <!--<div class="col-md-12 col-sm-12">
+            <div class="tbl-responsive" style="overflow-x:scroll;">
+                <table id="tbl_kharif_edit" class="table industry_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic">
+                    <thead>
+                        <tr>
+                            <th colspan="6" style="background-color:#337ab7;color:#fff !important" class="text-center">
+                                Increase in area with efficient irrigation system (Ha)
+                            </th>
+                        </tr>
+                        <tr class="info red">
+
+                            <th class="text-center">S.No.</th>
+                            <th class="text-center">Name of existing high water consuming crop</th>
+                            <th class="text-center">Name of replacing low water consuming crop</th>
+                            <th class="text-center">Area with shifting from high to low water consuming crop</th>
+                            <th class="text-center">Name of scheme/dept/CSR/self-financing</th>-->
+        @*<th>Total water demand (ha m)</th>*@
+
+        <!--</tr>
+
+                    </thead>
+                    <tbody id="kharif_Table"></tbody>
+                </table>
+            </div>
+        </div>-->
+
+    </div>
+
+
+
+</main>
+
+<div class="modal fade" id="modalDialogScrollable_gp" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <form action="@Url.Action("EfficientWater", "EfficientWater")" method="post">
+                    <div class="modal-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading " role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button">
+                                        Increase in area with crop shifting (Ha)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" aria-labelledby="headingOne">
+                                <div class="panel-body">
+
+                                    <table class="firstformt">
+                                        <thead>
+                                            <tr>
+                                                <td>1. Name of existing high water consuming crop :</td>
+                                                <td>
+                                                    @Html.DropDownListFor(model => model.existing_high_wcc,
+                                                     new List<SelectListItem> {
+                                                          new SelectListItem { Value = "" , Text = "--Select--", Selected=true},
+                                                          new SelectListItem { Value = "Wheat" , Text = "Wheat" },
+                                                          new SelectListItem { Value = "Maize" , Text = "Maize" },
+                                                          new SelectListItem { Value = "Others" , Text = "Others" }
+                                                       },
+                                                     new { @class = "form-control" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2. Name of replacing low water consuming crop :</td>
+                                                <td>@Html.TextBoxFor(model => model.replacing_low_wcc, new { @class = "form-control", placeholder = "Enter name" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. Area with shifting from high to low water consuming crop :</td>
+                                                <td>@Html.TextBoxFor(model => model.hightolow_wcc, new { @class = "form-control", placeholder = "Enter the numeric value" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4. Name of Department :</td>
+                                                <td>@Html.TextBoxFor(model => model.department, new { @class = "form-control", placeholder = "Enter the numeric value" })</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5. Name of Scheme :</td>
+                                                <td>@Html.TextBoxFor(model => model.scheme, new { @class = "form-control", placeholder = "Enter the numeric value" })</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+@*<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>*@
+<script src="~/Content/JS_Files/EfficientWater.js"></script>
+<script>
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var count_shifting = 1;
+    var count_agri = 1;
+    $(document).ready(function () {
+        $('.loader').hide();
+        $("#modalDialogScrollable_gp").modal("show");
+        $("#other_scheme_name").prop("disabled", true);
+        $("#other_agricultural_techniques").prop("disabled", true);
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#alert_waiting').hide();
+
+       DropDownInfo_ef();
+    });
+    function Dropdown_Search() {
+        get_irrigation_system();
+    }
+    function DropDownInfo_ef() {
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select State Name</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select Gram Panchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select State Name</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo_ef();
+
+
+            }
+        });
+    }
+
+
+    function SessionInfo_ef() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                //apl_bpl();
+                //Categories_scstobc();
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    //$('#DropdownSearch_btn').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin" || Str[0] == "National Level Nodal Officer") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                        State_Dropdown_Function();
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                        Dist_fun();
+                        Dist_fun();
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $('#btn_submitNDO').hide();
+
+                        Block_fun();
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+
+
+    function State_Dropdown_Function() {
+
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select Gram Panchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+
+
+
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select Gram Panchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+
+    function Gram_Fun() {
+        var Gram1 = $("#gram").val();
+        if (Gram1 == "0") {
+            alert("Please Select Grampanchayat");
+        } else {
+            Gram = $('#gram').val();
+        }
+    }
+
+
+    $("#btnFinalSave").click(function () {
+
+        save_irrigation_system();
+
+    });
+
+    function save_irrigation_system() {
+        debugger
+        var state = $("#spnstate").val();
+        var district = $("#dist11").val();
+        var block = $("#block1").val();
+        var gram = $("#gram").val();
+        var year = $("#year").val();
+        /*var month = $("#month").val();*/
+        if (state == "0") {
+            alert("Plase select state name");
+            return false;
+        } else if (district == "0") {
+            alert("Plase select district name");
+            return false;
+        } else if (block == "0") {
+            alert("Plase select block name");
+            return false;
+        } else if (gram == "0") {
+            alert("Plase select gram panchayat name");
+            return false;
+        }
+        else if (year == "0") {
+            alert("Plase select year");
+            return false;
+        }
+        //else if (month == "0") {
+        //    alert("Plase select month");
+        //    return false;
+        //}
+
+        debugger
+        var sprinkler_convergence = $("#sprinkler_convergence").val();
+        var sprinkler_incentive = $("#sprinkler_incentive").val();
+        var sprinkler_financing = $("#sprinkler_financing").val();
+        var sprinkler_total = $("#sprinkler_total").text();
+
+
+        var drip_convergence = $("#drip_convergence").val();
+        var drip_incentive = $("#drip_incentive").val();
+        var drip_financing = $("#drip_financing").val();
+        var drip_total = $("#drip_total").text();
+
+        var pipeline_convergence = $("#pipeline_convergence").val();
+        var pipeline_incentive = $("#pipeline_incentive").val();
+        var pipeline_financing = $("#pipeline_financing").val();
+        var pipeline_total = $("#pipeline_total").text();
+
+        var total_convergence = $("#total_convergence").text();
+        var total_financing = $("#total_financing").text();
+        var total_incentive = $("#total_incentive").text();
+
+        var all_irrigation_total = $("#all_irrigation_total").text();
+
+        if (sprinkler_convergence == "") {
+            sprinkler_convergence = 0;
+        }
+        if (sprinkler_incentive == "") {
+            sprinkler_incentive = 0;
+        }
+        if (sprinkler_financing == "") {
+            sprinkler_financing = 0;
+        }
+        if (drip_convergence == "") {
+            drip_convergence = 0;
+        }
+        if (drip_incentive == "") {
+            drip_incentive = 0;
+        }
+        if (drip_financing == "") {
+            drip_financing = 0;
+        }
+        if (pipeline_convergence == "") {
+            pipeline_convergence = 0;
+        }
+        if (pipeline_incentive == "") {
+            pipeline_incentive = 0;
+        }
+        if (pipeline_financing == "") {
+            pipeline_financing = 0;
+        }
+        if (total_convergence == "") {
+            total_convergence = 0;
+        }
+        if (total_financing == "") {
+            total_financing = 0;
+        }
+        if (total_financing == "") {
+            total_financing = 0;
+        }
+        if (all_irrigation_total == "") {
+            all_irrigation_total = 0;
+        }
+        if (sprinkler_total == "") {
+            sprinkler_total = 0;
+        }
+        if (drip_total == "") {
+            drip_total == 0;
+        }
+        if (pipeline_total == "") {
+            pipeline_total == 0;
+        }
+            var FinalData = [];
+
+            FinalData.push({
+                state: state,
+                district: district,
+                block: block,
+                gram: gram,
+                year: year,
+                /*month: month,*/
+                sprinkler_convergence: sprinkler_convergence,
+                drip_convergence: drip_convergence,
+                pipeline_convergence: pipeline_convergence,
+                total_convergence: total_convergence,
+                sprinkler_incentive: sprinkler_incentive,
+                drip_incentive: drip_incentive,
+                pipeline_incentive: pipeline_incentive,
+                total_incentive: total_incentive,
+                sprinkler_financing: sprinkler_financing,
+                drip_financing: drip_financing,
+                pipeline_financing: pipeline_financing,
+                total_financing: total_financing,
+                sprinkler_total: sprinkler_total,
+                drip_total: drip_total,
+                pipeline_total: pipeline_total,
+                all_irrigation_total: all_irrigation_total
+            });
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/EfficientWater/save_irrigation_system',
+                data: JSON.stringify(FinalData),
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    $("#sprinkler_convergence").val("");
+                    $("#sprinkler_incentive").val("");
+                    $("#sprinkler_financing").val("");
+                    $("#sprinkler_total").text("");
+                    $("#drip_convergence").val("");
+                    $("#drip_incentive").val("");
+                    $("#drip_financing").val("");
+                    $("#drip_total").text("");
+                    $("#pipeline_convergence").val("");
+                    $("#pipeline_incentive").val("");
+                    $("#pipeline_financing").val("");
+                    $("#pipeline_total").text("");
+                    $("#total_convergence").text("");
+                    $("#total_financing").text("");
+                    $("#total_incentive").text("");
+                    $("#all_irrigation_total").text("");
+                    get_irrigation_system();
+                }
+            });
+    }
+
+
+
+
+    function validate(e) {
+        var c = 0;
+        var { value } = event.target;
+        var count1 = 0;
+
+        for (var i = 0; i < value.length; i++) {
+            count1++;
+            if (value[i] != '.') {
+                if (count1 == 6 && value[i] != '.') {
+
+                    e.preventDefault();
+                }
+            } else {
+                var count = 0, point = false;
+                for (var i = 0; i < value.length; i++) {
+
+                    if (value[i] == '.' || point) {
+                        count++;
+                        point = true;
+                    }
+                    if (count > 2) {
+                        e.preventDefault();
+                    }
+                }
+            }
+
+        }
+    }
+
+    $("#scheme_name").change(function () {
+        if ($("#scheme_name").val() == 'Others') {
+            $("#other_scheme_name").prop("disabled", false);
+        } else {
+            $("#other_scheme_name").prop("disabled", true);
+        }
+
+    })
+
+
+    $("#agricultural_techniques").change(function (){
+        if ($("#agricultural_techniques").val() == "Others") {
+            $("#other_agricultural_techniques").prop("disabled", false);
+        } else {
+            $("#other_agricultural_techniques").prop("disabled", true);
+        }
+
+
+
+    });
+    function addrow_a_part_crop_shifting() {
+
+        var code = '<tr><td><button id="btn_save_k' + count_shifting + '" class="btn btn-primary" onclick="save_crop_shifting(ddlcrop_khaif_type1' + count_shifting + ',ddlcrop_khaif_type2' + count_shifting + ',ddlcrop_khaif' + count_shifting + ',othercrop_khaif' + count_shifting + ',\'txt_area_khaif' + count_shifting + '\',\'txtGround_water_req_khaif' + count_shifting + '\',\'kharif\')">Save</button > </td>';
+        code += '<td>' + count_shifting + '</td>';
+        code += '<td><input type="text" id="txtGround_water_req_khaif' + count_shifting + '" data-decimal="4" maxlength="10" class="form-control decimal" oninput="waterDemand_calc(\'txt_area_khaif' + count_shifting + '\',\'txtGround_water_req_khaif' + count_shifting + '\',\'irri_kharif_waterdemand\',' + count_shifting + ',\'kharif\',this)"></td>';
+        code += '<td><input type="text" id="txtGround_water_req_khaif' + count_shifting + '" data-decimal="4" maxlength="10" class="form-control decimal" oninput="waterDemand_calc(\'txt_area_khaif' + count_shifting + '\',\'txtGround_water_req_khaif' + count_shifting + '\',\'irri_kharif_waterdemand\',' + count_shifting + ',\'kharif\',this)"></td>';
+        code += '<td><input type="text" id="txtGround_water_req_khaif' + count_shifting + '" data-decimal="4" maxlength="10" class="form-control decimal" oninput="waterDemand_calc(\'txt_area_khaif' + count_shifting + '\',\'txtGround_water_req_khaif' + count_shifting + '\',\'irri_kharif_waterdemand\',' + count_shifting + ',\'kharif\',this)"></td>';
+        code += '<td id="other_crop" style="display:none;"><input type="text" id = "othercrop_khaif' + count_shifting + '" class="form-control"></td>';
+        code += '<td><select id="ddlcrop_khaif_type1' + count_shifting + '" onchange="type2_get(ddlcrop_khaif_type1' + count_shifting + ',' + count_shifting + ',ddlcrop_khaif_type2' + count_shifting + ')"><option value="0">--Select Name of scheme--</option ><option value="Agriculture department">Agriculture Department</option ><option value="Horticulture Department">Horticulture Department</option ></select ></td></tr>';
+
+        /* code += '<td><input type="number" id="txt_water_dem_khaif' + count_shifting + '"oninput="Auto_CheckVal(event,1,100)" class="form-control"></td></tr >';*/
+
+        $('table#TblData_abc_part1 tbody').prepend(code);
+        count_shifting++;
+    }
+
+
+    function addrow_a_part_agriculture_method() {
+
+        var code = '<tr><td><button id="btn_save_k' + count_agri + '" class="btn btn-primary" onclick="save_crop_shifting(ddlcrop_khaif_type1' + count_agri + ',ddlcrop_khaif_type2' + count_agri + ',ddlcrop_khaif' + count_agri + ',othercrop_khaif' + count_agri + ',\'txt_area_khaif' + count_agri + '\',\'txtGround_water_req_khaif' + count_agri + '\',\'kharif\')">Save</button > </td>';
+        code += '<td>' + count_agri + '</td>';
+        code += '<td><select id="ddlcrop_khaif_type1' + count_agri + '" onchange="type2_get(ddlcrop_khaif_type1' + count_agri + ',' + count_agri + ',ddlcrop_khaif_type2' + count_agri + ')"><option value="0">--Select Name of scheme--</option ><option value="DSR">DSR</option ><option value="Laser Land Levelling">Laser Land Levelling</option ><option value="Mulching">Mulching</option ><option value="Polyhouse/green house/shadenet">Polyhouse/green house/shadenet</option ></select ></td>';
+        code += '<td><input type="text" id="txtGround_water_req_khaif' + count_agri + '" data-decimal="4" maxlength="10" class="form-control decimal" oninput="waterDemand_calc(\'txt_area_khaif' + count_agri + '\',\'txtGround_water_req_khaif' + count_agri + '\',\'irri_kharif_waterdemand\',' + count_agri + ',\'kharif\',this)"></td>';
+        code += '<td><input type="text" id="txtGround_water_req_khaif' + count_agri + '" data-decimal="4" maxlength="10" class="form-control decimal" oninput="waterDemand_calc(\'txt_area_khaif' + count_agri + '\',\'txtGround_water_req_khaif' + count_agri + '\',\'irri_kharif_waterdemand\',' + count_agri + ',\'kharif\',this)"></td>';
+        code += '<td><input type="text" id="txtGround_water_req_khaif' + count_agri + '" data-decimal="4" maxlength="10" class="form-control decimal" oninput="waterDemand_calc(\'txt_area_khaif' + count_agri + '\',\'txtGround_water_req_khaif' + count_agri + '\',\'irri_kharif_waterdemand\',' + count_agri + ',\'kharif\',this)"></td>';
+        code += '<td id="other_crop"><input type="text" id = "othercrop_khaif' + count_agri + '" class="form-control"></td></tr>';
+
+
+        /* code += '<td><input type="number" id="txt_water_dem_khaif' + count_agri + '"oninput="Auto_CheckVal(event,1,100)" class="form-control"></td></tr >';*/
+
+        $('table#TblData_abc_part2 tbody').prepend(code);
+        count_agri++;
+    }
+
+    //$("#btnFinalSave2").click(function () {
+
+    //    $("#modalDialogScrollable_gp").modal("show");
+    //});
+    function openmodel() {
+        $("#modalDialogScrollable_gp").modal("show");
+    }
+</script>

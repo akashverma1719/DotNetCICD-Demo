@@ -1,0 +1,1682 @@
+﻿
+@{
+    ViewBag.Title = "IEC_Material";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title>Program Documents</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+@*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>*@
+
+
+<style>
+    .maindiv {
+        width: 100%;
+        margin: auto;
+    }
+
+    .tbl-responsive {
+        overflow-x: inherit;
+    }
+
+    .clearfix:after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    .classic-title {
+        margin: 0 0 16px 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid mediumblue;
+        font-weight: 600;
+        line-height: 1.5em;
+    }
+
+    .panel-group > .panel {
+        -webkit-border-radius: 6px;
+        border: 1px solid #e8e8e8;
+        margin: 5px 0;
+    }
+
+    /*.panel-group > .panel-heading {
+        background-color: #ffad33;
+        padding: 0px;
+    }*/
+
+    .panel-title > a {
+        position: relative;
+        display: block;
+        color: #444 !important;
+        background-color: #fff;
+        padding: 10px 21px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .text-info {
+        color: mediumblue;
+    }
+
+    .panel-title > a > .control-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -11px;
+    }
+
+    .panel-title > a > i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+
+
+    .dataTables_filter, .dataTables_paginate {
+        float: right;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 8px 15px !important;
+        margin-bottom: -1px;
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .panel-inner > ul.list-group > li.list-group-item > a {
+        color: #3a99ed !important;
+    }
+
+        .panel-inner > ul.list-group > li.list-group-item > a:hover {
+            color: #6FB11D !important;
+        }
+
+    span.tablecellhead {
+        font-size: 15px;
+        font-weight: bold;
+        color: mediumblue;
+    }
+
+    .dataTables_empty {
+        text-align: center;
+    }
+
+    .list_table_function {
+        float: none;
+        width: 93%;
+        margin-left: 13px;
+        background: none !important;
+    }
+
+    .cricle_round {
+        background: #30abec;
+        color: white;
+        font-size: 13px;
+        border-radius: 100%;
+        font-weight: bold;
+        padding: 4px;
+        margin: -6px;
+        width: 26px;
+        height: 24px;
+        text-align: center
+    }
+
+    .gujarat-video {
+        display: none;
+    }
+
+    .haryana {
+        display: none;
+    }
+
+    .karnataka {
+        display: none;
+    }
+
+    .MP {
+        display: none;
+    }
+
+    .maharastra {
+        display: none;
+    }
+
+    .rajsthan {
+        display: none;
+    }
+
+
+    .up {
+        display: none;
+    }
+</style>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:nth-child(3) ").siblings().removeClass('active');
+
+</script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="widget widget-categories">
+                <h6 class="classic-title"><span class="text-info">IEC Material</span></h6>
+                <div class="panel-group" id="topic">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#topic" href="#doc1tier-2111" class="collapsed" aria-expanded="false">
+                                    <i class="fa fa-angle-down control-icon"></i>
+                                    IEC MATERIAL
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="doc1tier-2111" class="panel-body panel_hide collapse" style="padding: 4px;">
+                            <div class="panel-inner">
+                                <ul class="list-group" role="tablist" style="display:inherit !important;">
+
+                                    <li onclick="table16();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">NPMU</a>
+                                        <span class="pull-right  cricle_round">0</span>
+                                    </li>
+                                    <li onclick="table17();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">GUJARAT</a>
+                                        <span class="pull-right  cricle_round">4</span>
+                                    </li>
+                                    <li onclick="table18();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">HARYANA</a>
+                                        <span class="pull-right  cricle_round">4</span>
+                                    </li>
+                                    <li onclick="table19();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">KARNATAKA</a>
+                                        <span class="pull-right  cricle_round">0</span>
+                                    </li>
+                                    <li onclick="table20();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">
+                                            MADHYA PRADESH
+                                        </a>
+                                        <span class="pull-right  cricle_round">3</span>
+                                    </li>
+                                    <li onclick="table21();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">MAHARASHTRA</a>
+                                        <span class="pull-right  cricle_round">0</span>
+                                    </li>
+                                    <li onclick="table22();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">RAJASTHAN</a>
+                                        <span class="pull-right  cricle_round">40</span>
+                                    </li>
+                                    <li onclick="table23();" class="list-group-item list_table_function">
+                                        <a href="#submenu12" style="color: #000; display: initial">UTTAR PRADESH</a>
+                                        <span class="pull-right  cricle_round">7</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="vid1 npmu">
+                <div class="row">
+
+                    <div class=" row container maindiv">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>S.No</th>
+                                            <th>Documents</th>
+                                            <th>Download</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr role="row">
+                                            <td class="text-center" colspan="3"> No files</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="vid2 gujarat-video">
+
+                <div class=" row container maindiv">
+                    <div class="col-md-12">
+                        <div class="tbl-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">Atal Jal Pamphlet -A3 Size Gujarat</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Gujarat/Atal Jal Pamphlet -A3 Size Gujarat.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i> Atal Jal Pamphlet -A3 Size Gujarat.pdf
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Gujarat/Atal Jal Pamphlet -A3 Size Gujarat.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">Sign Board, Gujarat</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Gujarat/Sign Board, Gujarat.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Sign Board, Gujarat
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Gujarat/Sign Board, Gujarat" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">Two fold Pamphlet on Importance of Water, Gujarat</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Gujarat/Two fold Pamphlet on Importance of Water, Gujarat.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Two fold Pamphlet on Importance of Water, Gujarat
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Gujarat/Two fold Pamphlet on Importance of Water, Gujarat.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">Three fold Pamphlet on Atal Jal, Gujarat</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Gujarat/Three fold Pamphlet on Atal Jal , Gujarat.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Three fold Pamphlet on Atal Jal, Gujarat
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Gujarat/Three fold Pamphlet on Atal Jal , Gujarat.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="vid3 haryana">
+
+                <div class=" row container maindiv">
+                    <div class="col-md-12">
+                        <div class="tbl-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">Haryana,Hoarding</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Haryana/Haryana,Hoarding.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i> Haryana,Hoarding
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Haryana/Haryana,Hoarding.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">5 types Leafleat, Haryana</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Haryana/5 types Leafleat, Haryana.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>5 types Leafleat, Haryana
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Haryana/5 types Leafleat, Haryana.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">5 types Stickers,Haryana</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Haryana/5 types Stickers , Haryana.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i> 5 types Stickers,Haryana
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Haryana/5 types Stickers , Haryana.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">T-Shirt design,Haryana</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Haryana/T-Shirt design , Haryana.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>T-Shirt design,Haryana
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Haryana/T-Shirt design , Haryana.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="vid4 karnataka">
+
+                <div class=" row container maindiv">
+                    <div class="col-md-12">
+                        <div class="tbl-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="vid5 MP">
+
+                <div class=" row container maindiv">
+                    <div class="col-md-12">
+                        <div class="tbl-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">Atal Jal Rath ,Madhya Pradesh design</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Madhya Pradesh/Atal Jal Rath , Madhya Pradesh design.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i> Atal Jal Rath ,Madhya Pradesh design
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Madhya Pradesh/Atal Jal Rath , Madhya Pradesh design.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">Madhya Pradesh Wall Painting 2022-23</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Madhya Pradesh/Madhya Pradesh Wall Painting 2022-23.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i> Madhya Pradesh Wall Painting 2022-23
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Madhya Pradesh/Madhya Pradesh Wall Painting 2022-23.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">Brochure Madhya Pradesh</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Madhya Pradesh/Brochure Madhya Pradesh.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i> Brochure Madhya Pradesh
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Madhya Pradesh/Brochure Madhya Pradesh.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="vid6 maharastra">
+
+                <div class=" row container maindiv">
+                    <div class="col-md-12">
+                        <div class="tbl-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td class="text-center" colspan="3"> No files</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="vid7 rajsthan">
+
+                <div class=" row container maindiv">
+                    <div class="col-md-12">
+                        <div class="tbl-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">8 Types Flex and Hoarding ,Rajasthan</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/8 Types Flex and Hoarding , Rajasthan.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>8 Types Flex and Hoarding ,Rajasthan
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/8 Types Flex and Hoarding , Rajasthan.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>2</td>
+                                        <td>
+                                            <span class="tablecellhead">Ajeetgarh,Sikar,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Ajeetgarh,Sikar,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Ajeetgarh,Sikar,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Ajeetgarh,Sikar,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>3</td>
+                                        <td>
+                                            <span class="tablecellhead">Ajmer rural Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Ajmer rural Pamphlet .pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Ajmer rural Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Ajmer rural Pamphlet .pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>4</td>
+                                        <td>
+                                            <span class="tablecellhead">Amber,Jaipur,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Amber,Jaipur,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Amber,Jaipur,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Amber,Jaipur,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>5</td>
+                                        <td>
+                                            <span class="tablecellhead">Atru, Baran, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Atru, Baran, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Atru, Baran, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Atru, Baran, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>6</td>
+                                        <td>
+                                            <span class="tablecellhead">Bajjupada,Dausa,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Bajjupada,Dausa,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Bajjupada,Dausa,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Bajjupada,Dausa,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>7</td>
+                                        <td>
+                                            <span class="tablecellhead">Bandikui, Dausa, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Bandikui, Dausa, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Bandikui, Dausa, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Bandikui, Dausa, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>8</td>
+                                        <td>
+                                            <span class="tablecellhead">Baran, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Baran, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Baran, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Baran, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>9</td>
+                                        <td>
+                                            <span class="tablecellhead">Baswa,Dausa,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Baswa,Dausa,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Baswa,Dausa,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Baswa,Dausa,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>10</td>
+                                        <td>
+                                            <span class="tablecellhead">Chauthkabarwada,Swai Madhopur, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Chauthkabarwada,Swai Madhopur, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Chauthkabarwada,Swai Madhopur, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Chauthkabarwada,Swai Madhopur, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>11</td>
+                                        <td>
+                                            <span class="tablecellhead">Chittaurgarh, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Chittaurgarh, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Chittaurgarh, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Chittaurgarh, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>12</td>
+                                        <td>
+                                            <span class="tablecellhead">Dausa, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Dausa, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Dausa, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Dausa, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>13</td>
+                                        <td>
+                                            <span class="tablecellhead">Dhaulpur,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Dhaulpur,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Dhaulpur,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Dhaulpur,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>14</td>
+                                        <td>
+                                            <span class="tablecellhead">Govindgarh,Jaipur,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Govindgarh,Jaipur,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Govindgarh,Jaipur,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Govindgarh,Jaipur,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>15</td>
+                                        <td>
+                                            <span class="tablecellhead">Hanumangarh,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Hanumangarh,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Hanumangarh,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Hanumangarh,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>16</td>
+                                        <td>
+                                            <span class="tablecellhead">Hindaun,Karoli,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Hindaun,Karoli,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Hindaun,Karoli,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Hindaun,Karoli,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>17</td>
+                                        <td>
+                                            <span class="tablecellhead">Jaisalmer,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Jaisalmer,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Jaisalmer,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Jaisalmer,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>18</td>
+                                        <td>
+                                            <span class="tablecellhead">Jalsu,Jaipur,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Jalsu,Jaipur,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Jalsu,Jaipur,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Jalsu,Jaipur,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>19</td>
+                                        <td>
+                                            <span class="tablecellhead">Khandar,Swai Madhopur, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Khandar,Swai Madhopur, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Khandar,Swai Madhopur, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Khandar,Swai Madhopur, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>20</td>
+                                        <td>
+                                            <span class="tablecellhead">Khanpur,Jhalawad,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Khanpur,Jhalawad,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Khanpur,Jhalawad,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Khanpur,Jhalawad,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>21</td>
+                                        <td>
+                                            <span class="tablecellhead">Khetri,Jhunjhunu,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Khetri,Jhunjhunu,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Khetri,Jhunjhunu,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Khetri,Jhunjhunu,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>22</td>
+                                        <td>
+                                            <span class="tablecellhead">Lawan,Dausa,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Lawan,Dausa,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Lawan,Dausa,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Lawan,Dausa,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>23</td>
+                                        <td>
+                                            <span class="tablecellhead">Mohangarh,Jaisalmer,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Mohangarh,Jaisalmer,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Mohangarh,Jaisalmer,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Mohangarh,Jaisalmer,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>24</td>
+                                        <td>
+                                            <span class="tablecellhead">Nachna,Jaisalmer, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Nachna,Jaisalmer, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Nachna,Jaisalmer, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Nachna,Jaisalmer, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>25</td>
+                                        <td>
+                                            <span class="tablecellhead">Nagalrajawtan,Dausa, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Nagalrajawtan,Dausa, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Nagalrajawtan,Dausa, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Nagalrajawtan,Dausa, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>26</td>
+                                        <td>
+                                            <span class="tablecellhead">Neemkathana,Sikar,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Neemkathana,Sikar,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Neemkathana,Sikar,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Neemkathana,Sikar,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>27</td>
+                                        <td>
+                                            <span class="tablecellhead">Patan,Sikar,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Patan,Sikar,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Patan,Sikar,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Patan,Sikar,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>28</td>
+                                        <td>
+                                            <span class="tablecellhead">Peesangan Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Peesangan Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Peesangan Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Peesangan Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>29</td>
+                                        <td>
+                                            <span class="tablecellhead">RajgarhAlwar Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/RajgarhAlwar Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>RajgarhAlwar Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/RajgarhAlwar Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>30</td>
+                                        <td>
+                                            <span class="tablecellhead">Rajsamand,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Rajsamand,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Rajsamand,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Rajsamand,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>31</td>
+                                        <td>
+                                            <span class="tablecellhead">Saipu,Dhaulpur,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Saipu,Dhaulpur,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Saipu,Dhaulpur,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Saipu,Dhaulpur,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>32</td>
+                                        <td>
+                                            <span class="tablecellhead">Sangaria,Hanumangarh,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Sangaria,Hanumangarh,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Sangaria,Hanumangarh,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Sangaria,Hanumangarh,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>33</td>
+                                        <td>
+                                            <span class="tablecellhead">Sangod,Kota,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Sangod,Kota,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Sangod,Kota,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Sangod,Kota,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>34</td>
+                                        <td>
+                                            <span class="tablecellhead">Shahpura, Bhilwara, Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Shahpura, Bhilwara, Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Shahpura, Bhilwara, Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Shahpura, Bhilwara, Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>35</td>
+                                        <td>
+                                            <span class="tablecellhead">GShrimahaveerji,Karoli,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Shrimahaveerji,Karoli,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Shrimahaveerji,Karoli,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Shrimahaveerji,Karoli,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>36</td>
+                                        <td>
+                                            <span class="tablecellhead">Sikandra,Dausa,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Sikandra,Dausa,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Sikandra,Dausa,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Sikandra,Dausa,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr role="row">
+                                        <td>37</td>
+                                        <td>
+                                            <span class="tablecellhead">Srinagar Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Srinagar Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Srinagar Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Srinagar Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>38</td>
+                                        <td>
+                                            <span class="tablecellhead">Swai Madhopur,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Swai Madhopur,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Swai Madhopur,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Swai Madhopur,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>39</td>
+                                        <td>
+                                            <span class="tablecellhead">Tibbi,Hanumangarh,Pamphlet</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/Tibbi,Hanumangarh,Pamphlet.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Tibbi,Hanumangarh,Pamphlet
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/Tibbi,Hanumangarh,Pamphlet.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>40</td>
+                                        <td>
+                                            <span class="tablecellhead">जल सुरक्षा योजना विवरणिका पुस्तक</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>जल सुरक्षा योजना विवरणिका पुस्तक
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="vid8 up">
+
+                <div class=" row container maindiv">
+                    <div class="col-md-12">
+                        <div class="tbl-responsive">
+                            <table class="datainitial display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S.No</th>
+                                        <th>Documents</th>
+                                        <th>Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr role="row">
+                                        <td>1</td>
+                                        <td>
+                                            <span class="tablecellhead">जल सुरक्षा योजना विवरणिका पुस्तक</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>जल सुरक्षा योजना विवरणिका पुस्तक
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>40</td>
+                                        <td>
+                                            <span class="tablecellhead">Digital design of Atal Bhujal Rath,UP</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Uttar Pradesh/Digital design of Atal Bhujal Rath , UP.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>Digital design of Atal Bhujal Rath,UP
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Uttar Pradesh/Digital design of Atal Bhujal Rath , UP.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>40</td>
+                                        <td>
+                                            <span class="tablecellhead">जल सुरक्षा योजना विवरणिका पुस्तक</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>जल सुरक्षा योजना विवरणिका पुस्तक
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>40</td>
+                                        <td>
+                                            <span class="tablecellhead">जल सुरक्षा योजना विवरणिका पुस्तक</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>जल सुरक्षा योजना विवरणिका पुस्तक
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>40</td>
+                                        <td>
+                                            <span class="tablecellhead">जल सुरक्षा योजना विवरणिका पुस्तक</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>जल सुरक्षा योजना विवरणिका पुस्तक
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>40</td>
+                                        <td>
+                                            <span class="tablecellhead">जल सुरक्षा योजना विवरणिका पुस्तक</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>जल सुरक्षा योजना विवरणिका पुस्तक
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr role="row">
+                                        <td>40</td>
+                                        <td>
+                                            <span class="tablecellhead">जल सुरक्षा योजना विवरणिका पुस्तक</span>
+                                            <div style="margin:20px 0px 23px 0px; font-size: 13px;">
+                                                <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank">
+                                                    <i class="fa fa-download"></i>जल सुरक्षा योजना विवरणिका पुस्तक
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <a href="/Ataljalimages/IEC Activities/Rajasthan/जल सुरक्षा योजना विवरणिका पुस्तक.pdf" target="_blank" style="text-align:center">
+                                                <i class="fa fa-file-pdf-o" style="color:green;font-size: 30px;"></i>  <span href=""></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        /*$('.vid1').hide();*/
+        $('.aud1').hide();
+        $('#submenu11').show();
+        $.noConflict();
+        $('table.datainitial').DataTable();
+        $('#submenu12_table').DataTable();
+
+
+    });
+
+
+    function table16() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid1').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+    function table17() {
+
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid1').hide()
+        $('.vid2').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+    function table18() {
+        $('.vid2').hide();
+
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid1').hide()
+        $('.vid3').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+    function table19() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid1').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid3').hide()
+        $('.vid4').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+    function table20() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid1').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid4').hide()
+        $('.vid5').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+    function table21() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid1').hide();
+        $('.vid7').hide();
+        $('.vid8').hide();
+        $('.vid5').hide()
+        $('.vid6').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+    function table22() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid1').hide();
+        $('.vid8').hide();
+        $('.vid6').hide()
+        $('.vid7').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+    function table23() {
+        $('.vid2').hide();
+        $('.vid3').hide();
+        $('.vid4').hide();
+        $('.vid5').hide();
+        $('.vid6').hide();
+        $('.vid7').hide();
+        $('.vid1').hide();
+        $('.vid7').hide();
+        $('.vid8').show();
+        $('.aud1').hide();
+        $('.aud2').hide();
+        $('.aud3').hide();
+        $('.aud4').hide();
+        $('.aud5').hide();
+        $('.aud6').hide();
+        $('.aud7').hide();
+        $('.aud8').hide();
+    }
+
+</script>

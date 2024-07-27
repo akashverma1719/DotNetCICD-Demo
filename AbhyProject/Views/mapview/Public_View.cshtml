@@ -1,0 +1,2249 @@
+﻿@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atal Jal</title>
+    <link href="~/Content/css/mapview.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.2.5/css/calcite-web.min.css" />
+    <style>
+        .d-none {
+            display: none !important;
+        }
+
+        .last-updated {
+            padding: 0px 20px;
+        }
+
+            .last-updated p {
+                color: #fff;
+                font-size: 12px;
+                font-weight: 400;
+                font-family: 'Avenir Next';
+            }
+
+
+        .esri-widget--button {
+            background-color: #004592;
+            color: #ffffff;
+        }
+
+        .graphCont {
+            height: 270px;
+        }
+
+        .popup {
+            height: 400px !important;
+        }
+
+        label {
+            margin-bottom: 0px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .mapview-marquee {
+            display: flex;
+            color: #fff;
+            background: #004592;
+            padding: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            z-index: 999;
+            position: relative;
+        }
+
+        table {
+            width: 100%;
+        }
+
+            table th {
+                border-bottom-width: 2px;
+                background: #004592;
+                color: #ffff;
+                font-size: 15px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+
+
+        #rainfall_id {
+            color: #fff;
+            border-radius: 6px;
+            margin-top: 10px;
+            margin-right: 10px;
+            padding: 5px 11px;
+            border: unset;
+        }
+
+        #flow_id {
+            color: #fff;
+            border-radius: 6px;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-right: 10px;
+            padding: 5px 11px;
+            border: unset;
+        }
+
+
+        .esri-legend__group-layer-child {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h3.esri-widget__heading {
+            margin-bottom: 0px;
+        }
+
+        .esri-legend__layer-table--size-ramp {
+            margin-bottom: 0px;
+        }
+
+        #map_data {
+            font-size: 12px;
+            width: 36px;
+            height: 36px;
+            background-color: #fff !important;
+            border: 1px solid #f1f1f1;
+            border-radius: 3px;
+            padding: 4px 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+            #map_data i {
+                color: #000;
+            }
+
+        #map_data_off {
+            position: absolute;
+            font-size: 12px;
+            width: 36px;
+            height: 36px;
+            background-color: #fff !important;
+            border: 1px solid #f1f1f1;
+            border-radius: 3px;
+            padding: 4px 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+            #map_data_off i {
+                color: #000;
+            }
+
+        .map-hover-btn,
+        .map-hover-btn-off {
+            position: fixed;
+            top: calc(5.8vw + 47px);
+            right: 65px;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row-reverse;
+            column-gap: 10px;
+        }
+
+
+            .map-hover-btn button {
+                background-color: #004592 !important;
+                padding: 10px;
+            }
+
+            .map-hover-btn::after {
+                content: "Will work on the open Data Point Layer";
+                position: absolute;
+                top: calc(100% + 5px);
+                left: 80%;
+                width: 138px;
+                transform: translateX(-50%);
+                background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 5px 10px;
+                border-radius: 5px;
+                font-size: 12px;
+                white-space: nowrap;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                word-wrap: break-word;
+                text-wrap: wrap;
+            }
+
+            .map-hover-btn:hover::after {
+                opacity: 1; /* Show the tooltip on hover */
+            }
+    </style>
+</head>
+
+<body>
+    <!--Custom Modal Add Start -->
+    <div class="modal_view">
+        <div class="modal_content_view">
+            <span class="close-button" id="close_button"> </span>
+            <h5>View/Export Data</h5>
+            <h6 class="d-none">
+                <li class="sidebar-dropdown">
+                    <a href="#" id="show_count">
+                        <i class="far fa-gem"></i>
+
+                    </a>
+                    <div class="sidebar-submenu">
+
+                    </div>
+                </li>
+            </h6>
+            <h4>
+                <div class="box">
+
+                    <div class="dropdown" id="dropdown">
+                        <button class="dropbtn btn-sm" id="dropdownBtn">Export File</button>
+
+                    </div>
+                </div>
+
+        </div>
+        </h4>
+        <hr style="margin:5px 0px;">
+        <div class="tabs_section">
+            <div class="tab-menu">
+                <ul>
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a active-a" data-id="tab1">
+                            State
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab2">District</a>
+                    </li>
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab3">Block</a>
+                    </li>
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab4">Gram Panchayat</a>
+                    </li>
+                    <li><a href="javaScript:void(0);" class="tab-a" data-id="tab5">Well Inventory</a></li>
+                    <!-- <li><a href="javaScript:void(0);" class="tab-a" data-id="tab6">Piezometer</a> </li> -->
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab6"> Water Level</a>
+                    </li>
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab8">
+                            Water
+                            Quality
+                        </a>
+                    </li>
+                    <li><a href="javaScript:void(0);" class="tab-a" data-id="tab9">Geotagging</a></li>
+                    <!-- <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab10">
+                            Water
+                            Shed
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab11">Aquifier</a>
+                    </li> -->
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab12">GWRA</a>
+                    </li>
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab13">Rainfall</a>
+                    </li>
+
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab14">Rainguage</a>
+                    </li>
+
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab15">Water Flow</a>
+                    </li>
+
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab16">Acquifier</a>
+                    </li>
+
+                    <li>
+                        <a href="javaScript:void(0);" class="tab-a" data-id="tab17">Watershed</a>
+                    </li>
+                </ul>
+            </div>
+            <!--end of tab-menu-->
+            <div class="tab tab-active" data-id="tab1">
+                <div class="container custom_cont">
+                    <div id="tableDiv3"></div>
+                </div>
+            </div>
+
+            <div class="tab " data-id="tab2">
+                <div class="container custom_cont">
+                    <div id="tableDiv2"></div>
+                </div>
+            </div>
+
+            <div class="tab " data-id="tab3">
+                <div class="container custom_cont">
+                    <div id="tableDiv1"></div>
+                </div>
+            </div>
+            <div class="tab " data-id="tab4">
+                <div class="container custom_cont">
+                    <div id="tableDiv"></div>
+                </div>
+            </div>
+            <div class="tab " data-id="tab5">
+                <div class="container custom_cont">
+                    <div id="tableDiv4"></div>
+                </div>
+            </div>
+            <!-- <div class="tab " data-id="tab6">
+                <div class="container custom_cont">
+                    <div id="tableDiv5"></div>
+                </div>
+            </div> -->
+            <div class="tab " data-id="tab6">
+                <div class="container custom_cont">
+                    <div id="tableDiv6"></div>
+                </div>
+            </div>
+            <div class="tab " data-id="tab8">
+                <div class="container custom_cont">
+                    <div id="tableDiv7"></div>
+                </div>
+            </div>
+            <div class="tab " data-id="tab9">
+                <div class="container custom_cont">
+                    <div id="tableDiv8"></div>
+                </div>
+            </div>
+            <!-- <div class="tab " data-id="tab10">
+                <div class="container custom_cont">
+                    <div id="tableDiv9"></div>
+                </div>
+            </div>
+            <div class="tab " data-id="tab11">
+                <div class="container custom_cont">
+                    <div id="tableDiv10"></div>
+                </div>
+            </div> -->
+
+            <div class="tab " data-id="tab12">
+                <div class="container custom_cont">
+                    <div id="tableDiv11"></div>
+                </div>
+            </div>
+
+            <div class="tab " data-id="tab13">
+                <div class="container custom_cont">
+                    <div id="tableDiv12"></div>
+                </div>
+            </div>
+
+            <div class="tab " data-id="tab14">
+                <div class="container custom_cont">
+                    <div id="tableDiv13"></div>
+                </div>
+            </div>
+            <div class="tab " data-id="tab15">
+                <div class="container custom_cont">
+                    <div id="tableDiv14"></div>
+                </div>
+            </div>
+
+            <div class="tab " data-id="tab16">
+                <div class="container custom_cont">
+                    <div id="tableDiv15"></div>
+                </div>
+            </div>
+
+            <div class="tab " data-id="tab17">
+                <div class="container custom_cont">
+                    <div id="tableDiv16"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--Custom Modal Add End-->
+    <!-- Second Modal Add Start -->
+    <div class="sec_modal_view">
+        <div class="sec_modal_content_view">
+            <span class="sec_close-button" id="close_button_sec">×</span>
+
+            <hr>
+            <div class="sec_tabs_section">
+                <div class="tab_sec_menu">
+                    <ul>
+                        <li>
+                            <a href="javaScript:void(0);" value="state_area" id="state_area" class="tab-sec active-a" data-id="tab1a">State WI</a>
+                        </li>
+                        <li>
+                            <a href="javaScript:void(0);" value="dist_area" id="dist_area" class="tab-sec" data-id="tab2b">
+                                District WI
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javaScript:void(0);" class="tab-sec" value="block_area" id="block_area" data-id="tab3c">
+                                Block WI
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javaScript:void(0);" class="tab-sec" value="gram_area" id="gram_area" data-id="tab4d">Gram Panchayat WI</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="tab_sec tab_sec_active" data-id="tab1a">
+                    <div class="container custom_sec_con">
+                        <div id="theTable"></div>
+                    </div>
+                </div>
+                <div class="tab_sec" data-id="tab2b">
+                    <div class="container custom_sec_con">
+                        <div id="theTabled"></div>
+                    </div>
+                </div>
+                <div class="tab_sec" data-id="tab3c">
+                    <div class="container custom_sec_con">
+                        <div id="theTableb"></div>
+                    </div>
+                </div>
+                <div class="tab_sec" data-id="tab4d">
+                    <div class="container custom_sec_con">
+                        <div id="theTableg"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Second Modal Add End -->
+    <div class="header">
+        <!--<div class="sidebar-brand sidebar_logo">-->
+        @*
+            <a href="~/Home/map_view">
+
+                <img src="~/Content/Agriculture_icons/logo.png" alt="image"> <span>
+
+                        Atal Bhujal Yojana
+
+                    </span>
+
+            </a>*@
+
+
+
+        <!--</div>-->
+        @*
+            <div class="icons" id="info_icons" style="visibility:hidden;">
+
+                <i class="fa fa-info-circle"></i>
+
+            </div>*@
+
+        <div class="atalMapLogo">
+
+            <img src="../Content/Agriculture_icons/national-emblem.svg" class="national-emblem" />
+            <span class="logodivider"></span>
+            <a href="https://ataljal.mowr.gov.in/"><img src="../Content/Agriculture_icons/atal-logo.svg" /></a>
+
+        </div>
+        <h4 class="d-flex flex-column justify-content-center align-items-center text-light"><span>अटल भूजल योजना (मानचित्र)</span><span>Atal Bhujal Yojana (Map)</span></h4>
+        <img src="../Content/Agriculture_icons/mapViewHeader.png" />
+
+
+
+    </div>
+    <div>
+        <marquee width="100%" direction="left" class="mapview-marquee">
+            Disclaimer: The information shown on the map, in the tabular form, or in the export functionality is based on available data on the central server. This information may not be used for legal purposes.
+        </marquee>
+    </div>
+    @*
+        <div class="imgBox">
+            <img src="~/Content/Agriculture_icons/Identify.jpg" alt="image">
+        </div>*@
+
+    <div id="customLegend"></div>
+    <div class="page-wrapper chiller-theme toggled " id="restoggle">
+        <!--<span class="maptoggleButton">-->
+        @*
+            <button type="button" id="show-sidebar">
+
+                <i class="fas fa-bars"></i>
+
+            </button>*@
+
+
+        <!--<a href="https://ataljal.mowr.gov.in/" target="_blank" title="Atal Jal Home Page"><i class="fa fa-home" aria-hidden="true"></i></a>
+
+        </span>-->
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    @*
+                        <a href="index.html"><img src="logo.png" alt=""> <span>Atal Bhujal Yojana</span></a>*@
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+
+                <!-- sidebar-header  -->
+                <!-- sidebar-search  -->
+                <div class="sidebar-menu">
+                    <ul>
+                        @*
+                            <li class="header-menu">
+                            </li>*@
+                        <li class="sidebar-dropdown ">
+                            <div class="sidebarButton d-flex justify-content-center align-items-center">
+
+                                <span id="togglemapInfo" data-toggle="tooltip" data-placement="top" title="About Atal Jal">
+
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                </span>
+
+                                <span id="toggleButtonfeed" data-toggle="tooltip" data-placement="top" title="Feedback">
+
+                                    <img src="../Content/Agriculture_icons/Review.svg" />
+
+                                </span>
+                            </div>
+                            <a href="#">
+
+                                Select Area For Data
+                                <br />Availability (Under Atal Jal)
+
+                            </a>
+
+                            <div class="sidebar-submenu">
+                                <div class="form_container">
+                                    <form>
+
+                                        <div class="form-group">
+                                            <button id="executeQueriesButton">All</button>
+                                            <div class="smallCircle"></div>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <select id="cntry" class="custom-select custom-select-sm">
+
+                                                <option>All</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <select id="District" class="custom-select custom-select-sm" style="display:none">
+                                                <option>--select--</option>
+                                                @*
+                                                    <option value="Select_Districts">Select Districts</option>*@
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <select id="Block" class="custom-select custom-select-sm" style="display:none">
+                                                <option>--select--</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <select id="Gram" class="custom-select custom-select-sm" style="display:none">
+                                                <option>--select--</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- <div class="form-group">
+                                            <label for="formGroupExampleInput2">Choose Well</label>
+                                            <select id="WellV" class="custom-select custom-select-sm">
+                                                <option>--select--</option>
+                                            </select>
+                                        </div> -->
+
+                                    </form>
+                                </div>
+                                <div class="data_box p-0 p-2">
+                                    <div class="container p-0">
+
+                                        <h4 class="text-center">Statistics:<span id="dynamicValue">--All--</span></h4> @*
+                                            <div class="data_box">
+                                                <div class="content">
+                                                    <h6 class="row m-0">
+                                                            <span class="col-md-8 pl-0">Watershed/Basin:</span> <span class="col-md-4 badge badge-primary" id="ws_count"></span>
+                                                        </h6>
+                                                </div>
+                                            </div>*@
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6><span class="icon_Waterlevel1" style="left:16px;"></span> <span style="padding-left: 28px; width: 278px; display: block;">Water Level Monitoring Stations:</span></h6>
+                                                <div class="controls">
+                                                    <span class="badge badge-primary ellipsis" id="wl_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_spanwl" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="exesitingwellexcel()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6><span class="icon_WaterQuality1" style="left:16px;"></span> <span style="padding-left: 28px; width: 278px; display: block;">Water Quality Monitoring Stations:</span></h6>
+                                                <div class="controls">
+                                                    <span class="badge badge-primary" id="wq_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_spanwq" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="Waterquality_excel()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <h6>Piezometer :<span class="badge badge-primary" id="piezometer_count"></span></h6> -->
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6><span class="Artificial_Icon1" style="left:16px;"></span> <span style="padding-left: 28px; width: 278px; display: block; ">Artificial Recharge and Water Conservation Structures:</span> </h6>
+                                                <div class="controls">
+
+                                                    <span class="badge badge-primary" id="ar_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_spange" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="Geotagging_excel()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6><span class="rainguage_icon1" style="left:16px;"></span> <span style="padding-left: 28px; width: 278px; display: block;">Rainguage Stations:</span></h6>
+                                                <div class="controls">
+                                                    <span class="badge badge-primary" id="rg_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_spanrg" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="Raingauge()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6><span class="WaterFlow_icon1" style="left:16px;"></span> <span style="padding-left: 28px; width: 278px; display: block;">Water Flow Meters:</span></h6>
+                                                <div class="controls">
+                                                    <span class="badge badge-primary" id="wf_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_spanwf" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="Waterflow_excel()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6><span class="icon_Well1" style="left:16px;"></span> <span style="padding-left: 28px; width: 278px; display: block;">Well Registered:</span></h6>
+                                                <div class="controls">
+                                                    <span class="badge badge-primary" id="well_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_span" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="wellinventory()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6><span class="icon_WaterQualityMonitoring1" style="left:16px;"></span> <span style="padding-left: 28px; width: 278px; display: block;">Water Quality Monitoring (Through Field Testing Kit):</span></h6>
+                                                <div class="controls">
+                                                    <span class="badge badge-primary" id="wqm_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_spanwqm" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="Waterqualitym_excel()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="data_box">
+                                            <div class="content">
+                                                <h6>
+                                                    <span class="GP_Icon" style="position: relative;left:10px;top:10px;"></span> <span style="padding-left: 28px; width: 278px; display: block;"> GP Water Security Plan (2023-24):</span>
+
+                                                </h6>
+                                                <div class="controls">
+                                                    <span class="badge badge-primary" id="wsp_count"></span>
+                                                    <span class="badge badge-secondary" id="additional_spanwsp" style="display: none ;"></span>
+                                                    <button class="btn btn-success btn_export btn-sm" id="btnsubmit_water" onclick="WSPDownload()">
+                                                        <i class="fas fa-download"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <!-- <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+
+                        </li> -->
+                        <li class="sidebar-dropdown">
+                            <a href="#" id="show_attributes">
+                                <i class="fa fa-snowflake"></i>
+                                <span>Attributes</span>
+                            </a>
+                            <!-- <div class="sidebar-submenu">
+
+                            </div> -->
+                        </li>
+                        <!-- <li class="sidebar-dropdown">
+                            <a href="#" id="show_count">
+                                <i class="far fa-gem"></i>
+                                <span>Well Inventory Statistics</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+                <div id="scaleBarContainer" class="scale-bar">
+                    <div id="scaleBarLine" class="scale-bar-line"></div>
+                </div>
+
+            </div>
+            <!-- sidebar-content  -->
+
+            <div class="d-flex align-items-center last-updated">
+                <div id="graphPopup" class="popup">
+                    <div class="graphCont">
+                        <!-- Content for the graph popup -->
+                        <canvas id="graphCanvas"></canvas>
+                    </div>
+
+                    <button id="closeGraphPopup">Close Graph</button>
+                </div>
+            </div>
+        </nav>
+        <!-- main Content Start -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <div id="popupfeed" class="popupfeed">
+                    <div class="popup-content">
+                        <!-- Content of your popup goes here -->
+                        <span class="close text-light">&times;</span>
+                        <div>
+                            <span class="rating-stars">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+
+                            </span>
+                            <input type="hidden" id="rating" value="0">
+                        </div>
+                        <div>
+                            <textarea id="comment" maxlength="100" rows="5" cols="8" placeholder="Please enter comments here if any (Max 100 characters)"></textarea>
+                        </div>
+                        <p class="text-center text-light m-0">For specific suggestions,write us on</p>
+                        <h5 class="text-center text-light">atal-jal@gov.in</h5>
+                        <div class="ratingButtons w-100 d-flex justify-content-center align-items-center gap-1">
+                            <button id="resetRating" class="resetRating text-light "><i class="fa fa-repeat" aria-hidden="true"></i> Reset</button>
+                            <button id="updateButton" class="updateButton"><i class="fa fa-location-arrow" aria-hidden="true"></i> Submit</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="mapInfo" class="card">
+                    <div class="card-header d-flex justify-content-center align-items-center p-0">
+                        <h5 class="text-center text-light m-0 p-3 flex-grow-1">About Atal Bhujal Yojana</h5>
+                        <span class="close text-light p-2">&times;</span>
+                    </div>
+                    <div class="card-body text-justify p-3">
+                        <p class="m-0">
+                            The goal of Atal Bhujal Yojana (Atal Jal) is to demonstrate community-led sustainable ground water management which can be taken to scale. The major objectives of the Scheme is to improve the management of groundwater resources
+                            in select water stressed areas in identified states viz. Gujarat, Haryana, Karnataka, Madhya Pradesh, Maharashtra, Rajasthan and Uttar Pradesh.
+                        </p>
+                    </div>
+                    <div class="card-footer p-0 px-2">
+                        <h6 class="text-center text-light m-0 p-2 d-flex justify-content-between align-items-center">
+                            Area Coverage
+                            <a href="/Ataljalimages/Map_View/Atal_Jal_Area.csv" id="downloadMasterListButton" download data-toggle="tooltip" data-placement="top" title="Download">
+                                <span>
+                                    <i class="fas fa-download"></i>
+                                </span>
+                            </a>
+                        </h6>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>State :</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>District :</td>
+                                    <td>80</td>
+                                </tr>
+                                <tr>
+                                    <td>Block :</td>
+                                    <td>229</td>
+                                </tr>
+                                <tr>
+                                    <td>Gram Panchayat:</td>
+                                    <td>8213</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                @*<span id="openLayerListData" data-toggle="tooltip" data-placement="top" title="Layer List Data">
+                            <span>Layerscape</span>
+                    </span>*@
+
+                <div id="dataPopup" class="card">
+                    <div class="card-body p-0">
+                        <h6 class="text-center text-light m-0 p-2 d-flex justify-content-between align-items-center">
+                            Data dynamically displayed on window view
+                            <span class="close text-light p-2">&times;</span>
+                        </h6>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>India :</td>
+                                    <td id="IndLayerData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>State :</td>
+                                    <td id="stateLayerData"></td>
+                                </tr>
+                                <tr>
+                                    <td>District :</td>
+                                    <td id="dtLayerData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Block :</td>
+                                    <td id="blkLayerData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Gram Panchayat:</td>
+                                    <td id="gPLayerData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Water Level Monitoring Stations:</td>
+                                    <td id="waterLevelLayerData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Water Quality Monitoring Stations:</td>
+                                    <td id="waterQualityLayerData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Artificial Recharge and Water Conservation Structures:</td>
+                                    <td id="geoTagData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Rainguage Stations:</td>
+                                    <td id="rGData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Water Flow Meters:</td>
+                                    <td id="wFData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Well Registered:</td>
+                                    <td id="wellRegData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Water Quality Monitoring (Through Field Testing Kit):</td>
+                                    <td id="wQFTKData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Water Shed:</td>
+                                    <td id="wQshedFTKData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Major Aquifer:</td>
+                                    <td id="MajaqData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Principal Aquifer:</td>
+                                    <td id="praqData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>GWRA:</td>
+                                    <td id="gwraData"></td>
+                                </tr>
+                                <tr>
+                                    <td>Rainfall:</td>
+                                    <td id="RainfallData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Drainage:</td>
+                                    <td id="DraiData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>WSP:</td>
+                                    <td id="wspData"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>WSP:</td>
+                                    <td id="rainfData"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="loader" style="display: none;" class="spinner">
+                </div>
+                <div class="row MapMainDIv">
+                    <div class="esri-widget">
+                        <div id="loaderwl" class="loaderwl"></div>
+
+                        @*
+                            <calcite-loader id="calciteLoader" label="loading" type="indeterminate" hidden></calcite-loader>*@
+                        <div id="tabledatarg" class="box_shadow2">
+                            <!-- <p>Key in your input to filter the table:</p> -->
+
+                            <div class="flex_box_raing_tbl">
+                                <h4>Rainguage Table</h4>
+                                <input type="text" id="myinputrg" placeholder="Search..." class="form-control-sm w-25 mr-5" title="Type in something">
+                                <div class="fas fa-times rain_close"></div>
+                            </div>
+                            <!-- <p>Click on the header of a column to sort the table:</p> -->
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span id="rf_meta_id" class="w3-button table-column">
+                                                    ID<i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="rf_reading" class="w3-button table-column">
+                                                    RF Reading <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="rf_date" class="w3-button table-column">
+                                                    RF Date <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="rf_date_time" class="w3-button table-column">
+                                                    RF Date Time <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="id" class="w3-button table-column">
+                                                    ID <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mytablerg"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div id="tabledatawl" class="box_shadow3">
+                            <!-- <p>Key in your input to filter the table:</p> -->
+
+                            <div class="flex_box_wl_tbl">
+                                <h4>Water Level</h4>
+                                <input type="text" id="myinputwl" placeholder="Search..." class="form-control-sm w-25 mr-5" title="Type in something">
+                                <div class="fas fa-times wl_close"></div>
+                            </div>
+                            <!-- <p>Click on the header of a column to sort the table:</p> -->
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span id="partition_id" class="w3-button table-column">
+                                                    GWL ID<i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="gwl_reading" class="w3-button table-column">
+                                                    GWL Reading (mg/l)
+                                                    <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="gwl_date" class="w3-button table-column">
+                                                    GWL Date <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <!-- <th><span id="gwl_email" class="w3-button table-column">GWL E mail <i
+                                                        class="caret"></i></span>
+                                            </th> -->
+                                            <!-- <th><span id="date_time" class="w3-button table-column">Date Time <i
+                                                        class="caret"></i></span>
+                                            </th> -->
+                                            <!-- <th><span id="id" class="w3-button table-column">ID<i
+                                            class="caret"></i></span>
+                                            </th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mytablewl"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        <div id="tabledatawf" class="box_shadow4">
+                            <!-- <p>Key in your input to filter the table:</p> -->
+
+                            <div class="flex_box_wf_tbl">
+                                <h4>Water Flow</h4>
+                                <input type="text" id="myinputwf" placeholder="Search..." class="form-control-sm w-25 mr-5" title="Type in something">
+                                <div class="fas fa-times wf_close"></div>
+                            </div>
+                            <!-- <p>Click on the header of a column to sort the table:</p> -->
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span id="wf_meta_id" class="w3-button table-column">
+                                                    WF Meta ID<i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="waterreading_date" class="w3-button table-column">
+                                                    Water
+                                                    Reading <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="meterreading" class="w3-button table-column">
+                                                    Meter Reading <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="wf_date_time" class="w3-button table-column">
+                                                    Date Time <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <!-- <th><span id="wf_email" class="w3-button table-column">WF Email <i
+                                                        class="caret"></i></span>
+                                            </th> -->
+                                            <!-- <th><span id="id" class="w3-button table-column">ID<i
+                                                        class="caret"></i></span>
+                                            </th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mytablewf"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        <div id="tabledatawq" class="box_shadow5">
+                            <!-- <p>Key in your input to filter  the table:</p> -->
+
+                            <div class="flex_box_wq_tbl">
+                                <h4>Water Quality</h4>
+                                <input type="text" id="myinputwq" placeholder="Search..." class="form-control-sm w-25 mr-5" title="Type in something">
+                                <div class="fas fa-times wq_close"></div>
+                            </div>
+                            <!-- <p>Click on the header of a column to sort the table:</p> -->
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span id="pv_meta_id" class="w3-button table-column">
+                                                    PV ID<i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="well_id," class="w3-button table-column">
+                                                    Well ID
+                                                    <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="aquifer" class="w3-button table-column">
+                                                    Acquifier <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="formation" class="w3-button table-column">
+                                                    Formation <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="ph" class="w3-button table-column">
+                                                    PH <i class="caret"></i>
+                                                </span>
+                                            </th>
+
+                                            <th>
+                                                <span id="ec" class="w3-button table-column">
+                                                    EC <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="th" class="w3-button table-column">
+                                                    TH <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="calcium" class="w3-button table-column">
+                                                    Calcium <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="magnesium" class="w3-button table-column">
+                                                    Magnesium <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="sodium" class="w3-button table-column">
+                                                    Sodium <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="potassium" class="w3-button table-column">
+                                                    Pottasium <i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="carbonate" class="w3-button table-column">
+                                                    Carbonate<i class="caret"></i>
+                                                </span>
+                                            </th>
+
+                                            <th>
+                                                <span id="bicarbonate" class="w3-button table-column">
+                                                    Bicarbonate<i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="sulphate" class="w3-button table-column">
+                                                    Sulphate<i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                <span id="chloride" class="w3-button table-column">
+                                                    Chloride<i class="caret"></i>
+                                                </span>
+                                            </th>
+
+                                            <th>
+                                                <span id="fluoride" class="w3-button table-column">
+                                                    Flouride<i class="caret"></i>
+                                                </span>
+                                            </th>
+
+                                            <th>
+                                                <span id="nitrate" class="w3-button table-column">
+                                                    Nitrate<i class="caret"></i>
+                                                </span>
+                                            </th>
+
+
+                                            <th>
+                                                <span id="nitrate" class="w3-button table-column">
+                                                    Nitrate<i class="caret"></i>
+                                                </span>
+                                            </th>
+                                            <!-- <th><span id="gwl_email" class="w3-button table-column">GWL E mail <i
+                                                        class="caret"></i></span>
+                                            </th> -->
+                                            <!-- <th><span id="date_time" class="w3-button table-column">Date Time <i
+                                                        class="caret"></i></span>
+                                            </th> -->
+                                            <!-- <th><span id="id" class="w3-button table-column">ID<i
+                                            class="caret"></i></span> -->
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mytablewq"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        <!-- </div> -->
+                        <!-- <button id="exportButton">Export to CSV</button> -->
+                        <!-- <table class="tb" id="historyTable">
+
+                        </table> -->
+
+
+
+
+                    </div>
+                    <div id="viewDiv" class="map_view">
+
+
+                        @*
+                            <div class="item1">
+                                <img id='loading' src="https://i.stack.imgur.com/qq8AE.gif" /> @*
+
+                                <div class="item1">
+                                    <img id='loading' src="https://i.stack.imgur.com/qq8AE.gif" />
+
+                                </div>*@
+
+                        <div class="container">
+
+
+                        </div>
+
+                        <div id="sel" class="esri-component esri-widget--button esri-widget" role="button">
+                            <span class="esri-icon esri-icon-cursor"></span>
+                        </div>
+                    </div>
+
+                    <!--<button id="distanceMeasurementButton">Start Distance Measurement</button>-->
+                    <!-- Container for the measurement widget -->
+                    <!--<div id="distanceMeasurementContainer"></div>-->
+
+                </div>
+
+            </div>
+            @*
+                <div id="infoDiv" class="esri-widget position-absolute">
+                    <button id="cluster" class="esri-button"><span>Enable Clustering</span></button>
+                </div>*@
+
+
+            <div id="coordinates" class="coordinates">
+                Latitude: <span class="latitude">0.000</span>, Longitude: <span class="longitude">0.000</span>
+            </div>
+
+
+
+        </main>
+        <!-- main Content End -->
+    </div>
+    <footer class="mapViewFooter">
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-center">
+                <div class="d-flex align-items-center">
+                    <p class="mb-0" id="last-updated"></p>
+                </div>
+
+                <script>
+
+                    function formatDate(date) {
+                        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+                        return new Date(date).toLocaleDateString('en-GB', options).replace(/ /g, '-');
+                    }
+                    const currentDate = new Date();
+                    currentDate.setDate(currentDate.getDate() - 1);
+
+
+                    const formattedDate = formatDate(currentDate);
+
+
+                    document.getElementById('last-updated').textContent = `Last updated: ${formattedDate}`;
+                </script>
+
+                <div class="col-9">
+                    <p class="m-0 text-center w-100"> &copy; 2024 ATAL BHUJAL YOJANA (ATAL JAL), All Rights Reserved</p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </footer>
+    <div id="info">
+        <span id="headd"></span>
+        <br />
+        <span id="name"></span>
+        <br />
+        <span id="category"></span>
+        <br />
+        <span id="wind"></span>
+        <br />
+        <span id="obj"></span>
+        <br />
+        <span id="id1"></span>
+        <br />
+        <span id="id2"></span>
+        <br />
+        <span id="id3"></span>
+        <br />
+        <span id="id4"></span>
+    </div>
+    <div id="searchDiv" class="esri-widget">
+        <input type="text" id="searchInput" placeholder="Enter lat,long (Degree Decimal)">
+        <button id="searchButtonc" class="custom-search-button"><i class="fa fa-search"></i></button>
+    </div>
+
+
+    <div id="newPopup" class="popup CustomPopup">
+        <!-- Add your popup content here -->
+        <div class="table-responsive" id="gwl_datatable" style="margin-top: 52px;">
+            <table id="tbldemand" class="table wa_table table-bordered table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%; margin-bottom: 0px;">
+                <thead style="color: #fff;">
+                    <tr class="tableheader1"></tr>
+                    <tr class="success">
+                        <th colspan="4" class="text-center">Ground Water Level Data</th>
+
+                    </tr>
+                    <tr class="success">
+                        <th rowspan="3" class="text-center" style="min-width: 68px;">Sr.No</th>
+                        <th rowspan="3" class="text-center" style="min-width: 90px;">id</th>
+                        <th rowspan="3" class="text-center" style="min-width: 120px;">Reading (mbgl)</th>
+                        <th rowspan="3" class="text-center">Date (DD-MM-YYYY)</th>
+                    </tr>
+
+
+                </thead>
+                <tbody id="tbl_details"></tbody>
+            </table>
+
+        </div>
+        <button id="closePopup">Close</button>
+    </div>
+
+    <div id="newPopupR" class="popupR">
+
+
+        <!-- Add your popup content here -->
+        <div class="table-responsive" id="gwl_datatable" style="margin-top: 34px;">
+            <table id="tbldemand" class="table wa_table table-bordered table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%; margin-bottom: 0px;">
+                <thead style="color: #fff;">
+                    <tr class="tableheader1"></tr>
+                    <tr class="success">
+                        <th colspan="4" class="text-center">Rainfall Data</th>
+
+                    </tr>
+                    <tr class="success">
+                        <th rowspan="3" class="text-center" style="min-width: 100px;">Sr.No</th>
+                        <th rowspan="3" class="text-center">Id</th>
+                        <th rowspan="3" class="text-center">Reading (mm)</th>
+                        <th rowspan="3" class="text-center">Date(DD/MM/YYYY)</th>
+                    </tr>
+
+
+                </thead>
+                <tbody id="rainfalltbl_details"></tbody>
+            </table>
+
+        </div>
+        <button id="closePopupR">Close</button>
+    </div>
+
+
+
+    <div id="newPopupWf" class="popupWF">
+        <!-- Add your popup content here -->
+        <div class="table-responsive" id="flow_datatable" style="margin-top:34px;">
+            <table id="tbldemand" class="table wa_table table-bordered table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
+                <thead style="color: #fff;">
+                    <tr class="tableheader1"></tr>
+                    <tr class="success">
+                        <th colspan="4" class="text-center">Water Flow Data</th>
+
+                    </tr>
+                    <tr class="success">
+                        <th rowspan="3" class="text-center" style="min-width: 100px;">Sr.No</th>
+                        <th rowspan="3" class="text-center">Id</th>
+                        <th rowspan="3" class="text-center">Reading (m³)</th>
+                        <th rowspan="3" class="text-center">Date</th>
+                    </tr>
+
+
+                </thead>
+                <tbody id="flowtbl_details"></tbody>
+            </table>
+
+        </div>
+        <button id="closePopupWF">Close</button>
+    </div>
+
+    <div id="newPopupwq" class="popupwq">
+        <!-- Add your popup content here -->
+        <div style="padding: 12px;">
+            <label for="yearDropdown">Select Year:</label>
+            <select id="yearDropdown" style="border-radius: 25px; width: 76px;">
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="table-responsive" id="flow_datatable">
+            <table id="tbldemand" class="table wa_table table-bordered table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width: 100%; margin-top: 13px; margin-bottom:0px;">
+                <thead style="color: #fff;">
+                    <tr class="success">
+                        <th colspan="21" class="text-center">
+                            Water Quality
+                            <br />View Parameters and Readings
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody id="wqtbl_details">
+                    <!-- Data rows will be populated dynamically -->
+                </tbody>
+
+
+            </table>
+        </div>
+        <button id="closePopupwq">Close</button>
+    </div>
+
+
+
+    <div id="newPopupwqm" class="popupwqm">
+
+        <div style="padding: 12px;">
+            <label for="yearDropdownwq">Select Year:</label>
+            <select id="yearDropdownwq" style="border-radius: 25px; width: 76px;">
+
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <!-- Table for displaying Water Quality Data -->
+        <div class="table-responsive" id="flow_datatable" style="margin-top: 34px;">
+            <table id="tbldemand" class="table wa_table table-bordered table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%; margin-bottom: 0px;">
+                <thead style="color: #fff;">
+                    <tr class="success">
+                        <th colspan="21" class="text-center">
+                            Water Quality Monitoring (Through Field Testing Kit)
+                            <br />View Parameters and Readings
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody id="wqmtbl_details">
+                    <!-- Data rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+        <button id="closePopupwqm">Close</button>
+    </div>
+
+
+    <!-- Script Cdn Add -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/regression/1.4.1/regression.min.js"></script>
+    <!-- Include regression-js library -->
+    <script src="https://cdn.jsdelivr.net/npm/regression-js"></script>
+
+    <script type="text/javascript" src="//unpkg.com/xlsx/dist/shim.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.6/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="//unpkg.com/blob.js@1.0.1/Blob.js"></script>
+    <script type="text/javascript" src="//unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://jsdev.arcgis.com/4.27/"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/JS_Files/mapview.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoadedq", function () {
+            const sidebar = document.getElementById('sidebar');
+            const showSidebar = document.getElementById('show-sidebar');
+
+            showSidebar.addEventListener('click', function (e) {
+                e.preventDefault();
+                sidebar.classList.toggle('toggled');
+            });
+        });
+        //$(document).ready(function () {
+        //    $('#close-sidebar .fa-times').click(function () {
+        //        alert("12");
+        //        $('#show-sidebar').addClass('toogleBtn');
+        //    });
+
+        $(document).ready(function () {
+            $(".map-hover-btn button").on("click", function () {
+                alert("Hello");
+            });
+        });
+    </script>
+    <script>
+        $('.showmap_data').hide();
+        $(document).ready(function () {
+
+            $("#show_attributes").click(function () {
+                $(".showmap_data").toggle();
+            });
+            $('#level').hide();
+            $('#flow').hide();
+            $('#rainfall').hide();
+            $('#gwl_datatable').hide();
+            $('#flow_datatable').hide();
+            $('#rainfall_datatable').hide();
+        });
+    </script>
+    <script type="text/plain" id="labeid">
+        var field = $feature.gp_name; var queryArc = Trim(First(Split(DomainName($feature, 'gp_name'),'_'))); return queryArc ;
+    </script>
+
+    <script>
+        function datafinddata() {
+            var id = $('#data_id').val();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                url: "/mapview/getdatadata",
+                data: JSON.stringify({ id: id }), // Sending data as JSON string
+                dataType: 'json', // Expecting JSON response
+                success: function (response) {
+                    // Handle the response here
+                    console.log(response); // Log the response to the console
+
+                    // Example: Accessing specific data from the response
+                    if (response && response.length > 0) {
+                        // Assuming response is an array of objects
+                        // Accessing first element's property, for instance
+                        var firstData = response[0];
+                        console.log("First data:", firstData);
+                    } else {
+                        console.log("No data found.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors here
+                    console.error(xhr.responseText); // Log the error response to the console
+                }
+            });
+        }
+    </script>
+
+
+    <script type="text/plain" id="labeidb">
+        var fieldb = $feature.block; var queryArcb = Trim(First(Split(DomainName($feature, 'block'),'_'))); return queryArcb ;
+    </script>
+
+
+    <script type="text/plain" id="labeidd">
+        var fieldd = $feature.district; var queryArcd = Trim(First(Split(DomainName($feature, 'district'),'_'))); return queryArcd ;
+    </script>
+    <script type="text/plain" id="labeids">
+        var fields = $feature.State; var queryArcs = Trim(First(Split(DomainName($feature, 'State'),'_'))); return queryArcs ;
+    </script>
+    <script>
+        function find_data() {
+            var data = $('#finddata').val();
+            if (data == "level") {
+                $('#level').show();
+                $('#flow').hide();
+                $('#rainfall').hide();
+                $('#gwl_datatable').hide();
+                $('#flow_datatable').hide();
+                $('#rainfall_datatable').hide();
+            }
+            else if (data == "flow") {
+                $('#level').hide();
+                $('#flow').show();
+                $('#rainfall').hide();
+                $('#gwl_datatable').hide();
+                $('#flow_datatable').hide();
+                $('#rainfall_datatable').hide();
+            }
+            else if (data == "rainfall") {
+                $('#level').hide();
+                $('#flow').hide();
+                $('#rainfall').show();
+                $('#gwl_datatable').hide();
+                $('#flow_datatable').hide();
+                $('#rainfall_datatable').hide();
+            }
+            else {
+                $('#level').hide();
+                $('#flow').hide();
+                $('#rainfall').hide();
+                $('#gwl_datatable').hide();
+                $('#flow_datatable').hide();
+                $('#rainfall_datatable').hide();
+            }
+
+        }
+
+        function get_gwl() {
+            /* if (confirm("Are you sure you want to delete this entry?")) {*/
+            var value = $('#partiion_id').val();
+            if (value == "") {
+                alert("Please Enter Water level Id");
+                return false;
+            }
+            else {
+                $('#gwl_datatable').show();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/mapview/get_gwl",
+                    data: "{'partiion_id':'" + value + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        //alert(response);
+                        if (response == "Logout") {
+                            window.location = "/WspNew/WSP_GWM_HOME";
+                        }
+                        var Tbodyhtml = '';
+                        if (response == 'No Data') {
+                            Tbodyhtml = '<tr colspan="5"><td colspan="5" style="text-align: center;">No Data</td></tr>';
+                            $('#tbl_details').html(Tbodyhtml);
+
+                        }
+                        else if (response == 'Error') {
+                            $('#gwl_datatable').hide();
+                        }
+                        else {
+
+                            response.sort((a, b) => new Date(b.gwl_date) - new Date(a.gwl_date));
+
+                            // Initialize an empty string to store the HTML for the table rows
+                            let Tbodyhtml = '';
+                            for (var i = 0; i < response.length; i++) {
+                                Tbodyhtml += '<tr id="AWP1_TR_data_waterflow' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].gwl_meta_id + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].gwl_reading + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].gwl_date + '</td></tr >';
+
+                            }
+                            $('#tbl_details').html(Tbodyhtml);
+                        }
+
+                    }
+                });
+            }
+        }
+
+        function get_flow() {
+            var value = $('#flow_id').val();
+            if (value == "") {
+                alert("Please Enter Water Flow Id");
+                return false;
+            }
+            else {
+                $('#flow_datatable').show();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/mapview/get_flow",
+                    data: "{'id':'" + value + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert(response);
+                        if (response == "Logout") {
+                            window.location = "/WspNew/WSP_GWM_HOME";
+                        }
+                        var Tbodyhtml = '';
+                        if (response == 'No Data') {
+                            Tbodyhtml = '<tr colspan="5"><td colspan="5" style="text-align: center;">No Data</td></tr>';
+                            $('#flowtbl_details').html(Tbodyhtml);
+
+                        }
+                        else if (response == 'Error') {
+                            $('#flow_datatable').hide();
+                        }
+                        else {
+                            for (var i = 0; i < response.length; i++) {
+                                Tbodyhtml += '<tr id="AWP1_TR_data_waterflow' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].wf_meta_id + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].MeterReading + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].WaterReading_Date + '</td></tr >';
+
+                            }
+                            $('#flowtbl_details').html(Tbodyhtml);
+                        }
+
+                    }
+                });
+            }
+        }
+
+
+        function get_rainflow() {
+            var value = $('#rainfall_id').val();
+            if (value == "") {
+                alert("Plase Enter Rainguage Id");
+                return false;
+            }
+            else {
+                $('#rainflow_datatable').show();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/mapview/get_rainflow",
+                    data: "{'id':'" + value + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert(response);
+                        if (response == "Logout") {
+                            window.location = "/WspNew/WSP_GWM_HOME";
+                        }
+                        var Tbodyhtml = '';
+                        if (response == 'No Data') {
+                            Tbodyhtml = '<tr colspan="5"><td colspan="5" style="text-align: center;">No Data</td></tr>';
+                            $('#rainfalltbl_details').html(Tbodyhtml);
+
+                        }
+                        else if (response == 'Error') {
+                            $('#rainflow_datatable').hide();
+                        }
+                        else {
+                            for (var i = 0; i < response.length; i++) {
+                                Tbodyhtml += '<tr id="AWP1_TR_data_waterflow' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].rf_meta_id + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].rf_reading + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].rf_date + '</td></tr>';
+
+                            }
+                            $('#rainfalltbl_details').html(Tbodyhtml);
+                        }
+
+                    }
+                });
+            }
+        }
+        function get_wq() {
+            var value = $('#wq_id').val();
+            if (value == "") {
+                alert("Plase Enter WQ Id");
+                return false;
+            }
+            else {
+                $('#wq_datatable').show();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/mapview/get_wq",
+                    data: "{'id':'" + value + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert(response);
+                        if (response == "Logout") {
+                            window.location = "/WspNew/WSP_GWM_HOME";
+                        }
+                        var Tbodyhtml = '';
+                        if (response == 'No Data') {
+                            Tbodyhtml = '<tr colspan="5"><td colspan="5" style="text-align: center;">No Data</td></tr>';
+                            $('#wqtbl_details').html(Tbodyhtml);
+
+                        }
+                        else if (response == 'Error') {
+                            $('#wq_datatable').hide();
+                        }
+                        else {
+                            for (var i = 0; i < response.length; i++) {
+                                Tbodyhtml += '<tr id="AWP1_TR_data_waterflow' + i + '"><td id="srNo">' + (i + 1) + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].pv_meta_id + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].well_id + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].aquifer + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].formation + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].ph + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].ec + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].th + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].calcium + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].magnesium + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].sodium + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].potassium + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].carbonate + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].bicarbonate + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].sulphate + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].chloride + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].fluoride + '</td>';
+                                Tbodyhtml += '<td id="vill">' + response[i].nitrate + '</td></tr>';
+
+
+                            }
+                            $('#wqtbl_details').html(Tbodyhtml);
+                        }
+
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#toggleSearchButton").click(function () {
+                $("#searchDiv").slideToggle();
+            });
+        });
+    </script>
+    <script>
+        function extractValue(str) {
+            // Use a regular expression to extract the substring after ':'
+            const match = str.match(/:(.*)/);
+            return match ? match[1].trim() : ''; // Extract the substring and trim any leading/trailing whitespaces
+        }
+
+        function exportToCSV() {
+            // Get values dynamically from your HTML
+            const gpe = extractValue(document.getElementById('infoPanelTitleg').innerText);
+            const blocke = extractValue(document.getElementById('infoPanelContentg').innerText);
+            const diste = extractValue(document.getElementById('infoPanelContentg1').innerText);
+            const statee = extractValue(document.getElementById('infoPanelContentg2').innerText);
+            const gpae = extractValue(document.getElementById('infoPanelContentg3').innerText);
+            const bloce = extractValue(document.getElementById('infoPanelContentg4').innerText);
+            const villne = extractValue(document.getElementById('infoPanelContentg5').innerText);
+            const villce = extractValue(document.getElementById('infoPanelContentg6').innerText);
+            const wle = extractValue(document.getElementById('infoPanelCount1').innerText);
+            const wqe = extractValue(document.getElementById('infoPanelCount2').innerText);
+            const welle = extractValue(document.getElementById('infoPanelCount3').innerText);
+            const arse = extractValue(document.getElementById('infoPanelCount4').innerText);
+            const rge = extractValue(document.getElementById('infoPanelCount5').innerText);
+            const wfe = extractValue(document.getElementById('infoPanelCount6').innerText);
+
+
+            // Create an array with headers and values
+            const data = [
+                ['Gram Panchayat', 'Block', 'District', 'State', 'GP Area', 'Block Area',
+                    'Village Name', 'Total Village', 'Water Level Observation Well', 'Water Quality Observation Well',
+                    'Well', 'ARS and WCS', 'Rainguage', 'Water Flow Meter'],
+                [gpe, blocke, diste, statee, gpae, bloce, villne, villce, wle, wqe, welle, arse, rge, wfe]
+
+            ];
+
+            const ws = XLSX.utils.aoa_to_sheet(data);
+
+            // Generate the CSV content
+            const csv = XLSX.utils.sheet_to_csv(ws);
+
+            // Create a Blob containing the CSV data
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+
+            // Create a download link and trigger a click to download the file
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Gram Panchayat Summary.csv';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+    <script>
+        function responsiveFunction(x) {
+            var sidebar = document.querySelector("#restoggle");
+
+            if (x.matches && window.innerWidth < 700) {
+
+                sidebar.classList.remove("toggled");
+
+            } else {
+                sidebar.classList.add("toggled");
+
+            }
+        }
+
+        // Create a MediaQueryList object
+        var x = window.matchMedia("(max-width: 700px)")
+
+        // Call listener function at run time
+        responsiveFunction(x);
+    </script>
+
+    <script>
+        function Waterflow_excel() {
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                // Proceed with exporting data
+                window.location.href = "/mapview/Waterflow_excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;
+            }
+        }
+        function Raingauge() {
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                // Proceed with exporting data
+                window.location.href = "/mapview/Raingauge?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;
+            }
+        }
+
+        function exesitingwellexcel() {
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                // Proceed with exporting data
+                window.location.href = "/mapview/exesitingwellexcel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;
+            }
+        }
+
+
+
+        function wellinventory() {
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+
+            // Check if "cntry" dropdown has default text
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                // Proceed with exporting data
+                window.location.href = "/mapview/wellinventory?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;
+            }
+        }
+        function Geotagging_excel() {
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                // Proceed with exporting data
+                window.location.href = "/mapview/Geotagging_excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;
+            }
+        }
+        function Waterquality_excel() {
+
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+
+                window.location.href = "/mapview/Waterquality_excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;
+            }
+        }
+
+        function Waterqualitym_excel() {
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+
+                window.location.href = "/mapview/Waterqualitym_excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram;
+            }
+        }
+
+
+
+        // For downloading the Popup
+
+        function Waterqualitymp_excel(stName) {
+            if (stName === "0" || stName === "--Select State--" || stName === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                window.location.href = "/mapview/Waterqualitymp_excel?state1=" + encodeURIComponent(stName);
+            }
+        }
+
+
+        function Waterqualitypv_excel(stName) {
+            if (stName === "0" || stName === "--Select State--" || stName === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                window.location.href = "/mapview/Waterqualitypv_excel?state1=" + encodeURIComponent(stName);
+            }
+        }
+
+        function DownloadAll(stName) {
+
+            if (stName === "0" || stName === "--Select State--" || stName === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                window.location.href = "/mapview/DownloadAll?state1=" + encodeURIComponent(stName);
+            }
+        }
+
+
+
+
+        function DownloadAllDi(distName) {
+
+            if (distName === "0" || distName === "--Select State--" || distName === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                window.location.href = "/mapview/DownloadAllDi?dist1=" + encodeURIComponent(distName);
+            }
+        }
+        function DownloadAllbl(blockName) {
+
+            if (blockName === "0" || blockName === "--Select State--" || blockName === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                window.location.href = "/mapview/DownloadAllbl?block1=" + encodeURIComponent(blockName);
+            }
+        }
+
+
+        function DownloadAllGP(gpName) {
+
+            if (gpName === "0" || gpName === "--Select State--" || gpName === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            } else {
+                window.location.href = "/mapview/DownloadAllGP?GP1=" + encodeURIComponent(gpName);
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#toggleButtonfeed').click(function () {
+                $('#popupfeed').toggle();
+                $('#mapInfo').hide();
+            });
+
+            $('#togglemapInfo').click(function () {
+                $('#mapInfo').toggle();
+                $('#popupfeed').hide();
+            });
+
+            $('#openLayerListData').click(function () {
+                $('#dataPopup').toggle();
+            });
+
+            $('#popupfeed .close').click(function () {
+                $('#popupfeed').hide();
+            });
+
+            $('#mapInfo .close').click(function () {
+                $('#mapInfo').hide();
+            });
+
+            $('#dataPopup .close').click(function () {
+                $('#dataPopup').hide();
+            });
+
+            // Star hover event (to handle visual feedback on hover)
+            $('.star').hover(function () {
+                $(this).addClass('hovered'); // Add 'hovered' class to the hovered star and its preceding stars
+                $(this).prevAll().addClass('hovered');
+            }, function () {
+                $(this).removeClass('hovered'); // Remove 'hovered' class on mouseout
+                $(this).prevAll().removeClass('hovered');
+            });
+
+            // Star click event (to set the rating)
+            $('.star').click(function () {
+                var value = parseInt($(this).attr('data-value'));
+                $('#rating').val(value); // Set the numeric rating value to the hidden input field
+
+                // Remove 'active' class from all stars
+                $('.star').removeClass('active');
+
+                // Add 'active' class to the clicked star and its preceding stars
+                $(this).addClass('active').prevAll().addClass('active');
+            });
+
+            // Reset button click event
+            $('#resetRating').click(function () {
+                $('#rating').val(0); // Reset the rating value to 0
+                $('.star').removeClass('active'); // Remove 'active' class from all stars
+                $('#comment').val("");
+            });
+
+
+            // Update button click event (to submit the feedback)
+            $('#updateButton').click(function () {
+                var comment_section = $('#comment').val().trim();
+                var rating = parseInt($('#rating').val());
+
+                if (comment_section === "") {
+                    alert("Please provide a comment");
+                    $('#comment').focus();
+                    return;
+                }
+
+                if (comment_section.length > 100) {
+                    alert("Comment should not exceed 100 characters");
+                    return;
+                }
+                // Make AJAX call to update feedbacktttttt
+                $.ajax({
+                    type: "POST",
+                    url: "/mapview/UpdateFeedback",
+                    data: JSON.stringify({ comment_section: comment_section, rating: rating }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        // Check if the response contains a success flag
+                        alert(response);
+                        if (response == "Feedback saved successfully") {
+                            $('#comment').val("");
+                            $('#rating').val(0);
+                            $('.star').removeClass('active'); // Clear star ratingsww
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Display error message
+                        alert('Error updating feedback: ' + error);
+                    }
+                });
+            });
+            $('#popupfeed').hide();
+        });
+
+        $(document).ready(function () {
+            $(".map-hover-btn button").on("click", function () {
+
+            });
+        });
+
+        function WSPDownload() {
+
+
+            var State = $("#cntry").val();
+            var Dist = $("#District").val();
+            var Block = $("#Block").val();
+            var Gram = $("#Gram").val();
+
+            if (State === "0" || State === "--Select State--" || State === "All") {
+                alert("Please select a State");
+                return false; // Prevent further execution
+            }
+
+            else {
+
+                $('#loader').show();
+                let url;
+                url = "/mapview/WSP_Excel_combined";
+
+
+                $.ajax({
+                    type: "GET",
+                    url: `${url}`,
+                    contentType: "application/json; charset=utf-8",
+                    //data: `{"State" : '${State}',"District": '${Dist}', "Block" : '${Block}', "Gram": '${Gram}', "Module_name" : '1.1', "Year" : '${Year}'}`,
+                    data: {
+                        "State": `${State}`,
+                        "Dist": `${Dist}`,
+                        "Block": `${Block}`,
+                        "Gram": `${Gram}`,
+                    },
+                    success: function (Rdata) {
+                        console.log(Rdata);
+                        console.log('success');
+                        if (Rdata !== null) {
+                            console.log('robj');
+                            if (Rdata.hasOwnProperty('robj')) {
+                                console.log('ds');
+                                console.log(Rdata.robj.FileContents)
+                                var bytes = new Uint8Array(Rdata.robj.FileContents);
+                                var blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                                var link = document.createElement('a');
+                                link.href = window.URL.createObjectURL(blob);
+                                link.download = Rdata.robj.FileDownloadName;
+                                link.click();
+                                $('.loadera').hide();
+                                //$('#myModal').attr('data-backdrop', 'false');
+                            }
+                            else {
+                                var bytes = new Uint8Array(Rdata.FileContents);
+                                var blob = new Blob([bytes], {
+                                    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                });
+                                var link = document.createElement('a');
+                                link.href = window.URL.createObjectURL(blob);
+                                link.download = Rdata.FileDownloadName;
+                                link.click();
+
+
+
+                            }
+                        } else {
+                            alert("No data found.");
+                        }
+                        $('#loader').hide();
+                    },
+                    error: function (err) {
+
+                    }
+
+                });
+
+            }
+        }
+    </script>
+
+
+    <div id="ui-container"></div>
+
+
+</body>
+
+</html>

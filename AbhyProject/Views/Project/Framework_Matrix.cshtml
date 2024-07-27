@@ -1,0 +1,766 @@
+﻿@{
+    ViewBag.Title = "Framework_Matrix";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title>Framework Matrix</title>
+
+
+
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    ul.stateul {
+        text-align: center;
+    }
+
+        ul.stateul > li {
+            display: inline-block;
+        }
+
+    .tableheader1 > th {
+        padding: 5px;
+        font-weight: bold;
+    }
+
+    .btn-success {
+        width: 100px;
+        float: none;
+        right: 0px;
+    }
+
+    .fa-trash,
+    .fa-save {
+        padding-right: 5px;
+    }
+
+    tbody.tablebaody > tr > th {
+        width: 10%;
+    }
+
+    tbody.tablebaody > tr > td {
+        width: 10%;
+    }
+    /*.add-on {
+            position: absolute;
+
+            top:12px;
+        }*/
+    .dateinput {
+        position: relative;
+        top: 23px;
+    }
+
+    .add-on > i {
+        position: relative;
+        /* top: 1px; */
+        right: -70px;
+    }
+
+    .headeings > h4 {
+        margin-top: 10px;
+        color: #337ab7;
+        font-size: 20px;
+        font-family: raleway;
+        font-weight: 500
+    }
+
+    .headeings > h3 {
+        margin-top: 10px;
+        color: #337ab7;
+        font-size: 20px;
+        font-family: raleway;
+        font-weight: 500
+    }
+
+    tbody.tablebaody > tr > th.tdverticalline {
+        vertical-align: middle;
+    }
+
+    #dateid {
+        position: relative;
+        top: 24px;
+    }
+
+    .objectiveclass {
+        padding: 10px 0px;
+    }
+
+    .FrameWork_Matrix_table tr td,
+    .FrameWork_Matrix_table tr th {
+        text-align: center;
+        color: #000;
+    }
+
+        .FrameWork_Matrix_table tr td:nth-child(3),
+        .FrameWork_Matrix_table tr td:nth-child(2) {
+            text-align: left !important;
+        }
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+</style>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<div class="clearfix">
+    <div class="loading-container">
+        <div class="loader" style="display:none">
+            <img src="~/Content/WspImages/loader.gif" height="300" width="300" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Framework Matrix</div>
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Accordion -->
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-default">
+                        <div id="collapse-one" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <ul class="stateul">
+                                        <li><label id="selectid"> State:</label></li>
+
+                                        <li>
+                                            <select name="state" id="state" class="state form-control" onchange="State_Selection()">
+                                                <option value="0">Select State</option>
+                                                @*<option value="ALL">ALL</option>*@
+                                                <option textue="Gujarat">Gujarat</option>
+                                                <option textue="Haryana">Haryana</option>
+                                                <option textue="Madhya Pradesh">Madhya Pradesh</option>
+                                                <option textue="Maharashtra">Maharashtra</option>
+                                                <option textue="Rajasthan">Rajasthan</option>
+                                                <option textue="Uttar Pradesh">Uttar Pradesh</option>
+                                                <option textue="Karnataka">Karnataka</option>
+                                            </select>
+                                        </li>
+                                        @*<li><label id="selectid"> District:</label></li>
+                                            <li>
+                                                <select name="dist" id="dist" class="dist form-control">
+                                                    <option value="Select District">Select District</option>
+                                                </select>
+                                            </li>
+                                            <li><label id="selectid"> 	Number of Block:</label></li>
+                                            <li><input type="number" required class="form-control" value="" placeholder="Enter the no. blocks" id="blocks" /></li>
+                                            <li><label id="selectid">Date</label></li>
+                                            <li>
+                                                <div class="input-container input-append date form_datetime">
+                                                    <input name="" type="text" maxlength="50" id="cdate" class="form-control dateinput" placeholder="Select the Date" required>
+                                                    <span class="add-on">
+                                                        <i class="fa fa-calendar icon"></i>
+                                                    </span>
+                                                </div>
+                                            </li>*@
+
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-12 text-center headeings">
+                                    <h3>Result Area </h3>
+                                    <h4>Atal Bhujal Yojana: Results FrameWork Matrix: Baseline and Target Values of Indicators</h4>
+                                </div>
+                                <div class="col-md-12 col-sm-12 objectiveclass">
+                                    <h5>Objective: To improve management of groundwater resources in the selected states</h5>
+                                </div>
+                                <form>
+                                    <div class="col-md-12">
+                                        <div class="col-md-12 col12">
+                                            <div class="tbl-responsive" style="overflow-x:scroll;">
+                                                <table class="table table-striped FrameWork_Matrix_table table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px; height: 355px;">
+                                                    <tbody class="tablebaody">
+                                                        <tr class="tableheader1">
+
+
+                                                            <th>Indicators Name</th>
+                                                            <th>Intermediate Results (IR) Indicators </th>
+                                                            <th>Unit of Measurement</th>
+                                                            <th>Baseline</th>
+                                                            <th>Achievement (2020-2021)</th>
+                                                            <th>Achievement (2021-2022)</th>
+                                                            <th>Achievement (2022-2023)</th>
+                                                            <th>Achievement (2023-2024)</th>
+                                                            <th>Achievement (2024-2025)</th>
+                                                            <th>Cumulative Achievements(2020-2025)</th>
+
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                                Indicator 1: States with improved groundwater monitoring and
+                                                                disclosure of groundwater data
+                                                            </td>
+                                                            <td></td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline"><label id=""></label> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""></td>
+
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td></td>
+                                                            <td>
+                                                                1.1: Blocks with online groundwater
+                                                                quality and water-level monitoring reports made publicly available
+                                                            </td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli1_1_1_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_1_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_1_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_1_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_1_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_1_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_1_cumulative"></td>
+
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td></td>
+                                                            <td>
+                                                                1.2: State-level accredited groundwater
+                                                                quality labs
+                                                            </td>
+
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli1_1_2_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_2_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_2_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_2_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_2_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_2_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli1_1_2_cumulative"></td>
+
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                                Indicator 2: GPs with Community-led
+                                                                WSPs prepared and approved
+                                                            </td>
+                                                            <td></td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli2_2_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td></td>
+                                                            <td>2.1: GP-level water budgets completed</td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli2_2_1_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_1_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_1_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_1_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_1_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_1_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli2_2_1_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                                Indicator 3: Direct Program
+                                                                beneficiaries
+                                                            </td>
+                                                            <td>
+                                                            </td>
+
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli2_3_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                                (3a) of which women
+                                                            </td>
+                                                            <td>
+                                                            </td>
+
+                                                            <td class="tdverticalline">%</td>
+                                                            <td class="tdverticalline" id="dli2_3a_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli2_3a_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli2_3a_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli2_3a_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli2_3a_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli2_3a_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli2_3a_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                                3.1: People benefitting from demand-
+                                                                side measures
+                                                            </td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli2_3_1_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                                (3.1a) of which women
+                                                            </td>
+                                                            <td class="tdverticalline">%</td>
+                                                            <td class="tdverticalline" id="dli2_3_1a_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1a_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1a_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1a_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1a_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1a_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli2_3_1a_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                                Indicator 4: GPs which have adopted participatory groundwater
+                                                                management
+
+                                                            </td>
+                                                            <td></td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli3_4_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_cumulative"></td>
+
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td></td>
+                                                            <td>
+                                                                4.1: WUAs or other village-level water
+                                                                committees established and functioning
+                                                            </td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli3_4_1_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_1_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_1_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_1_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_1_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_1_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_1_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                                4.2: Women’s representation in WUAs
+                                                                or other village-level water committees
+
+                                                            </td>
+
+                                                            <td class="tdverticalline">%</td>
+                                                            <td class="tdverticalline" id="dli3_4_2_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_2_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_2_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_2_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_2_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_2_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_2_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                                4.3: Women in decision-making roles within WUAs (President, Vice President,
+                                                                Secretary, and Treasurer)
+
+                                                            </td>
+
+                                                            <td class="tdverticalline">%</td>
+                                                            <td class="tdverticalline" id="dli3_4_3_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_3_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_3_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_3_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_3_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_3_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_3_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                            </td>
+                                                            <td>
+                                                                4.4: Wells with functioning meters for monitoring groundwater level (observation wells), volumetric water
+                                                                use, or energy use
+
+                                                            </td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli3_4_4_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_4_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_4_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_4_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_4_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_4_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli3_4_4_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                                Indicator 5: Area with reduction in
+                                                                water consumption
+                                                            </td>
+                                                            <td></td>
+                                                            <td class="tdverticalline">Hectares</td>
+                                                            <td class="tdverticalline" id="dli4_5_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td></td>
+                                                            <td>
+                                                                5.1: Area provided with new/improved
+                                                                irrigation or drainage services
+                                                                made publicly available
+                                                            </td>
+                                                            <td class="tdverticalline">Hectares</td>
+                                                            <td class="tdverticalline" id="dli4_5_1_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_1_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_1_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_1_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_1_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_1_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli4_5_1_cumulative"></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td>
+                                                                Indicator 6: Blocks with arrest in the
+                                                                declining trend of groundwater levels
+
+                                                            </td>
+                                                            <td></td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""> </td>
+                                                            <td class="tdverticalline" id=""></td>
+                                                        </tr>
+                                                        <tr class="tableheader1">
+
+                                                            <td></td>
+                                                            <td>
+                                                                6.1: Blocks that show reduction in stage
+                                                                of groundwater development
+
+                                                            </td>
+                                                            <td class="tdverticalline">Number</td>
+                                                            <td class="tdverticalline" id="dli5_6_1_baseline"> </td>
+                                                            <td class="tdverticalline" id="dli5_6_1_20_21"> </td>
+                                                            <td class="tdverticalline" id="dli5_6_1_21_22"> </td>
+                                                            <td class="tdverticalline" id="dli5_6_1_22_23"> </td>
+                                                            <td class="tdverticalline" id="dli5_6_1_23_24"> </td>
+                                                            <td class="tdverticalline" id="dli5_6_1_24_25"> </td>
+                                                            <td class="tdverticalline" id="dli5_6_1_cumulative"></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Scriptsabhy/jquery-1.8.3.min.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.fr.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Content/JS_Files/framematrix.js"></script>
+<script>
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        //language: 'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+</script>
+
+
+
+<script>
+    function Reset() {
+        document.getElementById('AlertError').innerHTML = "Delete Successfully";
+    }
+
+    function achievecalculation() {
+
+        if ($("#benefit_dsm_endtarget_22_23").val() != "" && $("#benefit_dsm_ca").val() != "") {
+            document.getElementById('benefit_dsm_achieved').value = parseInt($("#benefit_dsm_endtarget_22_23").val()) - parseInt($("#benefit_dsm_ca").val());
+        }
+        if ($("#blocks_gwq_endtarget_22_23").val() != "" && $("#blocks_gwq_ca").val() != "") {
+            document.getElementById('blocks_gwq_achieved').value = parseInt($("#blocks_gwq_endtarget_22_23").val()) - parseInt($("#blocks_gwq_ca").val());
+        }
+        if ($("#community_led_wsp_endtarget_22_23").val() != "" && $("#community_led_wsp_ca").val() != "") {
+            document.getElementById('community_led_wsp_achieved').value = parseInt($("#community_led_wsp_endtarget_22_23").val()) - parseInt($("#community_led_wsp_ca").val());
+        }
+        if ($("#decline_gwl_endtarget_22_23").val() != "" && $("#decline_gwl_ca").val() != "") {
+            document.getElementById('decline_gwl_achieved').value = parseInt($("#decline_gwl_endtarget_22_23").val()) - parseInt($("#decline_gwl_ca").val());
+        }
+        if ($("#direct_prog_beneficiaries_endtarget_22_23").val() != "" && $("#direct_prog_beneficiaries_ca").val() != "") {
+            document.getElementById('direct_prog_beneficiaries_achieved').value = parseInt($("#direct_prog_beneficiaries_endtarget_22_23").val()) - parseInt($("#direct_prog_beneficiaries_ca").val());
+        }
+        if ($("#gp_wbc_endtarget_22_23").val() != "" && $("#gp_wbc_ca").val() != "") {
+            document.getElementById('gp_wbc_achieved').value = parseInt($("#gp_wbc_endtarget_22_23").val()) - parseInt($("#gp_wbc_ca").val());
+        }
+        if ($("#pgwm_endtarget_22_23").val() != "" && $("#pgwm_ca").val() != "") {
+            document.getElementById('pgwm_achieved').value = parseInt($("#pgwm_endtarget_22_23").val()) - parseInt($("#pgwm_ca").val());
+        }
+        if ($("#reduction_gwd_endtarget_22_23").val() != "" && $("#reduction_gwd_endtarget_ca").val() != "") {
+            document.getElementById('reduction_gwd_achieved').value = parseInt($("#reduction_gwd_endtarget_22_23").val()) - parseInt($("#reduction_gwd_endtarget_ca").val());
+        }
+        if ($("#reduction_wc_endtarget_22_23").val() != "" && $("#reduction_wc_ca").val() != "") {
+
+            document.getElementById('reduction_wc_achieved').value = parseInt($("#reduction_wc_endtarget_22_23").val()) - parseInt($("#reduction_wc_ca").val());
+        }
+        if ($("#states_gwm_endtarget_22_23").val() != "" && $("#states_gwm_ca").val() != "") {
+            document.getElementById('states_gwm_achieved').value = parseInt($("#states_gwm_endtarget_22_23").val()) - parseInt($("#states_gwm_ca").val());
+        }
+
+        if ($("#states_gwq_endtarget_22_23").val() != "" && $("#states_gwq_ca").val() != "") {
+            document.getElementById('states_gwq_achieved').value = parseInt($("#states_gwq_endtarget_22_23").val()) - parseInt($("#states_gwq_ca").val());
+        }
+
+        if ($("#village_wc_endtarget_22_23").val() != "" && $("#village_wc_ca").val() != "") {
+            document.getElementById('village_wc_achieved').value = parseInt($("#village_wc_endtarget_22_23").val()) - parseInt($("#village_wc_ca").val());
+        }
+        if ($("#wells_mgwl_endtarget_22_23").val() != "" && $("#wells_mgwl_ca").val() != "") {
+            document.getElementById('wells_mgwl_achieved').value = parseInt($("#wells_mgwl_endtarget_22_23").val()) - parseInt($("#wells_mgwl_ca").val());
+        }
+        if ($("#women_decision_roles_endtarget_22_23").val() != "" && $("#women_decision_roles_ca").val() != "") {
+            document.getElementById('women_decision_roles_achieved').value = parseInt($("#women_decision_roles_endtarget_22_23").val()) - parseInt($("#women_decision_roles_ca").val());
+        }
+        if ($("#women_village_wc_endtarget_22_23").val() != "" && $("#women_village_wc_ca").val() != "") {
+            document.getElementById('women_village_wc_achieved').value = parseInt($("#women_village_wc_endtarget_22_23").val()) - parseInt($("#women_village_wc_ca").val());
+        }
+
+    }
+
+
+    function SaveDetails() {
+        if ($("#state").val() != "" && $("#dist").val() != "") {
+            if ($("#decline_gwl_baseline_16_17").val() != "" && $("#decline_gwl_ca").val() != "" && $("#decline_gwl_endtarget_22_23").val() != "" && $("#decline_gwl_achieved").val() != "" &&
+                $("#community_led_wsp_baseline_16_17").val() != "" && $("#community_led_wsp_ca").val() != "" && $("#community_led_wsp_endtarget_22_23").val() != "" && $("#community_led_wsp_achieved").val() != "" &&
+                $("#benefit_dsm_baseline_16_17").val() != "" && $("#benefit_dsm_ca").val() != "" && $("#benefit_dsm_endtarget_22_23").val() != "" && $("#benefit_dsm_achieved").val() != "" &&
+                $("#blocks_gwq_baseline_16_17").val() != "" && $("#blocks_gwq_ca").val() != "" && $("#blocks_gwq_endtarget_22_23").val() != "" && $("#blocks_gwq_achieved").val() != "" &&
+                $("#direct_prog_beneficiaries_baseline_16_17").val() != "" && $("#direct_prog_beneficiaries_ca").val() != "" && $("#direct_prog_beneficiaries_endtarget_22_23").val() != "" && $("#direct_prog_beneficiaries_achieved").val() != "" &&
+                $("#gp_wbc_baseline_16_17").val() != "" && $("#gp_wbc_ca").val() != "" && $("#gp_wbc_endtarget_22_23").val() != "" && $("#gp_wbc_achieved").val() != "" &&
+                $("#pgwm_baseline_16_17").val() != "" && $("#pgwm_ca").val() != "" && $("#pgwm_endtarget_22_23").val() != "" && $("#pgwm_achieved").val() != "" &&
+                $("#reduction_gwd_baseline_16_17").val() != "" && $("#reduction_gwd_endtarget_ca").val() != "" && $("#reduction_gwd_endtarget_22_23").val() != "" && $("#reduction_gwd_achieved").val() != "" &&
+                $("#reduction_wc_baseline_16_17").val() != "" && $("#reduction_wc_ca").val() != "" && $("#reduction_wc_endtarget_22_23").val() != "" && $("#reduction_wc_achieved").val() != "" &&
+                $("#states_gwm_baseline_16_17").val() != "" && $("#states_gwm_ca").val() != "" && $("#states_gwm_endtarget_22_23").val() != "" && $("#states_gwm_achieved").val() != "" &&
+                $("#states_gwq_baseline_16_17").val() != "" && $("#states_gwq_ca").val() != "" && $("#states_gwq_endtarget_22_23").val() != "" && $("#states_gwq_achieved").val() != "" &&
+                $("#village_wc_baseline_16_17").val() != "" && $("#village_wc_ca").val() != "" && $("#village_wc_endtarget_22_23").val() != "" && $("#village_wc_achieved").val() != "" &&
+                $("#wells_mgwl_baseline_16_17").val() != "" && $("#wells_mgwl_ca").val() != "" && $("#wells_mgwl_endtarget_22_23").val() != "" && $("#wells_mgwl_achieved").val() != "" &&
+                $("#women_decision_roles_baseline_16_17").val() != "" && $("#women_decision_roles_ca").val() != "" && $("#women_decision_roles_endtarget_22_23").val() != "" && $("#women_decision_roles_achieved").val() != "" &&
+                $("#women_village_wc_baseline_16_17").val() != "" && $("#women_village_wc_ca").val() != "" && $("#women_village_wc_endtarget_22_23").val() != "" && $("#women_village_wc_achieved").val() != "") {
+
+
+
+
+                var obj = {};
+                obj.state_name = $("#state").val();
+                obj.district_name = $("#dist").val();
+                obj.block = $("#blocks").val();
+                obj.fmdate = $("#cdate").val();
+                obj.decline_gwl_baseline_16_17 = $("#decline_gwl_baseline_16_17").val();
+                obj.decline_gwl_ca = $("#decline_gwl_ca").val();
+                obj.decline_gwl_endtarget_22_23 = $("#decline_gwl_endtarget_22_23").val();
+                obj.decline_gwl_achieved = $("#decline_gwl_achieved").val();
+                obj.community_led_wsp_baseline_16_17 = $("#community_led_wsp_baseline_16_17").val();
+                obj.community_led_wsp_ca = $("#community_led_wsp_ca").val();
+                obj.community_led_wsp_endtarget_22_23 = $("#community_led_wsp_endtarget_22_23").val();
+                obj.community_led_wsp_achieved = $("#community_led_wsp_achieved").val();
+                obj.benefit_dsm_baseline_16_17 = $("#benefit_dsm_baseline_16_17").val();
+                obj.benefit_dsm_ca = $("#benefit_dsm_ca").val();
+                obj.benefit_dsm_endtarget_22_23 = $("#benefit_dsm_endtarget_22_23").val();
+                obj.benefit_dsm_achieved = $("#benefit_dsm_achieved").val();
+                obj.blocks_gwq_baseline_16_17 = $("#blocks_gwq_baseline_16_17").val();
+                obj.blocks_gwq_ca = $("#blocks_gwq_ca").val();
+                obj.blocks_gwq_endtarget_22_23 = $("#blocks_gwq_endtarget_22_23").val();
+                obj.blocks_gwq_achieved = $("#blocks_gwq_achieved").val();
+                obj.direct_prog_beneficiaries_baseline_16_17 = $("#direct_prog_beneficiaries_baseline_16_17").val();
+                obj.direct_prog_beneficiaries_ca = $("#direct_prog_beneficiaries_ca").val();
+                obj.direct_prog_beneficiaries_endtarget_22_23 = $("#direct_prog_beneficiaries_endtarget_22_23").val();
+                obj.direct_prog_beneficiaries_achieved = $("#direct_prog_beneficiaries_achieved").val();
+                obj.gp_wbc_baseline_16_17 = $("#gp_wbc_baseline_16_17").val();
+                obj.gp_wbc_ca = $("#gp_wbc_ca").val();
+                obj.gp_wbc_endtarget_22_23 = $("#gp_wbc_endtarget_22_23").val();
+                obj.gp_wbc_achieved = $("#gp_wbc_achieved").val();
+                obj.pgwm_baseline_16_17 = $("#pgwm_baseline_16_17").val();
+                obj.pgwm_ca = $("#pgwm_ca").val();
+                obj.pgwm_endtarget_22_23 = $("#pgwm_endtarget_22_23").val();
+                obj.pgwm_achieved = $("#pgwm_achieved").val();
+                obj.reduction_gwd_baseline_16_17 = $("#reduction_gwd_baseline_16_17").val();
+                obj.reduction_gwd_endtarget_ca = $("#reduction_gwd_endtarget_ca").val();
+                obj.reduction_gwd_endtarget_22_23 = $("#reduction_gwd_endtarget_22_23").val();
+                obj.reduction_gwd_achieved = $("#reduction_gwd_achieved").val();
+                obj.reduction_wc_baseline_16_17 = $("#reduction_wc_baseline_16_17").val();
+                obj.reduction_wc_ca = $("#reduction_wc_ca").val();
+
+                obj.reduction_wc_endtarget_22_23 = $("#reduction_wc_endtarget_22_23").val();
+                obj.reduction_wc_achieved = $("#reduction_wc_achieved").val();
+                obj.states_gwm_baseline_16_17 = $("#states_gwm_baseline_16_17").val();
+                obj.states_gwm_ca = $("#states_gwm_ca").val();
+                obj.states_gwm_endtarget_22_23 = $("#states_gwm_endtarget_22_23").val();
+                obj.states_gwm_achieved = $("#states_gwm_achieved").val();
+                obj.states_gwq_baseline_16_17 = $("#states_gwq_baseline_16_17").val();
+                obj.states_gwq_ca = $("#states_gwq_ca").val();
+                obj.states_gwq_endtarget_22_23 = $("#states_gwq_endtarget_22_23").val();
+                obj.states_gwq_achieved = $("#states_gwq_achieved").val();
+                obj.village_wc_baseline_16_17 = $("#village_wc_baseline_16_17").val();
+                obj.village_wc_ca = $("#village_wc_ca").val();
+                obj.village_wc_endtarget_22_23 = $("#village_wc_endtarget_22_23").val();
+                obj.village_wc_achieved = $("#village_wc_achieved").val();
+                obj.wells_mgwl_baseline_16_17 = $("#wells_mgwl_baseline_16_17").val();
+                obj.wells_mgwl_ca = $("#wells_mgwl_ca").val();
+                obj.wells_mgwl_endtarget_22_23 = $("#reduction_wc_ca").val();
+
+                obj.wells_mgwl_achieved = $("#wells_mgwl_achieved").val();
+                obj.women_decision_roles_baseline_16_17 = $("#women_decision_roles_baseline_16_17").val();
+                obj.women_decision_roles_ca = $("#women_decision_roles_ca").val();
+                obj.women_decision_roles_endtarget_22_23 = $("#women_decision_roles_endtarget_22_23").val();
+                obj.women_decision_roles_achieved = $("#women_decision_roles_achieved").val();
+                obj.women_village_wc_baseline_16_17 = $("#women_village_wc_baseline_16_17").val();
+                obj.women_village_wc_ca = $("#women_village_wc_ca").val();
+                obj.women_village_wc_endtarget_22_23 = $("#women_village_wc_endtarget_22_23").val();
+                obj.women_village_wc_achieved = $("#women_village_wc_achieved").val();
+
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/Project/Framework_Matrix",
+                    data: "{'FrameworkData': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+
+                        alert(response);
+                        document.getElementById('AlertError').innerHTML = response;
+                    }
+                });
+
+            }
+            else {
+                document.getElementById('AlertError').innerHTML = "Please Fill All Fields";
+            }
+
+        }
+        else {
+
+            document.getElementById('AlertError').innerHTML = "Please Select State and District";
+        }
+
+    }
+
+</script>
+@*decimal" placeholder="Enter the numeric value"*@
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(8)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(8)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(8) > ul.dropdown >  li:nth-child(2)").addClass("active");
+    $("nav#primary-menu > ul.main-menu >  li:nth-child(8) > ul.dropdown >  li:nth-child(2)").siblings().removeClass('active');
+</script>
+

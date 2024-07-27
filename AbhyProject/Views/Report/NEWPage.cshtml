@@ -1,0 +1,294 @@
+﻿
+@{
+    ViewBag.Title = "NEWPage";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<meta name="viewport" content="width=device-width" />
+<title>New Page</title>
+<!-- favicon
+============================================ -->
+@*<link rel="shortcut icon" type="image/x-icon" href="~/Content/Website/images/favicon.ico">*@
+
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/topojson.v0.min.js"></script>
+<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+<script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+
+<style>
+    #mapsome {
+        line-height: 16px;
+        width: 20px;
+        height: 15px;
+    }
+
+    .show_hide {
+        display: none;
+    }
+
+    .dropdrowndiv > label {
+        font-size: 16px;
+        font-weight: bold;
+        padding-left: 5px;
+    }
+
+    .dropdrowndiv > span {
+        color: red;
+        font-size: 15px;
+    }
+
+    .dropdrowndiv {
+        padding-top: 10px;
+    }
+
+    .Gobutton {
+        margin-top: 20px;
+    }
+
+        .Gobutton > .btn-success {
+            padding: 7px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+    #mapid {
+        height: 500px;
+    }
+
+    @@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+
+    .panel-title > a:before {
+        float: right !important;
+        font-family: FontAwesome;
+        content: "\f068";
+        padding-right: 5px;
+    }
+
+    .panel-title > a.collapsed:before {
+        float: right !important;
+        content: "\f067";
+    }
+
+    .panel-title > a:hover,
+    .panel-title > a:active,
+    .panel-title > a:focus {
+        text-decoration: none;
+    }
+    .usertypedropdown
+    {
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+</style>
+<div class="clearfix">
+    <div class="row">
+        <div class="col-md-12" style="margin-top:15px;">
+            <div class="col-md-3">
+
+
+
+
+                <div class="col-md-12" style="padding:0px;">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Base Map
+                                </a>
+                            </h4>
+
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <form>
+                                    <input type="radio" name="mapsome" id="mapsome" onclick="f1();" checked /> <span>Google Satellite</span>
+                                    <input type="radio" name="mapsome" id="mapsome" onclick="f2();" /> <span>Google Street</span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 usertypedropdown">
+                    <label>Select User Type</label><span>*</span>
+                    <select class="form-control" id="state" name="state">
+                        <option value="0">-- Select User Type --</option>
+                        <option value="1"> Type</option>
+                        <option value="2">Opel</option>
+                        <option value="3">Audi</option>
+                    </select>
+                </div>
+                <div class="col-md-12 usertypedropdown">
+                    <label>Select Well Type</label><span>*</span>
+                    <select class="form-control" id="state" name="state">
+                        <option value="0">-- Select Well Type --</option>
+                        <option value="1"> Type</option>
+                        <option value="2">Opel</option>
+                        <option value="3">Audi</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label>Depth of the well(m)</label>
+                    <input name="" type="text" class="form-control" placeholder="Enter the Depth of the well" />
+                </div>
+                <div class="col-md-12">
+                    <label>GWL (m)</label>
+                    <input name="" type="text" class="form-control" placeholder="Enter the GWL" />
+                </div>
+                <div class="dropdrowndiv">
+                    <label>Select State</label><span>*</span>
+                    <select class="form-control" id="state" name="state">
+                        <option value="0">-- Select State --</option>
+                        @*<option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>*@
+                    </select>
+                </div>
+                <div class=" dropdrowndiv">
+                    <label>Select District</label><span>*</span>
+                    <select class="form-control" id="dist" name="dist">
+                        <option value="0">-- Select District --</option>
+                        @*<option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>*@
+                    </select>
+                </div>
+                <div class="dropdrowndiv">
+                    <label>Select Block</label><span>*</span>
+                    <select class="form-control" id="block" name="block">
+                        <option value="0">-- Select Block --</option>
+
+                    </select>
+                </div>
+                <div class="dropdrowndiv">
+                    <label>Select Gram Panchayat</label><span>*</span>
+                    <select class="form-control" id="gram" name="gram">
+                        <option value="0">-- Select Gram Panchayat --</option>
+
+                    </select>
+                </div>
+                <div class="dropdrowndiv">
+                    <label>Select Village</label><span>*</span>
+                    <select class="form-control" id="village" name="village">
+                        <option value="0">-- Select Village --</option>
+
+                    </select>
+                </div>
+                <div class="Gobutton">
+                    <button class="btn btn-success"> Search</button>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+
+                <div id="map1">
+                    <div class="col-md-12">
+                        <div id="map" style="width:100%;height:500px;"></div>
+                    </div>
+                </div>
+                <div id="map2">
+                    <div id="mapid"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgurNrZ8JU8NiUs9bleClqbVul6VR5u4s">
+</script>
+<script>
+    navigator.geolocation.getCurrentPosition(function (location) {
+        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+
+        var mymap = L.map('mapid').setView(latlng, 13)
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoiYmJyb29rMTU0IiwiYSI6ImNpcXN3dnJrdDAwMGNmd250bjhvZXpnbWsifQ.Nf9Zkfchos577IanoKMoYQ'
+        }).addTo(mymap);
+
+        var marker = L.marker(latlng).addTo(mymap);
+    });
+
+</script>
+@*<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>*@
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgurNrZ8JU8NiUs9bleClqbVul6VR5u4s&callback=initMap">
+</script>
+<script>
+    function initMap() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                // The location of Uluru
+                var uluru = { lat: position.coords.latitude, lng: position.coords.longitude };
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 8, center: uluru });
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({ position: uluru, map: map });
+
+            });
+        }
+    }
+
+</script>
+
+
+
+
+<script>
+    function f1() {
+        $('#1stmap').show();
+        $('#2ndmap').hide();
+    }
+    function f2() {
+        $('#1stmap').hide();
+        $('#2ndmap').show();
+    }
+    $(document).ready(function () {
+        //alert();
+        // $(".hidediv").prop("aria-expanded", "false");
+        $('#1stmap').show();
+        $('#2ndmap').hide();
+        //$(".show_hide").show();
+        //$(".slidingDiv").hide();
+    });
+</script>
+
+
+
+<script>
+    function f1() {
+        $('#map1').show();
+        $('#map2').hide();
+    }
+    function f2() {
+        $('#map1').hide();
+        $('#map2').show();
+    }
+    $(document).ready(function () {
+        $('#map1').show();
+        $('#map2').hide();
+        $(".show_hide").show();
+        $(".slidingDiv").hide();
+    });
+</script>

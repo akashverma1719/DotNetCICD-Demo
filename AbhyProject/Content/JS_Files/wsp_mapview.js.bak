@@ -1,0 +1,90 @@
+﻿function WaterLevelWSP() {
+
+    $.ajax({
+        type: 'GET',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/WaterSecurityPlan/WaterLevelWSP',
+        data: '',
+        dataType: 'JSON',
+        success: function (data) {
+            debugger;
+            $('.loader').hide();
+
+            var Tbodyhtml = '';
+            var j = 0;
+            if (data.length == 0) {
+                Tbodyhtml = '<tr colspan="16"><td colspan="16" style="text-align: center;">No Data</td></tr>';
+                $('#WaterLevel').html(Tbodyhtml);
+                $('.loader').hide();
+            } else {
+                for (var i = 0; i < data.length; i++) {
+                    
+                    Tbodyhtml += '<tr><td id="srNo">' + (++j) + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].sitename + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].locationdetails + '</td>';
+                    Tbodyhtml += '<td id="latitude">' + data[i].latitude + '</td>';
+                    Tbodyhtml += '<td id="longtude">' + data[i].longitude + '</td>';
+                    Tbodyhtml += '<td id="date">' + data[i].datetime + '</td>';
+                    Tbodyhtml += '<td id="Wellid">' + data[i].wellid + '</td>';
+                    Tbodyhtml += '<td id="typeofwell">' + data[i].typeofwell + '</td>';
+                    Tbodyhtml += '<td id="email">' + data[i].other_well_type + '</td>';
+                    Tbodyhtml += '<td id="email">' + data[i].source_Ownership + '</td>';
+                    Tbodyhtml += '<td id="email">' + data[i].source_Ownership_type + '</td>';
+                    Tbodyhtml += '<td id="PreMonsoon2019">' + data[i].Diameter_of_Well + '</td>';
+                    Tbodyhtml += '<td id="date">' + data[i].welldepth + '</td>';
+                    Tbodyhtml += '<td id="date">' + data[i].Height_of_Measuring_Point + '</td></tr>';
+                }
+                $('#WaterLevel').html(Tbodyhtml);
+            }
+            WaterQualityWSP();
+        }
+    });
+}
+
+
+function WaterQualityWSP() {
+
+    $.ajax({
+        type: 'GET',
+        contentType: 'application/json; chatset=utf-8',
+        url: '/WaterSecurityPlan/WaterQualityWSP',
+        data: '',
+        dataType: 'JSON',
+        success: function (data) {
+            debugger;
+            $('.loader').hide();
+
+            var Tbodyhtml = '';
+            var j = 0;
+            if (data.length == 0) {
+                Tbodyhtml = '<tr colspan="16"><td colspan="16" style="text-align: center;">No Data</td></tr>';
+                $('#WaterQuality').html(Tbodyhtml);
+                $('.loader').hide();
+            } else {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].entry_time == null) {
+                        curr_date = "";
+                        curr_month = "";
+                        curr_year = "";
+                    } else {
+                        var nowDate = new Date(parseInt(data[i].entry_time.substr(6)))
+                        curr_date = nowDate.getDate();
+                        curr_month = nowDate.getMonth() + 1;
+                        curr_year = nowDate.getFullYear();
+                    }
+                    Tbodyhtml += '<tr><td id="srNo">' + (++j) + '</td>';
+                    Tbodyhtml += '<td id="vill">' + data[i].village + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].location_details + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].latitude + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].longitude + '</td>';
+                    Tbodyhtml += '<td id="wid2">' + curr_date + "-" + curr_month + "-" + curr_year + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].type_of_well + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].others + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].well_id + '</td>';
+                    Tbodyhtml += '<td id="location">' + data[i].well_depth_mbgl + '</td></tr>';
+                }
+                $('#WaterQuality').html(Tbodyhtml);
+            }
+        }
+    });
+}

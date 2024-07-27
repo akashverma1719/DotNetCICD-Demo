@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewBag.Title = "Incentive_Fund_Utilization";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+
+<style>
+    .list_of_firstpanel {
+        list-style: none;
+    }
+
+    ul.list_of_firstpanel > li {
+        display: inline-block
+    }
+
+    .total_label {
+        color: red;
+    }
+
+    .name_label {
+        color: #000;
+    }
+
+    .ui-datepicker-trigger > img {
+        height: 20px;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+</style>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/mis_new/assets/css/mis_new_css.css" rel="stylesheet" />
+
+<main id="app-main" class="app-main">
+    <div class="wrap">
+        <section class="app-content">
+            <div class="row">
+                <div class="text-center">
+                    <h4 class="text-primary padding-bottom text-uppercase">Incentive Fund </h4>
+
+                </div>
+            </div>
+            <div class="row" id="" style="margin-bottom: 15px">
+                <div class="col-lg-12 col-sm-12 col-md-12" style="">
+                    <div class="hpanel horange" style="margin-bottom:0px;">
+                        <div class="panel-body">
+                            <div class="form-group" id="Agency_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li> Agency : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <select name="" class="form-control" id="awp_agency_state_name_1" onchange="PHP_Agency_StateInfo_B()"></select>
+                                    </li>
+
+                                    <li id="NodelOfficer_List">
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title text-center">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name">Name of IA/ Nodal Agency </label></h5>
+                                            </div>
+
+                                        </div>
+                                    </li>
+
+                                    <li></li>
+                                </ul>
+
+                            </div>
+                            <div class="form-group" id="State_AWP_DropDown">
+                                <ul class="list_of_firstpanel">
+                                    <li>  StateName : <sup class="Required_star">*</sup></li>
+                                    <li>
+                                        <label id="pip_dropdown_state_name">
+                                        </label>
+                                    </li>
+                                    <li id="NodelOfficer_List1">
+                                        <div class="panel-body" style="padding:0px 30px;">
+                                            <div class="stats-title text-center">
+                                                <h5 class="font-extra-bold no-margins text-info add_fontsize"> <label id="nodal_agency_name1">Agency Name </label></h5>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                    <li></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+
+
+
+                <div class="tab-content" id="div_form_insert">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="col-md-12">
+                            <div class="widget row no-gutter p-lg border-top-form">
+                                <div class="col-md-12  col-sm-12">
+                                    <div>
+                                        <h5 class="widget-title fz-md text-primary m-b-lg">INCENTIVE FUND</h5>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="hpanel hblue">
+                                                    <div class="panel-body">
+
+                                                        <div class="form-group col-md-12 col-sm-12">
+                                                            <span class="name_label"> Work and Activity:</span><span class="Required_star">*</span>
+                                                            <select name="WorkActivity_Proc_Form" id="WorkActivity_Proc_Form_new" class="form-control" onchange="WorkActivity_B_Form_Dropdown()"></select>
+                                                        </div>
+                                                        <div id="npmu_hide">
+                                                            <div class="form-group col-md-3 col-sm-6">
+                                                                <span class="name_label">Component Id:</span>
+                                                                <input type="text" id="B_component_id" class="form-control" readonly />
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-sm-6">
+                                                                <span class="name_label">Component Budget Head(EAP)</span>
+                                                                <input type="text" id="B_component_budget_head" class="form-control" readonly />
+                                                            </div>
+                                                            <div class="form-group col-md-3 col-sm-6">
+                                                                <span class="name_label">Expenditure Code:</span>
+                                                                <input type="text" id="B_expenditure_code" class="form-control" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label"> Method of Procurement (PP):</span><span class="Required_star">*</span>
+                                                            <select name="producrment_selection" id="producrment_selection" onchange="select_producrment_selection()" class=" form-control" required="required">
+                                                                <option value="0">Select Method of Procurement</option>
+                                                            </select>
+                                                            <input type="text" id="producrment_selection_other" class="form-control" placeholder="Enter Other Method of Procurement (PP)" />
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label">  Category of Procurement (As categorised in PP):</span><span class="Required_star">*</span>
+                                                            <select name="category_of_procurement" id="category_of_procurement" class="form-control">
+                                                                <option value="0">Select Category of Procurement</option>
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label">Office doing Procurement:</span><span class="Required_star">*</span>
+                                                            <select name="rfp_date" id="rfp_date" class="form-control" onchange="Office_Procument_Chnage()"></select>
+                                                            <input type="text" name="rfp_date_other" id="rfp_date_other" class="form-control" placeholder="Enter Other Office doing Procurement" />
+                                                        </div>
+
+
+
+
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label">Name of Consultant/Service Provide/Supplier/Contractor:</span>
+                                                            <input type="text" name="nameofconsultant" id="email_office" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-sm-6" id="hide_tender_no">
+                                                            <span class="name_label">Contract Price (In Lakhs):</span>
+                                                            <input type="text" name="tender_no" id="tender_no" onkeypress="return isNumberKey(this, event);" maxlength="7" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-6 col-sm-6" id="bid_date_tender">
+                                                            <span class="name_label"> Date of signing of contract agreement:</span>
+                                                            <input type="date" class="form-control" id="bid_date" name="bid_date" onkeypress="return false;" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-6 col-sm-6" id="">
+                                                            <span class="name_label"> Date of Completion:</span>
+                                                            <input type="date" class="form-control" id="nomination_rec_date" name="bid_date" onkeypress="return false;" />
+
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label">
+                                                                Contract Ref. ID :
+                                                            </span>
+                                                            <input type="text"  id="contact_ref_id" maxlength="25" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label">
+                                                                Total Payment (In Lakhs):
+                                                            </span>
+                                                            <input type="text" name="tender_id" id="tender_id" onkeypress="return isNumberKey(this, event);" maxlength="7" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label">Complaints (If any):</span>
+                                                            <input type="text" name="website_url" id="website_url" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <span class="name_label">
+                                                                Description of Work and Activity:
+                                                            </span><span class="Required_star">*</span>
+                                                            <input type="text" name="proc_remarks" id="proc_remarks" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group col-md-12 text-center">
+                                                            <button type="button" class="btn btn-sm  btn-success btn_disabled" onclick="Save_incentive_fund()"> Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+    <div class="wrap p-t-0">
+        <footer class="app-footer">
+            <div class="clearfix">
+                @*<ul class="footer-menu pull-right">
+                        <li><a href="javascript:void(0)">Careers</a></li>
+                        <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)">Feedback <i class="fa fa-angle-up m-l-md"></i></a></li>
+                    </ul>*@
+                @*<div class="copyright pull-left">Copyright GCRS 2020 &copy;</div>*@
+            </div>
+        </footer>
+    </div>
+</main>
+<script src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>*@
+<script src="~/Content/JS_Files/incentive_fund_report.js"></script>
+<script>
+    var Access_Auth = '';
+   $(document).ready(function () {
+        
+        Access_Auth = '@Session["Access_Auth"]';
+       if (Access_Auth == "readonly") {
+           $(".btn_disabled").hide()
+       }
+        @*var Email = '@Session["Email"]';*@
+       SessionInfo1();
+       Proc_Info();
+       PHP_FN_Info_B_Form();
+       $('#producrment_selection_other').hide();
+       $('#rfp_date_other').hide();
+
+       $(function () {
+           $("input[name='numonly_decimal']").on('input', function (e) {
+               $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+           });
+       });
+    });
+</script>

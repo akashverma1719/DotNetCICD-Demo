@@ -1,0 +1,2371 @@
+﻿@{
+    ViewBag.Title = "TotalReportwsp";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+
+
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+
+<!--Pie Chart-->
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+
+<script src="~/Scripts/all_scripts/pareto.js"></script>
+
+
+<!---->
+<script src="~/Scripts/all_scripts/core.js"></script>
+
+<script src="~/Scripts/all_scripts/charts.js"></script>
+
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<!--Pie Chart-->
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+
+<!--pie chart-->
+
+<meta name="viewport" content="width=device-width" />
+<META Http-Equiv="Cache-Control" Content="no-cache" />
+<META Http-Equiv="Pragma" Content="no-cache" />
+<META Http-Equiv="Expires" Content="0" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<!-- Latest compiled JavaScript -->
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .page2el {
+        margin-top: 15px;
+    }
+</style>
+<style>
+    body {
+        font-family: Calibri !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .demandside_text > tbody > tr > td {
+        text-align: right;
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .demanside_padding_heading1 {
+        padding: 0px !important;
+    }
+
+    .supplyside_demandside_space1 > .reportheading > p {
+        margin: 0px 0 6px !important;
+    }
+
+    .demandside_text_123 > tbody > tr > th {
+        font-size: 14px !important;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+    .image_space_gap {
+        margin-top: 230px;
+    }
+
+    .pgwm_table_space {
+        margin-top: 320px;
+    }
+
+    .main_heading_sm_total {
+        margin-top: 70px;
+        margin-bottom: 280px;
+    }
+
+    .sm_image_gap {
+        margin-top: 210px;
+        margin-bottom: 100px;
+    }
+
+    .image_space_gap_2 {
+        margin-top: 40px;
+    }
+
+    .image_space_gap31 {
+        margin-top: 15px;
+    }
+
+    .dateandtime_ul > li {
+        display: inline-block;
+        color: #000;
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+
+    .table-striped tbody tr td:last-child {
+        text-align: right;
+    }
+
+    .pgwmtable tbody tr td:last-child,
+    .demandsidetable tr td:last-child {
+        text-align: left !important;
+    }
+
+    .wateravaliablity_space {
+        margin-top: 186px;
+    }
+
+    .waterdrft_space {
+        margin-top: 18px;
+    }
+
+    .waterdrft_balance {
+        margin-top: 180px;
+    }
+
+    .waterdrft_Budgeting_space {
+        margin-top: 280px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .singnatire_table tbody tr td {
+        height: 100px;
+    }
+
+    .supplyside_demandside_space {
+        margin-top: 340px;
+    }
+
+    .pgwmCommiteee_space {
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .pgwm_range {
+        margin-top: 280px;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+
+
+    .secondtable {
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    .totatal_value_label {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    .table-condensed {
+        font-weight: 100;
+        text-shadow: none;
+    }
+
+    .tolat_report_color {
+        color: #6FB11D !important;
+    }
+
+    .wateravaliablity_table > thead > tr > td,
+    .wateravaliablity_table > tbody > tr > td {
+        padding: 0px 3px;
+    }
+
+    table > tbody > tr > td {
+        color: #337ab7 !important;
+        font-weight: 500;
+    }
+
+    table > tbody > tr > th {
+        color: #337ab7 !important;
+    }
+
+    table > tbody > tr > td > label {
+        color: #000 !important;
+    }
+
+    table > tbody > tr > td > span {
+        color: #000 !important;
+    }
+
+    .pgwmtable > tbody > tr > td {
+        color: #000 !important;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>Water Security Plan Report </h1>
+            </div>
+            <div class="col-md-3 text-right btn_hide" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demo"></span></li>
+                    <li>Time : <span id="demo2"></span></li>
+                    <li>
+                        User Name:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat:</label>
+                            <span id="spngram">@Session["ggram"]</span>
+
+                        </li>
+                    }
+
+
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="gramReport_div_start col-md-12">
+            <div class="text-center reportheading">
+                <p>Gram Panchayat Information</p>
+            </div>
+
+            <div class="col-md-12">
+                <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                    <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <tbody class="tablebaody">
+
+                            <tr>
+                                <td>State:</td>
+                                <td>
+                                    <span id="state_name"></span>
+                                </td>
+                                <td>District:</td>
+                                <td>
+                                    <span id="district_name"></span>
+                                    @*<input type="text" class="form-control decimal" id="district_name" placeholder="Enter the numeric value" />*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Block / Taluk :</td>
+                                <td>
+                                    <span id="block_name"></span>
+                                    @*<input type="text" class="form-control decimal" id="block_name" placeholder="Enter the numeric value" />*@
+                                </td>
+                                <td>GP Name :</td>
+                                <td>
+                                    <span id="gram_panchayat_name"></span>
+                                    @*<input type="text" class="form-control decimal" id="gram_panchayat_name" placeholder="Enter the numeric value" />*@
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>GP ID :</td>
+                                <td>
+                                    <span id="gp_id"></span>
+                                    @*<input type="text" class="form-control decimal" id="gp_id" placeholder="Enter the numeric value" />*@
+                                </td>
+                                <td>Block Area  (Ha) :</td>
+                                <td>
+                                    <span id="block_area"></span>
+                                    @*<input type="text" class="form-control decimal" id="block_area" placeholder="Enter the numeric value" />*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>GP area (Ha) :</td>
+                                <td>
+                                    <span id="gp_area"></span>
+                                    @*<input type="text" class="form-control decimal" id="gp_area" placeholder="Enter the numeric value" />*@
+                                </td>
+                                <td>Watershed Code :</td>
+                                <td>
+                                    <span id="watershed_code"></span>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Watershed name :</td>
+                                <td>
+                                    <span id="watershed_name"></span>
+
+                                </td>
+                                <td>Watershed area in Block / Taluk (Ha) :</td>
+                                <td>
+                                    <span id="watershed_area_block"></span>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Sub-basin Code :</td>
+                                <td>
+                                    <span id="sub_basin_code"></span>
+
+                                </td>
+                                <td>Sub basin name :</td>
+                                <td>
+                                    <span id="sub_basin_name"></span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Basin Code :</td>
+                                <td>
+                                    <span id="basin_code"></span>
+
+                                </td>
+                                <td>Basin Name :</td>
+                                <td>
+                                    <span id="basin_name"></span>
+                                    @*<input type="text" class="form-control decimal" id="basin_name" placeholder="Enter the numeric value" />*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Livestock Population:</td>
+                                <td>
+                                    <span id="domestic_livestock_count"></span>
+
+                                </td>
+                                <td>Human Population:</td>
+                                <td>
+                                    <span id="domestic_people_count"></span>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 wateravaliablity_space1">
+                <div class="text-center reportheading">
+                    <p>Water Availability  Report</p>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer wateravaliablity_table">
+                            <tbody>
+
+                                <tr>
+                                    <th>A</th>
+                                    <th>
+                                        Total Available Water From Rainfall
+                                    </th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>Annual Rainfall (mm)</td>
+                                    <td><span id="sw_annual_rainfall"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Volume of Rainfall (Ha.m)</td>
+                                    <td><span id="sw_tol_water_avail"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>iii)</td>
+                                    <td>Evapotranspiration (mm)</td>
+                                    <td><span id="sw_evapo"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>iv)</td>
+                                    <td>Evapotranspiration losses (Ha.m)</td>
+                                    <td><span id="sw_evapo_loses"></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <th class="tolat_report_color">Water Available From Rainfall</th>
+                                    <td><span id="total_sw_availble"></span></td>
+                                </tr>
+
+
+                                <tr>
+                                    <th>B</th>
+                                    <th>GROUND WATER</th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>
+                                        Recharge From Rainfall  (Ha.m)
+                                    </td>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>Monsoon </td>
+                                    <td><span id="gw_rainfall_monsoon"></span></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>Non-Monsoon</td>
+                                    <td><span id="gw_rainfall_nonmonsoon"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color"></th>
+                                    <th class="tolat_report_color">Total</th>
+                                    <td><span id="gw_rainfal_tol_recharge"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii</td>
+                                    <td>Recharge From Other Sources (Ha.m)</td>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>Monsoon </td>
+                                    <td><span id="gw_other_monsoon"></span></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>Non-Monsoon</td>
+                                    <td><span id="gw_other_nonmonsoon"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color"></th>
+                                    <th class="tolat_report_color">Total</th>
+                                    <td><span id="gw_other_tol_recharge"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="">iii</th>
+                                    <th class="">Losses Due to Natural Discharge (Ha.m)</th>
+                                    <td><span id="natural_losses"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iv</th>
+                                    <th class="tolat_report_color">
+                                        Total Ground Water Available (Ha.m)
+                                    </th>
+                                    <td><span id="total_gw_available"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th>C</th>
+                                    <th>SURFACE WATER STORAGES</th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>
+                                        No. of Surface Water Bodies
+                                    </td>
+                                    <td><span id="noof_sw_storage_structures"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>
+                                        Storage Capacity of the structures (Ha. m)
+                                    </td>
+                                    <td><span id="total_storage_capacity"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>iii)</td>
+                                    <td>
+                                        Surface Water Available (Ha.m)in Storages
+                                    </td>
+                                    <td><span id="sw_available_for_use"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>iv)</td>
+                                    <td>
+                                        Losses if Any (%) :
+                                    </td>
+                                    <td><span id="loss_percentage"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">v)</th>
+                                    <th class="tolat_report_color">
+                                        Total Water Available for Utilization(Ha.m):
+                                    </th>
+                                    <td><span id="total_water_avaliable_utiilization"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">vi)</th>
+                                    <th class="tolat_report_color">
+                                        Rainfall Available for Future Use(Ha.m)
+                                    </th>
+                                    <td style="text-align:right"><span id="volume_of_runoff"></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Weighted Average Runoff Coefficient</td>
+                                    <td><span id="weighted_avg_runoff"></span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Utilizable Rainfall Runoff ( Ha.M)</td>
+                                    <td><span id="utilizable_rainfall_runoff"></span></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="container_Water_Availability" style="min-width: 310px; height: 450px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 waterdrft_space1">
+                <div class="text-center reportheading">
+                    <p>Water Utilization  Report</p>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer">
+                            <tbody>
+                                <tr class="tableheader1 text-center">
+                                    <th colspan="3" style="padding-bottom:15px;" class="text-center">Water Utilization</th>
+                                </tr>
+                                <tr>
+                                    <th>A</th>
+                                    <th>Drinking / Domestic (Ha.m)</th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>Form Surface Water</td>
+                                    <td><span id="domestic_demand_surface_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Form Ground Water</td>
+                                    <td><span id="domestic_demand_ground_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iii)</th>
+                                    <th class="tolat_report_color">Total</th>
+                                    <td><span id="Domestic_Total"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>B</th>
+                                    <th>Irrigated Agriculture (Ha.m)</th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>Form Surface Water</td>
+                                    <td><span id="irri_utili_surface_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Form Ground Water</td>
+                                    <td><span id="irri_utili_ground_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iii)</th>
+                                    <th class="tolat_report_color">Total</th>
+                                    <td><span id="Irrigated_Total"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>C</th>
+                                    <th>
+                                        Industrial Use (Ha.m)
+                                    </th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>Form Surface Water</td>
+                                    <td><span id="industry_demand_surface_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Form Ground Water</td>
+                                    <td><span id="industry_demand_ground_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iii)</th>
+                                    <th class="tolat_report_color">Total </th>
+                                    <td><span id="Industry_Total"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>D</th>
+                                    <th>
+                                        Other Uses (if any) (Ha.m)
+                                    </th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>Form Surface Water</td>
+
+                                    <td><span id="other_demand_surface_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Form Ground Water</td>
+                                    <td><span id="other_demand_ground_water"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iii)</th>
+                                    <th class="tolat_report_color">Total </th>
+                                    <td><span id="Other_Total"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="container_Water_Utilization" style="height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="" style="margin-top: 20px;">
+            <div class="col-md-12 waterdrft_balance1">
+                <div class="text-center reportheading">
+                    <p>Water Balance Report</p>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer">
+                            <tbody>
+                                <tr class="tableheader1 text-center">
+                                    <th colspan="3" style="        padding-bottom: 15px;
+" class="text-center">Water Balance</th>
+                                </tr>
+                                <tr>
+                                    <th>A</th>
+                                    <th>Availability (Ha.m)</th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td> Surface Water</td>
+                                    <td><span id="wb_sw_avail"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Ground Water</td>
+                                    <td><span id="wb_gw_avail"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iii)</th>
+                                    <th class="tolat_report_color">Total</th>
+                                    <td><span id="wb_total_avail"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>B</th>
+                                    <th>Utilization (Ha.m)</th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>Surface Water</td>
+                                    <td><span id="wb_sw_utili"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Ground Water</td>
+                                    <td><span id="wb_gw_utili"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iii)</th>
+                                    <th class="tolat_report_color">Total Utilization</th>
+                                    <td><span id="wb_total_utili"></span></td>
+                                </tr>
+                                <tr>
+                                    <th>C</th>
+                                    <th>Balance [Surplus (+) / Deficit (-)]</th>
+                                    <td><span id=""></span></td>
+                                </tr>
+                                <tr>
+                                    <td>i)</td>
+                                    <td>Surface Water</td>
+                                    <td><span id="wb_sw_balance"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>ii)</td>
+                                    <td>Ground Water</td>
+                                    <td><span id="wb_gw_balance"></span></td>
+                                </tr>
+                                <tr>
+                                    <th class="tolat_report_color">iii)</th>
+                                    <th class="tolat_report_color">Total </th>
+                                    <td><span id="wb_total_balance"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div id="container_Water_balance_report" style=" height: 440px;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 waterdrft_Budgeting_space1">
+                <div class="text-center reportheading">
+                    <p>Water Budget Report</p>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="pie_chart_div">
+                            <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;height: 340px;">
+                                <tbody>
+                                    <tr class="tableheader1 text-center">
+                                        <th colspan="3" style="padding-bottom:15px;" class="text-center">Water Budget</th>
+                                    </tr>
+                                    <tr>
+                                        <th>A</th>
+                                        <th>Allocation for Domestic & Industrial Requirements</th>
+                                        <td><span id=""></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>i)</td>
+                                        <td>From surface water (ha.m)</td>
+                                        <td><span id="wb_drinking_from_sw"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ii)</td>
+                                        <td>From ground water</td>
+                                        <td><span id="wb_drinking_from_gw"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="tolat_report_color">iii)</th>
+                                        <th class="tolat_report_color">Total</th>
+                                        <td><span id="wb_drinking_total"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>B</th>
+                                        <th>Water Available for Irrigated Agriculture (Ha.m)</th>
+                                        <td><span id=""></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>i)</td>
+                                        <td>Surface Water</td>
+                                        <td><span id="wb_irri_agri_sw"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ii)</td>
+                                        <td>Ground Water</td>
+                                        <td><span id="wb_irri_agri_gw"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="tolat_report_color">iii)</th>
+                                        <th class="tolat_report_color">Total</th>
+                                        <td><span id="wb_irri_agri_total"></span></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pie_chart_div">
+                            <div id="container_WaterbudgetReport" style="height: 380px; margin: 0 auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 supplyside_demandside_space1">
+                <div class="text-center reportheading">
+                    <p>Water Demand  and Supply side  Report</p>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12">
+
+                        <div id="resetinfo">
+                            <div id="container_demand_side" style="height:340px;"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 tbl-responsive" style="overflow-x:scroll">
+                <table class="table demandsidetable demandside_text demandside_text_123 table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:1px;">
+                    <tbody>
+                        <tr>
+                            <th colspan="9" style="background-color:#337ab7;color:#fff !important" class="demanside_padding_heading">
+                                Demand Side
+                            </th>
+                        </tr>
+                        <tr class="tableheader1 tableheader_text">
+                            <th></th>
+                            <th>Area Under Measures (ha)</th>
+                            <th>Standard Water Demand (ha.m)</th>
+                            <th>Kharif Season(ha.m)</th>
+                            <th>Rabi Season(ha.m)</th>
+                            <th>Summer Season(ha.m)</th>
+
+                            <th>Total Water Demand (ha.m)</th>
+                            <th>Reduction in water Demand(ha.m)</th>
+                            <th>Possible Funding Source</th>
+                            <th>Approx Cost</th>
+                        </tr>
+                        <tr>
+                            <th>Micro-Irrigation  <br />(Sprinkler)</th>
+                            <td><span id="all_area_spinkler"></span></td>
+                            <td><span id="sprinkler_TotalStandardDemand"></span></td>
+                            <td><span id="sprinkler_kharif"></span></td>
+                            <td><span id="sprinkler_rabi"></span></td>
+                            <td><span id="sprinkler_summer"></span></td>
+
+                            <td><span id="sprinkler_TotalDemand"></span></td>
+                            <td><span id="sprinkler_TotalReduction"></span></td>
+                            <td><span id="sprinkler_FundingSource"></span></td>
+                            <td><span id="sprinkler_approx_cost"></span><span id="sprinkler_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Micro-Irrigation<br /> (Drip)</th>
+                            <td><span id="all_area_drip"></span></td>
+                            <td><span id="drip_TotalStandardDemand"></span></td>
+                            <td><span id="drip_kharif"></span></td>
+                            <td><span id="drip_rabi"></span></td>
+                            <td><span id="drip_summer"></span></td>
+                            <td><span id="drip_TotalWaterdDemand"></span></td>
+                            <td><span id="drip_TotalReduction"></span></td>
+                            <td><span id="drip_FundingSource"></span></td>
+                            <td><span id="drip_approx_cost"> </span><span id="drip_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Irrigation Through Underground Pipelines</th>
+                            <td><span id="all_area_ug_pipeline"></span></td>
+                            <td><span id="pipeline_TotalStandardDemand"></span></td>
+                            <td><span id="pipeline_kharif"></span></td>
+                            <td><span id="pipeline_rabi"></span></td>
+                            <td><span id="pipeline_summer"></span></td>
+
+                            <td><span id="pipeline_TotalWaterDemand"></span></td>
+                            <td><span id="pipeline_TotalReduction"></span></td>
+                            <td><span id="pipeline_FundingSource"></span></td>
+                            <td><span id="pipeline_approx_cost"></span><span id="pipeline_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Crop<br /> Diversification</th>
+                            <td><span id="all_area_Crop_diversification"></span></td>
+                            <td><span id="crop_total_Standard"></span></td>
+                            <td><span id="crop_kharif"></span></td>
+                            <td><span id="crop_rabi"></span></td>
+                            <td><span id="crop_summer"></span></td>
+
+                            <td><span id="crop_TotalDemand"></span></td>
+                            <td><span id="crop_TotalReduction"></span></td>
+                            <td><span id="crop_FundingSource"></span></td>
+                            <td><span id="crop_approx_cost"> </span><span id="crop_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Reduction in GW by Added Use of  SW</th>
+                            <td><span id="all_area_Reduction_in_GW_SW"></span></td>
+                            <td><span id="reduction_TotalStandardDemand"></span></td>
+                            <td><span id="reduction_kharif"></span></td>
+                            <td><span id="reduction_rabi"></span></td>
+                            <td><span id="reduction_summer"></span></td>
+
+                            <td><span id="reduction_TotalWaterDemand"></span></td>
+                            <td><span id="reduction_TotalReduction"></span></td>
+                            <td><span id="reduction_FundingSource"></span></td>
+                            <td><span id="reduction_approx_cost"> </span><span id="reduction_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Other Measures for Saving Water</th>
+                            <td><span id="all_area_other_measures"></span></td>
+                            <td><span id="other_TotalStandardDemand"></span></td>
+                            <td><span id="other_kharif"></span></td>
+                            <td><span id="other_rabi"></span></td>
+                            <td><span id="other_summer"></span></td>
+
+                            <td><span id="other_TotalWaterDemand"></span></td>
+                            <td><span id="other_TotalReduction"></span></td>
+                            <td><span id="other_FundingSource"></span></td>
+                            <td><span id="other_approx_cost"> </span><span id="other_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td><span id="total_of_Area_Proposed_under_various_Measures_value_sum"></span></td>
+                            <td colspan="7"></td>
+                            <td><span id="DemandSide_Approx_mate_Cost_Total"></span> </td>
+                        </tr>
+                        @*<tr>
+                                <th style="background-color:orange;color:#fff">Total Water Reduction(ha.m)</th>
+                                <th colspan="4" style="color:#000" id="Deamand_Side_TotalReduction"></th>
+                            </tr>*@
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="tbl-responsive">
+            <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                <thead>
+                    <tr>
+                        <th colspan="12" style="background-color:#337ab7;color:#fff">
+                            Demand Side New
+                        </th>
+                    </tr>
+                    <tr class="info">
+                        @*<th rowspan="3" class="text-center"><button class="updatenew btn btn-success" onclick="addrow_a_part()"> New </button></th>*@
+
+                        <th class="text-center">S.No.</th>
+                        <th class="text-center">Type</th>
+                        <th class="text-center">Financial Year</th>
+                        <th class="text-center">Other Measures Type</th>
+                        <th class="text-center">Deparment Name</th>
+                        <th class="text-center" style="width:10px">Scheme Name</th>
+                        <th class="text-center">Area Proposed (in ha)</th>
+                        <th class="text-center">
+                            Approximate Cost (in Lakhs)
+                        </th>
+
+                    </tr>
+
+
+                </thead>
+                <tbody id="sprinkler_data"></tbody>
+            </table>
+        </div>
+
+        <div class="page2el">
+            <div class="col-md-12">
+
+                <div id="resetinfo" style="padding:5px;">
+                    <div id="container_supply_side" style="height:350px;"></div>
+                </div>
+            </div>
+            <div class="col-md-12 tbl-responsive" style="overflow-x:scroll">
+                <table class="table demandsidetable demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                    <tbody>
+                        <tr>
+                            <th colspan="6" style="background-color:#337ab7;color:#fff !important">
+                                Supply Side
+                            </th>
+                        </tr>
+                        <tr class="tableheader1">
+                            <th></th>
+                            <th>Kharif Season(ha.m)</th>
+                            <th>Rabi Season(ha.m)</th>
+                            <th>Annual (ha.m)</th>
+                            <th>Possible Funding Source</th>
+                            <th>Approx Cost</th>
+                        </tr>
+                        <tr>
+                            <th>Artificial Recharge Structures</th>
+                            <td><span id="ar_kharif"></span></td>
+                            <td><span id="ar_rabi"></span></td>
+                            <td><span id="ar_annual"></span></td>
+                            <td><span id="AR_PossibleFundingSource"></span></td>
+                            <td><span id="ar_approx_cost"></span><span id="ar_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Water Conservation Structures</th>
+                            <td><span id="wc_kharif"></span></td>
+                            <td><span id="wc_rabi"></span></td>
+                            <td><span id="wc_annual"></span></td>
+                            <td><span id="WC_PossibleFundingSource"></span></td>
+                            <td><span id="wc_approx_cost"></span><span id="wc_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Any Other Intervention</th>
+                            <td><span id="aoi_kharif"></span></td>
+                            <td><span id="aoi_rabi"></span></td>
+                            <td><span id="aoi_annual"></span></td>
+                            <td><span id="Other_PossibleFundingSource"></span></td>
+                            <td><span id="aoi_approx_cost"></span><span id="aoi_approx_cost_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td colspan="4"></td>
+                            <td id="supply_side_approx_cost_total"></td>
+                        </tr>
+                        @*<tr>
+                                <th style="background-color:orange;color:#fff">Total Water Reduction(ha.m)</th>
+                                <th colspan="4" style="color:#fff">00000</th>
+                            </tr>*@
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-md-10 tbl-responsive">
+            <table class="table demandsidetable demandside_text table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                <thead>
+                    <tr>
+                        <th colspan="12" style="background-color:#337ab7;color:#fff">
+                            Supply Side New
+                        </th>
+                    </tr>
+                    <tr class="info">
+                        @*<th rowspan="3" class="text-center"><button class="updatenew btn btn-success" onclick="addrow_a_part()"> New </button></th>*@
+
+                        <th class="text-center">S.No.</th>
+                        <th class="text-center">Categories</th>
+                        <th class="text-center">Type of Structure</th>
+                        <th class="text-center">Latitude</th>
+                        <th class="text-center">Longitude</th>
+                        <th class="text-center">Financial Year</th>
+                        <th class="text-center">Deparment Name</th>
+                        <th class="text-center">Scheme Name</th>
+
+                        <th class="text-center">
+                            Approximate Cost (in Lakhs)
+                        </th>
+
+                    </tr>
+
+
+                </thead>
+                <tbody id="supply_data"></tbody>
+            </table>
+        </div>
+        <div id="imgsss">
+
+        </div>
+        @*<div class="col-md-12 image_space_gap1" id="Imagesss" style="display:none;">
+                <div class=" col-md-12 ">
+                    <img id="Image1" style="width:100%;height:750px;" />
+                </div>
+            </div>
+            <div class="col-md-12 image_space_gap_21">
+                <div class=" col-md-12">
+                    <img id="Image2" style="width:100%;height:750px;" />
+                </div>
+            </div>
+            <div class="col-md-12 image_space_gap_31">
+                <div class="col-md-12">
+                    <img id="Image3" style="width:100%;height:750px;" />
+                </div>
+            </div>
+            <div class="col-md-12 image_space_gap_31">
+                <div class="col-md-12">
+                    <img id="Image4" style="width:100%;height:750px;" />
+                </div>
+            </div>*@
+        <div class="page2el">
+            <div class=" col-md-12 col-sm-12  main_heading_sm_total1">
+                <div class="text-center reportheading">
+                    <p> Social Monitorings</p>
+                </div>
+                <div id="">
+                    <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+
+                        <tbody class="tablebaody">
+
+                            <tr>
+                                <td>Date:</td>
+                                <td>
+                                    <span id="sm_date"></span>
+                                </td>
+                                <td>No of Attendees :</td>
+                                <td>
+                                    <span id="numberofattendees"></span>
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Number of Male:</td>
+                                <td>
+                                    <span id="sm_male"></span>
+                                </td>
+                                <td>Number of Female:</td>
+                                <td>
+                                    <span id="sm_female"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <td>Latitude:</td>
+                                <td>
+                                    <span id="sm_latitude"></span>
+                                </td>
+                                <td>Longitude:</td>
+                                <td>
+                                    <span id="sm_longitude"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                <td colspan="3">
+                                    <span id="sm_location"></span>
+                                </td>
+                            </tr>
+                            <tr id="downloadtr">
+
+                                @*<td id="agendatr1">Meeting Agenda Image:</td>
+                                    <td id="agendatr">
+                                    </td>*@
+                                <td id="momtr">MOM(Minutes of Meeting):</td>
+                                <td id="momtr1">
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 col-sm-12 main_heading_sm" id="SW_Image">
+
+
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 pgwmCommiteee_space1 pgwm_range1">
+                <div class="text-center reportheading ">
+                    <p>PGWM Committee</p>
+                </div>
+
+
+                <div class="col-lg-offset-3 col-md-6 col-sm-6 col-lg-offset-2">
+                    <div class="pie_chart_div">
+                        <div id="PGWM_pie_chart" style="height: 380px; margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 pgwm_table_space1">
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <thead>
+                            <tr class="tableheader1">
+                            </tr>
+                            <tr class="success">
+                                <td>S.No</td>
+                                <td>Name</td>
+                                <td>Designation</td>
+                                <td>Gender</td>
+                                <td>Department</td>
+                                <td>Signature  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="page2el">
+            <div class="col-md-12 ">
+                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer Water_Availability_table_individual">
+                    <thead>
+                        <tr class="tableheader1 text-center">
+                            <th colspan="4" style="padding-bottom:15px;" class="text-center">
+                                Parameters With Source<br />
+                                (Filled, Attach & Upload As Annexure with every Water Security Plan)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th colspan="2">
+                                Gram Panchayat Name
+                            </th>
+                            <td colspan="2"><label id="gpname"></label></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="text-center">Parameter</th>
+                            <th class="text-center">
+                                Unit
+                            </th>
+                            <th class="text-center">Source of data</th>
+                        </tr>
+                        <tr>
+                            <th class="tolat_report_color text-center" colspan="2"> Gram Panchayat (2 parameters)</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Block area</td>
+                            <td class="text-center">Ha</td>
+                            <td><label id="block_area1"></label></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Gram Panchayat area</td>
+                            <td class="text-center">Ha</td>
+                            <td><label id="gp_area1"></label></td>
+                        </tr>
+                        <tr>
+                            <th class="tolat_report_color text-center" colspan="2"> Water availability (3 parameters)</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td> Annual Rainfall</td>
+                            <td class="text-center">mm</td>
+                            <td><label id="annual_rainfall"></label></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Evapotranspiration</td>
+                            <td class="text-center">mm</td>
+                            <td><label id="evapo"></label></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>No. of surface water bodies</td>
+                            <td class="text-center"></td>
+                            <td><label id="surface_water_bodies"></label></td>
+                        </tr>
+                        <tr>
+                            <th class="tolat_report_color text-center" colspan="2"> Water utilization (3 parameters)</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Human Population</td>
+                            <td class="text-center"></td>
+                            <td><label id="human_population"></label></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Livestock Population</td>
+                            <td class="text-center"></td>
+                            <td><label id="livestock_population"></label></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Water Utilization for Drinking/Agriculture/Industrial</td>
+                            <td class="text-center"></td>
+                            <td>@*<label placeholder="Enter Water Utilization for Drinking/Agriculture/Industrial" id="" />*@</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center" colspan="2">From Surface water </th>
+                            <td class="text-center"></td>
+                            <td><label id="from_surface_water"></label></td>
+                        </tr>
+                        <tr>
+                            <th class="text-center" colspan="2">From Ground water</th>
+                            <td class="text-center"></td>
+                            <td><label id="from_ground_water"></label></td>
+                        </tr>
+                        <tr>
+                            <th class="tolat_report_color text-center" colspan="2">Water Security Plan</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Water Requirement of various crops</td>
+                            <td class="text-center">mm</td>
+                            <td><label id="water_req_various_crops"></label></td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page2el">
+            @*<div class="col-md-12">
+                    <div>
+                        <table class="singnatire_table table demandsidetable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer">
+                            <thead>
+                                <tr>
+                                    <th>Signature 1</th>
+                                    <th>Signature 2</th>
+                                    <th>Signature 3</th>
+                                    <th>Signature 4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>*@
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <p class="text-center">
+                    .............................
+                </p>
+                <p class="text-justify">
+                    The results and analysis contained within the Water Budgeting Report are generated with the help of inputs given by the
+                    user as well as existing database. Each component of water budgeting is designed to make understand the users about
+                    the processes, parameters and equations involved in the system. The overall goal of water budgeting is therefore to
+                    improve the management of ground water resources in priority areas of the country.
+                </p>
+                <p class="text-center">
+                    .............................
+                </p>
+            </div>
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/WSPHome/WSPDemansidereports" class="btn btn-danger"> Back</a>
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+                    <a href="~/wsp_new/WspHome" class="btn btn-primary">
+                        Go to WSP Home
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    var Access_Auth = '';
+    $(document).ready(function () {
+        Access_Auth = '@Session["Access_Auth"]';
+        if (Access_Auth == 'readonly') {
+            $('.btn_hide').hide();
+        }
+        get_demandside_fund();
+    });
+
+    function ReportPdf() {
+        $("#Data1").width(1095);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'WaterSecurityPlan.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+        //$('div.wateravaliablity_space1').addClass('wateravaliablity_space');
+        //$('div.waterdrft_space1').addClass('waterdrft_space');
+        //$('div.waterdrft_balance1').addClass('waterdrft_balance');
+        //$('div.waterdrft_Budgeting_space1').addClass('waterdrft_Budgeting_space');
+        //$('div.supplyside_demandside_space1').addClass('supplyside_demandside_space');
+        //$('div.pgwmCommiteee_space1').addClass('pgwmCommiteee_space');
+        //$('div.pgwm_range1').addClass('pgwm_range');
+        //$('div.image_space_gap1').addClass('image_space_gap');
+        //$('div.image_space_gap_21').addClass('image_space_gap_2');
+        $('div.image_space_gap31').addClass('image_space_gap_3');
+        //$('div.pgwm_table_space1').addClass('pgwm_table_space');
+        //$('div.main_heading_sm_total1').addClass('main_heading_sm_total');
+        //$('div#SW_Image').addClass('sm_image_gap');
+
+        //$('th.demanside_padding_heading').addClass('demanside_padding_heading1');
+        $(".highcharts-credits").css("display", "none");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            //$('div.wateravaliablity_space1').removeClass('wateravaliablity_space');
+            //$('div.waterdrft_space1').removeClass('waterdrft_space');
+            //$('div.waterdrft_balance1').removeClass('waterdrft_balance');
+            //$('div.waterdrft_Budgeting_space1').removeClass('waterdrft_Budgeting_space');
+            //$('div.supplyside_demandside_space1').removeClass('supplyside_demandside_space');
+            //$('div.pgwmCommiteee_space1').removeClass('pgwmCommiteee_space');
+            //$('div.pgwm_range1').removeClass('pgwm_range');
+            //$('div.main_heading_sm_total1').removeClass('main_heading_sm_total');
+            //$('div#SW_Image').removeClass('sm_image_gap');
+            //$('div.image_space_gap1').removeClass('image_space_gap');
+            //$('div.image_space_gap_21').removeClass('image_space_gap_2');
+            $('div.image_space_gap_31').removeClass('image_space_gap_3');
+            //$('div.pgwm_table_space1').removeClass('pgwm_table_space');
+            //$('th.demanside_padding_heading').removeClass('demanside_padding_heading1');
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+    }
+</script>
+<script>
+    // Water Avalibilty  Report Chart
+    function WaterAvailabiltyChart() {
+        Highcharts.chart('container_Water_Availability', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ' Water Availability (Ha. M)'
+            },
+
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
+
+            },
+            colors: [
+
+                '#A0D468',
+                '#ED5565',
+                '#5D9CEC',
+                '#c42525'
+
+            ],
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br />'
+            },
+
+            series: [
+                {
+                    name: "Water Availability (Ha. M)",
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: "Water Available From Rainfall",
+                            y: Total_Water_Available,
+
+                        },
+                        {
+                            name: "Ground Water",
+                            y: GroundWater,
+
+                        },
+                        {
+                            name: "Surface Water",
+                            y: SurfaceWater,
+
+                        },
+
+                        {
+                            name: "Utilizable Rainfall Runoff",
+                            y: Utilizable_Rainfall_Runoff1,
+
+                        }
+                    ]
+                }
+            ],
+
+        });
+
+    }
+    function WaterUtilizationDraftChart() {
+        // Water Utilization Report Chart
+        Highcharts.chart('container_Water_Utilization', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Water Utilization by different sectors'
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'Ground Water',
+                    'Surface Water'
+
+                ],
+                crosshair: true
+            },
+            colors: [
+                '#ED5565',
+                '#5D9CEC',
+                '#A0D468',
+                '#c42525'
+            ],
+            yAxis: {
+                // min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+
+            series: [{
+                name: 'Drinking / Domestic (Ha.m)',
+                data: Domestic
+
+            }, {
+                name: 'Irrigated Agriculture (Ha.m)',
+                data: Irrigation
+
+            },
+            {
+                name: 'Industrial Use (Ha.m)',
+                data: Industry
+
+            }, {
+                name: 'Other uses (if any) (Ha.m)',
+                data: Others
+
+            }]
+        });
+    }
+    function BalanceCharts() {
+
+
+        // Water Balance Report Chart
+        Highcharts.chart('container_Water_balance_report', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Water Balance'
+            },
+
+            xAxis: {
+                categories: [
+                    'Availability',
+                    'Utilization ',
+                    'Balance'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            colors: [
+                '#ED5565',
+                '#5D9CEC'
+            ],
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'GroundWater',
+                data: Blance_GroundWater
+
+            }, {
+                name: 'SurfaceWater',
+                data: Blance_SurfaceWater
+
+            }, {
+                name: 'Balance',
+                data: Blance_Total
+
+            }]
+        });
+    }
+
+    function BudgetCharts() {
+        // Water Budgeting Report  Chart
+
+        Highcharts.chart('container_WaterbudgetReport', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Projected Water Budget for future (for 2050)'
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'Ground Water',
+                    'Surface Water'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            colors: [
+                '#ED5565',
+                '#a6c96a'
+            ],
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Drinking & Industrial',
+                data: Ground_Water
+
+            }, {
+                name: 'Irrigation',
+                data: Surface_Water
+
+            }]
+        });
+
+    }
+
+    function C2() {
+        Highcharts.chart('container_demand_side', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    // 'Standard Water<br/> Demand(ha.m)',
+                    'Micro-irrigation (Sprinkler)',
+                    'Micro-irrigation (Drip)',
+                    'Irrigation through <br/>underground <br/> pipelines ',
+                    'Crop <br/>diversification',
+                    'Reduction in <br/>GW by added <br/>use of  SW',
+                    'Other measures <br/>for saving water'
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Standard water Demand',
+                data: DemandSide_KharifArray
+
+            }, {
+                name: 'Total water Demand',
+                data: DemandSide_RabiArray
+
+            }, {
+                name: 'Reduction in water Demand',
+                data: DemandSide_SummerArray
+
+            }]
+        });
+    }
+    function Supply_SideReport() {
+        Highcharts.chart('container_supply_side', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'GW Recharge AR Structures',
+                    'GW Recharge WC Structures',
+                    'Any Other Intervention'
+
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} (Ha.m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Kharif season',
+                data: KharifArray,
+
+            }, {
+                name: 'Rabi season',
+                data: RabiArray,
+
+            }, {
+                name: 'Annual',
+                data: AOIArray
+
+            }]
+        });
+    }
+
+</script>
+
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+<script>
+    function PGWCHART() {
+        $(function () {
+            Highcharts.setOptions({
+                chart: {
+                    style: {
+                        fontFamily: 'Arial, Helvetica, sans-serif',
+                        fontSize: '2em',
+                        color: '#f00'
+                    }
+                }
+            });
+
+            $('#PGWM_pie_chart').highcharts({
+                chart: {
+                    type: 'pie'
+                },
+                colors: [
+                    '#ED5565',
+                    '#5D9CEC',
+                    '#A0D468'
+                ],
+                title: {
+                    text: 'PGWM Committee',
+                    style: {
+                        color: '#555'
+                    }
+                },
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0,
+                    backgroundColor: '#FFFFFF'
+                },
+
+                yAxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    shared: false,
+                    valueSuffix: 'points'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    areaspline: {
+                        fillOpacity: 0.1
+                    },
+                    series: {
+                        groupPadding: .15
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'PGWM Committee',
+                    data: [
+                        ['male', Male],
+                        ['Female', Female],
+                        ['Others', Others]
+                    ]
+                }]
+            });
+        });
+    }
+
+
+
+    function get_demandside_fund() {
+        var tr_sp = '';
+
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Wsp_new/get_demandside_fund",
+            data: "",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var department_name = "";
+                var scheme_name = "";
+                var proposed_area = "";
+                var approximate_cost = "";
+                var fund = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].department_name != null && data[i].department_name != "" && data[i].department_name != "NULL") {
+                        department_name = data[i].department_name;
+                    }
+                    if (data[i].scheme_name != null && data[i].scheme_name != "" && data[i].scheme_name != "NULL") {
+                        scheme_name = data[i].scheme_name;
+                    }
+                    if (data[i].proposed_area != null && data[i].proposed_area != "" && data[i].proposed_area != "NULL") {
+                        proposed_area = data[i].proposed_area;
+                    }
+                    if (data[i].approximate_cost != null && data[i].approximate_cost != "" && data[i].approximate_cost != "NULL") {
+                        approximate_cost = data[i].approximate_cost;
+                        fund += parseFloat(data[i].approximate_cost);
+                    }
+
+
+                    tr_sp += '<tr><td>' + (i + 1) + '</td>' +
+                        '<td>' + data[i].type + '</td >' +
+                        '<td>' + data[i].claim_year + '</td >' +
+                        '<td>' + data[i].other_measures + '</td >' +
+                        '<td>' + department_name + '</td >' +
+                        '<td>' + scheme_name + '</td >' +
+                        '<td>' + proposed_area + '</td >' +
+                        '<td>' + approximate_cost + '</td ></tr>'
+
+                }
+                fund = parseFloat(fund).toFixed(2);
+                tr_sp += '<tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + (fund + " Lakhs") + '</td></tr>'
+                if (tr_sp != '') {
+                    $('#sprinkler_data').html(tr_sp);
+                } else {
+                    tr_sp = '<tr style="text-align:center;"><td colspan="16" style="text-align:center;">No Data</td></tr>';
+                    $('#sprinkler_data').html(tr_sp);
+                }
+                get_supplyside_fund();
+            }
+        })
+    }
+
+
+    function get_supplyside_fund() {
+        var tr_sp = '';
+        var j = 0;
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Wsp_new/get_ar_supplyside_fund",
+            data: "",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                var ar = "Artificial Recharge Structures";
+                var possible_funding = '';
+                var fund = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].possible_funding_source == "Others") {
+                        possible_funding = data[i].other_funding_source;
+                    } else {
+                        possible_funding = data[i].possible_funding_source;
+                    }
+                    if (data[i].ar_approx_estimated_cost != null && data[i].ar_approx_estimated_cost != "NULL" && data[i].ar_approx_estimated_cost != "") {
+                        fund += parseFloat(data[i].ar_approx_estimated_cost);
+                    }
+
+                    tr_sp += '<tr><td>' + (++j) + '</td>' +
+                        '<td>' + ar + '</td >' +
+                        '<td>' + data[i].type_ar_structure + '</td >' +
+                        '<td>' + data[i].latitude + '</td >' +
+                        '<td>' + data[i].longitude + '</td >' +
+                        '<td>' + data[i].sp_year + '</td >' +
+                        '<td>' + data[i].ar_department_name + '</td >' +
+                        '<td>' + possible_funding + '</td >' +
+
+                        '<td>' + (data[i].ar_approx_estimated_cost + " Lakhs") + '</td ></tr>'
+
+                }
+                $.ajax({
+                    type: "POST",
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/Wsp_new/get_wc_supplyside_fund",
+                    data: "",
+                    dataType: 'JSON',
+                    success: function (data) {
+                        
+                        var wc = "Water Conservation Structures";
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].possible_funding_source == "Others") {
+                                possible_funding = data[i].other_funding_source;
+                            } else {
+                                possible_funding = data[i].possiable_funding_source;
+                            }
+                            if (data[i].wc_approx_estimated_cost != null && data[i].wc_approx_estimated_cost != "NULL" && data[i].wc_approx_estimated_cost != "") {
+                                fund += parseFloat(data[i].wc_approx_estimated_cost);
+                            }
+
+                            tr_sp += '<tr><td>' + (++j) + '</td>' +
+                                '<td>' + wc + '</td >' +
+                                '<td>' + data[i].type_wc_structure + '</td >' +
+                                '<td>' + data[i].latitude + '</td >' +
+                                '<td>' + data[i].longitude + '</td >' +
+                                '<td>' + data[i].wc_year + '</td >' +
+                                '<td>' + data[i].wc_department_name + '</td >' +
+                                '<td>' + possible_funding + '</td >' +
+
+                                '<td>' + (data[i].wc_approx_estimated_cost + " Lakhs") + '</td ></tr>'
+
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            contentType: 'application/json; chatset=utf-8',
+                            url: "/Wsp_new/get_other_supplyside_fund",
+                            data: "",
+                            dataType: 'JSON',
+                            success: function (data) {
+                                
+                                var ot = "Any Other Intervention";
+                                for (var i = 0; i < data.length; i++) {
+
+                                    if (data[i].possible_funding_source == "Others") {
+                                        possible_funding = data[i].other_funding_source;
+                                    } else {
+                                        possible_funding = data[i].possible_funding_source;
+                                    }
+                                    if (data[i].anyother_approx_estimated_cost != null && data[i].anyother_approx_estimated_cost != "NULL" && data[i].anyother_approx_estimated_cost != "") {
+                                        fund += parseFloat(data[i].anyother_approx_estimated_cost);
+                                    }
+
+                                    tr_sp += '<tr><td>' + (++j) + '</td>' +
+                                        '<td>' + ot + '</td >' +
+                                        '<td>' + data[i].other_structure + '</td >' +
+                                        '<td>' + data[i].latitude + '</td >' +
+                                        '<td>' + data[i].longitude + '</td >' +
+                                        '<td>' + data[i].any_year + '</td >' +
+                                        '<td>' + data[i].other_department_name + '</td >' +
+                                        '<td>' + possible_funding + '</td >' +
+
+                                        '<td>' + (data[i].anyother_approx_estimated_cost + " Lakhs") + '</td ></tr>'
+
+                                }
+                                fund = parseFloat(fund).toFixed(2);
+                                tr_sp += '<tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + (fund + " Lakhs") + '</td></tr>'
+                                if (tr_sp != '') {
+                                    $('#supply_data').html(tr_sp);
+                                } else {
+                                    tr_sp = '<tr style="text-align:center;"><td colspan="16" style="text-align:center;">No Data</td></tr>';
+                                    $('#supply_data').html(tr_sp);
+                                }
+                            }
+                        })
+                    }
+                })
+
+            }
+        })
+
+
+    }
+</script>
+<script src="~/Content/JS_Files/WSPTotalReport.js"></script>
+<script src="~/Content/JS_Files/deamendside_report_js.js"></script>

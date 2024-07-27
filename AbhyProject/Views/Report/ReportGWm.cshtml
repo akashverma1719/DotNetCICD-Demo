@@ -1,0 +1,2335 @@
+﻿
+@{
+    ViewBag.Title = "ReportGWm";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ground Water Monitoring Report</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+
+
+    <!--favicon end-->
+    <link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+
+    <link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+
+    <script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+
+    <script src="~/Scripts/all_scripts/highcharts.js"></script>
+
+    <script src="~/Scripts/all_scripts/pareto.js"></script>
+
+    <script src="~/Scripts/all_scripts/amcharts.js"></script>
+    <script src="~/Scripts/all_scripts/serial.js"></script>
+    <script src="~/Scripts/all_scripts/light.js"></script>
+    <script src="~/Content/GWM/modernizr.custom.js"></script>
+    <!--Pie Chart-->
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+
+    
+
+    <style>
+        .amcharts-chart-div > a {
+            display: none !important;
+        }
+
+        .highcharts-point {
+            border-radius: 1px;
+            background-color: #404040;
+            border-color: #337ab7;
+            font-weight: 500 !important;
+            fill: #337ab7;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        p.text-center {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .colorline1 {
+            background: #ddd;
+            background-size: 100% 6px;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin-top: 12px;
+            height: 3px;
+            width: 100%
+        }
+
+        .coll12andcol5 {
+            line-height: 2.0em;
+            font-weight: bold;
+            height: 446px;
+        }
+
+        .col-xs-9 > h1 {
+            font-weight: bold;
+            color: #404040;
+            text-shadow: -1px -1px #000;
+        }
+
+        .col-xs-9 > p {
+            color: #404040;
+        }
+
+        .col12 > .firsttable > h6 {
+            padding-left: 10px;
+        }
+
+        .firstptag {
+            padding-left: 4%;
+        }
+
+        body {
+            background-color: #ddd;
+        }
+
+        .clearfixcolor {
+            margin-top: 15px;
+        }
+
+        .col12 {
+            background-color: #fff;
+            padding: 25px;
+        }
+
+        .highcharts-credits {
+            display: none;
+        }
+
+
+
+        .highcharts-button-box {
+            display: none;
+        }
+
+        .highcharts-color-0 {
+            fill: #7bbde3;
+            stroke: #7bbde3;
+        }
+
+        /*.highcharts-color-1 {
+            fill: #2E578C;
+            stroke: #2E578C;6fb01d
+        }*/
+
+        .highcharts-color-2 {
+            fill: #236ab3;
+            stroke: #236ab3;
+        }
+
+        .highcharts-color-3 {
+            fill: #6fb01d;
+            stroke: #6fb01d;
+        }
+
+        .highcharts-color-4 {
+            fill: #8c8c8c;
+            stroke: #8c8c8c;
+        }
+
+        .highcharts-color-5 {
+            fill: #5a5f5e;
+            stroke: #5a5f5e;
+        }
+
+        .highcharts-color-6 {
+            fill: #79ae3d;
+            stroke: #79ae3d;
+        }
+
+        .highcharts-axis.highcharts-color-0 .highcharts-axis-line {
+            stroke: #7cb5ec;
+        }
+
+        .highcharts-axis.highcharts-color-0 text {
+            fill: #7cb5ec;
+        }
+
+        .highcharts-color-1 {
+            fill: #3b99ed;
+            stroke: #3b99ed;
+        }
+
+        .highcharts-axis.highcharts-color-1 .highcharts-axis-line {
+            stroke: #90ed7d;
+        }
+
+        .highcharts-axis.highcharts-color-1 text {
+            fill: #90ed7d;
+        }
+
+        .text-right > .btn-success {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .text-right {
+            padding: 5px;
+        }
+
+            .text-right > .btn-success {
+                padding: 8px 20px 8px 20px;
+                border-radius: 50px;
+                font-size: 18px;
+            }
+
+        .btn-success {
+            color: #fff;
+            background-color: #6fb01d;
+            border-color: #4cae4c;
+        }
+
+        .coll7 {
+            padding-right: 0px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            display: table;
+            padding: 0px 0px 0px 10px;
+            font-size: 15px;
+            margin: 0px;
+        }
+
+            ul.Select_option > li {
+                display: table-cell;
+                padding: 0px 0px 0px 46px;
+                letter-spacing: 2px;
+                word-spacing: 1px;
+            }
+
+                ul.Select_option > li > span > i {
+                    padding: 0px 0px 0px 10px;
+                }
+
+        #Select_dist_level {
+            padding: 10px 0px 5px 15px;
+            text-transform: capitalize;
+        }
+
+        ul.firstimages {
+            display: table;
+            margin-bottom: 0px;
+        }
+
+            ul.firstimages > li {
+                display: table-cell;
+                padding-left: 5px;
+                border: 1px solid #ddd;
+                padding: 10px 10px 5px 10px;
+            }
+
+                ul.firstimages > li > img {
+                    border-left: 2px solid #ddd;
+                }
+
+                /*ul.firstimages > li > span.firstsapn::before {
+                content: "";
+                width: 3px;
+                height: 40px;
+                background: #ddd;
+                background-color: #ddd;
+                position: absolute;
+                top: 1px;
+                right:171px;
+            }
+
+            ul.firstimages > li > span::after {
+                content: "";
+                width: 3px;
+                height: 40px;
+                background: #ddd;
+                background-color: #ddd;
+                position: absolute;
+                top: 1px;
+            }*/
+                ul.firstimages > li > span > img {
+                    width: 25px;
+                    height: 25px;
+                }
+
+        .highcharts-title {
+            font-weight: bold;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+        }
+
+        tspan {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        .firsttable {
+            display: table-cell;
+        }
+
+        .secondtable {
+            display: table-cell;
+            padding-left: 154px;
+        }
+
+        sup {
+            font-weight: bold;
+        }
+
+        .colchart {
+            margin-top: 10px;
+        }
+
+        .amcharts-title {
+            font-size: 20px;
+            color: #333333;
+            fill: #333333;
+        }
+
+        .amcharts-legend-div {
+            left: 270px;
+            position: absolute !important;
+        }
+
+        .highcharts-axis-title {
+            font-weight: bold !important;
+            color: #333333 !important;
+            fill: #333333 !important;
+        }
+    </style>
+    <style>
+        .highcharts-color-0 {
+            fill: #7bbde3;
+            stroke: #7bbde3;
+        }
+
+        .highcharts-color-1 {
+            fill: #3b99ed;
+            stroke: #3b99ed;
+        }
+
+        .highcharts-color-2 {
+            fill: #236ab3;
+            stroke: #236ab3;
+        }
+
+        .highcharts-color-3 {
+            fill: #6fb01d;
+            stroke: #6fb01d;
+        }
+    </style>
+</head>
+<body id="Data1">
+    <div class="container" style="background-color:#bfbfbf;padding:0px;" id="Events">
+        <div class="clearfix" style="background-color:#fff;">
+            <div class="col-md-12 col12" style="background-color:#fff;padding:0px;display:table;border-bottom:2px solid #ddd">
+                <div class="firsttable">
+                    <h6>
+                        Atal Bhujal Yojana (ABHY), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation
+                    </h6>
+                </div>
+                <div class="secondtable">
+                    <ul class="firstimages">
+                        <li>
+
+                            <span class="firstsapn"> <img src="~/Images/about 12.34.04.png" /></span>
+                        </li>
+                        <li>
+                            <span><img src="~/Images/achievement.png" /></span>
+                        </li>
+                        <li>
+                            <span><img src="~/Images/progress 12.34.04.png" /></span>
+                        </li>
+                        <li>
+                            <span><img src="~/Images/workshop 12.34.04.png" /></span>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-12">
+
+                <div class="col-xs-9">
+                    <h1> Ground Water Monitoring Report</h1>
+                    <p class="firstptag">Composition of water levels, quantity, quality and deviation</p>
+
+
+
+                </div>
+                <div class="col-xs-3 text-right" id="btnExport">
+                    <button class="btn btn-success" id="download">Download</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="total_page">
+
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-md-12">
+
+                        <div class="row" id="Select_dist_level">
+
+
+                            <ul class="Select_option">
+                                @if (Session["GM_State"] != null && Session["GM_State"].ToString() != "null" && Session["GM_State"].ToString() != "")
+                                {
+                                    <li>
+                                        <label id="lblstate">State:</label>
+                                        <span id="spnstate">@Session["GM_State"]</span>
+                                    </li>
+                                }
+                                else
+                                {
+                                    if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                                    {
+                                        <li>
+                                            <label id="lblstate">State:</label>
+                                            <span id="spnstate">@Session["gstate"]</span>
+                                        </li>
+                                    }
+                                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                                    {
+                                        if (Session["GM_State"] != null && Session["GM_State"].ToString() != "null" && Session["GM_State"].ToString() != "")
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <label id="lblstate">Admin</label>
+
+                                            </li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <label id="lblstate">National Level Nodal Officer</label>
+
+                                        </li>
+                                    }
+
+
+
+                                    if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                                    {
+                                        <li>
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label id="lbldistrict">District:</label>
+                                            <span id="spndistrict">@Session["gdist"]</span>
+                                        </li>
+                                    }
+
+                                    if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                                    {
+
+                                        <li>
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label>Block:</label>
+                                            <span>@Session["gblock"] </span>
+                                        </li>
+                                    }
+
+                                    if (Session["gsitename"] != null && Session["gsitename"].ToString() != "null" && Session["gsitename"].ToString() != "")
+                                    {
+                                        <li>
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label>Site</label>
+                                            <span>@Session["gsitename"]</span>
+                                        </li>
+                                    }
+
+
+                                }
+                                @if (Session["GM_Dist"] != null && Session["GM_Dist"].ToString() != "null" && Session["GM_Dist"].ToString() != "")
+                                {
+                                    <li>
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label id="lbldistrict">District:</label>
+                                        <span id="spndistrict">@Session["GM_Dist"]</span>
+                                    </li>
+                                }
+
+                                @if (Session["GM_Block"] != null && Session["GM_Block"].ToString() != "null" && Session["GM_Block"].ToString() != "")
+                                {
+
+                                    <li>
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Block:</label>
+                                        <span>@Session["GM_Block"] </span>
+                                    </li>
+                                }
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="col-md-12">
+                    <div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto ;background-color:#fff;"></div>
+                    <ul class="k-content ullistnewchart " style="font-size: 11px;margin: 63px 30px 0 0;padding: 30px;position: absolute;right: 0;  top: 0;  text-transform: uppercase;">
+                        <li>a:<label id="aValue"></label></li>
+                        <li>b:<label id="bValue"></label></li>
+                        <li>r<sup>2</sup>:<label id="rSqure"></label></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="clearfix colchart">
+                <div class="col-md-12">
+                    <div id="Rainfall_Chart" style="min-width: 310px; height: 400px; margin: 0 auto ; background-color:#fff;"></div>
+                    <ul class="k-content ullistnewchart " style="font-size: 11px;margin: 63px 30px 0 0;padding: 30px;position: absolute;right: 0;  top: 0;  text-transform: uppercase;">
+                        <li>a:<label id="RaValue"></label></li>
+                        <li>b:<label id="RbValue"></label></li>
+                        <li>r<sup>2</sup>:<label id="RrSqure"></label></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="clearfix clearfixcolor">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 coll7">
+                            <div class="col-md-12 col12 " style="overflow-x:scroll;overflow-y:hidden;">
+                                <p class="text-center"> Ground Water Level Deviation</p>
+                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer  table-bordered table-responsive table-__web-inspector-hide-shortcut__" style="border:1px solid #dddddd; margin-top:10px; ">
+
+                                    <thead>
+                                        <tr class="info">
+                                            <th rowspan="3">Source</th>
+                                            <th rowspan="3">Site Type </th>
+
+                                            <th rowspan="3">Site Name </th>
+                                            <th rowspan="3">Depth</th>
+                                            @*<th rowspan="2">Date</th>
+                                                <th rowspan="2">Month</th>*@
+                                            <th colspan="24" class="text-center">Ground Water Level(m bgl)</th>
+
+
+                                            <th rowspan="3">Average (2014-2019)</th>
+
+                                            <th rowspan="3">2019</th>
+
+                                            <th rowspan="3">GWL Deviation</th>
+
+                                            <th rowspan="3">Progress</th>
+                                        </tr>
+                                        <tr class="info">
+                                            <th colspan="4" class="text-center">2014</th>
+                                            <th colspan="4" class="text-center">2015</th>
+                                            <th colspan="4" class="text-center">2016</th>
+                                            <th colspan="4" class="text-center">2017</th>
+                                            <th colspan="4" class="text-center">2018</th>
+                                            <th colspan="4" class="text-center">2019</th>
+                                        </tr>
+                                        <tr class="info">
+                                            <th>Jan</th>
+                                            <th>May</th>
+                                            <th>Aug</th>
+                                            <th>Nov</th>
+
+                                            <th>Jan</th>
+                                            <th>May</th>
+                                            <th>Aug</th>
+                                            <th>Nov</th>
+                                            <th>Jan</th>
+                                            <th>May</th>
+                                            <th>Aug</th>
+                                            <th>Nov</th>
+                                            <th>Jan</th>
+                                            <th>May</th>
+                                            <th>Aug</th>
+                                            <th>Nov</th>
+                                            <th>Jan</th>
+                                            <th>May</th>
+                                            <th>Aug</th>
+                                            <th>Nov</th>
+                                            <th>Jan</th>
+                                            <th>May</th>
+                                            <th>Aug</th>
+                                            <th>Nov</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody_BindData">
+
+                                        @if (ViewBag.WaterdeviationData != null)
+                                        {
+
+                                            foreach (var item1 in ViewBag.WaterdeviationData)
+                                            {
+                                                var Utlization = Convert.ToDouble(item1.utilization);
+
+                                                <tr>
+
+                                                    <td>CGWB</td>
+
+                                                    <td>@item1.site_type </td>
+
+
+
+                                                    <td>@item1.site_name </td>
+
+
+                                                    <td>@item1.depth</td>
+
+
+
+
+                                                    <td class="month">@item1.jan_14</td>
+                                                    <td class="month">@item1.may_14</td>
+                                                    <td class="month">@item1.aug_14</td>
+                                                    <td class="month">@item1.nov_14</td>
+
+
+                                                    <td class="month">@item1.jan_15</td>
+                                                    <td class="month">@item1.may_15</td>
+                                                    <td class="month">@item1.aug_15</td>
+                                                    <td class="month">@item1.nov_15</td>
+
+
+                                                    <td class="month">@item1.jan_16</td>
+                                                    <td class="month">@item1.may_16</td>
+                                                    <td class="month">@item1.aug_16</td>
+                                                    <td class="month">@item1.nov_16</td>
+
+
+                                                    <td class="month">@item1.jan_17</td>
+                                                    <td class="month">@item1.may_17</td>
+                                                    <td class="month">@item1.aug_17</td>
+                                                    <td class="month">@item1.nov_17</td>
+
+
+                                                    <td class="month">@item1.jan_18</td>
+                                                    <td class="month">@item1.may_18</td>
+                                                    <td class="month">@item1.aug_18</td>
+                                                    <td class="month">@item1.nov_18</td>
+
+                                                    <td class="month">@item1.jan_19</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+
+
+                                                    <td id="avg1">
+                                                        @item1.avg
+                                                    </td>
+
+                                                    <td>@item1.manualdata</td>
+
+                                                    <td id="Utilization">
+                                                        @item1.utilization
+                                                    </td>
+
+                                                    @if (Utlization > 0)
+                                                    {
+                                                        <td><img src='~/Images/sign-up-icon.png' /></td>
+                                                    }
+                                                    else if (Utlization < 0)
+                                                    {
+                                                        <td><img src='~/Images/sign-down-icon.png' /></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td><img src='~/Images/unknown.png' /></td>
+                                                    }
+
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+
+                                                <td colspan="32">
+
+                                                    No Data Display
+                                                </td>
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix clearfixcolor">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12 coll7">
+                            <div class="col-md-12 col12 " style="overflow-x:scroll;overflow-y:hidden;">
+                                <p class="text-center"> Rainfall Deviation</p>
+
+                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer  table-bordered table-responsive table-__web-inspector-hide-shortcut__" style="border:1px solid #dddddd; margin-top:10px;">
+
+                                    <thead>
+                                        <tr class="info">
+                                            <th colspan="67" class="text-center">Rainfall (mm)</th>
+                                        </tr>
+                                        <tr class="info">
+                                            <th></th>
+                                            <th></th>
+                                            <th colspan="12" class="text-center">2014</th>
+                                            <th colspan="12" class="text-center">2015</th>
+                                            <th colspan="12" class="text-center">2016</th>
+                                            <th colspan="12" class="text-center">2017</th>
+                                            <th colspan="12" class="text-center">2018</th>
+                                            <th>Actual Rainfall(2018)</th>
+                                            <th>Normal Rainfall(2018)</th>
+                                            <th>Current Rainfall Value</th>
+                                            <th>Deviation(%)</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        <tr class="info">
+                                            <th>Source</th>
+                                            <th>Station</th>
+                                            <th>Jan</th>
+                                            <th>Feb</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                            <th>Oct</th>
+                                            <th>Nov</th>
+                                            <th>Dec</th>
+
+
+                                            <th>Jan</th>
+                                            <th>Feb</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                            <th>Oct</th>
+                                            <th>Nov</th>
+                                            <th>Dec</th>
+
+
+                                            <th>Jan</th>
+                                            <th>Feb</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                            <th>Oct</th>
+                                            <th>Nov</th>
+                                            <th>Dec</th>
+
+
+                                            <th>Jan</th>
+                                            <th>Feb</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                            <th>Oct</th>
+                                            <th>Nov</th>
+                                            <th>Dec</th>
+
+
+                                            <th>Jan</th>
+                                            <th>Feb</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>Aug</th>
+                                            <th>Sep</th>
+                                            <th>Oct</th>
+                                            <th>Nov</th>
+                                            <th>Dec</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody_BindData1">
+                                        @*@if (ViewBag.RaindeviationData != null && ViewBag.RaindeviationData.Count != 0)*@
+                                        @if (ViewBag.RaindeviationData != null)
+                                        {
+
+                                            foreach (var item1 in ViewBag.RaindeviationData)
+                                            {
+                                                <tr>
+
+                                                    <td>IMD </td>
+
+
+                                                    <td>@item1.station</td>
+                                                    <td class="month">@item1.jan_14</td>
+
+                                                    <td class="month">@item1.feb_14</td>
+
+                                                    <td class="month">@item1.mar_14</td>
+
+                                                    <td class="month">@item1.apr_14</td>
+
+                                                    <td class="month">@item1.may_14</td>
+
+                                                    <td class="month">@item1.jun_14</td>
+
+
+                                                    <td class="month">@item1.jul_14</td>
+
+                                                    <td class="month">@item1.aug_14</td>
+                                                    <td class="month">@item1.sep_14</td>
+                                                    <td class="month">@item1.oct_14</td>
+                                                    <td class="month">@item1.nov_14</td>
+                                                    <td class="month">@item1.dec_14</td>
+
+                                                    <td class="month">@item1.jan_15</td>
+
+                                                    <td class="month">@item1.feb_15</td>
+
+                                                    <td class="month">@item1.mar_15</td>
+
+                                                    <td class="month">@item1.apr_15</td>
+
+                                                    <td class="month">@item1.may_15</td>
+
+                                                    <td class="month">@item1.jun_15</td>
+
+
+                                                    <td class="month">@item1.jul_15</td>
+
+                                                    <td class="month">@item1.aug_15</td>
+                                                    <td class="month">@item1.sep_15</td>
+                                                    <td class="month">@item1.oct_15</td>
+                                                    <td class="month">@item1.nov_15</td>
+                                                    <td class="month">@item1.dec_15</td>
+
+                                                    <td class="month">@item1.jan_16</td>
+
+                                                    <td class="month">@item1.feb_16</td>
+
+                                                    <td class="month">@item1.mar_16</td>
+
+                                                    <td class="month">@item1.apr_16</td>
+
+                                                    <td class="month">@item1.may_16</td>
+
+                                                    <td class="month">@item1.jun_16</td>
+
+
+                                                    <td class="month">@item1.jul_16</td>
+
+                                                    <td class="month">@item1.aug_16</td>
+                                                    <td class="month">@item1.sep_16</td>
+                                                    <td class="month">@item1.oct_16</td>
+                                                    <td class="month">@item1.nov_16</td>
+                                                    <td class="month">@item1.dec_16</td>
+
+                                                    <td class="month">@item1.jan_17</td>
+
+                                                    <td class="month">@item1.feb_17</td>
+
+                                                    <td class="month">@item1.mar_17</td>
+
+                                                    <td class="month">@item1.apr_17</td>
+
+                                                    <td class="month">@item1.may_17</td>
+
+                                                    <td class="month">@item1.jun_17</td>
+
+
+                                                    <td class="month">@item1.jul_17</td>
+
+                                                    <td class="month">@item1.aug_17</td>
+                                                    <td class="month">@item1.sep_17</td>
+                                                    <td class="month">@item1.oct_17</td>
+                                                    <td class="month">@item1.nov_17</td>
+                                                    <td class="month">@item1.dec_17</td>
+
+                                                    <td class="month">@item1.jan_18</td>
+
+                                                    <td class="month">@item1.feb_18</td>
+
+                                                    <td class="month">@item1.mar_18</td>
+
+                                                    <td class="month">@item1.apr_18</td>
+
+                                                    <td class="month">@item1.may_18</td>
+
+                                                    <td class="month">@item1.jun_18</td>
+
+
+                                                    <td class="month">@item1.jul_18</td>
+
+                                                    <td class="month">@item1.aug_18</td>
+                                                    <td class="month">@item1.sep_18</td>
+                                                    <td class="month">@item1.oct_18</td>
+                                                    <td class="month">@item1.nov_18</td>
+                                                    <td class="month">@item1.dec_18</td>
+                                                    <td class="">@item1.actual_rainfall</td>
+
+                                                    <td class="">@item1.normal_rainfall</td>
+                                                    <td>@item1.manualdata</td>
+                                                    <td id="">
+                                                        @item1.deviation
+                                                    </td>
+                                                    <td id="">
+                                                        @item1.status
+                                                    </td>
+
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+
+
+                                                <td colspan="66">No Data Display</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix clearfixcolor">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6 coll7">
+                            <div class="col-md-12 col12">
+                                <p class="text-center">
+                                    Ground Water Quality
+                                </p>
+                                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;height: 340px;overflow-x:scroll;overflow-y:hidden;">
+                                    <tbody>
+                                        <tr class="tableheader1">
+                                            <th style="padding:5px; text-align:left;">Indicators</th>
+                                            <td style="font-weight:bold">Current Value</td>
+                                            <td style="font-weight:bold">BIS Limit</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Potential of Hydrogen(pH)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["ph"]</span></td>
+                                            <td>8.5</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Electrical Conductivity(EC)(μS/cm)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["ec"]</span></td>
+                                            <td>2000</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Total Hardness(TH)(mg/l)
+
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["th"]</span></td>
+                                            <td>600</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Total Alkalinity(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["tot_alkalinity"]</span></td>
+                                            <td>600</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Calcium(Ca)(mg/l)
+
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["ca"]</span></td>
+                                            <td>200</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Magnesium(Mg)(mg/l)
+
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["mg"]</span></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Sodium(Na)(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["na"]</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Potassium(K)(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["k"]</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Iron(Fe)(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["Iron"]</span></td>
+                                            <td>1.0</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Carbonate(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["carbonate"]</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Bicarbonate(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["bicarbonate"]</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Chloride(Cl)(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["Chloride"]</span></td>
+                                            <td>1000</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Sulphate(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftindustry">@Session["Sulphate"]</span></td>
+                                            <td>400</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Nitrate(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftIrrigation">@Session["Nitrate"]</span></td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Fluoride(F)(mg/l)
+                                            </th>
+                                            <td><span id="lblbalDraftdrinkingpurpose">@Session["Fluoride"]</span></td>
+                                            <td>1.5</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">
+                                                Sodium Absorption Ratio(SAR)
+                                            </th>
+                                            <td><span id="lblbalDraftdrinkingpurpose">@Session["sar"]</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding:5px; text-align:left;">Residual Sodium Carbonate(RSC)</th>
+                                            <td><span id="lblbalDraftindustry">@Session["rsc"]</span></td>
+                                            <td></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12 coll12andcol5" style="background-color:#fff;">
+                                @*<div class="colorline1"></div>*@
+                                <p class="text-center" style="margin-top:20px;">
+                                    Ground Water Quantity
+                                </p>
+                                <div class="colorline1"></div>
+                                @if (Session["GM_Block"] != null)
+                                {
+                                    <div class="col-xs-9">Location </div><div class="col-xs-3" style="text-transform: capitalize;"> :@Session["GM_State"]</div>
+                                    <div class="col-xs-9">Block </div><div class="col-xs-3" style="text-transform: capitalize;"> :@Session["GM_Block"]</div>
+                                }
+                                else
+                                {
+                                    <div class="col-xs-9">Location </div><div class="col-xs-3" style="text-transform: capitalize;"> :@Session["gstate"]</div>
+                                    <div class="col-xs-9">Block </div><div class="col-xs-3" style="text-transform: capitalize;"> :@Session["gblock"]</div>
+                                }
+
+
+                                <div class="col-xs-9">Block Area(sq.km.)</div><div class="col-xs-3"> :@ViewBag.Area</div>
+                                <div class="col-xs-9"> Annual Ground Water Availability(mcm)</div><div class="col-xs-3"> :@ViewBag.Available</div>
+                                <div class="col-xs-9">Annual Ground Water Withdrawal(mcm)</div><div class="col-xs-3"> :@ViewBag.Withdrawal</div>
+                                <div class="col-xs-9">Stage of Ground Water Development(%)</div><div class="col-xs-3"> :@ViewBag.Stage</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix clearfixcolor ">
+                <div class="row">
+
+                    <div class="clearfix">
+                        <div class="col-md-12" style="margin-bottom:15px;">
+                            <div class="col-md-12 col12">
+                                <p class="text-center">
+                                    .............................
+                                </p>
+                                <p class="text-justify">
+                                    The results and analysis contained within the Ground Water Monitoring Report are generated with the help of inputs given by
+                                    the user and the existing database. The ground water level, quality and quantity modules are designed to reflect ground water
+                                    distribution, quality and deviation at a particular location. The overall goal of ground water monitoring is therefore to
+                                    improve the management of ground water resources in priority areas of the country.
+                                </p>
+                                <p class="text-center">
+                                    .............................
+                                </p>
+                            </div>
+                            @if (Session["GM_State"] != null)
+                            {
+                                <div class="container col12 hidediv">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" class="btn btn-danger" onclick="RejectGWL()">Reject</button>
+                                        <button type="button" class="btn btn-success" onclick="ApproveGWL()">Approve</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        Charts();
+
+    });
+
+    function Charts() {
+
+           var WaterLevelData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.WaterdeviationData1));
+        // Ground Water Level Charts
+
+                if (WaterLevelData.length != 0) {
+                    var sum_jan_14 = 0, sum_jan_15 = 0, sum_jan_16 = 0, sum_jan_17 = 0, sum_jan_18 = 0;
+                    var sum_apr_14 = 0, sum_apr_15 = 0, sum_apr_16 = 0, sum_apr_17 = 0, sum_apr_18 = 0;
+                    var sum_may_14 = 0, sum_may_15 = 0, sum_may_16 = 0, sum_may_17 = 0, sum_may_18 = 0;
+                    var sum_aug_14 = 0, sum_aug_15 = 0, sum_aug_16 = 0, sum_aug_17 = 0, sum_aug_18 = 0;
+                    var sum_nov_14 = 0, sum_nov_15 = 0, sum_nov_16 = 0, sum_nov_17 = 0, sum_nov_18 = 0;
+
+                    var count_jan_14 = 0, count_jan_15 = 0, count_jan_16 = 0, count_jan_17 = 0, count_jan_18 = 0;
+                    var count_apr_14 = 0, count_apr_15 = 0, count_apr_16 = 0, count_apr_17 = 0, count_apr_18 = 0;
+                    var count_may_14 = 0, count_may_15 = 0, count_may_16 = 0, count_may_17 = 0, count_may_18 = 0;
+                    var count_aug_14 = 0, count_aug_15 = 0, count_aug_16 = 0, count_aug_17 = 0, count_aug_18 = 0;
+                    var count_nov_14 = 0, count_nov_15 = 0, count_nov_16 = 0, count_nov_17 = 0, count_nov_18 = 0;
+
+
+                    var avg_jan_14 = 0, avg_jan_15 = 0, avg_jan_16 = 0, avg_jan_17 = 0, avg_jan_18 = 0;
+                    var avg_apr_14 = 0, avg_apr_15 = 0, avg_apr_16 = 0, avg_apr_17 = 0, avg_apr_18 = 0;
+                    var avg_may_14 = 0, avg_may_15 = 0, avg_may_16 = 0, avg_may_17 = 0, avg_may_18 = 0;
+                    var avg_aug_14 = 0, avg_aug_15 = 0, avg_aug_16 = 0, avg_aug_17 = 0, avg_aug_18 = 0;
+                    var avg_nov_14 = 0, avg_nov_15 = 0, avg_nov_16 = 0, avg_nov_17 = 0, avg_nov_18 = 0;
+
+
+                    // var years1 = ['jan_14','jan_15','jan_16','jan_17','jan_18','apr_14','apr_15','apr_16','apr_17','apr_18','may_14','may_15','may_16','may_17','may_18','aug_14','aug_15','aug_16','aug_17','aug_18','nov_14','nov_15','nov_16','nov_17','nov_18'];
+                    const allMonths = ['jan', 'may', 'apr', 'aug', 'nov'];
+                    const years = [14, 15, 16, 17, 18];
+
+                    for (var i = 0; i < WaterLevelData.length; i++) {
+                        for (var k = 0; k < allMonths.length; k++) {
+                            for (var j = 0; j < years.length; j++) {
+                                var yearswise = allMonths[k] + '_' + years[j];
+
+                                if (WaterLevelData[i][yearswise] != "NULL" && parseFloat(WaterLevelData[i][yearswise]) != 0 && WaterLevelData[i][yearswise] != null) {
+                                    if (yearswise == "jan_14") {
+                                        sum_jan_14 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_jan_14 = count_jan_14 + 1;
+                                        avg_jan_14 = parseFloat(sum_jan_14) / count_jan_14;
+                                    }
+                                    else if (yearswise == "jan_15") {
+                                        sum_jan_15 += parseFloat(parseFloat(WaterLevelData[i][yearswise]));
+                                        count_jan_15 = count_jan_15 + 1;
+                                        avg_jan_15 = parseFloat(sum_jan_15) / count_jan_15;
+                                    }
+                                    else if (yearswise == "jan_16") {
+                                        sum_jan_16 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_jan_16 = count_jan_16 + 1;
+                                        avg_jan_16 = parseFloat(sum_jan_16) / count_jan_16;
+                                    }
+                                    else if (yearswise == "jan_17") {
+                                        sum_jan_17 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_jan_17 = count_jan_17 + 1;
+                                        avg_jan_17 = parseFloat(sum_jan_17) / count_jan_17;
+                                    }
+                                    else if (yearswise == "jan_18") {
+                                        sum_jan_18 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_jan_18 = count_jan_18 + 1;
+                                        avg_jan_18 = parseFloat(sum_jan_18) / count_jan_18;
+                                    }
+                                    else if (yearswise == "apr_14") {
+                                        sum_apr_14 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_apr_14 = count_apr_14 + 1;
+                                        avg_apr_14 = parseFloat(sum_apr_14) / count_apr_14;
+                                    }
+
+                                    else if (yearswise == "apr_15") {
+                                        sum_apr_15 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_apr_15 = count_apr_15 + 1;
+                                        avg_apr_15 = parseFloat(sum_apr_15) / count_apr_15;
+                                    }
+                                    else if (yearswise == "apr_16") {
+                                        sum_apr_16 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_apr_16 = count_apr_16 + 1;
+                                        avg_apr_16 = parseFloat(sum_apr_16) / count_apr_16;
+                                    }
+                                    else if (yearswise == "apr_17") {
+                                        sum_apr_17 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_apr_17 = count_apr_17 + 1;
+                                        avg_apr_17 = parseFloat(sum_apr_17) / count_apr_17;
+                                    }
+                                    else if (yearswise == "apr_18") {
+                                        sum_apr_18 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_apr_18 = count_apr_18 + 1;
+                                        avg_apr_18 = parseFloat(sum_apr_18) / count_apr_18;
+                                    }
+                                    else if (yearswise == "aug_14") {
+                                        sum_aug_14 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_aug_14 = count_aug_14 + 1;
+                                        avg_aug_14 = parseFloat(sum_aug_14) / count_aug_14;
+                                    }
+
+                                    else if (yearswise == "aug_15") {
+                                        sum_aug_15 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_aug_15 = count_aug_15 + 1;
+                                        avg_aug_15 = parseFloat(sum_aug_15) / count_aug_15;
+                                    }
+                                    else if (yearswise == "aug_16") {
+                                        sum_aug_16 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_aug_16 = count_aug_16 + 1;
+                                        avg_aug_16 = parseFloat(sum_aug_16) / count_aug_16;
+                                    }
+                                    else if (yearswise == "aug_17") {
+                                        sum_aug_17 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_aug_17 = count_aug_17 + 1;
+                                        avg_aug_17 = parseFloat(sum_aug_17) / count_aug_17;
+                                    }
+                                    else if (yearswise == "aug_18") {
+                                        sum_aug_18 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_aug_18 = count_aug_18 + 1;
+                                        avg_aug_18 = parseFloat(sum_aug_18) / count_aug_18;
+                                    }
+
+                                    else if (yearswise == "may_14") {
+                                        sum_may_14 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_may_14 = count_may_14 + 1;
+                                        avg_may_14 = parseFloat(sum_may_14) / count_may_14;
+                                    }
+
+                                    else if (yearswise == "may_15") {
+                                        sum_may_15 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_may_15 = count_may_15 + 1;
+                                        avg_may_15 = parseFloat(sum_may_15) / count_may_15;
+                                    }
+                                    else if (yearswise == "may_16") {
+                                        sum_may_16 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_may_16 = count_may_16 + 1;
+                                        avg_may_16 = parseFloat(sum_may_16) / count_may_16;
+                                    }
+                                    else if (yearswise == "may_17") {
+                                        sum_may_17 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_may_17 = count_may_17 + 1;
+                                        avg_may_17 = parseFloat(sum_may_17) / count_may_17;
+                                    }
+                                    else if (yearswise == "may_18") {
+                                        sum_may_18 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_may_18 = count_may_18 + 1;
+                                        avg_may_18 = parseFloat(sum_may_18) / count_may_18;
+                                    }
+                                    else if (yearswise == "nov_14") {
+                                        sum_nov_14 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_nov_14 = count_nov_14 + 1;
+                                        avg_nov_14 = parseFloat(sum_nov_14) / count_nov_14;
+                                    }
+
+                                    else if (yearswise == "nov_15") {
+                                        sum_nov_15 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_nov_15 = count_nov_15 + 1;
+                                        avg_nov_15 = parseFloat(sum_nov_15) / count_nov_15;
+                                    }
+                                    else if (yearswise == "nov_16") {
+                                        sum_nov_16 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_nov_16 = count_nov_16 + 1;
+                                        avg_nov_16 = parseFloat(sum_nov_16) / count_nov_16;
+                                    }
+                                    else if (yearswise == "nov_17") {
+                                        sum_nov_17 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_nov_17 = count_nov_17 + 1;
+                                        avg_nov_17 = parseFloat(sum_nov_17) / count_nov_17;
+                                    }
+                                    else if (yearswise == "nov_18") {
+                                        sum_nov_18 += parseFloat(WaterLevelData[i][yearswise]);
+                                        count_nov_18 = count_nov_18 + 1;
+                                        avg_nov_18 = parseFloat(sum_nov_18) / count_nov_18;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+                    var YEARWISEDATA = [];
+                    var YEARWISECAT = [];
+                    //jan_14
+                    if (avg_jan_14 != 0) {
+                        YEARWISEDATA.push(avg_jan_14.toFixed(2));
+                        YEARWISECAT.push("jan_14");
+                    }
+                    else if (avg_jan_15 != 0) {
+                        YEARWISEDATA.push(avg_jan_15.toFixed(2));
+                        YEARWISECAT.push("jan_14");
+                    }
+                    else if (avg_jan_16 != 0) {
+                        YEARWISEDATA.push(avg_jan_16.toFixed(2));
+                        YEARWISECAT.push("jan_14");
+                    } else if (avg_jan_17 != 0) {
+                        YEARWISEDATA.push(avg_jan_17.toFixed(2));
+                        YEARWISECAT.push("jan_14");
+                    }
+                    else if (avg_jan_18 != 0) {
+                        YEARWISEDATA.push(avg_jan_18.toFixed(2));
+                        YEARWISECAT.push("jan_14");
+                    }
+                    //apr_14
+                    if (avg_apr_14 != 0) {
+                        YEARWISEDATA.push(avg_apr_14.toFixed(2));
+                        YEARWISECAT.push("apr_14");
+                    }
+                    else if (avg_apr_15 != 0) {
+                        YEARWISEDATA.push(avg_apr_15.toFixed(2));
+                        YEARWISECAT.push("apr_14");
+                    }
+                    else if (avg_apr_16 != 0) {
+                        YEARWISEDATA.push(avg_apr_16.toFixed(2));
+                        YEARWISECAT.push("apr_14");
+                    } else if (avg_apr_17 != 0) {
+                        YEARWISEDATA.push(avg_apr_17.toFixed(2));
+                        YEARWISECAT.push("apr_14");
+                    }
+                    else if (avg_apr_18 != 0) {
+                        YEARWISEDATA.push(avg_apr_18.toFixed(2));
+                        YEARWISECAT.push("apr_14");
+                    }
+
+                    //may_14
+                    if (avg_may_14 != 0) {
+                        YEARWISEDATA.push(avg_may_14.toFixed(2));
+                        YEARWISECAT.push("may_14");
+                    }
+                    else if (avg_may_15 != 0) {
+                        YEARWISEDATA.push(avg_may_15.toFixed(2));
+                        YEARWISECAT.push("may_14");
+                    }
+                    else if (avg_may_16 != 0) {
+                        YEARWISEDATA.push(avg_may_16.toFixed(2));
+                        YEARWISECAT.push("may_14");
+                    } else if (avg_may_17 != 0) {
+                        YEARWISEDATA.push(avg_may_17.toFixed(2));
+                        YEARWISECAT.push("may_14");
+                    }
+                    else if (avg_may_18 != 0) {
+                        YEARWISEDATA.push(avg_may_18.toFixed(2));
+                        YEARWISECAT.push("may_14");
+                    }
+
+
+                    //aug_14
+                    if (avg_aug_14 != 0) {
+                        YEARWISEDATA.push(avg_aug_14.toFixed(2));
+                        YEARWISECAT.push("aug_14");
+                    }
+                    else if (avg_aug_15 != 0) {
+                        YEARWISEDATA.push(avg_aug_15.toFixed(2));
+                        YEARWISECAT.push("aug_14");
+                    }
+                    else if (avg_aug_16 != 0) {
+                        YEARWISEDATA.push(avg_aug_16.toFixed(2));
+                        YEARWISECAT.push("aug_14");
+                    } else if (avg_aug_17 != 0) {
+                        YEARWISEDATA.push(avg_aug_17.toFixed(2));
+                        YEARWISECAT.push("aug_14");
+                    }
+                    else if (avg_aug_18 != 0) {
+                        YEARWISEDATA.push(avg_aug_18.toFixed(2));
+                        YEARWISECAT.push("aug_14");
+                    }
+
+                    //nov_14
+
+                    if (avg_nov_14 != 0) {
+                        YEARWISEDATA.push(avg_nov_14.toFixed(2));
+                        YEARWISECAT.push("nov_14");
+                    }
+                    else if (avg_nov_15 != 0) {
+                        YEARWISEDATA.push(avg_nov_15.toFixed(2));
+                        YEARWISECAT.push("nov_14");
+                    }
+                    else if (avg_nov_16 != 0) {
+                        YEARWISEDATA.push(avg_nov_16.toFixed(2));
+                        YEARWISECAT.push("nov_14");
+                    } else if (avg_nov_17 != 0) {
+                        YEARWISEDATA.push(avg_nov_17.toFixed(2));
+                        YEARWISECAT.push("nov_14");
+                    }
+                    else if (avg_nov_18 != 0) {
+                        YEARWISEDATA.push(avg_nov_18.toFixed(2));
+                        YEARWISECAT.push("nov_14");
+                    }
+
+
+                    //jan_15
+                    if (avg_jan_15 != 0) {
+                        YEARWISEDATA.push(avg_jan_15.toFixed(2));
+                        YEARWISECAT.push("jan_15");
+                    }
+                    else if (avg_jan_16 != 0) {
+                        YEARWISEDATA.push(avg_jan_16.toFixed(2));
+                        YEARWISECAT.push("jan_15");
+                    } else if (avg_jan_17 != 0) {
+                        YEARWISEDATA.push(avg_jan_17.toFixed(2));
+                        YEARWISECAT.push("jan_15");
+                    }
+                    else if (avg_jan_18 != 0) {
+                        YEARWISEDATA.push(avg_jan_18.toFixed(2));
+                        YEARWISECAT.push("jan_15");
+                    }
+                    else if (avg_jan_14 != 0) {
+                        YEARWISEDATA.push(avg_jan_14.toFixed(2));
+                        YEARWISECAT.push("jan_15");
+                    }
+
+
+
+                    //apr_15
+                    if (avg_apr_15 != 0) {
+                        YEARWISEDATA.push(avg_apr_15.toFixed(2));
+                        YEARWISECAT.push("apr_15");
+                    }
+                    else if (avg_apr_16 != 0) {
+                        YEARWISEDATA.push(avg_apr_16.toFixed(2));
+                        YEARWISECAT.push("apr_15");
+                    } else if (avg_apr_17 != 0) {
+                        YEARWISEDATA.push(avg_apr_17.toFixed(2));
+                        YEARWISECAT.push("apr_15");
+                    }
+                    else if (avg_apr_18 != 0) {
+                        YEARWISEDATA.push(avg_apr_18.toFixed(2));
+                        YEARWISECAT.push("apr_15");
+                    }
+                    else if (avg_apr_14 != 0) {
+                        YEARWISEDATA.push(avg_apr_14.toFixed(2));
+                        YEARWISECAT.push("apr_15");
+                    }
+
+
+                    //may_15
+
+                    if (avg_may_15 != 0) {
+                        YEARWISEDATA.push(avg_may_15.toFixed(2));
+                        YEARWISECAT.push("may_15");
+                    }
+                    else if (avg_may_16 != 0) {
+                        YEARWISEDATA.push(avg_may_16.toFixed(2));
+                        YEARWISECAT.push("may_15");
+                    } else if (avg_may_17 != 0) {
+                        YEARWISEDATA.push(avg_may_17.toFixed(2));
+                        YEARWISECAT.push("may_15");
+                    }
+                    else if (avg_may_18 != 0) {
+                        YEARWISEDATA.push(avg_may_18.toFixed(2));
+                        YEARWISECAT.push("may_15");
+                    }
+                    else if (avg_may_14 != 0) {
+                        YEARWISEDATA.push(avg_may_14.toFixed(2));
+                        YEARWISECAT.push("may_15");
+                    }
+
+
+
+                    //aug_15
+                    if (avg_aug_15 != 0) {
+                        YEARWISEDATA.push(avg_aug_15.toFixed(2));
+                        YEARWISECAT.push("aug_15");
+                    }
+                    else if (avg_aug_16 != 0) {
+                        YEARWISEDATA.push(avg_aug_16.toFixed(2));
+                        YEARWISECAT.push("aug_15");
+                    } else if (avg_aug_17 != 0) {
+                        YEARWISEDATA.push(avg_aug_17.toFixed(2));
+                        YEARWISECAT.push("aug_15");
+                    }
+                    else if (avg_aug_18 != 0) {
+                        YEARWISEDATA.push(avg_aug_18.toFixed(2));
+                        YEARWISECAT.push("aug_15");
+                    }
+                    else if (avg_aug_14 != 0) {
+                        YEARWISEDATA.push(avg_aug_14.toFixed(2));
+                        YEARWISECAT.push("aug_15");
+                    }
+
+
+
+
+                    //nov_15
+                    if (avg_nov_15 != 0) {
+                        YEARWISEDATA.push(avg_nov_15.toFixed(2));
+                        YEARWISECAT.push("nov_15");
+                    }
+                    else if (avg_nov_16 != 0) {
+                        YEARWISEDATA.push(avg_nov_16.toFixed(2));
+                        YEARWISECAT.push("nov_15");
+                    } else if (avg_nov_17 != 0) {
+                        YEARWISEDATA.push(avg_nov_17.toFixed(2));
+                        YEARWISECAT.push("nov_15");
+                    }
+                    else if (avg_nov_18 != 0) {
+                        YEARWISEDATA.push(avg_nov_18.toFixed(2));
+                        YEARWISECAT.push("nov_15");
+                    }
+                    else if (avg_nov_14 != 0) {
+                        YEARWISEDATA.push(avg_nov_14.toFixed(2));
+                        YEARWISECAT.push("nov_15");
+                    }
+
+
+
+
+
+                    //jan_16
+                    if (avg_jan_16 != 0) {
+                        YEARWISEDATA.push(avg_jan_16.toFixed(2));
+                        YEARWISECAT.push("jan_16");
+                    }
+                    else if (avg_jan_17 != 0) {
+                        YEARWISEDATA.push(avg_jan_17.toFixed(2));
+                        YEARWISECAT.push("jan_16");
+                    }
+                    else if (avg_jan_18 != 0) {
+                        YEARWISEDATA.push(avg_jan_18.toFixed(2));
+                        YEARWISECAT.push("jan_16");
+                    }
+                    else if (avg_jan_14 != 0 || avg_jan_15 != 0) {
+                        var value = (avg_jan_14 + avg_jan_15) / 2;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("jan_16");
+                    }
+
+
+                    //apr_16
+                    if (avg_apr_16 != 0) {
+                        YEARWISEDATA.push(avg_apr_16.toFixed(2));
+                        YEARWISECAT.push("apr_16");
+                    } else if (avg_apr_17 != 0) {
+                        YEARWISEDATA.push(avg_apr_17.toFixed(2));
+                        YEARWISECAT.push("apr_16");
+                    }
+                    else if (avg_apr_18 != 0) {
+                        YEARWISEDATA.push(avg_apr_18.toFixed(2));
+                        YEARWISECAT.push("apr_16");
+                    }
+                    else if (avg_apr_14 != 0 || avg_apr_15 != 0) {
+                        var value = (avg_apr_14 + avg_apr_15) / 2;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("apr_16");
+                    }
+
+
+                    //may_16
+                    if (avg_may_16 != 0) {
+                        YEARWISEDATA.push(avg_may_16.toFixed(2));
+                        YEARWISECAT.push("may_16");
+                    }
+                    else if (avg_may_17 != 0) {
+                        YEARWISEDATA.push(avg_may_17.toFixed(2));
+                        YEARWISECAT.push("may_16");
+                    }
+                    else if (avg_may_18 != 0) {
+                        YEARWISEDATA.push(avg_may_18.toFixed(2));
+                        YEARWISECAT.push("may_16");
+                    }
+                    else if (avg_may_14 != 0 || avg_may_15 != 0) {
+                        var value = (avg_may_14 + avg_may_15) / 2;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("may_16");
+                    }
+
+
+                    //aug_16
+
+                    if (avg_aug_16 != 0) {
+                        YEARWISEDATA.push(avg_aug_16.toFixed(2));
+                        YEARWISECAT.push("aug_16");
+                    }
+                    else if (avg_aug_17 != 0) {
+                        YEARWISEDATA.push(avg_aug_17.toFixed(2));
+                        YEARWISECAT.push("aug_16");
+                    }
+                    else if (avg_aug_18 != 0) {
+                        YEARWISEDATA.push(avg_aug_18.toFixed(2));
+                        YEARWISECAT.push("aug_16");
+                    }
+                    else if (avg_aug_14 != 0 || avg_aug_15 != 0) {
+                        var value = (avg_aug_14 + avg_aug_15) / 2;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("aug_16");
+                    }
+
+
+
+                    //nov_16
+                    if (avg_nov_16 != 0) {
+                        YEARWISEDATA.push(avg_nov_16.toFixed(2));
+                        YEARWISECAT.push("nov_16");
+                    }
+                    else if (avg_nov_17 != 0) {
+                        YEARWISEDATA.push(avg_nov_17.toFixed(2));
+                        YEARWISECAT.push("nov_16");
+                    }
+                    else if (avg_nov_18 != 0) {
+                        YEARWISEDATA.push(avg_nov_18.toFixed(2));
+                        YEARWISECAT.push("nov_16");
+                    }
+                    else if (avg_nov_14 != 0 || avg_nov_15 != 0) {
+                        var value = (avg_nov_14 + avg_nov_15) / 2;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("nov_16");
+                    }
+
+
+                    //jan_17
+
+                    if (avg_jan_17 != 0) {
+                        YEARWISEDATA.push(avg_jan_17.toFixed(2));
+                        YEARWISECAT.push("jan_17");
+                    }
+                    else if (avg_jan_18 != 0) {
+                        YEARWISEDATA.push(avg_jan_18.toFixed(2));
+                        YEARWISECAT.push("jan_17");
+                    }
+                    else if (avg_jan_14 != 0 || avg_jan_15 != 0) {
+                        var value = (avg_jan_14 + avg_jan_15 + avg_jan_16) / 3;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("jan_17");
+                    }
+
+                    //apr_17
+
+                    if (avg_apr_17 != 0) {
+                        YEARWISEDATA.push(avg_apr_17.toFixed(2));
+                        YEARWISECAT.push("apr_17");
+                    }
+                    else if (avg_apr_18 != 0) {
+                        YEARWISEDATA.push(avg_apr_18.toFixed(2));
+                        YEARWISECAT.push("apr_17");
+                    }
+                    else if (avg_apr_14 != 0 || avg_apr_15 != 0) {
+                        var value = (avg_apr_14 + avg_apr_15 + avg_apr_16) / 3;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("apr_17");
+                    }
+
+
+                    //may_17
+
+                    if (avg_may_17 != 0) {
+                        YEARWISEDATA.push(avg_may_17.toFixed(2));
+                        YEARWISECAT.push("may_17");
+                    }
+                    else if (avg_may_18 != 0) {
+                        YEARWISEDATA.push(avg_may_18.toFixed(2));
+                        YEARWISECAT.push("may_17");
+                    }
+                    else if (avg_may_14 != 0 || avg_may_15 != 0) {
+                        var value = (avg_may_14 + avg_may_15 + avg_may_16) / 3;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("may_17");
+                    }
+
+
+
+
+                    // aug_17
+                    if (avg_aug_17 != 0) {
+                        YEARWISEDATA.push(avg_aug_17.toFixed(2));
+                        YEARWISECAT.push("aug_17");
+                    }
+                    else if (avg_aug_18 != 0) {
+                        YEARWISEDATA.push(avg_aug_18.toFixed(2));
+                        YEARWISECAT.push("aug_17");
+                    }
+                    else if (avg_aug_14 != 0 || avg_aug_15 != 0) {
+                        var value = (avg_aug_14 + avg_aug_15 + avg_aug_16) / 3;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("aug_17");
+                    }
+
+                    //nov_17
+                    if (avg_nov_17 != 0) {
+                        YEARWISEDATA.push(avg_nov_17.toFixed(2));
+                        YEARWISECAT.push("nov_17");
+                    }
+                    else if (avg_nov_18 != 0) {
+                        YEARWISEDATA.push(avg_nov_18.toFixed(2));
+                        YEARWISECAT.push("nov_17");
+                    }
+                    else if (avg_nov_14 != 0 || avg_nov_15 != 0) {
+                        var value = (avg_nov_14 + avg_nov_15 + avg_nov_16) / 3;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("nov_17");
+                    }
+
+                    //jan_18
+
+                    if (avg_jan_18 != 0) {
+                        YEARWISEDATA.push(avg_jan_18.toFixed(2));
+                        YEARWISECAT.push("jan_18");
+                    }
+                    else if (avg_jan_14 != 0 || avg_jan_15 != 0) {
+                        var value = (avg_jan_14 + avg_jan_15 + avg_jan_16 + avg_jan_17) / 4;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("jan_18");
+                    }
+                    //apr_18
+                    if (avg_apr_18 != 0) {
+                        YEARWISEDATA.push(avg_apr_18.toFixed(2));
+                        YEARWISECAT.push("apr_18");
+                    } else if (avg_apr_14 != 0 || avg_apr_15 != 0) {
+                        var value = (avg_apr_14 + avg_apr_15 + avg_apr_16 + avg_apr_17) / 4;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("apr_18");
+                    }
+
+
+                    //may_18
+
+                    if (avg_may_18 != 0) {
+                        YEARWISEDATA.push(avg_may_18.toFixed(2));
+                        YEARWISECAT.push("may_18");
+                    } else if (avg_may_14 != 0 || avg_may_15 != 0) {
+                        var value = (avg_may_14 + avg_may_15 + avg_may_16 + avg_may_17) / 43;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("may_18");
+                    }
+
+
+
+                    //aug_18
+                    if (avg_aug_18 != 0) {
+                        YEARWISEDATA.push(avg_aug_18.toFixed(2));
+                        YEARWISECAT.push("aug_18");
+                    }
+                    else if (avg_aug_14 != 0 || avg_aug_15 != 0) {
+                        var value = (avg_aug_14 + avg_aug_15 + avg_aug_16 + avg_aug_17) / 4;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("aug_18");
+                    }
+                    //nov_18
+
+                    if (avg_nov_18 != 0) {
+                        YEARWISEDATA.push(avg_nov_18.toFixed(2));
+                        YEARWISECAT.push("nov_18");
+                    }
+                    else if (avg_nov_14 != 0 || avg_nov_15 != 0) {
+                        var value = (avg_nov_14 + avg_nov_15 + avg_nov_16 + avg_nov_17) / 4;
+                        YEARWISEDATA.push(value.toFixed(2));
+                        YEARWISECAT.push("nov_18");
+                    }
+
+                    var sum_x = 0, sum_y = 0, counter = 0, xy_bar = 0, x_square_bar = 0, y_square_bar = 0;
+
+                    for (var l = 0; l < YEARWISEDATA.length; l++) {
+                        counter = l + 1;
+                        sum_x += counter;
+                        sum_y += parseFloat(YEARWISEDATA[l]);
+                        y_square_bar += Math.pow(parseFloat(YEARWISEDATA[l]), 2);
+
+                        xy_bar += counter * parseFloat(YEARWISEDATA[l]);
+                        x_square_bar += Math.pow(counter, 2);
+
+                    }
+                    var TrendLine = [];
+
+                    var N = YEARWISEDATA.length;
+                    var x1 = (sum_y * x_square_bar) - (sum_x * xy_bar);
+                    var x2 = (N * (x_square_bar)) - (Math.pow(sum_x, 2));
+                    var AValue = x1 / x2;
+                    //var y1 = counter * (xy_bar) - (sum_x * sum_y);
+                    // var y2 = counter * (x_square_bar) - (Math.pow(sum_x, 2));
+
+                    var y1 = (N * (xy_bar)) - (sum_x * sum_y);
+                    var y2 = (N * (x_square_bar)) - (Math.pow(sum_x, 2));
+
+                    var BValue = y1 / y2;
+
+                    var R1 = N * (y_square_bar) - (Math.pow(sum_y, 2));;
+                    var R2 = y2 * R1;
+                    var R3 = Math.abs(R2);
+                    var R4 = Math.sqrt(R3);
+                    var R_SquareValue = y1 / R4;
+                    document.getElementById('bValue').innerHTML = BValue.toFixed(4);
+                    document.getElementById('aValue').innerHTML = AValue.toFixed(4);
+                    document.getElementById('rSqure').innerHTML = R_SquareValue.toFixed(4);
+
+                    for (var i = 1; i <= counter; i++) {
+
+                        var TTval = AValue + (BValue * i);
+
+                        TrendLine.push(TTval.toFixed(2));
+
+                    }
+
+                    var Cat_new = [];
+                    var arr = [];
+                    var Chart2Categories = [];
+                    var chart2Year_Wise = [];
+                    var colors = ['#4E3C39', '#414E39', '#EC3D0E ', '#180CF6 ', '#D3F60C'];
+                    for (var i = 0; i < years.length; i++) {
+                        for (var j = 0; j < YEARWISECAT.length; j++) {
+                            var a = YEARWISECAT[j].split('_');
+                            var c = a[0];
+
+                            if (jQuery.inArray(c, Chart2Categories) == -1) {
+                                Chart2Categories.push(c);
+                            }
+                            var dd = parseInt(a[1]);
+                            if (dd == years[i]) {
+                                arr.push(YEARWISEDATA[j]);
+                            }
+
+                        }
+                        chart2Year_Wise.push({ name: "20" + years[i], data: arr, color: colors[i] });
+                        arr = [];
+                    }
+
+
+                    $("#chart").kendoChart({
+                        title: {
+                            text: "Ground Water Levels",
+                            padding: {
+                                top: 10,
+                                left: -100
+
+                            }
+                        },
+                        legend: {
+                            position: "bottom"
+                        },
+                        chartArea: {
+                            background: ""
+                        },
+                        seriesDefaults: {
+                            type: "line",
+                            style: "smooth"
+                        },
+                        series: [{
+                            name: "Trend",
+                            color: "green",
+                            markers: {
+                                size: 0
+                            },
+                            dashType: "dash",
+                            data: TrendLine
+                        }, {
+                            name: "Ground Water Level Data Monthly Wise",
+                            color: "blue",
+                            data: YEARWISEDATA
+                        }],
+                        valueAxis: {
+                            title: {
+                                text: "Ground Water Level(m bgl)",
+
+                            },
+                            reverse: true,
+                            axisCrossingValue: [10000],
+                            //reverse: true,
+                            labels: {
+                                visible: true,
+                                format: "{0}"
+                            },
+                            line: {
+                                visible: false
+                            },
+
+                        },
+                        categoryAxis: {
+
+                            categories: YEARWISECAT,
+                            position: "bottom",
+                            majorGridLines: {
+                                visible: false
+                            },
+                            labels: {
+                                rotation: "auto"
+                            }
+                        },
+                        tooltip: {
+                            visible: true,
+                            format: "{0}",
+                            template: "#= series.name #: #= value #"
+                        }
+
+                    });
+
+
+
+
+
+                }
+
+
+        // Rainfall Data Chart
+
+        var RainfallData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.RaindeviationData1));
+                if (RainfallData.length != 0) {
+                    var data = RainfallData[0];
+                    const allMonths = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+                    const years = [14, 15, 16, 17, 18];
+                    var TrendLine = [];
+                    var YEARWISECAT = [];
+                    var YEARWISEDATA = [];
+                    for (var i = 0; i < years.length; i++) {
+                        for (var j = 0; j < allMonths.length; j++) {
+                            var year_month = allMonths[j] + '_' + years[i];
+                            var year_month1 = allMonths[j] + '_' + years[i + 1];
+                            var year_month2 = allMonths[j] + '_' + years[i + 2];
+                            var year_month3 = allMonths[j] + '_' + years[i + 3];
+                            var year_month4 = allMonths[j] + '_' + years[i + 4];
+                            // var year_month3=allMonths[j] + '_' + years[i + 4];
+                            var year_month17 = allMonths[j] + '_' + years[i - 1];
+
+                            if (years[i] == 18 && data[year_month] != "NULL" && data[year_month] != "0") {
+                                YEARWISEDATA.push(data[year_month]);
+                                YEARWISECAT.push(year_month);
+                            }
+                            else {
+                                if (i == 4) {
+                                    if (data[year_month17] != "NULL" && data[year_month17] != "0") {
+                                        var year_month16 = allMonths[j] + '_' + years[i - 2];
+                                        var year_month15 = allMonths[j] + '_' + years[i - 3];
+                                        var year_month14 = allMonths[j] + '_' + years[i - 4];
+                                        var Avg = parseFloat(data[year_month17]) + parseFloat(data[year_month16]) + parseFloat(data[year_month15]) + parseFloat(data[year_month14]) / 4;
+                                        YEARWISEDATA.push(Avg);
+                                        YEARWISECAT.push(year_month);
+                                    }
+                                    else {
+                                        var year_month16 = allMonths[j] + '_' + years[i - 2];
+                                        if (data[year_month16] != "NULL" && data[year_month16] != "0") {
+
+                                            var year_month15 = allMonths[j] + '_' + years[i - 3];
+                                            var year_month14 = allMonths[j] + '_' + years[i - 4];
+                                            var Avg = parseFloat(data[year_month16]) + parseFloat(data[year_month15]) + parseFloat(data[year_month14]) / 3;
+                                            YEARWISEDATA.push(Avg);
+                                            YEARWISECAT.push(year_month);
+                                        }
+                                        else {
+                                            var year_month15 = allMonths[j] + '_' + years[i - 3];
+                                            if (data[year_month15] != "NULL" && data[year_month15] != "0") {
+
+
+                                                var year_month14 = allMonths[j] + '_' + years[i - 4];
+                                                var Avg = parseFloat(data[year_month15]) + parseFloat(data[year_month14]) / 2;
+                                                YEARWISEDATA.push(Avg);
+                                                YEARWISECAT.push(year_month);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (years[i] == 17 && data[year_month] != "NULL" && data[year_month] != "0") {
+                                YEARWISEDATA.push(data[year_month]);
+                                YEARWISECAT.push(year_month);
+                            }
+                            else {
+                                if (i == 3) {
+                                    if (data[year_month1] != "NULL" && data[year_month1] != "0") {
+                                        YEARWISEDATA.push(data[year_month1]);
+                                        YEARWISECAT.push(year_month);
+                                    }
+                                    else {
+                                        var year_month16 = allMonths[j] + '_' + years[i - 1];
+                                        if (data[year_month16] != "NULL" && data[year_month16] != "0") {
+
+                                            var year_month15 = allMonths[j] + '_' + years[i - 2];
+                                            var year_month14 = allMonths[j] + '_' + years[i - 3];
+                                            var Avg = parseFloat(data[year_month16]) + parseFloat(data[year_month15]) + parseFloat(data[year_month14]) / 3;
+                                            YEARWISEDATA.push(Avg);
+                                            YEARWISECAT.push(year_month);
+                                        }
+                                        else {
+                                            var year_month15 = allMonths[j] + '_' + years[i - 2];
+                                            if (data[year_month15] != "NULL" && data[year_month15] != "0") {
+
+                                                var year_month14 = allMonths[j] + '_' + years[i - 1];
+
+                                                var Avg = parseFloat(data[year_month15]) + parseFloat(data[year_month14]) / 2;
+                                                YEARWISEDATA.push(Avg);
+                                                YEARWISECAT.push(year_month);
+                                            }
+                                            else {
+                                                var year_month14 = allMonths[j] + '_' + years[i - 3];
+                                                if (data[year_month14] != "NULL" && data[year_month14] != "0") {
+
+
+                                                    YEARWISEDATA.push(data[year_month14]);
+                                                    YEARWISECAT.push(year_month);
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (years[i] == 16 && data[year_month] != "NULL" && data[year_month] != "0") {
+                                YEARWISEDATA.push(data[year_month]);
+                                YEARWISECAT.push(year_month);
+                            }
+                            else {
+                                if (i == 2) {
+                                    if (data[year_month1] != "NULL" && data[year_month1] != "0") {
+                                        YEARWISEDATA.push(data[year_month1]);
+                                        YEARWISECAT.push(year_month);
+                                    }
+                                    else if (data[year_month2] != "NULL" && data[year_month2] != "0") {
+                                        YEARWISEDATA.push(data[year_month2]);
+                                        YEARWISECAT.push(year_month);
+                                    }
+                                    else {
+                                        if (data[year_month17] != "NULL" && data[year_month17] != "0") {
+
+
+                                            var year_month14 = allMonths[j] + '_' + years[i - 2];
+                                            var Avg = parseFloat(data[year_month17]) + parseFloat(data[year_month14]) / 2;
+                                            YEARWISEDATA.push(Avg);
+                                            YEARWISECAT.push(year_month);
+                                        }
+                                        else {
+                                            var year_month14 = allMonths[j] + '_' + years[i - 2];
+                                            if (data[year_month14] != "NULL" && data[year_month14] != "0") {
+
+
+                                                // var Avg = parseFloat(data[year_month17]) + parseFloat(data[year_month14]) / 2;
+                                                YEARWISEDATA.push(data[year_month14]);
+                                                YEARWISECAT.push(year_month);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (i == 0) {
+                                if (data[year_month] != "NULL" && data[year_month] != "0") {
+                                    YEARWISEDATA.push(data[year_month]);
+                                    YEARWISECAT.push(year_month);
+                                }
+                                else if (data[year_month1] != "NULL" && data[year_month1] != "0") {
+                                    YEARWISEDATA.push(data[year_month1]);
+                                    YEARWISECAT.push(year_month);
+                                }
+                                else if (data[year_month2] != "NULL" && data[year_month2] != "0") {
+                                    YEARWISEDATA.push(data[year_month2]);
+                                    YEARWISECAT.push(year_month);
+                                }
+                                else if (data[year_month3] != "NULL" && data[year_month3] != "0") {
+                                    YEARWISEDATA.push(data[year_month3]);
+                                    YEARWISECAT.push(year_month);
+                                }
+
+                                else if (data[year_month4] != "NULL" && data[year_month4] != "0") {
+                                    YEARWISEDATA.push(data[year_month4]);
+                                    YEARWISECAT.push(year_month);
+                                }
+
+                            }
+
+                            if (i == 1) {
+                                if (data[year_month] != "NULL" && data[year_month] != "0") {
+                                    YEARWISEDATA.push(data[year_month]);
+                                    YEARWISECAT.push(year_month);
+                                }
+                                else if (data[year_month1] != "NULL" && data[year_month1] != "0") {
+                                    YEARWISEDATA.push(data[year_month1]);
+                                    YEARWISECAT.push(year_month);
+                                }
+                                else if (data[year_month2] != "NULL" && data[year_month2] != "0") {
+                                    YEARWISEDATA.push(data[year_month2]);
+                                    YEARWISECAT.push(year_month);
+                                }
+                                else if (data[year_month3] != "NULL" && data[year_month3] != "0") {
+                                    YEARWISEDATA.push(data[year_month3]);
+                                    YEARWISECAT.push(year_month);
+                                }
+                                else {
+                                    if (data[year_month17] != "NULL" && data[year_month17] != "0") {
+                                        YEARWISEDATA.push(data[year_month17]);
+                                        YEARWISECAT.push(year_month);
+                                    }
+                                }
+
+                            }
+
+
+
+                        }
+                    }
+
+
+
+                    var sum_x = 0, sum_y = 0, counter = 0, xy_bar = 0, x_square_bar = 0, y_square_bar = 0;
+
+                    for (var l = 0; l < YEARWISEDATA.length; l++) {
+                        counter = l + 1;
+                        sum_x += counter;
+                        sum_y += parseFloat(YEARWISEDATA[l]);
+                        y_square_bar += Math.pow(parseFloat(YEARWISEDATA[l]), 2);
+
+                        xy_bar += counter * parseFloat(YEARWISEDATA[l]);
+                        x_square_bar += Math.pow(counter, 2);
+
+                    }
+
+                    var N = YEARWISEDATA.length;
+                    var x1 = (sum_y * x_square_bar) - (sum_x * xy_bar);
+                    var x2 = (N * (x_square_bar)) - (Math.pow(sum_x, 2));
+                    var AValue = x1 / x2;
+
+                    var y1 = (N * (xy_bar)) - (sum_x * sum_y);
+                    var y2 = (N * (x_square_bar)) - (Math.pow(sum_x, 2));
+
+                    var BValue = y1 / y2;
+
+                    var R1 = N * (y_square_bar) - (Math.pow(sum_y, 2));;
+                    var R2 = y2 * R1;
+                    var R3 = Math.abs(R2);
+                    var R4 = Math.sqrt(R3);
+                    var R_SquareValue = y1 / R4;
+                    document.getElementById('RbValue').innerHTML = BValue.toFixed(4);
+                    document.getElementById('RaValue').innerHTML = AValue.toFixed(4);
+                    document.getElementById('RrSqure').innerHTML = R_SquareValue.toFixed(4);
+
+                    for (var i = 1; i <= counter; i++) {
+
+                        var TTval = AValue + (BValue * i);
+
+                        TrendLine.push(TTval.toFixed(2));
+
+                    }
+
+
+                    var chartHeight = data.length * 50;
+                    $("#Rainfall_Chart").css("height", chartHeight);
+
+
+                    $("#Rainfall_Chart").kendoChart({
+                        title: {
+                            text: "Rainfall Data Monthly Wise",
+                            padding: {
+                                top: 10,
+                                left: -100
+
+                            }
+                        },
+                        legend: {
+                            position: "bottom"
+                        },
+                        chartArea: {
+
+                            background: ""
+                        },
+                        seriesDefaults: {
+                            type: "line",
+                            style: "smooth"
+                        },
+                        series: [{
+                            name: "Trend",
+                            color: "green",
+                            markers: {
+                                size: 0
+                            },
+                            dashType: "dash",
+                            data: TrendLine
+                        }, {
+                            name: "Rainfall Data",
+                            color: "blue",
+                            data: YEARWISEDATA
+                        }],
+                        valueAxis: {
+                            title: {
+                                text: "Rainfall Data(mm)",
+
+                            },
+                            //reverse: true,
+                            //axisCrossingValue: [10000],
+                            //reverse: true,
+                            labels: {
+                                visible: true,
+                                format: "{0}"
+                            },
+                            line: {
+                                visible: false
+                            },
+
+                        },
+                        categoryAxis: {
+
+                            categories: YEARWISECAT,
+                            position: "bottom",
+                            majorGridLines: {
+                                visible: false
+                            },
+                            labels: {
+                                rotation: "auto"
+                            }
+                        },
+                        tooltip: {
+                            visible: true,
+                            format: "{0}",
+                            template: "#= series.name #: #= value #"
+                        }
+
+                    });
+                }
+
+    }
+</script>
+
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.3.917/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.3.917/styles/kendo.black.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.3.917/styles/kendo.black.mobile.min.css" />
+
+<script src="https://kendo.cdn.telerik.com/2019.3.917/js/kendo.all.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script type="text/javascript">
+
+    $("#download").click(function () {
+
+        $("#download").hide();
+
+        html2canvas(document.querySelector("#Data1")).then(canvas => {
+            var dataURL = canvas.toDataURL();
+            var pdf = new jsPDF();
+            pdf.addImage(dataURL, 'JPEG', 20, 20, 180, 300); //addImage(image, format, x-coordinate, y-coordinate, width, height)
+            pdf.save("Ground Water Level Deviation Data.pdf");
+        });
+        $("#download").show();
+    });
+
+
+</script>
+<script>
+    $(function () {
+        var locate = window.location;
+        if (locate = "~/Report/ReportGWB#reportgroundwatermonitoring") {
+            $('.hidediv').show();
+
+        }
+
+    });
+</script>
+
+<script>
+    function ApproveGWL() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/ApproveGWL",
+            data: "",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+            }
+        });
+    }
+    function RejectGWL() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Admin/RejectGWL",
+            data: "",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

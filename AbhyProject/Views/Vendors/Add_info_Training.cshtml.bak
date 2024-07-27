@@ -1,0 +1,509 @@
+﻿@model IEnumerable<AbhyProject.Models.Abhy_Training_Workshops>
+
+@{
+    ViewBag.Title = "Add_info_Training";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<title> Training/Workshop Registration Form</title>
+<script src="~/Content/JS_Files/training_workshop.js"></script>
+<script src="~/Content/JS_Files/Master_DRP.js"></script>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        .table_tender_pdf tr th {
+            background-color: #337ab7;
+            color: #fff;
+        }
+
+        .g-brd-gray-light-v4 {
+            border-color: #72c02c78 !important;
+        }
+
+        .cf-99 {
+            text-align: center;
+            /*height: 137px;
+            margin-bottom: 20px;*/
+            color: #337ab7;
+        }
+
+            .cf-99 > h1 {
+                padding: 25px;
+                font-size: 29px;
+                color: #337ab7;
+                padding-right: 38px;
+            }
+
+        label.col-md-1 {
+            padding: 10px;
+        }
+
+        .cc-99 {
+            border: none;
+        }
+
+            .cc-99 > label {
+                margin-top: 25px;
+                margin-bottom: 15px;
+                font-weight: bold;
+                color: #000;
+                font-size: 17px;
+            }
+
+        h6 {
+            color: #1f223e;
+            font-family: inherit;
+            font-weight: 500;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .anchorlinktraining {
+            font-size: 1.8rem !important;
+        }
+
+        .justify-content-between {
+            -ms-flex-pack: justify !important;
+            justify-content: space-between !important;
+        }
+
+        @@media (min-width: 992px) {
+            .d-lg-flex {
+                display: flex !important;
+            }
+
+            .g-mr-30 {
+                margin-right: 2.14286rem !important;
+            }
+
+            .g-mr-5 {
+                margin-right: 0.35714rem !important;
+            }
+        }
+    </style>
+    <style>
+        .form-group .form-control {
+            margin-top: 5px;
+        }
+
+        .refreshicon {
+            position: relative;
+            right: 21px;
+            top: -12px;
+        }
+
+        .btn-success,
+        .btn-danger {
+            float: none;
+            right: 0px;
+            width: 100px;
+        }
+
+        .msg {
+            color: red !important;
+            font-weight: bold;
+        }
+
+        .body {
+            font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        }
+
+        .hpanel .panel-body {
+            background: #fff;
+            border: 1px solid #e4e5e7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+            border: 2px solid #ced4da;
+        }
+
+        .hpanel {
+            border: none !important;
+            box-shadow: none;
+            margin-bottom: 25px;
+        }
+
+        .col-md-12 {
+            font-size: 16px;
+        }
+
+        .about-area .col-md-6 img {
+            margin-top: 0px;
+        }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        .refreshicon {
+            position: relative;
+            right: 21px;
+            top: -12px;
+        }
+
+        .highlight {
+            color: red;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.95;
+            visibility: visible;
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+
+        .loading-inactive {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="loading-container">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+        </div>
+    </div>
+    <div class="ss">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 25px; text-align:center; font-family:raleway;margin-top:20px;font-weight:900">Training/Workshop Registration Form</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+
+            <div class="content">
+                <div class="col-lg-12" style="background-color:#fff;">
+                    <div class="hpanel">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12 text-right msg">
+                                    * Fields are mandatory
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <section class="content-header">
+                                    </section>
+                                    <div class="hpanel hgreen">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    Name of Event/training : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <select class="form-control" id="p_training_name" name="p_training_name" required="required" onchange="Event_Checking()"></select>    @*//latest abhi*@
+                                                    @*<input type="text" class="form-control alpha" id="p_training_name" name="p_training_name" required="required" placeholder="Enter your Name of training" />*@
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    State (Event/training) : <span class="msg">*</span>
+                                                    <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" class="form-control alphaspecial" id="drpstate" name="drpstate" readonly placeholder="State" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    District (Event/training) : <span class="msg">*</span>
+                                                    <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" class="form-control alphaspecial" id="drpdistrict" name="drpdistrict" readonly placeholder="District" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Block (Event/training) : <span class="msg">*</span>
+                                                    <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" class="form-control alphaspecial" id="drpblock" name="drpblock" readonly placeholder="Block" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Name of the Participant : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" id="p_name" name="p_name" class="form-control alpha" required="required" placeholder="Enter your Name of the participant" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Gender : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <select class="form-control" id="p_gender" name="p_gender">
+                                                        <option value="0">Select Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                        <option value="Transgender">Transgender</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Age : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="tel" id="p_age" name="p_age" class="form-control decimal" maxlength="2" required="required" placeholder="Enter your Age " />
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    Occupation : <span class="msg">*</span>
+                                                    <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" class="form-control alphaspecial" id="p_occupation" name="p_occupation" required="required" placeholder="Enter your Occupation" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Qualification : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" class="form-control alphanumspecial" id="p_qual" name="p_qual" required="required" placeholder="Enter your Qualification" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Phone No. : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="tel" class="form-control integer" maxlength="10" id="p_phoneno" name="p_phoneno" required="required" placeholder="Enter your Phone no." />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Email Id : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" class="form-control alphanumspecial" id="p_emailid" name="p_emailid" required="required" placeholder="Enter your Email" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Participant Address : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <textarea rows="1" id="p_address" name="p_address" class="form-control alphanumspecial" placeholder="Enter your Address"></textarea>
+                                                </div>
+                                                @*<div class="form-group col-md-6">
+                                                        State : <span class="msg">*</span>
+                                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                        <select name="p_state_name" id="p_state_name" class="form-control" onchange="NewReg_State_Chnage()">
+                                                            <option value="0">Select State Name</option>
+                                                            <option value="Gujarat">Gujarat</option>
+                                                            <option value="Haryana">Haryana</option>
+                                                            <option value="Maharashtra">Maharashtra</option>
+                                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                            <option value="Karnataka">Karnataka</option>
+                                                            <option value="Rajasthan">Rajasthan</option>
+                                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                            <option value="Other">Other</option>
+
+                                                        </select>
+                                                        <input type="text" class="form-control" id="p_other_state_name" name="p_other_state_name" required="required" placeholder="Enter your State" />
+
+
+                                                    </div>*@
+
+
+                                                <!--<div class="form-group col-md-6">
+
+                                                State : <span class="msg">*</span>
+                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>-->
+                                                @*<select name="drpstate" id="drpstate" class="form-control" onchange="district()">
+                                                    </select>*@
+
+                                                <!--</div>
+
+                                                <div class="form-group col-md-6">
+
+                                                    District : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>-->
+                                                @*<select name="drpdistrict" id="drpdistrict" class="form-control" onchange="block()">
+                                                    </select>*@
+
+                                                <!--</div>
+
+                                                <div class="form-group col-md-6">
+
+                                                    Block : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>-->
+                                                @*<select name="drpblock" id="drpblock" class="form-control" onchange="grampanchayat()">
+                                                    </select>*@
+
+                                                <!--</div>-->
+
+                                                <div class="form-group col-md-6">
+                                                    Participant State : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <select name="parti_state" id="parti_state" onchange="ddlother()" class="form-control">
+                                                        <option value="0">Select State Name</option>
+                                                        <option value="NPMU(DELHI)">NPMU(DELHI)</option>
+                                                        <option value="Gujarat">Gujarat</option>
+                                                        <option value="Haryana">Haryana</option>
+                                                        <option value="Maharashtra">Maharashtra</option>
+                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                        <option value="Karnataka">Karnataka</option>
+                                                        <option value="Rajasthan">Rajasthan</option>
+                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                        <option value="Other">Other</option>
+
+                                                    </select>
+                                                    @*<input type="text" class="form-control" id="p_other_state_name" name="p_other_state_name" required="required" placeholder="Enter your State" />*@
+
+
+                                                </div>
+                                                <div class="form-group col-md-6" id="ddlother">
+                                                    Participant State (Other) : <span class="msg">*</span>
+                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+
+                                                    <input type="text" class="form-control" id="p_other_state_name" name="p_other_state_name" required="required" placeholder="Enter your State Other" />
+
+
+                                                </div>
+
+
+
+
+
+                                                <!--<div class="form-group col-md-4 text-right">-->
+                                                @*<img src="/Contact/GetCaptchaImage" id="captchaimg" class="" title="Captcha" style="" />*@
+                                                <!--<img src="@Url.Action("Reg_GetCaptchaImage","Home")" id="captchaimg" style="margin-right: 175px; margin-bottom: -189px;" />
+
+                                                </div>-->
+                                                <div class="form-group col-md-4">
+                                                    <img src="@Url.Action("Reg_GetCaptchaImage","Home")" id="captchaimg" style="margin-left: -147px; margin-bottom: -202px;" />
+                                                    <span class="refreshicon"><i class="fa fa-refresh" style="margin-left: 433px;margin-top: 31px;position: relative;top: 66px;right: 431px;" onclick="refress1()"></i></span>
+                                                    <span id="Grv_captcha" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                </div>
+                                                <div class="form-group col-md-4 " style="margin-left: 679px;">
+                                                    <input type="text" class="form-control" name="clientCaptcha" id="clientCaptcha" placeholder="Type the text" style=" margin-left: -184px; " required />
+                                                </div>
+                                                <div class="col-md-12 text-center">
+                                                    <p id="status" class="error_captch" style="font-weight:bold;color:red;margin-bottom:0px;"></p>
+                                                </div>
+
+                                                <div class="form-group col-md-12 text-center mt-3">
+                                                    <button type="button" name="" value="Save" onclick="Save_NewRegs_Training_Info()" class="btn btn-success btn-sm ">Submit</button>
+                                                </div>
+
+                                                <div class="col-md-12 text-center">
+                                                    <p id="reg_msg" class="" style="font-weight:bold;color:forestgreen;margin-bottom:10px;"></p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="container">
+            <div class="col-md-12">
+                <div class="tbl-responsive" style="height:400px;">
+                    <table id="example" class=" display  table stripe row-border order-column table-striped table-bordered dataTable no-footer table_tender_pdf">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S.No</th>
+                                <th class="text-center">Name of the participant</th>
+                                <th class="text-center">Gender </th>
+                                <th class="text-center">Age </th>
+                                <th class="text-center">Occupation</th>
+                                <th class="text-center">Qualification</th>
+                                <th class="text-center">Phone no. </th>
+                                <th class="text-center">Email id </th>
+                                <th class="text-center">Address</th>
+                                <th class="text-center">State</th>
+                                <th class="text-center">Name of Event/training</th>
+                            </tr>
+                        </thead>
+                        <tbody id="Newregs_Training_Workshop">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>*@
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/validations.js"></script>
+@*<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>*@
+
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:first-child ").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(5) > ul.dropdown > li:first-child ").siblings().removeClass('active');
+
+    $(document).ready(function () {
+        $('#ddlother').hide();
+        Get_Newregs_Training_Info11();
+        Get_Training_Working_Events_Info();
+        $(".loader").hide();
+
+    });
+
+
+    function refress1() {
+        $('#captchaimg').attr('src', $('#captchaimg').attr('src') + '#');
+    }
+
+
+    function Event_Checking() {
+        /*alert('ok');*/
+        debugger;
+        var p_training_name = $("#p_training_name option:selected").text();
+
+        $.ajax({
+
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/MasterDropDown/Training_Reg_Data_Checking',
+            data: { TopicEvent: p_training_name },
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/WspNew/WSP_GWM_HOME";
+
+                }
+
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        debugger;
+                        /*$("#p_training_name").val(data[i].p_training_name);*/
+                        //$("#type_event").val(data[i].type_of_event);
+                        //$("#loc_expo").val(data[i].location_expo);
+                        //$("#parti_expo").val(data[i].particular_expo);
+                        $("#drpstate").val(data[i].level_event);
+                        $("#drpdistrict").val(data[i].district);
+                        $("#drpblock").val(data[i].block);
+                        //$("#event_platform").val(data[i].event_platform);
+                        //$("#from_date").val(data[i].from_date);
+                        //$("#to_date").val(data[i].to_date);
+                    }
+
+                }
+
+            }
+        });
+    }
+
+
+    function ddlother() {
+        var state = $('#parti_state').val();
+
+        if (state == 'Other') {
+            $('#ddlother').show();
+        }
+        else {
+            $('#ddlother').hide();
+        }
+    }
+
+</script>

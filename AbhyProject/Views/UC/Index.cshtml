@@ -1,0 +1,262 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/all_scripts/dataTables.bootstrap.min.js"></script>
+
+<style>
+    .maindiv {
+        width: 100%;
+        margin: auto;
+    }
+
+    .dataTables_length {
+        display: flex !important;
+    }
+
+    .table-responsive {
+        overflow-x: inherit;
+    }
+
+    .clearfix:after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
+    .classic-title {
+        margin: 0 0 16px 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid mediumblue;
+        font-weight: 600;
+        line-height: 1.5em;
+    }
+
+    .panel-group > .panel {
+        -webkit-border-radius: 6px;
+        border: 1px solid #e8e8e8;
+        margin: 5px 0;
+    }
+
+    /*.panel-group > .panel-heading {
+        background-color: #ffad33;
+        padding: 0px;
+    }*/
+
+    .panel-title > a {
+        position: relative;
+        display: block;
+        color: #444 !important;
+        background-color: #fff;
+        padding: 10px 21px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .form-inline {
+        display: block !important;
+    }
+
+    .text-info {
+        color: mediumblue;
+    }
+
+    .panel-title > a > .control-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -11px;
+    }
+
+    .panel-title > a > i {
+        font-size: 1.2em;
+        padding-right: 5px;
+    }
+
+    .fade {
+        opacity: unset;
+    }
+
+
+    .dataTables_filter, .dataTables_paginate {
+        float: right;
+    }
+
+    .dataTables_info {
+        margin-bottom: 20px;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 8px 15px !important;
+        margin-bottom: -1px;
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .panel-inner > ul.list-group > li.list-group-item > a {
+        color: #3a99ed !important;
+    }
+
+        .panel-inner > ul.list-group > li.list-group-item > a:hover {
+            color: #6FB11D !important;
+        }
+
+    span.tablecellhead {
+        font-size: 15px;
+        font-weight: bold;
+        color: mediumblue;
+    }
+
+    .dataTables_empty {
+        text-align: center;
+    }
+
+    .list_table_function {
+        float: none;
+        width: 93%;
+        margin-left: 13px;
+        background: none !important;
+    }
+
+    .cricle_round {
+        background: #30abec;
+        color: white;
+        font-size: 13px;
+        border-radius: 100%;
+        font-weight: bold;
+        padding: 4px;
+        margin: -6px;
+        width: 26px;
+        height: 24px;
+        text-align: center
+    }
+
+    .card-header h5 {
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .accordion .card-body {
+        padding: 0px !important;
+    }
+
+    .list-group {
+        display: inherit !important;
+        padding: 10px 0px 10px 0px;
+    }
+</style>
+
+<div class="container-fluid">
+
+    <div style="font-weight:bold; margin-top:10px; margin-bottom:10px;"><h4>User Credentials</h4></div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" id="Input" placeholder="--Input For Search--" oninput="SearchByInput()" />
+                    </td>
+                    <td>
+                        <select class="form-control" id="ColumnName">
+                            <option value="Gram Panchayat Name">Gram Panchayat Name</option>
+                            <option value="Email">Email</option>
+                        </select>
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <table class="table table-bordered dataTable">
+        <thead>
+            <tr>
+                <th>SN.</th>
+                <th>State</th>
+                <th>District</th>
+                <th>Block</th>
+                <th>GP</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Nodal Officer</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.UCList != null)
+            {
+                int SR = Convert.ToInt32(Session["Count"]);
+                foreach (var item in ViewBag.UCList)
+                {
+                    <tr>
+                        @*<td>@SR</td>*@
+                        <td>@item.UserId</td>
+                        <td>@item.StateName</td>
+                        <td>@item.DistrictName</td>
+                        <td>@item.BlockName</td>
+                        <td>@item.GramPanchayatName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Villagename</td>
+                        <td>@item.NodalOfficer</td>
+                        <td>@item.Verifiedornot</td>
+                        <td>
+                            @if (item.Verifiedornot == "False")
+                            {
+                                <a href="@Url.Action("Approve", "UC", new { UserId=item.UserId })" class="btn btn-success">Approve</a>
+                            }
+                            else
+                            {
+                                <span style="color:forestgreen; font-weight:bold">Approved</span>
+                            }
+                        </td>
+                    </tr>
+                    SR++;
+                }
+            }
+        </tbody>
+    </table>
+
+    <div style="margin-bottom:15px; float:right">
+        @if (Convert.ToInt32(Session["StartingPoint"]) > 0)
+        {
+            <a href="@Url.Action("Index", "UC", new { Step="Previous" })" class="btn btn-primary">Previous</a>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "UC", new { Step="Previous" })" class="btn btn-primary" style="pointer-events:none;cursor:default;opacity:0.6;">Previous</a>
+        }
+        &nbsp;<a href="@Url.Action("Index", "UC", new { Step="Next" })" class="btn btn-primary">Next</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var msg = "@TempData["Message"]";
+        if (msg != "") {
+            alert(msg);
+        }
+    });
+
+    function SearchByInput() {
+        var Input = $('#Input').val();
+        var ColumnName = $('#ColumnName').val();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/UC/Index",
+            data: '{"Input": "' + Input + '","ColumnName": "' + ColumnName + '"}',
+            success: function (data) {
+            }
+        })
+    }
+</script>
+

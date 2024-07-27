@@ -1,0 +1,294 @@
+﻿@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Atal Jal Validation</title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.15/"></script>
+    
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/SceneView",
+            "esri/layers/GraphicsLayer",
+            "esri/Graphic",
+            // "esri/geometry/Polygon",
+            "esri/layers/FeatureLayer",
+            "esri/widgets/BasemapGallery",
+            "esri/widgets/Expand",
+            "esri/widgets/Home",
+            "esri/WebScene"
+
+        ], function (Map, MapView, GraphicsLayer, Graphic,
+            // Polygon,
+            FeatureLayer, BasemapGallery, Expand, Home, WebScene) {
+
+
+            const labelClass = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",  // autocasts as new TextSymbol()
+                    color: "blue",
+                    //   haloColor: "black",
+                    //   haloSize: 1,
+                    font: {  // autocast as new Font()
+                        "family": "Avenir Next LT Pro Medium",
+                        "style": "normal",
+                        "weight": "bold",
+                        size: 9,
+                    }
+                },
+                labelPlacement: "always-horizontal",
+                labelExpressionInfo: {
+                    expression: "$feature.gp_name"
+                },
+                maxScale: 0,
+                minScale: 90000,
+                // where: "Conference = 'AFC'"
+            };
+
+            const GPLayer = new FeatureLayer({
+                url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/GramPanchayat_ST/MapServer/0",
+                title: "Gram Panchayat",
+                minScale: 6650000,
+                labelingInfo: [labelClass],
+                renderer: {
+                    type: "simple",
+                    symbol: {
+                        type: "simple-fill",
+                        color: null,
+                        outline: {
+                            width: 1.5,
+                            color: "blue"
+                        }
+                    }
+                },
+
+                popupTemplate: {
+
+                    title: "Gram Panchayat :- {gp_name}",
+
+
+                    content: [
+                        {
+
+
+                            type: "fields",
+                            fieldInfos: [
+                                {
+                                    fieldName: "gp_name",
+                                    visible: true,
+                                    label: "Gram Panchayat",
+                                    format: {
+                                        places: 0,
+                                        digitSeparator: true
+                                    }
+                                },
+
+
+                                {
+                                    fieldName: "bloc_name",
+                                    visible: true,
+                                    label: "Block Name"
+                                },
+
+                                {
+                                    fieldName: "dist_name",
+                                    visible: true,
+                                    label: "District Name"
+                                },
+
+                                {
+                                    fieldName: "st_name",
+                                    visible: true,
+                                    label: "State Name"
+                                },
+
+                                {
+                                    fieldName: "count_vill",
+                                    visible: true,
+                                    label: "Count_of_Villages_Under_GPs"
+                                },
+                            ]
+                        },
+
+
+
+                    ]
+                },
+
+
+                outFields: ["*"],
+
+
+            });
+
+
+            var map = new Map({
+                basemap: "topo-vector",
+                layers: [GPLayer]
+            });
+
+
+            // We have to add here dynamic value of longitude and latitude here
+            // longi is Longitude
+            //lati is Latitude
+
+            var longi = @ViewBag.longitude;
+            var lati = @ViewBag.latitude;
+
+            var mapView = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [longi, lati], // longitude, latitude
+                zoom: 14,
+                //         highlightOptions: {
+                //     color: "orange"
+                // },
+                popup: {
+                    dockEnabled: true,
+                    dockOptions: {
+                        buttonEnabled: false,
+                        breakpoint: false
+                    }
+                },
+            });
+
+            var graphicsLayer = new GraphicsLayer();
+
+            // var a=72
+            // var b=23
+
+
+            const point = { type: "", longitude: longi, latitude: lati };
+            const pointPicture = { type: "point", longitude: longi, latitude: lati };
+
+            const simpleMarkerSymbol = { type: "simple-marker", color: [226, 119, 40] };
+
+
+            const pictureSymbol = {
+                type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                url: "https://static.vecteezy.com/system/resources/previews/016/314/913/original/current-location-logo-world-map-location-logo-sign-map-graphic-free-png.png",
+                width: "40px",
+                height: "40px"
+            };
+
+            var pointGraphic = new Graphic({ geometry: point, symbol: simpleMarkerSymbol });
+            var pointPictureGraphic = new Graphic({ geometry: pointPicture, symbol: pictureSymbol });
+
+            graphicsLayer.add(pointGraphic);
+            graphicsLayer.add(pointPictureGraphic);
+
+
+            map.add(graphicsLayer);
+
+            mapView.when(function () {
+                // console.log("Map is ready")
+            }, function (error) {
+                // This function will execute if the promise is rejected due to an error
+            });
+
+            mapView.watch('extent', getProjection)
+
+            function getProjection(camera) {
+                // console.log("getProjection: started")
+                if (camera.extent.xmin == undefined)
+                    return;
+
+                const initialExtent = mapView.extent;
+
+                const webMercatorUtils = require("esri/geometry/support/webMercatorUtils");
+                // console.log("getProjection: webMercatorUtils = " + webMercatorUtils)
+                const nePoint = webMercatorUtils.xyToLngLat(initialExtent.xmin, initialExtent.ymin)
+                const swPoint = webMercatorUtils.xyToLngLat(initialExtent.xmax, initialExtent.ymax)
+
+                // console.log("Map projection north east point is: " + nePoint)
+                // console.log("Map projection south west point is: " + swPoint)
+            }
+
+
+
+
+            //*** Add div element to show coordates ***//
+            var coordsWidget = document.createElement("div");
+            coordsWidget.id = "coordsWidget";
+            coordsWidget.className = "esri-widget esri-component";
+            coordsWidget.style.padding = "7px 15px 5px";
+            mapView.ui.add(coordsWidget, "bottom-right");
+
+            //*** Update lat, lon, zoom and scale ***//
+            function showCoordinates(pt) {
+                var coords = "Latitude is:=> " + pt.latitude.toFixed(6) + " " + "&" + " " + "Longitude is:=>" + pt.longitude.toFixed(6) +
+                    " | Scale 1:" + Math.round(mapView.scale * 1) / 1 +
+                    " | Zoom " + Math.round(mapView.zoom * 1) / 1;
+                coordsWidget.innerHTML = coords;
+            }
+
+            //*** Add event and show center coordinates after the view is finished moving e.g. zoom, pan ***//
+            mapView.watch(["stationary"], function () {
+                showCoordinates(mapView.center);
+            });
+
+            //*** Add event to show mouse coordinates on click and move ***//
+            mapView.on(["pointer-down", "pointer-move"], function (evt) {
+                showCoordinates(mapView.toMap({ x: evt.x, y: evt.y }));
+            });
+
+
+
+
+            const homeBtn = new Home({
+                view: mapView
+            });
+
+            mapView.ui.add(homeBtn, "top-left");
+
+
+            const basemapGallery = new BasemapGallery({
+                view: mapView,
+                container: document.createElement("div")
+            });
+            const bgExpand = new Expand({
+                view: mapView,
+                content: basemapGallery
+            });
+            basemapGallery.watch("activeBasemap", () => {
+                const mobileSize =
+                    mapView.heightBreakpoint === "xsmall" ||
+                    mapView.widthBreakpoint === "xsmall";
+
+                if (mobileSize) {
+                    bgExpand.collapse();
+                }
+            });
+
+
+            mapView.ui.add(bgExpand, "top-left");
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>
+

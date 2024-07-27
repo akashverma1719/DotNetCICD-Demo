@@ -1,0 +1,286 @@
+﻿
+@{
+    ViewBag.Title = "Gwm_Groundwater_Quantity";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/Gwm_css.css" rel="stylesheet" />
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/css/Js_gwm.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<title>Ground Water Quantity</title>
+<div class="clearfix mainclearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+                        <li>
+                            <span>
+                                <a href="http://ataljal.mowr.gov.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                        @if (Session["UserName"] != null)
+                        {
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                        }
+
+                    </li>
+                    <li>
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-9" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" />
+                            </span>
+                            <label>Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/GroundWaterMonitoring/Gwm_Home">
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                            <label>GWM Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/GroundWaterMonitoring/Gwm_Ground_Water_Monitoring">
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" /></span>
+                            <label>Ground Water Monitoring <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+
+                    <li>
+                        <span><img src="~/Content/WspImages/Water Budgeting 2.png" title="GWB"></span>
+                        <label>Ground Water Quantity</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul id="myTabs" class="nav nav-pills nav-justified">
+                    <li class="active">
+                        <a href="Javascript:;">
+                            <span> <img src="~/Content/WspImages/draft new 1.png" /></span>Ground Water Quantity
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="col-md-12 col-sm-12">
+        <div class="clearfix" id="Select_dist_level">
+            <ul class="Select_option selectbackhome text-center">
+                <li>
+                    <label id="lblstate">State:</label>
+                    <span id="spnstate">@Session["gstate"]</span>
+                </li>
+                <li>
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label id="lbldistrict">District:</label>
+                    <span id="spndistrict">@Session["gdist"]</span>
+                </li>
+                <li>
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Block:</label>
+                    <span>@Session["gblock"] </span>
+                </li>
+                <li>
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Gram panchayat:</label>
+                    <span>@Session["ggram"]</span>
+                </li>
+            </ul>
+            <ul class="selectbackhome" style="float:right;">
+                <li>
+                    <a href="~/GroundWaterMonitoring/Gwm_Home" class="btn btn-success">
+                        Back To GWM Home
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div role="tabpanel" class="tab-pane fade in active" id="Events">
+            <div class="container-fluid">
+                <div class=" col-md-12 col-sm-12">
+                    <div class="clearfix">
+                        <div class="col-md-4 col-sm-4" style="padding:0px;">
+                            <img src="~/Content/WspImages/groundwater_quantity final.png" style=" width:100%" />
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <div class="GroundWaterScenario_div">
+                                Ground Water Scenario
+                            </div>
+                            <div class="col-md-9 col-sm-12">
+                                <ul class="Ground_water_List">
+                                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                                    {
+                                        <li>
+                                            <label>Location:</label>
+                                            <span style="text-transform:capitalize;">@Session["gstate"].ToString()</span>
+                                        </li>
+                                        <li>
+                                            <label>Block:</label>
+                                            <span style="text-transform:capitalize;" name="block" id="block">@Session["gblock"].ToString()</span>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <label>Location:</label>
+                                        </li>
+                                        <li>
+                                            <label style="text-transform:capitalize;">Block:</label>
+                                            <span name="block" id="block"></span>
+                                        </li>
+
+                                    }
+
+                                    <li>
+                                        <label>Block Area(sq.km.):</label>
+                                        <span name="Block_area" id="Block_area"></span>
+                                    </li>
+                                </ul>
+                               
+                                <ul class="Ground_water_List">
+                                    <li>
+                                        <label>
+                                            Annual Extractable GW Resource(Ham) :
+                                        </label>
+                                        <span name="Annual_GW_Avalibility" id="Annual_GW_Avalibility"></span>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            Total Extraction(Ham):
+                                        </label>
+                                        <span name="Annual_GW_Withdrawal" id="Annual_GW_Withdrawal"></span>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            Stage of GW Extraction (%):
+                                        </label>
+                                        <span name="Stage_of_GW_Development" id="Stage_of_GW_Development"></span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="col-md-3 col-sm-12" id="Ground_water_List_Images">
+            <label name="safe" id="safe" hidden></label>
+            <img src="~/Content/WspImages/Safe zone with bol (1).png" Safe with text.png"alt="SAFE" style="display:none; width:275px; padding:10px 0px 0px 0px;" id="safeimg" name="safeimg" />
+            <img src="~/Content/WspImages/Over exploited zone.png" alt="OVER_EXPLOITED" style="display:none;width:275px;padding:10px 0px 0px 0px;" id="OVER_EXPLOITED" name="OVER_EXPLOITED" />
+            <img src="~/Content/WspImages/Semi critical zone.png" alt="SEMI-CRITICAL" id="Semi-Critical" name="Semi-Critical" style="display:none;width:275px;padding:10px 0px 0px 0px;" />
+
+            <img src="~/Content/WspImages/critical zone.png" alt="CRITICAL" id="Critical" name="Critical" style="display:none;width:275px;padding:10px 0px 0px 0px;" />
+        </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <a href="~/GroundWaterMonitoring/Ground_Water_Quality_Report" class="btn btn-danger"> Back</a>
+                            <button class="btn btn-success">Save</button>
+                            <a href="~/GroundWaterMonitoring/Ground_Water_Quantity_Report" class="btn btn-primary">Result</a>
+                        </div>
+                        <p class="text-center">Note: The above data is available from CGWB. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</ </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Ground Water Quantity</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        QuantityDetails();
+    });
+    function QuantityDetails() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GroundWaterMonitoring/Gwm_Groundwater_Quantity_geting',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                if (data.length != 0) {
+
+
+                    if (data[0].area_sq_km != null) {
+
+                        $('#Block_area').text(parseFloat(data[0].area_sq_km).toFixed(2));
+                    }
+                    if (data[0].avail_ha_m != null) {
+
+                        $('#Annual_GW_Avalibility').text(parseFloat(data[0].avail_ha_m).toFixed(2));
+                    }
+                    if (data[0].gw_dft_ha_m != null) {
+
+                        $('#Annual_GW_Withdrawal').text(parseFloat(data[0].gw_dft_ha_m).toFixed(2));
+                    }
+                    if (data[0].stage__gwdev_percentage != null) {
+
+                        $('#Stage_of_GW_Development').text(parseFloat(data[0].stage__gwdev_percentage).toFixed(2));
+                    }
+
+
+                }
+
+                else {
+
+                    alert("No Data for this State,District,Block and Gram panychayat")
+                }
+            }
+        });
+    }
+
+</script>
+
+

@@ -1,0 +1,1293 @@
+﻿
+@{
+    ViewBag.Title = "Social_management_report";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Management  Report</title>
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+<!--Pie Chart-->
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<!--pie chart-->
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+<!--favicon end-->
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/css/Social_management_report.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .GWL_deviation_table thead tr.info th {
+        background-color: #337ab7 !important;
+        color: #fff;
+    }
+
+    .second_heading {
+        background-color: #72a230;
+        color: #fff;
+        list-style: none;
+        padding: 3px 40px;
+        font-size: 15px;
+        font-weight: bold;
+        margin: 0px;
+    }
+
+    .main_heading_pgwm2 {
+        margin-top: 125px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+        .reportheading > p {
+            margin: 0px;
+        }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .dateandtime_ul > li {
+        display: inline-block;
+        color: #000;
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+
+    .tablebaody input {
+        text-transform: capitalize;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff;
+    }
+
+    .row {
+        margin: 0px;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    /*  .firsttable {
+        display: table-cell;
+    }*/
+
+    .secondtable {
+        /* display: table-cell;*/
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 10px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+</style>
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12 ">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>Social Management Report </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demogram"></span></li>
+                    <li>Time : <span id="demogram2"></span></li>
+                    <li>
+                        Username:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 state_dist_level">
+            <div class="row text-center" id="Select_dist_level">
+
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+
+                    }
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat:</label>
+                            <span id="spngram">@Session["ggram"]</span>
+
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div class="text-center reportheading ">
+                <p>PROGRAM BENEFICIARIES</p>
+            </div>
+            <div>
+                <ul class="second_heading">
+                    <li>  1. Total Population of the GP</li>
+                </ul>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Total Population</th>
+                                <th class="text-center">Census Year(2011) </th>
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+                                @*<th class="text-center">Cumulative</th>*@
+                            </tr>
+                        </thead>
+                        <tbody id="totalpapulation_tbl_data">
+                            <tr>
+                                <td><label id="Total_Population_SNo"></label></td>
+                                <td><label id="tol_population"></label></td>
+                                <td><label id="basic_data"></label></td>
+                                <td><label id="pop_20_21"></label></td>
+                                <td><label id="pop_21_22"></label></td>
+                                <td><label id="pop_22_23"></label></td>
+                                <td><label id="pop_23_24"></label></td>
+                                <td><label id="pop_24_25"></label></td>
+                                @*<td><label id="cumulative"></label></td>*@
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-12 col-sm-12">
+            <div>
+                <ul class="second_heading">
+                    <li> 2. Socio-economic demographic profile</li>
+                </ul>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">Based On Gender</th>
+
+                                <th class="text-center">Census Year(2011) </th>
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+                                @*<th class="text-center">Cumulative</th>*@
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>Male</td>
+
+                                <td><label id="male_basic_data"></label></td>
+                                <td><label id="male_pop_20_21"></label></td>
+                                <td><label id="male_pop_21_22"></label></td>
+                                <td><label id="male_pop_22_23"></label></td>
+                                <td><label id="male_pop_23_24"></label></td>
+                                <td><label id="male_pop_24_25"></label></td>
+                                @*<td><label id="male_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Female</td>
+
+                                <td><label id="female_basic_data"></label></td>
+                                <td><label id="female_pop_20_21"></label></td>
+                                <td><label id="female_pop_21_22"></label></td>
+                                <td><label id="female_pop_22_23"></label></td>
+                                <td><label id="female_pop_23_24"></label></td>
+                                <td><label id="female_pop_24_25"></label></td>
+                                @*<td><label id="female_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Others</td>
+
+                                <td><label id="other_basic_data"></label></td>
+                                <td><label id="other_pop_20_21"></label></td>
+                                <td><label id="other_pop_21_22"></label></td>
+                                <td><label id="other_pop_22_23"></label></td>
+                                <td><label id="other_pop_23_24"></label></td>
+                                <td><label id="other_pop_24_25"></label></td>
+                                @*<td><label id="male_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Sex Ratio(Women per 1000)</td>
+
+                                <td><label id="sexratio_basic_data"></label></td>
+                                <td><label id="sexratio_pop_20_21"></label></td>
+                                <td><label id="sexratio_pop_21_22"></label></td>
+                                <td><label id="sexratio_pop_22_23"></label></td>
+                                <td><label id="sexratio_pop_23_24"></label></td>
+                                <td><label id="sexratio_pop_24_25"></label></td>
+                                @*<td><label id="sexratio_cumulative"></label></td>*@
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-12 col-sm-12 ">
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">
+                                    Based On Vulnerable Communities
+                                </th>
+                                <th class="text-center">Census Year (2011) </th>
+
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+                                @*<th class="text-center">Cumulative</th>*@
+                            </tr>
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>General</td>
+
+                                <td><label type="text" id="bpl_basic_data"></label></td>
+                                <td><label type="text" id="bpl_pop_20_21"></label></td>
+                                <td><label type="text" id="bpl_pop_21_22"></label></td>
+                                <td><label type="text" id="bpl_pop_22_23"></label></td>
+                                <td><label type="text" id="bpl_pop_23_24"></label></td>
+                                <td><label type="text" id="bpl_pop_24_25"></label></td>
+                                @*<td><label type="text" id="bpl_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Scheduled Castes</td>
+
+                                <td><label type="text" id="sc_basic_data"></label></td>
+                                <td><label type="text" id="sc_pop_20_21"></label></td>
+                                <td><label type="text" id="sc_pop_21_22"></label></td>
+                                <td><label type="text" id="sc_pop_22_23"></label></td>
+                                <td><label type="text" id="sc_pop_23_24"></label></td>
+                                <td><label type="text" id="sc_pop_24_25"></label></td>
+                                @*<td><label type="text" id="sc_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Scheduled Tribes</td>
+
+                                <td><label type="text" id="st_basic_data"></label></td>
+                                <td><label type="text" id="st_pop_20_21"></label></td>
+                                <td><label type="text" id="st_pop_21_22"></label></td>
+                                <td><label type="text" id="st_pop_22_23"></label></td>
+                                <td><label type="text" id="st_pop_23_24"></label></td>
+                                <td><label type="text" id="st_pop_24_25"></label></td>
+                                @*<td><label type="text" id="st_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>OBC</td>
+
+                                <td><label type="text" id="obc_basic_data"></label></td>
+                                <td><label type="text" id="obc_pop_20_21"></label></td>
+                                <td><label type="text" id="obc_pop_21_22"></label></td>
+                                <td><label type="text" id="obc_pop_22_23"></label></td>
+                                <td><label type="text" id="obc_pop_23_24"></label></td>
+                                <td><label type="text" id="obc_pop_24_25"></label></td>
+                                @*<td><label type="text" id="obc_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Religious minorities</td>
+
+                                <td><label type="text" id="minorities_basic_data"></label></td>
+                                <td><label type="text" id="minorities_pop_20_21"></label></td>
+                                <td><label type="text" id="minorities_pop_21_22"></label></td>
+                                <td><label type="text" id="minorities_pop_22_23"></label></td>
+                                <td><label type="text" id="minorities_pop_23_24"></label></td>
+                                <td><label type="text" id="minorities_pop_24_25"></label></td>
+                                @*<td><label type="text" id="minorities_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Persons with Disabilities (PWD)</td>
+
+                                <td><label type="text" id="pwd_basic_data"></label></td>
+                                <td><label type="text" id="pwd_pop_20_21"></label></td>
+                                <td><label type="text" id="pwd_pop_21_22"></label></td>
+                                <td><label type="text" id="pwd_pop_22_23"></label></td>
+                                <td><label type="text" id="pwd_pop_23_24"></label></td>
+                                <td><label type="text" id="pwd_pop_24_25"></label></td>
+                                @*<td><label type="text" id="pwd_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Women headed HH( No. of Households)</td>
+
+                                <td><label type="text" id="women_hh_basic_data"></label></td>
+                                <td><label type="text" id="women_hh_pop_20_21"></label></td>
+                                <td><label type="text" id="women_hh_pop_21_22"></label></td>
+                                <td><label type="text" id="women_hh_pop_22_23"></label></td>
+                                <td><label type="text" id="women_hh_pop_23_24"></label></td>
+                                <td><label type="text" id="women_hh_pop_24_25"></label></td>
+                                @*<td><label type="text" id="women_hh_cumulative"></label></td>*@
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class=" col-md-12 col-sm-12 ">
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll;font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">Based On Farmer</th>
+
+                                <th class="text-center">Census Year(2011)</th>
+                                <th class="text-center">2021</th>
+                                <th class="text-center">2022</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">2024</th>
+                                <th class="text-center">2025</th>
+                                @*<th class="text-center">Cumulative</th>*@
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="">
+                            <tr>
+                                <td>Large</td>
+
+                                <td><label id="large_basic_data"></label></td>
+                                <td><label id="large_pop_20_21"></label></td>
+                                <td><label id="large_pop_21_22"></label></td>
+                                <td><label id="large_pop_22_23"></label></td>
+                                <td><label id="large_pop_23_24"></label></td>
+                                <td><label id="large_pop_24_25"></label></td>
+                                @*<td><label id="large_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+
+                                <td><label id="medium_basic_data"></label></td>
+                                <td><label id="medium_pop_20_21"></label></td>
+                                <td><label id="medium_pop_21_22"></label></td>
+                                <td><label id="medium_pop_22_23"></label></td>
+                                <td><label id="medium_pop_23_24"></label></td>
+                                <td><label id="medium_pop_24_25"></label></td>
+                                @*<td><label id="medium_cumulative"></label></td>*@
+                            </tr>
+                            <tr>
+                                <td>Small</td>
+
+                                <td><label id="small_basic_data"></label></td>
+                                <td><label id="small_pop_20_21"></label></td>
+                                <td><label id="small_pop_21_22"></label></td>
+                                <td><label id="small_pop_22_23"></label></td>
+                                <td><label id="small_pop_23_24"></label></td>
+                                <td><label id="small_pop_24_25"></label></td>
+                                @*<td><label id="small_cumulative"></label></td>*@
+                            </tr>
+
+                            <tr>
+                                <td>Marginal</td>
+
+                                <td><label id="marginal_basic_data"></label></td>
+                                <td><label id="marginal_pop_20_21"></label></td>
+                                <td><label id="marginal_pop_21_22"></label></td>
+                                <td><label id="marginal_pop_22_23"></label></td>
+                                <td><label id="marginal_pop_23_24"></label></td>
+                                <td><label id="marginal_pop_24_25"></label></td>
+                                @*<td><label id="marginal_cumulative"></label></td>*@
+                            </tr>
+                            @*<tr>
+                                    <td>Landless</td>
+
+                                    <td><label id="landless_basic_data"></label></td>
+                                    <td><label id="landless_pop_20_21"></label></td>
+                                    <td><label id="landless_pop_21_22"></label></td>
+                                    <td><label id="landless_pop_22_23"></label></td>
+                                    <td><label id="landless_pop_23_24"></label></td>
+                                    <td><label id="landless_pop_24_25"></label></td>
+
+                                </tr>*@
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div class="text-center reportheading ">
+                <p>COMMUNITY PARTICIPATION</p>
+            </div>
+
+        </div>
+
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+                <ul class="second_heading">
+                    <li>3. Community Feedback</li>
+                </ul>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                        <tbody id="">
+
+                            <tr>
+                                <td>Community Feedback</td>
+                                <td id="community_feedback">
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+                <ul class="second_heading">
+                    <li>4. Social Audit</li>
+                </ul>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <tbody id="">
+                            <tr>
+                                <td>Toolkit prepared </td>
+                                <td>
+                                    <label id="toolkit"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pilot undertaken </td>
+                                <td>
+                                    <label id="pilot_under"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Roll-out calendar </td>
+                                <td>
+                                    <label id="rollout_cal"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Report </td>
+                                <td>
+                                    <label id="audit_report"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Analysis and summary of findings</td>
+                                <td>
+                                    <label id="analysis_summary"></label>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+                <ul class="second_heading">
+                    <li>5. GRM</li>
+                </ul>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <tbody id="">
+                            <tr>
+
+                                <td>Systems available</td>
+                                <td>
+                                    <label id="sys_aval"></label>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Toll-free number </td>
+                                <td>
+                                    <label id="tollfreeno"></label>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Advertisement and dissemination of toll free number</td>
+                                <td>
+                                    <label id="adds_dissemination"></label>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Number of complaints </td>
+                                <td>
+                                    <label id="noof_complaints"></label>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Number resolved</td>
+                                <td>
+                                    <label id="noof_resolved"></label>
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td>Number pending</td>
+                                <td>
+                                    <label id="noof_pending"></label>
+                                </td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div class="text-center reportheading ">
+                <p>CAPACITY BUILDING & TRAINING</p>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center"> Name</th>
+                                <th class="text-center">Location</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">4</th>
+                                <th class="text-center">5</th>
+                                <th class="text-center">6</th>
+                                <th class="text-center">7</th>
+                                <th class="text-center">8 </th>
+                                <th class="text-center">9</th>
+                            </tr>
+                        </thead>
+                        <tbody id="capacity_building_Info">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div class="">
+                <ul class="second_heading">
+                    <li> 1. IEC Activities (suggestive list)</li>
+                </ul>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll;font-size:12px;">
+                    <table id="TblData_e_part" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">IEC Activities</th>
+                                <th class="text-center">Yes/No</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_e_part">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+                <ul class="second_heading">
+                    <li> 2. Village/Ward/Community Meetings</li>
+                </ul>
+            </div>
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll;">
+                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Meeting Name</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Location</th>
+                                <th class="text-center">Prior information</th>
+                                <th class="text-center">Number of attendees</th>
+                                <th class="text-center">Male</th>
+                                <th class="text-center">Female</th>
+                                <th class="text-center">Others</th>
+                                <th class="text-center">Total</th>
+
+                                <th class="text-center">Key issues</th>
+                                <th class="text-center">MoM </th>
+                                <th class="text-center">Photographs</th>
+                            </tr>
+                        </thead>
+                        <tbody id="village_meeting_Info">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div class="text-center reportheading " style="padding:2px;">
+                <h4>Details of Members of various Committees / Agencies</h4>
+                <h5>GRAM PANCHAYAT DATABASE</h5>
+            </div>
+
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+                                <th class="text-center">Category</th>
+
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_GRAM_PANCHAYAT_DATABASE">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+                <ul class="second_heading">
+                    <li>1. Water User Association/ Village Water and Sanitation Committee (VWSC)</li>
+                </ul>
+            </div>
+
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+                                <th class="text-center">Category</th>
+                                <th class="text-center">Select</th>
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_VWSC">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+                <ul class="second_heading">
+                    <li>2. Support Agency/ DIP</li>
+                </ul>
+            </div>
+
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+                                @*<th class="text-center">Reseved / Unreserved</th>*@
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_DIP">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+                <ul class="second_heading">
+                    <li>3. Others local instituions or citizen leaders/Influential</li>
+                </ul>
+            </div>
+
+            <div id="">
+                <div class="tbl-responsive" style="overflow-x:scroll; font-size:12px;">
+                    <table id="TblData_abc_part1" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+                        <thead>
+                            <tr class="info">
+
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">Designation</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Gender</th>
+                                @*<th class="text-center">Reseved / Unreserved</th>*@
+                                <th class="text-center">
+                                    Contact Number
+                                </th>
+                            </tr>
+
+
+                        </thead>
+                        <tbody id="TblData_Others_local_instituions_citizen_leaders_Info">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-bottom:15px;">
+            @*<div class="text-center">
+                    <label class="text-center">
+                        .............................
+                    </label>
+                    <p class="text-justify">
+                        The results and analysis contained within the Water Budgeting Report are generated with the help of inputs given by the
+                        user as well as existing database. Each component of water budgeting is designed to make understand the users about
+                        the processes, parameters and equations involved in the system. The overall goal of water budgeting is therefore to
+                        improve the management of ground water resources in priority areas of the country.
+                    </p>
+                    <label class="text-center">
+                        .............................
+                    </label>
+                </div>*@
+
+            <div class="col-md-12 last-div-footer hidediv" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/SocialMointoring/Social_management" class="btn btn-danger">
+                        Back
+                    </a>
+
+                    @*<button type="button" class="btn btn-success" onclick="ReportPdf();">Download</button>*@
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    var Total = 0;
+    var Approved_total = 0;
+    var Pending_total = 0;
+    function ReportPdf() {
+
+        $("#Data1").width(1110);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'Social_Management_Report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('div.demandsidesupplyside_space1').addClass('demandsidesupplyside_space');
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        $('div.main_heading_pgwm11').addClass('main_heading_pgwm2');
+        $('div.main_heading_sm').addClass('main_heading_sm1');
+        $('div.main_heading_pgwm_change').addClass('main_heading_pgwm_change1');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $('div.demandsidesupplyside_space1').removeClass('demandsidesupplyside_space');
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+            $('div.main_heading_pgwm11').removeClass('main_heading_pgwm2');
+            $('div.main_heading_sm').removeClass('main_heading_sm1');
+            $('div.main_heading_pgwm_change').removeClass('main_heading_pgwm_change1');
+        }, 2000);
+    }
+
+
+    function Report_chart() {
+
+        $(function () {
+            Highcharts.setOptions({
+                chart: {
+                    style: {
+                        fontFamily: 'Arial, Helvetica, sans-serif',
+                        fontSize: '2em',
+                        color: '#f00'
+                    }
+                }
+            });
+
+            $('#PGWM_pie_chart').highcharts({
+                chart: {
+                    type: 'pie'
+                },
+                colors: [
+                    '#ED5565',
+                    '#5D9CEC',
+                    '#A0D468'
+                ],
+                title: {
+                    text: 'GRM State Status',
+                    style: {
+                        color: '#555'
+                    }
+                },
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0,
+                    backgroundColor: '#FFFFFF'
+                },
+
+                yAxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    shared: false,
+                    valueSuffix: 'points'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    areaspline: {
+                        fillOpacity: 0.1
+                    },
+                    series: {
+                        groupPadding: .15
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Grievance Management',
+                    data: [
+                        ['Pending', Pending_total],
+                        ['resloved', Approved_total],
+                        ['Total', Total]
+                    ]
+
+                }]
+            });
+        });
+
+    }
+
+    $(document).ready(function () {
+        Info1();
+        Info();
+    });
+
+    var OfficersInfo = "";
+    function Info1() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance/Grievance_Info_statewise_Officers',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                if (data.length != 0) {
+
+                    OfficersInfo = data;
+                }
+
+            }
+        });
+    }
+    function Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/Grievance/Grievance_Info_statewise',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                Total = 0;
+                Approved_total = 0;
+                Pending_total = 0;
+                var tr = '';
+                //if (data == "Logout") {
+                //      window.location = "/Home/LogOut";
+                //}
+                if (data.length != 0) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        Total = data.length;
+                        if (data[i].accept == "Approved") {
+                            Approved_total += 1;
+                        }
+                        else if (data[i].accept == "Pending") {
+                            Pending_total += 1;
+                        }
+
+
+                        var Status = "";
+                        if (data[i].accept == null) {
+                            Status = "Pending";
+                        }
+                        else if (data[i].accept == "Decline") {
+                            Status = "Pending";
+                            Pending_total += 1;
+                        }
+
+                        var OfficerName = "";
+
+                        if (data[i].mail_count_date == null) {
+                            OfficerName = OfficersInfo[0].first_officername;
+                        }
+                        else if (data[i].mail_count1_date == null) {
+                            OfficerName = OfficersInfo[0].second_officername;
+                        }
+                        else {
+                            OfficerName = OfficersInfo[0].third_officername;
+                        }
+
+                        tr += '<tr><td>' + (i + 1) + '</td><td>' + data[i].grievance_type + '</td><td>' + data[i].complaint_name + '</td><td>' + data[i].subject + '</td><td>' + data[i].grievance_address_to + '</td><td>' + data[i].IdentificationId + '</td><td>' + OfficerName + '</td><td>' + Status + '</td><td>Sent</td></tr>';
+
+                    }
+                    Report_chart();
+                }
+                if (tr == '') {
+                    tr += '<tr><td colspan="9" style="text-align:center;"> No Data</td></tr>';
+                    $('#TblData_abc_part').html(tr);
+                }
+                else {
+                    $('#TblData_abc_part').html(tr);
+                }
+                //$('#Approved_users').text(Approved_total);
+                //$('#Total_Users').text(Total);
+                //$('#Pending_users').text(Pending_total);
+            }
+        });
+    }
+</script>
+
+
+
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demogram2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = mm + '/ ' + dd + '/ ' + yyyy;
+    document.getElementById("demogram").innerHTML = today;
+</script>
+

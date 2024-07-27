@@ -1,0 +1,1255 @@
+﻿@{
+    ViewBag.Title = "AdminPanel";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+
+
+<link href="~/Content/Website/lib/nivo-slider/jquery.dataTables.min.css" rel="stylesheet" />
+@*<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">*@
+
+@*<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="~/Content/Website/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<style>
+    .box-layout {
+        /*margin: 21% 20% -16% -16%;*/
+        box-sizing: content-box;
+        padding: 0px;
+        border-radius: 0.3em;
+        /*width: 107px;*/
+    }
+
+        .box-layout > ul > li > a {
+            padding: 40px 40px;
+        }
+
+
+    span.categories {
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+        /*text-align: left;
+        float:left;
+            */
+    }
+
+    .box-layout:hover {
+        transition: all .2s ease-in-out;
+        transform: scale(1.1);
+        border-radius: 0.3em;
+        color: darkgreen;
+    }
+
+    .glyphicon-eye-open, glyphicon-remove {
+        height: 20px;
+        width: 20px;
+    }
+
+    img#profile {
+        height: auto;
+        /* max-width: 79%; */
+        /* padding: 8px 0px 0px 15px; */
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 100px;
+        background-color: #fff;
+    }
+
+    td {
+        font-weight: bold;
+    }
+
+    .upddeleteicon {
+        max-width: 70%;
+    }
+
+    .modal-footer {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: -20px;
+    }
+
+    input[type=text], select {
+        margin-left: 29%;
+        background: none;
+        border: none;
+        border-bottom: ridge;
+    }
+
+    .underline {
+        background-color: dodgerblue;
+        display: inline-block;
+        height: 2px;
+        left: 50px;
+        margin-top: -4px;
+        position: absolute;
+        top: 185px;
+        -webkit-transform: scale(0, 1);
+        transform: scale(0, 1);
+        -webkit-transition: all 0.5s linear;
+        transition: all 0.5s linear;
+        width: 202px;
+    }
+
+    .box-layout:active::after {
+        background-color: #191970;
+    }
+
+    ul.adminhead {
+        display: flex;
+        margin: 0% 0% 0% 0%;
+        background-color: #f5f5f5;
+        border-color: lavender;
+        border-radius: 0.6em
+    }
+
+        ul.adminhead > li > label {
+            display: inline-block;
+        }
+
+    ul.adminhead1 > li > label > h4 {
+        font-size: 21px;
+    }
+
+    ul.adminhead1 {
+        display: inline-flex;
+    }
+
+        ul.adminhead1 > li {
+            padding: 6px 10px 0px 9px;
+        }
+
+    ul.adminhead > li {
+        padding: 5px 10px 0px 10px;
+    }
+
+    h4#profilename {
+        margin-top: 10px;
+    }
+
+    .nav-pills > li + li {
+        margin-left: 0px;
+    }
+
+    ul#myTabs {
+        margin: 40px 0px 0px 44px;
+    }
+
+        ul#myTabs > li {
+            margin: 10px 10px 10px 10px;
+        }
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: #fff;
+        background-color: #000088;
+    }
+
+    .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 26px 26px;
+    }
+
+        .nav > li > a:hover, .nav > li > a:focus {
+            text-decoration: none;
+            background-color: darkgreen;
+        }
+
+    img {
+        vertical-align: bottom;
+    }
+
+    @@media screen and (max-width: 1200px) {
+        ul#myTabs > li {
+            width: 167px;
+            height: 136px;
+        }
+    }
+
+    .form-inline .form-control {
+        margin: 0px 0px 0px 0px;
+    }
+
+    .tab-pane {
+        margin: 40px 0px 0px 0px;
+    }
+
+
+    ul.myTabs1 {
+        background-color: #ddd;
+    }
+
+    ul#myTabs1 > li.active::after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #2E578C;
+        content: " ";
+        position: absolute;
+        bottom: -15px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    ul#myTabs1 > li {
+        background-color: #3A99ED;
+        padding: 0px;
+    }
+
+        ul#myTabs1 > li > a {
+            color: white;
+            padding: 15px;
+        }
+
+        ul#myTabs1 > li.active > a,
+        ul#myTabs1 > li.active > a:focus,
+        ul#myTabs1 > li.active > a:hover {
+            color: #fff !important;
+            background-color: #2E578C !important;
+        }
+
+    .tbl-responsive {
+        overflow-x: inherit;
+    }
+</style>
+
+
+<div id="maincontainer">
+    <div class="header">
+
+        <ul class="adminhead clearfix">
+            <li>
+                <ul class="adminhead1">
+                    <li>
+
+                        <span><img id="profile" src="~/Images/profile black.png" /></span>
+                    </li>
+                    <li>
+                        <label><h4 id="profilename">Prasanna Lakshmi M</h4><p style="font-weight:bold">Development</p></label>
+                    </li>
+                </ul>
+
+
+            </li>
+            <li style="margin-top:3%">
+                <label>
+                    <a data-toggle="modal" data-target="#myModal"> <img src="~/Images/edit black.png" /><span style="font-weight:bold">Edit profile</span></a>
+                </label>
+            </li>
+            <li style="margin-top:3%">
+                <label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="~/Home/MisLogin"><img style="width:20px;height:20px;" src="~/Images/logout black.png" /> <span style="font-weight:bold"> Logout</span></a>
+                </label>
+            </li>
+        </ul>
+
+
+
+
+    </div>
+
+    <div class="body">
+        <div class="col-lg-4">
+            <ul id="myTabs" class="nav nav-pills" role="tablist" data-tabs="tabs">
+
+                <li class="active col-lg-4 box-layout" id="block1" style="background-color:cornflowerblue;color:white">
+                    <a href="#Commentary" data-toggle="tab">
+                        <img src="~/Images/User admin white.png" id="image1" />
+                        <span class="categories" id="title1">User Administration</span>
+                    </a>
+                </li>
+                <li class=" col-lg-4 box-layout" id="block2" style="background-color:cornflowerblue;">
+                    <a href="#Tenders" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" />
+                        <span class="categories" id="title2">Tender Approval</span>
+                    </a>
+                </li>
+
+                <li class=" col-lg-4 box-layout" id="block2" style="background-color:cornflowerblue;">
+                    <a href="#Grievance" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" />
+                        <span class="categories" id="title2">Grievance Approval</span>
+                    </a>
+                </li>
+                <li class=" col-lg-4 box-layout" id="block2" style="background-color:cornflowerblue;">
+                    <a href="#Conference" data-toggle="tab">
+                        <img src="~/Images/title admin white.png" id="image2" />
+                        <span class="categories" id="title2">Conference Approval</span>
+                    </a>
+                </li>
+
+                <li class="col-lg-4 box-layout" id="block3" style="background-color:cornflowerblue;">
+                    <a href="#Events" data-toggle="tab">
+                        <img src="~/Images/update user.png" id="image3" />
+                        <span class="categories" id="title3">Update User</span>
+                    </a>
+                </li>
+                <li class="col-lg-4 box-layout" id="block4" style="background-color:cornflowerblue;">
+                    <a href="#Events1" data-toggle="tab">
+                        <img src="~/Images/delete user white.png" id="image4" />
+                        <span class="categories" id="title4">Delete User</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="tab-content">
+                <!--Rainfail_menu Start-->
+                <div role="tabpanel" class="tab-pane fade in active" id="Commentary">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">User Administration</h4></div>
+                    <div class="row" @*id="useradministration"*@ style="margin-top:25px;">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="useradmindata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue">
+                                            <th>User Name</th>
+                                            <th>Email</th>
+                                            <th>Admin</th>
+                                            <th>Super Admin</th>
+                                            <th>Manager</th>
+                                            <th>User</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Prasanna</td>
+                                            <td>prasanna@gmail.com</td>
+                                            <td><input type="checkbox" style="height:21px;background-color:darkslateblue" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prasanna</td>
+                                            <td>prasanna@gmail.com</td>
+                                            <td><input type="checkbox" style="height:21px;background-color:darkslateblue" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prasanna</td>
+                                            <td>prasanna@gmail.com</td>
+                                            <td><input type="checkbox" style="height:21px;background-color:darkslateblue" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prasanna</td>
+                                            <td>prasanna@gmail.com</td>
+                                            <td><input type="checkbox" style="height:21px;background-color:darkslateblue" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prasanna</td>
+                                            <td>prasanna@gmail.com</td>
+                                            <td><input type="checkbox" style="height:21px;background-color:darkslateblue" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        <tr>
+                                            <td>Prasanna</td>
+                                            <td>prasanna@gmail.com</td>
+                                            <td><input type="checkbox" style="height:21px;background-color:darkslateblue" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Videos">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Title Administration</h4></div>
+                    <div class="row" @*id="titleadministration"*@>
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="titleadmindata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue;text-align:center">
+                                            <th>Role</th>
+                                            <th>Resources</th>
+                                            <th>Greivances</th>
+                                            <th>Tenders</th>
+                                            <th>Newsletter</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Admin</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Managers</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Supervisors</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Users</td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                            <td><input type="checkbox" style="height:21px" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Events">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Update User</h4></div>
+                    <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue">
+                                            <th>User Id</th>
+                                            <th>User Name</th>
+                                            <th>Department</th>
+                                            <th>Email Id</th>
+                                            <th>View</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Prasanna</td>
+                                            <td>Develolpment</td>
+                                            <td>Prasanna@gmail.com</td>
+                                            <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Lakshmi</td>
+                                            <td>Data Analytics</td>
+                                            <td>Lakshmi@gmail.com</td>
+                                            <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Saisree</td>
+                                            <td>Designing</td>
+                                            <td>Saisree@gmail.com</td>
+                                            <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Sruthi</td>
+                                            <td>Automation testing</td>
+                                            <td>Sruthi@gmail.com</td>
+                                            <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Events1">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Delete User</h4></div>
+                    <div class="row" @*id="deleteuser"*@ style="margin-top:25px;">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="deleteuserdata"*@ class="data2 display  table stripe row-border order-column table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue">
+                                            <th>User Id</th>
+                                            <th>User Name</th>
+                                            <th>Department</th>
+                                            <th>Email Id</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>32</td>
+                                            <td>Leesa</td>
+                                            <td>Automation testing</td>
+                                            <td>Leesa@gmail.com</td>
+                                            <td><button title="Delete User" class="btn btn-default btn-confirm" data-toggle="modal" data-target="#deletemodal"><img class="upddeleteicon" src="~/Images/delete colour_1.png" /></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>21</td>
+                                            <td>Doron</td>
+                                            <td>Automation testing</td>
+                                            <td>Doron@gmail.com</td>
+                                            <td><button title="Delete User" class="btn btn-default btn-confirm" data-toggle="modal" data-target="#deletemodal"><img class="upddeleteicon" src="~/Images/delete colour_1.png" /></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>52</td>
+                                            <td>Patel</td>
+                                            <td>Automation testing</td>
+                                            <td>Patel@gmail.com</td>
+                                            <td><button title="Delete User" class="btn btn-default btn-confirm" data-toggle="modal" data-target="#deletemodal"><img class="upddeleteicon" src="~/Images/delete colour_1.png" /></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>65</td>
+                                            <td>Lasya</td>
+                                            <td>Automation testing</td>
+                                            <td>Lasya@gmail.com</td>
+                                            <td><button title="Delete User" class="btn btn-default btn-confirm" data-toggle="modal" data-target="#deletemodal"><img class="upddeleteicon" src="~/Images/delete colour_1.png" /></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div role="tabpanel" class="tab-pane fade" id="Tenders">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Tender Approval</h4></div>
+
+                    <div class="panel-body" style="padding-bottom: 10px !important;">
+                        <ul id="myTabs1" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                            <li class="active col-md-2"><a href="javascript:;" data-target="#Commentary111" data-toggle="tab">Tender Announcements</a></li>
+                            <li class="col-md-2"><a href="javascript:;" data-target="#Videos111" data-toggle="tab">Tender Awarded</a></li>
+                            <li class="col-md-2"><a href="javascript:;" data-target="#Events111" data-toggle="tab">E-Tender</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary111">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>User Id</th>
+                                                        <th>User Name</th>
+                                                        <th>Bid Ref No</th>
+                                                        <th>Office Email Id</th>
+                                                        <th>Tender Ref No</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Prasanna</td>
+                                                        <td>423462374</td>
+                                                        <td>Prasanna@gmail.com</td>
+                                                        <td>56857676</td>
+                                                        <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal1"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Lakshmi</td>
+                                                        <td>423462374</td>
+                                                        <td>Lakshmi@gmail.com</td>
+                                                        <td>423462374</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal1"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Saisree</td>
+                                                        <td>423462374</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td>423462374</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal1"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Sruthi</td>
+                                                        <td>56857676</td>
+                                                        <td>Sruthi@gmail.com</td>
+                                                        <td>56857676</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal1"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Videos111">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>User Id</th>
+                                                        <th>User Name</th>
+                                                        <th>Package No</th>
+                                                        <th>Package Name</th>
+                                                        <th>Amount</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Prasanna</td>
+                                                        <td>423462374</td>
+                                                        <td>Prasanna@gmail.com</td>
+                                                        <td>56857676</td>
+                                                        <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#tendertab2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Lakshmi</td>
+                                                        <td>423462374</td>
+                                                        <td>Lakshmi@gmail.com</td>
+                                                        <td>423462374</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#tendertab2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Saisree</td>
+                                                        <td>423462374</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td>423462374</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#tendertab2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Sruthi</td>
+                                                        <td>56857676</td>
+                                                        <td>Sruthi@gmail.com</td>
+                                                        <td>56857676</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#tendertab2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Events111">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>User Id</th>
+                                                        <th>User Name</th>
+                                                        <th>E-Tender Name</th>
+                                                        <th>Website URL</th>
+                                                        <th>Accept</th>
+                                                        <th>Reject</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Prasanna</td>
+                                                        <td>423462374</td>
+                                                        <td>Prasanna@gmail.com</td>
+                                                        <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                                        <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Lakshmi</td>
+                                                        <td>423462374</td>
+                                                        <td>Lakshmi@gmail.com</td>
+                                                        <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                                        <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Saisree</td>
+                                                        <td>423462374</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                                        <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Sruthi</td>
+                                                        <td>56857676</td>
+                                                        <td>Sruthi@gmail.com</td>
+                                                        <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                                        <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="Grievance">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Grievance Approval</h4></div>
+
+                    <div class="panel-body" style="padding-bottom: 10px !important;">
+                        <ul id="myTabs1" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+
+                            <li class="active col-md-2"><a href="javascript:;" data-target="#Commentary222" data-toggle="tab">Grievance Approval</a></li>
+                            <li class="col-md-2"><a href="javascript:;" data-target="#Videos222" data-toggle="tab">Appeal Approval</a></li>
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="Commentary222">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>User Id</th>
+                                                        <th>User Name</th>
+                                                        <th>Grievance Type</th>
+                                                        <th>Grievance Addressed To</th>
+                                                        <th>Email Id</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Prasanna</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>Goa</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Lakshmi</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>Assam</td>
+                                                        <td>Lakshmi@gmail.com</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Saisree</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>AP</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Sruthi</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>Haryana</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal2"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="Videos222">
+
+                                <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                                    <div class="col-md-12">
+                                        <div class="tbl-responsive">
+                                            <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                                <thead>
+                                                    <tr style="color:darkslateblue">
+                                                        <th>User Id</th>
+                                                        <th>User Name</th>
+                                                        <th>Grievance Type</th>
+                                                        <th>Grievance Addressed To</th>
+                                                        <th>Email Id</th>
+                                                        <th>View</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Prasanna</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>Goa</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td> <button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#Appealtab"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Lakshmi</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>Assam</td>
+                                                        <td>Lakshmi@gmail.com</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#Appealtab"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Saisree</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>AP</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#Appealtab"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Sruthi</td>
+                                                        <td>Developmengt of MIS</td>
+                                                        <td>Haryana</td>
+                                                        <td>Saisree@gmail.com</td>
+                                                        <td><button type="button" title="View & Update" class="btn btn-default btn-md" data-toggle="modal" data-target="#Appealtab"><img class="upddeleteicon" src="~/Images/view black.png" /></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Conference">
+                    <div><h4 id="" style="margin-top:2%;color:darkblue;text-align:center">Conference Approval</h4></div>
+                    <div class="row" @*id="updateuser"*@ style="margin-top:25px;">
+                        <div class="col-md-12">
+                            <div class="tbl-responsive">
+                                <table @*id="updateuserdata"*@ class="data2 display  table stripe row-border order-column   table-striped table-bordered dataTable no-footer" style="width:100%">
+                                    <thead>
+                                        <tr style="color:darkslateblue">
+                                            <th>User Id</th>
+                                            <th>User Name</th>
+                                            <th>Conference Name</th>
+                                            <th>Start Date</th>
+                                            <th>Location</th>
+                                            <th>Accept</th>
+                                            <th>Reject</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Prasanna</td>
+                                            <td>Techincal Discussion</td>
+                                            <td>30/04/2019</td>
+                                            <td>Vizag</td>
+                                            <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                            <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Lakshmi</td>
+                                            <td>Techincal Discussion</td>
+                                            <td>30/04/2019</td>
+                                            <td>Vizag</td>
+                                            <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                            <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Saisree</td>
+                                            <td>Techincal Discussion</td>
+                                            <td>30/04/2019</td>
+                                            <td>Delhi</td>
+                                            <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                            <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Sruthi</td>
+                                            <td>Techincal Discussion</td>
+                                            <td>30/04/2019</td>
+                                            <td>Hyderabd</td>
+                                            <td> <button type="button" title="Accept" class="btn btn-primary btn-md"><img class="upddeleteicon" src="~/Images/right black 20px.png" /></button></td>
+                                            <td> <button type="button" title="Reject" class="btn btn-danger btn-md"><img class="upddeleteicon" src="~/Images/cross black 20px.png" /></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*For Update model popup*@
+<div class="container">
+
+    <!-- Trigger the modal with a button -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">User Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr><td>User Name</td><td><input type="text" style="background-color:none;text-decoration:underline" /></td></tr>
+                        <tr><td>Email</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Department Name</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr>
+                            <td>State</td>
+                            <td>
+                                <select>
+                                    <option>Select State</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select>
+                                <span class="underline"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>District</td>
+                            <td>
+                                <select>
+                                    <option>Select District</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select>
+                                <span class="underline"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Block</td>
+                            <td>
+                                <select>
+                                    <option>Select Block</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select><span class="underline"></span>
+                            </td>
+                        <tr>
+                            <td>Gram Panchayat</td>
+                            <td>
+                                <select>
+                                    <option>Select Gram Panchayat</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select><span class="underline"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Village</td>
+                            <td>
+                                <select>
+                                    <option>Select Village</option>
+                                    <option>MDL</option>
+                                    <option>Village1</option>
+                                    <option>AKP</option>
+                                    <option>CHDM</option>
+                                </select><span class="underline"></span>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Edit</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Update</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Tender Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr><td>Bid_ref_no</td><td><input type="text" style="background-color:none;text-decoration:underline" /></td></tr>
+                        <tr><td>Description</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Office_inviting_tender</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Office_emailid</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Publish_date</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Tender_ref_no</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>URL</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Sale_start_datetime</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Sale_end_datetime</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Last_submission_datetime</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Opening_start_datetime</td><td><input type="text" /><span class="underline"></span></td></tr>
+
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Grievance Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr><td>Subject</td><td><input type="text" style="background-color:none;text-decoration:underline" /></td></tr>
+                        <tr>
+                            <td>Grievance Type</td>
+                            <td>
+                                <select>
+                                    <option>Select Grievance</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select>
+                                <span class="underline"></span>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Grievance to</td>
+                            <td>
+                                <select>
+                                    <option>Select Appeal addressed to</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select>
+                                <span class="underline"></span>
+                            </td>
+                        </tr>
+                        <tr><td>Full Name</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Email</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Mobile</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Phone</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Address</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Grievance Description</td><td><input type="text" /><span class="underline"></span></td></tr>
+
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Accept</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="tendertab2" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Tender Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr><td>Package Number</td><td><input type="text" style="background-color:none;text-decoration:underline" /></td></tr>
+                        <tr><td>Package Name</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Tender Awarded Date</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Tender Amount(in Rs)</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Name of the Consultant/Supplier/Contractor</td><td><input type="text" /><span class="underline"></span></td></tr>
+
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="Appealtab" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Appeal Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr><td>Previous Grievance ID</td><td><input type="text" style="background-color:none;text-decoration:underline" /></td></tr>
+                        <tr><td>Subject</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr>
+                            <td>Appeal Type</td>
+                            <td>
+                                <select>
+                                    <option>Select Appeal</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select>
+                                <span class="underline"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Appeal Addressed to</td>
+                            <td>
+                                <select>
+                                    <option>Select Appeal addressed to</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                    <option>AP</option>
+                                    <option>S1</option>
+                                </select>
+                                <span class="underline"></span>
+                            </td>
+                        </tr>
+                        <tr><td>Full Name </td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Email </td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Mobile</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Phone</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Address</td><td><input type="text" /><span class="underline"></span></td></tr>
+                        <tr><td>Reason for Appeal/ Appeal Description</td><td><input type="text" /><span class="underline"></span></td></tr>
+
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Accept</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@*For delete modal popup*@
+
+<div class="modal fade" role="dialog" id="deletemodal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="font-size:15px;">Are you sure you want to delete this user?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" style="bottom:0%">Yes</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" style="bottom:0%">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function gotologin() {
+        window.location.reload(true);
+        //window.location = url("~/Home/MisLogin");
+    }
+    $(document).ready(function () {
+        $.noConflict();
+        $('table.data2').DataTable();
+        $('div#useradministration').show();
+        $('div#titleadministration').hide();
+        $('div#updateuser').hide();
+        $('div#deleteuser').hide();
+    });
+
+
+</script>

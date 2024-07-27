@@ -1,0 +1,1421 @@
+﻿
+@{
+    ViewBag.Title = "Conference_view";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+
+<style>
+    .footer-widget-area,
+    .pt-27 {
+        display: none;
+    }
+
+    #pbr-footer {
+        background-color: #3c3c3b;
+    }
+
+    .pbr-footer {
+        color: #999;
+        line-height: 30px;
+    }
+
+    .vc_custom_1530804821002 {
+        padding-top: 50px !important;
+        padding-bottom: 30px !important;
+        background-color: #3c3c3b !important;
+    }
+
+    @@media (min-width: 1230px) {
+        .container {
+            width: 1200px;
+        }
+    }
+
+    .wpb_single_image.vc_align_center {
+        text-align: center;
+    }
+
+    /*.wpb_button, .wpb_content_element, ul.wpb_thumbnails-fluid > li {
+        margin-bottom: 35px;
+    }*/
+
+    .wpb_single_image {
+        position: relative;
+        text-transform: uppercase;
+    }
+
+    .vc_custom_1530869262412 {
+        margin-bottom: 10px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .bo-social-icons:last-child [class*=bo-social-] {
+        margin-bottom: 0;
+    }
+
+    .bo-social-icons:first-child [class*=bo-social-] {
+        margin-top: 0;
+    }
+
+    .bo-social-icons .bo-social-outline-light {
+        background: transparent;
+        color: #fff;
+        border: 1px solid hsla(0,0%,100%,.1);
+    }
+
+    .bo-social-icons [class^=bo-social-] {
+        color: #fff;
+        display: inline-block;
+        margin: 10px 5px;
+        overflow: hidden;
+        text-decoration: none;
+        text-align: center;
+        vertical-align: top;
+        line-height: 36px;
+        width: 36px;
+        height: 36px;
+        background: #ededed;
+        color: #a1a1a1;
+        transition: all .2s ease-out 0s;
+    }
+
+    .radius-6x {
+        border-radius: 3px !important;
+    }
+
+    .vc_box_border_grey1 > img {
+        height: 90px;
+        width: 75%;
+    }
+
+    .vc_custom_1530863386882 {
+       padding:40px !important;
+    }
+
+    .vc_custom_1530787647538 {
+        padding-bottom: 50px !important;
+    }
+
+    .heading .heading-inner .subheading {
+        font-size: 20px;
+        color: #999;
+        font-style: italic;
+        font-family: Playfair Display;
+        position: relative;
+    }
+
+    .heading .heading-inner .subheading1 {
+        font-size: 20px;
+        color: #999;
+        font-style: italic;
+        font-family: Playfair Display;
+        position: relative;
+    }
+
+    .heading .heading-inner .subheading:before {
+        content: "";
+        width: 3px;
+        height: 69px;
+        background: #fac42b;
+        background-color: #fac42b;
+        position: absolute;
+        left: -27px;
+        top: -34px;
+    }
+
+    .heading .heading-inner .subheading1:before {
+        content: "";
+        width: 3px;
+        height: 69px;
+        background: #fac42b;
+        background-color: #fac42b;
+        position: absolute;
+        left: -27px;
+        top: -29px;
+    }
+
+    .heading .heading-inner::after {
+        width: 10px;
+        height: 10px;
+        border: 2px solid #7aaa2c;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        border-color: #000;
+    }
+
+    .heading .heading-inner::after {
+        width: 10px;
+        height: 10px;
+        border: 2px solid #7aaa2c;
+        position: absolute;
+        top: 10px;
+        left: 0;
+    }
+
+    .heading .heading-inner::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 2px solid #3c84ab;
+        position: absolute;
+        top: 31px;
+        left: 0px;
+        z-index: 1;
+        transform: rotate(45deg);
+        background-color: #3c84ab;
+    }
+
+    .vc_custom_1530863442691 {
+        margin-bottom: 0px !important;
+      padding:40px !important;
+    }
+
+    #main .container {
+        position: relative;
+    }
+
+    @@media (min-width: 798px) {
+        .col-sm-12 {
+            width: 100%;
+        }
+    }
+
+    .heading {
+        padding-bottom: 30px;
+    }
+
+        .heading .heading-inner {
+            text-align: left;
+            position: relative;
+            padding-left: 30px;
+        }
+
+            .heading .heading-inner h2 {
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 5px;
+                letter-spacing: 3px;
+            }
+
+    .pb-90 {
+        padding-bottom: 0px;
+    }
+
+    .vc_custom_1531120555192 {
+      padding:40px !important;
+        background-color: #f9f9f9 !important;
+    }
+
+    .vc_row {
+    }
+
+    .wpb-container {
+        left: 0 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .vc_custom_1531121846480 {
+        margin-top: 20px !important;
+    }
+
+    .vc_btn3-container.vc_btn3-inline {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .vc_btn3-container {
+        margin-bottom: 21.73913043px;
+        max-width: 100%;
+    }
+
+    .vc_btn3.vc_btn3-size-md.vc_btn3-icon-left:not(.vc_btn3-o-empty) {
+        padding-left: 48px;
+    }
+
+    .vc_btn3.vc_btn3-color-grey.vc_btn3-style-modern {
+        color: #666;
+        border-color: #ebebeb;
+        background-color: #ebebeb;
+    }
+
+
+
+    .vc_btn3.vc_btn3-size-md {
+        font-size: 14px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        padding-right: 20px;
+    }
+
+    .vc_btn3.vc_btn3-shape-rounded {
+        border-radius: 5px;
+    }
+
+    .vc_btn3.vc_btn3-style-modern {
+        background-image: linear-gradient(to bottom,rgba(255,255,255,.2) 0,rgba(255,255,255,.01) 100%);
+        background-repeat: repeat-x;
+    }
+
+    .vc_btn3.vc_btn3-icon-left {
+        text-align: left;
+    }
+
+    .vc_btn3.vc_btn3-icon-left, .vc_btn3.vc_btn3-icon-right {
+        position: relative;
+    }
+
+    .vc_general.vc_btn3 {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .vc_btn3.vc_btn3-size-md.vc_btn3-icon-left:not(.vc_btn3-o-empty) .vc_btn3-icon {
+        left: 20px;
+    }
+
+    .vc_btn3.vc_btn3-size-md .vc_btn3-icon {
+        font-size: 16px;
+        height: 14px;
+        line-height: 14px;
+    }
+
+    .vc_btn3.vc_btn3-icon-left .vc_btn3-icon, .vc_btn3.vc_btn3-icon-right .vc_btn3-icon {
+        display: block;
+        position: absolute;
+        top: 35%;
+    }
+
+    .vc_custom_1542034201183 {
+        padding-top: 70px !important;
+        padding-bottom: 50px !important;
+        background-image: url(https://page2019.itcilo.org/wp-content/uploads/2018/07/calltoaction.jpg?id=9121) !important;
+    }
+
+    /*.vc_custom_1531120555192 {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+        background-color: #f9f9f9 !important;
+    }*/
+
+    .vc_custom_1530709704904 {
+        margin-top: 0px !important;
+        padding-top: 50px !important;
+        padding: 40px !important;
+        background-color: #f9f9f9 !important;
+    }
+
+    .pbr-event-schedule {
+        padding: 10px 0 50px;
+    }
+
+        .pbr-event-schedule .nav-tabs > li.active a {
+            background: #7aaa2c;
+        }
+
+        .pbr-event-schedule .nav-tabs {
+            width: 100%;
+            background: #fff;
+            margin-bottom: 30px;
+            box-shadow: 2px 2px 2px rgba(0,0,0,.1);
+        }
+
+    .nav-tabs > li {
+        float: left;
+        margin-bottom: -1px;
+    }
+
+    .nav > li, .nav > li > a {
+        position: relative;
+        display: block;
+    }
+
+    .pbr-event-schedule .nav-tabs > li a {
+        padding: 10px 20px;
+    }
+
+    .pbr-event-schedule .nav-tabs > li.active a span {
+        color: #000;
+    }
+
+    .pbr-event-schedule .nav-tabs > li a span {
+        display: block;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #000;
+    }
+
+    .right {
+        line-height: 1.5em;
+    }
+
+    tabs > li.active a span {
+        color: #000;
+    }
+
+    .nav-tabs > li > a {
+        margin-right: 2px;
+        line-height: 1.8;
+        border-radius: 0 0 0 0;
+    }
+
+    li {
+        font-family: '', sans-serif !important;
+        font-style: normal !important;
+        color: #333333 !important;
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid transparent;
+    }
+
+    .pbr-event-schedule .tab-content .tab-pane {
+        position: relative;
+    }
+
+    .tab-content > .active {
+        display: block;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper {
+        position: relative;
+        color: #999;
+    }
+
+    .pbr-event-schedule.icon-disable .session-item-content-wrapper .icon {
+        display: none;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper .icon {
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        line-height: 78px;
+        -webkit-border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -40px;
+        z-index: 11;
+        background: #fac42b;
+    }
+
+    .pbr-event-schedule.icon-disable .session-item-content-wrapper .opalsgevent_session {
+        padding-left: 0;
+    }
+
+
+
+
+    .pbr-event-schedule .session-item-content-wrapper .opalsgevent_session .entry-content {
+        transition: background .35s;
+        box-shadow: 2px 2px 2px rgba(0,0,0,.1);
+        padding: 25px 30px;
+        background: #fff;
+        margin-bottom: 30px;
+    }
+
+    article {
+        position: relative;
+    }
+
+    .fade.in {
+        opacity: 1;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper .time {
+        transition: background .35s;
+        background: #7aaa2c;
+    }
+
+
+        .pbr-event-schedule .session-item-content-wrapper .time i {
+            margin-right: 6px;
+        }
+
+    .pbr-event-schedule .session-item-content-wrapper .time {
+        -webkit-transition: background .35s;
+        -o-transition: background .35s;
+        transition: background .35s;
+        background: #fac42b;
+        color: #000;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: inline-block;
+        padding: 6px 15px;
+        width: 100%;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper .stitle {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+        .pbr-event-schedule .session-item-content-wrapper .stitle i {
+            margin-right: 6px;
+        }
+
+    .pbr-event-schedule .session-item-content-wrapper .opalsgevent_session .entry-content ul.speakers {
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper .opalsgevent_session .entry-content .right {
+        transition: color .35s;
+        padding-left: 185px;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper .opalsgevent_session .entry-content .entry-title {
+        margin-top: -10px;
+        margin-bottom: 15px;
+    }
+
+        .pbr-event-schedule .session-item-content-wrapper .opalsgevent_session .entry-content .entry-title a {
+            font-weight: 700;
+            color: #000;
+            font-size: 18px;
+            text-transform: none;
+        }
+
+    .h3, h3 {
+        font-size: 28px;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper .opalsgevent_session .entry-content .left {
+        transition: color .35s;
+        width: 165px;
+        padding-right: 20px;
+        float: left;
+        border-right: 1px solid #ededed;
+        text-align: right;
+    }
+
+    .pbr-event-schedule .session-item-content-wrapper .opalsgevent_session:hover .entry-content {
+        background: #7aaa2c;
+        color: #000;
+    }
+
+    div.box-inner {
+        padding: 50px 50px 30px;
+        color: white;
+        line-height: 1.5em;
+        font-size: 1.0vw;
+        white-space: normal;
+    }
+
+
+
+    body {
+        font-family: sans-serif;
+    }
+
+    .pbr-box-hover.style-1:hover .box-inner * {
+        color: #000;
+    }
+
+    .subheading > p {
+        text-align: justify;
+    }
+
+    @@media (max-width: 1169px) and (min-width: 992px) {
+        .about-area {
+            margin-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+    }
+
+    @@media(max-width: 991px) and (min-width: 768px) {
+        .about-area {
+            margin-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+    }
+
+    @@media(max-width: 767px) {
+        .about-area {
+            margin-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+    }
+
+    .maindiv1 {
+        background-image: url('../../Images/2.1 IMG.png');
+        background-size: cover;
+        background-position: center top;
+        width: 100%;
+        height: 500px;
+        opacity: 1;
+        visibility: inherit;
+    }
+
+    .tp-caption {
+    }
+    /*Style Attribute {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 20;
+        visibility: inherit;
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0);
+    }*/
+    .imagetest {
+        z-index: 6;
+        /*white-space: nowrap;*/
+        font-size: 74px;
+        line-height: 80px;
+        font-weight: 700;
+        color: #000;
+        font-family: Ubuntu;
+        visibility: inherit;
+        transition: none 0s ease 0s;
+        text-align: center;
+        border-width: 0px;
+        margin: 0px;
+        padding: 0px;
+        letter-spacing: 0px;
+        min-height: 0px;
+        min-width: 0px;
+        max-height: none;
+        max-width: none;
+        opacity: 1;
+        transform-origin: 50% 50% 0px;
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+
+    .imagetest1 {
+        z-index: 5;
+        white-space: nowrap;
+        font-size: 45px;
+        line-height: 50px;
+        font-weight: 400;
+        color: #000;
+        font-family: Ubuntu;
+        visibility: inherit;
+        transition: none 0s ease 0s;
+        text-align: center;
+        border-width: 0px;
+        margin: 0px;
+        padding: 0px;
+        letter-spacing: 0px;
+        min-height: 0px;
+        min-width: 0px;
+        max-height: none;
+        max-width: none;
+        opacity: 1;
+        transform-origin: 50% 50% 0px;
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+
+    .imagetest2 {
+        position: relative;
+        top: 100px;
+    }
+
+    .imagetest3 {
+        position: relative;
+        top: 100px;
+    }
+
+    .imagetestviewmore {
+        z-index: 6;
+        white-space: nowrap;
+        font-size: 19px;
+        line-height: 14px;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+        font-family: Ubuntu;
+        border-radius: 3px;
+        outline: none;
+        box-shadow: none;
+        box-sizing: border-box;
+        cursor: pointer;
+        visibility: inherit;
+        transition: none 0s ease 0s;
+        text-align: center;
+        border-width: 0px;
+        margin: 0px;
+        padding: 15px 10px;
+        letter-spacing: 0px;
+        min-height: 0px;
+        min-width: 0px;
+        max-height: none;
+        max-width: none;
+        opacity: 1;
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform-origin: 50% 50% 0px;
+        border-style: solid;
+        margin-top: 15px;
+    }
+
+        .imagetestviewmore > a {
+            border: 1px solid #337ab7;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #337ab7;
+            color: #fff;
+            position: relative;
+            top: 105px;
+        }
+
+            .imagetestviewmore > a:focus,
+            .imagetestviewmore > a:hover {
+                background-color: green;
+                color: #000;
+            }
+
+    .wpb_wrapper .box-inner {
+        min-height: 325px;
+        position: relative;
+        padding: 50px 50px 30px;
+    }
+
+    @@media(max-width: 991px) and (min-width: 330px) {
+        .wpb_wrapper {
+            padding-bottom: 10px;
+        }
+
+        .box-inner {
+            font-size: 15px !important;
+            white-space: normal !important;
+        }
+
+        .vc_box_border_grey1 > img {
+            height: 68px;
+        }
+
+        .maindiv1 {
+            background-size: cover !important;
+        }
+    }
+  
+    .bo-social-icons [class^=bo-social-]:hover{
+        background-color:green;
+        color:#fff;
+    }
+    a:hover i[class*="fa-youtube"] {
+        color: #fff;
+    }
+  
+</style>
+<div class="clearfix">
+    <div class="maindiv1">
+        @*<img src="~/Images/2.1 IMG.png" />*@
+        <div class="imagetest2">
+            <div class="imagetest">
+                ABHY PAGE
+                <br />
+
+                Ministerial Conference
+            </div>
+        </div>
+        <div class="imagetest3">
+            <div class="imagetest1">
+                New Delhi, INDIA
+                <br />
+                05-06 June 2019
+            </div>
+        </div>
+        <div class="imagetestviewmore">
+            <a href="~/Home/index" target="_blank">View More</a>
+        </div>
+    </div>
+
+    <div class="clearfix heading" style="line-height:1.9em;color:black;font-family:sans-serif;padding:40px;font-size:16px;text-align:justify;">
+        <div class="col-lg-6 heading-inner" style="text-align:justify;">
+            <h4>About</h4><small class="subheading1">Abhy Ministerial Conference</small>
+            <p><h6>The challenge:</h6>How can we lift millions out of poverty, create 600+ million jobs, reduce inequalities, protect the environment and grow the economy?</p>
+            <p><h6>Where we stand: </h6>We have a plan for propelling the world towards a future where human and environmental health are protected, where poverty and hunger are alleviated, where peace and prosperity can flourish. Three years safter the adoption of the 2030 Agenda for Sustainable Development, it is time now for action.</p>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-lg-5 heading-inner" style="text-align:justify;">
+            <h4>News</h4><small class="subheading1">Latest from the Conference</small>
+
+            <p style="padding-top:10px;">
+                -ABHY’s MIS system is a user-friendly information portal designed for people working in the areas of ground water and related fields.
+            </p>
+            <p>
+                -ABHY’s MIS system is a user-friendly information portal designed for people working in the areas of ground water and related fields.
+            </p>
+            <p>
+                -ABHY’s MIS system is a user-friendly information portal designed for people working in the areas of ground water and related fields.
+            </p>
+        </div>
+    </div>
+    <div style="background-color:black;height:15px;"></div>
+    <div class="clearfix heading " style="padding:40px;">
+        <div class="clearfix heading-inner" style="text-align:justify;line-height:2.0em;">
+           
+            <h4>Thematic Streams</h4><small class="subheading1"> Focused Strategies and Targets</small>
+
+        </div>
+        <div class="container-full" style="padding-top:40px;">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="wpb_wrapper myclass">
+                        <div class="box-inner" style="background: url('https://page2019.itcilo.org/wp-content/uploads/2018/07/green2.jpg') no-repeat center center;background-size:  cover;">
+                            <div class="front">
+                                <div class="icon">
+                                    <img src="./Page2019 – Ministerial Conference_files/finance2.png">
+                                </div>
+                                <h2 style="color:#fff;font-size:15px;">GREEN FINANCE - HOW DO WE UNLOCK GREEN FINANCE?</h2><br />
+                            </div>
+                            <div class="back">
+                                <div class="content">
+                                    Greening the green, making the financial system work for the future<p></p>
+                                    <p><a style="color: #7aaa2c;" href="javascript:;"  rel="noopener"><strong>Read More</strong></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wpb_wrapper">
+                        <div class="box-inner" style="background: url('https://page2019.itcilo.org/wp-content/uploads/2018/07/prati2.jpg') no-repeat center center;background-size:  cover;">
+                            <div class="front">
+                                <div class="icon">
+                                    <img src="./Page2019 – Ministerial Conference_files/strategies2.png">
+                                </div>
+                                <h2 style="color:#fff;font-size:15px;">STRATEGIES AND POLICIES FOR A GREEN ECONOMY</h2><br />
+                            </div>
+                            <div class="back">
+                                <div class="content">
+                                    Smoothing the way towards a sustainable future through policies and strategies that promote green economies<p></p>
+                                    <p><a style="color: #7aaa2c;" href="javascript:;"  rel="noopener"><strong>Read More</strong></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wpb_wrapper">
+                        <div class="box-inner" style=" background: url('https://page2019.itcilo.org/wp-content/uploads/2018/07/inclusion2.jpg') no-repeat center center;background-size:  cover;">
+                            <div class="front">
+                                <div class="icon">
+                                    <img src="./Page2019 – Ministerial Conference_files/inclusion2.png">
+                                </div>
+                                <h2 style="color:#fff;font-size:15px;">ECONOMIC AND SOCIAL INCLUSION</h2><br />
+                            </div>
+                            <div class="back">
+                                <div class="content">
+                                    Finding solutions that work for all and empower the most vulnerable<p></p>
+                                    <p><a style="color: #7aaa2c;" href="javascript:;" rel="noopener"><strong>Read More</strong></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="wpb_wrapper">
+                        <div class="box-inner" style=" background: url('https://page2019.itcilo.org/wp-content/uploads/2018/07/circular2.jpg') no-repeat center center;background-size:  cover;">
+                            <div class="front">
+                                <div class="icon">
+                                    <img src="./Page2019 – Ministerial Conference_files/gfinance2.png">
+                                </div>
+                                <h2 style="color:#fff;font-size:15px;">SUSTAINABLE CONSUMPTION AND PRODUCTION – CIRCULAR ECONOMY</h2><br />
+                            </div>
+                            <div class="back">
+                                <div class="content">
+                                    Exploring opportunities and barriers to accelerating a system-wide change based on circular economy and SCP<p></p>
+                                    <p><a style="color: #7aaa2c;" href="javascript:;"  rel="noopener"><strong>Read More</strong></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix heading" style="padding:40px 40px 40px 40px;line-height:2.0em;">
+        <div class="heading-inner">
+            <h4>Featured Speakers</h4><small class="subheading1">Our Guests</small>
+        </div>
+        <div class="clearfix">
+
+            <div class="row" style="padding-top:20px;">
+                <div class="col-sm-4">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_center">
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey"><img width="400" height="400" src="https://page2019.itcilo.org/wp-content/uploads/2018/07/green2.jpg" class="vc_single_image-img attachment-full" alt="" srcset="https://page2019.itcilo.org/wp-content/uploads/2018/07/green2.jpg" sizes="(max-width: 400px) 100vw, 400px"></div>
+                                </figure>
+                            </div>
+                            <div class="wpb_text_column wpb_content_element " style="padding-top:15px;">
+                                <div class="wpb_wrapper">
+                                    <p style="text-align: center; font-size: 22px; margin-bottom: 5px;"><span style="color: #7aaa2c;"><b>Kimmo Tiilikainen</b></span></p>
+                                    <p style="text-align: center; padding-top: 0px; margin-top: 0px;">Minister of Environment, Energy and Housing, Finland</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_center">
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey"><img width="399" height="399" src="https://page2019.itcilo.org/wp-content/uploads/2018/07/green2.jpg" class="vc_single_image-img attachment-full" alt="" srcset="https://page2019.itcilo.org/wp-content/uploads/2018/07/green2.jpg" sizes="(max-width: 399px) 100vw, 399px"></div>
+                                </figure>
+                            </div>
+                            <div class="wpb_text_column wpb_content_element " style="padding-top:15px;">
+                                <div class="wpb_wrapper">
+                                    <p style="text-align: center; font-size: 22px; margin-bottom: 5px;"><span style="color: #7aaa2c;"><strong>Rita Schwarzelühr-Sutter</strong></span></p>
+                                    <p style="text-align: center; padding-top: 0px; margin-top: 0px;">Deputy Minister of Environment, Nature Conservation and Nuclear Safety, Germany</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_center">
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey"><img width="400" height="400" src="https://page2019.itcilo.org/wp-content/uploads/2018/07/green2.jpg" class="vc_single_image-img attachment-full" alt="" srcset="https://page2019.itcilo.org/wp-content/uploads/2018/07/green2.jpg" sizes="(max-width: 400px) 100vw, 400px"></div>
+                                </figure>
+                            </div>
+                            <div class="wpb_text_column wpb_content_element " style="padding-top:15px;">
+                                <div class="wpb_wrapper">
+                                    <p style="text-align: center; font-size: 22px; margin-bottom: 5px;"><span style="color: #7aaa2c;"><strong>Elliott Harris</strong></span></p>
+                                    <p style="text-align: center; padding-top: 0px; margin-top: 0px;">Assistant Secretary-General for Economic Development, Chief Economist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="wpb-container vc_row wpb_row vc_row-fluid vc_custom_1530709704904 vc_row-has-fill">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="heading clearfix   heading-v1 ">
+                                <div class="heading-inner">
+                                   
+                                    <h2>Schedule</h2>
+                                    @*<small class="subheading"> Shortest way to Explore the sessions</small>*@
+                                    <small class="subheading">Explore the sessions</small>
+                                </div>
+                            </div>
+                            <div class="pbr-event-schedule icon-disable layout-tabs">
+
+                                <ul class="nav nav-tabs">
+
+                                    <li class="active">
+                                        <a href="#sessiontabid_1" data-toggle="tab" aria-expanded="true">
+                                            <span>Day 1</span>
+                                            <span>January 10, 2019</span>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="">
+                                        <a href="#sessiontabid_2" data-toggle="tab" aria-expanded="false">
+                                            <span>Day 2</span>
+                                            <span>January 11, 2019</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="sessiontabid_1" class="tab-pane fade active in">
+                                        <div class="session-item-content-wrapper">
+                                            <div class="icon"><img alt="" src=""></div>	<article id="post-9098" itemscope="" class="post-9098 opalsgevent_session type-opalsgevent_session status-publish hentry">
+
+                                                <div class="entry-content clearfix">
+                                                    <div class="left">
+                                                        <div class="time"><i class="fa fa-clock-o"></i><span>09:00 - 09:20</span></div>
+                                                        <!-- speakers -->
+                                                        <div class="stitle"><i class="fa fa-microphone"></i>speakers</div>
+                                                        <ul class="speakers clearfix">
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="Nosipho Ngcaba" class="speaker-box-image-inner">
+                                                                        <img width="127" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">Nosipho Ngcaba</div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="H.E. Nomvula Mokonyane" class="speaker-box-image-inner">
+                                                                        <img width="150" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" srcset="#" sizes="(max-width: 150px) 100vw, 150px">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">H.E. Nomvula Mokonyane</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h3 class="entry-title"><a href="#">Official opening</a></h3>
+                                                        Coming soon
+                                                    </div>
+                                                </div>
+                                                <meta itemprop="url" content="#">
+                                            </article>
+                                        </div>
+
+                                        <div class="session-item-content-wrapper">
+                                            <div class="icon"><img alt="" src=""></div>	<article id="post-9098" itemscope="" class="post-9098 opalsgevent_session type-opalsgevent_session status-publish hentry">
+                                                <div class="entry-content clearfix">
+                                                    <div class="left">
+                                                        <div class="time"><i class="fa fa-clock-o"></i><span>09:00 - 09:20</span></div>
+                                                        <!-- speakers -->
+                                                        <div class="stitle"><i class="fa fa-microphone"></i>speakers</div>
+                                                        <ul class="speakers clearfix">
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="Nosipho Ngcaba" class="speaker-box-image-inner">
+                                                                        <img width="127" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">Nosipho Ngcaba</div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="H.E. Nomvula Mokonyane" class="speaker-box-image-inner">
+                                                                        <img width="150" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" srcset="#" sizes="(max-width: 150px) 100vw, 150px">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">H.E. Nomvula Mokonyane</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h3 class="entry-title"><a href="#">keynote address</a></h3>
+                                                        Coming soon
+                                                    </div>
+                                                </div>
+                                                <meta itemprop="url" content="#">
+                                            </article>
+                                        </div>
+                                        <div class="session-item-content-wrapper">
+                                            <div class="icon"><img alt="" src=""></div>	<article id="post-9098" itemscope="" class="post-9098 opalsgevent_session type-opalsgevent_session status-publish hentry">
+
+                                                <div class="entry-content clearfix">
+                                                    <div class="left">
+                                                        <div class="time"><i class="fa fa-clock-o"></i><span>09:00 - 09:20</span></div>
+                                                        <!-- speakers -->
+                                                        <div class="stitle"><i class="fa fa-microphone"></i>speakers</div>
+                                                        <ul class="speakers clearfix">
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="Nosipho Ngcaba" class="speaker-box-image-inner">
+                                                                        <img width="127" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">Nosipho Ngcaba</div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="H.E. Nomvula Mokonyane" class="speaker-box-image-inner">
+                                                                        <img width="150" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" srcset="#" sizes="(max-width: 150px) 100vw, 150px">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">H.E. Nomvula Mokonyane</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h3 class="entry-title"><a href="#">Tea break</a></h3>
+                                                        Coming soon
+                                                    </div>
+                                                </div>
+                                                <meta itemprop="url" content="#">
+                                            </article>
+                                        </div>
+
+                                    </div>
+                                    <div id="sessiontabid_2" class="tab-pane fade">
+                                        <div class="session-item-content-wrapper">
+                                            <div class="icon"><img alt="" src=""></div>	<article id="post-9098" itemscope="" class="post-9098 opalsgevent_session type-opalsgevent_session status-publish hentry">
+
+                                                <div class="entry-content clearfix">
+                                                    <div class="left">
+                                                        <div class="time"><i class="fa fa-clock-o"></i><span>09:00 - 09:20</span></div>
+                                                        <!-- speakers -->
+                                                        <div class="stitle"><i class="fa fa-microphone"></i>speakers</div>
+                                                        <ul class="speakers clearfix">
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="Nosipho Ngcaba" class="speaker-box-image-inner">
+                                                                        <img width="127" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">Nosipho Ngcaba</div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="H.E. Nomvula Mokonyane" class="speaker-box-image-inner">
+                                                                        <img width="150" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" srcset="#" sizes="(max-width: 150px) 100vw, 150px">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">H.E. Nomvula Mokonyane</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h3 class="entry-title"><a href="#">Official opening</a></h3>
+                                                        Coming soon
+                                                    </div>
+                                                </div>
+                                                <meta itemprop="url" content="#">
+                                            </article>
+                                        </div>
+                                        <div class="session-item-content-wrapper">
+                                            <div class="icon"><img alt="" src=""></div>	<article id="post-9098" itemscope="" class="post-9098 opalsgevent_session type-opalsgevent_session status-publish hentry">
+
+                                                <div class="entry-content clearfix">
+                                                    <div class="left">
+                                                        <div class="time"><i class="fa fa-clock-o"></i><span>09:00 - 09:20</span></div>
+                                                        <!-- speakers -->
+                                                        <div class="stitle"><i class="fa fa-microphone"></i>speakers</div>
+                                                        <ul class="speakers clearfix">
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="Nosipho Ngcaba" class="speaker-box-image-inner">
+                                                                        <img width="127" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">Nosipho Ngcaba</div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="H.E. Nomvula Mokonyane" class="speaker-box-image-inner">
+                                                                        <img width="150" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" srcset="#" sizes="(max-width: 150px) 100vw, 150px">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">H.E. Nomvula Mokonyane</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h3 class="entry-title"><a href="#">keynote address</a></h3>
+                                                        Coming soon
+                                                    </div>
+                                                </div>
+                                                <meta itemprop="url" content="#">
+                                            </article>
+                                        </div>
+                                        <div class="session-item-content-wrapper">
+                                            <div class="icon"><img alt="" src=""></div>	<article id="post-9098" itemscope="" class="post-9098 opalsgevent_session type-opalsgevent_session status-publish hentry">
+
+                                                <div class="entry-content clearfix">
+                                                    <div class="left">
+                                                        <div class="time"><i class="fa fa-clock-o"></i><span>09:00 - 09:20</span></div>
+                                                        <!-- speakers -->
+                                                        <div class="stitle"><i class="fa fa-microphone"></i>speakers</div>
+                                                        <ul class="speakers clearfix">
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="Nosipho Ngcaba" class="speaker-box-image-inner">
+                                                                        <img width="127" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">Nosipho Ngcaba</div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="property-box-image">
+                                                                    <a href="#" title="H.E. Nomvula Mokonyane" class="speaker-box-image-inner">
+                                                                        <img width="150" height="150" src="#" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" srcset="#" sizes="(max-width: 150px) 100vw, 150px">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="gdlr-speaker-thumbnail-title hidden">H.E. Nomvula Mokonyane</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h3 class="entry-title"><a href="#">Tea break</a></h3>
+                                                        Coming soon
+                                                    </div>
+                                                </div>
+                                                <meta itemprop="url" content="#">
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wpb-container vc_row wpb_row vc_row-fluid space-0 vc_custom_1542034201183 vc_row-has-fill">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_text_column wpb_content_element ">
+                                <div class="wpb_wrapper">
+                                    <div>
+                                        <p style="text-align: center; font-size: 50px; line-height: 50px; padding-left: 30px;"><strong><span style="color: #ffffff;">About</span> <span style="color: #7aaa2c;">ABHY</span></strong></p>
+                                        @*<p style="text-align: center; font-size: 28px; color: #fff !important; line-height: 22px;">Partnership for Action on Green Economy</p>*@
+                                    </div>
+                                    <div style="margin-top: 50px;">
+                                        <p style="font-size: 16px; color: #ffffff; text-align: center; letter-spacing: 1px;"><span style="color: #ffffff;"><a style="color: #ffffff;" href="~/about/about" target="_blank" rel="noopener"><span style="background-color: #7aaa2c; border-radius: 3px; padding: 15px 10px;">LEARN MORE</span></a></span></p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="wpb-container vc_row wpb_row vc_row-fluid vc_custom_1531120555192 vc_row-has-fill" style="position: relative; left: 0px; box-sizing: border-box;">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                <div class="col-sm-12" style="padding:0px;">
+                                    <div class="vc_column-inner ">
+                                        <div class="wpb_wrapper">
+                                            <div class="heading clearfix   heading-v1 ">
+                                                <div class="heading-inner">
+                                                    <h2>Conference details</h2>
+                                                    <small class="subheading"> Download the Flyer </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1531121846480">
+                                <div class="col-sm-3">
+                                    <div class="vc_column-inner vc_custom_1531121814541">
+                                        <div class="wpb_wrapper">
+                                            <div class="vc_btn3-container vc_btn3-inline">
+                                                <a class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-rounded vc_btn3-style-modern vc_btn3-icon-left vc_btn3-color-grey" href="javascript:;" title="" ><i class="vc_btn3-icon fa fa-arrow-down"></i> Download the flyer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                         
+                                <div class="col-sm-3"><div class="vc_column-inner "><div class="wpb_wrapper"></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wpb-container vc_row wpb_row vc_row-fluid vc_custom_1530863442691">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                <div class="col-sm-12" style="padding:0px;">
+                                    <div class="vc_column-inner ">
+                                        <div class="wpb_wrapper">
+                                            <div class="heading clearfix   heading-v1 ">
+                                                <div class="heading-inner">
+                                                   
+                                                    <h2>Location</h2>
+                                                    <small class="subheading"> Find  us at this place</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                <div class="col-sm-12">
+                                    <div class="vc_column-inner ">
+                                        <div class="wpb_wrapper">
+                                            <div class="wpb_gmaps_widget wpb_content_element">
+                                                <div class="wpb_wrapper">
+                                                    <div class="wpb_map_wraper">
+                                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.3475861002235!2d77.20959671496776!3d28.619342891428786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2b46ff39d39%3A0xa92665cc1e17e647!2sShram+Shakti+Bhawan!5e0!3m2!1sen!2sin!4v1558174499592!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wpb_text_column wpb_content_element ">
+                            <div class="wpb_wrapper">
+                               @*we can write something*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wpb-container vc_row wpb_row vc_row-fluid vc_custom_1530863386882">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="heading clearfix   heading-v1 ">
+                                <div class="heading-inner">
+                                   
+                                    <h2>Partners</h2>
+                                    <small class="subheading"> Our Supporters</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wpb-container vc_row wpb_row vc_row-fluid vc_custom_1530787647538">
+        <div class="clearfix" style="padding:0px 40px;">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_left  vc_custom_1530784944523">
+
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey vc_box_border_grey1"><img width="1701" height="566" src="~/Images/Digitalindia.png" class="vc_single_image-img attachment-full" alt="" sizes="(max-width: 1701px) 100vw, 1701px"></div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-has-fill">
+                    <div class="vc_column-inner vc_custom_1530785066616">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_right  vc_custom_1530785114988  unlogohome">
+
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey vc_box_border_grey1"><img width="119" height="63" src="~/Images/makeinindia.png" class="vc_single_image-img attachment-full" alt=""></div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-has-fill">
+                    <div class="vc_column-inner vc_custom_1530785066616">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_right  vc_custom_1530785114988  unlogohome">
+
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey vc_box_border_grey1"><img width="119" height="63" src="/Images/Startupindia_2.png" class="vc_single_image-img attachment-full" alt=""></div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="col-sm-2">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_center  vc_custom_1530784815812">
+
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey vc_box_border_grey1"><img width="54" height="110" src="/Images/Swatch.png" class="vc_single_image-img attachment-full" alt=""></div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="col-sm-2">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_center  vc_custom_1530784796779">
+
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey vc_box_border_grey1"><img width="112" height="95" src="/Images/Amrut_2.png" class="vc_single_image-img attachment-full" alt=""></div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="col-sm-2">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_left  vc_custom_1530784703660">
+
+                                <figure class="wpb_wrapper vc_figure">
+                                    <div class="vc_single_image-wrapper   vc_box_border_grey vc_box_border_grey1"><img width="127" height="124" src="/Images/pmsky.png" class="vc_single_image-img attachment-full" alt=""></div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="pbr-footer" class="site-footer pbr-footer" role="contentinfo">
+        <div class="inner">
+            <div class="pbr-footer-profile">
+                <div class="wpb-container vc_row wpb_row vc_row-fluid vc_custom_1530804821002 vc_row-has-fill">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <div class="wpb_wrapper">
+                                        <div class="wpb_single_image wpb_content_element vc_align_center">
+
+                                            <figure class="wpb_wrapper vc_figure">
+                                                <div class="vc_single_image-wrapper   vc_box_border_grey"><img width="300" height="121" src="~/Images/Abhy Logomdpi (1).png" class="vc_single_image-img attachment-full" alt=""></div>
+                                            </figure>
+                                        </div>
+
+                                        <div class="wpb_raw_code wpb_content_element wpb_raw_html vc_custom_1530869262412">
+                                            <div class="wpb_wrapper">
+                                                <div class="bo-social-icons text-center">
+
+
+
+
+                                                    <a class="bo-social-outline-light radius-6x" href="https://www.facebook.com/abhy.gcrs" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                    <a class="bo-social-outline-light radius-6x" href="https://twitter.com/abhy39743912" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                    <a class="bo-social-outline-light radius-6x" href="https://www.linkedin.com/in/abhy-yojana-792b43186/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                    <a class="bo-social-outline-light radius-6x youtube" href="https://www.youtube.com/channel/UCAIIQXYdAsFsPTMRHYwcqQA?view_as=subscriber" target="_blank"><i class="fa fa-youtube-play"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wpb_text_column wpb_content_element  vc_custom_1530804787646">
+                                            <div class="wpb_wrapper">
+                                                <div class="text-center"><span style="color: #ffffff; font-size: 12px;">Copyright © 2019 ABHY. All rights reserved. </span></div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<script>
+    $("nav#primary-menu > ul.main-menu > li:nth-child(8)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(8)").siblings().removeClass('active');
+    $("nav#primary-menu > ul.main-menu > li:nth-child(8) > ul.dropdown > li:nth-child(1)").addClass("active");
+    $("nav#primary-menu > ul.main-menu > li:nth-child(8) > ul.dropdown > li:nth-child(1)").siblings().removeClass('active');
+
+</script>

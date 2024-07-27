@@ -1,0 +1,445 @@
+﻿
+@{
+    ViewBag.Title = "Preparation_Guidance";
+    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+}
+<title>Preparation Guidance</title>
+<style>
+    .text-h {
+        padding: 7px;
+        background: #527bcc;
+        font-weight: 500;
+        margin: 0 0 9px 0;
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    @@media (min-width: 0) {
+        .g-mb-20 {
+            margin-bottom: 1.42857rem !important;
+        }
+
+        .g-mb-15 {
+            margin-bottom: 2.07143rem !important;
+        }
+    }
+
+    .div-w {
+        max-width: 99% !important;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    @@media (min-width: 992px) {
+        .col-lg-6 {
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+
+
+    .header1 {
+        border-bottom: 1px dotted #50714c !important;
+    }
+
+    .headline {
+        display: block;
+        margin: 0 0 25px 0;
+        /*border-bottom: 1px dotted #e4e9f0;*/
+    }
+
+        .headline h2 {
+            margin: 0 0 -2px 0;
+            padding: 0 0 10px 7px;
+            display: inline-block;
+            border-bottom: 2px solid #30ABEC;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            width: 230px;
+        }
+
+    h6.mb-0 {
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
+        font-size: 14px;
+    }
+
+    .div-w99 {
+        max-width: 97% !important;
+        margin: auto;
+    }
+
+    [role="tablist"]:not([data-tabs-mobile-type="slide-up-down"]):not( [data-tabs-mobile-type="accordion"]):not( [data-scroll]) {
+        display: block;
+    }
+
+    .g-color-primary {
+        color: #527bcc !important;
+    }
+
+    .collapsed .u-accordion__control-icon i:nth-child(1) {
+        display: inline;
+    }
+
+    .g-color-gray-dark-v4 {
+        color: #777 !important;
+    }
+
+    table-striped tbody td {
+        border-top: none;
+    }
+
+    .table-striped tbody tr:nth-of-type(2n+1) {
+        background-color: #f7f7f7;
+    }
+    /*.u-shadow-v21 {
+        box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.09);
+        transition-property: all;
+        transition-timing-function: ease;
+        transition-delay: 0s;
+        transition-duration: .3s;
+    }*/
+    .card, .card-header {
+        border: 1px solid;
+        padding: 10px 0px 10px 10px;
+        border-color: #0ebd0029;
+        background-color: #fff;
+    }
+
+    .collapsed .u-accordion__control-icon i:nth-child(1) {
+        display: inline;
+    }
+
+    .collapsed .u-accordion__control-icon i:nth-child(2) {
+        display: none;
+    }
+
+    .u-accordion__control-icon i:nth-child(1) {
+        display: none;
+    }
+
+    .u-shadow-v19 {
+        box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    .g-color-main {
+        color: #555 !important;
+    }
+
+    .g-bg-gray-gradient-opacity-v1, .g-bg-gray-gradient-opacity-v1--after::after {
+        background-image: linear-gradient(to top, #f7f7f7 0%, white 100%);
+        background-repeat: repeat-x;
+    }
+
+    .g-color-primary {
+        color: #527bcc !important;
+        float: right;
+    }
+
+    .g-mb-5 {
+        margin-bottom: 0.35714rem !important;
+    }
+
+    h6 {
+        font-weight: 500;
+    }
+
+    .g-px-30 {
+        padding-left: 2.14286rem !important;
+        padding-right: 2.14286rem !important;
+    }
+
+    .g-pa-30 {
+        padding: 2.14286rem !important;
+    }
+
+    .g-color-gray-dark-v4 {
+        color: #777 !important;
+    }
+
+    .about-area .col-md-6:last-child {
+        padding-left: 12px !important;
+    }
+
+    .text-center > h4 {
+        padding: 10px;
+        text-decoration: underline;
+    }
+
+    .u-btn-outline-primary {
+        color: #527bcc !important;
+        border-color: #527bcc !important;
+        background-color: transparent !important;
+    }
+
+    .btn {
+        font-size: 1.3rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .panel-body {
+        padding: 15px;
+        line-height: 1.6em;
+    }
+
+    h6.mb-0 > span > a {
+        font-weight: 600;
+    }
+
+    @@media only screen and (max-width: 600px) {
+        .g-py-10 {
+            font-size: 0.5em !important;
+            right: 0px;
+            position: absolute;
+            bottom: 1px;
+        }
+    }
+</style>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+
+<script>
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4)").addClass("active");
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4)").siblings().removeClass('active');
+       $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:first-child ").addClass("active");
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:first-child").siblings().removeClass('active');
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:first-child > ul.inside-menu > li:nth-child(2)").addClass("active");
+   $("nav#primary-menu > ul.main-menu > li:nth-child(4) > ul.dropdown > li:first-child> ul.inside-menu > li:nth-child(2)").siblings().removeClass('active');
+
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; background-color:#fff; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Preparation Guidance</div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h4>B:Readiness Criteria</h4>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="headline header1"><img src="~/Content/WspImages/Project implementation.png" /><h2>Readiness Criteria</h2></div>
+            <section class="g-bg-gray-gradient-opacity-v1 g-mb-15">
+                <div class="container div-w99">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <!-- Heading -->
+
+
+                            <div id="accordion" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
+                                <!-- Card -->
+
+
+
+                                <div class="card rounded g-mb-5 u-shadow-v21">
+                                    <div id="accordion-heading-7" class="g-pa-0" role="tab">
+                                        <h6 class="mb-0">
+                                            <span>
+                                                <a class="d-flex justify-content-between u-shadow-v19 g-color-main g-text-underline--none--hover rounded g-px-30 g-py-10 collapsed" href="#accordion-body-7" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="accordion-body-7">
+                                                    The detailed Project Cost Estimate Table
+                                                    <span class="u-accordion__control-icon g-color-primary">
+                                                        <i class="fa fa-angle-down"></i>
+                                                        <i class="fa fa-angle-up"></i>
+                                                    </span>
+                                                </a>
+                                            </span>
+                                        </h6>
+                                    </div>
+                                    <div id="accordion-body-7" class="collapse" role="tabpanel" aria-labelledby="accordion-heading-7" style="">
+                                        <div class="u-accordion__body g-color-gray-dark-v4 g-pa-30">
+                                            <div class="panel-body">
+                                                Component, activity and sub activity wise cost estimate table
+                                                <hr>
+                                                <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15 pull-right" href="#">Click here to download Example Project cost tab - Gujarat Version (10th May 2016)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="card rounded g-mb-5 u-shadow-v21">
+                                    <div id="accordion-heading-8" class="g-pa-0" role="tab">
+                                        <h6 class="mb-0">
+                                            <span>
+                                                <a class="d-flex justify-content-between u-shadow-v19 g-color-main g-text-underline--none--hover rounded g-px-30 g-py-10 collapsed" href="#accordion-body-8" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="accordion-body-8">
+                                                    The  Detailed Project Implementation Plan (PIP) Report Project (ABHY) - central as well as states
+                                                    <span class="u-accordion__control-icon g-color-primary">
+                                                        <i class="fa fa-angle-down"></i>
+                                                        <i class="fa fa-angle-up"></i>
+                                                    </span>
+                                                </a>
+                                            </span>
+                                        </h6>
+                                    </div>
+                                    <div id="accordion-body-8" class="collapse" role="tabpanel" aria-labelledby="accordion-heading-8" style="">
+                                        <div class="u-accordion__body g-color-gray-dark-v4 g-pa-30">
+                                            <div class="panel-body">
+                                                The  Detailed Project Implementation Plan (PIP) Report is a pre-requisite document that needs to be prepared by all the implementing agencies of the National Hydrology Project (ABHY) - central as well as states
+                                                <hr>
+                                                <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15 pull-right" href="#">Click here for Revised Project Implementation Plan</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="card rounded g-mb-5 u-shadow-v21">
+                                    <div id="accordion-heading-10" class="g-pa-0" role="tab">
+                                        <h6 class="mb-0">
+                                            <span>
+                                                <a class="d-flex justify-content-between u-shadow-v19 g-color-main g-text-underline--none--hover rounded g-px-30 g-py-10 collapsed" href="#accordion-body-10" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="accordion-body-10">
+                                                    Overview on National Hydrology Project preparation guidance
+                                                    <span class="u-accordion__control-icon g-color-primary">
+                                                        <i class="fa fa-angle-down"></i>
+                                                        <i class="fa fa-angle-up"></i>
+                                                    </span>
+                                                </a>
+                                            </span>
+                                        </h6>
+                                    </div>
+                                    <div id="accordion-body-10" class="collapse" role="tabpanel" aria-labelledby="accordion-heading-10" style="">
+                                        <div class="u-accordion__body g-color-gray-dark-v4 g-pa-30">
+                                            <div class="panel-body">
+                                                This will provides a guideline to all implementing agencies on the necessary steps to be taken in the preparation of the National Hydrology Project (ABHY). The subsequent sections include step-by-step instructions, templates, sample documents and reference materials to enable implementing agencies to 1)	To prepare a detailed action plan 2)	To quantify baseline and proposed requirements that are necessary for setting the indicators of the project.All agencies are requested to review each section thoroughly before submitting the required documents.
+                                                <hr>
+                                                <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15 pull-right" href="#">Please contact us if you have any queries/suggestions/feedback.</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div id="accordion" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
+                                    <!-- Card -->
+
+
+
+                                    <div class="card rounded g-mb-5 u-shadow-v21">
+                                        <div id="accordion-heading-1" class="g-pa-0" role="tab">
+                                            <h6 class="mb-0">
+
+                                                <span>
+
+                                                    <a class="d-flex justify-content-between u-shadow-v19 g-color-main g-text-underline--none--hover rounded g-px-30 g-py-10 collapsed" href="#accordion-body-1" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="accordion-body-1">
+                                                        Readiness Criteria
+
+                                                        <span class="u-accordion__control-icon g-color-primary">
+                                                            <i class="fa fa-angle-down"></i>
+                                                            <i class="fa fa-angle-up"></i>
+                                                        </span>
+                                                    </a>
+                                                </span>
+
+                                            </h6>
+                                        </div>
+                                        <div id="accordion-body-1" class="collapse" role="tabpanel" aria-labelledby="accordion-heading-1" style="">
+                                            <div class="u-accordion__body g-color-gray-dark-v4 g-pa-30">
+                                                <div class="panel-body">
+                                                    The Department of Economic Affairs (DEA) has set stringent readiness criteria for making the National Hydrology Project (ABHY) effective. To meet the readiness criteria, the following actions require immediate attention by all ABHY implementing agencies (central and state): (1) Setting up of a Project Management Unit (2) Preparation of a Work-Plan for Year 1 and Year 2 (3) Preparation of a Procurement Plan for the first 18 months. The above mentioned documents need to be submitted to the Ministry of Water Resources (MoWR), RD &amp; GR via the existing Management Information System (MIS) before 30th July 2016.
+                                                    <hr>
+                                                    <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15 pull-right" href="#">Link to Management information system for uploading the documents and online filling the project implementation plan</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="card rounded g-mb-5 u-shadow-v21">
+                                        <div id="accordion-heading-2" class="g-pa-0" role="tab">
+                                            <h6 class="mb-0">
+
+                                                <span>
+
+                                                    <a class="d-flex justify-content-between u-shadow-v19 g-color-main g-text-underline--none--hover rounded g-px-30 g-py-10 collapsed" href="#accordion-body-2" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="accordion-body-2">
+                                                        Preparation of a Work-Plan for Year 1 and Year 2
+
+                                                        <span class="u-accordion__control-icon g-color-primary">
+                                                            <i class="fa fa-angle-down"></i>
+                                                            <i class="fa fa-angle-up"></i>
+                                                        </span>
+                                                    </a>
+                                                </span>
+
+                                            </h6>
+                                        </div>
+                                        <div id="accordion-body-2" class="collapse" role="tabpanel" aria-labelledby="accordion-heading-2" style="">
+                                            <div class="u-accordion__body g-color-gray-dark-v4 g-pa-30">
+                                                <div class="panel-body">
+                                                    Work Plan is an outline of phasing project activities to be carried out in a financial year including its physical and financial aspects
+                                                    <hr>
+                                                    <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15 pull-right" href="#">Click here to download Annual Work Plan Format</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="card rounded g-mb-5 u-shadow-v21">
+                                        <div id="accordion-heading-3" class="g-pa-0" role="tab">
+                                            <h6 class="mb-0">
+
+                                                <span>
+
+                                                    <a class="d-flex justify-content-between u-shadow-v19 g-color-main g-text-underline--none--hover rounded g-px-30 g-py-10 collapsed" href="#accordion-body-3" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="accordion-body-3">
+                                                        Preparation of a Procurement Plan for the first 18 months
+
+                                                        <span class="u-accordion__control-icon g-color-primary">
+                                                            <i class="fa fa-angle-down"></i>
+                                                            <i class="fa fa-angle-up"></i>
+                                                        </span>
+                                                    </a>
+                                                </span>
+
+                                            </h6>
+                                        </div>
+                                        <div id="accordion-body-3" class="collapse" role="tabpanel" aria-labelledby="accordion-heading-3" style="">
+                                            <div class="u-accordion__body g-color-gray-dark-v4 g-pa-30">
+                                                <div class="panel-body">
+                                                    Work Plan is an outline of phasing project activities to be carried out in a financial year including its physical and financial aspects
+                                                    <hr>
+                                                    <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15 pull-right" href="#">Click here to download Annual Work Plan Format</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <!-- End Card -->
+
+                                </div>
+
+
+
+
+
+                                <!-- End Card -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

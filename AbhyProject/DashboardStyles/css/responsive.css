@@ -1,0 +1,312 @@
+@media only screen and (max-width: 767px) {
+  .container-wrapper {
+    width: 100%;
+  }
+  .responsive-menu {
+    background: #ffffff;
+    color: #185589;
+    text-decoration: none;
+    text-align: right;
+    padding: 0px 15px;
+  }
+  nav {
+    order: 2;
+  }
+  .responsive-menu:hover {
+    background: #ffffff;
+    color: #185589;
+  }
+
+  .sm-flex-direc-column {
+    flex-direction: column;
+  }
+  .display-none-sm {
+    display: none !important;
+  }
+  .topscreenreader_txt {
+    font-size: 12px;
+  }
+  .sm-flex-wrap {
+    flex-wrap: wrap;
+  }
+  .atal-logo-sec {
+    margin-left: 0px;
+  }
+
+  .external-link-p {
+    padding: 0px 0px;
+  }
+  .link-icon-width {
+    width: 20px;
+  }
+  .external-link-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .banner-image-first {
+    background-size: cover;
+  }
+  .heading {
+    font-size: 20px;
+    line-height: 27px;
+  }
+  .view-more a {
+    font-size: 12px;
+  }
+  .whats-new-bg {
+    padding-right: 16px;
+  }
+  .news-image p {
+    font-size: 11px;
+  }
+  .atal-jal-para {
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 20px;
+    text-align: justify;
+  }
+  .about-atal-jal button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+ 
+  /* .bg-image .para-center-two {
+    left: 30%;
+  } */
+  .web-text {
+    margin-bottom: 20px;
+  }
+  .sm-mt-20 {
+    margin-top: 20px;
+  }
+  .sm-mb-20 {
+    margin-bottom: 20px;
+  }
+  .websites-text .heading:after {
+    margin-top: 0px;
+  }
+  /* MOHIT */
+  .bg-image .para-center-one{
+    top: 22%;
+    left:21%;
+  }
+  .bg-image .para-center-two{
+    left: 40%;
+    top: 22%;
+  }
+  .bg-image .para-center-three{
+    left: 29%;
+    top:52%;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 325px) {
+  .display-none-sm {
+    display: none !important;
+  }
+  .topbar_rightsec {
+    display: block;
+  }
+  .topbar_leftsec {
+    display: flex;
+    padding-left: 5px;
+    align-items: start;
+    justify-content: flex-start;
+  }
+  .topscreenreader_txt {
+    font-size: 12px;
+  }
+  .atal-logo-sec {
+    margin-left: 0px;
+  }
+  .external-link-p {
+    padding: 0px 0px;
+  }
+  .link-icon-width {
+    width: 20px;
+  }
+  .external-link-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .banner-image-first {
+    background-size: cover;
+  }
+  .heading {
+    font-size: 20px;
+    line-height: 27px;
+  }
+  .view-more a {
+    font-size: 12px;
+  }
+  .whats-new-bg {
+    padding-right: 16px;
+  }
+  .news-image p {
+    font-size: 11px;
+  }
+  .atal-jal-para {
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 20px;
+    text-align: justify;
+  }
+  .about-atal-jal button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .sm-pt-20 {
+    padding-top: 20px;
+  }
+  .bg-image .para-center-two {
+    left: 30%;
+  }
+  .web-text {
+    margin-bottom: 20px;
+  }
+  .sm-mt-20 {
+    margin-top: 20px;
+  }
+  .sm-mb-20 {
+    margin-bottom: 20px;
+  }
+  .websites-text .heading:after {
+    margin-top: 0px;
+  }
+}
+@media (max-width:390px){
+  .bg-image .para-center-one{
+    top: 24%;
+    left:24%;
+  }
+  .bg-image .para-center-two{
+    left:36%;
+    top:20%;
+  }
+  .bg-image .para-center-three{
+    left:37%;
+    top:50%;
+  }
+  .map svg{
+    width:250px;
+  }
+  
+}
+@media (max-width:550px){
+  .map svg{
+    width:350px;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .container-wrapper {
+    width: 100%;
+  }
+  .responsive-menu {
+    background: #ffffff;
+    color: #185589;
+    text-decoration: none;
+    text-align: right;
+    padding: 0px 15px;
+  }
+  nav {
+    order: 2;
+  }
+  .responsive-menu:hover {
+    background: #ffffff;
+    color: #185589;
+  }
+
+  .topscreenreader_txt {
+    font-size: 12px;
+  }
+  .sm-flex-wrap {
+    flex-wrap: wrap;
+  }
+  .atal-logo-sec {
+    margin-left: 0px;
+  }
+
+  .external-link-p {
+    padding: 0px 0px;
+  }
+  .link-icon-width {
+    width: 20px;
+  }
+  .external-link-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .banner-image-first {
+    background-size: cover;
+  }
+  .heading {
+    font-size: 20px;
+    line-height: 27px;
+  }
+  .view-more a {
+    font-size: 12px;
+  }
+  .whats-new-bg {
+    padding-right: 16px;
+  }
+  .news-image p {
+    font-size: 11px;
+  }
+  .atal-jal-para {
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 20px;
+    text-align: justify;
+  }
+  .about-atal-jal button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .bg-image .para-center-two {
+    left: 30%;
+  }
+  .web-text {
+    margin-bottom: 20px;
+  }
+  .sm-mt-20 {
+    margin-top: 20px;
+  }
+  .sm-mb-20 {
+    margin-bottom: 20px;
+  }
+  .websites-text .heading:after {
+
+    margin-top: 0px;
+  }
+  .bg-image .para-center-one {
+    top: 20%;
+    left: 16%;
+  }
+  .bg-image .para-center-three {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 22%;
+
+  }
+}
+@media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+}
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  /* .responsive-menu {
+    background: #ffffff;
+    color: #185589;
+    text-decoration: none;
+    text-align: right;
+    padding: 0px 15px;
+  }
+  nav {
+    order: 2;
+  } */
+}

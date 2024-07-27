@@ -1,0 +1,660 @@
+﻿body {
+}
+
+
+.upload_button {
+    margin-top: 5px;
+}
+
+.table_tender_list_div {
+    padding: 20px;
+}
+
+.table_tender_pdf_div {
+    padding: 20px;
+}
+
+.table_tender_list tr th {
+    background-color: #6FB11D;
+    color: #fff;
+}
+
+.table_tender_pdf tr th {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+ul.totalul {
+    list-style: none;
+}
+
+    ul.totalul > li {
+        padding: 5px;
+    }
+
+header.hederImage {
+    background-image: url(../../Content/WspImages/irrigation1.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    padding: 1em 0 0;
+}
+
+.header-top-info > ul > li {
+    float: left;
+    text-align: right;
+    line-height: 20px;
+    list-style: none;
+}
+
+    /*.header-top-info > ul > li:not(:first-child) {
+                padding-top: 13px;
+            }*/
+
+    .header-top-info > ul > li:not(:last-child) {
+        padding-right: 10px;
+    }
+
+    .header-top-info > ul > li:last-child {
+        text-align: left;
+    }
+
+    .header-top-info > ul > li > span {
+        display: block;
+    }
+
+        .header-top-info > ul > li > span:first-child > a,
+        .header-top-info > ul > li > span:first-child > a:hover,
+        .header-top-info > ul > li > span:first-child > a:focus {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .header-top-info > ul > li > span:last-child > a,
+        .header-top-info > ul > li > span:last-child > a:hover,
+        .header-top-info > ul > li > span:last-child > a:focus {
+            color: #fff;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .header-top-info > ul > li > span > i {
+            margin-left: 5px;
+        }
+
+
+
+header.hederImage:before {
+    position: absolute;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.36);
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header-top-info > ul > li {
+    float: left;
+    text-align: right;
+    line-height: 20px;
+    list-style: none;
+}
+
+
+
+
+
+
+ul.imgHome {
+    display: inline-flex;
+}
+
+    ul.imgHome > li {
+        list-style: none;
+        padding: 0px 0px 0px 10px;
+    }
+
+        ul.imgHome > li > img,
+        ul.imgHome > li > a > img {
+            width: 30px;
+        }
+
+#breadcrumb {
+    color: #0000ff;
+    font-size: 15px;
+    margin: 0;
+    height: 15px;
+    padding: 0px 0px 0px 20px;
+}
+
+    #breadcrumb a {
+        color: #0000ff;
+        text-decoration: underline;
+    }
+
+ul#myTabs > li > a > span > img {
+    height: 26px;
+    width: 26px;
+}
+
+ul.imgHome > li > a > span > img,
+ul.imgHome > li > span > img {
+    width: 25px;
+}
+
+ul.imgHome > li > label {
+    color: #fff;
+    padding: 0px 0px 0px 5px;
+    font-size: 13px;
+}
+
+ul.imgHome > li > a > label {
+    font-size: 13px;
+    text-decoration: underline;
+    color: #fff;
+    padding: 0px 0px 0px 5px;
+    margin: 0;
+    height: 15px;
+}
+
+ul.imgHome > li > img,
+ul.imgHome > li > a > img {
+    width: 25px !important;
+}
+
+.panelbodyheading {
+    line-height: 40px;
+    background: #E2cf31;
+    height: 40px;
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+ul.Select_option {
+    list-style: none;
+    font-size: 13px;
+    margin: 0px;
+}
+
+    ul.Select_option > li {
+        display: inline-block;
+        padding: 0px 0px 0px 5px;
+        text-transform: capitalize;
+    }
+
+        ul.Select_option > li > span > i {
+            padding: 0px 0px 0px 10px;
+        }
+
+.selectdistshowoption {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.tableheader1 > th {
+    background-color: skyblue;
+}
+
+.fa-arrow-right {
+    padding-left: 5px;
+}
+
+.fa-arrow-left {
+    padding-right: 5px;
+}
+
+.fa-trash,
+.fa-save,
+.fa-pencil-square-o {
+    padding-right: 5px;
+}
+
+.trhideclass0 {
+    display: none;
+}
+
+ul.btnall > li {
+    display: inline-block;
+}
+
+#progress-ui .progress-group#Surface-water .progress-label {
+    background-color: #337ab7;
+}
+
+#progress-ui .progress-group.active .progress-node, #progress-ui .progress-group.hover .progress-node {
+    border-color: #337ab7;
+}
+
+#progress-ui .progress-node .progress-label .pointer {
+    border-top: 10px solid lightblue;
+}
+
+
+/*============================================================ footer============================================================*/
+#Select_dist_level > .selectbackhome {
+    display: inline-block;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#progress.gone #progress-ui {
+    bottom: -100px
+}
+
+#progress-ui {
+    /*left: 23%;*/
+    border: 0;
+    margin-bottom: auto;
+    position: fixed;
+    bottom: 0;
+    -webkit-transition: bottom 0.3s ease-out;
+    -moz-transition: bottom 0.3s ease-out;
+    -o-transition: bottom 0.3s ease-out;
+    /*-ms-transition: bottom 0.3s ease-out;*/
+    transition: bottom 0.3s ease-out;
+    width: 100%;
+    font-size: 1rem;
+    background-color: #ddd;
+    z-index: 1000;
+}
+
+#Events.tab-pane.active ~ #progress > #progress-ui {
+    left: 0;
+    padding: 0px !important;
+}
+
+#progress-ui #mobile-prompt {
+    display: none
+}
+
+#progress-ui .progress-group {
+    position: relative;
+    display: inline-block;
+    padding: 10px 10px 10px 18px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.2em;
+    line-height: 1.6em;
+}
+
+    #progress-ui .progress-group span.progress-group-label {
+        margin-left: 14px;
+        margin-right: 4px;
+        vertical-align: middle
+    }
+
+    #progress-ui .progress-group .tri {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 0;
+        height: 0;
+        border-left: 16px solid #003f69;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        overflow: hidden;
+    }
+
+        #progress-ui .progress-group .tri.shadow {
+            border-left: 20px solid rgba(0, 0, 0, 0.2)
+        }
+
+    #progress-ui .progress-group#start {
+        z-index: 5;
+        background-color: #00bcb6;
+        cursor: pointer;
+    }
+
+        #progress-ui .progress-group#start:hover span {
+            color: #a7e3e0
+        }
+
+        #progress-ui .progress-group#start .tri {
+            border-left-color: #00bcb6;
+        }
+
+            #progress-ui .progress-group#start .tri.shadow {
+                border-left: 20px solid rgba(0, 0, 0, 0.1)
+            }
+
+    #progress-ui .progress-group#indoor-water {
+        margin-left: -2px;
+        z-index: 4;
+        background-color: #059cec;
+    }
+
+        #progress-ui .progress-group#indoor-water .tri {
+            border-left-color: #059cec;
+        }
+
+            #progress-ui .progress-group#indoor-water .tri.shadow {
+                border-left: 20px solid rgba(0, 0, 0, 0.15)
+            }
+
+        #progress-ui .progress-group#indoor-water .progress-label {
+            background-color: #059cec;
+        }
+
+            #progress-ui .progress-group#indoor-water .progress-label .pointer {
+                border-top-color: #059cec
+            }
+
+        #progress-ui .progress-group#indoor-water .progress-node {
+            border-color: #059cec
+        }
+
+    #progress-ui .progress-group#outdoor-water {
+        z-index: 3;
+        background-color: #2E578C;
+    }
+
+        #progress-ui .progress-group#outdoor-water .tri {
+            border-left-color: #2E578C;
+        }
+
+            #progress-ui .progress-group#outdoor-water .tri.shadow {
+                border-left: 20px solid rgba(0, 0, 0, 0.1)
+            }
+
+        #progress-ui .progress-group#outdoor-water .progress-label {
+            background-color: #2E578C;
+        }
+
+            #progress-ui .progress-group#outdoor-water .progress-label .pointer {
+                border-top-color: #7cb250
+            }
+
+        #progress-ui .progress-group#outdoor-water .progress-node {
+            border-color: #2E578C
+        }
+
+    #progress-ui .progress-group#virtual-water {
+        z-index: 2;
+        background-color: #7cb250;
+    }
+
+        #progress-ui .progress-group#virtual-water .tri {
+            border-left-color: #7cb250;
+        }
+
+            #progress-ui .progress-group#virtual-water .tri.shadow {
+                border-left: 20px solid rgba(0, 0, 0, 0.1)
+            }
+
+        #progress-ui .progress-group#virtual-water .progress-label {
+            background-color: #7cb250;
+        }
+
+            #progress-ui .progress-group#virtual-water .progress-label .pointer {
+                border-top-color: #7cb250
+            }
+
+        #progress-ui .progress-group#virtual-water .progress-node {
+            border-color: #7cb250
+        }
+
+    #progress-ui .progress-group#finish {
+        margin-left: -2px;
+        z-index: 1;
+        background-color: #00bcb6;
+    }
+
+        #progress-ui .progress-group#finish span,
+        #progress-ui .progress-group#finish .tri {
+            border-left-color: #00bcb6
+        }
+
+        #progress-ui .progress-group#finish.active {
+            cursor: pointer
+        }
+
+    #progress-ui .progress-group.active.set span.progress-group-label,
+    #progress-ui .progress-group.hover.set span.progress-group-label {
+        margin-right: 14px
+    }
+
+    #progress-ui .progress-group.active .progress-node,
+    #progress-ui .progress-group.hover .progress-node {
+        width: 20px;
+        height: 20px;
+        border-width: 6px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+        #progress-ui .progress-group.active .progress-node.active,
+        #progress-ui .progress-group.hover .progress-node.active {
+            width: 14px;
+            height: 14px;
+            border-width: 0;
+            -webkit-border-radius: 7px;
+            border-radius: 7px;
+            border-color: #fff !important;
+            margin: 0 3px
+        }
+
+#progress-ui .progress-node {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 0;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    border: solid;
+    border-width: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+    #progress-ui .progress-node .progress-closed {
+        display: none;
+        color: #f00;
+        font-weight: 300;
+        position: absolute;
+        top: -6px;
+        left: -2px;
+        font-size: 1.6em
+    }
+
+    #progress-ui .progress-node .progress-label {
+        display: none;
+        position: absolute;
+        top: -50px;
+        -webkit-transform: translate(-50%, -20px);
+        -moz-transform: translate(-50%, -20px);
+        -o-transform: translate(-50%, -20px);
+        -ms-transform: translate(-50%, -20px);
+        transform: translate(-50%, -20px);
+        color: #fff;
+        font-weight: 600;
+        -webkit-border-radius: 30px;
+        border-radius: 30px;
+        text-align: center;
+        padding: 10px 20px;
+        width: auto;
+        white-space: nowrap;
+        font-size: .9em;
+    }
+
+        #progress-ui .progress-node .progress-label .pointer {
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 10px solid #003f69;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent
+        }
+
+    #progress-ui .progress-node.answered {
+        cursor: pointer;
+        background-color: #fff
+    }
+
+    #progress-ui .progress-node.answering {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.5)
+    }
+
+    #progress-ui .progress-node.closed {
+        background-color: #fff;
+    }
+
+        #progress-ui .progress-node.closed.answering {
+            background-color: #fff
+        }
+
+    #progress-ui .progress-node:hover .progress-label,
+    #progress-ui .progress-node.hover .progress-label {
+        display: inline-block
+    }
+
+.footer-text {
+    position: absolute;
+    right: 10px;
+    bottom: 50px
+}
+
+@media (max-width: 767px) {
+    #progress-ui .footer-text {
+        display: none
+    }
+
+    #progress-ui #mobile-prompt {
+        display: block;
+        padding-top: 6px;
+        height: 40px;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #fff;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: .03em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 100vw;
+    }
+
+        #progress-ui #mobile-prompt span {
+            vertical-align: center;
+            display: block;
+        }
+
+            #progress-ui #mobile-prompt span.icon {
+                line-height: .5em
+            }
+
+    /* #progress-ui .progress-group {
+        display: none
+    }*/
+}
+
+
+
+#graph-ui .graph-bars-container .graph-bars .graph-bar .graph-bar--info .tri {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #003f69;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent
+}
+
+#graph-ui .graph-bars-container .graph-bars .graph-bar#pet-food .graph-bar--info {
+    left: auto;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+    right: -16px;
+    border-bottom-right-radius: 9px;
+}
+
+    #graph-ui .graph-bars-container .graph-bars .graph-bar#pet-food .graph-bar--info .tri {
+        left: auto;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -o-transform: none;
+        -ms-transform: none;
+        transform: none;
+        right: 10px
+    }
+
+#graph-ui .graph-bars-container .graph-bars .graph-bar:hover .graph-bar--info {
+    display: inline
+}
+
+#graph-ui .graph-bars-container .graph-bars .graph-bar.indoor-water {
+    background-color: #059cec;
+}
+
+    #graph-ui .graph-bars-container .graph-bars .graph-bar.indoor-water .graph-bar--info {
+        background-color: #058cd4;
+    }
+
+        #graph-ui .graph-bars-container .graph-bars .graph-bar.indoor-water .graph-bar--info .tri {
+            border-top-color: #058cd4
+        }
+
+#graph-ui .graph-bars-container .graph-bars .graph-bar.outdoor-water {
+    background-color: #7cb250;
+}
+
+    #graph-ui .graph-bars-container .graph-bars .graph-bar.outdoor-water .graph-bar--info {
+        background-color: #6fa147;
+    }
+
+        #graph-ui .graph-bars-container .graph-bars .graph-bar.outdoor-water .graph-bar--info .tri {
+            border-top-color: #6fa147
+        }
+
+#graph-ui .graph-bars-container .graph-bars .graph-bar.virtual-water {
+    background-color: #2f9194;
+}
+
+    #graph-ui .graph-bars-container .graph-bars .graph-bar.virtual-water .graph-bar--info {
+        background-color: #2a8285;
+    }
+
+        #graph-ui .graph-bars-container .graph-bars .graph-bar.virtual-water .graph-bar--info .tri {
+            border-top-color: #2a8285
+        }
+
+#progress-ui .progress-group#Surface-water {
+    margin-left: -2px;
+    z-index: 4;
+    background-color: #337ab7;
+}
+
+#progress {
+    text-align: center !important;
+    padding-top: 30px;
+}

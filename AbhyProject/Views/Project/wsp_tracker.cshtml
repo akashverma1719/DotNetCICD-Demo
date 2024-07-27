@@ -1,0 +1,2916 @@
+﻿
+@{
+    ViewBag.Title = "wsp_tracker";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+
+<title>WSP Tracker</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        /*opacity: 0.95;*/
+        visibility: visible;
+        /*background-color: #fff;*/
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .color_database {
+        color: green !important;
+    }
+
+    tr.info th {
+        background-color: #337ab7 !important;
+        color: #fff;
+        text-align: center;
+    }
+
+    .total_wsp_count > label {
+        background-color: #f5ae91;
+        color: #000;
+        padding: 10px 10px 0px 10px;
+    }
+    /*body {
+        background: #D1E8E2 !important;
+    }*/
+
+    .color_red_pdf {
+        color: red;
+        font-style: normal;
+    }
+
+    .Select_option > li:last-child {
+        text-align: right !important;
+        position: absolute;
+        right: 0;
+    }
+
+    .check_mark_right > label {
+        color: lightgreen;
+    }
+
+    .check_mark_wrong > label {
+        color: red;
+    }
+
+    @@media screen and (max-width: 767px) {
+        .Select_option > li:last-child {
+            position: unset;
+        }
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="clearfix">
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size: 14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="Username" />
+                            <span style="color:#fff;">:@Session["UserName"]</span>
+                        </li>
+                        <li>
+
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-12" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <span><img src="~/Content/WspImages/WSP Home.png" /></span>
+                            <label> WSP Tracker</label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="clearfix padding-top-10">
+
+        <div class="col-md-12  Select_option_div">
+            <div style="text-align:center;color:red;"><label id="Error_123" style="text-align: center;"></label></div><br />
+            <ul class="Select_option col-md-12 col-sm-12 text-center" id="Dropdowns_">
+
+                <li id="StateLabel">
+                    <label id="lblstate">State:</label>
+                    <span id="spnstate1">@Session["gstate"]</span>
+                </li>
+                <li id="StateDropdownLabel">
+
+                    <select class="form-control" id="state" onchange="State_Dropdown_Function()">
+                    </select>
+                </li>
+
+                <li id="DistLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label id="lbldistrict">District:</label>
+                    <span id="spndistrict">@Session["gdist"]</span>
+                </li>
+
+                <li id="DistDropdownLabel">
+
+                    <select class="form-control" id="dist" onchange="Dist_fun()">
+                    </select>
+                </li>
+
+                @*<li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>*@
+
+                <li id="BlockDropdownLabel">
+
+                    <select class="form-control" id="block">
+                    </select>
+                </li>
+                @*<li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>*@
+
+                <li>
+                    <a href="~/WSPHome/Gp_information" class="btn btn-primary">
+                        Back To GP Modules
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="col-md-12 col-sm-12">
+            <div class="total_wsp_count">
+                <label>
+                    Total Number of Water Security Plans Completed are : <label id="ttl_count"></label>
+                </label>
+                @*<div class="col-md-2 col-sm-3 pull-right">
+                        <select class="form-control" id="status_com_not_com" onchange="status_com_not_com()">
+                            <option value="0">Select Status</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Not Completed">Not Completed</option>
+                        </select>
+                    </div>*@
+
+                <span class="pull-right">
+
+                    <button class="btn btn-success form-control" onclick="saveAsExcel('TblData_abc_part1', 'wsp_tracker.xls')">  Download Excel</button>
+
+                </span>
+            </div>
+        </div>
+        <div style="color:red;text-align:center;">
+            <b> <span id="Error_alert"></span></b>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 form-body" style="padding:10px 15px" id="data11">
+            <div class="form-div background-border-Database">
+                <div class="table-responsive" style="overflow-y:auto">
+                    <table class="Table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" id="TblData_abc_part1">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">S.No.</th>
+                                <th class="text-center">State Name</th>
+                                <th class="text-center">District Name</th>
+                                <th class="text-center">Block Name</th>
+                                <th class="text-center">GP Name</th>
+                                <th class="text-center">
+                                    Gram Panchayat
+                                </th>
+                                <th class="text-center">Water Availability</th>
+                                <th class="text-center">Water Utilisation</th>
+                                <th class="text-center">Water Balance</th>
+                                <th class="text-center">Water Budget</th>
+                                <th class="text-center">
+                                    WSP - Demand Side
+                                </th>
+                                <th class="text-center">
+                                    WSP - Supply Side
+                                </th>
+                                <th class="text-center">Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="Data_wspTracker">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab"> WSP Tracker</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+
+    function saveAsExcel(id, fileName) {
+
+        var table_text = "<table style='border:6px solid black !important'><tr  style='border:6px solid black !important'>"; //Table Intialization, CSS included
+        var textRange;
+        var index = 0;
+        var table = document.getElementById(id); // Read table using id
+        /*
+            Read Table Data and append to table_text
+        */
+
+        for (index = 0; index < table.rows.length; index++) {
+            table_text = table_text + table.rows[index].innerHTML + "</tr>";
+
+        }
+
+        table_text = table_text + "</table>"; // table close
+        table_text = table_text.replace(/<a[^>]*>|<\/a>/g, ""); //removes links embedded in <td>
+        table_text = table_text.replace(/<img[^>]*>/gi, "");  //removes images embeded in <td>
+        table_text = table_text.replace(/<input[^>]*>|<\/input>/gi, ""); //removes input tag elements
+
+        var userAgent = window.navigator.userAgent; //check client user agent to determine browser
+        var msie = userAgent.indexOf("MSIE "); // If it is Internet Explorer user Aget will have string MSIE
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            //Since IE > 10 supports blob, check for blob support and use if we can
+            if (typeof Blob !== "undefined") {
+                //Bolb Data is ArrayStorage, convert to array
+                table_text = [table_text];
+                var blob = new Blob(table_text);
+                window.navigator.msSaveBlob(blob, '' + fileName);
+            }
+            else {
+                //If Blob is unsupported, create an iframe in HTML Page, and call that blank iframe
+
+                textArea.document.open("text/html", "replace");
+                textArea.document.write(table_text);
+                textArea.document.close();
+                textArea.focus();
+                textArea.document.execCommand("SaveAs", true, fileName);
+
+            }
+        }
+
+        //Other Browsers
+        else
+            //Can use below statement if client machine has Excel Application installed
+            //window.open('data:application/vnd.ms-excel,' + encodeURIComponent(table_text));
+            var a = document.createElement('a');
+        //getting data from our div that contains the HTML table
+        var data_type = 'data:application/vnd.ms-excel';
+        var table_div = document.getElementById(id);
+        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+        table_html = table_html.replace(/<a[^>]*>|<\/a>/g, "");
+        a.href = data_type + ', ' + table_html;
+
+        //setting the file name
+        a.download = '' + fileName;
+        //triggering the function
+        a.click();
+
+    }
+
+</script>
+<script type="text/javascript">
+    var Jsondata = "";
+    var Full_Data = "";
+    var States = [];
+    var Officer = "";
+    var State_Name = "0";
+    var Dist_Name = "0";
+    var Block_Name = "0";
+    $(document).ready(function () {
+
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+
+        Full_Data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.FullData));
+
+        $('#Error_123').html("States Information is Loading.....");
+
+
+
+        $('#ttl_count').html("0");
+
+        Officer = '@Session["Officer"]';
+
+        if (Officer == "National Level Nodal Officer") {
+            $('#StateLabel').hide();
+            $('#DistLabel').hide();
+
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+
+            DropDownInfo();
+        }
+        else if (Officer == "State Level Nodal Officer") {
+            $('#StateLabel').show();
+            State_Name = $('#spnstate1').text();
+
+            $('#DistLabel').hide();
+            $('#StateDropdownLabel').hide();
+            $('#DistDropdownLabel').show();
+            State_Dropdown_Function();
+        }
+        else if (Officer == "District Level Nodal Officer") {
+            $('#StateLabel').show();
+            $('#DistLabel').show();
+            State_Name = $('#spnstate1').text();
+            Dist_Name = $('#spndistrict').text();
+
+            $('#StateDropdownLabel').hide();
+            $('#DistDropdownLabel').hide();
+            Dist_fun();
+        }
+        else {
+            $('#StateLabel').hide();
+            $('#DistLabel').hide();
+
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+            DropDownInfo();
+        }
+    });
+
+    function DropDownInfo() {
+        $('.loader').hide();
+                if (Jsondata.length != 0) {
+                    var all_states = [];
+                    $("#dist").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist").append(opdist);
+                    $("#block").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+
+                    var ddlst = {};
+                    var optionhtml = '<option value="0">Select State</option>';
+                    // var optionState = '<option value="0">Please Select State</option>';
+                    for (var i = 0; i < Jsondata.length; i++) {
+
+                        if (!ddlst[Jsondata[i].state_name]) {
+                            all_states.push(Jsondata[i].state_name);
+                            ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+                            // $("#state").append(optionState);
+                        }
+                    }
+
+                    var StateArray = [];
+                    StateArray = all_states.sort(function (a, b) {
+                        if (a < b) return -1;
+                        else if (a > b) return 1;
+                        return 0;
+                    });
+                    optionhtml += '<option value="ALL">ALL</option>';
+                    for (var i = 0; i < StateArray.length; i++) {
+                        if (StateArray[i] != null && StateArray[i] != "") {
+                            States.push(StateArray[i]);
+                            optionhtml += '<option value="' + StateArray[i] + '">' + StateArray[i] + '</option>';
+                        }
+                    }
+                    $("#state").html(optionhtml);
+
+        }
+
+        $('#Error_123').html("");
+        Searching_info1_count();
+
+    }
+
+    function State_Dropdown_Function()
+     {
+        $('#status_com_not_com').val("0");
+
+        $("#dist").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist").append(opdist);
+        $("#block").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var StateName = $("#state").val();
+        if (StateName != "0" && StateName != null) {
+            State_Name = StateName;
+        } else {
+            if (State_Name == "0") {
+                State_Name = StateName;
+            } else {
+                StateName = State_Name;
+            }
+        }
+
+
+
+        $('#Error_123').html("");
+        if (StateName == "ALL") {
+            $("#dist").val("0");
+            Dist_Name = "0";
+            $("#gram").val("0");
+            $("#block").val("0");
+            $('#status_com_not_com').val("0");
+
+            Searching_info1();
+        }
+        else if (StateName != "0" && Jsondata.length != 0) {
+            $("#dist").val("0");
+            $("#gram").val("0");
+            Dist_Name = "0";
+            $("#block").val("0");
+            Searching_info1();
+
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+
+
+            for (var i = 0; i < Jsondata.length; i++) {
+
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist").append(optionDist);
+        }
+    }
+
+    function Dist_fun() {
+        $('#Error_123').html("");
+        $('#status_com_not_com').val("0");
+
+        $("#block").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        $("#gram").val("0");
+        var dist = $("#dist").val();
+
+        if (dist != "0" && dist !=null)
+        {
+            Dist_Name = dist;
+        }else {
+            if (Dist_Name == "0") {
+                Dist_Name = dist;
+            } else {
+                dist = Dist_Name;
+            }
+        }
+        if (dist != "0" && Jsondata.length != 0) {
+            $("#gram").val("0");
+            Searching_info1();
+
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (dist == Jsondata[i].district_name && Jsondata[i].state_name == State_Name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block").append(optionDist);
+
+        }
+    }
+
+    $("#block").change(function () {
+        $('#status_com_not_com').val("0");
+
+        var block = $("#block").val();
+        if (block != "0" && Jsondata.length != 0) {
+            Searching_info1();
+        }
+
+    });
+
+    var status_dropdown_variable = "";
+    var status_dropdown_val = "";
+
+    function status_com_not_com() {
+
+        var status_com_not_com1 = $('#status_com_not_com').val();
+        status_dropdown_val = status_com_not_com1;
+        if (status_com_not_com1 == "Completed") {
+            Filter_Info();
+        }
+        else if (status_com_not_com1 == "Not Completed") {
+            Filter_Info();
+        }
+    }
+
+    function Filter_Info() {
+        var Tr1 = '';
+        var abc = 0;
+         $('#Data_wspTracker').html(Tr1);
+        $('.loader').show();
+
+        $('#Error_alert').text("Please Wait , Data is Loading...");
+
+        if (status_dropdown_variable != null) {
+            if (status_dropdown_variable.abhy_gpdata_new.length != 0) {
+                var response = status_dropdown_variable;
+
+                if (response.abhy_gpdata_new.length != 0) {
+                    var z1 = 0;
+                    var z2 = 0;
+                    for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+                        var j = i + 1;
+                        var tr12 = '';
+                        var tr13 = '';
+                        var tr14 = '';
+                        var tr15 = '';
+                        var tr16 = '';
+                        var tr17 = '';
+                        var tr18 = '';
+                        var tr19 = '';
+                        var x1 = 0;
+                        var x2 = 0;
+                        var x3 = 0;
+                        var x4 = 0;
+                        var x5 = 0;
+                        var x6 = 0;
+                        var x7 = 0;
+                        var x8 = 0;
+
+                        if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+
+
+                            var WSP_Gram = 0;
+
+                            if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                                response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                                response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                                response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                                response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+
+                                WSP_Gram = 1;
+                            }
+
+                            if (response.PGWN_Department_Details.length != 0) {
+                                for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+
+                                        WSP_Gram = 1;
+                                    }
+                                }
+                            }
+
+                            if (WSP_Gram == 1) {
+                                x8 = 1;
+
+                                tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                    '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                            }
+                            else {
+                                x8 = 0;
+
+                                tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                    '<td class="text-center check_mark_wrong"><label>No</label></td>';
+
+                            }
+
+                            if (response.abhy_wateravailability_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                            tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                    }
+                                }
+
+
+                            }
+
+
+                            if (response.abhy_waterdraft_domestic_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                        if (response.abhy_waterdraft_domestic_new[ii].domestic_people_count != "" && response.abhy_waterdraft_domestic_new[ii].domestic_people_count != null) {
+                                            tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                        }
+                                    }
+                                }
+
+                            }
+
+
+
+                            if (response.abhy_waterbalance_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                        tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                    }
+                                }
+
+                            }
+
+                            if (response.abhy_waterbudget_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+
+                                        tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                    }
+                                }
+
+                            }
+
+                            if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                                for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                        tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                    }
+                                }
+
+                            }
+
+
+                            if (response.supply_AR_Structures.length != 0) {
+                                for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                        tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                    }
+                                }
+
+                            }
+
+                            if (tr13 == '') {
+
+                                x1 = 0;
+                                tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x1 = 1;
+                            }
+
+                            if (tr14 == '') {
+                                x2 = 0;
+                                tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            }
+                            else {
+
+                                x2 = 1;
+                            }
+
+                            if (tr15 == '') {
+                                x3 = 0;
+                                tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x3 = 1;
+                            }
+
+
+                            if (tr16 == '') {
+                                x4 = 0;
+                                tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x4 = 1;
+                            }
+
+                            if (tr17 == '') {
+                                x5 = 0;
+                                tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x5 = 1;
+                            }
+                            if (tr18 == '') {
+                                x6 = 0;
+                                tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x6 = 1;
+                            }
+
+
+                            x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                            if (x7 == 7) {
+                                abc += 1;
+                                if (status_dropdown_val == "Completed") {
+                                    z1 += 1;
+                                    //var X1 = '<tr><td class="text-center">' + z1 + '</td>';
+                                    tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                                    var SSS = '<tr> <td class="text-center">' + abc + '</td>';
+                                    Tr1 +=  SSS + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+
+                                   // Tr1 += X1 + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+                                }
+                            }
+                            //else {
+                            //    if (status_dropdown_val == "Not Completed") {
+                            //        z2 += 1;
+                            //        var X1 = '<tr><td class="text-center">' + z2 + '</td>';
+                            //        tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                            //        Tr1 += X1 + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+                            //    }
+                            //}
+
+
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+        $('.loader').hide();
+        $('#Data_wspTracker').html(Tr1);
+        $('#ttl_count').html(abc);
+
+
+        $('#Error_alert').text("");
+    }
+    function Searching_info1() {
+        $('.loader').show();
+
+        $('#Error_alert').text("Please Wait , Data is Loading...");
+
+
+        var obj = {};
+        var XX = 0;
+        
+        var State = $('#state').val();
+        var Dist = $('#dist').val();
+        var Block = $('#block').val();
+        if (XX == 0) {
+            if (State_Name == "ALL") {
+                obj.state_name = "0";
+            }
+            else {
+                obj.state_name = State_Name;
+            }
+
+            obj.district_name = Dist_Name;
+            obj.block_name = Block;
+
+            if (State_Name != "ALL") {
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/Project/wsp_tracker",
+                    data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        
+                        if (response == "Logout") {
+                              window.location = "/Home/LogOut";
+                        }
+
+                        var Tr1 = '';
+                        var abc = 0;
+                        $('#Data_wspTracker').html("");
+                        if (response != null) {
+                            if (response.abhy_gpdata_new.length != 0) {
+                                status_dropdown_variable = response;
+                                var abc = 0;
+                                var z1 = 0;
+
+                                for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+
+                                    var j = i + 1;
+                                    var tr12 = '';
+                                    var tr13 = '';
+                                    var tr14 = '';
+                                    var tr15 = '';
+                                    var tr16 = '';
+                                    var tr17 = '';
+                                    var tr18 = '';
+                                    var tr19 = '';
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+                                        var WSP_Gram = 0;
+                                        var x1 = 0;
+                                        var x2 = 0;
+                                        var x3 = 0;
+                                        var x4 = 0;
+                                        var x5 = 0;
+                                        var x6 = 0;
+                                        var x7 = 0;
+                                        var x8 = 0;
+
+
+                                        if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                                            response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                                            response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                                            response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                                            response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+                                            WSP_Gram = 1;
+
+                                        }
+
+
+
+
+                                        if (response.PGWN_Department_Details.length != 0) {
+                                            for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+                                                    WSP_Gram = 1;
+                                                }
+                                            }
+                                        }
+
+                                        if (WSP_Gram == 1) {
+                                            x8 = 1;
+                                            z1 += 1;
+                                            tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                                '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                                        }
+                                        else {
+                                            x8 = 0;
+
+                                            z1 += 1;
+                                            tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                                '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        }
+
+
+
+                                        if (response.abhy_wateravailability_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                                        tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                                }
+                                            }
+
+
+                                        }
+
+
+                                        if (response.abhy_waterdraft_domestic_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                                    if (response.abhy_waterdraft_domestic_new[ii].domestic_people_count != "" && response.abhy_waterdraft_domestic_new[ii].domestic_people_count != null) {
+                                                        tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+
+
+                                        if (response.abhy_waterbalance_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                                    tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+
+                                        }
+
+
+                                        if (response.abhy_waterbudget_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+                                                    tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                                }
+                                            }
+
+                                        }
+
+                                        if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                                    tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+
+                                        }
+
+
+                                        if (response.supply_AR_Structures.length != 0) {
+                                            for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                                    tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+
+                                        }
+
+
+                                        if (tr13 == '') {
+
+
+                                            tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x1 = 1;
+                                        }
+
+                                        if (tr14 == '') {
+
+                                            tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        }
+                                        else {
+
+                                            x2 = 1;
+                                        }
+
+                                        if (tr15 == '') {
+
+                                            tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x3 = 1;
+                                        }
+
+
+                                        if (tr16 == '') {
+
+                                            tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x4 = 1;
+                                        }
+
+                                        if (tr17 == '') {
+
+                                            tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x5 = 1;
+                                        }
+                                        if (tr18 == '') {
+
+                                            tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x6 = 1;
+                                        }
+
+                                        x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                                        if (x7 == 7) {
+                                            abc += 1;
+                                            tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                                            var SSS = '<tr><td class="text-center">' + abc + '</td>';
+                                            Tr1 += SSS + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+
+                                        }
+                                        //else {
+                                        //    tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                                        //}
+
+
+                                    }
+
+                                }
+
+                            }
+                        }
+                        $('.loader').hide();
+                        $('#Data_wspTracker').html(Tr1);
+                        $('#ttl_count').html(abc);
+                        $('#Error_alert').text("");
+                    }
+                });
+            }
+            else {
+               Full_Data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.FullData));
+                status_dropdown_variable = Full_Data;
+                var Tr1 = '';
+                var abc = 0;
+                $('#Error_alert').text("Please Wait , Data is Loading...");
+
+                $('#Data_wspTracker').html("");
+               // $('#Data_wspTracker').html(Tr1);
+                $('.loader').show();
+                if (status_dropdown_variable.abhy_gpdata_new != null) {
+                    if (status_dropdown_variable.abhy_gpdata_new.length != 0) {
+                        var response = status_dropdown_variable;
+
+                        var z1 = 0;
+                        if (response.abhy_gpdata_new.length != 0) {
+                            status_dropdown_variable = response;
+                            var abc = 0;
+                            var z1 = 0;
+                            for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+
+                                var j = i + 1;
+                                var tr12 = '';
+                                var tr13 = '';
+                                var tr14 = '';
+                                var tr15 = '';
+                                var tr16 = '';
+                                var tr17 = '';
+                                var tr18 = '';
+                                var tr19 = '';
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+                                    var WSP_Gram = 0;
+                                    var x1 = 0;
+                                    var x2 = 0;
+                                    var x3 = 0;
+                                    var x4 = 0;
+                                    var x5 = 0;
+                                    var x6 = 0;
+                                    var x7 = 0;
+                                    var x8 = 0;
+
+
+                                    if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                                        response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                                        response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                                        response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                                        response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+                                        WSP_Gram = 1;
+
+                                    }
+
+
+
+
+                                    if (response.PGWN_Department_Details.length != 0) {
+                                        for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+
+                                                WSP_Gram = 1;
+                                            }
+                                        }
+                                    }
+
+                                    if (WSP_Gram == 1) {
+                                        x8 = 1;
+                                        z1 += 1;
+                                        tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                            '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                                    }
+                                    else {
+                                        x8 = 0;
+
+                                        z1 += 1;
+                                        tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                            '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    }
+
+
+                                    if (response.abhy_wateravailability_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                                    tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                            }
+                                        }
+
+
+                                    }
+
+
+                                    if (response.abhy_waterdraft_domestic_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                                if (response.abhy_waterdraft_domestic_new[ii].domestic_people_count != "" && response.abhy_waterdraft_domestic_new[ii].domestic_people_count != null) {
+                                                    tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+                                        }
+
+                                    }
+
+
+
+                                    if (response.abhy_waterbalance_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                                tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                            }
+                                        }
+
+                                    }
+
+                                    if (response.abhy_waterbudget_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+
+
+                                                tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                            }
+                                        }
+
+                                    }
+
+                                    if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                                tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                            }
+                                        }
+
+                                    }
+
+
+                                    if (response.supply_AR_Structures.length != 0) {
+                                        for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                                tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                            }
+                                        }
+
+                                    }
+
+
+                                    if (tr13 == '') {
+
+
+                                        tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x1 = 1;
+                                    }
+
+                                    if (tr14 == '') {
+
+                                        tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    }
+                                    else {
+
+                                        x2 = 1;
+                                    }
+
+                                    if (tr15 == '') {
+
+                                        tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x3 = 1;
+                                    }
+
+
+                                    if (tr16 == '') {
+
+                                        tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x4 = 1;
+                                    }
+
+                                    if (tr17 == '') {
+
+                                        tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x5 = 1;
+                                    }
+                                    if (tr18 == '') {
+
+                                        tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x6 = 1;
+                                    }
+
+                                    x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                                    if (x7 == 7) {
+                                        abc += 1;
+                                        tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                                        var SSS = '<tr><td class="text-center">' + abc + '</td>';
+                                        Tr1 += SSS + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+                                    }
+                                    //else {
+                                    //    tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                                    //}
+
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+                $('.loader').hide();
+
+                $('#Data_wspTracker').html(Tr1);
+                $('#ttl_count').html(abc);
+                $('#Error_alert').text("");
+            }
+        }
+
+        $('.loader').hide();
+        $('#Error_123').html("");
+    }
+
+    function Searching_info1_count() {
+
+        var Tr1 = '';
+        $('#Error_alert').text("Please Wait , Data is Loading...");
+
+        $('#Data_wspTracker').html(Tr1);
+        $('.loader').show();
+        if (Full_Data != null) {
+            var response = Full_Data;
+            if (response.abhy_gpdata_new.length != 0) {
+                status_dropdown_variable = response;
+                var abc = 0;
+                var z1 = 0;
+                for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+
+                    var j = i + 1;
+                    var tr12 = '';
+                    var tr13 = '';
+                    var tr14 = '';
+                    var tr15 = '';
+                    var tr16 = '';
+                    var tr17 = '';
+                    var tr18 = '';
+                    var tr19 = '';
+
+                    if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+
+                        var WSP_Gram = 0;
+                        var x1 = 0;
+                        var x2 = 0;
+                        var x3 = 0;
+                        var x4 = 0;
+                        var x5 = 0;
+                        var x6 = 0;
+                        var x7 = 0;
+                        var x8 = 0;
+
+
+                        if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                            response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                            response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                            response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                            response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+                            WSP_Gram = 1;
+
+                        }
+
+
+
+
+                        if (response.PGWN_Department_Details.length != 0) {
+                            for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+
+                                    WSP_Gram = 1;
+                                }
+                            }
+                        }
+
+                        if (WSP_Gram == 1) {
+                            x8 = 1;
+                            z1 += 1;
+                            tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                        }
+                        else {
+                            x8 = 0;
+
+                            z1 += 1;
+                            tr12 = '<tr><td class="text-center">' + z1 + '</td><td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        }
+
+
+
+                        if (response.abhy_wateravailability_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                        tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                }
+                            }
+
+
+                        }
+
+
+                        if (response.abhy_waterdraft_domestic_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                       tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                }
+                            }
+
+                        }
+
+
+
+                        if (response.abhy_waterbalance_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                    tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                }
+                            }
+
+                        }
+
+                        if (response.abhy_waterbudget_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+
+                                    tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                }
+                            }
+
+                        }
+
+                        if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                            for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                    tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                }
+                            }
+
+                        }
+
+
+                        if (response.supply_AR_Structures.length != 0) {
+                            for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                    tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                }
+                            }
+
+                        }
+
+
+                        if (tr13 == '') {
+
+
+                            tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x1 = 1;
+                        }
+
+                        if (tr14 == '') {
+
+                            tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        }
+                        else {
+
+                            x2 = 1;
+                        }
+
+                        if (tr15 == '') {
+
+                            tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x3 = 1;
+                        }
+
+
+                        if (tr16 == '') {
+
+                            tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x4 = 1;
+                        }
+
+                        if (tr17 == '') {
+
+                            tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x5 = 1;
+                        }
+                        if (tr18 == '') {
+
+                            tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x6 = 1;
+                        }
+
+                        x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                        if (x7 == 7) {
+                            abc += 1;
+                            tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                            var SSS = '<tr> <td class="text-center">' + abc + '</td>';
+                            Tr1 += SSS+ tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+
+                        }
+                        //else {
+                        //    tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                        //}
+
+
+                    }
+
+                }
+
+            }
+        }
+        $('.loader').hide();
+        $('#ttl_count').html(abc);
+        $('#Error_alert').text("");
+    }
+
+</script>
+
+<script>
+
+    function saveAsExcel(id, fileName) {
+
+        var table_text = "<table style='border:6px solid black !important'><tr  style='border:6px solid black !important'>"; //Table Intialization, CSS included
+        var textRange;
+        var index = 0;
+        var table = document.getElementById(id); // Read table using id
+        /*
+            Read Table Data and append to table_text
+        */
+
+        for (index = 0; index < table.rows.length; index++) {
+            table_text = table_text + table.rows[index].innerHTML + "</tr>";
+
+        }
+
+        table_text = table_text + "</table>"; // table close
+        table_text = table_text.replace(/<a[^>]*>|<\/a>/g, ""); //removes links embedded in <td>
+        table_text = table_text.replace(/<img[^>]*>/gi, "");  //removes images embeded in <td>
+        table_text = table_text.replace(/<input[^>]*>|<\/input>/gi, ""); //removes input tag elements
+
+        var userAgent = window.navigator.userAgent; //check client user agent to determine browser
+        var msie = userAgent.indexOf("MSIE "); // If it is Internet Explorer user Aget will have string MSIE
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            //Since IE > 10 supports blob, check for blob support and use if we can
+            if (typeof Blob !== "undefined") {
+                //Bolb Data is ArrayStorage, convert to array
+                table_text = [table_text];
+                var blob = new Blob(table_text);
+                window.navigator.msSaveBlob(blob, '' + fileName);
+            }
+            else {
+                //If Blob is unsupported, create an iframe in HTML Page, and call that blank iframe
+
+                textArea.document.open("text/html", "replace");
+                textArea.document.write(table_text);
+                textArea.document.close();
+                textArea.focus();
+                textArea.document.execCommand("SaveAs", true, fileName);
+
+            }
+        }
+
+        //Other Browsers
+        else
+            //Can use below statement if client machine has Excel Application installed
+            //window.open('data:application/vnd.ms-excel,' + encodeURIComponent(table_text));
+            var a = document.createElement('a');
+        //getting data from our div that contains the HTML table
+        var data_type = 'data:application/vnd.ms-excel';
+        var table_div = document.getElementById(id);
+        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+        table_html = table_html.replace(/<a[^>]*>|<\/a>/g, "");
+        a.href = data_type + ', ' + table_html;
+
+        //setting the file name
+        a.download = '' + fileName;
+        //triggering the function
+        a.click();
+
+    }
+
+</script>
+<script type="text/javascript">
+    var Jsondata = "";
+    var Full_Data = "";
+    var States = [];
+    var Officer = "";
+    var State_Name = "0";
+    var Dist_Name = "0";
+    var Block_Name = "0";
+    $(document).ready(function () {
+
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+
+        Full_Data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.FullData));
+
+        $('#Error_123').html("States Information is Loading.....");
+
+
+
+        $('#ttl_count').html("0");
+
+        Officer = '@Session["Officer"]';
+
+        if (Officer == "National Level Nodal Officer") {
+            $('#StateLabel').hide();
+            $('#DistLabel').hide();
+
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+
+            DropDownInfo();
+        }
+        else if (Officer == "State Level Nodal Officer") {
+            $('#StateLabel').show();
+            State_Name = $('#spnstate1').text();
+
+            $('#DistLabel').hide();
+            $('#StateDropdownLabel').hide();
+            $('#DistDropdownLabel').show();
+            State_Dropdown_Function();
+        }
+        else if (Officer == "District Level Nodal Officer") {
+            $('#StateLabel').show();
+            $('#DistLabel').show();
+            State_Name = $('#spnstate1').text();
+            Dist_Name = $('#spndistrict').text();
+
+            $('#StateDropdownLabel').hide();
+            $('#DistDropdownLabel').hide();
+            Dist_fun();
+        }
+        else {
+            $('#StateLabel').hide();
+            $('#DistLabel').hide();
+
+            $('#StateDropdownLabel').show();
+            $('#DistDropdownLabel').show();
+            DropDownInfo();
+        }
+    });
+
+    function DropDownInfo() {
+        $('.loader').hide();
+                if (Jsondata.length != 0) {
+                    var all_states = [];
+                    $("#dist").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist").append(opdist);
+                    $("#block").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+
+                    var ddlst = {};
+                    var optionhtml = '<option value="0">Select State</option>';
+                    // var optionState = '<option value="0">Please Select State</option>';
+                    for (var i = 0; i < Jsondata.length; i++) {
+
+                        if (!ddlst[Jsondata[i].state_name]) {
+                            all_states.push(Jsondata[i].state_name);
+                            ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+                            // $("#state").append(optionState);
+                        }
+                    }
+
+                    var StateArray = [];
+                    StateArray = all_states.sort(function (a, b) {
+                        if (a < b) return -1;
+                        else if (a > b) return 1;
+                        return 0;
+                    });
+                    optionhtml += '<option value="ALL">ALL</option>';
+                    for (var i = 0; i < StateArray.length; i++) {
+                        if (StateArray[i] != null && StateArray[i] != "") {
+                            States.push(StateArray[i]);
+                            optionhtml += '<option value="' + StateArray[i] + '">' + StateArray[i] + '</option>';
+                        }
+                    }
+                    $("#state").html(optionhtml);
+
+        }
+
+        $('#Error_123').html("");
+        Searching_info1_count();
+
+    }
+
+    function State_Dropdown_Function()
+     {
+        $('#status_com_not_com').val("0");
+
+        $("#dist").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist").append(opdist);
+        $("#block").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var StateName = $("#state").val();
+        if (StateName != "0" && StateName != null) {
+            State_Name = StateName;
+        } else {
+            if (State_Name == "0") {
+                State_Name = StateName;
+            } else {
+                StateName = State_Name;
+            }
+        }
+
+
+
+        $('#Error_123').html("");
+        if (StateName == "ALL") {
+            $("#dist").val("0");
+            Dist_Name = "0";
+            $("#gram").val("0");
+            $("#block").val("0");
+            $('#status_com_not_com').val("0");
+
+            Searching_info1();
+        }
+        else if (StateName != "0" && Jsondata.length != 0) {
+            $("#dist").val("0");
+            $("#gram").val("0");
+            Dist_Name = "0";
+            $("#block").val("0");
+            Searching_info1();
+
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+
+
+            for (var i = 0; i < Jsondata.length; i++) {
+
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist").append(optionDist);
+        }
+    }
+
+    function Dist_fun() {
+        $('#Error_123').html("");
+        $('#status_com_not_com').val("0");
+
+        $("#block").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        $("#gram").val("0");
+        var dist = $("#dist").val();
+
+        if (dist != "0" && dist !=null)
+        {
+            Dist_Name = dist;
+        }else {
+            if (Dist_Name == "0") {
+                Dist_Name = dist;
+            } else {
+                dist = Dist_Name;
+            }
+        }
+        if (dist != "0" && Jsondata.length != 0) {
+            $("#gram").val("0");
+            Searching_info1();
+
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (dist == Jsondata[i].district_name && Jsondata[i].state_name == State_Name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block").append(optionDist);
+
+        }
+    }
+
+    $("#block").change(function () {
+        $('#status_com_not_com').val("0");
+
+        var block = $("#block").val();
+        if (block != "0" && Jsondata.length != 0) {
+            Searching_info1();
+        }
+
+    });
+
+    var status_dropdown_variable = "";
+    var status_dropdown_val = "";
+
+    function status_com_not_com() {
+
+        var status_com_not_com1 = $('#status_com_not_com').val();
+        status_dropdown_val = status_com_not_com1;
+        if (status_com_not_com1 == "Completed") {
+            Filter_Info();
+        }
+        else if (status_com_not_com1 == "Not Completed") {
+            Filter_Info();
+        }
+    }
+
+    function Filter_Info() {
+        var Tr1 = '';
+        var abc = 0;
+         $('#Data_wspTracker').html(Tr1);
+        $('.loader').show();
+
+        $('#Error_alert').text("Please Wait , Data is Loading...");
+
+        if (status_dropdown_variable != null) {
+            if (status_dropdown_variable.abhy_gpdata_new.length != 0) {
+                var response = status_dropdown_variable;
+
+                if (response.abhy_gpdata_new.length != 0) {
+                    var z1 = 0;
+                    var z2 = 0;
+                    for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+                        var j = i + 1;
+                        var tr12 = '';
+                        var tr13 = '';
+                        var tr14 = '';
+                        var tr15 = '';
+                        var tr16 = '';
+                        var tr17 = '';
+                        var tr18 = '';
+                        var tr19 = '';
+                        var x1 = 0;
+                        var x2 = 0;
+                        var x3 = 0;
+                        var x4 = 0;
+                        var x5 = 0;
+                        var x6 = 0;
+                        var x7 = 0;
+                        var x8 = 0;
+
+                        if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+
+
+                            var WSP_Gram = 0;
+
+                            if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                                response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                                response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                                response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                                response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+
+                                WSP_Gram = 1;
+                            }
+
+                            if (response.PGWN_Department_Details.length != 0) {
+                                for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+
+                                        WSP_Gram = 1;
+                                    }
+                                }
+                            }
+
+                            if (WSP_Gram == 1) {
+                                x8 = 1;
+
+                                tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                    '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                            }
+                            else {
+                                x8 = 0;
+
+                                tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                    '<td class="text-center check_mark_wrong"><label>No</label></td>';
+
+                            }
+
+                            if (response.abhy_wateravailability_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                            tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                    }
+                                }
+
+
+                            }
+
+
+                            if (response.abhy_waterdraft_domestic_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                        if (response.abhy_waterdraft_domestic_new[ii].domestic_people_count != "" && response.abhy_waterdraft_domestic_new[ii].domestic_people_count != null) {
+                                            tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                        }
+                                    }
+                                }
+
+                            }
+
+
+
+                            if (response.abhy_waterbalance_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                        tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                    }
+                                }
+
+                            }
+
+                            if (response.abhy_waterbudget_new.length != 0) {
+                                for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+
+                                        tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                    }
+                                }
+
+                            }
+
+                            if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                                for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                        tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                    }
+                                }
+
+                            }
+
+
+                            if (response.supply_AR_Structures.length != 0) {
+                                for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                        tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                    }
+                                }
+
+                            }
+
+                            if (tr13 == '') {
+
+                                x1 = 0;
+                                tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x1 = 1;
+                            }
+
+                            if (tr14 == '') {
+                                x2 = 0;
+                                tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            }
+                            else {
+
+                                x2 = 1;
+                            }
+
+                            if (tr15 == '') {
+                                x3 = 0;
+                                tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x3 = 1;
+                            }
+
+
+                            if (tr16 == '') {
+                                x4 = 0;
+                                tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x4 = 1;
+                            }
+
+                            if (tr17 == '') {
+                                x5 = 0;
+                                tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x5 = 1;
+                            }
+                            if (tr18 == '') {
+                                x6 = 0;
+                                tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                            } else {
+
+                                x6 = 1;
+                            }
+
+
+                            x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                            if (x7 == 7) {
+                                abc += 1;
+                                if (status_dropdown_val == "Completed") {
+                                    z1 += 1;
+                                    //var X1 = '<tr><td class="text-center">' + z1 + '</td>';
+                                    tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                                    var SSS = '<tr> <td class="text-center">' + abc + '</td>';
+                                    Tr1 +=  SSS + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+
+                                   // Tr1 += X1 + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+                                }
+                            }
+                            //else {
+                            //    if (status_dropdown_val == "Not Completed") {
+                            //        z2 += 1;
+                            //        var X1 = '<tr><td class="text-center">' + z2 + '</td>';
+                            //        tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                            //        Tr1 += X1 + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+                            //    }
+                            //}
+
+
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+        $('.loader').hide();
+        $('#Data_wspTracker').html(Tr1);
+        $('#ttl_count').html(abc);
+
+
+        $('#Error_alert').text("");
+    }
+    function Searching_info1() {
+        $('.loader').show();
+
+        $('#Error_alert').text("Please Wait , Data is Loading...");
+
+
+        var obj = {};
+        var XX = 0;
+        
+        var State = $('#state').val();
+        var Dist = $('#dist').val();
+        var Block = $('#block').val();
+        if (XX == 0) {
+            if (State_Name == "ALL") {
+                obj.state_name = "0";
+            }
+            else {
+                obj.state_name = State_Name;
+            }
+
+            obj.district_name = Dist_Name;
+            obj.block_name = Block;
+
+            if (State_Name != "ALL") {
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: "/Project/wsp_tracker",
+                    data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        
+                        if (response == "Logout") {
+                              window.location = "/Home/LogOut";
+                        }
+
+                        var Tr1 = '';
+                        var abc = 0;
+                        $('#Data_wspTracker').html("");
+                        if (response != null) {
+                            if (response.abhy_gpdata_new.length != 0) {
+                                status_dropdown_variable = response;
+                                var abc = 0;
+                                var z1 = 0;
+
+                                for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+
+                                    var j = i + 1;
+                                    var tr12 = '';
+                                    var tr13 = '';
+                                    var tr14 = '';
+                                    var tr15 = '';
+                                    var tr16 = '';
+                                    var tr17 = '';
+                                    var tr18 = '';
+                                    var tr19 = '';
+
+                                    if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+                                        var WSP_Gram = 0;
+                                        var x1 = 0;
+                                        var x2 = 0;
+                                        var x3 = 0;
+                                        var x4 = 0;
+                                        var x5 = 0;
+                                        var x6 = 0;
+                                        var x7 = 0;
+                                        var x8 = 0;
+
+
+                                        if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                                            response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                                            response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                                            response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                                            response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+                                            WSP_Gram = 1;
+
+                                        }
+
+
+
+
+                                        if (response.PGWN_Department_Details.length != 0) {
+                                            for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+                                                    WSP_Gram = 1;
+                                                }
+                                            }
+                                        }
+
+                                        if (WSP_Gram == 1) {
+                                            x8 = 1;
+                                            z1 += 1;
+                                            tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                                '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                                        }
+                                        else {
+                                            x8 = 0;
+
+                                            z1 += 1;
+                                            tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                                '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        }
+
+
+
+                                        if (response.abhy_wateravailability_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                                        tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                                }
+                                            }
+
+
+                                        }
+
+
+                                        if (response.abhy_waterdraft_domestic_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                                    if (response.abhy_waterdraft_domestic_new[ii].domestic_people_count != "" && response.abhy_waterdraft_domestic_new[ii].domestic_people_count != null) {
+                                                        tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+
+
+                                        if (response.abhy_waterbalance_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                                    tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+
+                                        }
+
+
+                                        if (response.abhy_waterbudget_new.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+                                                    tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                                }
+                                            }
+
+                                        }
+
+                                        if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                                            for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                                    tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+
+                                        }
+
+
+                                        if (response.supply_AR_Structures.length != 0) {
+                                            for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                                    tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+
+                                        }
+
+
+                                        if (tr13 == '') {
+
+
+                                            tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x1 = 1;
+                                        }
+
+                                        if (tr14 == '') {
+
+                                            tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        }
+                                        else {
+
+                                            x2 = 1;
+                                        }
+
+                                        if (tr15 == '') {
+
+                                            tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x3 = 1;
+                                        }
+
+
+                                        if (tr16 == '') {
+
+                                            tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x4 = 1;
+                                        }
+
+                                        if (tr17 == '') {
+
+                                            tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x5 = 1;
+                                        }
+                                        if (tr18 == '') {
+
+                                            tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                        } else {
+
+                                            x6 = 1;
+                                        }
+
+                                        x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                                        if (x7 == 7) {
+                                            abc += 1;
+                                            tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                                            var SSS = '<tr><td class="text-center">' + abc + '</td>';
+                                            Tr1 += SSS + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+
+                                        }
+                                        //else {
+                                        //    tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                                        //}
+
+
+                                    }
+
+                                }
+
+                            }
+                        }
+                        $('.loader').hide();
+                        $('#Data_wspTracker').html(Tr1);
+                        $('#ttl_count').html(abc);
+                        $('#Error_alert').text("");
+                    }
+                });
+            }
+            else {
+               Full_Data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.FullData));
+                status_dropdown_variable = Full_Data;
+                var Tr1 = '';
+                var abc = 0;
+                $('#Error_alert').text("Please Wait , Data is Loading...");
+
+                $('#Data_wspTracker').html("");
+               // $('#Data_wspTracker').html(Tr1);
+                $('.loader').show();
+                if (status_dropdown_variable.abhy_gpdata_new != null) {
+                    if (status_dropdown_variable.abhy_gpdata_new.length != 0) {
+                        var response = status_dropdown_variable;
+
+                        var z1 = 0;
+                        if (response.abhy_gpdata_new.length != 0) {
+                            status_dropdown_variable = response;
+                            var abc = 0;
+                            var z1 = 0;
+                            for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+
+                                var j = i + 1;
+                                var tr12 = '';
+                                var tr13 = '';
+                                var tr14 = '';
+                                var tr15 = '';
+                                var tr16 = '';
+                                var tr17 = '';
+                                var tr18 = '';
+                                var tr19 = '';
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+                                    var WSP_Gram = 0;
+                                    var x1 = 0;
+                                    var x2 = 0;
+                                    var x3 = 0;
+                                    var x4 = 0;
+                                    var x5 = 0;
+                                    var x6 = 0;
+                                    var x7 = 0;
+                                    var x8 = 0;
+
+
+                                    if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                                        response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                                        response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                                        response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                                        response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+                                        WSP_Gram = 1;
+
+                                    }
+
+
+
+
+                                    if (response.PGWN_Department_Details.length != 0) {
+                                        for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+
+                                                WSP_Gram = 1;
+                                            }
+                                        }
+                                    }
+
+                                    if (WSP_Gram == 1) {
+                                        x8 = 1;
+                                        z1 += 1;
+                                        tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                            '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                                    }
+                                    else {
+                                        x8 = 0;
+
+                                        z1 += 1;
+                                        tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                            '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    }
+
+
+                                    if (response.abhy_wateravailability_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                                    tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                            }
+                                        }
+
+
+                                    }
+
+
+                                    if (response.abhy_waterdraft_domestic_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                                if (response.abhy_waterdraft_domestic_new[ii].domestic_people_count != "" && response.abhy_waterdraft_domestic_new[ii].domestic_people_count != null) {
+                                                    tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                                }
+                                            }
+                                        }
+
+                                    }
+
+
+
+                                    if (response.abhy_waterbalance_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                                tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                            }
+                                        }
+
+                                    }
+
+                                    if (response.abhy_waterbudget_new.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+
+
+                                                tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                            }
+                                        }
+
+                                    }
+
+                                    if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                                        for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                                tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                            }
+                                        }
+
+                                    }
+
+
+                                    if (response.supply_AR_Structures.length != 0) {
+                                        for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                            if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                                tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                            }
+                                        }
+
+                                    }
+
+
+                                    if (tr13 == '') {
+
+
+                                        tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x1 = 1;
+                                    }
+
+                                    if (tr14 == '') {
+
+                                        tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    }
+                                    else {
+
+                                        x2 = 1;
+                                    }
+
+                                    if (tr15 == '') {
+
+                                        tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x3 = 1;
+                                    }
+
+
+                                    if (tr16 == '') {
+
+                                        tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x4 = 1;
+                                    }
+
+                                    if (tr17 == '') {
+
+                                        tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x5 = 1;
+                                    }
+                                    if (tr18 == '') {
+
+                                        tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                                    } else {
+
+                                        x6 = 1;
+                                    }
+
+                                    x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                                    if (x7 == 7) {
+                                        abc += 1;
+                                        tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                                        var SSS = '<tr><td class="text-center">' + abc + '</td>';
+                                        Tr1 += SSS + tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+                                    }
+                                    //else {
+                                    //    tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                                    //}
+
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+                $('.loader').hide();
+
+                $('#Data_wspTracker').html(Tr1);
+                $('#ttl_count').html(abc);
+                $('#Error_alert').text("");
+            }
+        }
+
+        $('.loader').hide();
+        $('#Error_123').html("");
+    }
+
+    function Searching_info1_count() {
+
+        var Tr1 = '';
+        $('#Error_alert').text("Please Wait , Data is Loading...");
+
+        $('#Data_wspTracker').html(Tr1);
+        $('.loader').show();
+        if (Full_Data != null) {
+            var response = Full_Data;
+            if (response.abhy_gpdata_new.length != 0) {
+                status_dropdown_variable = response;
+                var abc = 0;
+                var z1 = 0;
+                for (var i = 0; i < response.abhy_gpdata_new.length; i++) {
+
+                    var j = i + 1;
+                    var tr12 = '';
+                    var tr13 = '';
+                    var tr14 = '';
+                    var tr15 = '';
+                    var tr16 = '';
+                    var tr17 = '';
+                    var tr18 = '';
+                    var tr19 = '';
+
+                    if (response.abhy_gpdata_new[i].gram_panchayat_name != "" && response.abhy_gpdata_new[i].gram_panchayat_name != null) {
+
+                        var WSP_Gram = 0;
+                        var x1 = 0;
+                        var x2 = 0;
+                        var x3 = 0;
+                        var x4 = 0;
+                        var x5 = 0;
+                        var x6 = 0;
+                        var x7 = 0;
+                        var x8 = 0;
+
+
+                        if (response.abhy_gpdata_new[i].block_area && response.abhy_gpdata_new[i].block_area &&
+                            response.abhy_gpdata_new[i].gp_area != null && response.abhy_gpdata_new[i].gp_area != "" &&
+                            response.abhy_gpdata_new[i].watershed_code != null && response.abhy_gpdata_new[i].watershed_code != "" &&
+                            response.abhy_gpdata_new[i].sub_basin_name != null && response.abhy_gpdata_new[i].sub_basin_name != "" &&
+                            response.abhy_gpdata_new[i].basin_name != null && response.abhy_gpdata_new[i].basin_name != "") {
+
+                            WSP_Gram = 1;
+
+                        }
+
+
+
+
+                        if (response.PGWN_Department_Details.length != 0) {
+                            for (var ii = 0; ii < response.PGWN_Department_Details.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.PGWN_Department_Details[ii].gpname && response.abhy_gpdata_new[i].state_name == response.PGWN_Department_Details[ii].state_name && response.abhy_gpdata_new[i].district_name == response.PGWN_Department_Details[ii].district_name && response.abhy_gpdata_new[i].block_name == response.PGWN_Department_Details[ii].block) {
+
+                                    WSP_Gram = 1;
+                                }
+                            }
+                        }
+
+                        if (WSP_Gram == 1) {
+                            x8 = 1;
+                            z1 += 1;
+                            tr12 = '<td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                '<td class="text-center check_mark_right" id="block_area"><label>Yes</label></td>';
+
+                        }
+                        else {
+                            x8 = 0;
+
+                            z1 += 1;
+                            tr12 = '<tr><td class="text-center">' + z1 + '</td><td>' + response.abhy_gpdata_new[i].state_name + '</td><td>' + response.abhy_gpdata_new[i].district_name + '</td><td>' + response.abhy_gpdata_new[i].block_name + '</td><td class="text-center" id="gp_id">' + response.abhy_gpdata_new[i].gram_panchayat_name + '</td>' +
+                                '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        }
+
+
+
+                        if (response.abhy_wateravailability_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_wateravailability_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_wateravailability_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_wateravailability_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_wateravailability_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_wateravailability_new[ii].block_name) {
+
+
+                                        tr13 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                }
+                            }
+
+
+                        }
+
+
+                        if (response.abhy_waterdraft_domestic_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_waterdraft_domestic_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterdraft_domestic_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterdraft_domestic_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterdraft_domestic_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterdraft_domestic_new[ii].block_name) {
+
+                                       tr14 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                }
+                            }
+
+                        }
+
+
+
+                        if (response.abhy_waterbalance_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_waterbalance_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbalance_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbalance_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbalance_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbalance_new[ii].block_name) {
+
+                                    tr15 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                }
+                            }
+
+                        }
+
+                        if (response.abhy_waterbudget_new.length != 0) {
+                            for (var ii = 0; ii < response.abhy_waterbudget_new.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_waterbudget_new[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_waterbudget_new[ii].state_name && response.abhy_gpdata_new[i].district_name == response.abhy_waterbudget_new[ii].district_name && response.abhy_gpdata_new[i].block_name == response.abhy_waterbudget_new[ii].block_name) {
+
+
+                                    tr16 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+
+                                }
+                            }
+
+                        }
+
+                        if (response.abhy_demandside_sprinkler_saveddata.length != 0) {
+                            for (var ii = 0; ii < response.abhy_demandside_sprinkler_saveddata.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.abhy_demandside_sprinkler_saveddata[ii].gpname && response.abhy_gpdata_new[i].state_name == response.abhy_demandside_sprinkler_saveddata[ii].statename && response.abhy_gpdata_new[i].district_name == response.abhy_demandside_sprinkler_saveddata[ii].districtname && response.abhy_gpdata_new[i].block_name == response.abhy_demandside_sprinkler_saveddata[ii].blockname) {
+
+                                    tr17 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                }
+                            }
+
+                        }
+
+
+                        if (response.supply_AR_Structures.length != 0) {
+                            for (var ii = 0; ii < response.supply_AR_Structures.length; ii++) {
+
+                                if (response.abhy_gpdata_new[i].gram_panchayat_name == response.supply_AR_Structures[ii].village_name) {
+
+                                    tr18 = '<td class="text-center check_mark_right" id="gp_area"><label>Yes</label></td>';
+                                }
+                            }
+
+                        }
+
+
+                        if (tr13 == '') {
+
+
+                            tr13 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x1 = 1;
+                        }
+
+                        if (tr14 == '') {
+
+                            tr14 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        }
+                        else {
+
+                            x2 = 1;
+                        }
+
+                        if (tr15 == '') {
+
+                            tr15 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x3 = 1;
+                        }
+
+
+                        if (tr16 == '') {
+
+                            tr16 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x4 = 1;
+                        }
+
+                        if (tr17 == '') {
+
+                            tr17 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x5 = 1;
+                        }
+                        if (tr18 == '') {
+
+                            tr18 = '<td class="text-center check_mark_wrong"><label>No</label></td>';
+                        } else {
+
+                            x6 = 1;
+                        }
+
+                        x7 = x1 + x2 + x3 + x4 + x5 + x6 + x8;
+                        if (x7 == 7) {
+                            abc += 1;
+                            tr19 = '<td class="text-center "><label>Completed</label></td></tr>';
+                            var SSS = '<tr> <td class="text-center">' + abc + '</td>';
+                            Tr1 += SSS+ tr12 + tr13 + tr14 + tr15 + tr16 + tr17 + tr18 + tr19;
+
+                        }
+                        //else {
+                        //    tr19 = '<td class="text-center "><label> Not Completed</label></td></tr>';
+                        //}
+
+
+                    }
+
+                }
+
+            }
+        }
+        $('.loader').hide();
+        $('#ttl_count').html(abc);
+        $('#Error_alert').text("");
+    }
+
+</script>
