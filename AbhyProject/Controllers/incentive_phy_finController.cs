@@ -1598,6 +1598,9 @@ namespace AbhyProject.Controllers
 					Details.fother = result.fother;
 					Details.total_beneficiary = result.total_beneficiary;
 					Details.remark = result.remark;
+					Details.department = result.department;
+					Details.otherdepartment = result.otherdepartment;
+					Details.activity = result.activity;
 					Details.update_month = result.update_month;
 
 					ABE.Entry(Details).State = EntityState.Modified;
@@ -2669,7 +2672,7 @@ namespace AbhyProject.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult update_supply(int id, string update_month, string typeofwork, string latitude, string longitude, string cost, string statusofwork, string remark, HttpPostedFileBase image)
+		public ActionResult update_supply(int id, string update_month, string typeofwork, string latitude, string longitude, string cost, string statusofwork, string remark, string department, string otherdepartment, string structure, HttpPostedFileBase image)
 		{
 			if (Session["UserId"] != null)
 			{
@@ -2687,6 +2690,9 @@ namespace AbhyProject.Controllers
 					Details.cost = cost;
 					Details.statusofwork = statusofwork;
 					Details.remark = remark;
+					Details.nameofdepartment = department;
+					Details.other_department = otherdepartment;
+					Details.nameofstructure = structure;
 					if (image != null)
 					{
 						++k;
