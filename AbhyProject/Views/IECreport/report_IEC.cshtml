@@ -80,6 +80,10 @@
         text-align: center;
     }
 
+    .tab-link.active label {
+        background-color: lightgray; /* Indicate active tab visually */
+    }
+
     .social-table .bg-info {
         background-color: #337ab7 !important;
     }
@@ -138,7 +142,7 @@
 
     #Surface_menu {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     }
 
@@ -210,73 +214,80 @@
         <header class="header hederImage">
             <div class="clearfix">
                 <div class="clearfix">
-                    <div class="col-lg-9">
-                        <div class="header-top-info">
-                            <ul class="clearfix">
-                                <li>
-                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
-                                </li>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="header-top-info">
+                                <ul class="clearfix">
+                                    <li>
+                                        <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                    </li>
+
+                                    <li>
+                                        <span>
+                                            <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                        </span>
+                                        <span>
+                                            <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                                Ministry of Jal Shakti
+                                            </a>
+                                        </span>
+                                        <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                        <span style="text-align:center;">
+                                            <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                               style="text-transform:none; font-size:14px;">
+                                                River Development & Ganga Rejuvenation
+                                            </a>
+                                        </span>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <ul class="imgHome clearfix">
 
                                 <li>
-                                    <span>
-                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
-                                    </span>
-                                    <span>
-                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
-                                            Ministry of Jal Shakti
-                                        </a>
-                                    </span>
-                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
-                                    <span style="text-align:center;">
-                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
-                                           style="text-transform:none; font-size:14px;">
-                                            River Development & Ganga Rejuvenation
-                                        </a>
-                                    </span>
+                                    <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                    @if (Session["UserName"] != null)
+                                    {
+                                        <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                    }
 
                                 </li>
+                                <li>
+                                    <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                                </li>
+
                             </ul>
                         </div>
+
                     </div>
-                    <div class="col-md-3">
-                        <ul class="imgHome clearfix">
 
-                            <li>
-                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
-                                @if (Session["UserName"] != null)
-                                {
-                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>
-                                }
+                    <div class="row">
+                        <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                            <ul class="imgHome clearfix">
+                                <li>
+                                    <a href="~/Home/index">
+                                        <span>
+                                            <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                        </span>
+                                        <label>Home <i class="fa fa-angle-double-right"></i></label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                    <label>IEC Summary / Report </label>
+                                </li>
 
-                            </li>
-                            <li>
-                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
-                            </li>
+                            </ul>
+                        </div>
 
-                        </ul>
-                    </div>
-                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
-                        <ul class="imgHome clearfix">
-                            <li>
-                                <a href="~/Home/index">
-                                    <span>
-                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
-                                    </span>
-                                    <label>Home <i class="fa fa-angle-double-right"></i></label>
-                                </a>
-                            </li>
-                            <li>
-                                <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
-                                <label>IEC Report </label>
-                            </li>
+                        <div class="col-md-2 pull-right" style="position: relative; left: -9px;">
+                            <a href="~/socialeventreport/main_report" class="btn btn-danger">
+                                Back To Module
+                            </a>
 
-                        </ul>
-                    </div>
-                    <div class="col-md-2 pull-right">
-                        <a href="~/socialeventreport/main_report" class="btn btn-danger">
-                            Back To Module
-                        </a>
-
+                        </div>
                     </div>
                 </div>
             </div>
@@ -284,10 +295,29 @@
     </main>
     <center>
         <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230;padding:15px;">
-            IEC Report
+            IEC Summary / Report
         </div>
     </center>
     <br />
+
+
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12 col-lg-12">
+            <ul class="tabs_menu sru_menu" id="Surface_menu">
+                <li class="tab-link subtab1 new_wd" data-tab="menu-11">
+                    <a href="~/IECreport/report_IECMonthly">
+                        <label style="height: 50px; border: 2px solid black; display: flex; justify-content: center; align-items: center; font-size: 15px; border-radius: 25px;">IEC Summary</label>
+                    </a>
+                </li>
+                <li class="tab-link subtab3 new_wd" data-tab="menu-12">
+                    <a href="~/IECreport/report_IEC">
+                        <label style="height: 50px; border: 2px solid black; display: flex; justify-content: center; align-items: center; font-size: 15px; border-radius: 25px;">IEC Report</label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 
     <div class="tab-content">
 
@@ -708,6 +738,26 @@
         if (StateOfficer == "") {
               window.location = "/Home/LogOut";
         }
+        function setActiveTab() {
+            // Get the current page URL
+            const currentUrl = window.location.pathname;
+
+            // Get all tab links
+            const tabLinks = document.querySelectorAll('.tab-link');
+
+            // Remove the active class from all tab links
+            tabLinks.forEach(tab => tab.classList.remove('active'));
+
+            // Add the active class to the correct tab link based on the current URL
+            if (currentUrl.includes('report_IECMonthly')) {
+                document.querySelector('li[data-tab="menu-11"]').classList.add('active');
+            } else if (currentUrl.includes('report_IEC')) {
+                document.querySelector('li[data-tab="menu-12"]').classList.add('active');
+            }
+        }
+
+        // Call the function to set the active tab when the page loads
+        window.onload = setActiveTab;
     });
 
 
@@ -907,7 +957,7 @@
             success: function (data) {
 
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     $(".loader").hide();
                 }
                 else {
@@ -2305,21 +2355,39 @@
         $('#month').val("0");
     }
 
-    var tableToExcel = (function () {
+    //var tableToExcel = (function () {
 
+    //    var uri = 'data:application/vnd.ms-excel;base64,'
+    //        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+    //        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    //        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+    //    return function (table, name) {
+    //        if (!table.nodeType) table = document.getElementById(table)
+    //        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+    //        window.location.href = uri + base64(format(template, ctx))
+    //    }
+    //})()
+
+    var tableToExcel = (function () {
         var uri = 'data:application/vnd.ms-excel;base64,'
             , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
             , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
             , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
-        return function (table, name) {
+        return function (table, name, filename) {
             if (!table.nodeType) table = document.getElementById(table)
             var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
-            window.location.href = uri + base64(format(template, ctx))
+            var link = document.createElement('a');
+            link.href = uri + base64(format(template, ctx));
+            link.download = filename || 'download.xls';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
-    })()
+    })();
 
 </script>
 
+@*iec report*@
 
 
 

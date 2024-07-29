@@ -295,6 +295,7 @@
             color: #337ab7;
         }
     }
+
     .notice-ribbon {
         font-size: 14px;
         background: #3585dc;
@@ -1619,7 +1620,7 @@
         $('#btnpdf').prop('disabled', true);
 
         var StateOfficer = '@Session["Officer"]';
-
+        var year = $('#year').val();
         if (StateOfficer == "Gram Panchyat Nodal Officer") {
             $('#btn_submitNDO').show();
             $('#hide_table').hide();
@@ -1628,7 +1629,7 @@
             $('#btn_reject_dpmu').hide();
             $('#btn_submit_approve').hide();
             $('#btn_reject_spmu').hide();
-            $('#year').prop('disabled', true);
+            $('#year').prop('disabled', false);
         }
         if (StateOfficer == "District Level Nodal Officer") {
             $('#remarks').show();
@@ -1639,7 +1640,7 @@
             $("#btnFinalSave7").prop("disabled", true);
             $('#btnpdf').prop('disabled', true);
             $('#hide_table').hide();
-            $('#year').prop('disabled', true);
+            $('#year').prop('disabled', false);
 
             $('#btn_submit_approve').hide();
             $('#btn_reject_spmu').hide();
@@ -1657,7 +1658,7 @@
             $('#btn_submit_spmu').hide();
             $('#btn_reject_dpmu').hide();
             $('#btn_submit_dpmu').hide();
-            $('#year').prop('disabled', true);
+            $('#year').prop('disabled', false);
         }
         else if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
             $('#year').prop('disabled', false);
@@ -1680,6 +1681,7 @@
             $('#remarks').hide();
 
         }
+
 
         const d = new Date();
         /*let year = d.getFullYear();*/
@@ -2296,12 +2298,12 @@
         $('.loader').show();
         var year = $("#year").val();
         var month = $("#month").val();
-       
+
         if (State == "0") {
             alert("Please Select State");
             $('.loader').hide();
             return false;
-        } 
+        }
 
         $.ajax({
             type: "POST",
@@ -2966,3 +2968,27 @@
     }
 </script>
 
+<script>
+        $(document).ready(function () {
+            var currentUrl = window.location.href;
+            const myArray = currentUrl.split("/");
+            let coun = myArray.length - 1;
+            //alert(myArray[coun].toString());
+            if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
+                GetCunCurrentUser();
+            }
+        });
+
+        function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+                    if (data == "False") {
+                        //window.location.href = "/Home/LogOut";
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                }
+            });
+        }
+</script>

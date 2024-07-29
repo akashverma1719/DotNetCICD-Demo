@@ -18035,6 +18035,7 @@ namespace AbhyProject.Models
         public string districtname { get; set; }
         public string blockname { get; set; }
         public string gpname { get; set; }
+        public string activity_other { get; set; }
         public int a_Awareness_meetings { get; set; }
         public int b_Awareness_meetings { get; set; }
         public int a_Road_Shows { get; set; }
@@ -18059,8 +18060,16 @@ namespace AbhyProject.Models
         public int c_Instagram { get; set; }
         public int c_Others { get; set; }
         public int d_Others { get; set; }
+
         public int d_Audio { get; set; }
         public int d_Video { get; set; }
+        public int e_Publicity { get; set; }
+        public int f_Road { get; set; }
+        public int f_Street { get; set; }
+        public int g_HHS { get; set; }
+        public int h_Exhibitions { get; set; }
+        public int h_Fair { get; set; }
+        public int h_Seminars { get; set; }
         public int ba_Pamphlets { get; set; }
         public int ba_Magazine { get; set; }
         public int ba_Leaflets { get; set; }
@@ -18079,6 +18088,13 @@ namespace AbhyProject.Models
         public int bd_Others { get; set; }
         public int bd_Audio { get; set; }
         public int bd_Video { get; set; }
+        public int be_Publicity { get; set; }
+        public int bf_Road { get; set; }
+        public int bf_Street { get; set; }
+        public int bg_HHS { get; set; }
+        public int bh_Exhibitions { get; set; }
+        public int bh_Fair { get; set; }
+        public int bh_Seminars { get; set; }
         public int a_Exhibitions { get; set; }
         public int a_Seminars { get; set; }
         public int a_Fair { get; set; }
@@ -18087,6 +18103,7 @@ namespace AbhyProject.Models
         public int b_Fair { get; set; }
 
     }
+
 
     public class iec_report_class_statename
     {

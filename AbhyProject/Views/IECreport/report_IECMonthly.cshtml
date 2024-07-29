@@ -1,0 +1,2620 @@
+﻿@{
+    ViewBag.Title = "report_IECMonthly";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<title>IEC Report</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon
+============================================ -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/table2excel.js"></script>
+<style>
+    .color_database {
+        color: green !important;
+    }
+
+    .tab-link.active label {
+        background-color: lightgray; /* Indicate active tab visually */
+    }
+
+    #imageView label {
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 12px;
+        width: 246px;
+    }
+
+    ul[id$="_menu"] > li > a:hover > label, ul[id$="_menu"] > li > a:focus > label, ul[id$="_menu"] > li.active > a > label {
+        border-color: #337ab7;
+        background-color: #337ab7c7;
+        color: #fff;
+    }
+</style>
+
+
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .social-table .bg-info {
+        background-color: #337ab7 !important;
+    }
+
+    .social-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .social-table tr th {
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+    }
+
+    .social-table tr td {
+        font-size: 14px;
+    }
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+    /*table fix code*/
+    .pseudolink {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*ends here*/
+    .new_wd {
+        width: 255px !important;
+    }
+
+    #Surface_menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Select_option_div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 17px 0px;
+        padding: 20px;
+        border: 1px solid #dfdbdb;
+        border-radius: 10px;
+        background: #edededcc;
+    }
+
+    ul.Select_option {
+        display: flex;
+        justify-content: space-between;
+        padding: 0px;
+    }
+
+    .StateLabel {
+        padding: 8px;
+    }
+
+    .display_flex {
+        font-size: 12px;
+    }
+
+    .number_count_div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .comn_table {
+        background: #f2f2f2;
+    }
+
+        .comn_table thead th {
+            border: 1px solid #fff;
+        }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    .tbl-responsive {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px -6px 22px !important;
+        background: #f2f2f2 !important;
+        overflow: auto;
+        height: 500px;
+    }
+
+    #currentgeopageno {
+        display: inline !important;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="clearfix">
+    <main>
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                                }
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/Home/index">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>Home <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                <label> IEC Summary / Report </label>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <a href="~/socialeventreport/main_report" class="btn btn-danger">
+                            Back To Module
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    </main>
+    <center>
+        <div class="text-h g-mb-20" style="font-size: 35px; color:white; font-family: raleway; margin-top: 10px; font-weight: 900; background-color: #72a230;padding:15px;">
+            IEC Summary / Report
+        </div>
+    </center>
+    <br />
+
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12 col-lg-12">
+            <ul class="tabs_menu sru_menu" id="Surface_menu">
+                <li class="tab-link subtab1 new_wd" data-tab="menu-11">
+                    <a href="~/IECreport/report_IECMonthly">
+                        <label style="height: 50px; border: 2px solid black; border-radius: 25px; display: flex; justify-content: center; align-items: center; font-size: 15px;">IEC Summary</label>
+                    </a>
+                </li>
+                <li class="tab-link subtab3 new_wd" data-tab="menu-12">
+                    <a href="~/IECreport/report_IEC">
+                        <label style="height: 50px; border: 2px solid black; display: flex; justify-content: center; align-items: center; font-size: 15px; border-radius: 25px;">IEC Report</label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane fade in active" id="music">
+            <div class="container-fluid">
+
+                <div class="clearfix">
+                    <div class="row " style="margin-top:30px;">
+                        <div class="col-md-12 Select_option_div">
+                            <div class="">
+                                <label style="text-align:center;color:red;" id="Error_"></label>
+                                <ul class="Select_option col-md-12 col-sm-8  text-left">
+                                    @*<li>
+                                            <select class="form-control" id="ddllevel" onclick="levelchange()" style="border-radius:5px;">
+                                            </select>
+                                        </li>*@
+                                    <li id="StateLabel">
+                                        <label id="lblstate">State:</label>
+                                        <span id="spnstate1">@Session["gstate"]</span>
+                                    </li>
+                                    <li id="StateDropdownLabel">
+                                        <label>State:</label>
+                                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:5px;">
+                                        </select>
+                                    </li>
+
+                                    @*<li id="DistLabel">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label id="lbldistrict">District:</label>
+                                            <span id="spndistrict">@Session["gdist"]</span>
+                                        </li>*@
+
+                                    @*<li id="DistDropdownLabel">
+
+                                            <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:5px;">
+                                            </select>
+                                        </li>*@
+
+                                    @*<li id="BlockLabel">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label>Block:</label>
+                                            <span>@Session["gblock"] </span>
+                                        </li>*@
+
+                                    @*<li id="BlockDropdownLabel">
+
+                                            <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:5px;">
+                                            </select>
+                                        </li>*@
+                                    @*<li id="GramLabel">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label>Gram panchayat:</label>
+                                            <span>@Session["ggram"]</span>
+                                        </li>*@
+
+                                    @*<li id="GramDropdownLabel">
+
+                                            <select class="form-control" id="gram" onchange="Gram_change()" style="border-radius:5px;">
+                                            </select>
+                                        </li>*@
+                                    <li>
+                                        <label>Year:</label>
+                                        <select class="form-control" id="year" onclick="yearchange()" style="border-radius:5px;">
+                                            <option value="0">Select  Year</option>
+                                            <option value="All">All</option>
+                                            <option value="2020-21">2020-21</option>
+                                            <option value="2021-22">2021-22</option>
+                                            <option value="2022-23">2022-23</option>
+                                            <option value="2023-24">2023-24</option>
+                                            <option value="2024-25">2024-25</option>
+                                        </select>
+                                    </li>
+                                    <li id="MonthDropdownLabel">
+                                        <label>Month:</label>
+                                        <select class="form-control" id="month" onchange="monthchange()" style="border-radius:5px;">
+
+                                            <option value="0">Select Month</option>
+                                            <option value="13">All</option>
+                                            <option value="1">April</option>
+                                            <option value="2">May</option>
+                                            <option value="3">June</option>
+                                            <option value="4">July</option>
+                                            <option value="5">August</option>
+                                            <option value="6">September</option>
+                                            <option value="7">October</option>
+                                            <option value="8">November</option>
+                                            <option value="9">December</option>
+                                            <option value="10">January</option>
+                                            <option value="11">February</option>
+                                            <option value="12">March</option>
+                                        </select>
+                                    </li>
+                                    <li id="MonthDropdownLabel2">
+                                        <label>Quarterly Month:</label>
+                                        <select class="form-control" id="quarterly" onchange="quarterchange()" style="border-radius:5px;">
+
+                                            <option value="0">Select Quarterly Month</option>
+                                            <option value="1">Apr - Jun</option>
+                                            <option value="2">Jul - Sep</option>
+                                            <option value="3">Oct - Dec</option>
+                                            <option value="4">Jan - Mar</option>
+                                        </select>
+                                    </li>
+                                    <li id="MonthDropdownLabel3">
+                                        <label>Halfyearly Month:</label>
+                                        <select class="form-control" id="halfyearly" onchange="halfyearchange()" style="border-radius:5px;">
+                                            <option value="0">Select Halfyearly Month</option>
+                                            <option value="1">Apr - Sep</option>
+                                            <option value="2">Oct - Mar</option>
+                                        </select>
+                                    </li>
+
+                                    <li id="DropdownSearch_btn">
+                                        <button class="btn btn-success" onclick="Dropdown_Search()">Search</button>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <div id="excel_a" class="text-right btn_hide">
+        <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_a_Table()"> Export To Excel</i></div>
+        <input type="button" id="AComponent_Id" onclick="tableToExcel('state_tt', 'IEC Report','IEC Summary')" hidden />
+    </div>
+    @*<div id="excel_b" class="text-right btn_hide">
+            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_b_Table()"> Export To Excel</i></div>
+            <input type="button" id="BComponent_Id" onclick="tableToExcel('district_tt', 'IEC Report')" hidden />
+        </div>
+        <div id="excel_c" class="text-right btn_hide">
+            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_c_Table()"> Export To Excel</i></div>
+            <input type="button" id="CComponent_Id" onclick="tableToExcel('block_tt', 'IEC Report')" hidden />
+        </div>
+        <div id="excel_d" class="text-right btn_hide">
+            <div class="btn btn-success btn_export"><i class="fa fa-file-excel-o" onclick="Export_d_Table()"> Export To Excel</i></div>
+            <input type="button" id="DComponent_Id" onclick="tableToExcel('gp_tt', 'IEC Report')" hidden />
+        </div>*@
+    <br />
+    <div class="col-lg-12 col-md-12 col-sm-12  form-body" style="padding-left:5%;width:95%">
+        <div class="table-responsive" id="style-1">
+            <table id="state_tt" class="table table-striped table-bordered table-striped social-table">
+                <thead>
+                    <tr class="bg-info text-white">
+                        <th rowspan="2">Sl.No.</th>
+                        <th rowspan="2">State</th>
+                        <th colspan="2">No. Awareness/ Publicity meeting conducted</th>
+                        <th colspan="2">No. of IEC material prepared (Pamphlets, Leaflets,Magzine, Brochures etc.)</th>
+                        <th colspan="4">No. of IEC  materials displayed (Cumulative)</th>
+                        <th colspan="2">No. of  Audio/Video  material prepared</th>
+                        <th colspan="2">No. of Road Shows/Street plays conducted</th>
+                        <th colspan="2">No. of HHs covered under Door to Door Campaign</th>
+                        <th colspan="2">No. of Post in Facebook/Twitter/You tube etc.</th>
+                        <th colspan="2">No. of Exhibitions/Seminars/Fair Conducted at District and Block Level</th>
+                        <th colspan="3">Other Initiatives</th>
+
+                    </tr>
+                    @*<tr class="bg-info text-white">
+                            <th colspan="2">Pamplets</th>
+                            <th colspan="2">Leaflets</th>
+                            <th colspan="2">Magazine</th>
+                            <th colspan="2">Brochures</th>
+                            <th colspan="2">Others</th>
+
+                            <th colspan="2">Hoardings</th>
+                            <th colspan="2">Posters</th>
+                            <th colspan="2">Wall Painting</th>
+                            <th colspan="2">Signages</th>
+                            <th colspan="2">Others</th>
+
+                            <th colspan="2">Audio</th>
+                            <th colspan="2">Video</th>
+
+                            <th colspan="2">Twitter</th>
+                            <th colspan="2">Facebook</th>
+                            <th colspan="2">Instagram</th>
+                            <th colspan="2">Youtube</th>
+                            <th colspan="2">Total</th>
+                        </tr>*@
+                    <tr class="bg-info text-white">
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+                        <th>Hording</th>
+                        <th>Posters</th>
+                        <th>Painting/Wall Writing</th>
+                        <th>Signages </th>
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+                        <th style="min-width:240px;">Name of the Activity</th>
+                        <th>Achievement duirng the month</th>
+                        <th>Cumulative Achievement</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tbl_state"></tbody>
+            </table>
+            @*<table id="district_tt" class="table table-striped table-bordered table-striped social-table">
+                    <thead>
+                        <tr class="bg-info text-white">
+                            <th rowspan="3">Sl.No.</th>
+                            <th rowspan="3">State</th>
+                            <th rowspan="3">District</th>
+                            <th colspan="2">No. Of Awareness meeting conducted </th>
+                            <th colspan="10">No. of IEC material prepared</th>
+                            <th colspan="10">No. of IEC  materials  displayed</th>
+                            <th colspan="4">No. of Road Shows/Street Plays conducted</th>
+                            <th rowspan="2" colspan="2">No. of Households covered under Door to Door Campaign</th>
+                            <th colspan="10">No. of Post in Social Media</th>
+                            <th colspan="6">No. of Exhibitions/Seminars/Fair Conducted at GP level</th>
+                            <th rowspan="2" colspan="2">Others</th>
+
+                        </tr>
+                        <tr class="bg-info text-white">
+                            <th colspan="2">Meeting</th>
+
+                            <th colspan="2">Pamplets</th>
+                            <th colspan="2">Leaflets</th>
+                            <th colspan="2">Magazine</th>
+                            <th colspan="2">Brochures</th>
+                            <th colspan="2">Others</th>
+
+                            <th colspan="2">Hoardings</th>
+                            <th colspan="2">Posters</th>
+                            <th colspan="2">Wall Painting</th>
+                            <th colspan="2">Signages</th>
+                            <th colspan="2">Others</th>
+
+                            <th colspan="2">Road Show</th>
+                            <th colspan="2">Street Plays</th>
+
+
+                            <th colspan="2">Twitter</th>
+                            <th colspan="2">Facebook</th>
+                            <th colspan="2">Instagram</th>
+                            <th colspan="2">Youtube</th>
+                            <th colspan="2">Total</th>
+
+                            <th colspan="2">Exhibition</th>
+                            <th colspan="2">Seminars</th>
+                            <th colspan="2">Fair</th>
+                        </tr>
+                        <tr class="bg-info text-white">
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_district"></tbody>
+                </table>
+                <table id="gp_tt" class="table table-striped table-bordered table-striped social-table">
+                    <thead>
+                        <tr class="bg-info text-white">
+                            <th rowspan="3">Sl.No.</th>
+                            <th rowspan="3">State</th>
+                            <th rowspan="3">District</th>
+                            <th rowspan="3">Block</th>
+                            <th rowspan="3">GramPanchayat</th>
+                            <th colspan="2">No. Of Awareness meeting conducted </th>
+                            <th colspan="10">No. of IEC material prepared</th>
+                            <th colspan="10">No. of IEC  materials  displayed</th>
+                            <th colspan="4">No. of Road Shows/Street Plays conducted</th>
+                            <th rowspan="2" colspan="2">No. of Households covered under Door to Door Campaign</th>
+                            <th colspan="10">No. of Post in Social Media</th>
+                            <th colspan="6">No. of Exhibitions/Seminars/Fair Conducted at GP level</th>
+                            <th rowspan="2" colspan="2">Others</th>
+
+                        </tr>
+                        <tr class="bg-info text-white">
+                            <th colspan="2">Meeting</th>
+
+                            <th colspan="2">Pamplets</th>
+                            <th colspan="2">Leaflets</th>
+                            <th colspan="2">Magazine</th>
+                            <th colspan="2">Brochures</th>
+                            <th colspan="2">Others</th>
+
+                            <th colspan="2">Hoardings</th>
+                            <th colspan="2">Posters</th>
+                            <th colspan="2">Wall Painting</th>
+                            <th colspan="2">Signages</th>
+                            <th colspan="2">Others</th>
+
+                            <th colspan="2">Road Show</th>
+                            <th colspan="2">Street Plays</th>
+
+
+                            <th colspan="2">Twitter</th>
+                            <th colspan="2">Facebook</th>
+                            <th colspan="2">Instagram</th>
+                            <th colspan="2">Youtube</th>
+                            <th colspan="2">Total</th>
+
+                            <th colspan="2">Exhibition</th>
+                            <th colspan="2">Seminars</th>
+                            <th colspan="2">Fair</th>
+                        </tr>
+                        <tr class="bg-info text-white">
+
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                            <th>Achievement duirng the month</th>
+                            <th>Cumulative Achievement</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbl_gp"></tbody>
+                </table>*@
+        </div>
+
+    </div>
+
+
+    <!--fotter End-->
+    <input hidden="hidden" id="hdnRechargefactor" />
+    <input hidden="hidden" id="hdnSeepagefactor" />
+    <input hidden="hidden" id="hdnareairrigation" />
+</div>
+<div id="imageView">
+
+</div>
+
+<script src="~/Scripts/validations.js"></script>
+<script></script>
+
+<script type="text/javascript">
+    var find_name = "gwl";
+    $(document).ready(function () {
+        $(".loader").hide();
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "") {
+              window.location = "/Home/LogOut";
+        }
+        function setActiveTab() {
+            // Get the current page URL
+            const currentUrl = window.location.pathname;
+
+            // Get all tab links
+            const tabLinks = document.querySelectorAll('.tab-link');
+
+            // Remove the active class from all tab links
+            tabLinks.forEach(tab => tab.classList.remove('active'));
+
+            // Add the active class to the correct tab link based on the current URL
+            if (currentUrl.includes('report_IECMonthly')) {
+                document.querySelector('li[data-tab="menu-11"]').classList.add('active');
+            } else if (currentUrl.includes('report_IEC')) {
+                document.querySelector('li[data-tab="menu-12"]').classList.add('active');
+            }
+        }
+
+        // Call the function to set the active tab when the page loads
+        window.onload = setActiveTab;
+    });
+
+
+</script>
+
+<script src="~/Scripts/validations.js"></script>
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
+<script>
+
+   var Jsondata = "";
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var well_loader = "0";
+    var StateOfficer = "";
+    var button_click = "0";
+    var image_path = "";
+    $(document).ready(function () {
+        StateOfficer = '@Session["Officer"]';
+        image_path = '@Session["sUploadDirectory"]';
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $('#state_tt').hide();
+        $('#district_tt').hide();
+        $('#block_tt').hide();
+        $('#gp_tt').hide();
+        $('#excel_a').hide();
+        $('#excel_b').hide();
+        $('#excel_c').hide();
+        $('#excel_d').hide();
+
+        if (StateOfficer == 'State Level Nodal Officer') {
+            var opgram = '';
+            opgram = '<option value="State Level Nodal Officer">State Level Data</option>';
+            opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
+            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+
+            $("#ddllevel").append(opgram);
+            levelchange();
+        }
+       else if (StateOfficer == 'District Level Nodal Officer') {
+            var opgram = '';
+            opgram = '<option value="District Level Nodal Officer">District Level Data</option>';
+            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+
+            $("#ddllevel").append(opgram);
+            levelchange();
+        }
+       else if (StateOfficer == 'GramPanchayat Level Nodal Officer') {
+            var opgram = '';
+            opgram = '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+
+            $("#ddllevel").append(opgram);
+            levelchange();
+        }
+        else {
+            var opgram = '';
+            opgram += '<option value="0">Select Level Data</option>';
+            opgram += '<option value="State Level Nodal Officer">State Level Data</option>';
+            opgram += '<option value="District Level Nodal Officer">District Level Data</option>';
+            opgram += '<option value="GramPanchayat Level Nodal Officer">GramPanchayat Level Data</option>';
+
+            $("#ddllevel").append(opgram);
+        }
+
+
+
+
+        DropDownInfo();
+    });
+
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+    }
+</script>
+
+<script type="text/javascript">
+    var check_table = "";
+
+    //function levelchange() {
+    //    var level = $("#ddllevel").val();
+    //    if (level == "State Level Nodal Officer") {
+    //        check_table = 1;
+    //        $('#dist11').hide();
+    //        $('#block1').hide();
+    //        $('#gram').hide();
+    //        $('#state_tt').show();
+    //        $('#district_tt').hide();
+    //        $('#block_tt').hide();
+    //        $('#gp_tt').hide();
+    //        $('#state_tt tbody').html("");
+    //        $('#district_tt tbody').html("");
+    //        $('#block_tt tbody').html("");
+    //        $('#gp_tt tbody').html("");
+    //        $('#excel_a').show();
+    //        $('#excel_b').hide();
+    //        $('#excel_c').hide();
+    //        $('#excel_d').hide();
+    //    }
+    //    else if (level == "District Level Nodal Officer") {
+    //        check_table = 2;
+    //        $('#dist11').show();
+    //        $('#block1').hide();
+    //        $('#gram').hide();
+    //        var dist1 = $("#dist11").val();
+    //        if (dist1 == "0") {
+    //            $('#state_tt').hide();
+    //            $('#district_tt').show();
+    //            $('#block_tt').hide();
+    //            $('#gp_tt').hide();
+    //            $('#state_tt tbody').html("");
+    //            $('#district_tt tbody').html("");
+    //            $('#block_tt tbody').html("");
+    //            $('#gp_tt tbody').html("");
+    //            $('#excel_a').hide();
+    //            $('#excel_b').show();
+    //            $('#excel_c').hide();
+    //            $('#excel_d').hide();
+    //        }
+    //        else {
+    //            $('#state_tt').hide();
+    //            $('#district_tt').show();
+    //            $('#block_tt').hide();
+    //            $('#gp_tt').hide();
+    //            $('#state_tt tbody').html("");
+    //            $('#district_tt tbody').html("");
+    //            $('#block_tt tbody').html("");
+    //            $('#gp_tt tbody').html("");
+    //            $('#excel_a').hide();
+    //            $('#excel_b').show();
+    //            $('#excel_c').hide();
+    //            $('#excel_d').hide();
+    //        }
+    //    }
+    //    else if (level == "GramPanchayat Level Nodal Officer") {
+    //        check_table = 3;
+    //        $('#dist11').show();
+    //        $('#block1').show();
+    //        $('#gram').show();
+    //        $('#gp_tt').show();
+    //        $('#excel_d').show();
+    //        $('#state_tt').hide();
+    //        $('#district_tt').hide();
+    //        $('#block_tt').hide();
+    //        $('#state_tt tbody').html("");
+    //        $('#district_tt tbody').html("");
+    //        $('#block_tt tbody').html("");
+    //        $('#gp_tt tbody').html("");
+    //        $('#excel_a').hide();
+    //        $('#excel_b').hide();
+    //        $('#excel_c').hide();
+    //    }
+    //    else {
+    //        $('#dist11').show();
+    //        $('#block1').show();
+    //        $('#gram').show();
+    //        $('#state_tt').show();
+    //        $('#district_tt').hide();
+    //        $('#block_tt').hide();
+    //        $('#gp_tt').hide();
+    //        $('#state_tt tbody').html("");
+    //        $('#district_tt tbody').html("");
+    //        $('#block_tt tbody').html("");
+    //        $('#gp_tt tbody').html("");
+    //        $('#excel_a').hide();
+    //        $('#excel_b').hide();
+    //        $('#excel_c').hide();
+    //        $('#excel_d').hide();
+    //    }
+    //}
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                    $(".loader").hide();
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+                    $(".loader").hide();
+
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+                        var StateName = $("#spnstate").val();
+                        if (StateName == "All") {
+                            check_table = 1;
+                            $('#DistDropdownLabel').hide();
+                            $('#BlockDropdownLabel').hide();
+                            $('#GramDropdownLabel').hide();
+                            $('#state_tt').show();
+                            $('#district_tt').hide();
+                            $('#block_tt').hide();
+                            $('#gp_tt').hide();
+                            $('#excel_a').show();
+                            $('#excel_b').hide();
+                            $('#excel_c').hide();
+                            $('#excel_d').hide();
+
+                        }
+                        else {
+                            check_table = 2;
+                            $('#state_tt').show();
+                            $('#district_tt').hide();
+                            $('#block_tt').hide();
+                            $('#gp_tt').hide();
+                            $('#DistDropdownLabel').show();
+                            $('#BlockDropdownLabel').show();
+                            $('#GramDropdownLabel').show();
+                            $('#excel_a').show();
+                            $('#excel_b').hide();
+                            $('#excel_c').hide();
+                            $('#excel_d').hide();
+                        }
+
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        State_Dropdown_Function();
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Dist_fun();
+                        $(".loader").hide();
+
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Block_fun();
+                        $(".loader").hide();
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+                        $(".loader").hide();
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function DropDownInfo() {
+        $(".loader").show();
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select StateName</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push(Jsondata[i].state_name);
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="All">ALL</option>';
+                        /*optionState = '<option value="All">ALL</option>';*/
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                if (DistArray[i] != "Delhi_7") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                }
+
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function State_Dropdown_Function() {
+        $('#month').val("0");
+        $('#halfyearly').val("0");
+        $('#quarterly').val("0");
+        $('#year').val("0");
+
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+        var level = $("#ddllevel").val();
+
+        if (State == "0") {
+            $('#state_tt').hide();
+            $('#district_tt').hide();
+            $('#block_tt').hide();
+            $('#gp_tt').hide();
+            $('#DistDropdownLabel').show();
+            $('#BlockDropdownLabel').show();
+            $('#GramDropdownLabel').show();
+            $('#state_tt tbody').html("");
+            $('#district_tt tbody').html("");
+            $('#block_tt tbody').html("");
+            $('#gp_tt tbody').html("");
+            $('#excel_a').hide();
+            $('#excel_b').hide();
+            $('#excel_c').hide();
+            $('#excel_d').hide();
+        }
+        else if (State == "All") {
+
+            if (level == "District Level Nodal Officer") {
+                $('#state_tt').hide();
+                $('#district_tt').show();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#DistDropdownLabel').hide();
+                $('#BlockDropdownLabel').hide();
+                $('#GramDropdownLabel').hide();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').show();
+                $('#excel_b').hide();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+
+            }
+            else if (level == "GramPanchayat Level Nodal Officer") {
+                $('#state_tt').hide();
+                $('#district_tt').hide();
+                $('#block_tt').hide();
+                $('#gp_tt').show();
+                $('#DistDropdownLabel').hide();
+                $('#BlockDropdownLabel').hide();
+                $('#GramDropdownLabel').hide();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').hide();
+                $('#excel_b').hide();
+                $('#excel_c').hide();
+                $('#excel_d').show();
+
+            }
+            else if (level == "State Level Nodal Officer") {
+                $('#DistDropdownLabel').hide();
+                $('#BlockDropdownLabel').hide();
+                $('#GramDropdownLabel').hide();
+                $('#state_tt').show();
+                $('#district_tt').hide();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').show();
+                $('#excel_b').hide();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+            }
+        }
+        else {
+            if (level == "District Level Nodal Officer") {
+                $('#state_tt').hide();
+                $('#district_tt').show();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#DistDropdownLabel').show();
+                $('#BlockDropdownLabel').show();
+                $('#GramDropdownLabel').show();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').hide();
+                $('#excel_b').show();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+            }
+            else if (level == "GramPanchayat Level Nodal Officer") {
+                $('#state_tt').hide();
+                $('#district_tt').hide();
+                $('#block_tt').hide();
+                $('#gp_tt').show();
+                $('#DistDropdownLabel').show();
+                $('#BlockDropdownLabel').show();
+                $('#GramDropdownLabel').show();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').hide();
+                $('#excel_b').hide();
+                $('#excel_c').hide();
+                $('#excel_d').show();
+
+            }
+            else if (level == "State Level Nodal Officer") {
+                $('#state_tt').show();
+                $('#district_tt').hide();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#DistDropdownLabel').show();
+                $('#BlockDropdownLabel').show();
+                $('#GramDropdownLabel').show();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').show();
+                $('#excel_b').hide();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+            }
+        }
+
+
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+    function Dist_fun() {
+
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        var level = $("#ddllevel").val();
+        if (level == "State Level Nodal Officer") {
+            if (dist == "0") {
+                check_table = 2;
+                $('#state_tt').show();
+                $('#district_tt').hide();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').show();
+                $('#excel_b').hide();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+            }
+            else {
+                check_table = 3;
+                $('#state_tt').hide();
+                $('#district_tt').show();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').hide();
+                $('#excel_b').show();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+            }
+        }
+        else if (level == "Distric Level Nodal Officer") {
+            if (dist == "0") {
+                $('#state_tt').hide();
+                $('#district_tt').show();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').hide();
+                $('#excel_b').show();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+            }
+            else {
+                $('#state_tt').hide();
+                $('#district_tt').show();
+                $('#block_tt').hide();
+                $('#gp_tt').hide();
+                $('#state_tt tbody').html("");
+                $('#district_tt tbody').html("");
+                $('#block_tt tbody').html("");
+                $('#gp_tt tbody').html("");
+                $('#excel_a').hide();
+                $('#excel_b').show();
+                $('#excel_c').hide();
+                $('#excel_d').hide();
+            }
+        }
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                //if (Jsondata[i].district_name == 'Kaithal' ) {
+                //    alert(dist);
+
+                //    return;
+                //}
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+    function Block_fun() {
+
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+    function Gram_change() {
+        Gram = $('#gram').val(); ''
+
+    }
+    function Dropdown_Search() {
+        $('#alert_waiting').show();
+        var StateName = $("#spnstate").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var quarter = $('#quarterly').val();
+        var halfyear = $('#halfyearly').val();
+        //var level = $('#ddllevel').val();
+        if (Gram != "0") {
+
+        }
+        else {
+            Gram = $('#gram').val();
+        }
+
+        var xx = 0;
+        //if (level == "0") {
+        //    xx = 1;
+        //    alert("Please Select Level");
+        //}
+        if (StateName == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        }
+
+        else if (year == "0") {
+            xx = 1;
+            alert("Please Select Year");
+        }
+        else if ((month == "0") && (quarter == '0') && (halfyear == '0')) {
+          xx = 1;
+          alert("Please Select Month / Quarterly Month / Halfyearly Month");
+        }
+        //else if (quarter == "0") {
+        //    xx = 1;
+        //    alert("Please Select Month");
+        //}
+        if (xx == 0) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/GplevelMobileData/StateLevel_Dropdown',
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "','year':'" + year + "','Month':'" + month + "'}",
+                dataType: 'JSON',
+                success: function (results) {
+
+                    if (check_table == 1) {
+                        state_data();
+                        $("#MonthDropdownLabel").show();
+                        $("#MonthDropdownLabel2").show();
+                        $("#MonthDropdownLabel3").show();
+                        $('#state_tt tbody').html("");
+                        $('#district_tt tbody').html("");
+                        $('#block_tt tbody').html("");
+                        $('#gp_tt tbody').html("");
+                    }
+                    else if (check_table == 2) {
+                        district_data();
+                        $('#state_tt tbody').html("");
+                        $('#district_tt tbody').html("");
+                        $('#block_tt tbody').html("");
+                        $('#gp_tt tbody').html("");
+                    }
+                    else if (check_table == 3) {
+                        gp_data();
+                        $('#state_tt tbody').html("");
+                        $('#district_tt tbody').html("");
+                        $('#block_tt tbody').html("");
+                        $('#gp_tt tbody').html("");
+                    }
+                }
+            });
+        }
+    }
+
+    function state_data() {
+        debugger;
+        $(".loader").show();
+        var StateName = $("#spnstate").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+        var quarter = $('#quarterly').val();
+        var halfyear = $('#halfyearly').val();
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/IECreport/all_reportMonthly',
+            data: "{'StateName':'" + StateName + "','year':'" + year + "','Month':'" + month + "','quarter':'" + quarter + "','halfyear':'" + halfyear + "' }",
+            dataType: 'JSON',
+            success: function (data) {
+                debugger;
+                var Tbodyhtml = '';
+                if (data.length != 0) {
+
+                    var a_Pamphlets = 0;
+                    var a_Magazine = 0;
+                    var a_Leaflets = 0;
+                    var a_Brochures = 0;
+                    var a_Others = 0;
+                    var b_Pamphlets = 0;
+                    var b_Magazine = 0;
+                    var b_Leaflets = 0;
+                    var b_Brochures = 0;
+                    var b_Others = 0;
+                    var c_Facebook = 0;
+                    var c_Twitter = 0;
+                    var c_YouTube = 0;
+                    var c_Instagram = 0;
+                    var c_Others = 0;
+                    var d_Others = 0;
+                    var d_Audio = 0;
+                    var d_Video = 0;
+                    var e_Publicity = 0;
+                    var f_Road = 0;
+                    var f_Street = 0;
+                    var g_HHS = 0;
+                    var h_Exhibitions = 0;
+                    var h_Fair = 0;
+                    var h_Seminars = 0;
+
+                    var ba_Pamphlets = 0;
+                    var ba_Magazine = 0;
+                    var ba_Leaflets = 0;
+                    var ba_Brochures = 0;
+                    var ba_Others = 0;
+                    var bb_Pamphlets = 0;
+                    var bb_Magazine = 0;
+                    var bb_Leaflets = 0;
+                    var bb_Brochures = 0;
+                    var bb_Others = 0;
+                    var bc_Facebook = 0;
+                    var bc_Twitter = 0;
+                    var bc_YouTube = 0;
+                    var bc_Instagram = 0;
+                    var bc_Others = 0;
+                    var bd_Others = 0;
+                    var bd_Audio = 0;
+                    var bd_Video = 0;
+                    var be_Publicity = 0;
+                    var bf_Road = 0;
+                    var bf_Street = 0;
+                    var bg_HHS = 0;
+                    var bh_Exhibitions = 0;
+                    var bh_Fair = 0;
+                    var bh_Seminars = 0;
+
+                    var totachivements_ieca = 0;
+                    var totcummulative_ieca = 0;
+                    var totachivements_audiovideo = 0;
+                    var totcummulative_audiovideo = 0;
+                    var totachivements_social = 0;
+                    var totcummulative_social = 0;
+                    var totachivements_road = 0;
+                    var totcummulative_street = 0;
+                    var totachivements_esf = 0;
+                    var totcummulative_esf = 0;
+
+                    var sumtotachivements_ieca = 0;
+                    var sumtotcummulative_ieca = 0;
+                    var sumtotachivements_audiovideo = 0;
+                    var sumtotcummulative_audiovideo = 0;
+                    var sumtotachivements_social = 0;
+                    var sumtotcummulative_social = 0;
+                    var sumtotachivements_road = 0;
+                    var sumtotcummulative_street = 0;
+                    var sumtotachivements_esf = 0;
+                    var sumtotcummulative_esf = 0;
+
+
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        a_Pamphlets += data[i].a_Pamphlets;
+                        a_Magazine += data[i].a_Magazine;
+                        a_Leaflets += data[i].a_Leaflets;
+                        a_Brochures += data[i].a_Brochures;
+                        a_Others += data[i].a_Others;
+                        b_Pamphlets += data[i].b_Pamphlets;
+                        b_Magazine += data[i].b_Magazine;
+                        b_Leaflets += data[i].b_Leaflets;
+                        b_Brochures += data[i].b_Brochures;
+                        b_Others += data[i].b_Others;
+                        c_Facebook += data[i].c_Facebook;
+                        c_Twitter += data[i].c_Twitter;
+                        c_YouTube += data[i].c_YouTube;
+                        c_Instagram += data[i].c_Instagram;
+                        c_Others += data[i].c_Others;
+                        d_Others += data[i].d_Others;
+                        d_Audio += data[i].d_Audio;
+                        d_Video += data[i].d_Video;
+                        e_Publicity += data[i].e_Publicity;
+                        f_Road += data[i].f_Road;
+                        f_Street += data[i].f_Street;
+                        g_HHS += data[i].g_HHS;
+                        h_Exhibitions += data[i].h_Exhibitions;
+                        h_Fair += data[i].h_Fair;
+                        h_Seminars += data[i].h_Seminars;
+                        ba_Pamphlets += data[i].ba_Pamphlets;
+                        ba_Magazine += data[i].ba_Magazine;
+                        ba_Leaflets += data[i].ba_Leaflets;
+                        ba_Brochures += data[i].ba_Brochures;
+                        ba_Others += data[i].ba_Others;
+                        bb_Pamphlets += data[i].bb_Pamphlets;
+                        bb_Magazine += data[i].bb_Magazine;
+                        bb_Leaflets += data[i].bb_Leaflets;
+                        bb_Brochures += data[i].bb_Brochures;
+                        bb_Others += data[i].bb_Others;
+                        bc_Facebook += data[i].bc_Facebook;
+                        bc_Twitter += data[i].bc_Twitter;
+                        bc_YouTube += data[i].bc_YouTube;
+                        bc_Instagram += data[i].bc_Instagram;
+                        bc_Others += data[i].bc_Others;
+                        bd_Others += data[i].bd_Others;
+                        bd_Audio += data[i].bd_Audio;
+                        bd_Video += data[i].bd_Video;
+                        be_Publicity += data[i].be_Publicity;
+                        bf_Road += data[i].bf_Road;
+                        bf_Street += data[i].bf_Street;
+                        bg_HHS += data[i].bg_HHS;
+                        bh_Exhibitions += data[i].bh_Exhibitions;
+                        bh_Fair += data[i].bh_Fair;
+                        bh_Seminars += data[i].bh_Seminars;
+
+                        totachivements_ieca += a_Pamphlets + a_Leaflets + a_Magazine + a_Brochures + a_Others;
+                        totcummulative_ieca += ba_Pamphlets + ba_Leaflets + ba_Magazine + ba_Brochures + ba_Others;
+
+
+                        totachivements_audiovideo += d_Audio + d_Video;
+                        totcummulative_audiovideo += bd_Audio + bd_Video;
+
+                        totachivements_social += c_Twitter + c_Facebook + c_Instagram + c_YouTube + c_Others;
+                        totcummulative_social += bc_Twitter + bc_Facebook + bc_Instagram + bc_YouTube + bc_Others;
+
+                        totachivements_road += f_Road + f_Street;
+                        totcummulative_street += bf_Road + bf_Street;
+
+                        totachivements_esf += h_Exhibitions + h_Fair + h_Seminars;
+                        totcummulative_esf += bh_Exhibitions + bh_Fair + bh_Seminars;
+
+
+                        sumtotachivements_ieca += totachivements_ieca;
+                        sumtotcummulative_ieca += totcummulative_ieca;
+                        sumtotachivements_audiovideo += totachivements_audiovideo;
+                        sumtotcummulative_audiovideo += totcummulative_audiovideo;
+                        sumtotachivements_social += totachivements_social;
+                        sumtotcummulative_social += totcummulative_social;
+                        sumtotachivements_road += totachivements_road;
+                        sumtotcummulative_street += totcummulative_street;
+                        sumtotachivements_esf = totachivements_esf;
+                        sumtotcummulative_esf = totcummulative_esf;
+
+
+
+                        //Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].statename + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].d_Audio + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Audio + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].d_Video + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Video + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Twitter + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Twitter + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Facebook + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Facebook + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Instagram + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Instagram + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_YouTube + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_YouTube + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].d_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Others + '</label></td></tr>';
+
+
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].statename + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].e_Publicity + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].be_Publicity + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_audiovideo + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_audiovideo + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_road + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_street + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].g_HHS + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bg_HHS + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_social + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_social + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totachivements_esf + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + totcummulative_esf + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + data[i].activity_other + '</label></td>';
+
+                        Tbodyhtml += '<td id="rainfall"><label>' + (data[i].activity_other ? data[i].activity_other : 'No activity') + '</label></td>';
+
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Others + '</label></td></tr>';
+
+
+                    }
+
+                    if (data.length == 7) {
+                        //Tbodyhtml += '<tr><td colspan="2" id="srNo"><label>' + "Total" + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + a_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + ba_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + a_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + ba_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + a_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + ba_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + a_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + ba_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + a_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + ba_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + b_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bb_Magazine + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + b_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bb_Leaflets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + b_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bb_Pamphlets + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + b_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bb_Brochures + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + b_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bb_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + d_Audio + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bd_Audio + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + d_Video + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bd_Video + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + c_Twitter + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bc_Twitter + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + c_Facebook + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bc_Facebook + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + c_Instagram + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bc_Instagram + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + c_YouTube + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bc_YouTube + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + c_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bc_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + d_Others + '</label></td>';
+                        //Tbodyhtml += '<td id="rainfall"><label>' + bd_Others + '</label></td></tr>';
+
+
+
+                        Tbodyhtml += '<tr><td colspan="2" id="srNo"><label>' + "Total" + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + e_Publicity + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + be_Publicity + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_ieca + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_audiovideo + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_audiovideo + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_road + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_street + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + g_HHS + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bg_HHS + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_social + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_social + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotachivements_esf + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + sumtotcummulative_esf + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label></label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bd_Others + '</label></td></tr>';
+
+
+                    }
+
+                    $('#state_tt tbody').html(Tbodyhtml);
+                    $(".loader").hide();
+
+                }
+
+
+
+            }
+
+
+        });
+
+
+
+    }
+    function district_data() {
+
+        $(".loader").show();
+        var StateName = $("#spnstate").val();
+        var distName = $("#dist11").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/IECreport/district_report',
+            data: "{'StateName':'" + StateName + "','distName':'" + distName + "','year':'" + year + "','Month':'" + month + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                var Tbodyhtml = '';
+                if (data.length != 0) {
+
+                    var a_Awareness_meetings = 0;
+                    var b_Awareness_meetings = 0;
+                    var a_Road_Shows = 0;
+                    var b_Road_Shows = 0;
+                    var a_Street_Plays = 0;
+                    var b_Street_Plays = 0;
+                    var a_household = 0;
+                    var b_household = 0;
+                    var a_Pamphlets = 0;
+                    var a_Magazine = 0;
+                    var a_Leaflets = 0;
+                    var a_Brochures = 0;
+                    var a_Others = 0;
+                    var b_Pamphlets = 0;
+                    var b_Magazine = 0;
+                    var b_Leaflets = 0;
+                    var b_Brochures = 0;
+                    var b_Others = 0;
+                    var c_Facebook = 0;
+                    var c_Twitter = 0;
+                    var c_YouTube = 0;
+                    var c_Instagram = 0;
+                    var c_Others = 0;
+                    var d_Others = 0;
+                    var ba_Pamphlets = 0;
+                    var ba_Magazine = 0;
+                    var ba_Leaflets = 0;
+                    var ba_Brochures = 0;
+                    var ba_Others = 0;
+                    var bb_Pamphlets = 0;
+                    var bb_Magazine = 0;
+                    var bb_Leaflets = 0;
+                    var bb_Brochures = 0;
+                    var bb_Others = 0;
+                    var bc_Facebook = 0;
+                    var bc_Twitter = 0;
+                    var bc_YouTube = 0;
+                    var bc_Instagram = 0;
+                    var bc_Others = 0;
+                    var bd_Others = 0;
+                    var a_Exhibitions = 0;
+                    var a_Seminars = 0;
+                    var a_Fair = 0;
+                    var b_Exhibitions = 0;
+                    var b_Seminars = 0;
+                    var b_Fair = 0;
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        a_Awareness_meetings += data[i].a_Awareness_meetings;
+                        b_Awareness_meetings += data[i].b_Awareness_meetings;
+                        a_Road_Shows += data[i].a_Road_Shows;
+                        b_Road_Shows += data[i].b_Road_Shows;
+                        a_Street_Plays += data[i].a_Street_Plays;
+                        b_Street_Plays += data[i].b_Street_Plays;
+                        a_household += data[i].a_household;
+                        b_household += data[i].b_household;
+                        a_Pamphlets += data[i].a_Pamphlets;
+                        a_Magazine += data[i].a_Magazine;
+                        a_Leaflets += data[i].a_Leaflets;
+                        a_Brochures += data[i].a_Brochures;
+                        a_Others += data[i].a_Others;
+                        b_Pamphlets += data[i].b_Pamphlets;
+                        b_Magazine += data[i].b_Magazine;
+                        b_Leaflets += data[i].b_Leaflets;
+                        b_Brochures += data[i].b_Brochures;
+                        b_Others += data[i].b_Others;
+                        c_Facebook += data[i].c_Facebook;
+                        c_Twitter += data[i].c_Twitter;
+                        c_YouTube += data[i].c_YouTube;
+                        c_Instagram += data[i].c_Instagram;
+                        c_Others += data[i].c_Others;
+                        d_Others += data[i].d_Others;
+                        ba_Pamphlets += data[i].ba_Pamphlets;
+                        ba_Magazine += data[i].ba_Magazine;
+                        ba_Leaflets += data[i].ba_Leaflets;
+                        ba_Brochures += data[i].ba_Brochures;
+                        ba_Others += data[i].ba_Others;
+                        bb_Pamphlets += data[i].bb_Pamphlets;
+                        bb_Magazine += data[i].bb_Magazine;
+                        bb_Leaflets += data[i].bb_Leaflets;
+                        bb_Brochures += data[i].bb_Brochures;
+                        bb_Others += data[i].bb_Others;
+                        bc_Facebook += data[i].bc_Facebook;
+                        bc_Twitter += data[i].bc_Twitter;
+                        bc_YouTube += data[i].bc_YouTube;
+                        bc_Instagram += data[i].bc_Instagram;
+                        bc_Others += data[i].bc_Others;
+                        bd_Others += data[i].bd_Others;
+                        a_Exhibitions += data[i].a_Exhibitions;
+                        a_Seminars += data[i].a_Seminars;
+                        a_Fair += data[i].a_Fair;
+                        b_Exhibitions += data[i].b_Exhibitions;
+                        b_Seminars += data[i].b_Seminars;
+                        b_Fair += data[i].b_Fair;
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].statename + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].districtname + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Others + '</label></td></tr>';
+
+                    }
+
+                    if (data.length != 1) {
+                        Tbodyhtml += '<tr><td colspan="3" id="srNo"><label>' + "Total" + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bd_Others + '</label></td></tr>';
+
+                    }
+
+
+
+                    $('#district_tt tbody').html(Tbodyhtml);
+                    $(".loader").hide();
+
+                }
+
+
+
+            }
+
+
+        });
+
+
+
+    }
+    function block_data() {
+
+        $(".loader").show();
+        var StateName = $("#spnstate").val();
+        var distName = $("#dist11").val();
+        var blockName = $("#block1").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/socialeventreport/block_report',
+            data: "{'StateName':'" + StateName + "','distName':'" + distName + "','blockName':'" + blockName + "','year':'" + year + "','Month':'" + month + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                var Tbodyhtml = '';
+                if (data.length != 0) {
+
+                    var totalgp = 0;
+                    var welltotal = 0;
+                    var welltotalgp = 0;
+                    var wellnogp = 0;
+                    var gwltotal = 0;
+                    var gwltotalgp = 0;
+                    var gwlnogp = 0;
+                    var gwqtotal = 0;
+                    var gwqtotalgp = 0;
+                    var gwqnogp = 0;
+                    var geototal = 0;
+                    var total_a = 0;
+                    var total_b = 0;
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        totalgp += data[i].Awareness_meetings_a;
+                        welltotal += data[i].Awareness_meetings_c;
+                        welltotalgp += data[i].WSP_Related_meetings_a;
+                        wellnogp += data[i].WSP_Related_meetings_c;
+                        gwltotal += data[i].other_a;
+                        gwltotalgp += data[i].other_c;
+                        gwlnogp += data[i].male;
+                        gwqtotal += data[i].female;
+                        gwqtotalgp += data[i].trangender;
+                        gwqnogp += data[i].total;
+                        geototal += data[i].percent_female;
+                        total_a += data[i].total_a;
+                        total_b += data[i].total_c;
+                        var pp = data[i].percent_female.toFixed(2);
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].statename + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].districtname + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].blockname + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].Awareness_meetings_a + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].Awareness_meetings_c + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].WSP_Related_meetings_a + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].WSP_Related_meetings_c + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_a + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_c + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].total_a + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].total_c + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].male + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].female + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].trangender + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].total + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + pp + '</label></td></tr>';
+                    }
+
+
+                    Tbodyhtml += '<tr><td colspan="4" id="srNo"><label>' + "Total" + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + totalgp + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + welltotal + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + welltotalgp + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + wellnogp + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + gwltotal + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + gwltotalgp + '</label></td>  ';
+                    Tbodyhtml += '<td id="rainfall"><label>' + total_a + '</label></td>  ';
+                    Tbodyhtml += '<td id="rainfall"><label>' + total_b + '</label></td>  ';
+                    Tbodyhtml += '<td id="rainfall"><label>' + gwlnogp + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + gwqtotal + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + gwqtotalgp + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + gwqnogp + '</label></td>';
+                    Tbodyhtml += '<td id="rainfall"><label>' + geototal.toFixed(2) + '</label></td></tr >';
+
+
+
+                    $('#block_tt tbody').html(Tbodyhtml);
+                    $(".loader").hide();
+
+                }
+
+
+
+            }
+
+
+        });
+
+
+
+    }
+    function gp_data() {
+
+        $(".loader").show();
+        var StateName = $("#spnstate").val();
+        var distName = $("#dist11").val();
+        var blockName = $("#block1").val();
+        var gpname = $("#gram").val();
+        var year = $("#year").val();
+        var month = $('#month').val();
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/IECreport/gram_report',
+            data: "{'StateName':'" + StateName + "','distName':'" + distName + "','blockName':'" + blockName + "','gpname':'" + gpname + "','year':'" + year + "','Month':'" + month + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                var Tbodyhtml = '';
+                if (data.length != 0) {
+
+                    var a_Awareness_meetings = 0;
+                    var b_Awareness_meetings = 0;
+                    var a_Road_Shows = 0;
+                    var b_Road_Shows = 0;
+                    var a_Street_Plays = 0;
+                    var b_Street_Plays = 0;
+                    var a_household = 0;
+                    var b_household = 0;
+                    var a_Pamphlets = 0;
+                    var a_Magazine = 0;
+                    var a_Leaflets = 0;
+                    var a_Brochures = 0;
+                    var a_Others = 0;
+                    var b_Pamphlets = 0;
+                    var b_Magazine = 0;
+                    var b_Leaflets = 0;
+                    var b_Brochures = 0;
+                    var b_Others = 0;
+                    var c_Facebook = 0;
+                    var c_Twitter = 0;
+                    var c_YouTube = 0;
+                    var c_Instagram = 0;
+                    var c_Others = 0;
+                    var d_Others = 0;
+                    var ba_Pamphlets = 0;
+                    var ba_Magazine = 0;
+                    var ba_Leaflets = 0;
+                    var ba_Brochures = 0;
+                    var ba_Others = 0;
+                    var bb_Pamphlets = 0;
+                    var bb_Magazine = 0;
+                    var bb_Leaflets = 0;
+                    var bb_Brochures = 0;
+                    var bb_Others = 0;
+                    var bc_Facebook = 0;
+                    var bc_Twitter = 0;
+                    var bc_YouTube = 0;
+                    var bc_Instagram = 0;
+                    var bc_Others = 0;
+                    var bd_Others = 0;
+                    var a_Exhibitions = 0;
+                    var a_Seminars = 0;
+                    var a_Fair = 0;
+                    var b_Exhibitions = 0;
+                    var b_Seminars = 0;
+                    var b_Fair = 0;
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        a_Awareness_meetings += data[i].a_Awareness_meetings;
+                        b_Awareness_meetings += data[i].b_Awareness_meetings;
+                        a_Road_Shows += data[i].a_Road_Shows;
+                        b_Road_Shows += data[i].b_Road_Shows;
+                        a_Street_Plays += data[i].a_Street_Plays;
+                        b_Street_Plays += data[i].b_Street_Plays;
+                        a_household += data[i].a_household;
+                        b_household += data[i].b_household;
+                        a_Pamphlets += data[i].a_Pamphlets;
+                        a_Magazine += data[i].a_Magazine;
+                        a_Leaflets += data[i].a_Leaflets;
+                        a_Brochures += data[i].a_Brochures;
+                        a_Others += data[i].a_Others;
+                        b_Pamphlets += data[i].b_Pamphlets;
+                        b_Magazine += data[i].b_Magazine;
+                        b_Leaflets += data[i].b_Leaflets;
+                        b_Brochures += data[i].b_Brochures;
+                        b_Others += data[i].b_Others;
+                        c_Facebook += data[i].c_Facebook;
+                        c_Twitter += data[i].c_Twitter;
+                        c_YouTube += data[i].c_YouTube;
+                        c_Instagram += data[i].c_Instagram;
+                        c_Others += data[i].c_Others;
+                        d_Others += data[i].d_Others;
+                        ba_Pamphlets += data[i].ba_Pamphlets;
+                        ba_Magazine += data[i].ba_Magazine;
+                        ba_Leaflets += data[i].ba_Leaflets;
+                        ba_Brochures += data[i].ba_Brochures;
+                        ba_Others += data[i].ba_Others;
+                        bb_Pamphlets += data[i].bb_Pamphlets;
+                        bb_Magazine += data[i].bb_Magazine;
+                        bb_Leaflets += data[i].bb_Leaflets;
+                        bb_Brochures += data[i].bb_Brochures;
+                        bb_Others += data[i].bb_Others;
+                        bc_Facebook += data[i].bc_Facebook;
+                        bc_Twitter += data[i].bc_Twitter;
+                        bc_YouTube += data[i].bc_YouTube;
+                        bc_Instagram += data[i].bc_Instagram;
+                        bc_Others += data[i].bc_Others;
+                        bd_Others += data[i].bd_Others;
+                        a_Exhibitions += data[i].a_Exhibitions;
+                        a_Seminars += data[i].a_Seminars;
+                        a_Fair += data[i].a_Fair;
+                        b_Exhibitions += data[i].b_Exhibitions;
+                        b_Seminars += data[i].b_Seminars;
+                        b_Fair += data[i].b_Fair;
+
+                        Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].statename + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].districtname + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].blockname + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].gpname + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].ba_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bb_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].c_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bc_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].a_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].b_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].bd_Others + '</label></td></tr>';
+
+                    }
+
+                    if (data.length != 1) {
+                        Tbodyhtml += '<tr><td colspan="5" id="srNo"><label>' + "Total" + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Awareness_meetings + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + ba_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Magazine + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Leaflets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Pamphlets + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Brochures + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bb_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Road_Shows + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Street_Plays + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_household + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Twitter + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Facebook + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Instagram + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_YouTube + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + c_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bc_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Exhibitions + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Seminars + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + a_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + b_Fair + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + d_Others + '</label></td>';
+                        Tbodyhtml += '<td id="rainfall"><label>' + bd_Others + '</label></td></tr>';
+
+                    }
+
+
+
+                    $('#gp_tt tbody').html(Tbodyhtml);
+                    $(".loader").hide();
+
+                }
+
+
+
+            }
+
+
+        });
+
+
+
+    }
+
+    function Export_a_Table() {
+        $('#AComponent_Id').click();
+        state_data();
+    }
+    //function Export_b_Table() {
+
+    //    $('#BComponent_Id').click();
+    //    district_data();
+    //}
+    //function Export_c_Table() {
+
+    //    $('#CComponent_Id').click();
+    //    block_data();
+    //}
+    //function Export_d_Table() {
+
+    //    $('#DComponent_Id').click();
+    //    gp_data();
+    //}
+
+    //function yearchange() {
+    //    $('#month').val("0");
+    //    $('#halfyearly').val("0");
+    //    $('#quarterly').val("0");
+
+    //    //if ($("#MonthDropdownLabel").is(":hidden")) {
+    //    //    $("#MonthDropdownLabel").show();
+    //    //}
+    //    //if ($("#MonthDropdownLabel2").is(":hidden")) {
+    //    //    $("#MonthDropdownLabel2").show();
+    //    //}
+    //    //if ($("#MonthDropdownLabel3").is(":hidden")) {
+    //    //    $("#MonthDropdownLabel3").show();
+    //    //}
+
+    //}
+
+
+
+
+    function quarterchange() {
+        var quarter = $('#quarterly').val();
+        if (quarter != '0') {
+            $('#month').val("0");
+            $('#halfyearly').val("0");
+            $("#MonthDropdownLabel").hide();
+            $("#MonthDropdownLabel3").hide();
+
+        }
+        else {
+            $('#MonthDropdownLabel').show();
+            $('#MonthDropdownLabel3').show();
+        }
+
+    }
+    function halfyearchange() {
+        var halfyear = $('#halfyearly').val();
+        if (halfyear != '0') {
+            $('#month').val("0");
+            $('#quarterly').val("0");
+            $("#MonthDropdownLabel").hide();
+            $("#MonthDropdownLabel2").hide();
+
+        }
+        else {
+            $('#MonthDropdownLabel').show();
+            $("#MonthDropdownLabel2").show();
+        }
+
+    }
+    function monthchange() {
+        var month = $('#month').val();
+        if (month != '0') {
+            $('#quarterly').val("0");
+            $('#halfyearly').val("0");
+            $('#MonthDropdownLabel2').hide();
+            $('#MonthDropdownLabel3').hide();
+        }
+        else {
+            $('#MonthDropdownLabel2').show();
+            $('#MonthDropdownLabel3').show();
+        }
+
+    }
+
+
+    //var tableToExcel = (function () {
+
+    //    var uri = 'data:application/vnd.ms-excel;base64,'
+    //        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+    //        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    //        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+    //    return function (table, name) {
+    //        if (!table.nodeType) table = document.getElementById(table)
+    //        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+    //        window.location.href = uri + base64(format(template, ctx))
+    //    }
+    //})()
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            var link = document.createElement('a');
+            link.href = uri + base64(format(template, ctx));
+            link.download = filename || 'download.xls';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    })();
+
+</script>
+
+@*IEC REPORT MONTHLY*@
+
+
+

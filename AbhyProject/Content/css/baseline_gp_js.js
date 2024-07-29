@@ -61,23 +61,23 @@ function baseline_gp_data(villageCount) {
         success: function (data) {
 
 
-            
+
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             if (data == "No Data Found") {
                 $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
                 /*alert("No Data for this Gram Panychayat (Section-A)");*/
-                
+
                 if (villageCount == 0) {
                     $('.remove_tr_village').remove();
                     $("#total_no_of_village").val("");
                     $("input[type='text']").val("");
                 }
                 $('.remove_tr').remove();
-                
-                $("#source_year_liv").val("");
-                $("#source_year").val("");
+
+                //$("#source_year_liv").val("");
+                //$("#source_year").val("");
                 //population
                 $('#male_population').val("");
                 $('#female_population').val("");
@@ -96,7 +96,7 @@ function baseline_gp_data(villageCount) {
                 $('#no_of_households').val("");
 
 
-                
+
 
                 $('#forest_area_in_ha').val("");
                 $('#fallow_land_in_ha').val("");
@@ -330,6 +330,7 @@ function baseline_gp_data(villageCount) {
                 }
 
 
+
                 //if (villageCount == 0) {
                 //    if (data[0].objgpdata[0].total_no_of_village != null && data[0].objgpdata[0].total_no_of_village != "") {
                 //        $('#total_no_of_village').val(parseInt(data[0].objgpdata[0].total_no_of_village));
@@ -362,7 +363,7 @@ function baseline_gp_data(villageCount) {
                     //var LivestockValue = data[0].l["livestockvalue"].split(',');
                     $('#livestockthead').empty('');
                     var html = "";
-                    
+
 
                     for (var i = 0; i < data[0].objlivestock.length; i++) {
                         if (i == 0) {
@@ -382,7 +383,7 @@ function baseline_gp_data(villageCount) {
                         //this variable is used on add button click to append the new row right after the last tr
                         LivestockCounter = parseFloat(i);
                     }
-                    
+
                 }
                 $('#livestock_population').val(total_livestock);
                 if (data[0].objlivestock.length != null && data[0].objlivestock.length != "" && data[0].objlivestock.length != 0) {
@@ -398,7 +399,7 @@ function baseline_gp_data(villageCount) {
 
                     $('#trirrsurfother').empty('');
                     var html = "";
-                    
+
 
                     for (var i = 0; i < data[0].objsurfacewater.length; i++) {
                         if (i == 0) {
@@ -417,7 +418,7 @@ function baseline_gp_data(villageCount) {
                         IrriSurfaceWaterCounter = i;
                     }
                     IrriSurfaceWaterCounter = i + 1;
-                    
+
                 }
                 $('#totalSurfaceWater').val(parseFloat(total_surfacewater).toFixed(2));
 
@@ -430,7 +431,7 @@ function baseline_gp_data(villageCount) {
 
                     $('#irriggroundwatertr').empty('');
                     var html = "";
-                    
+
 
                     for (var i = 0; i < data[0].objgroundwater.length; i++) {
                         if (i == 0) {
@@ -448,7 +449,7 @@ function baseline_gp_data(villageCount) {
                         total_groundwater += parseFloat(data[0].objgroundwater[i].ground_water_value);
                         $('#irriggroundwatertr').append(html);
                         IrriGroundWaterCounter = parseInt(i);
-                    }  
+                    }
                 }
                 $('#totalGround').val(parseFloat(total_groundwater).toFixed(2));
                 ///Ground Water Section
@@ -474,7 +475,7 @@ function baseline_gp_data(villageCount) {
                         $('#trgroundwater').append(html);
                         GroundWaterCounter = i;
                     }
-                    GroundWaterCounter = i + 1; 
+                    GroundWaterCounter = i + 1;
                 }
                 $('#totalWells').val(total_existing);
 
@@ -485,7 +486,7 @@ function baseline_gp_data(villageCount) {
                     //var otherIrrivalue = data[0].gp["other_irrigation"].split(',');
                     $('#watereffthead').empty('');
                     var html = "";
-                    
+
                     watereffcount = data[0].objwatereff.length;
                     for (var i = 0; i < data[0].objwatereff.length; i++) {
                         if (i == 0) {
@@ -522,7 +523,7 @@ function baseline_gp_data(villageCount) {
                 $("#efficient_download").html("");
 
                 //livestock_download
-                
+
                 for (var i = 0; i < data[0].objupload.length; i++) {
 
                     //if (data[0].objupload[i].villages_file != null && data[0].objupload[i].villages_file != "") {
@@ -585,7 +586,7 @@ function baseline_gp_data(villageCount) {
                 //if (StateOfficer == "District Level Nodal Officer" || StateOfficer == "State Level Nodal Officer") {
                 //    $("input[type='text']").prop("disabled", true);
                 //}
-                
+
                 if (data[0].objgpdata[0].approved == "true") {
                     $("#gp_status").text("Approved").css({ 'color': 'Green' });
                 }
@@ -597,7 +598,7 @@ function baseline_gp_data(villageCount) {
                 }
                 else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == false) {
                     $("#gp_status").text("Verification is pending with the District-level nodal officer.").css({ 'color': 'Blue' });
-                }  else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == true) {
+                } else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == true) {
                     $("#gp_status").text("Verification is pending with the State-level nodal officer.").css({ 'color': 'Blue' });
                 } else if (data[0].approved == "true") {
                     $("#gp_status").text("Approved").css({ 'color': 'Green' });
@@ -607,7 +608,7 @@ function baseline_gp_data(villageCount) {
                 else {
                     $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
                 }
-                
+
                 aa_table_part_data_geting();
                 if (access_auth == "admin") {
                     $('#btnFinalSave').show();
@@ -688,7 +689,7 @@ function baseline_gp_data(villageCount) {
                     $(".hide_btn_tr").hide();
                     $("input[type='text']").prop("disabled", true);
                     $('.sarpanch_dlt_btn').prop("disabled", true);
-                    
+
                     //$("#population_dropdown").prop("disabled", true);
                     //$("#livestock_dropdownd").prop("disabled", true);
                     if (StateOfficer == "District Level Nodal Officer") {
@@ -752,7 +753,7 @@ function baseline_gp_data(villageCount) {
                         $('#btn_submitspmu').hide();
 
                     }
-                    
+
                 }
                 if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin" || StateOfficer == "Block Level Nodal Officer") {
                     $('#btn_submitNDO').hide();
@@ -760,7 +761,7 @@ function baseline_gp_data(villageCount) {
                     $('#btnFinalSave').hide();
                     $(".hide_btn_tr").hide();
                 }
-                
+
             }
         }
     });
@@ -1442,7 +1443,7 @@ function baseline_gp_data_saveing() {
             var GlobalParentId = '';
 
 
-            
+
             $('.loader').show();
             $.ajax({
                 type: 'POST',
@@ -1472,8 +1473,8 @@ function baseline_gp_data_saveing() {
                         $('#btnFinalSave').hide();
                     }
                     /*alert("Successfully Saved Base Line GP Data");*/
-                    
-                    
+
+
                     baseline_gp_data(total_no_of_village);
 
 
@@ -1498,7 +1499,7 @@ function saveImage(ParentId) {
         contentType: "application/json;charset=utf-8",
         url: '/GPlevel/Saveimage',
         data: function () {
-            
+
             var data = new FormData();
             data.append("id", ParentId);
             /*data.append("txtimage", jQuery("#txtimage").get(0).files[0]);*/
@@ -1798,7 +1799,7 @@ function b_part_data_saveing() {
                 dataType: 'JSON',
                 success: function (response) {
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != "Successfully Saved" && response != "Logout") {
                         window.location = "/Error/DefaultError";
@@ -1855,7 +1856,7 @@ function bpart_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             let tr = "";
@@ -1915,7 +1916,7 @@ function Delete_b_table_data(id) {
 
                 aaa = 1;
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Deleted Successfully" && response != "No Data" && response != "Logout") {
                     window.location = "/Error/DefaultError";
@@ -2003,7 +2004,7 @@ function c_table_part_data_saveing() {
                 dataType: 'JSON',
                 success: function (response) {
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != "Successfully Saved" && response != "Logout" && response != "Error") {
                         window.location = "/Error/DefaultError";
@@ -2056,7 +2057,7 @@ function C_table_part_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             let tr = "";
@@ -2199,7 +2200,7 @@ function Delete_c__table_part_data(id) {
             success: function (response) {
                 // alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
                     window.location = "/Error/DefaultError";
@@ -2278,7 +2279,7 @@ function dd_table_part_data_saveing() {
                 success: function (response) {
                     //alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != "Successfully Saved" && response != "Logout") {
                         window.location = "/Error/DefaultError";
@@ -2333,7 +2334,7 @@ function dd_table_part_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             let tr = "";
@@ -2389,7 +2390,7 @@ function Delete_dd_table_part_data(id) {
             success: function (response) {
                 // alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Deleted Successfully" && response != "Logout") {
                     window.location = "/Error/DefaultError";
@@ -2471,7 +2472,7 @@ function ee_table_part_data_saveing() {
                     if (response != "Successfully Saved" && response != "Logout") {
                         window.location = "/Error/DefaultError";
                     } else if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     cancelfour();
                     ee_table_part_data_geting();
@@ -2518,7 +2519,7 @@ function ee_table_part_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             let tr = "";
@@ -2577,7 +2578,7 @@ function Delete_ee_table_part_data(id) {
                     window.location = "/Error/DefaultError";
                 }
                 else if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 ee_table_part_data_geting();
                 //  alert("Delete Successfully")
@@ -2644,7 +2645,7 @@ function gg_table_part_data_saveing() {
                         window.location = "/Error/DefaultError";
                     }
                     else if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     cancelfive();
                     gg_table_part_data_geting();
@@ -2691,7 +2692,7 @@ function gg_table_part_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             aaa = 1;
             let tr = "";
@@ -2773,7 +2774,7 @@ function Delete_gg_table_part_data(id) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 gg_table_part_data_geting();
@@ -2884,7 +2885,7 @@ function aa_table_part_data_saveing() {
                         button: "OK",
                     });
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     if (response == "Successfully Saved") {
                         cancela_1();
@@ -2939,9 +2940,9 @@ function aa_table_part_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
-            
+
             let tr = "";
 
 
@@ -3005,7 +3006,7 @@ function aa_table_part_data_geting() {
 
             $("#TblData_abc_part").html(tr);
             $('.loader').hide();
-            if (StateOfficer == "District Level Nodal Officer" || StateOfficer == "State Level Nodal Officer" || StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin" ) {
+            if (StateOfficer == "District Level Nodal Officer" || StateOfficer == "State Level Nodal Officer" || StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin") {
                 //$('.sarpanch_dlt_btn').hide();
                 $("input[type='text']").prop("disabled", true);
                 $("#sarpanch_save_btn").prop("disabled", true);
@@ -3056,12 +3057,12 @@ function Delete_aa_table_part_data(id) {
             data: "{'Data': '" + JSON.stringify(obj) + "'}",
             dataType: 'JSON',
             success: function (response) {
-                
+
                 swal("", "Deleted Successfully", "success", {
                     button: "OK",
                 });
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 } else if (response != "Deleted Successfully" && response != "Logout") {
                     window.location = "/Error/DefaultError";
                 }
@@ -3130,7 +3131,7 @@ function jj_table_part_data_saveing() {
 
                     alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     } else if (response != "Successfully Saved" && response != "Logout") {
                         window.location = "/Error/DefaultError";
                     }
@@ -3178,7 +3179,7 @@ function jj_table_part_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             let tr = "";
@@ -3235,7 +3236,7 @@ function Delete_jj_table_part_data(id) {
 
                 alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 } else if (response != "Deleted Successfully" && response != "Logout") {
                     window.location = "/Error/DefaultError";
                 }
@@ -3273,7 +3274,7 @@ function i_part_table_gp_data() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             if (data.length != 0) {
                 //population
@@ -3751,7 +3752,7 @@ function abhy_GroundwaterMonitoringImages_getting_data() {
             var li = '';
             $('#GroundwaterMonitoring_images_list').html(li);
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             $('#gwm_count').text('0');
             if (data.length != 0) {
@@ -3948,7 +3949,7 @@ function SessionInfo() {
             //Categories_scstobc();
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else {
                 $('#Error_').text("");
@@ -4001,9 +4002,9 @@ function SessionInfo() {
                     State_Dropdown_Function();
                     //State_Dropdown_Function();
                     //baseline_gp_data();
-                    
-                    
-                    
+
+
+
                     i_part_table_gp_data();
                     GeoTagging_Images_Info();
                     //Rain_gauge_Station_Image_Info();
@@ -4045,10 +4046,10 @@ function SessionInfo() {
                     Dist_fun();
                     //baseline_gp_data();
                     abhy_Social_Monitoring_getting_data();
-                    
-                    
-                    
-                    
+
+
+
+
                     //Rain_gauge_Station_Image_Info();
                     bpart_data_geting();
                     C_table_part_data_geting();
@@ -4089,7 +4090,7 @@ function SessionInfo() {
                     abhy_Social_Monitoring_getting_data();
                     abhy_Well_Inventory_getting_data11();
                     i_part_table_gp_data();
-                    
+
                     GeoTagging_Images_Info();
                     //Rain_gauge_Station_Image_Info();
                     bpart_data_geting();
@@ -4122,13 +4123,15 @@ function SessionInfo() {
                     $('#GramLabel').show();
                     $('#GramDropdownLabel').hide();
                     $('#DropdownSearch_btn').hide();
+                    $('#year').prop("disabled", false);
+                    $('#month').prop("disabled", false);
                     $("#sarpanch_save_btn").prop("disabled", false);
                     //$("#month").val("0");
                     Session_month_year();
                     //baseline_gp_data();
                     abhy_Social_Monitoring_getting_data();
-                    
-                    
+
+
                     i_part_table_gp_data();
                     GeoTagging_Images_Info();
                     //Rain_gauge_Station_Image_Info();
@@ -4162,7 +4165,7 @@ function DropDownInfo() {
     if (StateOfficer == "Gram Panchyat Nodal Officer") {
         $('.loader').show();
     }
-    
+
     $.ajax({
         type: 'POST',
         contentType: 'application/json; chatset=utf-8',
@@ -4170,7 +4173,7 @@ function DropDownInfo() {
         data: "{ }",
         dataType: 'JSON',
         success: function (response) {
-            
+
             if (response.length != 0) {
                 Jsondata = response;
                 $("#spnstate").empty();
@@ -4207,8 +4210,8 @@ function DropDownInfo() {
                     optionState = '<option value="0">Select State Name</option>';
                     for (var i = 0; i < DistArray.length; i++) {
                         if (DistArray[i] != "Delhi_7") {
-                        if (DistArray[i] != null && DistArray[i] != "") {
-                            optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
                             }
                         }
                     }
@@ -4383,7 +4386,7 @@ function Gram_Fun() {
 
 function Dropdown_Search() {
 
-    
+
     $('#alert_waiting').show();
     var Year = $("#year").val();
     var month = $('#month').val();
@@ -4414,7 +4417,7 @@ function Dropdown_Search() {
     //    xx = 1;
     //    alert("Please Select Month");
     //}
-    
+
     if (xx == 0) {
         $('.loader').show();
         $.ajax({
@@ -4429,7 +4432,7 @@ function Dropdown_Search() {
 
 
 
-                
+
             }
         });
     }
@@ -4483,7 +4486,7 @@ function Upload_GeoTagging_image() {
                 $('#geotagging_image').val("");
                 upload_count = "";
                 if (result == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else {
                     //  formdata = new FormData();
@@ -4817,8 +4820,8 @@ function LandUse_fun() {
         $("#net_irrigated_area").val('');
     }
     //if (parseFloat(total_water_efficient) > parseFloat(cultivable_land_in_ha)) {
-        //alert("Total Water Efficient Practices (Existing) should be less than or equal to Cultivable Land (Excluding Fallow Land)");
-        //$("#total_water_efficient").focus();
+    //alert("Total Water Efficient Practices (Existing) should be less than or equal to Cultivable Land (Excluding Fallow Land)");
+    //$("#total_water_efficient").focus();
     //}
 
 }
@@ -5183,7 +5186,7 @@ function abhy_Social_Monitoring_getting_data() {
             $('#Photograph_images_list').html(photo_li);
             var a = 0;
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             let tr = "";
@@ -5403,7 +5406,7 @@ function select_livestockName(livestockOtherName) {
 
 
 function Deleteqry(_this) {
-    
+
     $(_this).closest('tr').remove();
     return false;
 }

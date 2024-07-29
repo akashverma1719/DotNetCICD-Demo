@@ -356,6 +356,7 @@
     .list_style li {
         line-height: 25px;
     }
+
     .notice-ribbon {
         font-size: 14px;
         background: #3585dc;
@@ -513,14 +514,14 @@
                         <select class="form-control" id="gram" onchange="Gram_Fun()"></select>
                     </li>
                     <li>
-                        <select class="form-control" id="year">
-                            <option value="0">Select Financial Year</option>        
+                        <select class="form-control" id="year" onchange="Year_change()">
+                            <option value="0">Select Financial Year</option>
                             @*<option value="2019">2019-20</option>
                                 <option value="2020">2020-21</option>
                                 <option value="2021">2021-22</option>*@
                             <option value="2023-24">2023-24</option>
                             <option value="2024-25" selected>2024-25</option>
-                          
+
                         </select>
                     </li>
                     <!--<li id="MonthLabel">
@@ -737,9 +738,9 @@
                                                             <td>
                                                                 <span id="">
                                                                     <select class="form-control hide_btn" id="source_year">
-                                                                        <option value="">Select Year</option>
+                                                                        @*<option value="">Select Year</option>*@
                                                                         @*<option value="2022-23">2022-23(Data Source Year)</option>*@
-                                                                        <option value="2024-25">2024-25(Data Source Year)</option>
+                                                                        <option value="2024-25" selected>2024-25(Data Source Year)</option>
                                                                     </select>
                                                                 </span>
                                                             </td>
@@ -885,9 +886,9 @@
                                                             <td>
                                                                 <span id="">
                                                                     <select class="form-control hide_btn" id="source_year_liv">
-                                                                        <option value="">Select Year</option>
+                                                                        @*<option value="">Select Year</option>*@
                                                                         @*<option value="2022-23">2022-23(Data Source Year)</option>*@
-                                                                        <option value="2024-25">2024-25(Data Source Year)</option>
+                                                                        <option value="2024-25" selected>2024-25(Data Source Year)</option>
                                                                         @*<option value="2024">2024</option>
                                                                             <option value="2025">2025</option>*@
 
@@ -1518,64 +1519,64 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" style="color:red">Instructions: -</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
-            <div class="modal-body">
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
+<div class="modal-body">
 
-                <ul>
-                    <li>
-                        Before filling out the information, kindly note the below-mentioned points.
-                    </li>
-                </ul>
-                <ul class="list_style" style="list-style-type:decimal;">
-                    <li> Before you start filling the information, keep all the information gathered.</li>
-                    <li>
-                        In this opened GP, the total number of villages, names, and total GP area (in
-                        ha) information has been auto-filled out based on the information received from the
-                        State Program Management Unit (SPMU).
-                    </li>
-                    <li>
-                        Once you start filling the information, fill all the information in this month. If
-                        complete information is not submitted to DPMU for verification in the same month,
-                        then the user will have to fill all the information again in the next month. The
-                        information filled earlier will not be retrieved if not submitted to DPMU for
-                        verification.
-                    </li>
-                    <li>
-                        Please "Save" the filled-out information at least once every 15 minutes. If the
-                        session is idle for 15 minutes, it will automatically log out in the next 15 minutes,
-                        and any filled-out information will not be saved.
-                    </li>
-                    <li>
-                        The button "Submit to DPMU Nodal Officer" will be visible after clicking the first
-                        time on the "Save" button after filling out the information in both the A and B
-                        sections.
-                    </li>
-                    <li>
-                        Based on the information entered and the formula calculation, the grey color-
-                        filled area will be auto-filled. To see the formula, cursor over the <span class="fa fa-info-circle" style="color:blue"></span> icon.
-                    </li>
-                    <li>
-                        Make sure to fill all the information correctly, then hit the "Submit" button to get
-                        all the information verified by DPMU.
-                    </li>
-                    <li>
-                        Once the information is submitted to the DPMU for verification, the user will not
-                        be able to edit or delete the information unless the DPMU rejects the information.
-                    </li>
-                    <li>
-                        In the Gram Panchayat in which you have logged in using the Gram Panchayat
-                        credentials, you can get the filled-out information of only that Gram Panchayat in
-                        the form of Excel or PDF by using the buttons "Export (Excel)" and "Export (Pdf)".
-                    </li>
-                </ul>
+    <ul>
+        <li>
+            Before filling out the information, kindly note the below-mentioned points.
+        </li>
+    </ul>
+    <ul class="list_style" style="list-style-type:decimal;">
+        <li> Before you start filling the information, keep all the information gathered.</li>
+        <li>
+            In this opened GP, the total number of villages, names, and total GP area (in
+            ha) information has been auto-filled out based on the information received from the
+            State Program Management Unit (SPMU).
+        </li>
+        <li>
+            Once you start filling the information, fill all the information in this month. If
+            complete information is not submitted to DPMU for verification in the same month,
+            then the user will have to fill all the information again in the next month. The
+            information filled earlier will not be retrieved if not submitted to DPMU for
+            verification.
+        </li>
+        <li>
+            Please "Save" the filled-out information at least once every 15 minutes. If the
+            session is idle for 15 minutes, it will automatically log out in the next 15 minutes,
+            and any filled-out information will not be saved.
+        </li>
+        <li>
+            The button "Submit to DPMU Nodal Officer" will be visible after clicking the first
+            time on the "Save" button after filling out the information in both the A and B
+            sections.
+        </li>
+        <li>
+            Based on the information entered and the formula calculation, the grey color-
+            filled area will be auto-filled. To see the formula, cursor over the <span class="fa fa-info-circle" style="color:blue"></span> icon.
+        </li>
+        <li>
+            Make sure to fill all the information correctly, then hit the "Submit" button to get
+            all the information verified by DPMU.
+        </li>
+        <li>
+            Once the information is submitted to the DPMU for verification, the user will not
+            be able to edit or delete the information unless the DPMU rejects the information.
+        </li>
+        <li>
+            In the Gram Panchayat in which you have logged in using the Gram Panchayat
+            credentials, you can get the filled-out information of only that Gram Panchayat in
+            the form of Excel or PDF by using the buttons "Export (Excel)" and "Export (Pdf)".
+        </li>
+    </ul>
 
 
-            </div>
-            <div class="modal-header">
-                <h5 class="modal-title" style="color:red">निर्देश:-</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
+</div>
+<div class="modal-header">
+    <h5 class="modal-title" style="color:red">निर्देश:-</h5>-->
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
             <div class="modal-body">
 
                 <ul>
@@ -1638,38 +1639,38 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
-            <div class="modal-body">
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
+<div class="modal-body">
 
 
-                <ul class="list_style" style="list-style-type:decimal;">
-                    <li>
-                        You are currently logged in at the block level. At this stage, by selecting various
-                        Gram Panchayats under the block, you can see the information filled in at the GP level that
-                        has been submitted for verification or has already been verified by the district-level nodal
-                        officer and the state-level nodal officer.
-                    </li>
-                    <li>
-                        You can download the filled-out information of all Gram Panchayats under this block in an
-                        excel file by pressing the "Excel (Export)" button. Similarly, each Gram Panchayat in this
-                        block can be selected one by one and downloaded in Excel format.
-                    </li>
+    <ul class="list_style" style="list-style-type:decimal;">
+        <li>
+            You are currently logged in at the block level. At this stage, by selecting various
+            Gram Panchayats under the block, you can see the information filled in at the GP level that
+            has been submitted for verification or has already been verified by the district-level nodal
+            officer and the state-level nodal officer.
+        </li>
+        <li>
+            You can download the filled-out information of all Gram Panchayats under this block in an
+            excel file by pressing the "Excel (Export)" button. Similarly, each Gram Panchayat in this
+            block can be selected one by one and downloaded in Excel format.
+        </li>
 
-                    <li>
-                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
-                    </li>
-                    <li>
-                        Through block-level login, the entered information cannot be modified or deleted.
-                    </li>
-                </ul>
+        <li>
+            Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+        </li>
+        <li>
+            Through block-level login, the entered information cannot be modified or deleted.
+        </li>
+    </ul>
 
 
-            </div>
-            <div class="modal-header">
-                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
+</div>
+<div class="modal-header">
+    <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
             <div class="modal-body">
 
 
@@ -1707,63 +1708,63 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
-            <div class="modal-body">
-                <ul>
-                    <l>
-                        Before starting to check and accept the filled-out information, please note the points given below.
-                    </l>
-                </ul>
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
+<div class="modal-body">
+    <ul>
+        <l>
+            Before starting to check and accept the filled-out information, please note the points given below.
+        </l>
+    </ul>
 
-                <ul class="list_style" style="list-style-type:decimal;">
-                    <li>
-                        You are currently logged in at the district level. At this level, by selecting various Gram Panchayats
-                        under District and Block, you can see the information filled at the Gram Panchayat level and also download
-                        it through the "Export (Excel)" and "Export (Pdf)" buttons. That has been submitted to the district-level
-                        nodal officer for verification.
-                    </li>
-                    <li>
-                        Within this login, you will not be able to edit or delete any information. This right is invoked at the GP
-                        level only after the authorised DPMU officer to verify the information filled out at the GP level rejects
-                        the information.
-                    </li>
+    <ul class="list_style" style="list-style-type:decimal;">
+        <li>
+            You are currently logged in at the district level. At this level, by selecting various Gram Panchayats
+            under District and Block, you can see the information filled at the Gram Panchayat level and also download
+            it through the "Export (Excel)" and "Export (Pdf)" buttons. That has been submitted to the district-level
+            nodal officer for verification.
+        </li>
+        <li>
+            Within this login, you will not be able to edit or delete any information. This right is invoked at the GP
+            level only after the authorised DPMU officer to verify the information filled out at the GP level rejects
+            the information.
+        </li>
 
-                    <li>
-                        If you have been authorised to verify the filled-out information in the Gram Panchayats falling under this district,
-                        you are also authorised to use the "Approve" "Reject" and "Submit to SPMU" buttons.
-                    </li>
-                    <li>
-                        If you are the authorised officer to verify the information filled out at the GP level, you would have also received
-                        the auto-generated email to verify the information.
-                    </li>
-                    <li>
-                        If you are not satisfied with the filled-out information and need to rectify, first write your comments under the
-                        "Remarks" box, and then click on the "Reject" button.
-                    </li>
-                    <li>
-                        You either rejected or approved the filled-out information, which will be highlighted at the top of the page next
-                        to the "Status." "Status" information is also sent through an automatically generated email to that Gram Panchayat.
-                        If you were rejected, your comments are highlighted at the top of the page at the GP level.
-                    </li>
-                    <li>
-                        At the GP level, information will be corrected based on your comments and submitted again to you for verification.
-                    </li>
-                    <li>
-                        You can download the filled-out information of all Gram Panchayats under this district in an excel file by pressing the "Excel (Export)"
-                        button. Similarly, each Gram Panchayat in this district can be selected one by one and downloaded in Excel format.
-                    </li>
-                    <li>
-                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
-                    </li>
-                </ul>
+        <li>
+            If you have been authorised to verify the filled-out information in the Gram Panchayats falling under this district,
+            you are also authorised to use the "Approve" "Reject" and "Submit to SPMU" buttons.
+        </li>
+        <li>
+            If you are the authorised officer to verify the information filled out at the GP level, you would have also received
+            the auto-generated email to verify the information.
+        </li>
+        <li>
+            If you are not satisfied with the filled-out information and need to rectify, first write your comments under the
+            "Remarks" box, and then click on the "Reject" button.
+        </li>
+        <li>
+            You either rejected or approved the filled-out information, which will be highlighted at the top of the page next
+            to the "Status." "Status" information is also sent through an automatically generated email to that Gram Panchayat.
+            If you were rejected, your comments are highlighted at the top of the page at the GP level.
+        </li>
+        <li>
+            At the GP level, information will be corrected based on your comments and submitted again to you for verification.
+        </li>
+        <li>
+            You can download the filled-out information of all Gram Panchayats under this district in an excel file by pressing the "Excel (Export)"
+            button. Similarly, each Gram Panchayat in this district can be selected one by one and downloaded in Excel format.
+        </li>
+        <li>
+            Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+        </li>
+    </ul>
 
 
-            </div>
-            <div class="modal-header">
-                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
+</div>
+<div class="modal-header">
+    <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
             <div class="modal-body">
                 <ul>
                     <li>
@@ -1825,69 +1826,69 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
-            <div class="modal-body">
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
+<div class="modal-body">
 
-                <ul>
-                    <li>
-                        Before starting to check and accept the filled-out information, please note the points given below.
-                    </li>
-                </ul>
-                <ul class="list_style" style="list-style-type:decimal;">
-                    <li>
-                        You are currently logged in at the State level. At this level, by selecting various Gram Panchayats
-                        under District and Block, you can see the information filled at the Gram Panchayat level and also download
-                        it through the "Export (Excel)" and "Export (Pdf)" buttons. That has been submitted to the state-level nodal
-                        officer for verification.
-                    </li>
-                    <li>
-                        Within this login, you will not be able to edit or delete any information. This right is invoked at the GP
-                        level only after the authorised DPMU officer to verify the information filled out at the GP level rejects
-                        the information.
-                    </li>
+    <ul>
+        <li>
+            Before starting to check and accept the filled-out information, please note the points given below.
+        </li>
+    </ul>
+    <ul class="list_style" style="list-style-type:decimal;">
+        <li>
+            You are currently logged in at the State level. At this level, by selecting various Gram Panchayats
+            under District and Block, you can see the information filled at the Gram Panchayat level and also download
+            it through the "Export (Excel)" and "Export (Pdf)" buttons. That has been submitted to the state-level nodal
+            officer for verification.
+        </li>
+        <li>
+            Within this login, you will not be able to edit or delete any information. This right is invoked at the GP
+            level only after the authorised DPMU officer to verify the information filled out at the GP level rejects
+            the information.
+        </li>
 
-                    <li>
-                        If you have been authorised to verify the filled-out information in the Gram Panchayats falling under
-                        this state, you are also authorised to use the "Approve" and "Reject" buttons.
-                    </li>
-                    <li>
-                        If you are the authorised officer to verify the information filled out at the GP level, after it has been
-                        verified and submitted by the DPMU nodal officer, you would have also received the auto-generated email to verify the information.
-                    </li>
-                    <li>
-                        Here you see the filled-out information at GP level that was submitted to you after being verified and approved by the authorised
-                        official at DPMU level. If you are satisfied with that information, simply click on the "Accept" button. When you have approved
-                        all the information filled out, an auto-generated email will be sent to the authorised official and GP of the DPMU, and the "Status"
-                        at the top of the page will change to "Approved by SPMU."
-                    </li>
-                    <li>
-                        If you are not satisfied with the filled-out information and need to make a correction, first write your comment in the "Comment" box,
-                        and then click on the "Reject" button. The "status" information will also be conveyed to that authorised DPMU Nodal Officer through an
-                        automatically generated email. Your comments will appear at the top of the page at the DPMU level. "Status" will also change, and you
-                        will see "SPMU rejected it, and it is now pending at the DPMU level." The DPMU Nodal Officer will then add his comments and reject it
-                        for correction at the GP level; then "Remarks"will be visible to the GP level also. After correction, the GP level will resubmit it to
-                        DPMU, and DPMU will submit it to you for verification.
-                    </li>
-                    <li>
-                        You can download the filled-out information of all Gram Panchayats in this state in an excel file by pressing the "Excel (Export)" button.
-                        Similarly, each Gram Panchayat in this state can be selected one by one and downloaded in Excel format.
-                    </li>
-                    <li>
-                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
-                    </li>
-                    <li>
-                        The filled-in information of the Gram Panchayat under the GPDCI module will be approved at the SPMU level, and after
-                        that, the WSP module will open for that approved Gram Panchayat to update the WSP in 2023–2024.
-                    </li>
-                </ul>
+        <li>
+            If you have been authorised to verify the filled-out information in the Gram Panchayats falling under
+            this state, you are also authorised to use the "Approve" and "Reject" buttons.
+        </li>
+        <li>
+            If you are the authorised officer to verify the information filled out at the GP level, after it has been
+            verified and submitted by the DPMU nodal officer, you would have also received the auto-generated email to verify the information.
+        </li>
+        <li>
+            Here you see the filled-out information at GP level that was submitted to you after being verified and approved by the authorised
+            official at DPMU level. If you are satisfied with that information, simply click on the "Accept" button. When you have approved
+            all the information filled out, an auto-generated email will be sent to the authorised official and GP of the DPMU, and the "Status"
+            at the top of the page will change to "Approved by SPMU."
+        </li>
+        <li>
+            If you are not satisfied with the filled-out information and need to make a correction, first write your comment in the "Comment" box,
+            and then click on the "Reject" button. The "status" information will also be conveyed to that authorised DPMU Nodal Officer through an
+            automatically generated email. Your comments will appear at the top of the page at the DPMU level. "Status" will also change, and you
+            will see "SPMU rejected it, and it is now pending at the DPMU level." The DPMU Nodal Officer will then add his comments and reject it
+            for correction at the GP level; then "Remarks"will be visible to the GP level also. After correction, the GP level will resubmit it to
+            DPMU, and DPMU will submit it to you for verification.
+        </li>
+        <li>
+            You can download the filled-out information of all Gram Panchayats in this state in an excel file by pressing the "Excel (Export)" button.
+            Similarly, each Gram Panchayat in this state can be selected one by one and downloaded in Excel format.
+        </li>
+        <li>
+            Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+        </li>
+        <li>
+            The filled-in information of the Gram Panchayat under the GPDCI module will be approved at the SPMU level, and after
+            that, the WSP module will open for that approved Gram Panchayat to update the WSP in 2023–2024.
+        </li>
+    </ul>
 
 
-            </div>
-            <div class="modal-header">
-                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
+</div>
+<div class="modal-header">
+    <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
             <div class="modal-body">
                 <ul>
                     <li>
@@ -1955,37 +1956,37 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" style="color:red">Important Instructions: -</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
-            <div class="modal-body">
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
+<div class="modal-body">
 
-                <ul class="list_style" style="list-style-type:decimal;">
-                    <li>
-                        You are currently logged in at the NPMU level. At this stage,
-                        by selecting various Gram Panchayats under the State, Districts and Blocks,
-                        you can see the information filled in at the GP level that has been submitted for
-                        verification or has already been verified by the State-level nodal officer.
-                    </li>
-                    <li>
-                        You can download the filled-out information of all Gram Panchayats under any states
-                        in an excel file by pressing the "Excel (Export)" button. Similarly, each Gram Panchayat in
-                        this states can be selected one by one and downloaded in Excel format.
-                    </li>
+    <ul class="list_style" style="list-style-type:decimal;">
+        <li>
+            You are currently logged in at the NPMU level. At this stage,
+            by selecting various Gram Panchayats under the State, Districts and Blocks,
+            you can see the information filled in at the GP level that has been submitted for
+            verification or has already been verified by the State-level nodal officer.
+        </li>
+        <li>
+            You can download the filled-out information of all Gram Panchayats under any states
+            in an excel file by pressing the "Excel (Export)" button. Similarly, each Gram Panchayat in
+            this states can be selected one by one and downloaded in Excel format.
+        </li>
 
-                    <li>
-                        Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
-                    </li>
-                    <li>
-                        Through NPMU-level login, the entered information cannot be modified or deleted.
-                    </li>
-                </ul>
+        <li>
+            Only individual Gram Panchayat information can be exported in PDF format by pressing the "Export (PDF)" button.
+        </li>
+        <li>
+            Through NPMU-level login, the entered information cannot be modified or deleted.
+        </li>
+    </ul>
 
 
-            </div>
-            <div class="modal-header">
-                <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
-                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-            <!--</div>
+</div>
+<div class="modal-header">
+    <h5 class="modal-title" style="color:red">महत्वपूर्ण निर्देश:-</h5>-->
+@*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+<!--</div>
             <div class="modal-body">
 
 
@@ -2046,7 +2047,8 @@
                     $(".loader").hide();
                 }
             });
-        }
+    }
+
 </script>
 <script>
     window.onload = function () {
@@ -2071,17 +2073,29 @@
         } else if (fin_year == "2024-25") {
             year = "2024-25"
         }
-        
+
         //$("#year").val("2024-25");
-        document.getElementById("source_year").value = "2022-23";
-        document.getElementById("source_year_liv").value = "2022-23";
-        
+        document.getElementById("source_year").value = "2024-25";
+        document.getElementById("source_year_liv").value = "2024-25";
+
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const m = new Date();
         let MonthName = month[m.getUTCMonth()];
         $("#month").val(MonthName);
 
     });
+
+    function Year_change() {
+        var year = $('#year').val();
+        if (year == "2024-25") {
+            location.reload();
+        }
+        if (year == "2023-24") {
+            Dropdown_Search();
+
+        }
+
+    }
 
     function Session_month_year() {
         var month = $('#month').val();
@@ -2133,7 +2147,7 @@
     }
 </script>
 <script>
-    
+
     $("#approved").hide();
     $('#btn_rejectNDO').hide();
     $('#gpdata_remarks').hide();
@@ -2154,7 +2168,7 @@
     var off_1 = "";
     var Jsondata = "";
     $(document).ready(function () {
-        
+
          Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
         $('#Error_').text("States Information is Loading....");
         $('#StateLabel').hide();
@@ -2180,14 +2194,15 @@
         //$('.IrrGroundWaterNumeric').hide();
         //$('.IrrSurOtherNumeric').hide();
         $('#totalCaste').hide();
-        
+
 
         if (StateOfficer != "Gram Panchyat Nodal Officer") {
             $('#year').prop("disabled", false);
             $('#month').prop("disabled", false);
 
         }
-        
+
+
         //if (StateOfficer == "Gram Panchyat Nodal Officer") {
         //    $("#sarpanch_save_btn").prop("disabled", false);
         //    $("#modalDialogScrollable_gp").modal("show");
@@ -2207,7 +2222,7 @@
 
         }
         $(".number").autoNumeric();
-        
+
         //code by abhijeet for livestock other section
         //$(document).on('change', '.livestockOtherName', function () {
         //    var destination = $(this).closest('tr');
@@ -2338,7 +2353,7 @@
             data: '',
             dataType: 'JSON',
             success: function (data) {
-                
+
 
                 if (data.length != 0) {
                     if (data[0].gp_area != null) {
@@ -2351,7 +2366,7 @@
                         let j = 3;
                         villageCount = VillageName.length;
                         for (var i = 0; i < VillageName.length; i++) {
-                            
+
                             if (0 == (j % 3)) {
                                 /*html = '<tr ><td><button id="Addvillage" type="button" hidden class="add-field btn btn-success hide_btn" onclick="AddVillage()">Add Village Name</button></td></tr>';*/
                                 html += '<tr class = "remove_tr_village"><td><span id=""><input class="VillageName form-control" id="VillageName"  value="' + VillageName[i] + '" name = "VillageName" type=text  onchange = "village_name_validate()" /></span></td>';
@@ -2652,7 +2667,7 @@
 <script>
 
     function confirm_SPMU() {
-        
+
         var gpdata_remarks = $("#gpdata_remarks").val();
         if (gpdata_remarks != "") {
             alert("If you want submit to SPMU, please remove the remarks first; if you accidentally clicked the Submit button, click the Cancel button first, then the Reject button");
@@ -2676,7 +2691,7 @@
     }
 
     function confirm_DPMU() {
-        
+
         swal({
             title: "Are you sure to submit the information for verification?",
             text: "Check: If you are certain that all of the information you have entered is correct, click the 'OK' button. You will no longer be able to edit or modify any information before it is rejected by DPMU after that.",
@@ -2695,7 +2710,7 @@
     }
 
     function rejectNDO_confirm() {
-        
+
         swal({
             title: "Are you sure to reject the current submitted information for that selected GP in GPDCI ?",
             text: "",
@@ -2714,7 +2729,7 @@
     }
 
     function Final_Approved() {
-        
+
         var state_remarks = $("#state_remarks").val();
         if (state_remarks != "") {
             alert('Check: If you want to submit to SPMU, please remove the remarks first; if you accidentally clicked the "Submit" button, click the "OK" button first, then the "Reject" button.');
@@ -2763,7 +2778,7 @@
                             window.location = "/Error/DefaultError";
                         }
                         if (response == "Logout") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         $('#btn_rejectNDO').hide();
                         $("#approved").hide();
@@ -2781,7 +2796,7 @@
 
 
     function submitedNDO() {
-        
+
 
         //$('input[type="text"]').attr('disabled', true).eq(count++).attr('disabled', false);
         var year = $("#year").val();
@@ -2828,7 +2843,7 @@
                         window.location = "/Error/DefaultError";
                     }
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     if (response == "Please complete all of the fields in Sections (A) and (B)") {
                         alert(response);
@@ -2849,7 +2864,7 @@
                             });
                         }
 
-                        
+
                     }
 
 
@@ -2913,7 +2928,7 @@
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 document.getElementById('alertrtdatacolection1').innerHTML = response;
@@ -2932,7 +2947,7 @@
                     button: "OK",
                 });
                 if (data == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 baseline_gp_data(villageCount);
             }
@@ -2946,7 +2961,7 @@
 <script>
     // code for sum of livestockpopulation
     $(document).ready(function () {
-        
+
         $("#livestockTable").on('input', '.livestocknumericvalue', function () {
             var calculated_total_sum = 0;
 
@@ -3015,7 +3030,7 @@
 
         // code for dropdown(select a option only one time)
         $("#livestockTable").on('change', '.ddControl', function () {
-            
+
             var selected = $(this).val();
             if (selected != "ot") {
                 if (selected) {
@@ -3034,7 +3049,7 @@
 
 
         $("#irrisurftable").on('change', '.ddControl', function () {
-            
+
             var selected = $(this).val();
             if (selected != "ot") {
                 if (selected) {
@@ -3048,7 +3063,7 @@
         });
 
         $("#IrriGroundWaterTable").on('change', '.ddControl', function () {
-            
+
             var selected = $(this).val();
             if (selected != "ot") {
                 if (selected) {
@@ -3062,7 +3077,7 @@
         });
 
         $("#GroundWaterTable").on('change', '.ddControl', function () {
-            
+
             var selected = $(this).val();
             if (selected != "ot") {
                 if (selected) {
@@ -3076,7 +3091,7 @@
         });
 
         $("#WaterEffTable").on('change', '.ddControl', function () {
-            
+
             var selected = $(this).val();
             if (selected != "ot") {
                 if (selected) {
@@ -3091,7 +3106,7 @@
 
 
         $("#designation_name").on('change', '.sarpanchdropdown', function () {
-            
+
             var selected = $(this).val();
             if (selected) {
                 var otherselected = $('.sarpanchdropdown').not($(this)).find('option[value="' + selected + '"]:selected');
@@ -3121,7 +3136,7 @@
 
 <script>
     function validate(e) {
-        
+
         var c = 0;
         var { value } = event.target;
         var count1 = 0;
@@ -3187,10 +3202,10 @@
 
         //window.location.href = "/GPlevel/Create_Excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year;
         //$('.loader').hide();
-        }
+    }
 
 
-   
+
 
     //const actualBtn = document.getElementById('txtimage');
 
@@ -3205,17 +3220,17 @@
     const fileChosen1 = document.getElementById('file-chosen1');
 
     actualBtn1.addEventListener('change', function () {
-        
+
         fileChosen1.textContent = this.files[0].name
         if (fileChosen1.textContent.length > 40) {
             var char = fileChosen1.textContent.length;
             alert("File Name should not be more than 40 characters, your file has " + char + " characters");
             fileChosen1.textContent = "";
-            
-            
+
+
             //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
         }
-        
+
     })
 
     const actualBtn2 = document.getElementById('txtimage2');
@@ -3250,7 +3265,7 @@
             var char = fileChosen4.textContent.length;
             alert("File Name should not be more than 40 characters, your file has " + char + " characters");
             fileChosen4.textContent = "";
-            
+
             //$("#file-chosen1").replaceWith($("#file-chosen1").val('').clone(true));
         }
     })
@@ -3340,7 +3355,7 @@
     })
 
     function Goto_page() {
-        
+
         var path = "";
         if ($('#goto_page').val() != "0") {
             var path = $('#goto_page').val();
@@ -3377,4 +3392,28 @@
     }
 
 
+</script>
+<script>
+        $(document).ready(function () {
+            var currentUrl = window.location.href;
+            const myArray = currentUrl.split("/");
+            let coun = myArray.length - 1;
+            //alert(myArray[coun].toString());
+            if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
+                GetCunCurrentUser();
+            }
+        });
+
+        function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+                    if (data == "False") {
+                        //window.location.href = "/Home/LogOut";
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                }
+            });
+        }
 </script>

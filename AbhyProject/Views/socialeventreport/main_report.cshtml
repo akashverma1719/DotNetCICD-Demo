@@ -55,7 +55,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 sub_total_div text-center">
-            <a href="~/IECreport/report_IEC">
+            <a href="~/IECreport/report_IECMonthly">
                 <ul class="ul_image_wsphome ">
                     <li>
                         <ul class="arrow_ul_css">
@@ -69,6 +69,21 @@
                 </ul>
             </a>
         </div>
+        @*<div class="col-lg-2 col-md-2 col-sm-2 sub_total_div text-center">
+                <a href="~/IECreport/report_IECMonthly">
+                    <ul class="ul_image_wsphome ">
+                        <li>
+                            <ul class="arrow_ul_css">
+
+                                <li><img src="~/Content/Agriculture_icons/iec_report_summary.png" /></li>
+                                <li></li>
+                            </ul>
+
+                        </li>
+                        <li><span></span></li>
+                    </ul>
+                </a>
+            </div>*@
         <div class="col-lg-2 col-md-2 col-sm-2 sub_total_div">
             <a href="~/socialeventreport/training_report">
                 <ul class="ul_image_wsphome text-center">
@@ -137,7 +152,7 @@
         $('#incentice_fund').hide();
         var StateOfficer = '@Session["Officer"]';
         var Email = '@Session["Email"]';
-        
+
         if (StateOfficer == "District Level Nodal Officer") {
 
         }
@@ -150,7 +165,7 @@
                 $('#npmu').hide();
                 $('#npmu1').hide();
             }
-            
+
         }
         else {
             $('#npmu').hide();
@@ -184,4 +199,6 @@
     }
 
 </script>
+
+@*Main report*@
 
