@@ -48,7 +48,7 @@ function date_find() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
 
@@ -98,7 +98,7 @@ function abhy_socialmgt_GRM_Info_getting() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var j = 0;
@@ -180,72 +180,72 @@ function abhy_socialmgt_GRM_Info_getting() {
                 }
                 if (StateOfficer == "State Level Nodal Officer") {
                     if (data.length != 0) {
-                    for (var i = 0; i < data.length; i++) {
-                        $('#ddlawareness').prop("disabled", true);
-                        $('#adds_awareness').prop("disabled", true);
-                        $('#sys_aval').prop("disabled", true);
-                        $('#tollfreeno').prop("disabled", true);
-                        var remarks = data[i].remark;
-                        if (remarks == null) {
-                            remarks = "";
-                        }
-                        var approve = data[i].approve;
-                        if (approve == null) {
-                            approve = "";
-                        }
-                        if (approve == "State") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td> </tr>';
-                            $("#btnFinalSave7").prop("disabled", true);
-                        }
-                        else if (approve == "Approve") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: blue;">Approved</label></td> </tr>';
+                        for (var i = 0; i < data.length; i++) {
                             $('#ddlawareness').prop("disabled", true);
                             $('#adds_awareness').prop("disabled", true);
                             $('#sys_aval').prop("disabled", true);
                             $('#tollfreeno').prop("disabled", true);
+                            var remarks = data[i].remark;
+                            if (remarks == null) {
+                                remarks = "";
+                            }
+                            var approve = data[i].approve;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "State") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td> </tr>';
+                                $("#btnFinalSave7").prop("disabled", true);
+                            }
+                            else if (approve == "Approve") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: blue;">Approved</label></td> </tr>';
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
 
-                            $("#btnFinalSave7").prop("disabled", true);
-                            $('#btn_reject_spmu').prop('disabled', true);
-                            $('#btn_submit_approve').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
-                        }
-                        else if (approve == "District") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">Submit To DPMU</label></td> </tr>';
-                            $('#ddlawareness').prop("disabled", true);
-                            $('#adds_awareness').prop("disabled", true);
-                            $('#sys_aval').prop("disabled", true);
-                            $('#tollfreeno').prop("disabled", true);
+                                $("#btnFinalSave7").prop("disabled", true);
+                                $('#btn_reject_spmu').prop('disabled', true);
+                                $('#btn_submit_approve').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+                            }
+                            else if (approve == "District") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">Submit To DPMU</label></td> </tr>';
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
 
-                            $("#btnFinalSave7").prop("disabled", true);
-                            $('#btn_reject_spmu').prop('disabled', true);
-                            $('#btn_submit_approve').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
-                        }
-                        else if (approve == "Reject") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: red;">Reject by DPMU</label></td> </tr>';
-                            $('#ddlawareness').prop("disabled", true);
-                            $('#adds_awareness').prop("disabled", true);
-                            $('#sys_aval').prop("disabled", true);
-                            $('#tollfreeno').prop("disabled", true);
+                                $("#btnFinalSave7").prop("disabled", true);
+                                $('#btn_reject_spmu').prop('disabled', true);
+                                $('#btn_submit_approve').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+                            }
+                            else if (approve == "Reject") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: red;">Reject by DPMU</label></td> </tr>';
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
 
-                            $("#btnFinalSave7").prop("disabled", true);
-                            $('#btn_reject_spmu').prop('disabled', true);
-                            $('#btn_submit_approve').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
-                        }
-                        else if (approve == "") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">At GP Level</label></td> </tr>';
-                            $('#ddlawareness').prop("disabled", true);
-                            $('#adds_awareness').prop("disabled", true);
-                            $('#sys_aval').prop("disabled", true);
-                            $('#tollfreeno').prop("disabled", true);
+                                $("#btnFinalSave7").prop("disabled", true);
+                                $('#btn_reject_spmu').prop('disabled', true);
+                                $('#btn_submit_approve').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+                            }
+                            else if (approve == "") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">At GP Level</label></td> </tr>';
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
 
-                            $("#btnFinalSave7").prop("disabled", true);
-                            $('#btn_reject_spmu').prop('disabled', true);
-                            $('#btn_submit_approve').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
+                                $("#btnFinalSave7").prop("disabled", true);
+                                $('#btn_reject_spmu').prop('disabled', true);
+                                $('#btn_submit_approve').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+                            }
                         }
-                    }
                     }
                     else {
                         $('#ddlawareness').prop("disabled", true);
@@ -253,84 +253,84 @@ function abhy_socialmgt_GRM_Info_getting() {
                         $('#sys_aval').prop("disabled", true);
                         $('#tollfreeno').prop("disabled", true);
                     }
-                    }
+                }
                 if (StateOfficer == "District Level Nodal Officer") {
                     if (data.length != 0) {
-                    for (var i = 0; i < data.length; i++) {
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ddlawareness').prop("disabled", true);
+                            $('#adds_awareness').prop("disabled", true);
+                            $('#sys_aval').prop("disabled", true);
+                            $('#tollfreeno').prop("disabled", true);
+                            var remarks = data[i].remark;
+                            if (remarks == null) {
+                                remarks = "";
+                            }
+                            var approve = data[i].approve;
+                            if (approve == null) {
+                                approve = "";
+                            }
+                            if (approve == "District") {
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
+                                $('#btnFinalSave7').prop("disabled", true);
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">At DPMU Level</label></td> </tr>';
+                                $("#btnFinalSave7").prop("disabled", true);
+                            }
+                            else if (approve == "Sreject") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: red;">Rejected By SPMU</label></td> </tr>';
+                                $("#btnFinalSave7").prop("disabled", true);
+                            }
+                            else if (approve == "Approve") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: blue;">Approved</label></td> </tr>';
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
+
+                                $("#btnFinalSave7").prop("disabled", true);
+                                $('#btn_reject_dpmu').prop('disabled', true);
+                                $('#btn_submit_spmu').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+                            }
+                            else if (approve == "Reject") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: red;">Reject by DPMU</label></td> </tr>';
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
+
+                                $("#btnFinalSave7").prop("disabled", true);
+                                $('#btn_reject_spmu').prop('disabled', true);
+                                $('#btn_submit_approve').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+
+
+                                $('#btn_reject_dpmu').prop('disabled', true);
+                                $('#btn_submit_spmu').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+                            }
+                            else if (approve == "") {
+                                tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">At GP Level</label></td> </tr>';
+                                $('#ddlawareness').prop("disabled", true);
+                                $('#adds_awareness').prop("disabled", true);
+                                $('#sys_aval').prop("disabled", true);
+                                $('#tollfreeno').prop("disabled", true);
+
+                                $("#btnFinalSave7").prop("disabled", true);
+                                $('#btn_reject_spmu').prop('disabled', true);
+                                $('#btn_submit_approve').prop('disabled', true);
+                                $('#remarks').prop('disabled', true);
+                            }
+                        }
+                    }
+                    else {
                         $('#ddlawareness').prop("disabled", true);
                         $('#adds_awareness').prop("disabled", true);
                         $('#sys_aval').prop("disabled", true);
                         $('#tollfreeno').prop("disabled", true);
-                        var remarks = data[i].remark;
-                        if (remarks == null) {
-                            remarks = "";
-                        }
-                        var approve = data[i].approve;
-                        if (approve == null) {
-                            approve = "";
-                        }
-                        if (approve == "District") {
-                            $('#ddlawareness').prop("disabled", true);
-                            $('#adds_awareness').prop("disabled", true);
-                            $('#sys_aval').prop("disabled", true);
-                            $('#tollfreeno').prop("disabled", true);
-                            $('#btnFinalSave7').prop("disabled", true);
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">At DPMU Level</label></td> </tr>';
-                            $("#btnFinalSave7").prop("disabled", true);
-                        }
-                        else if (approve == "Sreject") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: red;">Rejected By SPMU</label></td> </tr>';
-                            $("#btnFinalSave7").prop("disabled", true);
-                        }
-                        else if (approve == "Approve") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: blue;">Approved</label></td> </tr>';
-                            $('#ddlawareness').prop("disabled", true);
-                            $('#adds_awareness').prop("disabled", true);
-                            $('#sys_aval').prop("disabled", true);
-                            $('#tollfreeno').prop("disabled", true);
-
-                            $("#btnFinalSave7").prop("disabled", true);
-                            $('#btn_reject_dpmu').prop('disabled', true);
-                            $('#btn_submit_spmu').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
-                        }
-                        else if (approve == "Reject") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: red;">Reject by DPMU</label></td> </tr>';
-                            $('#ddlawareness').prop("disabled", true);
-                            $('#adds_awareness').prop("disabled", true);
-                            $('#sys_aval').prop("disabled", true);
-                            $('#tollfreeno').prop("disabled", true);
-
-                            $("#btnFinalSave7").prop("disabled", true);
-                            $('#btn_reject_spmu').prop('disabled', true);
-                            $('#btn_submit_approve').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
-
-
-                            $('#btn_reject_dpmu').prop('disabled', true);
-                            $('#btn_submit_spmu').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
-                        }
-                        else if (approve == "") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td></td><td><label style="color: green;">At GP Level</label></td> </tr>';
-                            $('#ddlawareness').prop("disabled", true);
-                            $('#adds_awareness').prop("disabled", true);
-                            $('#sys_aval').prop("disabled", true);
-                            $('#tollfreeno').prop("disabled", true);
-
-                            $("#btnFinalSave7").prop("disabled", true);
-                            $('#btn_reject_spmu').prop('disabled', true);
-                            $('#btn_submit_approve').prop('disabled', true);
-                            $('#remarks').prop('disabled', true);
-                        }
                     }
-                }
-                else {
-                    $('#ddlawareness').prop("disabled", true);
-                    $('#adds_awareness').prop("disabled", true);
-                    $('#sys_aval').prop("disabled", true);
-                    $('#tollfreeno').prop("disabled", true);
-                }
                 }
                 if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
                     if (data.length != 0) {
@@ -425,7 +425,7 @@ function abhy_socialmgt_GRM_Info_getting() {
                 $('#grm_Info').html(tr);
                 $('.loader').hide();
             }
-            
+
         }
     });
 
@@ -450,7 +450,7 @@ function Delete_data(ss) {
 
                     $("#btnFinalSave7").prop("disabled", false);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != 'Deleted Successfully' && response != 'No Data' && response != 'Error' && response != 'Logout') {
 
@@ -835,7 +835,7 @@ function GramPanchayatDataBase_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             else if (data == "No Data") {
@@ -857,15 +857,29 @@ function GramPanchayatDataBase_Info() {
             }
             if (tr == '') {
                 check_data = "No";
+                Others_local_instituions_citizen_leaders_Info();
+                Support_Agency_DIP_Info();
+                Socio_economic_demographic_profile_Info();
+                abhy_socialmgt_farmers_Info();
+                abhy_socialmgt_vulnerable_communities_Info();
+                abhy_socialmgt_GRM_Info_getting();
+                abhy_socialmgt_remarks();
                 tr = '<tr style="text-align:center;"><td colspan="7">No Data</td></tr>';
                 $('#TblData_GRAM_PANCHAYAT_DATABASE').html(tr);
                 $('.loader').hide();
             }
             else {
                 check_data = "Yes";
+                Others_local_instituions_citizen_leaders_Info();
+                Support_Agency_DIP_Info();
+                Socio_economic_demographic_profile_Info();
+                abhy_socialmgt_farmers_Info();
+                abhy_socialmgt_vulnerable_communities_Info();
+                abhy_socialmgt_GRM_Info_getting();
+                abhy_socialmgt_remarks();
                 $('#TblData_GRAM_PANCHAYAT_DATABASE').html(tr);
                 $('.loader').hide();
-            }        
+            }
             aaa = 1;
         }
     });
@@ -993,7 +1007,7 @@ function state_pgwm_1() {
         contentType: 'application/json',
         success: function (data) {
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var tr = '';
@@ -1048,7 +1062,7 @@ function district_pgwm_1() {
         contentType: 'application/json',
         success: function (data) {
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var tr = '';
@@ -1107,7 +1121,7 @@ function block_pgwm_1() {
         contentType: 'application/json',
         success: function (data) {
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var tr = '';
@@ -1168,7 +1182,7 @@ function gram_pgwm_1() {
         contentType: 'application/json',
         success: function (data) {
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var tr = '';
@@ -1228,7 +1242,7 @@ function Delete_abhy_socialmgt_gramdb(ss) {
                 success: function (response) {
                     alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != 'Deleted Successfully' && response != 'No Data' && response != 'Error' && response != 'Logout') {
                         window.location = "/Error/DefaultError";
@@ -1307,7 +1321,7 @@ function Save_abhy_socialmgt_gramdb() {
                 success: function (response) {
                     alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
 
                     aaa = 1;
@@ -1319,7 +1333,7 @@ function Save_abhy_socialmgt_gramdb() {
 }
 //abhi1606 for PGWM
 //Water User Association/ Village Water and Sanitation Committee (VWSC)
-function vwms_Info() {      
+function vwms_Info() {
     $('.loader').show();
     var year = $('#year').val();
 
@@ -1338,7 +1352,7 @@ function vwms_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
 
             var tr = '';
@@ -1398,7 +1412,7 @@ function Delete_SocMan(Id) {
             success: function (response) {
                 alert(response);
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 abhy_socialmgt_village_meetings_Info();
 
@@ -1423,7 +1437,7 @@ function Delete_GpLevel(Id) {
             success: function (response) {
                 alert(response);
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 abhy_socialmgt_training_gp_Info()
 
@@ -1448,7 +1462,7 @@ function Delete_pgwm_meeting(Id) {
             success: function (response) {
                 alert(response);
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 abhy_socialmgt_pgwm_meeting_Info();
 
@@ -1470,7 +1484,7 @@ function Delete_Water_User_Association_Village_Water_and_Sanitation_Committee(ss
         success: function (response) {
             alert(response);
             if (response == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
                 window.location = "/Error/DefaultError";
@@ -1552,7 +1566,7 @@ function Save_Water_User_Association_Village_Water_and_Sanitation_Committee_Info
                 success: function (response) {
                     alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != "Successfully Saved" && response != "Logout" && response != "Please Enter Mobile Number" && response != "Please Select Designation" && response != "Please Select Gender" && response != "Please Enter Member Name" && response != "Please Select Reserved_Unreserved" && response != "Please Select Category") {
 
@@ -1577,7 +1591,7 @@ function Save_Water_User_Association_Village_Water_and_Sanitation_Committee_Info
 }
 //Support Agency/ DIP
 var Data_tbl_1 = "";
-function Support_Agency_DIP_Info() {     
+function Support_Agency_DIP_Info() {
     $('.loader').show();
     var year = $('#year').val();
     var month = $('#month').val();
@@ -1597,7 +1611,7 @@ function Support_Agency_DIP_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var j = 0;
@@ -1938,7 +1952,7 @@ function Support_Agency_DIP_Info() {
                 $('#TblData_DIP').html(tr);
                 $('.loader').hide();
             }
-            
+
         }
     });
 }
@@ -1984,7 +1998,7 @@ function Delete_Support_Agency_DIP_Info(ss) {
             success: function (response) {
                 alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
                     window.location = "/Error/DefaultError";
@@ -2182,7 +2196,7 @@ function Save_Support_Agency_DIP_Info() {
 
                     alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != "Successfully Saved" && response != "Please Mobile Contact Number" && response != "Please Select Gender" && response != "Please Enter Member Name" && response != "Please Enter Date of Deployment") {
                         window.location = "/Error/DefaultError";
@@ -2220,7 +2234,7 @@ function Others_local_instituions_citizen_leaders_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             var j = 0;
             abc = 1;
@@ -2324,7 +2338,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                             });
                         }
                         else if (approve == "Approve") {
-                            
+
                             tr += '<tr id="AWP1_TR' + i + '"> <td></td> <td>' + (++j) + '</td>  <td>' + data[i].comm_name + '</td><td>' + data[i].establishment_date + '</td><td>' + data[i].designation + '</td><td>' + data[i].member_name + '</td> <td>' + data[i].gender + '</td><td>' + Category + '</td><td>' + data[i].contact_number + '</td><td>' + data[i].date_of_commi + '</td><td></td><td></td><td><label style="color: Blue;">Approved</label></td> ' +
 
                                 '<tr disabled id="Hide_AWP1_TR' + i + '" style="display:none;"><td></td> <td>' + (i + 1) + '</td>' +
@@ -2711,7 +2725,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                 $('#TblData_Others_local_instituions_citizen_leaders_Info').html(tr);
                 $('.loader').hide();
             }
-            
+
         }
 
     });
@@ -2730,7 +2744,7 @@ function Delete_Others_local_instituions_citizen_leaders_Info(ss) {
             success: function (response) {
                 alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
                     window.location = "/Error/DefaultError";
@@ -2865,7 +2879,7 @@ function Save_Others_local_instituions_citizen_leaders_Info() {
                 success: function (response) {
                     alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     $('#btnsave').prop('disabled', false);
                     abc = 1;
@@ -2896,7 +2910,7 @@ function ee_table_part_data_geting() {
             var a = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             abcd = 1;
             let tr = "";
@@ -2976,7 +2990,7 @@ function ee_table_part_data_saveing() {
                 success: function (response) {
                     alert(response);
                     if (response == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     else if (response != "Successfully Saved" && response != "Logout" && response != "Please Select IEC Activities" && response != "Please Select Yes/No") {
                         window.location = "/Error/DefaultError";
@@ -3002,7 +3016,7 @@ function Delete_ee_table_part_data(id) {
         success: function (response) {
             alert(response);
             if (response == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else if (response != "Deleted Successfully" && response != "Logout" && response != "No Data") {
                 window.location = "/Error/DefaultError";
@@ -3033,7 +3047,7 @@ function Social_Audit_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
 
@@ -3098,7 +3112,7 @@ function Save_Social_Audit() {
             success: function (response) {
                 alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Successfully Saved" && response != "Logout" && response != "Error") {
                     window.location = "/Error/DefaultError";
@@ -3132,7 +3146,7 @@ function Total_Population_of_the_GP_Info_wg() {  /*Not use */
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
 
@@ -3256,7 +3270,7 @@ function Save_Total_Population_of_the_GP_Info() {
             success: function (response) {
                 alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Successfully Saved" && response != "Logout" && response != "Please Enter TotalPapulation" && response != "Please Enter Census Year" && response != "Please Enter 2020-21" && response != "Please Enter 2021-22" && response != "Please Enter 2022-23" && response != "Please Enter 2023-24" && response != "Please Enter 2024-25") {
                     window.location = "/Error/DefaultError";
@@ -3290,10 +3304,10 @@ function Socio_economic_demographic_profile_Info() {    //4190
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
-            
+
             if (data.length != 0) {
 
                 for (var i = 0; i < data.length; i++) {
@@ -3443,7 +3457,7 @@ function Socio_economic_demographic_profile_Info() {    //4190
             Socio_economic_Sex_Ratio_2022_23();
             Socio_economic_Sex_Ratio_2023_24();
             Socio_economic_Sex_Ratio_2024_25();
-            
+
         }
     })
 
@@ -3532,7 +3546,7 @@ function Socio_economic_Sex_Ratio_2022_23() {
     if (female_pop_22_23 == "") {
         female_pop_22_23 = "0";
     }
-    var sexratio_pop_22_23 = (parseFloat(female_pop_22_23) * 1000) /parseFloat(male_pop_22_23)  ;
+    var sexratio_pop_22_23 = (parseFloat(female_pop_22_23) * 1000) / parseFloat(male_pop_22_23);
 
     if (male_pop_22_23 != 0) {
         $('#sexratio_pop_22_23').val(sexratio_pop_22_23.toFixed(4)); //abhi23
@@ -3661,7 +3675,7 @@ function Save_Socio_economic_demographic_profile_Info() {
             success: function (response) {
                 alert(response);
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != "Successfully Saved" && response != "Logout" && response != "Please Enter Male Census Year" && response != "Please Enter FeMale Census Year" && response != "Please Enter Sex Ratio(Women per 1000) Census Year" && response != "Please Enter Other Census Year") {
                     window.location = "/Error/DefaultError";
@@ -3696,18 +3710,18 @@ function abhy_socialmgt_vulnerable_communities_Info() { //4190
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             //if (data.length == 0) {
 
 
             //}
-            
+
             if (data.length != 0) {
 
                 for (var i = 0; i < data.length; i++) {
-                    
+
                     if (data[i].year == "2011") {   //if 2020-21 is selected
 
                         if (data[i].no_of_sc != null && data[i].no_of_sc != "") {
@@ -3864,7 +3878,7 @@ function abhy_socialmgt_vulnerable_communities_Info() { //4190
 
 
             }
-            
+
         }
     });
 
@@ -3892,7 +3906,7 @@ function abhy_socialmgt_farmers_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
 
@@ -5199,7 +5213,7 @@ function abhy_socialmgt_farmers_Info() {
 
                 }
                 if (StateOfficer == "Gram Panchyat Nodal Officer") {
-                  
+
                     if (approve == "") {
 
                         $('#btnFinalSave2').prop('disabled', false);
@@ -5729,7 +5743,7 @@ function abhy_socialmgt_farmers_Info() {
                     }
                 }
                 if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
-                    
+
                     if (approve == "Approve") {
 
                         $('#btnFinalSave2').prop('disabled', true);
@@ -6320,7 +6334,7 @@ function abhy_socialmgt_farmers_Info() {
                 $('#small_pop_22_23').val("");
                 $('#marginal_pop_22_23').val("");
             }
-            
+
             $('.loader').hide();
         }
     });
@@ -6335,7 +6349,7 @@ var total3 = 0;
 var total4 = 0;
 var total5 = 0;
 function tot_pop() {
-    
+
     var year = $('#year').val();
     if (year == '2020-21') {
 
@@ -6893,7 +6907,7 @@ function Save_abhy_socialmgt_farmers_Info() {
             dataType: 'JSON',
             success: function (response) {
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 if (response != 'Successfully Saved' && response != 'Error' && response != 'Logout' && response != 'Please Enter Medium Census Year' && response != 'Please Enter Small Census Year' && response != 'Please Enter Marginal Census Year' && response != 'Please Enter Large Census Year') {
                     //window.location = "/Error/DefaultError";
@@ -6932,7 +6946,7 @@ function abhy_socialmgt_village_meetings_Info() {
             var count = 0;
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var v = 0;
@@ -7371,7 +7385,7 @@ function abhy_socialmgt_village_meetings_Info_month_year() {
         success: function (data) {
             var count_vt = 0;
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
 
@@ -7720,7 +7734,7 @@ function Category_hide(a) {
         $('#Others_category' + a).hide();
     }
 }
-function Update_AWP1(id, RowNo) {       
+function Update_AWP1(id, RowNo) {
 
     var no_of_sc_sc = $('#no_of_sc_sc' + RowNo).val();
     var no_of_st_st = $('#no_of_st_st' + RowNo).val();
@@ -7824,7 +7838,7 @@ function Update_AWP1(id, RowNo) {
 
                 alert(response);
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
 
                 abhy_socialmgt_village_meetings_Info();
@@ -7919,7 +7933,7 @@ function Update_AWP2(id, RowNo) {         //abhi2906
 
                 alert(response);
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 Others_local_instituions_citizen_leaders_Info()
 
@@ -8058,7 +8072,7 @@ function Update_AWP3(id, RowNo) {         //abhi2906
 
                 alert(response);
                 if (response == "SessionTimeOut") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 Support_Agency_DIP_Info();
 
@@ -8089,12 +8103,12 @@ function cancelcomp_2_Support(i) {
     //$('#hide_AWP1_TR_Meeting' + i).hide();
 
 }
-function editrowcomp_A_Good3(i) {       
+function editrowcomp_A_Good3(i) {
 
     $('#AWP1_TR' + i).hide();
     $('#Hide_AWP1_TR' + i).show();
 }
-function editrowcomp_A_Good4(i) {  
+function editrowcomp_A_Good4(i) {
 
 
 
@@ -8102,7 +8116,7 @@ function editrowcomp_A_Good4(i) {
     $('#Hide_AWP1_TR_NEW' + i).show();
     $('#txtother' + i).hide();
 }
-function cancelcomp_A_Support_NEW(i) {   
+function cancelcomp_A_Support_NEW(i) {
     $('#AWP1_TR_NEW' + i).show();
     $('#Hide_AWP1_TR_NEW' + i).hide();
 
@@ -8184,7 +8198,7 @@ function abhy_socialmgt_pgwm_meeting_Info()   //  for pgwm meeting data display
         dataType: 'JSON',
         success: function (data) {
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var tr = '';
@@ -8298,7 +8312,7 @@ function Update_pgwm_meeting(id, RowNo) {
 
             alert(response);
             if (response == "SessionTimeOut") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             abhy_socialmgt_pgwm_meeting_Info();
 
@@ -8444,7 +8458,7 @@ function Save_pgwm_meeting() {
 
             alert(response);
             if (response == "SessionTimeOut") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             abhy_socialmgt_pgwm_meeting_Info();
 
@@ -8681,7 +8695,7 @@ function Get_details() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else {
                 const file_name = data[0].community_feedback.split("/");
@@ -8767,7 +8781,7 @@ function abhy_socialmgt_capacity_building_Info() {
         dataType: 'JSON',
         success: function (data) {
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
             var tr = '';
@@ -8962,7 +8976,7 @@ function SessionInfo() {
             priorinfo
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
             }
             else {
                 $('#Error_').text("");
@@ -9108,7 +9122,7 @@ function abhy_socialmgt_GRM_Info() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
 
@@ -9236,7 +9250,7 @@ function Save_GRM() {
                 alert(response);
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 else if (response != 'Successfully Saved' && response != 'Error' && response != 'Logout' && response != 'Your Upload file has Double Extention, Please Upload proper file' && response != 'Your Upload file has Not valid File, Please Upload proper file' && response != 'Please Enter Training Location' && response != 'Please Enter Training Name' && response != "Please Select GRM aware Panchayat" && response != "Please Select tollfree no Panchayat" && response != "Please Select Means of aware  no Panchayat") {
                     $('#btnFinalSave7').prop("disabled", true);
@@ -9355,7 +9369,7 @@ function submitNDO() {
                             window.location = "/Error/DefaultError";
                         }
                         if (response == "Logout") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                             return;
                         }
                         if (StateOfficer == "District Level Nodal Officer") {
@@ -9455,7 +9469,7 @@ function rejectdata() {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (response == "Successfully Saved") {
@@ -9498,7 +9512,7 @@ function submitdata_row1(Id) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (StateOfficer == "District Level Nodal Officer") {
@@ -9537,7 +9551,7 @@ function submitdata_row2(Id) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (StateOfficer == "District Level Nodal Officer") {
@@ -9581,7 +9595,7 @@ function rejectdata_row1(Id, RowNo) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (StateOfficer == "District Level Nodal Officer") {
@@ -9626,7 +9640,7 @@ function rejectdata_row2(Id, RowNo) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (StateOfficer == "District Level Nodal Officer") {
@@ -9669,7 +9683,7 @@ function rejectdata_row3(Id, RowNo) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (StateOfficer == "District Level Nodal Officer") {
@@ -9711,7 +9725,7 @@ function rejectdata_row4(Id, RowNo) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (StateOfficer == "District Level Nodal Officer") {
@@ -9754,7 +9768,7 @@ function rejectdata_row2(Id, RowNo) {
                     window.location = "/Error/DefaultError";
                 }
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                     return;
                 }
                 if (StateOfficer == "District Level Nodal Officer") {
@@ -9791,86 +9805,126 @@ function abhy_socialmgt_remarks() {
         success: function (data) {
 
             if (data == "Logout") {
-                  window.location = "/Home/LogOut";
+                window.location = "/Home/LogOut";
 
             }
-            if (data == "No Data") {
+            $('#btn_submit_dpmu').show();
+            if (year == '2024-25') {
+                $('#remark').show();
+                $('#addrow_d_part').prop('disabled', false);
+                $('#addrow_c_part').prop('disabled', false);
+                $('#btnFinalSave2').prop('disabled', false);
+                $('#btnFinalSave7').prop('disabled', false);
+                $('#btnFinalSave7').prop('disabled', false);
+                $('#btn_submit_dpmu').prop('disabled', false);
+
+            }
+            else {
+                $('#remark').hide();
+                $('#addrow_d_part').prop('disabled', true);
+                $('#addrow_c_part').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+                $('#btnFinalSave7').prop('disabled', true);
+                $('#btnFinalSave7').prop('disabled', true);
+                $('#btn_submit_dpmu').hide();
+            }
+
+            debugger;
+
+            if (check_data == "No") {
+                $("#gp_status").text("The data for this GP is either not populated under the GPDCI module or has not been approved yet.").css({ 'color': 'Blue' });
                 $('#remark_txt').hide();
-                $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
+                $('#remark').hide();
+                $('#addrow_d_part').prop('disabled', true);
+                $('#addrow_c_part').prop('disabled', true);
+                $('#btnFinalSave2').prop('disabled', true);
+                $('#btnFinalSave7').prop('disabled', true);
+                $('#btnFinalSave7').prop('disabled', true);
+                $('#btn_submit_dpmu').prop('disabled', true);
                 $('#btn_submit_approve').prop('disabled', true);
                 $('#btn_reject_spmu').prop('disabled', true);
                 $('#btn_submit_spmu').prop('disabled', true);
                 $('#btn_reject_dpmu').prop('disabled', true);
             }
-            if (data.length != 0) {
-                var remarks = data[0].remarks;
-                var approve = data[0].approve;
-                if (approve == "Approve") {
+            else {
+                if (data == "No Data") {
                     $('#remark_txt').hide();
-                    $("#gp_status").text("Approved ").css({ 'color': 'Green' });
-                }
-                if (approve == "Sreject") {
-                    $('#remark_txt').show();
-                    $("#gp_status").text("State-level nodal officer rejected it, and it is now pending rejection at the DPMU level.").css({ 'color': 'Red' });
-                    $("#gp_remark").text(remarks).css({ 'color': 'Red' });
-                }
-                if (approve == "State") {
-                    $('#remark_txt').hide();
-                    $("#gp_status").text("Verification is pending with the State-level nodal officer.").css({ 'color': 'Blue' });
-                }
-                if (approve == "District") {
-                    $('#remark_txt').hide();
-                    $("#gp_status").text("Verification is pending with the District-level nodal officer.").css({ 'color': 'Blue' });
-                }
-                if (approve == "Reject") {
-                    
-                    $('#remark_txt').show();
-                    $("#gp_status").text("District-level nodal officer rejected it, and it is now pending for correction at the GP level.").css({ 'color': 'Red' });
-                    $("#gp_remark").text(remarks).css({ 'color': 'Red' });
-                }
-                if (approve == "") {
-                    $('#remark_txt').hide();
+                    $('#remark').hide();
                     $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
                     $('#btn_submit_approve').prop('disabled', true);
                     $('#btn_reject_spmu').prop('disabled', true);
                     $('#btn_submit_spmu').prop('disabled', true);
                     $('#btn_reject_dpmu').prop('disabled', true);
                 }
-
-
-                else if (StateOfficer == "Gram Panchyat Nodal Officer") {
-
-                    if (remarks == "") {
-                        $('#remarks').hide();
-
+                if (data.length != 0) {
+                    var remarks = data[0].remarks;
+                    var approve = data[0].approve;
+                    if (approve == "Approve") {
+                        $('#remark_txt').hide();
+                        $("#gp_status").text("Approved ").css({ 'color': 'Green' });
                     }
-                    else {
-                        if (approve == "Sreject") {
+                    if (approve == "Sreject") {
+                        $('#remark_txt').show();
+                        $("#gp_status").text("State-level nodal officer rejected it, and it is now pending rejection at the DPMU level.").css({ 'color': 'Red' });
+                        $("#gp_remark").text(remarks).css({ 'color': 'Red' });
+                    }
+                    if (approve == "State") {
+                        $('#remark_txt').hide();
+                        $("#gp_status").text("Verification is pending with the State-level nodal officer.").css({ 'color': 'Blue' });
+                    }
+                    if (approve == "District") {
+                        $('#remark_txt').hide();
+                        $("#gp_status").text("Verification is pending with the District-level nodal officer.").css({ 'color': 'Blue' });
+                    }
+                    if (approve == "Reject") {
+
+                        $('#remark_txt').show();
+                        $("#gp_status").text("District-level nodal officer rejected it, and it is now pending for correction at the GP level.").css({ 'color': 'Red' });
+                        $("#gp_remark").text(remarks).css({ 'color': 'Red' });
+                    }
+                    if (approve == "") {
+                        $('#remark_txt').hide();
+                        $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
+                        $('#btn_submit_approve').prop('disabled', true);
+                        $('#btn_reject_spmu').prop('disabled', true);
+                        $('#btn_submit_spmu').prop('disabled', true);
+                        $('#btn_reject_dpmu').prop('disabled', true);
+                    }
+
+
+                    else if (StateOfficer == "Gram Panchyat Nodal Officer") {
+
+                        if (remarks == "") {
                             $('#remarks').hide();
+
                         }
                         else {
-                            $('#remarks').hide();
-                            // $('#remarks').val(remarks);
-                            $('#remarks').prop('disabled', true);
+                            if (approve == "Sreject") {
+                                $('#remarks').hide();
+                            }
+                            else {
+                                $('#remarks').hide();
+                                // $('#remarks').val(remarks);
+                                $('#remarks').prop('disabled', true);
+
+                            }
 
                         }
+                    }
+                    else {
+                        $('#remarks').val(remarks);
+                    }
 
+                }
+                else {
+                    if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                        $('#remarks').hide();
+                    }
+                    else {
+                        $('#remarks').val("");
                     }
                 }
-                else {
-                    $('#remarks').val(remarks);
-                }
-
             }
-            else {
-                if (StateOfficer == "Gram Panchyat Nodal Officer") {
-                    $('#remarks').hide();
-                }
-                else {
-                    $('#remarks').val("");
-                }
-            }
-
         }
     });
 }
