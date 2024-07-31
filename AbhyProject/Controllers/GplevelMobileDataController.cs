@@ -9476,10 +9476,17 @@ namespace AbhyProject.Controllers
                                                                    .Skip(recordsToSkip)
                                                                    .Take(100)
                                                                    .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                         Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
-
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
+                       
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
                     {
@@ -9488,9 +9495,16 @@ namespace AbhyProject.Controllers
                                                                     .Skip(recordsToSkip)
                                                                     .Take(100)
                                                                     .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                        Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
                     {
@@ -9504,9 +9518,16 @@ namespace AbhyProject.Controllers
                                                                     .Skip(recordsToSkip)
                                                                     .Take(100)
                                                                     .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                        Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
                     {
@@ -9515,9 +9536,16 @@ namespace AbhyProject.Controllers
                                                                    .Skip(recordsToSkip)
                                                                    .Take(100)
                                                                    .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                        Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
                     {
@@ -9531,9 +9559,16 @@ namespace AbhyProject.Controllers
                                                                    .Skip(recordsToSkip)
                                                                    .Take(100)
                                                                    .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                        Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
                     {
@@ -9542,9 +9577,16 @@ namespace AbhyProject.Controllers
                                                                     .Skip(recordsToSkip)
                                                                     .Take(100)
                                                                     .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                        Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
                     {
@@ -9558,9 +9600,16 @@ namespace AbhyProject.Controllers
                                                                   .Skip(recordsToSkip)
                                                                   .Take(100)
                                                                   .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                        Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
                     }
                     else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
                     {
@@ -9569,9 +9618,16 @@ namespace AbhyProject.Controllers
                                                                  .Skip(recordsToSkip)
                                                                  .Take(100)
                                                                  .ToList();
-                        var uniqueGpNames = gp_count.Select(c => c.wellid).Distinct().ToList();
+                        var uniqueGpNames = gp_count.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
 
-                        Final_meta_data = AJE.obj_vw_gwl_meta_data.Where(x => uniqueGpNames.Contains(x.wellid)).ToList();
+                            if (matchedData != null)
+                            {
+                                Final_meta_data.Add(matchedData);
+                            }
+                        }
                     }
                     else if (State != "0" && State != "" && State != null)
                     {
@@ -10018,8 +10074,21 @@ namespace AbhyProject.Controllers
                     if (Final_data.Count != 0)
                     {
                         gp_count = Final_data.Select(x => x.grampanchayat).Distinct().Count();
+                        var uniqueGpNames = Final_data.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        var updatedMetaData = new List<vw_gwl>();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl.FirstOrDefault(x => x.wellid == gpName);
+
+                            if (matchedData != null)
+                            {
+                                updatedMetaData.Add(matchedData);
+                            }
+                        }
+                        var exetotal = updatedMetaData.Count;
+
                         var Totalpages = Math.Ceiling(Final_data.Count / 100.0);
-                        var jsonresult = Json(Final_data.Count + "," + Totalpages + "," + gp_count, JsonRequestBehavior.AllowGet);
+                        var jsonresult = Json(exetotal + "," + Totalpages + "," + gp_count, JsonRequestBehavior.AllowGet);
                         jsonresult.MaxJsonLength = int.MaxValue;
                         return jsonresult;
                         //return Json(new { exetotal = Final_data.Count, Totalpages, gp = gp_count }, JsonRequestBehavior.AllowGet);
@@ -10027,8 +10096,20 @@ namespace AbhyProject.Controllers
                     else if (Final_data_data.Count != 0)
                     {
                         gp_count = Final_data_data.GroupBy(c => c.grampanchayat).ToList().Count();
+                        var uniqueGpNames = Final_data_data.GroupBy(c => c.wellid).Select(g => g.Key).ToList();
+                        var updatedMetaData = new List<vw_gwl_meta_data>();
+                        foreach (var gpName in uniqueGpNames)
+                        {
+                            var matchedData = AJE.obj_vw_gwl_meta_data.FirstOrDefault(x => x.wellid == gpName);
+
+                            if (matchedData != null)
+                            {
+                                updatedMetaData.Add(matchedData);
+                            }
+                        }
+                        var exetotal = updatedMetaData.Count;
                         var Totalpages = Math.Ceiling(Final_data_data.Count / 100.0);
-                        var jsonresult = Json(Final_data.Count + "," + Totalpages + "," + gp_count, JsonRequestBehavior.AllowGet);
+                        var jsonresult = Json(exetotal + "," + Totalpages + "," + gp_count, JsonRequestBehavior.AllowGet);
                         jsonresult.MaxJsonLength = int.MaxValue;
                         return jsonresult;
                     }
@@ -12868,13 +12949,13 @@ namespace AbhyProject.Controllers
 
                         string asaad = village;
                         string specialChar = @"@\|!#$%&()=?»«@£§€{}.;'<>,";
-                        foreach (var item in asaad)
-                        {
-                            if (specialChar.Contains(item))
-                            {
-                                return Json("Villiage Name is Not Correct");
-                            }
-                        }
+                        //foreach (var item in asaad)
+                        //{
+                        //    if (specialChar.Contains(item))
+                        //    {
+                        //        return Json("Villiage Name is Not Correct");
+                        //    }
+                        //}
                         string location = location_details;
                         string specialCharlocation = @"@\|!#$%&?»«@£§€{}.;<>";
                         foreach (var item in location)
