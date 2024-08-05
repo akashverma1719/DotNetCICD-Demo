@@ -1632,9 +1632,11 @@
             $('#year').prop('disabled', false);
         }
         if (StateOfficer == "District Level Nodal Officer") {
-            $('#remarks').show();
-            $('#btn_submitspmu').show();
-            $('#btn_rejectNDO').show();
+            $('#remarks').hide();
+			  $('#btn_submitspmu').hide();
+            $('#btn_rejectNDO').hide();
+            $('#btn_submit_spmu').hide();
+            $('#btn_reject_dpmu').hide();
             $('.hide_btn').prop('disabled', true);
             $('#btnFinalSave2').prop('disabled', true);
             $("#btnFinalSave7").prop("disabled", true);
@@ -1647,9 +1649,9 @@
             $('#btn_submit_dpmu').hide();
         }
         else if (StateOfficer == "State Level Nodal Officer") {
-            $('#remarks').show();
-            $('#approved').show();
-            $('#btn_rejectNDO').show();
+            $('#remarks').hide();
+            $('#approved').hide();
+            $('#btn_rejectNDO').hide();
             $('.hide_btn').prop('disabled', true);
             $('#btnFinalSave2').prop('disabled', true);
             $("#btnFinalSave7").prop("disabled", true);
@@ -1659,6 +1661,7 @@
             $('#btn_reject_dpmu').hide();
             $('#btn_submit_dpmu').hide();
             $('#year').prop('disabled', false);
+
         }
         else if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
             $('#year').prop('disabled', false);
@@ -1679,6 +1682,7 @@
             $('#btn_reject_spmu').hide();
             $('#btn_submit_dpmu').hide();
             $('#remarks').hide();
+
 
         }
 
@@ -2485,9 +2489,15 @@
                 success: function (results) {
                     $('#btnpdf').prop('disabled', false);
                     /*Dropdown_Search();*/
-                    
                     GramPanchayatDataBase_Info();
-                   
+
+                    /*Others_local_instituions_citizen_leaders_Info();
+                    Support_Agency_DIP_Info();
+                    Socio_economic_demographic_profile_Info();
+                    abhy_socialmgt_farmers_Info();
+                    abhy_socialmgt_vulnerable_communities_Info();
+                    abhy_socialmgt_GRM_Info_getting();
+                    abhy_socialmgt_remarks();*/
                 }
             });
         }
@@ -2926,6 +2936,9 @@
     document.getElementById("date_of_dip").addEventListener("keydown", function (event) {
         event.preventDefault();
     });
+</script>
+<script type="text/javascript">
+
 </script>
 <script type="text/javascript">
     $(document).ready(function () {

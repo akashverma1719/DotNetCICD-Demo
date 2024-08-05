@@ -1879,11 +1879,11 @@
             alert("Please Select Month");
             return;
         }
-        else if (ymonth != month) {
-            x = 1;
-            alert("Please Select Current Month");
-            return;
-        }
+        //else if (ymonth != month) {
+        //    x = 1;
+        //    alert("Please Select Current Month");
+        //    return;
+        //}
         else if (type_of_event == "0") {
             x = 1;
             alert("Please Enter Type of Event");
@@ -1924,26 +1924,7 @@
             alert("Please Enter transgender");
             return;
         }
-        //else if (SC == "") {
-        //    x = 1;
-        //    alert("Please Enter SC Category");
-        //    return;
-        //}
-        //else if (ST == "") {
-        //    x = 1;
-        //    alert("Please Enter ST Category");
-        //    return;
-        //}
-        //else if (OBC == "") {
-        //    x = 1;
-        //    alert("Please Enter OBC Category");
-        //    return;
-        //}
-        //else if (General == "") {
-        //    x = 1;
-        //    alert("Please Enter General Category");
-        //    return;
-        //}
+       
         else if (atten_files.length == 0) {
             x = 1;
             alert("Please Upload  attendance sheet of the participant");
@@ -1969,7 +1950,28 @@
             return;
 
         }
-       
+        debugger;
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        if (today <= "2024-08-07") {
+            if (month != "June" && month != "July" && month != "August") {
+                if (ymonth != month) {
+                    x = 1;
+                    alert("Please Select Current Month");
+                    return;
+                }
+            }
+        }
+        else {
+            if (ymonth != month) {
+                x = 1;
+                alert("Please Select Current Month");
+                return;
+            }
+        }
         if (total_pop != 0) {
             if (total_pop < total_participants || total_pop != total_participants) {
                 x = 1;

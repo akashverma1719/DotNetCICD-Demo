@@ -2,6 +2,12 @@
 var StateOfficer = StateOfficer_new;
 var statename = statename_new;
 var email = email;
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+var yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
+var todatdate = today;
 
 function monthchange() {
     $('#month_gram').val('0');
@@ -3111,16 +3117,28 @@ function editrowcomp_A_Good2(i) {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-
-    // Set the minimum and maximum attributes of the date input
-    document.getElementById("fdate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("fdate1" + i).setAttribute("max", "9999-12-31");
-    document.getElementById("tdate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("tdate1" + i).setAttribute("max", "9999-12-31");
-    document.getElementById("opendate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("opendate1" + i).setAttribute("max", "9999-12-31");
-    document.getElementById("closedate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("closedate1" + i).setAttribute("max", "9999-12-31");
+    if (today <= "2024-08-07") {
+        var mmm = "06";
+        // Set the minimum and maximum attributes of the date input
+        document.getElementById("fdate1" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("fdate1" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("tdate1" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("tdate1" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("opendate1" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("opendate1" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("closedate1" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("closedate1" + i).setAttribute("max", "9999-12-31");
+    }
+    else {
+        document.getElementById("fdate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("fdate1" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("tdate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("tdate1" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("opendate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("opendate1" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("closedate1" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("closedate1" + i).setAttribute("max", "9999-12-31");
+    }
 
     // Disable keyboard input for the date input field
     document.getElementById("fdate1" + i).addEventListener("keydown", function (event) {
@@ -3184,25 +3202,7 @@ function editrowcomp_A_Good2_state(i) {
     var stateaa = $('#state1_S' + i).val();
     var yearaa = $('#year1_S' + i).val();
     var month = $('#month1_S' + i).val();
-    if (stateaa == "Haryana_6" && yearaa == "2024-25" && month == "June") {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth()).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-
-        // Set the minimum and maximum attributes of the date input
-        document.getElementById("fdate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("fdate1_S" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("tdate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("tdate1_S" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("opendate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("opendate1_S" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("closedate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("closedate1_S" + i).setAttribute("max", "9999-12-31");
-
-    }
-    else {
+ 
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
@@ -3210,17 +3210,31 @@ function editrowcomp_A_Good2_state(i) {
         today = yyyy + '-' + mm + '-' + dd;
 
         // Set the minimum and maximum attributes of the date input
-        document.getElementById("fdate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("fdate1_S" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("tdate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("tdate1_S" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("opendate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("opendate1_S" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("closedate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("closedate1_S" + i).setAttribute("max", "9999-12-31");
+        if (today <= "2024-08-07") {
+            var mmm = "06";
+            // Set the minimum and maximum attributes of the date input
+            document.getElementById("fdate1_S" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("fdate1_S" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("tdate1_S" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("tdate1_S" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("opendate1_S" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("opendate1_S" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("closedate1_S" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("closedate1_S" + i).setAttribute("max", "9999-12-31");
+        }
+        else {
+            document.getElementById("fdate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+            document.getElementById("fdate1_S" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("tdate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+            document.getElementById("tdate1_S" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("opendate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+            document.getElementById("opendate1_S" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("closedate1_S" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+            document.getElementById("closedate1_S" + i).setAttribute("max", "9999-12-31");
+        }
 
         
-    }
+    
     // Disable keyboard input for the date input field
     document.getElementById("fdate1_S" + i).addEventListener("keydown", function (event) {
         event.preventDefault();
@@ -3280,40 +3294,36 @@ function editrowcomp_A_Good2_district(i) {
     var stateaa = $('#state1_D' + i).val();
     var yearaa = $('#year1_D' + i).val();
     var month = $('#month1_D' + i).val();
-    if (stateaa == "Haryana_6" && yearaa == "2024-25" && month == "June") {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth()).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-
-        // Set the minimum and maximum attributes of the date input
-        document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("tdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("tdate1_D" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("opendate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("opendate1_D" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("closedate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("closedate1_D" + i).setAttribute("max", "9999-12-31");
-    }
-    else {
+    
+   
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-
-        // Set the minimum and maximum attributes of the date input
-        document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("tdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("tdate1_D" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("opendate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("opendate1_D" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("closedate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("closedate1_D" + i).setAttribute("max", "9999-12-31");
-    }
+            if (today <= "2024-08-07") {
+                var mmm = "06";
+                // Set the minimum and maximum attributes of the date input
+                document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+                document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
+                document.getElementById("tdate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+                document.getElementById("tdate1_D" + i).setAttribute("max", "9999-12-31");
+                document.getElementById("opendate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+                document.getElementById("opendate1_D" + i).setAttribute("max", "9999-12-31");
+                document.getElementById("closedate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+                document.getElementById("closedate1_D" + i).setAttribute("max", "9999-12-31");
+            }
+            else {
+                document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+                document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
+                document.getElementById("tdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+                document.getElementById("tdate1_D" + i).setAttribute("max", "9999-12-31");
+                document.getElementById("opendate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+                document.getElementById("opendate1_D" + i).setAttribute("max", "9999-12-31");
+                document.getElementById("closedate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+                document.getElementById("closedate1_D" + i).setAttribute("max", "9999-12-31");
+            }
+    
     // Disable keyboard input for the date input field
     document.getElementById("fdate1_D" + i).addEventListener("keydown", function (event) {
         event.preventDefault();
@@ -3371,32 +3381,25 @@ function editrowcomp_A_Good2_block(i) {
     var stateaa = $('#state1_B' + i).val();
     var yearaa = $('#year1_B' + i).val();
     var month = $('#month1_B' + i).val();
-    if (stateaa == "Haryana_6" && yearaa == "2024-25" && month == "June") {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth()).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-
-        // Set the minimum and maximum attributes of the date input
-        document.getElementById("fdate1_B" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("fdate1_B" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("tdate1_B" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("tdate1_B" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("opendate1_B" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("opendate1_B" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("closedate1_B" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-        document.getElementById("closedate1_B" + i).setAttribute("max", "9999-12-31");
-
-    }
-    else {
+   
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-
+    if (today <= "2024-08-07") {
+        var mmm = "06";
         // Set the minimum and maximum attributes of the date input
+        document.getElementById("fdate1_B" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("fdate1_B" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("tdate1_B" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("tdate1_B" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("opendate1_B" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("opendate1_B" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("closedate1_B" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("closedate1_B" + i).setAttribute("max", "9999-12-31");
+    }
+    else {
         document.getElementById("fdate1_B" + i).setAttribute("min", yyyy + '-' + mm + '-01');
         document.getElementById("fdate1_B" + i).setAttribute("max", "9999-12-31");
         document.getElementById("tdate1_B" + i).setAttribute("min", yyyy + '-' + mm + '-01');
@@ -3463,28 +3466,20 @@ function editrowcomp_A_Good2_gram(i) {
     var stateaa = $('#state1_G' + i).val();
     var yearaa = $('#year1_G' + i).val();
     var month = $('#month1_G' + i).val();
-    if (stateaa == "Haryana_6" && yearaa == "2024-25" && month == "June") {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth()).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    if (today <= "2024-08-07") {
+        var mmm = "06";
         // Set the minimum and maximum attributes of the date input
-        document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
         document.getElementById("fdate1_G" + i).setAttribute("max", "9999-12-31");
-        document.getElementById("tdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("tdate1_G" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
         document.getElementById("tdate1_G" + i).setAttribute("max", "9999-12-31");
     }
     else {
-
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-
-        // Set the minimum and maximum attributes of the date input
         document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
         document.getElementById("fdate1_G" + i).setAttribute("max", "9999-12-31");
         document.getElementById("tdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
@@ -5350,7 +5345,7 @@ function abhy_Event_Cal_Info_Search5() {
 
 function isWithinRange(date) {
     debugger;
-    if (statename == "Haryana_6") {
+        if (todatdate <= "2024-08-07") {
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth(); // Month is 0 indexed
         var currentYear = currentDate.getFullYear();
@@ -5365,7 +5360,7 @@ function isWithinRange(date) {
         var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
 
         // Calculate the start date (first day of the previous month)
-        var prevMonth = currentMonth - 1;
+        var prevMonth = currentMonth - 2;
         var prevMonthYear = currentYear;
         if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
             prevMonth = 11; // December of the previous year

@@ -26,11 +26,15 @@ namespace AbhyProject.Controllers
 		{
 			return View();
 		}
-        public ActionResult all_report_incentivemodule()
-        {
-            return View();
-        }
-        public ActionResult suppyside()
+		public ActionResult all_report_incentivemodule()
+		{
+			return View();
+		}
+		public ActionResult Combine_Department_incentivemodule()
+		{
+			return View();
+		}
+		public ActionResult suppyside()
 		{
 			return View();
 		}
@@ -70,7 +74,7 @@ namespace AbhyProject.Controllers
 		}
 		public ActionResult viewpage()
 		{
-			
+
 			return View();
 		}
 		public ActionResult all_report()
@@ -117,6 +121,7 @@ namespace AbhyProject.Controllers
 			{
 				try
 				{
+					var otherdepartments = (string)"";
 
 					if (statename != "All")
 					{
@@ -165,8 +170,23 @@ namespace AbhyProject.Controllers
 										incentive_report data = new incentive_report();
 										var matchedData = total_target.Where(x => x.department == gpName).ToList();
 
+										if (matchedData.Any(g => g.department == "Other"))
+										{
+											// Get the first 'otherdepartment' value where 'department' is "Other"
+											otherdepartments = matchedData
+											   .Where(g => g.department == "Other")
+											   .Select(g => g.otherdepartment)
+											   .FirstOrDefault();
+										}
+										else
+										{
+											otherdepartments = "";
+
+										}
+
 										if (matchedData != null)
 										{
+
 											var gp_incentive = matchedData.GroupBy(c => c.gp).ToList().Count();
 
 
@@ -302,7 +322,10 @@ namespace AbhyProject.Controllers
 											}
 
 											data.department = gpName;
-											data.atal_gp = Convert.ToInt32(ff);
+											data.otherdepartment = otherdepartments;
+
+											//data.atal_gp = Convert.ToInt32(ff);
+											data.atal_gp = Convert.ToInt32(gp_npmu);
 											data.inc_gp = Convert.ToInt32(gp_incentive);
 											data.cost = Convert.ToDouble(inc_cost);
 											data.area = Convert.ToDouble(inc_area);
@@ -383,10 +406,28 @@ namespace AbhyProject.Controllers
 								{
 									incentive_report data = new incentive_report();
 									var matchedData = total_target.Where(x => x.department == gpName).ToList();
+									if (matchedData.Any(g => g.department == "Other"))
+									{
+										// Get the first 'otherdepartment' value where 'department' is "Other"
+										otherdepartments = matchedData
+										   .Where(g => g.department == "Other")
+										   .Select(g => g.otherdepartment)
+										   .FirstOrDefault();
+									}
+									else
+									{
+										otherdepartments = "";
+
+									}
+
 
 									if (matchedData != null)
 									{
 										var gp_incentive = matchedData.GroupBy(c => c.gp).ToList().Count();
+
+										var distinctStates = matchedData.Select(g => g.state).Distinct().ToList();
+										var totalgpdata = masterlist.Where(g => distinctStates.Contains(g.state_name))
+											.GroupBy(c => c.gram_panchayat_name).Count();
 
 
 										var inc_cost = matchedData.Sum(x =>
@@ -521,7 +562,9 @@ namespace AbhyProject.Controllers
 										}
 
 										data.department = gpName;
-										data.atal_gp = Convert.ToInt32(ff);
+										data.otherdepartment = otherdepartments;
+										//data.atal_gp = Convert.ToInt32(ff);
+										data.atal_gp = Convert.ToInt32(totalgpdata);
 										data.inc_gp = Convert.ToInt32(gp_incentive);
 										data.cost = Convert.ToDouble(inc_cost);
 										data.area = Convert.ToDouble(inc_area);
@@ -575,10 +618,12 @@ namespace AbhyProject.Controllers
 			{
 				try
 				{
+					var otherdepartments = (string)"";
 
 					if (statename != "All")
 					{
 						var ss = statename;
+
 
 						string[] states = { ss };
 						List<incentive_report> all_data = new List<incentive_report>();
@@ -623,10 +668,23 @@ namespace AbhyProject.Controllers
 										incentive_report data = new incentive_report();
 										var matchedData = total_target.Where(x => x.nameofdepartment == gpName).ToList();
 
+										if (matchedData.Any(g => g.nameofdepartment == "Other"))
+										{
+											// Get the first 'otherdepartment' value where 'department' is "Other"
+											otherdepartments = matchedData
+											   .Where(g => g.nameofdepartment == "Other")
+											   .Select(g => g.other_department)
+											   .FirstOrDefault();
+										}
+										else
+										{
+											otherdepartments = "";
+
+										}
+
 										if (matchedData != null)
 										{
 											var gp_incentive = matchedData.GroupBy(c => c.gram).ToList().Count();
-
 
 											var inc_cost = matchedData.Sum(x =>
 											{
@@ -654,7 +712,9 @@ namespace AbhyProject.Controllers
 											}
 
 											data.department = gpName;
-											data.atal_gp = Convert.ToInt32(ff);
+											data.otherdepartment = otherdepartments;
+											//data.atal_gp = Convert.ToInt32(ff);
+											data.atal_gp = Convert.ToInt32(gp_npmu);
 											data.inc_gp = Convert.ToInt32(gp_incentive);
 											data.cost = Convert.ToDouble(inc_cost);
 											data.area = Convert.ToDouble(supply_structure);
@@ -728,11 +788,26 @@ namespace AbhyProject.Controllers
 								{
 									incentive_report data = new incentive_report();
 									var matchedData = total_target.Where(x => x.nameofdepartment == gpName).ToList();
+									if (matchedData.Any(g => g.nameofdepartment == "Other"))
+									{
+										// Get the first 'otherdepartment' value where 'department' is "Other"
+										otherdepartments = matchedData
+										   .Where(g => g.nameofdepartment == "Other")
+										   .Select(g => g.other_department)
+										   .FirstOrDefault();
+									}
+									else
+									{
+										otherdepartments = "";
+
+									}
 
 									if (matchedData != null)
 									{
 										var gp_incentive = matchedData.GroupBy(c => c.gram).ToList().Count();
-
+										var distinctStates = matchedData.Select(g => g.state).Distinct().ToList();
+										var totalgpdata = masterlist.Where(g => distinctStates.Contains(g.state_name))
+														.GroupBy(c => c.gram_panchayat_name).Count();
 
 										var inc_cost = matchedData.Sum(x =>
 										{
@@ -760,7 +835,9 @@ namespace AbhyProject.Controllers
 										}
 
 										data.department = gpName;
-										data.atal_gp = Convert.ToInt32(ff);
+										data.otherdepartment = otherdepartments;
+										//data.atal_gp = Convert.ToInt32(ff);
+										data.atal_gp = Convert.ToInt32(totalgpdata);
 										data.inc_gp = Convert.ToInt32(gp_incentive);
 										data.cost = Convert.ToDouble(inc_cost);
 										data.area = Convert.ToDouble(supply_structure);
@@ -807,6 +884,7 @@ namespace AbhyProject.Controllers
 			{
 				try
 				{
+					var otherdepartments = (string)"";
 
 					if (statename != "All")
 					{
@@ -854,11 +932,23 @@ namespace AbhyProject.Controllers
 									{
 										incentive_report data = new incentive_report();
 										var matchedData = total_target.Where(x => x.nameofdepartment == gpName).ToList();
+										if (matchedData.Any(g => g.nameofdepartment == "Other"))
+										{
+											// Get the first 'otherdepartment' value where 'department' is "Other"
+											otherdepartments = matchedData
+											   .Where(g => g.nameofdepartment == "Other")
+											   .Select(g => g.other_department)
+											   .FirstOrDefault();
+										}
+										else
+										{
+											otherdepartments = "";
+
+										}
 
 										if (matchedData != null)
 										{
 											var gp_incentive = matchedData.GroupBy(c => c.gram).ToList().Count();
-
 
 											var inc_cost = matchedData.Sum(x =>
 											{
@@ -886,7 +976,9 @@ namespace AbhyProject.Controllers
 											}
 
 											data.department = gpName;
-											data.atal_gp = Convert.ToInt32(ff);
+											data.otherdepartment = otherdepartments;
+											//data.atal_gp = Convert.ToInt32(ff);
+											data.atal_gp = Convert.ToInt32(gp_npmu);
 											data.inc_gp = Convert.ToInt32(gp_incentive);
 											data.cost = Convert.ToDouble(inc_cost);
 											data.area = Convert.ToDouble(supply_structure);
@@ -960,11 +1052,25 @@ namespace AbhyProject.Controllers
 								{
 									incentive_report data = new incentive_report();
 									var matchedData = total_target.Where(x => x.nameofdepartment == gpName).ToList();
+									if (matchedData.Any(g => g.nameofdepartment == "Other"))
+									{
+										// Get the first 'otherdepartment' value where 'department' is "Other"
+										otherdepartments = matchedData
+										   .Where(g => g.nameofdepartment == "Other")
+										   .Select(g => g.other_department)
+										   .FirstOrDefault();
+									}
+									else
+									{
+										otherdepartments = "";
 
+									}
 									if (matchedData != null)
 									{
 										var gp_incentive = matchedData.GroupBy(c => c.gram).ToList().Count();
-
+										var distinctStates = matchedData.Select(g => g.state).Distinct().ToList();
+										var totalgpdata = masterlist.Where(g => distinctStates.Contains(g.state_name))
+														.GroupBy(c => c.gram_panchayat_name).Count();
 
 										var inc_cost = matchedData.Sum(x =>
 										{
@@ -992,7 +1098,9 @@ namespace AbhyProject.Controllers
 										}
 
 										data.department = gpName;
-										data.atal_gp = Convert.ToInt32(ff);
+										data.otherdepartment = otherdepartments;
+										//data.atal_gp = Convert.ToInt32(ff);
+										data.atal_gp = Convert.ToInt32(totalgpdata);
 										data.inc_gp = Convert.ToInt32(gp_incentive);
 										data.cost = Convert.ToDouble(inc_cost);
 										data.area = Convert.ToDouble(supply_structure);
@@ -1089,8 +1197,8 @@ namespace AbhyProject.Controllers
 			return month_num;
 		}
 
-        [HttpPost]
-        public ActionResult allmodule_report()
+		[HttpPost]
+		public ActionResult allmodule_report()
 		{
 			if (Session["UserId"] != null)
 			{
@@ -1125,7 +1233,7 @@ namespace AbhyProject.Controllers
 								else
 								{
 									return 0.0; // Default value if conversion fails
-							}
+								}
 							});
 
 							var supplycost = supplyside_data.Sum(x =>
@@ -1137,7 +1245,7 @@ namespace AbhyProject.Controllers
 								else
 								{
 									return 0.0; // Default value if conversion fails
-							}
+								}
 							});
 
 							var othercost = other_data.Sum(x =>
@@ -1149,7 +1257,7 @@ namespace AbhyProject.Controllers
 								else
 								{
 									return 0.0; // Default value if conversion fails
-							}
+								}
 							});
 
 
@@ -1234,7 +1342,7 @@ namespace AbhyProject.Controllers
 								else
 								{
 									return 0.0; // Default value if conversion fails
-							}
+								}
 							});
 
 							var supplycost = supplyside_data.Sum(x =>
@@ -1246,7 +1354,7 @@ namespace AbhyProject.Controllers
 								else
 								{
 									return 0.0; // Default value if conversion fails
-							}
+								}
 							});
 
 							var othercost = other_data.Sum(x =>
@@ -1258,7 +1366,7 @@ namespace AbhyProject.Controllers
 								else
 								{
 									return 0.0; // Default value if conversion fails
-							}
+								}
 							});
 
 
@@ -1332,7 +1440,7 @@ namespace AbhyProject.Controllers
 		}
 
 
-        [HttpPost]
+		[HttpPost]
 		public ActionResult Save_demand(string Data)
 		{
 			if (Session["UserId"] != null)
@@ -1598,9 +1706,6 @@ namespace AbhyProject.Controllers
 					Details.fother = result.fother;
 					Details.total_beneficiary = result.total_beneficiary;
 					Details.remark = result.remark;
-					Details.department = result.department;
-					Details.otherdepartment = result.otherdepartment;
-					Details.activity = result.activity;
 					Details.update_month = result.update_month;
 
 					ABE.Entry(Details).State = EntityState.Modified;
@@ -1995,19 +2100,20 @@ namespace AbhyProject.Controllers
 				worksheet.Cell(currentRow, 6).Value = "Month";
 				worksheet.Cell(currentRow, 7).Value = "Updated Month";
 				worksheet.Cell(currentRow, 8).Value = "Name of Department";
-				worksheet.Cell(currentRow, 9).Value = "Name of Activity";
-				worksheet.Cell(currentRow, 10).Value = "Cost (Incentive Fund Utilization) Lakhs";
-				worksheet.Cell(currentRow, 11).Value = "Area covered utilizing Atal Jal Incentive fund (Ha)";
-				worksheet.Cell(currentRow, 12).Value = "Total Beneficiary";
-				worksheet.Cell(currentRow, 13).Value = "Male SC";
-				worksheet.Cell(currentRow, 14).Value = "Male ST";
-				worksheet.Cell(currentRow, 15).Value = "Male OBC";
-				worksheet.Cell(currentRow, 16).Value = "Male General";
-				worksheet.Cell(currentRow, 17).Value = "Female SC";
-				worksheet.Cell(currentRow, 18).Value = "Female ST";
-				worksheet.Cell(currentRow, 19).Value = "Female OBC";
-				worksheet.Cell(currentRow, 20).Value = "Female General";
-				worksheet.Cell(currentRow, 21).Value = "Remark (If Any)";
+				worksheet.Cell(currentRow, 9).Value = "Other Name of Department";
+				worksheet.Cell(currentRow, 10).Value = "Name of Activity";
+				worksheet.Cell(currentRow, 11).Value = "Cost (Incentive Fund Utilization) Lakhs";
+				worksheet.Cell(currentRow, 12).Value = "Area covered utilizing Atal Jal Incentive fund (Ha)";
+				worksheet.Cell(currentRow, 13).Value = "Total Beneficiary";
+				worksheet.Cell(currentRow, 14).Value = "Male SC";
+				worksheet.Cell(currentRow, 15).Value = "Male ST";
+				worksheet.Cell(currentRow, 16).Value = "Male OBC";
+				worksheet.Cell(currentRow, 17).Value = "Male General";
+				worksheet.Cell(currentRow, 18).Value = "Female SC";
+				worksheet.Cell(currentRow, 19).Value = "Female ST";
+				worksheet.Cell(currentRow, 20).Value = "Female OBC";
+				worksheet.Cell(currentRow, 21).Value = "Female General";
+				worksheet.Cell(currentRow, 22).Value = "Remark (If Any)";
 
 
 
@@ -2036,19 +2142,20 @@ namespace AbhyProject.Controllers
 						worksheet.Cell(currentRow, 6).Value = ddetails[i].month;
 						worksheet.Cell(currentRow, 7).Value = update_month;
 						worksheet.Cell(currentRow, 8).Value = ddetails[i].department;
-						worksheet.Cell(currentRow, 9).Value = ddetails[i].activity;
-						worksheet.Cell(currentRow, 10).Value = ddetails[i].cost;
-						worksheet.Cell(currentRow, 11).Value = ddetails[i].area_under;
-						worksheet.Cell(currentRow, 12).Value = ddetails[i].total_beneficiary;
-						worksheet.Cell(currentRow, 13).Value = ddetails[i].msc;
-						worksheet.Cell(currentRow, 14).Value = ddetails[i].mst;
-						worksheet.Cell(currentRow, 15).Value = ddetails[i].mobc;
-						worksheet.Cell(currentRow, 16).Value = ddetails[i].mother;
-						worksheet.Cell(currentRow, 17).Value = ddetails[i].fsc;
-						worksheet.Cell(currentRow, 18).Value = ddetails[i].fst;
-						worksheet.Cell(currentRow, 19).Value = ddetails[i].fobc;
-						worksheet.Cell(currentRow, 20).Value = ddetails[i].fother;
-						worksheet.Cell(currentRow, 21).Value = remark;
+						worksheet.Cell(currentRow, 9).Value = ddetails[i].otherdepartment;
+						worksheet.Cell(currentRow, 10).Value = ddetails[i].activity;
+						worksheet.Cell(currentRow, 11).Value = ddetails[i].cost;
+						worksheet.Cell(currentRow, 12).Value = ddetails[i].area_under;
+						worksheet.Cell(currentRow, 13).Value = ddetails[i].total_beneficiary;
+						worksheet.Cell(currentRow, 14).Value = ddetails[i].msc;
+						worksheet.Cell(currentRow, 15).Value = ddetails[i].mst;
+						worksheet.Cell(currentRow, 16).Value = ddetails[i].mobc;
+						worksheet.Cell(currentRow, 17).Value = ddetails[i].mother;
+						worksheet.Cell(currentRow, 18).Value = ddetails[i].fsc;
+						worksheet.Cell(currentRow, 19).Value = ddetails[i].fst;
+						worksheet.Cell(currentRow, 20).Value = ddetails[i].fobc;
+						worksheet.Cell(currentRow, 21).Value = ddetails[i].fother;
+						worksheet.Cell(currentRow, 22).Value = remark;
 
 
 
@@ -2672,7 +2779,7 @@ namespace AbhyProject.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult update_supply(int id, string update_month, string typeofwork, string latitude, string longitude, string cost, string statusofwork, string remark, string department, string otherdepartment, string structure, HttpPostedFileBase image)
+		public ActionResult update_supply(int id, string update_month, string typeofwork, string latitude, string longitude, string cost, string statusofwork, string remark, HttpPostedFileBase image)
 		{
 			if (Session["UserId"] != null)
 			{
@@ -2690,9 +2797,6 @@ namespace AbhyProject.Controllers
 					Details.cost = cost;
 					Details.statusofwork = statusofwork;
 					Details.remark = remark;
-					Details.nameofdepartment = department;
-					Details.other_department = otherdepartment;
-					Details.nameofstructure = structure;
 					if (image != null)
 					{
 						++k;
@@ -4756,7 +4860,249 @@ namespace AbhyProject.Controllers
 
 
 		}
+		[HttpPost]
+		public ActionResult alldepartment_report()
+		{
+			if (Session["UserId"] != null)
+			{
+				try
+				{
+					var StateOfficer = Session["Officer"].ToString();
 
+					if (StateOfficer == "State Level Nodal Officer")
+					{
+						var ss = Session["gstate"].ToString();
+
+						string[] states = { ss };
+						List<all_module_report> all_data = new List<all_module_report>();
+
+						for (int i = 0; i < states.Length; i++)
+						{
+							all_module_report data = new all_module_report();
+
+							string state = states[i];
+
+							var demandside_data = ABE.obj_incentive_demand.Where(x => x.state == state).ToList();
+							var supplyside_data = ABE.obj_incentive_supply.Where(x => x.state == state).ToList();
+							var other_data = ABE.obj_incentive_other.Where(x => x.state == state).ToList();
+
+
+
+
+							var demandcost = demandside_data.Sum(x =>
+							{
+								if (double.TryParse(x.cost, out double areaValue))
+								{
+									return areaValue;
+								}
+								else
+								{
+									return 0.0; // Default value if conversion fails
+								}
+							});
+
+							var supplycost = supplyside_data.Sum(x =>
+							{
+								if (double.TryParse(x.cost, out double areaValue))
+								{
+									return areaValue;
+								}
+								else
+								{
+									return 0.0; // Default value if conversion fails
+								}
+							});
+
+							var othercost = other_data.Sum(x =>
+							{
+								if (double.TryParse(x.cost, out double areaValue))
+								{
+									return areaValue;
+								}
+								else
+								{
+									return 0.0; // Default value if conversion fails
+								}
+							});
+
+
+							var demand_area = demandside_data.Sum(x => Convert.ToDouble(x.area_under));
+							int supply_structure = supplyside_data.Count;
+							int other_structure = other_data.Count;
+
+
+							var demand_activity = demandside_data.GroupBy(x => x.activity).ToList();
+							var demand_activity_value = "";
+							foreach (var item in demand_activity)
+							{
+								var activity = item.Key;
+
+								demand_activity_value += activity + " , ";
+							}
+
+							var supply_activity = supplyside_data.GroupBy(x => x.nameofstructure).ToList();
+
+							var supply_activity_value = "";
+							foreach (var item in supply_activity)
+							{
+								var activity = item.Key;
+
+								supply_activity_value += activity + " , ";
+							}
+
+							var other_activity = other_data.GroupBy(x => x.nameofstructure).ToList();
+
+							var other_activity_value = "";
+							foreach (var item in other_activity)
+							{
+								var activity = item.Key;
+
+								other_activity_value += activity + " , ";
+							}
+
+							data.statename = state;
+							data.demand_cost = Convert.ToDouble(demandcost);
+							data.supply_cost = Convert.ToDouble(supplycost);
+							data.other_cost = Convert.ToDouble(othercost);
+							data.demand_area = Convert.ToDouble(demand_area);
+							data.supply_structure = supply_structure;
+							data.other_structure = other_structure;
+							data.demand_activity_value = demand_activity_value;
+							data.supply_activity_value = supply_activity_value;
+							data.other_activity_value = other_activity_value;
+
+
+							all_data.Add(data);
+						}
+
+
+						var jsonResult = Json(all_data, JsonRequestBehavior.AllowGet);
+						jsonResult.MaxJsonLength = int.MaxValue;
+						return jsonResult;
+					}
+					else
+					{
+
+						string[] states = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
+
+						List<all_module_report> all_data = new List<all_module_report>();
+
+						for (int i = 0; i < states.Length; i++)
+						{
+							all_module_report data = new all_module_report();
+
+							string state = states[i];
+
+							var demandside_data = ABE.obj_incentive_demand.Where(x => x.state == state).ToList();
+							var supplyside_data = ABE.obj_incentive_supply.Where(x => x.state == state).ToList();
+							var other_data = ABE.obj_incentive_other.Where(x => x.state == state).ToList();
+
+
+							var demandcost = demandside_data.Sum(x =>
+							{
+								if (double.TryParse(x.cost, out double areaValue))
+								{
+									return areaValue;
+								}
+								else
+								{
+									return 0.0; // Default value if conversion fails
+								}
+							});
+
+							var supplycost = supplyside_data.Sum(x =>
+							{
+								if (double.TryParse(x.cost, out double areaValue))
+								{
+									return areaValue;
+								}
+								else
+								{
+									return 0.0; // Default value if conversion fails
+								}
+							});
+
+							var othercost = other_data.Sum(x =>
+							{
+								if (double.TryParse(x.cost, out double areaValue))
+								{
+									return areaValue;
+								}
+								else
+								{
+									return 0.0; // Default value if conversion fails
+								}
+							});
+
+
+							var demand_area = demandside_data.Sum(x => Convert.ToDouble(x.area_under));
+							int supply_structure = supplyside_data.Count;
+							int other_structure = other_data.Count;
+
+
+							var demand_activity = demandside_data.GroupBy(x => x.activity).ToList();
+							var demand_activity_value = "";
+							foreach (var item in demand_activity)
+							{
+								var activity = item.Key;
+
+								demand_activity_value += activity + " , ";
+							}
+
+							var supply_activity = supplyside_data.GroupBy(x => x.nameofstructure).ToList();
+
+							var supply_activity_value = "";
+							foreach (var item in supply_activity)
+							{
+								var activity = item.Key;
+
+								supply_activity_value += activity + " , ";
+							}
+
+							var other_activity = other_data.GroupBy(x => x.nameofstructure).ToList();
+
+							var other_activity_value = "";
+							foreach (var item in other_activity)
+							{
+								var activity = item.Key;
+
+								other_activity_value += activity + " , ";
+							}
+
+							data.statename = state;
+							data.demand_cost = Convert.ToDouble(demandcost);
+							data.supply_cost = Convert.ToDouble(supplycost);
+							data.other_cost = Convert.ToDouble(othercost);
+							data.demand_area = Convert.ToDouble(demand_area);
+							data.supply_structure = supply_structure;
+							data.other_structure = other_structure;
+							data.demand_activity_value = demand_activity_value;
+							data.supply_activity_value = supply_activity_value;
+							data.other_activity_value = other_activity_value;
+
+
+							all_data.Add(data);
+						}
+
+
+						var jsonResult = Json(all_data, JsonRequestBehavior.AllowGet);
+						jsonResult.MaxJsonLength = int.MaxValue;
+						return jsonResult;
+					}
+				}
+				catch (Exception Ex)
+				{
+					return Json("Error", JsonRequestBehavior.AllowGet);
+				}
+			}
+			else
+			{
+				return Json("Logout", JsonRequestBehavior.AllowGet);
+			}
+
+
+
+		}
 
 
 	}

@@ -187,7 +187,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 sub_total_div" id="incentice_fund">
-            <a href="~/incentive_phy_fin/viewpage">
+            <a href="~/incentive_phy_fin/viewpage" >
                 <ul class="ul_image_wsphome text-center">
                     <li>
                         <ul class="arrow_ul_css">
@@ -286,6 +286,7 @@
 </script>
 
 <script>
+    var Email = "";
     $(document).ready(function () {
         var d = new Date();
         $("#agency").attr("href", "/controllername?t=" + d.getTime());
@@ -335,6 +336,7 @@
         if (Email == 'akash.verma@kreatetechnologies.com' || Email == 'balramkrishna2002@gmail.com' || Email == 'vivekvivektiwari80@gmail.com' || Email == 'akanshakushwah-cgwb@gov.in') {
             $('#report_page').show();
         }
+        
         
     });
     function SessionInfo() {

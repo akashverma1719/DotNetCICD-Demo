@@ -2313,7 +2313,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
                             $('#addrow_d_part').prop('disabled', true);
-                            $("#btn_submit_dpmu").prop("disabled", true);
+                           // $("#btn_submit_dpmu").prop("disabled", true);
                             commitee_vals.push({
                                 Committee: data[i].comm_name,
                                 Designation: data[i].designation,
@@ -2351,7 +2351,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
                             $('#addrow_d_part').prop('disabled', true);
-                            $('#btn_submit_dpmu').prop('disabled', true);
+                           // $('#btn_submit_dpmu').prop('disabled', true);
 
 
                             commitee_vals.push({
@@ -2361,7 +2361,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                         }
                         else if (approve == "Sreject") {
                             $('#addrow_d_part').prop('disabled', false);
-                            $('#btn_submit_dpmu').prop('disabled', true);
+                           // $('#btn_submit_dpmu').prop('disabled', true);
                         }
                     }
                 }
@@ -5486,7 +5486,7 @@ function abhy_socialmgt_farmers_Info() {
                     }
                     if (approve == "Approve") {
 
-                        $('#btn_submit_dpmu').prop('disabled', true);
+                       // $('#btn_submit_dpmu').prop('disabled', true);
                         $('#btnFinalSave2').prop('disabled', true);
                         $('#large_pop_23_24').prop('disabled', true);
                         $('#medium_pop_23_24').prop('disabled', true);
@@ -5621,7 +5621,7 @@ function abhy_socialmgt_farmers_Info() {
                         return;
                     }
                     if (approve == "District") {
-                        $('#btn_submit_dpmu').prop('disabled', true);
+                      //  $('#btn_submit_dpmu').prop('disabled', true);
                         $('#btnFinalSave2').prop('disabled', true);
                         $('#large_pop_23_24').prop('disabled', true);
                         $('#medium_pop_23_24').prop('disabled', true);
@@ -9826,12 +9826,14 @@ function abhy_socialmgt_remarks() {
                 $('#btnFinalSave2').prop('disabled', true);
                 $('#btnFinalSave7').prop('disabled', true);
                 $('#btnFinalSave7').prop('disabled', true);
-                $('#btn_submit_dpmu').hide();
+                $('#btn_submit_approve').hide();
+                $('#btn_reject_spmu').hide();
+                $('#btn_submit_spmu').hide();
+                $('#btn_reject_dpmu').hide();
+                $('#remark_txt').hide();
             }
-
-            debugger;
-
             if (check_data == "No") {
+                debugger;
                 $("#gp_status").text("The data for this GP is either not populated under the GPDCI module or has not been approved yet.").css({ 'color': 'Blue' });
                 $('#remark_txt').hide();
                 $('#remark').hide();
@@ -9845,9 +9847,16 @@ function abhy_socialmgt_remarks() {
                 $('#btn_reject_spmu').prop('disabled', true);
                 $('#btn_submit_spmu').prop('disabled', true);
                 $('#btn_reject_dpmu').prop('disabled', true);
+                $('#btn_submit_dpmu').hide();
+                $('#btn_submit_approve').hide();
+                $('#btn_reject_spmu').hide();
+                $('#btn_submit_spmu').hide();
+                $('#btn_reject_dpmu').hide();
+                $('#remark_txt').hide();
             }
             else {
                 if (data == "No Data") {
+                    debugger;
                     $('#remark_txt').hide();
                     $('#remark').hide();
                     $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
@@ -9855,6 +9864,18 @@ function abhy_socialmgt_remarks() {
                     $('#btn_reject_spmu').prop('disabled', true);
                     $('#btn_submit_spmu').prop('disabled', true);
                     $('#btn_reject_dpmu').prop('disabled', true);
+                    $('#btn_submit_dpmu').prop('disabled', false);
+                    if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                        $('#btn_submit_dpmu').show();
+                        $('#btn_submit_dpmu').prop('disabled', false);
+                    }
+
+                    else {
+                        $('#btn_submit_dpmu').hide();
+                        $('#remarks').hide();
+                        $('#btn_submit_spmu').hide();
+                        $('#btn_reject_dpmu').hide();
+                    }
                 }
                 if (data.length != 0) {
                     var remarks = data[0].remarks;
@@ -9862,25 +9883,65 @@ function abhy_socialmgt_remarks() {
                     if (approve == "Approve") {
                         $('#remark_txt').hide();
                         $("#gp_status").text("Approved ").css({ 'color': 'Green' });
+                        $('#btn_submit_dpmu').hide();
+                        $('#remarks').hide();
+                        $('#btn_submit_spmu').hide();
+                        $('#btn_reject_dpmu').hide();
                     }
                     if (approve == "Sreject") {
                         $('#remark_txt').show();
                         $("#gp_status").text("State-level nodal officer rejected it, and it is now pending rejection at the DPMU level.").css({ 'color': 'Red' });
                         $("#gp_remark").text(remarks).css({ 'color': 'Red' });
+                        if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                            $('#btn_submit_dpmu').hide();
+                        }
+
+                        else {
+                            $('#btn_submit_dpmu').hide();
+                            $('#remarks').show();
+                            $('#btn_submit_spmu').show();
+                            $('#btn_reject_dpmu').show();
+                        }
                     }
                     if (approve == "State") {
                         $('#remark_txt').hide();
                         $("#gp_status").text("Verification is pending with the State-level nodal officer.").css({ 'color': 'Blue' });
+                        $('#btn_submit_dpmu').hide();
                     }
                     if (approve == "District") {
                         $('#remark_txt').hide();
                         $("#gp_status").text("Verification is pending with the District-level nodal officer.").css({ 'color': 'Blue' });
+
+                        if (StateOfficer == "District Level Nodal Officer") {
+                            $('#remarks').show();
+                            $('#btn_submit_spmu').show();
+                            $('#btn_reject_dpmu').show();
+                            $('#btn_submit_spmu').prop('disabled', false);
+                            $('#btn_reject_dpmu').prop('disabled', false);
+                        }
+                        else {
+                            $('#btn_submit_dpmu').hide();
+                            $('#remarks').hide();
+                            $('#btn_submit_spmu').hide();
+                            $('#btn_reject_dpmu').hide();
+                        }
                     }
                     if (approve == "Reject") {
 
                         $('#remark_txt').show();
                         $("#gp_status").text("District-level nodal officer rejected it, and it is now pending for correction at the GP level.").css({ 'color': 'Red' });
                         $("#gp_remark").text(remarks).css({ 'color': 'Red' });
+                        if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                            $('#btn_submit_dpmu').show();
+                            $('#btn_submit_dpmu').prop('disabled', false);
+                        }
+
+                        else {
+                            $('#btn_submit_dpmu').hide();
+                            $('#remarks').hide();
+                            $('#btn_submit_spmu').hide();
+                            $('#btn_reject_dpmu').hide();
+                        }
                     }
                     if (approve == "") {
                         $('#remark_txt').hide();
@@ -9889,6 +9950,17 @@ function abhy_socialmgt_remarks() {
                         $('#btn_reject_spmu').prop('disabled', true);
                         $('#btn_submit_spmu').prop('disabled', true);
                         $('#btn_reject_dpmu').prop('disabled', true);
+                        if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                            $('#btn_submit_dpmu').show();
+                            $('#btn_submit_dpmu').prop('disabled', false);
+                        }
+
+                        else {
+                            $('#btn_submit_dpmu').hide();
+                            $('#remarks').hide();
+                            $('#btn_submit_spmu').hide();
+                            $('#btn_reject_dpmu').hide();
+                        }
                     }
 
 
@@ -9928,7 +10000,6 @@ function abhy_socialmgt_remarks() {
         }
     });
 }
-
 
 function Submit_To_DPMU() {
     var year = $("#year").val();

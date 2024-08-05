@@ -1479,6 +1479,7 @@ namespace AbhyProject.Models
     {
 
         public string department { get; set; }
+        public string otherdepartment { get; set; }
         public int atal_gp { get; set; }
         public int inc_gp { get; set; }
         public double cost { get; set; }

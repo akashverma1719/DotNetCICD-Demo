@@ -565,8 +565,18 @@
                                                 <option value="2024-25">2024-25</option>
                                             </select>
                                         </li>
-                                        <li id="MonthDropdownLabel">
-                                            <select class="form-control" id="month" onchange="" disabled>
+                                        <li id="7date">
+
+                                            <select class="form-control" id="month" onchange="Month_change()">
+                                                <option value="June">June</option>
+                                                <option value="July">July</option>
+                                                <option value="August">August</option>
+                                            </select>
+
+                                        </li>
+                                        <li id="8date">
+
+                                            <select class="form-control" id="month" onchange="Month_change()" disabled>
                                                 <option value="0">Select Month</option>
                                                 <option value="April">April</option>
                                                 <option value="May">May</option>
@@ -581,8 +591,9 @@
                                                 <option value="February">February</option>
                                                 <option value="March">March</option>
                                             </select>
+
                                         </li>
-                                       
+
                                     </ul>
                                 </div>
                             </div>
@@ -1111,6 +1122,20 @@
         $('#DistDropdownLabel2').hide();
         $('#DistDropdownLabel_all').hide();
         $('#alert_waiting').hide();
+
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        if (today <= "2024-08-07") {
+            $('#7date').show();
+            $('#8date').hide();
+        }
+        else {
+            $('#7date').hide();
+            $('#8date').show();
+        }
         var fin_year = getCurrentFiscalYear();
 
         var year = "";
@@ -2030,7 +2055,12 @@
         });
     }
     function isWithinRange(date) {
-        if (State == "Haryana_6") {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        if (today <= "2024-08-07") {
             var currentDate = new Date();
             var currentMonth = currentDate.getMonth(); // Month is 0 indexed
             var currentYear = currentDate.getFullYear();
@@ -2045,7 +2075,7 @@
             var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
 
             // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 1;
+            var prevMonth = currentMonth - 2;
             var prevMonthYear = currentYear;
             if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
                 prevMonth = 11; // December of the previous year
@@ -2344,31 +2374,25 @@
         var stateaa = $('#state1_D' + i).val();
         var yearaa = $('#year1_D' + i).val();
         var month = $('#month1_D' + i).val();
-        if (stateaa == "Haryana_6" && yearaa == "2024-25" && month == "June") {
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth()).padStart(2, '0'); // January is 0!
-            var yyyy = today.getFullYear();
-            today = yyyy + '-' + mm + '-' + dd;
-
-            // Set the minimum and maximum attributes of the date input
-            document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
-            document.getElementById("tdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("tdate1_D" + i).setAttribute("max", "9999-12-31");
-            document.getElementById("opendate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("opendate1_D" + i).setAttribute("max", "9999-12-31");
-            document.getElementById("closedate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("closedate1_D" + i).setAttribute("max", "9999-12-31");
-        }
-        else {
+        
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
             var yyyy = today.getFullYear();
             today = yyyy + '-' + mm + '-' + dd;
-
+        if (today <= "2024-08-07") {
+            var mmm = "06";
             // Set the minimum and maximum attributes of the date input
+            document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("tdate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("tdate1_D" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("opendate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("opendate1_D" + i).setAttribute("max", "9999-12-31");
+            document.getElementById("closedate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
+            document.getElementById("closedate1_D" + i).setAttribute("max", "9999-12-31");
+        }
+        else {
             document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
             document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
             document.getElementById("tdate1_D" + i).setAttribute("min", yyyy + '-' + mm + '-01');
@@ -2601,19 +2625,36 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
+    if (today <= "2024-08-07") {
+        var mmm = "06";
 
-    // Set the minimum and maximum attributes of the date input
-    document.getElementById("from_date").setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("from_date").setAttribute("max", "9999-12-31");
+        // Set the minimum and maximum attributes of the date input
+        document.getElementById("from_date").setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("from_date").setAttribute("max", "9999-12-31");
 
-    document.getElementById("to_date").setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("to_date").setAttribute("max", "9999-12-31");
+        document.getElementById("to_date").setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("to_date").setAttribute("max", "9999-12-31");
 
-    document.getElementById("reg_open_date").setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("reg_open_date").setAttribute("max", "9999-12-31");
+        document.getElementById("reg_open_date").setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("reg_open_date").setAttribute("max", "9999-12-31");
 
-    document.getElementById("reg_close_date").setAttribute("min", yyyy + '-' + mm + '-01');
-    document.getElementById("reg_close_date").setAttribute("max", "9999-12-31");
+        document.getElementById("reg_close_date").setAttribute("min", yyyy + '-' + mmm + '-01');
+        document.getElementById("reg_close_date").setAttribute("max", "9999-12-31");
+    }
+    else {
+        // Set the minimum and maximum attributes of the date input
+        document.getElementById("from_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("from_date").setAttribute("max", "9999-12-31");
+
+        document.getElementById("to_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("to_date").setAttribute("max", "9999-12-31");
+
+        document.getElementById("reg_open_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("reg_open_date").setAttribute("max", "9999-12-31");
+
+        document.getElementById("reg_close_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("reg_close_date").setAttribute("max", "9999-12-31");
+    }
 </script>
 
 <script>

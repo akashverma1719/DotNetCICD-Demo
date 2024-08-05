@@ -547,6 +547,7 @@
                             <tr class="success">
                                 <td rowspan="2" class="text-center"><label>SI.No</label></td>
                                 <td rowspan="2" class="text-center"><label>Name of line Department</label></td>
+                                <td rowspan="2" class="text-center"><label>Name of Other Department</label></td>
                                 <td rowspan="2" class="text-center"><label>No of Atal Jal GP</label></td>
                                 <td rowspan="2" class="text-center"><label>No of GP's Covered through incentive fund</label></td>
                                 <td rowspan="2" class="text-center"><label>Total Cost (Incentive Fund Utilization) Lakhs</label></td>
@@ -726,6 +727,7 @@
 
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + data[i].department + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].otherdepartment + '</label></td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].atal_gp + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].inc_gp + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].cost.toFixed(2) + '</td>';
@@ -766,6 +768,7 @@
 
                             Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + data[i].department + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].otherdepartment + '</label></td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].atal_gp + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].inc_gp + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].cost.toFixed(2) + '</td>';
@@ -777,8 +780,8 @@
 
                         }
 
-                        Tbodyhtml += '<tr><td colspan="2" id="srNo"><label>' + "Total" + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + atal_gp + '</label></td>';
+                        Tbodyhtml += '<tr><td colspan="4" id="srNo"><label>' + "Total" + '</label></td>';
+                        
                         Tbodyhtml += '<td id="rainfall"><label>' + inc_gp + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + cost.toFixed(2) + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + area + '</label></td>';
