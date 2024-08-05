@@ -1438,10 +1438,24 @@
                     for (var i = 0; i < data.length; i++) {
                         
                         var approved_status = $("#Status").val();
-                        if (approved_status == 'GP') {
+                        //if (approved_status == 'GP') {
 
-                            if (data[i].gp_sent == false && data[i].d_reject == false && data[i].d_sent == false && data[i].s_reject == false) {
-                                status = "At Gp"
+                        //    if (data[i].gp_sent == false && data[i].d_reject == false && data[i].d_sent == false && data[i].s_reject == false) {
+                        //        status = "At Gp"
+                        //        tr += '<tr><td>' + j++ + '</td>'
+                        //        tr += '<td>' + data[i].state_name + '</td>'
+                        //        tr += '<td>' + data[i].district_name + '</td>'
+                        //        tr += '<td>' + data[i].block_name + '</td>'
+                        //        tr += '<td>' + data[i].gpname + '</td>'
+                        //        tr += '<td>' + data[i].year + '</td>'
+                        //        tr += '<td><label style="color: blue;">' + status + '</label></td></tr>'
+                        //    }
+
+
+                        //}
+                        if (approved_status == 'GP') {
+                            if (data[i].approve.trim() == "") {
+                                status = "AT GP"
                                 tr += '<tr><td>' + j++ + '</td>'
                                 tr += '<td>' + data[i].state_name + '</td>'
                                 tr += '<td>' + data[i].district_name + '</td>'
@@ -1450,65 +1464,10 @@
                                 tr += '<td>' + data[i].year + '</td>'
                                 tr += '<td><label style="color: blue;">' + status + '</label></td></tr>'
                             }
-
-
                         }
-                        else if (approved_status == 'District') {
 
-                            //tr += '<td>' + data[i].month + '</td>'
-
-                            if (data[i].gp_sent == true && data[i].d_reject == false && data[i].d_sent == false && data[i].s_reject == false) {
-                                status = "At DPMU"
-                                tr += '<tr><td>' + j++ + '</td>'
-                                tr += '<td>' + data[i].state_name + '</td>'
-                                tr += '<td>' + data[i].district_name + '</td>'
-                                tr += '<td>' + data[i].block_name + '</td>'
-                                tr += '<td>' + data[i].gpname + '</td>'
-                                tr += '<td>' + data[i].year + '</td>'
-                                tr += '<td><label style="color: orange;">' + status + '</label></td></tr>'
-                            }
-
-
-                        }
-                        else if (approved_status == 'Reject') {
-
-                            //tr += '<td>' + data[i].month + '</td>'
-
-                            if (data[i].gp_sent == false && data[i].d_reject == true && data[i].d_sent == false && data[i].s_reject == false) {
-                                status = "Rejected By DPMU"
-                                tr += '<tr><td>' + j++ + '</td>'
-                                tr += '<td>' + data[i].state_name + '</td>'
-                                tr += '<td>' + data[i].district_name + '</td>'
-                                tr += '<td>' + data[i].block_name + '</td>'
-                                tr += '<td>' + data[i].gpname + '</td>'
-                                tr += '<td>' + data[i].year + '</td>'
-                                tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
-                            }
-                            else if (data[i].gp_sent == true && data[i].d_reject == false && data[i].d_sent == false && data[i].s_reject == true) {
-                                status = "Rejected By SPMU"
-                                tr += '<tr><td>' + j++ + '</td>'
-                                tr += '<td>' + data[i].state_name + '</td>'
-                                tr += '<td>' + data[i].district_name + '</td>'
-                                tr += '<td>' + data[i].block_name + '</td>'
-                                tr += '<td>' + data[i].gpname + '</td>'
-                                tr += '<td>' + data[i].year + '</td>'
-                                tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
-                            }
-                            else if (data[i].gp_sent == false && data[i].d_reject == true && data[i].d_sent == false && data[i].s_reject == true) {
-                                status = "Rejected By DPMU"
-                                tr += '<tr><td>' + j++ + '</td>'
-                                tr += '<td>' + data[i].state_name + '</td>'
-                                tr += '<td>' + data[i].district_name + '</td>'
-                                tr += '<td>' + data[i].block_name + '</td>'
-                                tr += '<td>' + data[i].gpname + '</td>'
-                                tr += '<td>' + data[i].year + '</td>'
-                                tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
-                            }
-                        }
                         else if (approved_status == 'Approve') {
-
-                            //tr += '<td>' + data[i].month + '</td>'
-                            if (data[i].gp_sent == true && data[i].d_reject == false && data[i].d_sent == true && data[i].s_reject == false && data[i].approved == "true") {
+                            if (data[i].approve == 'Approve') {
                                 status = "Approved"
                                 tr += '<tr><td>' + j++ + '</td>'
                                 tr += '<td>' + data[i].state_name + '</td>'
@@ -1519,8 +1478,104 @@
                                 tr += '<td><label style="color: green;">' + status + '</label></td></tr>'
                             }
 
-
                         }
+
+                        else if (approved_status == 'District') {
+                            if (data[i].approve == 'District') {
+                            status = "At DPMU"
+                            tr += '<tr><td>' + j++ + '</td>'
+                            tr += '<td>' + data[i].state_name + '</td>'
+                            tr += '<td>' + data[i].district_name + '</td>'
+                            tr += '<td>' + data[i].block_name + '</td>'
+                            tr += '<td>' + data[i].gpname + '</td>'
+                            tr += '<td>' + data[i].year + '</td>'
+                            tr += '<td><label style="color: blue;">' + status + '</label></td></tr>'
+                        }
+                        }
+
+                        else if (approved_status == 'Reject') {
+                            if (data[i].approve == 'Reject') {
+                            status = "Reject"
+                            tr += '<tr><td>' + j++ + '</td>'
+                            tr += '<td>' + data[i].state_name + '</td>'
+                            tr += '<td>' + data[i].district_name + '</td>'
+                            tr += '<td>' + data[i].block_name + '</td>'
+                            tr += '<td>' + data[i].gpname + '</td>'
+                            tr += '<td>' + data[i].year + '</td>'
+                            tr += '<td><label style="color: red;">' + status + '</label></td></tr>'
+                        }
+                        }
+                        
+                         
+                           
+                        //else if (approved_status == 'District') {
+
+                        //    //tr += '<td>' + data[i].month + '</td>'
+
+                        //    if (data[i].gp_sent == true && data[i].d_reject == false && data[i].d_sent == false && data[i].s_reject == false) {
+                        //        status = "At DPMU"
+                        //        tr += '<tr><td>' + j++ + '</td>'
+                        //        tr += '<td>' + data[i].state_name + '</td>'
+                        //        tr += '<td>' + data[i].district_name + '</td>'
+                        //        tr += '<td>' + data[i].block_name + '</td>'
+                        //        tr += '<td>' + data[i].gpname + '</td>'
+                        //        tr += '<td>' + data[i].year + '</td>'
+                        //        tr += '<td><label style="color: orange;">' + status + '</label></td></tr>'
+                        //    }
+
+
+                        //}
+                        //else if (approved_status == 'Reject') {
+
+                        //    //tr += '<td>' + data[i].month + '</td>'
+
+                        //    if (data[i].gp_sent == false && data[i].d_reject == true && data[i].d_sent == false && data[i].s_reject == false) {
+                        //        status = "Rejected By DPMU"
+                        //        tr += '<tr><td>' + j++ + '</td>'
+                        //        tr += '<td>' + data[i].state_name + '</td>'
+                        //        tr += '<td>' + data[i].district_name + '</td>'
+                        //        tr += '<td>' + data[i].block_name + '</td>'
+                        //        tr += '<td>' + data[i].gpname + '</td>'
+                        //        tr += '<td>' + data[i].year + '</td>'
+                        //        tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
+                        //    }
+                        //    else if (data[i].gp_sent == true && data[i].d_reject == false && data[i].d_sent == false && data[i].s_reject == true) {
+                        //        status = "Rejected By SPMU"
+                        //        tr += '<tr><td>' + j++ + '</td>'
+                        //        tr += '<td>' + data[i].state_name + '</td>'
+                        //        tr += '<td>' + data[i].district_name + '</td>'
+                        //        tr += '<td>' + data[i].block_name + '</td>'
+                        //        tr += '<td>' + data[i].gpname + '</td>'
+                        //        tr += '<td>' + data[i].year + '</td>'
+                        //        tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
+                        //    }
+                        //    else if (data[i].gp_sent == false && data[i].d_reject == true && data[i].d_sent == false && data[i].s_reject == true) {
+                        //        status = "Rejected By DPMU"
+                        //        tr += '<tr><td>' + j++ + '</td>'
+                        //        tr += '<td>' + data[i].state_name + '</td>'
+                        //        tr += '<td>' + data[i].district_name + '</td>'
+                        //        tr += '<td>' + data[i].block_name + '</td>'
+                        //        tr += '<td>' + data[i].gpname + '</td>'
+                        //        tr += '<td>' + data[i].year + '</td>'
+                        //        tr += '<td><label style="color: Red;">' + status + '</label></td></tr>'
+                        //    }
+                        //}
+                        //else if (approved_status == 'Approve') {
+
+                        //    //tr += '<td>' + data[i].month + '</td>'
+                        //    if (data[i].gp_sent == true && data[i].d_reject == false && data[i].d_sent == true && data[i].s_reject == false && data[i].approved == "true") {
+                        //        status = "Approved"
+                        //        tr += '<tr><td>' + j++ + '</td>'
+                        //        tr += '<td>' + data[i].state_name + '</td>'
+                        //        tr += '<td>' + data[i].district_name + '</td>'
+                        //        tr += '<td>' + data[i].block_name + '</td>'
+                        //        tr += '<td>' + data[i].gpname + '</td>'
+                        //        tr += '<td>' + data[i].year + '</td>'
+                        //        tr += '<td><label style="color: green;">' + status + '</label></td></tr>'
+                        //    }
+
+
+                        //}
                         else {
                             tr += '<tr><td>' + j++ + '</td>'
                             tr += '<td>' + data[i].state_name + '</td>'
