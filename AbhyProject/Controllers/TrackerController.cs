@@ -1124,147 +1124,172 @@ namespace AbhyProject.Controllers
         [HttpPost]
         public ActionResult GetDataByStateSocial(string StateName, string Status, string Year)
         {
-            //if (Session["UserId"] != null)
-            //{
-
-            //    var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
-
-
-            //    return Json(Data, JsonRequestBehavior.AllowGet);
-            //}
-            //else
-            //{
-            //    return Json("Logout", JsonRequestBehavior.AllowGet);
-            //}
             if (Session["UserId"] != null)
             {
+
+                //var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
+
+
+                //return Json(Data, JsonRequestBehavior.AllowGet);
+
+
                 try
                 {
-                    //int StatusId = Convert.ToInt32(Status);
-                    if (Year == "2023-24")
+
+                    List<social_socialmgt_other_local_institues> ddetails = new List<social_socialmgt_other_local_institues>();
+                    var socialData = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == StateName && x.year == Year).GroupBy(o => o.gpname).ToList();//total list
+                    if (socialData.Count != 0)
                     {
-                        if (StateName != "0" && Status == "0" && Year == "0")
+                        foreach (var items in socialData.AsEnumerable())
                         {
-                            var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName).ToList();
-                            return Json(Data, JsonRequestBehavior.AllowGet);
-                        }
-                        else if (StateName != "0" && Year != "0" && Status == "0")
-                        {
-                            var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year).ToList();
-                            return Json(Data, JsonRequestBehavior.AllowGet);
-                        }
-                        else if (StateName != "0" && Year != "0" && Status != "0")
-                        {
-                            if (Status == "GP")
-                            {                                
-                             var approvedGpnames = ABE.obj_social_socialmgt_remarks
-                             .Where(sr => (sr.state_name == StateName && sr.approve == "Approve" || sr.approve == "District") &&
-                             sr.year == Year).Select(sr => sr.gpname).Distinct();
-
-                                var result = ABE.obj_social_socialmgt_other_local_institues
-                                    .Where(ss => ss.state_name == StateName && ss.year == Year &&
-                                                 !approvedGpnames.Contains(ss.gpname))
-                                    .Select(ss => new
-                                    {
-                                        gpname = ss.gpname,
-                                        state_name = ss.state_name,
-                                        district_name = ss.district_name,
-                                        block_name = ss.block_name,
-                                        year = ss.year,
-                                        approve = "At-GP"
-                                    })
-                                    .Distinct().ToList();
-
-                                return Json(result, JsonRequestBehavior.AllowGet);
-                            }
-
-                            else {
-                                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
-                                 return Json(Data, JsonRequestBehavior.AllowGet);
-
-                            }
-
+                            var item = items.First();
+                            var data = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == StateName && x.year == Year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                            ddetails.AddRange(data);
                         }
                     }
-                    else if (Year == "2023-24 Update")
-                    {
-                        if (StateName != "0" && Status == "0" && Year == "0")
-                        {
-                            var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName).ToList();
-                            return Json(Data, JsonRequestBehavior.AllowGet);
-                        }
-                        else if (StateName != "0" && Year != "0" && Status == "0")
-                        {
-                            var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year).ToList();
-                            return Json(Data, JsonRequestBehavior.AllowGet);
-                        }
-                        else if (StateName != "0" && Year != "0" && Status != "0")
-                        {
-                            if (Status == "GP")
-                            {
-                                var approvedGpnames = ABE.obj_social_socialmgt_remarks
-                                .Where(sr => (sr.state_name == StateName && sr.approve == "Approve" || sr.approve == "District") &&
-                                sr.year == Year).Select(sr => sr.gpname).Distinct();
 
-                                var result = ABE.obj_social_socialmgt_other_local_institues
-                                    .Where(ss => ss.state_name == StateName && ss.year == Year &&
-                                                 !approvedGpnames.Contains(ss.gpname))
-                                    .Select(ss => new
-                                    {
-                                        gpname = ss.gpname,
-                                        state_name = ss.state_name,
-                                        district_name = ss.district_name,
-                                        block_name = ss.block_name,
-                                        year = ss.year,
-                                        approve = "At-GP"
-                                    })
-                                    .Distinct().ToList();
-
-                                return Json(result, JsonRequestBehavior.AllowGet);
-                            }
-
-                            else
-                            {
-                                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
-                                return Json(Data, JsonRequestBehavior.AllowGet);
-
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (StateName != "0" && Status == "0" && Year == "0")
-                        {
-                            var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName).ToList();
-                            return Json(Data, JsonRequestBehavior.AllowGet);
-                        }
-                        else if (StateName != "0" && Year != "0" && Status == "0")
-                        {
-                            var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year).ToList();
-                            return Json(Data, JsonRequestBehavior.AllowGet);
-                        }
-                        else if (StateName != "0" && Year != "0" && Status != "0")
-                        {
-                            //if (Status == "1")
-                            //{
-                            //    var GPData = ABE.obj_abhy_wsp_gpdata_new_24.Where(x => x.state_name == StateName && x.year == Year).ToList();
-                            //    return Json(GPData, JsonRequestBehavior.AllowGet);
-                            //}
-                            var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
-                            return Json(Data, JsonRequestBehavior.AllowGet);
-                        }
-                    }
-                    return Json("No Data", JsonRequestBehavior.AllowGet);
+                    return Json(ddetails, JsonRequestBehavior.AllowGet);
                 }
-                catch (Exception ex)
+                catch (Exception Ex)
                 {
-                    return Json(ex, JsonRequestBehavior.AllowGet);
+                    return Json("Error", JsonRequestBehavior.AllowGet);
                 }
+
+
             }
             else
             {
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
+            //if (Session["UserId"] != null)
+            //{
+            //    try
+            //    {
+            //        //int StatusId = Convert.ToInt32(Status);
+            //        if (Year == "2023-24")
+            //        {
+            //            if (StateName != "0" && Status == "0" && Year == "0")
+            //            {
+            //                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName).ToList();
+            //                return Json(Data, JsonRequestBehavior.AllowGet);
+            //            }
+            //            else if (StateName != "0" && Year != "0" && Status == "0")
+            //            {
+            //                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year).ToList();
+            //                return Json(Data, JsonRequestBehavior.AllowGet);
+            //            }
+            //            else if (StateName != "0" && Year != "0" && Status != "0")
+            //            {
+            //                if (Status == "GP")
+            //                {                                
+            //                 var approvedGpnames = ABE.obj_social_socialmgt_remarks
+            //                 .Where(sr => (sr.state_name == StateName && sr.approve == "Approve" || sr.approve == "District") &&
+            //                 sr.year == Year).Select(sr => sr.gpname).Distinct();
+
+            //                    var result = ABE.obj_social_socialmgt_other_local_institues
+            //                        .Where(ss => ss.state_name == StateName && ss.year == Year &&
+            //                                     !approvedGpnames.Contains(ss.gpname))
+            //                        .Select(ss => new
+            //                        {
+            //                            gpname = ss.gpname,
+            //                            state_name = ss.state_name,
+            //                            district_name = ss.district_name,
+            //                            block_name = ss.block_name,
+            //                            year = ss.year,
+            //                            approve = "At-GP"
+            //                        })
+            //                        .Distinct().ToList();
+
+            //                    return Json(result, JsonRequestBehavior.AllowGet);
+            //                }
+
+            //                else {
+            //                    var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
+            //                     return Json(Data, JsonRequestBehavior.AllowGet);
+
+            //                }
+
+            //            }
+            //        }
+            //        else if (Year == "2023-24 Update")
+            //        {
+            //            if (StateName != "0" && Status == "0" && Year == "0")
+            //            {
+            //                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName).ToList();
+            //                return Json(Data, JsonRequestBehavior.AllowGet);
+            //            }
+            //            else if (StateName != "0" && Year != "0" && Status == "0")
+            //            {
+            //                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year).ToList();
+            //                return Json(Data, JsonRequestBehavior.AllowGet);
+            //            }
+            //            else if (StateName != "0" && Year != "0" && Status != "0")
+            //            {
+            //                if (Status == "GP")
+            //                {
+            //                    var approvedGpnames = ABE.obj_social_socialmgt_remarks
+            //                    .Where(sr => (sr.state_name == StateName && sr.approve == "Approve" || sr.approve == "District") &&
+            //                    sr.year == Year).Select(sr => sr.gpname).Distinct();
+
+            //                    var result = ABE.obj_social_socialmgt_other_local_institues
+            //                        .Where(ss => ss.state_name == StateName && ss.year == Year &&
+            //                                     !approvedGpnames.Contains(ss.gpname))
+            //                        .Select(ss => new
+            //                        {
+            //                            gpname = ss.gpname,
+            //                            state_name = ss.state_name,
+            //                            district_name = ss.district_name,
+            //                            block_name = ss.block_name,
+            //                            year = ss.year,
+            //                            approve = "At-GP"
+            //                        })
+            //                        .Distinct().ToList();
+
+            //                    return Json(result, JsonRequestBehavior.AllowGet);
+            //                }
+
+            //                else
+            //                {
+            //                    var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
+            //                    return Json(Data, JsonRequestBehavior.AllowGet);
+
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (StateName != "0" && Status == "0" && Year == "0")
+            //            {
+            //                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName).ToList();
+            //                return Json(Data, JsonRequestBehavior.AllowGet);
+            //            }
+            //            else if (StateName != "0" && Year != "0" && Status == "0")
+            //            {
+            //                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year).ToList();
+            //                return Json(Data, JsonRequestBehavior.AllowGet);
+            //            }
+            //            else if (StateName != "0" && Year != "0" && Status != "0")
+            //            {
+            //                //if (Status == "1")
+            //                //{
+            //                //    var GPData = ABE.obj_abhy_wsp_gpdata_new_24.Where(x => x.state_name == StateName && x.year == Year).ToList();
+            //                //    return Json(GPData, JsonRequestBehavior.AllowGet);
+            //                //}
+            //                var Data = ABE.obj_social_socialmgt_remarks.Where(x => x.state_name == StateName && x.year == Year && x.approve == Status).ToList();
+            //                return Json(Data, JsonRequestBehavior.AllowGet);
+            //            }
+            //        }
+            //        return Json("No Data", JsonRequestBehavior.AllowGet);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return Json(ex, JsonRequestBehavior.AllowGet);
+            //    }
+            //}
+            //else
+            //{
+            //    return Json("Logout", JsonRequestBehavior.AllowGet);
+            //}
 
         }
 
