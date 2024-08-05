@@ -2162,6 +2162,9 @@
     <Content Include="Views\WspNew\AllUserInfo.cshtml" />
     <Content Include="Views\WspNew\LogInForce.cshtml" />
     <Content Include="Views\Shared\loginlogoutcheck.cshtml" />
+    <Content Include="Views\incentive_phy_fin\demandside_report.cshtml" />
+    <Content Include="Views\incentive_phy_fin\other_report_new.cshtml" />
+    <Content Include="Views\incentive_phy_fin\suppyside_report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
