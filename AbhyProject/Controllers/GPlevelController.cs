@@ -1877,10 +1877,10 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if(UploadData1 != null) { 
-                            objUpload.demographic_file = UploadData1.demographic_file;
-                            objUpload.demographic_path = UploadData1.demographic_path;
-                            }
+                           
+                            objUpload.demographic_file = "";
+                            objUpload.demographic_path = "";
+                            
                         }
                         if (txtimage2 != null)
                         {
@@ -1917,11 +1917,8 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.livestock_file = UploadData1.livestock_file;
-                                objUpload.livestock_path = UploadData1.livestock_path;
-                            }
+                            objUpload.livestock_file = "";
+                            objUpload.livestock_path = "";
                         }
 
                         if (txtimage4 != null)
@@ -1959,11 +1956,8 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.netsown_area_file = UploadData1.netsown_area_file;
-                                objUpload.netsown_area_path = UploadData1.netsown_area_path;
-                            }
+                            objUpload.netsown_area_file = "";
+                            objUpload.netsown_area_path = "";
                         }
                         if (txtimage5 != null)
                         {
@@ -2000,11 +1994,10 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.area_cultivation_file = UploadData1.area_cultivation_file;
-                                objUpload.area_cultivation_path = UploadData1.area_cultivation_path;
-                            }
+                            
+                                objUpload.area_cultivation_file = "";
+                                objUpload.area_cultivation_path = "";
+                            
                         }
                         if (txtimage6 != null)
                         {
@@ -2041,11 +2034,8 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.suface_water_file = UploadData1.suface_water_file;
-                                objUpload.suface_water_path = UploadData1.suface_water_path;
-                            }
+                            objUpload.suface_water_file = "";
+                            objUpload.suface_water_path = "";
                         }
                         if (txtimage7 != null)
                         {
@@ -2082,11 +2072,8 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.ground_water_file = UploadData1.ground_water_file;
-                                objUpload.ground_water_path = UploadData1.ground_water_path;
-                            }
+                            objUpload.ground_water_file = "";
+                            objUpload.ground_water_path = "";
                         }
                         if (txtimage8 != null)
                         {
@@ -2123,11 +2110,8 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.existing_wells_file = UploadData1.existing_wells_file;
-                                objUpload.existing_wells_path = UploadData1.existing_wells_path;
-                            }
+                            objUpload.existing_wells_file = "";
+                            objUpload.existing_wells_path = "";
                         }
                         if (txtimage9 != null)
                         {
@@ -2164,11 +2148,8 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.water_lifting_file = UploadData1.water_lifting_file;
-                                objUpload.water_lifting_path = UploadData1.water_lifting_path;
-                            }
+                            objUpload.water_lifting_file = "";
+                            objUpload.water_lifting_path = "";
                         }
                         if (txtimage10 != null)
                         {
@@ -2205,11 +2186,8 @@ namespace AbhyProject.Controllers
                         }
                         else
                         {
-                            if (UploadData1 != null)
-                            {
-                                objUpload.water_efficient_file = UploadData1.water_efficient_file;
-                                objUpload.water_efficient_path = UploadData1.water_efficient_path;
-                            }
+                            objUpload.water_efficient_file = "";
+                            objUpload.water_efficient_path = "";
                         }
                         objUpload.id = id;
                         objUpload.state_name = data.state_name;
