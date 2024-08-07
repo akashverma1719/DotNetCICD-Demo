@@ -293,6 +293,10 @@ namespace AbhyProject.Models
         //baseline tables
         public virtual DbSet<sarpanchdetails> obj_sarpanchdetails { get; set; }
         public virtual DbSet<abhy_baseline_gpdata> obj_abhy_baseline_gpdata { get; set; }
+        public virtual DbSet<vw_gpdcidata_tracker_count_statewise> obj_vw_gpdcidata_tracker_count_statewise { get; set; }
+        public virtual DbSet<vw_gpdcidata_tracker_count_districtwise> obj_vw_gpdcidata_tracker_count_districtwise { get; set; }
+        public virtual DbSet<vw_gpdcidata_tracker_count_blockwise> obj_vw_gpdcidata_tracker_count_blockwise { get; set; }
+        public virtual DbSet<vw_gpdcidata_tracker_count_gpwise> obj_vw_gpdcidata_tracker_count_gpwise { get; set; }
         public virtual DbSet<abhy_baseline_emailid> obj_abhy_baseline_emailid { get; set; }
         public virtual DbSet<abhy_baseline_gp_upload> obj_abhy_baseline_gp_upload { get; set; }
         public virtual DbSet<abhy_baseline_gp_livestock> obj_abhy_baseline_gp_livestock { get; set; }
