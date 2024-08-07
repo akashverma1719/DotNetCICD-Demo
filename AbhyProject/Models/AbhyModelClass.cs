@@ -14430,6 +14430,89 @@ namespace AbhyProject.Models
 
 
     }
+
+
+    [Table("vw_gpdcidata_tracker_count_statewise", Schema = "public")]
+    public class vw_gpdcidata_tracker_count_statewise
+    {
+        [Key]
+        public int id { get; set; }
+        public string state_name { get; set; }
+        public string year { get; set; }
+        public int SavedGP { get; set; }
+        public int SubmitGP { get; set; }
+        public int RejectGP { get; set; }
+        public int PendingByDpmu { get; set; }
+        public int ApprovedGP { get; set; }
+        public int RejectBySPMU { get; set; }
+        public int PendingGPBySpmu { get; set; }
+        public int ApprovedBySPMU { get; set; }
+       
+    }
+
+
+    [Table("vw_gpdcidata_tracker_count_districtwise", Schema = "public")]
+    public class vw_gpdcidata_tracker_count_districtwise
+    {
+        [Key]
+        public int id { get; set; }
+        public string state_name { get; set; }
+        public string district_name { get; set; }
+        public string year { get; set; }
+        public int SavedGP { get; set; }
+        public int SubmitGP { get; set; }
+        public int RejectGP { get; set; }
+        public int PendingByDpmu { get; set; }
+        public int ApprovedGP { get; set; }
+        public int RejectBySPMU { get; set; }
+        public int PendingGPBySpmu { get; set; }
+        public int ApprovedBySPMU { get; set; }
+
+    }
+
+
+    [Table("vw_gpdcidata_tracker_count_blockwise", Schema = "public")]
+    public class vw_gpdcidata_tracker_count_blockwise
+    {
+        [Key]
+        public int id { get; set; }
+        public string state_name { get; set; }
+        public string district_name { get; set; }
+        public string block_name { get; set; }
+        public string year { get; set; }
+        public int SavedGP { get; set; }
+        public int SubmitGP { get; set; }
+        public int RejectGP { get; set; }
+        public int PendingByDpmu { get; set; }
+        public int ApprovedGP { get; set; }
+        public int RejectBySPMU { get; set; }
+        public int PendingGPBySpmu { get; set; }
+        public int ApprovedBySPMU { get; set; }
+
+    }
+
+    [Table("vw_gpdcidata_tracker_count_gpwise", Schema = "public")]
+    public class vw_gpdcidata_tracker_count_gpwise
+    {
+        [Key]
+        public int id { get; set; }
+        public string state_name { get; set; }
+        public string district_name { get; set; }
+        public string block_name { get; set; }
+        public string gpname { get; set; }
+        public string year { get; set; }
+        public int SavedGP { get; set; }
+        public int SubmitGP { get; set; }
+        public int RejectGP { get; set; }
+        public int PendingByDpmu { get; set; }
+        public int ApprovedGP { get; set; }
+        public int RejectBySPMU { get; set; }
+        public int PendingGPBySpmu { get; set; }
+        public int ApprovedBySPMU { get; set; }
+
+    }
+
+
     [Table("abhy_baseline_gp_livestock", Schema = "public")]
     public class abhy_baseline_gp_livestock
     {

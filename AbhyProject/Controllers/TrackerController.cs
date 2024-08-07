@@ -113,167 +113,171 @@ namespace AbhyProject.Controllers
 
 
                     List<abhy_baseline_gpdata> ddetails = new List<abhy_baseline_gpdata>();
+                    List<vw_gpdcidata_tracker_count_statewise> ddetails_state = new List<vw_gpdcidata_tracker_count_statewise>();
+                    List<vw_gpdcidata_tracker_count_districtwise> ddetails_district = new List<vw_gpdcidata_tracker_count_districtwise>();
+                    List<vw_gpdcidata_tracker_count_blockwise> ddetails_block = new List<vw_gpdcidata_tracker_count_blockwise>();
+                    List<vw_gpdcidata_tracker_count_gpwise> ddetails_gp = new List<vw_gpdcidata_tracker_count_gpwise>();
 
                     if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                     {
-                        var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year).GroupBy(o => o.gpname).ToList();
-                        if (BaseLineData.Count != 0)
+                        //var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year).GroupBy(o => o.gpname).ToList();
+                        //if (BaseLineData.Count != 0)
+                        //{
+                        //    foreach (var items in BaseLineData.AsEnumerable())
+                        //    {
+                        //        var item = items.First();
+                        //        var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+
+                        //        ddetails.AddRange(data);
+                        //    }
+
+                        var stateData = ABE.obj_vw_gpdcidata_tracker_count_gpwise.FirstOrDefault(x => x.state_name == state && x.district_name == district && x.gpname == gram && x.year == year);
+                        if (stateData != null)
                         {
-                            foreach (var items in BaseLineData.AsEnumerable())
+
+                            GpTracker obj2 = new GpTracker
                             {
-                                var item = items.First();
-                                var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                                StateName = StateName,
+                                DistrinctCount = DistrinctCount,
+                                BlockCount = BlockCount,
+                                GpCount = GpCount,
+                                SavedGP = stateData.SavedGP,
+                                SubmitGP = stateData.SubmitGP,
+                                RejectGP = stateData.RejectGP,
+                                ApprovedGP = stateData.ApprovedGP,
+                                PendingByDpmu = stateData.PendingByDpmu,
+                                PendingGPBySpmu = stateData.PendingGPBySpmu,
+                                ApprovedBySPMU = stateData.ApprovedBySPMU,
+                                RejectBySPMU = stateData.RejectBySPMU
+                            };
 
-                                ddetails.AddRange(data);
-                            }
-
-                            int SavedGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year).GroupBy(x => x.gpname).ToList().Count();//total list
-                            int SubmitGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year && x.e_sent == true).ToList().Count();
-                            int RejectGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year && x.reject == true).ToList().Count();
-                            int ApprovedGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year && x.d_sent == true).ToList().Count();
-                            int PendingByDpmu = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year && x.e_sent == true && x.d_sent == false).ToList().Count();
-                            int PendingGPBySpmu = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "false").ToList().Count();
-                            int ApprovedBySPMU = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "true").ToList().Count();
-                            int RejectBySPMU = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gpname == gram && x.year == year && x.e_sent == true && x.d_sent == false && x.s_reject == true).ToList().Count();
-                            obj.StateName = StateName;
-                            obj.DistrinctCount = DistrinctCount;
-                            obj.BlockCount = BlockCount;
-                            obj.GpCount = GpCount;
-                            obj.SavedGP = SavedGP;
-                            obj.SubmitGP = SubmitGP;
-                            obj.RejectGP = RejectGP;
-                            obj.ApprovedGP = ApprovedGP;
-                            obj.PendingByDpmu = PendingByDpmu;
-                            obj.PendingGPBySpmu = PendingGPBySpmu;
-                            obj.ApprovedBySPMU = ApprovedBySPMU;
-                            obj.RejectBySPMU = RejectBySPMU;
-                            AllData.Add(obj);
+                            AllData.Add(obj2);
                         }
                     }
                     else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && year != "0" && year != "" && year != null)
                     {
-                        var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year).GroupBy(o => o.gpname).ToList();
+                        //var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year).GroupBy(o => o.gpname).ToList();
 
-                        if (BaseLineData.Count != 0)
+                        //if (BaseLineData.Count != 0)
+                        //{
+                        //    foreach (var items in BaseLineData.AsEnumerable())
+                        //    {
+                        //        var item = items.First();
+                        //        var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+
+                        //        ddetails.AddRange(data);
+                        //    }
+                        var stateData = ABE.obj_vw_gpdcidata_tracker_count_blockwise.FirstOrDefault(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year);
+                        if (stateData != null)
                         {
-                            foreach (var items in BaseLineData.AsEnumerable())
+
+                            GpTracker obj2 = new GpTracker
                             {
-                                var item = items.First();
-                                var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                                StateName = StateName,
+                                DistrinctCount = DistrinctCount,
+                                BlockCount = BlockCount,
+                                GpCount = GpCount,
+                                SavedGP = stateData.SavedGP,
+                                SubmitGP = stateData.SubmitGP,
+                                RejectGP = stateData.RejectGP,
+                                ApprovedGP = stateData.ApprovedGP,
+                                PendingByDpmu = stateData.PendingByDpmu,
+                                PendingGPBySpmu = stateData.PendingGPBySpmu,
+                                ApprovedBySPMU = stateData.ApprovedBySPMU,
+                                RejectBySPMU = stateData.RejectBySPMU
+                            };
 
-                                ddetails.AddRange(data);
-                            }
-                            int SavedGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year).GroupBy(x => x.gpname).ToList().Count();//total list
-                            int SubmitGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.e_sent == true).ToList().Count();
-                            int RejectGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.reject == true).ToList().Count();
-                            int ApprovedGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.d_sent == true).ToList().Count();
-                            int PendingByDpmu = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.e_sent == true && x.d_sent == false).ToList().Count();
-                            int PendingGPBySpmu = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "false").ToList().Count();
-                            int ApprovedBySPMU = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "true").ToList().Count();
-                            int RejectBySPMU = ddetails.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.e_sent == true && x.d_sent == false && x.s_reject == true).ToList().Count();
-
-                            obj.StateName = StateName;
-                            obj.DistrinctCount = DistrinctCount;
-                            obj.BlockCount = BlockCount;
-                            obj.GpCount = GpCount;
-                            obj.SavedGP = SavedGP;
-                            obj.SubmitGP = SubmitGP;
-                            obj.RejectGP = RejectGP;
-                            obj.ApprovedGP = ApprovedGP;
-                            obj.PendingByDpmu = PendingByDpmu;
-                            obj.PendingGPBySpmu = PendingGPBySpmu;
-                            obj.ApprovedBySPMU = ApprovedBySPMU;
-                            obj.RejectBySPMU = RejectBySPMU;
-                            AllData.Add(obj);
+                            AllData.Add(obj2);
                         }
+
+
+                       
                     }
                     else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && year != "" && year != null)
                     {
-                        var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.district_name == district && x.year == year).GroupBy(o => o.gpname).ToList();
-                        if (BaseLineData.Count != 0)
+                        //var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.district_name == district && x.year == year).GroupBy(o => o.gpname).ToList();
+                        //if (BaseLineData.Count != 0)
+                        //{
+                        //    foreach (var items in BaseLineData.AsEnumerable())
+                        //    {
+                        //        var item = items.First();
+                        //        var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+
+                        //        ddetails.AddRange(data);
+                        //    }
+                        var stateData = ABE.obj_vw_gpdcidata_tracker_count_districtwise.FirstOrDefault(x => x.state_name == state && x.district_name == district && x.year == year);
+                        if (stateData != null)
                         {
-                            foreach (var items in BaseLineData.AsEnumerable())
+
+                            GpTracker obj2 = new GpTracker
                             {
-                                var item = items.First();
-                                var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                                StateName = StateName,
+                                DistrinctCount = DistrinctCount,
+                                BlockCount = BlockCount,
+                                GpCount = GpCount,
+                                SavedGP = stateData.SavedGP,
+                                SubmitGP = stateData.SubmitGP,
+                                RejectGP = stateData.RejectGP,
+                                ApprovedGP = stateData.ApprovedGP,
+                                PendingByDpmu = stateData.PendingByDpmu,
+                                PendingGPBySpmu = stateData.PendingGPBySpmu,
+                                ApprovedBySPMU = stateData.ApprovedBySPMU,
+                                RejectBySPMU = stateData.RejectBySPMU
+                            };
 
-                                ddetails.AddRange(data);
-                            }
-
-                            int SavedGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year).GroupBy(x => x.gpname).ToList().Count();//total list
-                            int SubmitGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.e_sent == true).ToList().Count();
-                            int RejectGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.reject == true).ToList().Count();
-                            int ApprovedGP = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.d_sent == true).ToList().Count();
-                            int PendingByDpmu = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.e_sent == true && x.d_sent == false).ToList().Count();
-                            int PendingGPBySpmu = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "false").ToList().Count();
-                            int ApprovedBySPMU = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "true").ToList().Count();
-                            int RejectBySPMU = ddetails.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.e_sent == true && x.d_sent == false && x.s_reject == true).ToList().Count();
-
-                            obj.StateName = StateName;
-                            obj.DistrinctCount = DistrinctCount;
-                            obj.BlockCount = BlockCount;
-                            obj.GpCount = GpCount;
-                            obj.SavedGP = SavedGP;
-                            obj.SubmitGP = SubmitGP;
-                            obj.RejectGP = RejectGP;
-                            obj.ApprovedGP = ApprovedGP;
-                            obj.PendingByDpmu = PendingByDpmu;
-                            obj.PendingGPBySpmu = PendingGPBySpmu;
-                            obj.ApprovedBySPMU = ApprovedBySPMU;
-                            obj.RejectBySPMU = RejectBySPMU;
-                            AllData.Add(obj);
+                            AllData.Add(obj2);
                         }
                     }
                     else if (state != "0" && state != "" && state != null && year != "" && year != null)
                     {
-                        var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year).GroupBy(o => o.gpname).ToList();
-                        if (BaseLineData.Count != 0)
+                        //var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year).GroupBy(o => o.gpname).ToList();
+                        //if (BaseLineData.Count != 0)
+                        //{
+                        //    foreach (var items in BaseLineData.AsEnumerable())
+                        //    {
+                        //        var item = items.First();
+                        //        var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                        //        ddetails.AddRange(data);
+                        //    }
+
+                        var stateData = ABE.obj_vw_gpdcidata_tracker_count_statewise.FirstOrDefault(x => x.state_name == state && x.year == year);
+                        if (stateData != null)
                         {
-                            foreach (var items in BaseLineData.AsEnumerable())
+
+                            GpTracker obj2 = new GpTracker
                             {
-                                var item = items.First();
-                                var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == state && x.year == year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
-                                ddetails.AddRange(data);
-                            }
+                                StateName = StateName,
+                                DistrinctCount = DistrinctCount,
+                                BlockCount = BlockCount,
+                                GpCount = GpCount,
+                                SavedGP = stateData.SavedGP,
+                                SubmitGP = stateData.SubmitGP,
+                                RejectGP = stateData.RejectGP,
+                                ApprovedGP = stateData.ApprovedGP,
+                                PendingByDpmu = stateData.PendingByDpmu,
+                                PendingGPBySpmu = stateData.PendingGPBySpmu,
+                                ApprovedBySPMU = stateData.ApprovedBySPMU,
+                                RejectBySPMU = stateData.RejectBySPMU
+                            };
 
-                            int SavedGP = ddetails.Where(x => x.state_name == state && x.year == year).GroupBy(x => x.gpname).ToList().Count();//total list
-                            int SubmitGP = ddetails.Where(x => x.state_name == state && x.year == year && x.e_sent == true).ToList().Count();
-                            int RejectGP = ddetails.Where(x => x.state_name == state && x.year == year && x.reject == true).ToList().Count();
-                            int ApprovedGP = ddetails.Where(x => x.state_name == state && x.year == year && x.d_sent == true).ToList().Count();
-                            int PendingByDpmu = ddetails.Where(x => x.state_name == state && x.year == year && x.e_sent == true && x.d_sent == false).ToList().Count();
-                            int PendingGPBySpmu = ddetails.Where(x => x.state_name == state && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "false").ToList().Count();
-                            int ApprovedBySPMU = ddetails.Where(x => x.state_name == state && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "true").ToList().Count();
-                            int RejectBySPMU = ddetails.Where(x => x.state_name == state && x.year == year && x.e_sent == true && x.d_sent == false && x.s_reject == true).ToList().Count();
-
-                            obj.StateName = StateName;
-                            obj.DistrinctCount = DistrinctCount;
-                            obj.BlockCount = BlockCount;
-                            obj.GpCount = GpCount;
-                            obj.SavedGP = SavedGP;
-                            obj.SubmitGP = SubmitGP;
-                            obj.RejectGP = RejectGP;
-                            obj.ApprovedGP = ApprovedGP;
-                            obj.PendingByDpmu = PendingByDpmu;
-                            obj.PendingGPBySpmu = PendingGPBySpmu;
-                            obj.ApprovedBySPMU = ApprovedBySPMU;
-                            obj.RejectBySPMU = RejectBySPMU;
-                            AllData.Add(obj);
+                            AllData.Add(obj2);
                         }
                     }
                     else
                     {
 
-                        var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.year == year).GroupBy(o => o.gpname).ToList();
-                        if (BaseLineData.Count != 0)
-                        {
-                            foreach (var items in BaseLineData.AsEnumerable())
-                            {
-                                var Data = items.First();
-                                var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.year == year && x.gpname == Data.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                        //var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.year == year).GroupBy(o => o.gpname).ToList();
+                        //if (BaseLineData.Count != 0)
+                        //{
+                        //    foreach (var items in BaseLineData.AsEnumerable())
+                        //    {
+                        //        var Data = items.First();
+                        //        var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.year == year && x.gpname == Data.gpname).OrderByDescending(x => x.month_order_by).Take(1);
 
-                                ddetails.AddRange(data);
-                            }
-                        }
+                        //        ddetails.AddRange(data);
+                        //    }
+                        //}
+
                         foreach (var item in States)
                         {
                             if (item == "Gujarat_24")
@@ -325,29 +329,53 @@ namespace AbhyProject.Controllers
                                 BlockCount = 26;
                                 GpCount = 550;
                             }
-                            int SavedGP = ddetails.Where(x => x.state_name == item).GroupBy(x => x.gpname).ToList().Count();//total list
-                            int SubmitGP = ddetails.Where(x => x.state_name == item && x.year == year && x.e_sent == true).ToList().Count();
-                            int RejectGP = ddetails.Where(x => x.state_name == item && x.year == year && x.reject == true).ToList().Count();
-                            int ApprovedGP = ddetails.Where(x => x.state_name == item && x.year == year && x.d_sent == true).ToList().Count();
-                            int PendingByDpmu = ddetails.Where(x => x.state_name == item && x.year == year && x.e_sent == true && x.d_sent == false).ToList().Count();
-                            int PendingGPBySpmu = ddetails.Where(x => x.state_name == item && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "false").ToList().Count();
-                            int ApprovedBySPMU = ddetails.Where(x => x.state_name == item && x.year == year && x.e_sent == true && x.d_sent == true && x.approved == "true").ToList().Count();
-                            int RejectBySPMU = ddetails.Where(x => x.state_name == item && x.year == year && x.e_sent == true && x.d_sent == false && x.s_reject == true).ToList().Count();
-                            GpTracker obj2 = new GpTracker();
 
-                            obj2.StateName = StateName;
-                            obj2.DistrinctCount = DistrinctCount;
-                            obj2.BlockCount = BlockCount;
-                            obj2.GpCount = GpCount;
-                            obj2.SavedGP = SavedGP;
-                            obj2.SubmitGP = SubmitGP;
-                            obj2.RejectGP = RejectGP;
-                            obj2.ApprovedGP = ApprovedGP;
-                            obj2.PendingByDpmu = PendingByDpmu;
-                            obj2.PendingGPBySpmu = PendingGPBySpmu;
-                            obj2.ApprovedBySPMU = ApprovedBySPMU;
-                            obj2.RejectBySPMU = RejectBySPMU;
-                            AllData.Add(obj2);
+                            var stateData = ABE.obj_vw_gpdcidata_tracker_count_statewise.FirstOrDefault(x => x.state_name == item && x.year == year);
+                            if (stateData != null)
+                            {
+
+                                GpTracker obj2 = new GpTracker
+                                {
+                                    StateName = StateName,
+                                    DistrinctCount = DistrinctCount,
+                                    BlockCount = BlockCount,
+                                    GpCount = GpCount,
+                                    SavedGP = stateData.SavedGP,
+                                    SubmitGP = stateData.SubmitGP,
+                                    RejectGP = stateData.RejectGP,
+                                    ApprovedGP = stateData.ApprovedGP,
+                                    PendingByDpmu = stateData.PendingByDpmu,
+                                    PendingGPBySpmu = stateData.PendingGPBySpmu,
+                                    ApprovedBySPMU = stateData.ApprovedBySPMU,
+                                    RejectBySPMU = stateData.RejectBySPMU
+                                };
+
+
+                                //int SavedGP = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.SavedGP).FirstOrDefault();
+                                //int SubmitGP = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.SubmitGP).FirstOrDefault();
+                                //int RejectGP = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.RejectGP).FirstOrDefault();
+                                //int ApprovedGP = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.ApprovedGP).FirstOrDefault();
+                                //int PendingByDpmu = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.PendingByDPMU).FirstOrDefault();
+                                //int PendingGPBySpmu = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.PendingGPBySPMU).FirstOrDefault();
+                                //int ApprovedBySPMU = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.ApprovedBySPMU).FirstOrDefault();
+                                //int RejectBySPMU = ABE.obj_vw_gpdcidata_tracker_count_statewise.Where(x => x.state_name == item && x.year == year).Select(x => x.RejectBySPMU).FirstOrDefault();
+                                //GpTracker obj2 = new GpTracker();
+
+                                //obj2.StateName = StateName;
+                                //obj2.DistrinctCount = DistrinctCount;
+                                //obj2.BlockCount = BlockCount;
+                                //obj2.GpCount = GpCount;
+                                //obj2.SavedGP = SavedGP;
+                                //obj2.SubmitGP = SubmitGP;
+                                //obj2.RejectGP = RejectGP;
+                                //obj2.ApprovedGP = ApprovedGP;
+                                //obj2.PendingByDpmu = PendingByDpmu;
+                                //obj2.PendingGPBySpmu = PendingGPBySpmu;
+                                //obj2.ApprovedBySPMU = ApprovedBySPMU;
+                                //obj2.RejectBySPMU = RejectBySPMU;
+
+                                AllData.Add(obj2);
+                            }
                         }
 
                     }
