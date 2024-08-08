@@ -3,6 +3,7 @@ using AbhyProject.Models;
 using AbhyProject.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http.Results;
@@ -424,14 +425,26 @@ namespace AbhyProject.Controllers
 
                     return Json(ddetails, JsonRequestBehavior.AllowGet);
                 }
+
                 catch (Exception Ex)
                 {
-                    return Json("Error", JsonRequestBehavior.AllowGet);
+                    Log($"ex Message Tracker: {Ex.InnerException.Message.ToString()}");
+                    return Content(Ex.Message.ToString());
+                  
                 }
             }
             else
             {
                 return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private void Log(string message)
+        {
+            string logFilePath = Server.MapPath("~/Tracker.txt");
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            {
+                writer.WriteLine($"{DateTime.Now}: {message}");
             }
         }
 
