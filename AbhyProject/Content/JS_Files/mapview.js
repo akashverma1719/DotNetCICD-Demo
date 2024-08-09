@@ -229,7 +229,7 @@ require([
 
 
     const India = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/India/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/1",
         maxScale: 9244649,
 
         title: "India",
@@ -253,7 +253,7 @@ require([
 
     //it is geotagging new comimg from Mobile data
     const ArtificialResourceLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4",
         definitionExpression: "statename <> 'Delhi_7'",
         title: "Artificial Recharge and Water Conservation Structures",
         visible: false,
@@ -287,7 +287,7 @@ require([
 
 
     const WaterLevel = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Water Level Monitoring Stations",
         visible: true,
@@ -310,7 +310,7 @@ require([
 
 
     const WaterQuality = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/4",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6",
 
         definitionExpression: "state <> 'Delhi_7'",
         title: "Water Quality Monitoring Stations",
@@ -325,7 +325,7 @@ require([
     });
 
     const WaterQualitym = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0",
 
         definitionExpression: "state <> 'Delhi_7'",
         title: "Water Quality Monitoring (Through Field Testing Kit)",
@@ -342,7 +342,7 @@ require([
     //
 
     const Well = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Well Registered",
 
@@ -359,7 +359,7 @@ require([
 
 
     const GWRA = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/GWRANEWBLOCK/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/5",
         title: "GWRA:- (CGWB 2022 (Block Level))",
         visible: false,
         id: "layer10",
@@ -544,7 +544,7 @@ require([
     GWRA.renderer = renderergw;
     //principaacq
     const acquifier = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Mappaquifless/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/6",
         title: "Principal Aquifer (CGWB)",
         visible: false,
         id: "layer11",
@@ -809,7 +809,7 @@ require([
 
     //majoraacq
     const majoracquifier = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/MajorAquifernew/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/4",
         title: "Major Aquifer (CGWB)",
         visible: false,
         id: "layer12",
@@ -1341,7 +1341,7 @@ require([
 
 
     const watershed = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Mapwatershed/MapServer/4",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/2",
         title: "Basins (CGWB)",
         visible: false,
         id: "layer13",
@@ -1640,7 +1640,7 @@ require([
     //
 
     const Rainfall = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/MapRainfallNew/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/3",
 
         title: "Annual Rainfall (IMD (2022) (in mm) at District Level",
         visible: false,
@@ -1904,7 +1904,7 @@ require([
 
 
     const Rainguage = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/2",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/3",
         definitionExpression: "statename <> 'Delhi_7'",
         title: "Rainguage Stations",
         visible: false,
@@ -1920,7 +1920,7 @@ require([
     });
 
     const WaterFlow = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/dynamicwaterflow/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/1",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Water Flow Meters",
         visible: false,
@@ -1991,7 +1991,7 @@ require([
     };
 
     const WSP = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/MapWSP/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/0",
         title: "GP Water Security Plan (2023-24)",
         visible: false,
         renderer: renderer,
@@ -2004,7 +2004,7 @@ require([
 
 
     const GPLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/GramPanchayat_ST/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/1",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2036,7 +2036,7 @@ require([
 
 
     const BlockLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Block_ST/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/3",
         definitionExpression: "state <> 'Delhi_7'",
         labelingInfo: [labelClassB],
         content: blockChange,
@@ -2062,7 +2062,7 @@ require([
     });
 
     const DistrictLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/District_map/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/2",
         definitionExpression: "state <> 'Delhi_7'",
         title: "Districts",
         labelingInfo: [labelClassD],
@@ -2088,7 +2088,7 @@ require([
 
 
     const StateLayer = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/State_ST/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/0",
 
         definitionExpression: "State <> 'Delhi_7'",
         title: "States",
@@ -2117,7 +2117,7 @@ require([
 
     //
     const GPLayerse = new FeatureLayer({
-        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/GramPanchayat_ST/MapServer/0",
+        url: "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/1",
 
         definitionExpression: "st_name <> 'Delhi_7'",
         title: "Gram Panchayats",
@@ -2281,7 +2281,7 @@ require([
 
     //State Query
 
-    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/State_ST/MapServer/0/query";
+    var queryUrl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/0/query";
     var queryOpts = {
         requestType: "json",
         query: {
@@ -2317,7 +2317,7 @@ require([
     });
 
 
-    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/District_map/MapServer/0/query";
+    var queryUrlD = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/2/query";
     countryDDL.addEventListener("change", function () {
         var stateName = countryDDL.value;
 
@@ -2391,7 +2391,7 @@ require([
             f: "json"
         }
     }
-    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Block_ST/MapServer/0/query";
+    var queryUrlB = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/3/query";
 
     DistrictDDL.addEventListener("change", function () {
         var districtname = DistrictDDL.value;
@@ -2470,7 +2470,7 @@ require([
 
     //GP Query
 
-    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/GramPanchayat_ST/MapServer/0/query";
+    var queryUrlGP = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Adminnew/MapServer/1/query";
     BlockDDL.addEventListener("change", function () {
         var blockname = BlockDDL.value;
         if (blockname === '0') {
@@ -2525,7 +2525,7 @@ require([
 
     // Query for well
 
-    var queryUrlW = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query";
+    var queryUrlW = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query";
     var queryOptsWGpLayer = {
         requestType: "json",
         query: {
@@ -2578,7 +2578,7 @@ require([
     // Query for geo
 
 
-    const baseUrlge = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query';
+    const baseUrlge = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query';
 
     // Get the select element
     const stateSelectg = document.getElementById("cntry");
@@ -2621,7 +2621,7 @@ require([
 
     //
 
-    const baseUrldg = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query';
+    const baseUrldg = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query';
     const districtSelectdg = document.getElementById("District");
     districtSelectdg.addEventListener("change", function () {
         const selectedDistrictdg = districtSelectdg.value;
@@ -2661,7 +2661,7 @@ require([
     //
 
 
-    const baseUrlbge = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query';
+    const baseUrlbge = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query';
     const blockSelectbg = document.getElementById("Block");
     blockSelectbg.addEventListener("change", function () {
         const selectedblockbge = blockSelectbg.value;
@@ -2702,7 +2702,7 @@ require([
 
     //
 
-    var queryUrlG = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query";
+    var queryUrlG = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query";
 
     const gramSelectbg = document.getElementById("Gram");
     gramSelectbg.addEventListener("change", function () {
@@ -2996,7 +2996,7 @@ require([
 
     loadData()
         .then(() => {
-            var queryUrlwl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query";
+            var queryUrlwl = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query";
 
             const stateSelectg = document.getElementById("cntry");
             stateSelectg.addEventListener("change", function () {
@@ -3036,7 +3036,7 @@ require([
             }
             //
 
-            const baseUrlwl = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query';
+            const baseUrlwl = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query';
 
             // Get the select element
             const distSelectwl = document.getElementById("District");
@@ -3078,7 +3078,7 @@ require([
                 }
             }
             // block query
-            const baseUrlwlb = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query';
+            const baseUrlwlb = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query';
             
             const blockSelectwl = document.getElementById("Block");
 
@@ -3118,7 +3118,7 @@ require([
                 }
             }
             //  wl gram
-            const baseUrlwlg = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query';
+            const baseUrlwlg = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query';
             const gramSelectwl = document.getElementById("Gram");
             gramSelectwl.addEventListener("change", function () {
                 const loader = document.getElementById('loader');
@@ -3166,7 +3166,7 @@ require([
 
     //query for water quality starts
 
-    var queryUrlwq = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/4/query";
+    var queryUrlwq = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6/query";
 
 
     const stateSelectwq = document.getElementById("cntry");
@@ -3335,7 +3335,7 @@ require([
         var wqNamem = countryDDL.value;
 
         // Construct the query URL with a dynamic where clause based on the selected dropdown value
-        var qwaterqm = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=state='" + wqNamem + "'&returnCountOnly=true&f=json";
+        var qwaterqm = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=state='" + wqNamem + "'&returnCountOnly=true&f=json";
 
         // Query the feature service to get the count of features based on the selected dropdown option
         esriRequest(qwaterqm).then(function (response) {
@@ -3392,7 +3392,7 @@ require([
         BlockLayer.visible = false;
         GPLayer.visible = false;
         // Construct the query URL with a dynamic where clause based on the selected dropdown value
-        var qwaterqmd = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=district='" + wqNamed + "'&returnCountOnly=true&f=json";
+        var qwaterqmd = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=district='" + wqNamed + "'&returnCountOnly=true&f=json";
 
         // Query the feature service to get the count of features based on the selected dropdown option
         esriRequest(qwaterqmd).then(function (response) {
@@ -3427,7 +3427,7 @@ require([
             });
         }
         // Construct the query URL with a dynamic where clause based on the selected dropdown value
-        var qwaterqmb = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=block='" + wqNameb + "'&returnCountOnly=true&f=json";
+        var qwaterqmb = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=block='" + wqNameb + "'&returnCountOnly=true&f=json";
 
         // Query the feature service to get the count of features based on the selected dropdown option
         esriRequest(qwaterqmb).then(function (response) {
@@ -3462,7 +3462,7 @@ require([
             });
         }
         // Construct the query URL with a dynamic where clause based on the selected dropdown value
-        var qwaterqmg = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=gp='" + wqNameg + "'&returnCountOnly=true&f=json";
+        var qwaterqmg = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=gp='" + wqNameg + "'&returnCountOnly=true&f=json";
 
         // Query the feature service to get the count of features based on the selected dropdown option
         esriRequest(qwaterqmg).then(function (response) {
@@ -3491,7 +3491,7 @@ require([
     ////query for rainguage
 
 
-    var queryUrlrg = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/2/query";
+    var queryUrlrg = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/3/query";
 
     //state
     const stateSelectrg = document.getElementById("cntry");
@@ -3660,7 +3660,7 @@ require([
 
 
 
-    var queryUrlwf = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/dynamicwaterflow/MapServer/0/query";
+    var queryUrlwf = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/1/query";
 
     //state
 
@@ -3825,7 +3825,7 @@ require([
     // for wsp count in databox
 
 
-    var queryUrlWsp = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/MapWSP/MapServer/0/query";
+    var queryUrlWsp = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/0/query";
 
 
     //state
@@ -5802,7 +5802,7 @@ require([
     //////
 
     ///Well Inventory Statstics
-    const baseUrl = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query';
+    const baseUrl = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query';
 
     // Get the select element
     const stateSelect = document.getElementById("cntry");
@@ -5841,7 +5841,7 @@ require([
             console.error('Error fetching data:', error);
         }
     }
-    const baseUrld = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query';
+    const baseUrld = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query';
     const districtSelect = document.getElementById("District");
     districtSelect.addEventListener("change", function () {
         const selectedDistrict = districtSelect.value;
@@ -5878,7 +5878,7 @@ require([
         }
     }
 
-    const baseUrlb = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query';
+    const baseUrlb = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query';
     const blockSelect = document.getElementById("Block");
     blockSelect.addEventListener("change", function () {
         const selectedblock = blockSelect.value;
@@ -5917,7 +5917,7 @@ require([
     }
 
     //
-    const baseUrlt = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query';
+    const baseUrlt = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query';
 
     // Function to get the count of all features in the specified layer
     async function fetchTotalCount() {
@@ -8337,29 +8337,29 @@ require([
     }
 
 
-    const apiUrlLayer0 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer0 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer0, "additional_span");
 
-    const apiUrlLayer1 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer1 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer1, "additional_spanwl");
 
-    const apiUrlLayer2 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/4/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer2 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer2, "additional_spanwq");
 
-    const apiUrlLayer3 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer3 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer3, "additional_spange");
 
-    const apiUrlLayer4 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/2/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer4 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/3/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer4, "additional_spanrg");
 
-    const apiUrlLayer5 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/dynamicwaterflow/MapServer/0/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer5 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/1/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer5, "additional_spanwf");
 
 
-    const apiUrlLayer6 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer6 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer6, "additional_spanwqm");
 
-    const apiUrlLayer7 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/MapWSP/MapServer/0/query?where=1=1&returnCountOnly=true&f=json";
+    const apiUrlLayer7 = "https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Base/MapServer/0/query?where=1=1&returnCountOnly=true&f=json";
     fetchTotalRowCount(apiUrlLayer7, "additional_spanwsp");
 
     //  For All count Ends
@@ -8641,7 +8641,7 @@ ${additionalContent}
     async function fetchWaterLevelCount(gpName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query?where=grampanchayat ='${gpName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query?where=grampanchayat ='${gpName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -8670,7 +8670,7 @@ ${additionalContent}
     async function fetchWaterQualityCount(gpName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/4/query?where=gp ='${gpName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6/query?where=gp ='${gpName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -8700,7 +8700,7 @@ ${additionalContent}
     async function fetchGeoCount(gpName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query?where=gpname  ='${gpName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query?where=gpname  ='${gpName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -8731,7 +8731,7 @@ ${additionalContent}
     async function fetchrgCount(gpName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/2/query?where=gpname   ='${gpName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/3/query?where=gpname   ='${gpName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -8761,7 +8761,7 @@ ${additionalContent}
     async function fetchWFCount(gpName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/dynamicwaterflow/MapServer/0/query?where=grampanchayat  ='${gpName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/1/query?where=grampanchayat  ='${gpName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -8792,7 +8792,7 @@ ${additionalContent}
     async function fetchWellCount(gpName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query?where=gp ='${gpName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query?where=gp ='${gpName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -8822,7 +8822,7 @@ ${additionalContent}
     async function fetchWqftkCount(gpName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=gp  ='${gpName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=gp  ='${gpName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9052,7 +9052,7 @@ ${additionalContent}
     async function fetchWaterLevelCounts(stName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query?where=state  ='${stName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query?where=state  ='${stName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9081,7 +9081,7 @@ ${additionalContent}
     async function fetchWaterQualityCounts(stName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/4/query?where=state  ='${stName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6/query?where=state  ='${stName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9111,7 +9111,7 @@ ${additionalContent}
     async function fetchGeoCounts(stName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query?where=statename   ='${stName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query?where=statename   ='${stName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9142,7 +9142,7 @@ ${additionalContent}
     async function fetchrgCounts(stName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/2/query?where=statename    ='${stName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/3/query?where=statename    ='${stName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9172,7 +9172,7 @@ ${additionalContent}
     async function fetchWFCounts(stName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/dynamicwaterflow/MapServer/0/query?where=state   ='${stName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/1/query?where=state   ='${stName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9203,7 +9203,7 @@ ${additionalContent}
     async function fetchWellCounts(stName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query?where=state ='${stName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query?where=state ='${stName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9233,7 +9233,7 @@ ${additionalContent}
     async function fetchWqftkCounts(stName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=state   ='${stName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=state   ='${stName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9450,7 +9450,7 @@ ${additionalContent}
     async function fetchWaterLevelCountd(distName) {
         try {
             // Construct the query URL targeting the WaterLevel layer
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query?where=district ='${distName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query?where=district ='${distName}'&returnCountOnly=true&f=json`;
 
             // Make a fetch request to the API URL
             const response = await fetch(apiUrl);
@@ -9479,7 +9479,7 @@ ${additionalContent}
     async function fetchWaterQualityCountd(distName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/4/query?where=district ='${distName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6/query?where=district ='${distName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9509,7 +9509,7 @@ ${additionalContent}
     async function fetchGeoCountd(distName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query?where=districtname  ='${distName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query?where=districtname  ='${distName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9540,7 +9540,7 @@ ${additionalContent}
     async function fetchrgCountd(distName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/2/query?where=districtna   ='${distName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/3/query?where=districtna   ='${distName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9570,7 +9570,7 @@ ${additionalContent}
     async function fetchWFCountd(distName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/dynamicwaterflow/MapServer/0/query?where=district  ='${distName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/1/query?where=district  ='${distName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9601,7 +9601,7 @@ ${additionalContent}
     async function fetchWellCountd(distName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query?where=district ='${distName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query?where=district ='${distName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9631,7 +9631,7 @@ ${additionalContent}
     async function fetchWqftkCountd(distName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=district  ='${distName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=district  ='${distName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9869,7 +9869,7 @@ ${additionalContent}
     async function fetchWaterLevelCountb(blockName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/5/query?where=block='${blockName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query?where=block='${blockName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9898,7 +9898,7 @@ ${additionalContent}
     async function fetchWaterQualityCountb(blockName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/4/query?where=block='${blockName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/6/query?where=block='${blockName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9928,7 +9928,7 @@ ${additionalContent}
     async function fetchGeoCountb(blockName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/3/query?where=blockname ='${blockName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/4/query?where=blockname ='${blockName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9959,7 +9959,7 @@ ${additionalContent}
     async function fetchrgCountb(blockName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/2/query?where=blockname  ='${blockName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/3/query?where=blockname  ='${blockName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -9989,7 +9989,7 @@ ${additionalContent}
     async function fetchWFCountb(blockName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/dynamicwaterflow/MapServer/0/query?where=block ='${blockName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/1/query?where=block ='${blockName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -10020,7 +10020,7 @@ ${additionalContent}
     async function fetchWellCountb(blockName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/Popup/dynamicwell/MapServer/0/query?where=block ='${blockName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/0/query?where=block ='${blockName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
@@ -10050,7 +10050,7 @@ ${additionalContent}
     async function fetchWqftkCountb(blockName) {
         try {
 
-            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Dynamic/MapServer/1/query?where=block ='${blockName}'&returnCountOnly=true&f=json`;
+            const apiUrl = `https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/WQM/MapServer/0/query?where=block ='${blockName}'&returnCountOnly=true&f=json`;
 
 
             const response = await fetch(apiUrl);
