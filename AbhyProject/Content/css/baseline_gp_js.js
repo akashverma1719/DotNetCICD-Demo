@@ -18,30 +18,16 @@ var inactivityTime = function () {
     }
 };
 
-//function BPL_APL_Validation() {
-//    var i = 0;
-//    var no_of_bpl = $('#no_of_bpl').val();
-//    var no_of_apl = $('#no_of_apl').val();
-//    var tol_population = $('#tol_population').val();
-//    if (tol_population == "") {
-//        tol_population = 0;
-//    }
-//    if (no_of_bpl == "") {
-//        i = 1;
-//        no_of_bpl = 0;
-//    }
-//    if (no_of_apl == "") {
-//        i = 1;
-//        no_of_apl = 0;
-//    }
-
-//    var Sum_apl_bpl = parseFloat(no_of_bpl) + parseFloat(no_of_apl);
-
-//    var Total = parseFloat(tol_population);
-
 var e_sentsts = false;
 function baseline_gp_data(villageCount) {
-
+    $('#sarpanch_save_btn').hide();
+    $('#btnFinalSave').hide();
+    $('#btn_rejectNDO').hide();
+    $("#approved").hide();
+    $("input[type='text']").prop("disabled", true);
+    $('#btn_submitNDO').hide();
+    $(".hide_btn").prop("disabled", true);
+    $(".hide_btn_tr").hide();
     var year = $("#year").val();
     var month = $("#month").val();
     var obj = {};
@@ -59,9 +45,14 @@ function baseline_gp_data(villageCount) {
         data: "{'Data': '" + JSON.stringify(obj) + "'}",
         dataType: 'JSON',
         success: function (data) {
-
-
-
+            $('#sarpanch_save_btn').hide();
+            $('#btnFinalSave').hide();
+            $('#btn_rejectNDO').hide();
+            $("#approved").hide();
+            $("input[type='text']").prop("disabled", true);
+            $('#btn_submitNDO').hide();
+            $(".hide_btn").prop("disabled", true);
+            $(".hide_btn_tr").hide();
             if (data == "Logout") {
                 window.location = "/Home/LogOut";
             }
@@ -90,19 +81,12 @@ function baseline_gp_data(villageCount) {
                 $('#no_of_st').val("");
                 $('#no_of_obc').val("");
                 $('#no_of_general').val("");
-
                 $('#no_of_bpl').val("");
-
                 $('#no_of_households').val("");
-
-
-
-
                 $('#forest_area_in_ha').val("");
                 $('#fallow_land_in_ha').val("");
                 $('#cultivable_land_in_ha').val("");
                 $('#other_land_use').val("");
-
                 $('#net_sown_area').val("");
                 $('#net_irrigated_area').val("");
                 //net_sown_area
@@ -134,17 +118,8 @@ function baseline_gp_data(villageCount) {
                 $("#livestock_population").val("");
                 aa_table_part_data_geting();
             }
-
-
             else if (data[0].length != 0) {
-
                 //new columns
-
-
-
-
-
-
                 //population
 
                 if (data[0].objgpdata[0].male_population != null && data[0].objgpdata[0].male_population != "") {
@@ -763,11 +738,17 @@ function baseline_gp_data(villageCount) {
                 }
 
             }
+            $('#sarpanch_save_btn').hide();
+            $('#btnFinalSave').hide();
+            $('#btn_rejectNDO').hide();
+            $("#approved").hide();
+            $("input[type='text']").prop("disabled", true);
+            $('#btn_submitNDO').hide();
+            $(".hide_btn").prop("disabled", true);
+            $(".hide_btn_tr").hide();
         }
     });
 }
-
-
 
 // base lin gp data Saveing
 

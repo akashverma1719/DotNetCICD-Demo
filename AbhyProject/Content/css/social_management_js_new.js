@@ -70,9 +70,6 @@ function date_find() {
 
 }
 
-
-
-
 //abhi1606  for PGWM
 var awareness = [];
 var ddlawareness_data = [];
@@ -132,11 +129,11 @@ function abhy_socialmgt_GRM_Info_getting() {
                             approve = "";
                         }
                         if (approve == "Reject") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td><button type="button" class="btn btn-danger" onclick="Delete_data(' + data[i].id + ')">Delete</button></td><td><label style="color: red;">Rejected By DPMU</label></td> </tr>';
+                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td><button type="button" class="btn btn-danger" style="display:none;" onclick="Delete_data(' + data[i].id + ')">Delete</button></td><td><label style="color: red;">Rejected By DPMU</label></td> </tr>';
                             $("#btnFinalSave7").prop("disabled", false);
                         }
                         else if (approve == "") {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td><button type="button" class="btn btn-danger" onclick="Delete_data(' + data[i].id + ')">Delete</button></td> </tr>';
+                            tr += '<tr><td>' + (++j) + '</td><td>' + data[i].ddlawareness + '</td><td>' + data[i].mea_of_awar + '</td><td>' + data[i].mea_of_awar_oth + '</td><td>' + data[i].vil_awa_grm + '</td> <td>' + data[i].vil_awa_tfn + '</td><td><button type="button" class="btn btn-danger" style="display:none;" onclick="Delete_data(' + data[i].id + ')">Delete</button></td> </tr>';
                             $("#btnFinalSave7").prop("disabled", false);
 
                         }
@@ -431,8 +428,6 @@ function abhy_socialmgt_GRM_Info_getting() {
 
 }
 
-
-
 function Delete_data(ss) {
     if (confirm("Are you sure to delete this row?")) {
 
@@ -490,7 +485,6 @@ function disalbelvalues_delete() {
 
     }
 }
-
 
 function farmer_category_value() {
 
@@ -696,7 +690,6 @@ function check_exist(i) {
     }
 }
 
-
 function check_data1(i) {
     if (i == undefined) {
         var Name_of_desg = $('#ddldesination').val();
@@ -721,7 +714,6 @@ function check_data1(i) {
         }
     }
 }
-
 
 function addrow_d_part() {
 
@@ -884,15 +876,6 @@ function GramPanchayatDataBase_Info() {
         }
     });
 }
-
-//abhi1606  for PGWM
-
-
-//abhi1606
-
-
-//abhi1606
-
 function district_pgwm() {
 
     block();
@@ -909,7 +892,7 @@ function district_pgwm() {
             if (data.length != 0) {
                 for (var i = 0; i < data.length; i++) {
 
-                    tr += '<tr><td><button type="button" class="btn btn-danger" onclick="Delete_abhy_socialmgt_pgwm(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td> <td>' + data[i].mobileno + '</td></tr>';
+                    tr += '<tr><td><button type="button" class="btn btn-danger" style="display:none;" onclick="Delete_abhy_socialmgt_pgwm(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td> <td>' + data[i].mobileno + '</td></tr>';
                 }
             }
             if (tr == '') {
@@ -923,9 +906,7 @@ function district_pgwm() {
     });
     district_pgwm_();
 }
-
 //abhi1606
-
 function block_pgwm() {
 
     grampanchayat();
@@ -943,7 +924,7 @@ function block_pgwm() {
             if (data.length != 0) {
                 for (var i = 0; i < data.length; i++) {
 
-                    tr += '<tr><td><button type="button" class="btn btn-danger" onclick="Delete_abhy_socialmgt_pgwm(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td> <td>' + data[i].mobileno + '</td></tr>';
+                    tr += '<tr><td><button type="button" class="btn btn-danger" style="display:none;" onclick="Delete_abhy_socialmgt_pgwm(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td> <td>' + data[i].mobileno + '</td></tr>';
                 }
             }
             if (tr == '') {
@@ -957,9 +938,7 @@ function block_pgwm() {
     });
     block_pgwm_1();
 }
-
 //abhi1606
-
 function Gram1_Fun() {
 
 
@@ -981,7 +960,7 @@ function Gram1_Fun() {
             if (data.length != 0) {
                 for (var i = 0; i < data.length; i++) {
 
-                    tr += '<tr><td><button type="button" class="btn btn-danger" onclick="Delete_abhy_socialmgt_pgwm(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td> <td>' + data[i].mobileno + '</td></tr>';
+                    tr += '<tr><td><button type="button" class="btn btn-danger" style="display:none;" onclick="Delete_abhy_socialmgt_pgwm(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td> <td>' + data[i].mobileno + '</td></tr>';
                 }
             }
             if (tr == '') {
@@ -1033,7 +1012,7 @@ function state_pgwm_1() {
                         dpmu = data[i].dpmu;
                     }
 
-                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td><td>' + data[i].SC + '</td><td>' + data[i].ST + '</td><td>' + data[i].OBC + '</td> <td>' + data[i].General + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td><td>' + data[i].SC + '</td><td>' + data[i].ST + '</td><td>' + data[i].OBC + '</td> <td>' + data[i].General + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" style="display:none;" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button style="display:none;" class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
                         '<tr id="Hide_Gplvl' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="date' + i + '" value="' + data[i].date + '"/></td><td><input type="text" class="form-control" id="gp_name' + i + '" value="' + data[i].gp_name + '"/></td> <td><input type="text" class="form-control" id="vill_name' + i + '" value="' + data[i].vill_name + '"/></td> <td><input type="text" class="form-control" id="meet_loc' + i + '" value="' + data[i].meet_loc + '"/></td> <td><input type="text" class="form-control" id="male' + i + '" value="' + data[i].male + '"/></td> <td><input type="text" class="form-control" id="female' + i + '" value="' + data[i].female + '"/></td> <td><input type="text" class="form-control" id="transgender' + i + '" value="' + data[i].transgender + '"/></td> <td><input type="text" class="form-control" id="total_atten' + i + '" value="' + data[i].total_atten + '" readonly /></td> <td><input type="file" class="form-control" id="mom' + i + '" value="' + data[i].mom + '"/></td> <td><input type="file" class="form-control" id="photograph' + i + '" value="' + data[i].photograph + '"/></td> <td><input type="file" class="form-control" id="resolution' + i + '" value="' + data[i].resolution + '"/></td> <td><input type="file" class="form-control" id="dpmu' + i + '" value="' + data[i].dpmu + '"/></td> <td><button type="button" class="btn btn-primary" onclick="Update_pgwm_meeting(' + data[i].id + ',' + i + ')">Update</button>' + '</td> <td><button  class="btn btn-danger " type="button" onclick="cancelpgwmRow(' + i + ');"><i class="fa fa-remove"</button></td></tr>';
 
                 }
@@ -1088,7 +1067,7 @@ function district_pgwm_1() {
                         dpmu = data[i].dpmu;
                     }
 
-                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" style="display:none;" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button style="display:none;" class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
                         '<tr id="Hide_Gplvl' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="date' + i + '" value="' + data[i].date + '"/></td><td><input type="text" class="form-control" id="gp_name' + i + '" value="' + data[i].gp_name + '"/></td> <td><input type="text" class="form-control" id="vill_name' + i + '" value="' + data[i].vill_name + '"/></td> <td><input type="text" class="form-control" id="meet_loc' + i + '" value="' + data[i].meet_loc + '"/></td> <td><input type="text" class="form-control" id="male' + i + '" value="' + data[i].male + '"/></td> <td><input type="text" class="form-control" id="female' + i + '" value="' + data[i].female + '"/></td> <td><input type="text" class="form-control" id="transgender' + i + '" value="' + data[i].transgender + '"/></td> <td><input type="text" class="form-control" id="total_atten' + i + '" value="' + data[i].total_atten + '"/></td> <td><input type="file" class="form-control" id="mom' + i + '" value="' + data[i].mom + '"/></td> <td><input type="file" class="form-control" id="photograph' + i + '" value="' + data[i].photograph + '"/></td> <td><input type="file" class="form-control" id="resolution' + i + '" value="' + data[i].resolution + '"/></td> <td><input type="file" class="form-control" id="dpmu' + i + '" value="' + data[i].dpmu + '"/></td> <td><button type="button" class="btn btn-primary" onclick="Update_pgwm_meeting(' + data[i].id + ',' + i + ')">Update</button>' + '</td> <td><button  class="btn btn-danger " type="button" onclick="cancelpgwmRow(' + i + ');"><i class="fa fa-remove"</button></td></tr>';
 
                 }
@@ -1147,7 +1126,7 @@ function block_pgwm_1() {
                         dpmu = data[i].dpmu;
                     }
 
-                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" style="display:none;" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button style="display:none;" class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
                         '<tr id="Hide_Gplvl' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="date' + i + '" value="' + data[i].date + '"/></td><td><input type="text" class="form-control" id="gp_name' + i + '" value="' + data[i].gp_name + '"/></td> <td><input type="text" class="form-control" id="vill_name' + i + '" value="' + data[i].vill_name + '"/></td> <td><input type="text" class="form-control" id="meet_loc' + i + '" value="' + data[i].meet_loc + '"/></td> <td><input type="text" class="form-control" id="male' + i + '" value="' + data[i].male + '"/></td> <td><input type="text" class="form-control" id="female' + i + '" value="' + data[i].female + '"/></td> <td><input type="text" class="form-control" id="transgender' + i + '" value="' + data[i].transgender + '"/></td> <td><input type="text" class="form-control" id="total_atten' + i + '" value="' + data[i].total_atten + '"/></td> <td><input type="file" class="form-control" id="mom' + i + '" value="' + data[i].mom + '"/></td> <td><input type="file" class="form-control" id="photograph' + i + '" value="' + data[i].photograph + '"/></td> <td><input type="file" class="form-control" id="resolution' + i + '" value="' + data[i].resolution + '"/></td> <td><input type="file" class="form-control" id="dpmu' + i + '" value="' + data[i].dpmu + '"/></td> <td><button type="button" class="btn btn-primary" onclick="Update_pgwm_meeting(' + data[i].id + ',' + i + ')">Update</button>' + '</td> <td><button  class="btn btn-danger " type="button" onclick="cancelpgwmRow(' + i + ');"><i class="fa fa-remove"</button></td></tr>';
 
                 }
@@ -1209,7 +1188,7 @@ function gram_pgwm_1() {
                         dpmu = data[i].dpmu;
                     }
 
-                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" style="display:none;" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button style="display:none;" class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
                         '<tr id="Hide_Gplvl' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="date' + i + '" value="' + data[i].date + '"/></td><td><input type="text" class="form-control" id="gp_name' + i + '" value="' + data[i].gp_name + '"/></td> <td><input type="text" class="form-control" id="vill_name' + i + '" value="' + data[i].vill_name + '"/></td> <td><input type="text" class="form-control" id="meet_loc' + i + '" value="' + data[i].meet_loc + '"/></td> <td><input type="text" class="form-control" id="male' + i + '" value="' + data[i].male + '"/></td> <td><input type="text" class="form-control" id="female' + i + '" value="' + data[i].female + '"/></td> <td><input type="text" class="form-control" id="transgender' + i + '" value="' + data[i].transgender + '"/></td> <td><input type="text" class="form-control" id="total_atten' + i + '" value="' + data[i].total_atten + '"/></td> <td><input type="file" class="form-control" id="mom' + i + '" value="' + data[i].mom + '"/></td> <td><input type="file" class="form-control" id="photograph' + i + '" value="' + data[i].photograph + '"/></td> <td><input type="file" class="form-control" id="resolution' + i + '" value="' + data[i].resolution + '"/></td> <td><input type="file" class="form-control" id="dpmu' + i + '" value="' + data[i].dpmu + '"/></td> <td><button type="button" class="btn btn-primary" onclick="Update_pgwm_meeting(' + data[i].id + ',' + i + ')">Update</button>' + '</td> <td><button  class="btn btn-danger " type="button" onclick="cancelpgwmRow(' + i + ');"><i class="fa fa-remove"</button></td></tr>';
 
                 }
@@ -1374,7 +1353,7 @@ function vwms_Info() {
                     } else {
                         Category = data[i].category_fa;
                     }
-                    tr += '<tr id="AWP1_TR' + i + '"> <td><button type="button" class="btn btn-danger" onclick="Delete_Water_User_Association_Village_Water_and_Sanitation_Committee(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].member_name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td><td>' + Category + '</td> <td>' + data[i].reserved_unreserved + '</td> <td>' + data[i].contact_number + '</td> ' +
+                    tr += '<tr id="AWP1_TR' + i + '"> <td><button type="button" class="btn btn-danger" style="display:none;" onclick="Delete_Water_User_Association_Village_Water_and_Sanitation_Committee(' + data[i].id + ')">Delete</button></td><td>' + (i + 1) + '</td><td>' + data[i].member_name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td><td>' + Category + '</td> <td>' + data[i].reserved_unreserved + '</td> <td>' + data[i].contact_number + '</td> ' +
 
                         '<tr id="Hide_AWP1_TR' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="nameofmember' + i + '" value="' + data[i].member_name + '"/></td><td><input type="date" class="form-control" id="currdate' + i + '" value="' + data[i].curr_date + '"/></td><td><input type="text" class="form-control" id="location' + i + '" value="' + data[i].location + '"/></td>';
 
@@ -1396,7 +1375,6 @@ function vwms_Info() {
         }
     });
 }
-
 function Delete_SocMan(Id) {
     //delete 4190
     if (confirm("Are you sure to delete this row.")) {
@@ -1421,7 +1399,6 @@ function Delete_SocMan(Id) {
         });
     }
 }
-
 function Delete_GpLevel(Id) {
     //delete 4190
     if (confirm("Are you sure to delete this row?")) {
@@ -2265,7 +2242,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                             approve = "";
                         }
                         if (approve == "Reject") {
-                            tr += '<tr id="AWP1_TR' + i + '"> <td></td> <td>' + (++j) + '</td>  <td>' + data[i].comm_name + '</td><td>' + data[i].establishment_date + '</td><td>' + data[i].designation + '</td><td>' + data[i].member_name + '</td> <td>' + data[i].gender + '</td><td>' + Category + '</td><td>' + data[i].contact_number + '</td><td>' + data[i].date_of_commi + '</td> <td><button class="btn btn-primary" onclick="editrowcomp_A_Good3(' + i + ')" > <i class="fa fa-edit"></i></button ></td >  <td><button class="btn btn-danger" onclick="Delete_Others_local_instituions_citizen_leaders_Info(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td><td><label style="color: red;">Rejected By DPMU</label></td>' +
+                            tr += '<tr id="AWP1_TR' + i + '"> <td></td> <td>' + (++j) + '</td>  <td>' + data[i].comm_name + '</td><td>' + data[i].establishment_date + '</td><td>' + data[i].designation + '</td><td>' + data[i].member_name + '</td> <td>' + data[i].gender + '</td><td>' + Category + '</td><td>' + data[i].contact_number + '</td><td>' + data[i].date_of_commi + '</td> <td><button class="btn btn-primary" style="display:none;" onclick="editrowcomp_A_Good3(' + i + ')" > <i class="fa fa-edit"></i></button ></td >  <td><button style="display:none;" class="btn btn-danger" onclick="Delete_Others_local_instituions_citizen_leaders_Info(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td><td><label style="color: red;">Rejected By DPMU</label></td>' +
 
                                 '<tr disabled id="Hide_AWP1_TR' + i + '" style="display:none;"><td></td> <td>' + (i + 1) + '</td>' +
 
@@ -2283,7 +2260,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                             });
                         }
                         else if (approve == "") {
-                            tr += '<tr id="AWP1_TR' + i + '"> <td></td> <td>' + (++j) + '</td>  <td>' + data[i].comm_name + '</td><td>' + data[i].establishment_date + '</td><td>' + data[i].designation + '</td><td>' + data[i].member_name + '</td> <td>' + data[i].gender + '</td><td>' + Category + '</td><td>' + data[i].contact_number + '</td><td>' + data[i].date_of_commi + '</td> <td><button class="btn btn-primary" onclick="editrowcomp_A_Good3(' + i + ')" > <i class="fa fa-edit"></i></button ></td >  <td><button class="btn btn-danger" onclick="Delete_Others_local_instituions_citizen_leaders_Info(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td><td></td>' +
+                            tr += '<tr id="AWP1_TR' + i + '"> <td></td> <td>' + (++j) + '</td>  <td>' + data[i].comm_name + '</td><td>' + data[i].establishment_date + '</td><td>' + data[i].designation + '</td><td>' + data[i].member_name + '</td> <td>' + data[i].gender + '</td><td>' + Category + '</td><td>' + data[i].contact_number + '</td><td>' + data[i].date_of_commi + '</td> <td><button class="btn btn-primary" style="display:none;" onclick="editrowcomp_A_Good3(' + i + ')" > <i class="fa fa-edit"></i></button ></td >  <td><button style="display:none;" class="btn btn-danger" onclick="Delete_Others_local_instituions_citizen_leaders_Info(' + data[i].id + ')" ><i class="fa fa-trash"></i></button></td><td></td>' +
 
                                 '<tr disabled id="Hide_AWP1_TR' + i + '" style="display:none;"><td></td> <td>' + (i + 1) + '</td>' +
 
@@ -2436,7 +2413,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><select class="form-control" id="Others_localgender' + i + '"><option value="Male"> Male</option> <option value="Female"> Female</option> <option value="Transgender"> Transgender</option><option value="0">' + data[i].gender + '</option></select ></td>' +
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
-                            $('#addrow_d_part').prop('disabled', true);
+                            $('#addrow_d_part').prop('disabled', false);
                             $('#btn_submit_approve').prop('disabled', true);
                             $('#btn_reject_spmu').prop('disabled', true);
                             $('#remarks').prop('disabled', true);
@@ -2559,7 +2536,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><select class="form-control" id="Others_localgender' + i + '"><option value="Male"> Male</option> <option value="Female"> Female</option> <option value="Transgender"> Transgender</option><option value="0">' + data[i].gender + '</option></select ></td>' +
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
-                            $('#addrow_d_part').prop('disabled', true);
+                            $('#addrow_d_part').prop('disabled', false);
                             $('#btn_reject_dpmu').prop('disabled', true);
                             $('#btn_submit_spmu').prop('disabled', true);
                             $('#remarks').prop('disabled', true);
@@ -2645,7 +2622,7 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><select class="form-control" id="Others_localgender' + i + '"><option value="Male"> Male</option> <option value="Female"> Female</option> <option value="Transgender"> Transgender</option><option value="0">' + data[i].gender + '</option></select ></td>' +
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
-                            $('#addrow_d_part').prop('disabled', true);
+                            $('#addrow_d_part').prop('disabled', false);
 
                             commitee_vals.push({
                                 Committee: data[i].comm_name,
@@ -2682,8 +2659,8 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><select class="form-control" id="Others_localgender' + i + '"><option value="Male"> Male</option> <option value="Female"> Female</option> <option value="Transgender"> Transgender</option><option value="0">' + data[i].gender + '</option></select ></td>' +
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
-                            $('#addrow_d_part').prop('disabled', true);
-                            $("#btn_submit_dpmu").prop("disabled", true);
+                            $('#addrow_d_part').prop('disabled', false);
+                            $("#btn_submit_dpmu").prop("disabled", false);
                             commitee_vals.push({
                                 Committee: data[i].comm_name,
                                 Designation: data[i].designation,
@@ -2701,8 +2678,8 @@ function Others_local_instituions_citizen_leaders_Info() {
                                 '<td><select class="form-control" id="Others_localgender' + i + '"><option value="Male"> Male</option> <option value="Female"> Female</option> <option value="Transgender"> Transgender</option><option value="0">' + data[i].gender + '</option></select ></td>' +
                                 '<td><Select id="Others_localcategory' + i + '" class="form-control"><option value="SC">SC</option><option value="ST">ST</option><option value="OBC">OBC</option><option value="General">General</option><option value="0"> ' + data[i].category + '</option></select></td>' +
                                 '<td><input type="text" class="form-control integer" maxlength="10"  id="Others_localcontact_number' + i + '" value="' + data[i].contact_number + '"/></td><td><input type="date" class="form-control"  id="date_of_commi_update' + i + '" value="' + data[i].date_of_commi + '" readonly/></td> <td> <button type="button" class="btn btn-primary" onclick="Update_AWP2(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_2_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
-                            $('#addrow_d_part').prop('disabled', true);
-                            $("#btn_submit_dpmu").prop("disabled", true);
+                            $('#addrow_d_part').prop('disabled', false);
+                            $("#btn_submit_dpmu").prop("disabled", false);
                             commitee_vals.push({
                                 Committee: data[i].comm_name,
                                 Designation: data[i].designation,
@@ -2920,11 +2897,11 @@ function ee_table_part_data_geting() {
 
                     if (data[i].print_media != "Others") {
                         a += 1
-                        tr += '<tr><td><button type="button" class="btn btn-danger" onclick="Delete_ee_table_part_data(' + data[i].id + ')">Delete</button></td><td>' + (a) + '</td><td>' + data[i].print_media + '</td><td>' + data[i].loud_speakers + '</td></tr>';
+                        tr += '<tr><td><button type="button" style="display:none;" class="btn btn-danger" onclick="Delete_ee_table_part_data(' + data[i].id + ')">Delete</button></td><td>' + (a) + '</td><td>' + data[i].print_media + '</td><td>' + data[i].loud_speakers + '</td></tr>';
                     }
                     else {
                         a += 1
-                        tr += '<tr><td><button type="button" class="btn btn-danger" onclick="Delete_ee_table_part_data(' + data[i].id + ')">Delete</button></td><td>' + (a) + '</td><td>' + data[i].radio + '</td><td>' + data[i].loud_speakers + '</td></tr>';
+                        tr += '<tr><td><button type="button" style="display:none;" class="btn btn-danger" onclick="Delete_ee_table_part_data(' + data[i].id + ')">Delete</button></td><td>' + (a) + '</td><td>' + data[i].radio + '</td><td>' + data[i].loud_speakers + '</td></tr>';
 
                     }
                 }
@@ -8224,7 +8201,7 @@ function abhy_socialmgt_pgwm_meeting_Info()   //  for pgwm meeting data display
                         dpmu = data[i].dpmu;
                     }
 
-                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                    tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].date + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].vill_name + '</td> <td>' + data[i].meet_loc + '</td> <td>' + data[i].male + '</td><td>' + data[i].female + '</td><td>' + data[i].transgender + '</td> <td>' + data[i].total_atten + '</td> <td><a href="' + mom1 + '" download="">' + mom1 + '</a></td>     <td><a href="' + photo + '" download="">' + photo + '</a></td> <td><a href="' + resol + '" download="">' + resol + '</a></td> <td><a href="' + dpmu + '" download="">' + dpmu + '</a></td>   <td><button class="btn btn-primary" style="display:none;" onclick="EditpgwmRow(' + i + ')" > <i class="fa fa-edit"></i></button ></td ><td><button style="display:none;" class="btn btn-danger" onclick="Delete_pgwm_meeting(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
                         '<tr id="Hide_Gplvl' + i + '" style="display:none;"> <td>' + (i + 1) + '</td><td><input type="text" class="form-control" id="date' + i + '" value="' + data[i].date + '"/></td><td><input type="text" class="form-control" id="gp_name' + i + '" value="' + data[i].gp_name + '"/></td> <td><input type="text" class="form-control" id="vill_name' + i + '" value="' + data[i].vill_name + '"/></td> <td><input type="text" class="form-control" id="meet_loc' + i + '" value="' + data[i].meet_loc + '"/></td> <td><input type="text" class="form-control" id="male' + i + '" value="' + data[i].male + '"/></td> <td><input type="text" class="form-control" id="female' + i + '" value="' + data[i].female + '"/></td> <td><input type="text" class="form-control" id="transgender' + i + '" value="' + data[i].transgender + '"/></td> <td><input type="text" class="form-control" id="total_atten' + i + '" value="' + data[i].total_atten + '"/></td> <td><input type="file" class="form-control" id="mom' + i + '" value="' + data[i].mom + '"/></td> <td><input type="file" class="form-control" id="photograph' + i + '" value="' + data[i].photograph + '"/></td> <td><input type="file" class="form-control" id="resolution' + i + '" value="' + data[i].resolution + '"/></td> <td><input type="file" class="form-control" id="dpmu' + i + '" value="' + data[i].dpmu + '"/></td> <td><button type="button" class="btn btn-primary" onclick="Update_pgwm_meeting(' + data[i].id + ',' + i + ')">Update</button>' + '</td> <td><button  class="btn btn-danger " type="button" onclick="cancelpgwmRow(' + i + ');"><i class="fa fa-remove"</button></td></tr>';
 
                 }
@@ -8681,9 +8658,7 @@ function Save_abhy_socialmgt_village_meetings_Info() {
         });
     }
 }
-
 //Community Feedback (suggestive list)
-
 function Get_details() {
 
     $.ajax({
@@ -8709,7 +8684,6 @@ function Get_details() {
         }
     });
 }
-
 function Save_abhy_socialmgt_community_feedback_Info() {
     var xx = 0;
     var Filess = $("#community_feedback").val();
@@ -8759,10 +8733,6 @@ function Save_abhy_socialmgt_community_feedback_Info() {
         });
     }
 }
-
-//CAPACITY BUILDING & TRAINING
-
-//getting
 function abhy_socialmgt_capacity_building_Info() {
     $('.loader').show();
     var year = $('#year').val();
@@ -8878,8 +8848,6 @@ function abhy_socialmgt_capacity_building_Info() {
         }
     });
 }
-
-
 function Save_abhy_socialmgt_capacity_building_Info() {
     var xx = 0;
     var name_of_training = $('#name_of_training').val();
@@ -8959,9 +8927,6 @@ function Save_abhy_socialmgt_capacity_building_Info() {
     }
 
 }
-
-
-
 function SessionInfo() {
 
 
@@ -9093,15 +9058,10 @@ function SessionInfo() {
     });
 
 }
-
-
-
 //GRM
-
 var noof_complaints = 0;
 var Approved_total = 0;
 var Pending_total = 0;
-
 function abhy_socialmgt_GRM_Info() {
 
     var year = $('#year').val();
@@ -9160,8 +9120,6 @@ function abhy_socialmgt_GRM_Info() {
     });
 
 }
-
-
 function Save_GRM() {
 
     $('#btnFinalSave7').prop('disabled', true);
@@ -9273,7 +9231,6 @@ function Save_GRM() {
 
 
 }
-
 function other_IECActivities(val) {
 
     var element = document.getElementById('radio');
@@ -9289,7 +9246,6 @@ function other_IECActivities(val) {
     else
         elementSelect.style.display = 'block';
 }
-
 // current data 
 var today = new Date();
 var dd = today.getDate();
@@ -9795,6 +9751,16 @@ function abhy_socialmgt_remarks() {
     obj.gpname = Gram;
     obj.year = year;
     obj.month = month;
+    $('#btnFinalSave7').hide();
+    $('#addrow_d_part').hide();
+    $('#addrow_c_part').hide();
+    $('#btnFinalSave2').hide();
+    $('#Save_GRM').hide();
+    $('#btn_submit_approve').hide();
+    $('#btn_submit_spmu').hide();
+    $('#btn_reject_spmu').hide();
+    $('#btn_reject_dpmu').hide();
+    $('#remark_txt').hide();
 
     $.ajax({
         type: 'POST',
@@ -9803,7 +9769,6 @@ function abhy_socialmgt_remarks() {
         data: "{'Data': '" + JSON.stringify(obj) + "'}",
         dataType: 'JSON',
         success: function (data) {
-
             if (data == "Logout") {
                 window.location = "/Home/LogOut";
 
@@ -9997,6 +9962,16 @@ function abhy_socialmgt_remarks() {
                     }
                 }
             }
+            $('#btnFinalSave7').hide();
+            $('#addrow_d_part').hide();
+            $('#addrow_c_part').hide();
+            $('#btnFinalSave2').hide();
+            $('#Save_GRM').hide();
+            $('#btn_submit_approve').hide();
+            $('#btn_submit_spmu').hide();
+            $('#btn_reject_spmu').hide();
+            $('#btn_reject_dpmu').hide();
+            $('#remark_txt').hide();
         }
     });
 }
