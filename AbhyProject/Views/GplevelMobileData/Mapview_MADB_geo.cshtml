@@ -28,7 +28,7 @@
             "esri/views/SceneView",
             "esri/layers/GraphicsLayer",
             "esri/Graphic",
-            "esri/geometry/Polygon",
+            //"esri/geometry/Polygon",
             "esri/layers/FeatureLayer",
             "esri/widgets/BasemapGallery",
             "esri/widgets/Expand",
@@ -36,7 +36,7 @@
             "esri/WebScene"
 
         ], function (Map, MapView, GraphicsLayer, Graphic,
-            Polygon,
+            //Polygon,
             FeatureLayer, BasemapGallery, Expand, Home, WebScene) {
 
 
@@ -79,7 +79,59 @@
                     }
                 },
 
-              
+                popupTemplate: {
+
+                    title: "Gram Panchayat :- {gp_name}",
+
+
+                    content: [
+                        {
+
+
+                            type: "fields",
+                            fieldInfos: [
+                                {
+                                    fieldName: "gp_name",
+                                    visible: true,
+                                    label: "Gram Panchayat",
+                                    format: {
+                                        places: 0,
+                                        digitSeparator: true
+                                    }
+                                },
+
+
+                                {
+                                    fieldName: "bloc_name",
+                                    visible: true,
+                                    label: "Block Name"
+                                },
+
+                                {
+                                    fieldName: "dist_name",
+                                    visible: true,
+                                    label: "District Name"
+                                },
+
+                                {
+                                    fieldName: "st_name",
+                                    visible: true,
+                                    label: "State Name"
+                                },
+
+                                {
+                                    fieldName: "count_vill",
+                                    visible: true,
+                                    label: "Count_of_Villages_Under_GPs"
+                                },
+                            ]
+                        },
+
+
+
+                    ]
+                },
+
 
                 outFields: ["*"],
 
