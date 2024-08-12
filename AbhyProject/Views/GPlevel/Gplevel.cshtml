@@ -2057,11 +2057,7 @@
     }
 
     $(document).ready(function () {
-        //$("#modalDialogScrollable_gp").modal("hide");
-        //$("#modalDialogScrollable_block").modal("hide");
-        //$("#modalDialogScrollable_dpmu").modal("hide");
-        //$("#modalDialogScrollable_state").modal("hide");
-        //$("#modalDialogScrollable_npmu").modal("hide");
+        
         $("#MonthDropdownLabel").hide();
         $('.loader').hide();
         var fin_year = getCurrentFiscalYear();
@@ -2097,7 +2093,6 @@
         }
 
     }
-
     function Session_month_year() {
         var month = $('#month').val();
         var year = $('#year').val();
@@ -2111,7 +2106,6 @@
             }
         })
     }
-
     function getCurrentFiscalYear() {
         //get current date
         var today = new Date();
@@ -2169,7 +2163,14 @@
     var off_1 = "";
     var Jsondata = "";
     $(document).ready(function () {
-
+        $('#sarpanch_save_btn').hide();
+        $('#btnFinalSave').hide();
+        $('#btn_rejectNDO').hide();
+        $("#approved").hide();
+        $("input[type='text']").prop("disabled", true);
+        $('#btn_submitNDO').hide();
+        $(".hide_btn").prop("disabled", true);
+        $(".hide_btn_tr").hide();
          Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
         $('#Error_').text("States Information is Loading....");
         $('#StateLabel').hide();

@@ -1238,6 +1238,14 @@ namespace AbhyProject.Controllers
                 }
                 catch (Exception Ex)
                 {
+                    abhy_tbl_error error_data = new abhy_tbl_error();
+                    error_data.error_test = Ex.Message;
+                    error_data.user_email = Ex.StackTrace;
+                    error_data.user_type = "socialtracker";
+                    error_data.error_count = "1";
+                    error_data.date_time = DateTime.Now.ToString();
+                    ABE.obj_abhy_tbl_error.Add(error_data);
+                    ABE.SaveChanges();
                     return Json("Error", JsonRequestBehavior.AllowGet);
                 }
             }
