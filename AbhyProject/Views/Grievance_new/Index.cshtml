@@ -1,16 +1,41 @@
 ﻿@model AbhyProject.Models.New_Grievance
 
-@{
-    /**/
+@{ /**/
 
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
-}
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/WebsiteLayout.cshtml"; }
 
 <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
 <title>New Grievance Registration</title>
 
 <style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
     .form-group .form-control {
         margin-top: 5px;
     }
@@ -92,6 +117,11 @@
 
 
 <div>
+    <div class="loading-container">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+        </div>
+    </div>
     <div class="row">
         @*<div class="col-md-12">
                 <div class="text-h g-mb-20" style="padding: 10px; color: #337ab7; font-size: 20px;margin-left:10px; font-family:raleway;margin-top:20px;font-weight:900">Grievance</div>
@@ -417,6 +447,7 @@
     let MonthName = "";
     $(document).ready(function () {
         district();
+        $(".loader").hide();
         $('#ddlstatte').hide();
         $('#ddldist').hide();
         $('#ddlstate_show').hide();
@@ -493,7 +524,8 @@
         function (data) {
             if (data == 0) {
                 CapchaInfo = "Not Matched";
-            $("#status").html('<font color="Red"> Not Matched</font>');
+                $("#status").html('<font color="Red"> Not Matched</font>');
+                $('#btnSubmit').prop('disabled', false);
             refress();
         }
             else {
@@ -517,7 +549,7 @@
 
     var statename = "";
     function SearchInfo() {
-
+        $('#btnSubmit').prop('disabled', true);
         var i = 0;
 
         var subject = $('#subject').val();
@@ -540,64 +572,90 @@
         if (oFile != undefined) {
             if (oFile.size > 10485760) // 10 MiB for bytes.
             {
+                $('#btnSubmit').prop('disabled', false);
                 alert("File size must be less than 10 MB");
                 return;
             }
         }
         if (subject == "") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Enter Subject");
-
+            return;
         }
         else if (Grievance_type == "0") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Select Grievance Type ");
+            return;
         }
         else if (Grievance_type == "Others" && Grievance_other == "") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Enter Grievance Type Other ");
+            return;
         }
         else if (state == "0") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Select Grievance Type Select ");
+            return;
         }
         else if (state == "State" && Grievance_address_to == '0') {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Select Grievance Addressed To States");
+            return;
         }
         else if (state == "District" && spnstate_get == '0') {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Select Grievance Addressed To District");
+            return;
         }
         else if (complaint_name == "") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Enter Complainant Name ");
+            return;
         }
         else if (email == "") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Enter Email  ");
+            return;
         }
         else if (mobile == "") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Enter Mobile No  ");
+            return;
         }
         else if (mobile.length != 10) {
+            $('#btnSubmit').prop('disabled', false);
             alert("Please Enter Correct Mobile No");
             i = 1;
+            return;
         }
         else if (phone != "") {
- if (phone.length != 10) {
+            if (phone.length != 10) {
+                $('#btnSubmit').prop('disabled', false);
                 alert("Please Enter Correct Phone No");
-                i = 1;
+     i = 1;
+     return;
             }
         }
         else if (address == "") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Enter address   ");
+            return;
         }
         else if (grivance_description == "") {
             i = 1;
+            $('#btnSubmit').prop('disabled', false);
             alert(" Please Enter Grievance Description  ");
+            return;
         }
         else if (files == "") {
             Checking();
@@ -609,7 +667,7 @@
     }
 
     function SearchInfo1() {
-        
+        $(".loader").show();
         var i = 0;
         var type = "";
         var Grievance_type = $('#Grievance_type').val();
@@ -642,7 +700,6 @@
                     else {
                         data.append("Grievance_address_to", jQuery("#state_get").text());
                     }
-
                     data.append("Grievance_type", type);
                     data.append("subject", jQuery("#subject").val());
                     data.append("files", jQuery("#files").get(0).files[0]);
@@ -653,34 +710,82 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    
+
                     var res = response;
                     if (res == 'Choose Valid file') {
                         alert(response);
+                        return;
                     }
                     else if (res == 'Your Upload file has Not valid File, Please Upload proper file') {
                         alert(response);
+                        return;
                     }
                     else if (res == 'Please use the proper file name without special characters (# , $) .') {
                         alert(response);
+                        return;
                     }
                     else if (res == 'Captcha is not Matched') {
                         alert(response);
+                        return;
+                    }
+                    else if (response == "Please Select Grievance Type") {
+                        alert(response);
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
+                        return;
+                    }
+                    else if (response == "Please Enter Subject") {
+                        alert(response);
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
+                        return;
+                    }
+                    else if (response == "Please Select Grievance Addressed To States") {
+                        alert(response);
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
+                        return;
+                    }
+                    else if (response == "Please Enter Complainant Name") {
+                        alert(response);
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
+                        return;
+                    }
+                    else if (response == "Please Enter Email ") {
+                        alert(response);
+                        $(".loader").hide();
+                        return;
+                    }
+                    else if (response == "Please Enter Mobile Number") {
+                        alert(response);
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
+                        return;
+                    }
+                    else if (response == "Please Enter Address") {
+                        alert(response);
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
+                        return;
+                    }
+                    else if (response == "Please Enter Grievance Description") {
+                        alert(response);
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
+                        return;
                     }
                     else {
                         var String1 = "You Successfully lodged a Grievance. Your Grievance id is " + response;
                         alert(String1);
                         $('#Error1').text('');
-
                         $("#grivance_description").val("");
                         $("#address").val("");
                         $("#phone").val("");
-
                         $("#mobile").val("");
                         $("#email").val("");
                         $("#complaint_name").val("");
                         $("#files").val("");
-
                         $("#Grievance_type").val("0");
                         $("#Grievance_other").val("");
                         $("#other").hide();
@@ -688,9 +793,9 @@
                         $("#Grievance_address_to").val("0");
                         $("#subject").val("");
                         $('#clientCaptcha').val("");
-                        dist();
-
                         $('#status').text("");
+                        $('#btnSubmit').prop('disabled', false);
+                        $(".loader").hide();
                     }
                 },
                 error: function (jqXHR, textStatus, errorMessage) {

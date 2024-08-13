@@ -493,177 +493,209 @@ namespace AbhyProject.Controllers
 					return Json("Your Upload file has Not valid File, Please Upload proper file", JsonRequestBehavior.AllowGet);
 				}
 
-
-
-				new_grievance.year = year;
-				new_grievance.month = month;
-				new_grievance.phone = phone;
-				new_grievance.mobile = mobile;
-				new_grievance.subject = subject;
-				new_grievance.reg_date = DateTime.Now.ToString("dd/MM/yyyy");
-				new_grievance.registation_date_time = DateTime.Now.ToString();
-				new_grievance.grievance_address_to = grievance_address_to;
-				new_grievance.grievance_type = grievance_type;
-				new_grievance.complaint_name = complaint_name;
-				new_grievance.address = address;
-				new_grievance.status = status;
-				new_grievance.District_name = District;
-				new_grievance.grivance_description = grivance_description;
-				// new_grievance.CreatedBy = Convert.ToInt32(Session["UserId"]);
-				new_grievance.ApprovedBy = 0;
-				Guid vid = Guid.NewGuid();
-				string viid = vid.ToString();
-				string Code = randomCodeGeneration();
-				string sth = "ABG" + Code;
-				new_grievance.IdentificationId = sth;
-				new_grievance.mail_count = "1";
-
-				if (files != null)
+				if (grievance_type == "0")
 				{
+					return Json("Please Select Grievance Type", JsonRequestBehavior.AllowGet);
+				}
+				else if (subject == "" || subject == null)
+				{
+					return Json("Please Enter Subject", JsonRequestBehavior.AllowGet);
+				}
+				else if (grievance_address_to == "0")
+				{
+					return Json("Please Select Grievance Addressed To States", JsonRequestBehavior.AllowGet);
+				}
+				else if (complaint_name == "" || complaint_name == null)
+				{
+					return Json("Please Enter Complainant Name", JsonRequestBehavior.AllowGet);
+				}
+				else if (email == "" || email == null)
+				{
+					return Json("Please Enter Email ", JsonRequestBehavior.AllowGet);
+				}
+				else if (mobile == "" || mobile == null)
+				{
+					return Json("Please Enter Mobile Number", JsonRequestBehavior.AllowGet);
+				}
+				else if (address == "" || address == null)
+				{
+					return Json("Please Enter Address", JsonRequestBehavior.AllowGet);
+				}
+				else if (grivance_description == "" || grivance_description == null)
+				{
+					return Json("Please Enter Grievance Description", JsonRequestBehavior.AllowGet);
+				}
+				else
+				{
+					new_grievance.year = year;
+					new_grievance.month = month;
+					new_grievance.phone = phone;
+					new_grievance.mobile = mobile;
+					new_grievance.subject = subject;
+					new_grievance.reg_date = DateTime.Now.ToString("dd/MM/yyyy");
+					new_grievance.registation_date_time = DateTime.Now.ToString();
+					new_grievance.grievance_address_to = grievance_address_to;
+					new_grievance.grievance_type = grievance_type;
+					new_grievance.complaint_name = complaint_name;
+					new_grievance.address = address;
+					new_grievance.status = status;
+					new_grievance.District_name = District;
+					new_grievance.grivance_description = grivance_description;
+					new_grievance.ApprovedBy = 0;
+					Guid vid = Guid.NewGuid();
+					string viid = vid.ToString();
+					string Code = randomCodeGeneration();
+					string sth = "ABG" + Code;
+					new_grievance.IdentificationId = sth;
+					new_grievance.mail_count = "1";
 
-					if (files.FileName != null)
+					if (files != null)
 					{
-						String FileExt = Path.GetExtension(files.FileName).ToUpper();
 
-						if (FileExt != ".PDF" && FileExt != ".JPG" && FileExt != ".PNG")
+						if (files.FileName != null)
 						{
-							return Json("Choose Valid file", JsonRequestBehavior.AllowGet);
+							String FileExt = Path.GetExtension(files.FileName).ToUpper();
+
+							if (FileExt != ".PDF" && FileExt != ".JPG" && FileExt != ".PNG")
+							{
+								return Json("Choose Valid file", JsonRequestBehavior.AllowGet);
+
+							}
+							string BasePath = AppDomain.CurrentDomain.BaseDirectory;
+							string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\GRM\\");
+							if (!Directory.Exists(path))
+							{
+								Directory.CreateDirectory(path);
+							}
+							path = path + sth + files.FileName;
+							string[] count = files.FileName.Split('.');
+							string[] count_special = files.FileName.Split('#', '$');
+							if (count.Length != 2)
+							{
+								return Json("Your Upload file has Double Extention, Please Upload proper file", JsonRequestBehavior.AllowGet);
+							}
+							if (count_special.Length >= 2)
+							{
+								return Json("Please use the proper file name without special characters (# , $) .", JsonRequestBehavior.AllowGet);
+							}
+							files.SaveAs(path);
+							new_grievance.supported_document = "/Ataljalimages/GRM/" + sth + files.FileName;
+							new_grievance.supported_document_file = files.FileName;
 
 						}
-						string BasePath = AppDomain.CurrentDomain.BaseDirectory;
-						string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\GRM\\");
-						if (!Directory.Exists(path))
-						{
-							Directory.CreateDirectory(path);
-						}
-						path = path + sth + files.FileName;
-						string[] count = files.FileName.Split('.');
-						string[] count_special = files.FileName.Split('#', '$');
-						if (count.Length != 2)
-						{
-							return Json("Your Upload file has Double Extention, Please Upload proper file", JsonRequestBehavior.AllowGet);
-						}
-						if (count_special.Length >= 2)
-						{
-							return Json("Please use the proper file name without special characters (# , $) .", JsonRequestBehavior.AllowGet);
-						}
-						files.SaveAs(path);
-						new_grievance.supported_document = "/Ataljalimages/GRM/" + sth + files.FileName;
-						new_grievance.supported_document_file = files.FileName;
-
 					}
-				}
 
-				if (email != null || email != "")
-				{
-					string contemail = email;
-					string Mail_Subject_client = "Registation Successfully";
-					StringBuilder sb_client = new StringBuilder();
-					sb_client.Append("<br>");
-					sb_client.Append("<br>");
-					sb_client.Append("<table style='margin-left:50px;'>");
-					sb_client.Append("<tr  style='width:300px'>");
-					sb_client.Append("</tr>");
-					sb_client.Append("<tr style='width:300px'>");
+					if (email != null || email != "")
+					{
+						string contemail = email;
+						string Mail_Subject_client = "Registation Successfully";
+						StringBuilder sb_client = new StringBuilder();
+						sb_client.Append("<br>");
+						sb_client.Append("<br>");
+						sb_client.Append("<table style='margin-left:50px;'>");
+						sb_client.Append("<tr  style='width:300px'>");
+						sb_client.Append("</tr>");
+						sb_client.Append("<tr style='width:300px'>");
 
-					sb_client.Append("<td>");
-					sb_client.Append("<b>Dear Sir/Madam,</b>");
-					sb_client.Append("</td>");
-					sb_client.Append("</tr>");
-					sb_client.Append("<br>");
-					sb_client.Append("<tr  style='width:300px'>");
-					sb_client.Append("<td>");
-					sb_client.Append("<h4>");
-					sb_client.Append("<b>Your grievance has been registered successfully and the Grievance Id is  " + new_grievance.IdentificationId + " . </b>");
-					sb_client.Append("<br>");
-					sb_client.Append("</h4>");
-					sb_client.Append("</td>");
-					sb_client.Append("</tr>");
-					sb_client.Append("<br>");
-					sb_client.Append("<tr  style='width:300px'>");
-					sb_client.Append("<td>");
-					sb_client.Append("</td>");
-					sb_client.Append("<tr  style='width:300px'>");
-					sb_client.Append("<td>");
-					sb_client.Append("<br>");
-					sb_client.Append("Thank You");
-					sb_client.Append("<br>");
-					sb_client.Append("</td>");
-					sb_client.Append("</tr>");
-					sb_client.Append("<tr>");
-					sb_client.Append("</tr>");
-					sb_client.Append("</table>");
-					string result = WebConstents.SendEmailSMTP(contemail, null, Mail_Subject_client, sb_client.ToString(), "");
-					if (result == "success")
+						sb_client.Append("<td>");
+						sb_client.Append("<b>Dear Sir/Madam,</b>");
+						sb_client.Append("</td>");
+						sb_client.Append("</tr>");
+						sb_client.Append("<br>");
+						sb_client.Append("<tr  style='width:300px'>");
+						sb_client.Append("<td>");
+						sb_client.Append("<h4>");
+						sb_client.Append("<b>Your grievance has been registered successfully and the Grievance Id is  " + new_grievance.IdentificationId + " . </b>");
+						sb_client.Append("<br>");
+						sb_client.Append("</h4>");
+						sb_client.Append("</td>");
+						sb_client.Append("</tr>");
+						sb_client.Append("<br>");
+						sb_client.Append("<tr  style='width:300px'>");
+						sb_client.Append("<td>");
+						sb_client.Append("</td>");
+						sb_client.Append("<tr  style='width:300px'>");
+						sb_client.Append("<td>");
+						sb_client.Append("<br>");
+						sb_client.Append("Thank You");
+						sb_client.Append("<br>");
+						sb_client.Append("</td>");
+						sb_client.Append("</tr>");
+						sb_client.Append("<tr>");
+						sb_client.Append("</tr>");
+						sb_client.Append("</table>");
+						string result = WebConstents.SendEmailSMTP(contemail, null, Mail_Subject_client, sb_client.ToString(), "");
+						if (result == "success")
+						{
+						}
+					}
+
+					string Content_Email = "";
+					string fullname = "";
+					var OfficersDetails = ABE.obj_abhy_grievance_officer_mails_info_new.Where(x => x.state_name == grievance_address_to).ToList();
+
+					if (OfficersDetails.Count != 0)
+					{
+						Content_Email = OfficersDetails[0].first_officer_mailid;
+						fullname = OfficersDetails[0].first_officername;
+					}
+					var dateAndTime = DateTime.Now.ToString("dd/MM/yyyy");
+					var Today_Date_1 = dateAndTime;
+					string[] uuu = Request.Url.AbsoluteUri.Split('/');
+					string GrievanceAprroved = uuu[0] + "//" + uuu[2] + "/Grievance/GrievanceAprroved?code=" + sth;
+					string GrievanceDecline = uuu[0] + "//" + uuu[2] + "/Grievance/GrievanceDecline?code=" + sth + ',' + Content_Email;
+					new_grievance.officer_name = fullname;
+					new_grievance.mail_count = "1";
+					ABE.objgrievance_new.Add(new_grievance);
+					ABE.SaveChanges();
+					string Mail_Subject = "Grievance Acknowledgement-" + sth;
+					StringBuilder sb = new StringBuilder();
+					sb.Append("<br>");
+					sb.Append("<br>");
+					sb.Append("<table style='margin-left:50px;'>");
+					sb.Append("<tr  style='width:300px'>");
+					sb.Append("</tr>");
+					sb.Append("<tr style='width:300px'>");
+
+					sb.Append("<td>");
+					sb.Append("<b>Hi  " + fullname + " Sir,</b>");
+					sb.Append("<br>");
+					sb.Append("</td>");
+					sb.Append("<br>");
+					sb.Append("</tr>");
+					sb.Append("<br>");
+					sb.Append("<br>");
+					sb.Append("<br>");
+					sb.Append("<tr  style='width:300px'>");
+					sb.Append("<td>");
+					sb.Append("<h4>");
+					sb.Append("Grievance, ID – " + sth + " submitted on " + Today_Date_1 + ". to be resolved within 10 days.");
+					sb.Append("</h4>");
+					sb.Append("</td>");
+					sb.Append("</tr>");
+					sb.Append("<br>");
+					sb.Append("<br>");
+					sb.Append("<br>");
+					sb.Append("<tr  style='width:300px'>");
+					sb.Append("<td>");
+					sb.Append("</td>");
+					sb.Append("<tr  style='width:300px'>");
+					sb.Append("<td>");
+					sb.Append("<br>");
+					sb.Append("Thanking You");
+					sb.Append("<br>");
+					sb.Append("</td>");
+					sb.Append("</tr>");
+					sb.Append("<tr>");
+					sb.Append("</tr>");
+					sb.Append("</table>");
+					string result1 = WebConstents.SendEmailSMTP(Content_Email, null, Mail_Subject, sb.ToString(), "");
+					if (result1 == "success")
 					{
 					}
+					return Json(sth, JsonRequestBehavior.AllowGet);
 				}
-
-				string Content_Email = "";
-				string fullname = "";
-				var OfficersDetails = ABE.obj_abhy_grievance_officer_mails_info_new.Where(x => x.state_name == grievance_address_to).ToList();
-
-				if (OfficersDetails.Count != 0)
-				{
-					Content_Email = OfficersDetails[0].first_officer_mailid;
-					fullname = OfficersDetails[0].first_officername;
-				}
-				var dateAndTime = DateTime.Now.ToString("dd/MM/yyyy");
-				var Today_Date_1 = dateAndTime;
-				string[] uuu = Request.Url.AbsoluteUri.Split('/');
-				string GrievanceAprroved = uuu[0] + "//" + uuu[2] + "/Grievance/GrievanceAprroved?code=" + sth;
-				string GrievanceDecline = uuu[0] + "//" + uuu[2] + "/Grievance/GrievanceDecline?code=" + sth + ',' + Content_Email;
-				new_grievance.officer_name = fullname;
-				new_grievance.mail_count = "1";
-				ABE.objgrievance_new.Add(new_grievance);
-				ABE.SaveChanges();
-				string Mail_Subject = "Grievance Acknowledgement-" + sth;
-				StringBuilder sb = new StringBuilder();
-				sb.Append("<br>");
-				sb.Append("<br>");
-				sb.Append("<table style='margin-left:50px;'>");
-				sb.Append("<tr  style='width:300px'>");
-				sb.Append("</tr>");
-				sb.Append("<tr style='width:300px'>");
-
-				sb.Append("<td>");
-				sb.Append("<b>Hi  " + fullname + " Sir,</b>");
-				sb.Append("<br>");
-				sb.Append("</td>");
-				sb.Append("<br>");
-				sb.Append("</tr>");
-				sb.Append("<br>");
-				sb.Append("<br>");
-				sb.Append("<br>");
-				sb.Append("<tr  style='width:300px'>");
-				sb.Append("<td>");
-				sb.Append("<h4>");
-				sb.Append("Grievance, ID – " + sth + " submitted on " + Today_Date_1 + ". to be resolved within 10 days.");
-				sb.Append("</h4>");
-				sb.Append("</td>");
-				sb.Append("</tr>");
-				sb.Append("<br>");
-				sb.Append("<br>");
-				sb.Append("<br>");
-				sb.Append("<tr  style='width:300px'>");
-				sb.Append("<td>");
-				sb.Append("</td>");
-				sb.Append("<tr  style='width:300px'>");
-				sb.Append("<td>");
-				sb.Append("<br>");
-				sb.Append("Thanking You");
-				sb.Append("<br>");
-				sb.Append("</td>");
-				sb.Append("</tr>");
-				sb.Append("<tr>");
-				sb.Append("</tr>");
-				sb.Append("</table>");
-				string result1 = WebConstents.SendEmailSMTP(Content_Email, null, Mail_Subject, sb.ToString(), "");
-				if (result1 == "success")
-				{
-				}
-
-				return Json(sth, JsonRequestBehavior.AllowGet);
+				
 
 			}
 			else
