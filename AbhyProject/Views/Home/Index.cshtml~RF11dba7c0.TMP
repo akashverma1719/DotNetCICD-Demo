@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/WebsiteLayout.cshtml";
+    Layout = "~/Views/Shared/redirectpage.cshtml";
 }
 <style>
     .swiper-button-next {
