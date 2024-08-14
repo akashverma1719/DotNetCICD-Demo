@@ -25,13 +25,10 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
-      
-
         public ActionResult Index2()
         {
             return View();
         }
-
         public ActionResult new_report_training()
         {
             return View();
@@ -48,7 +45,6 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult state_tracker(string statename, string year ,string month)
         {
@@ -197,7 +193,6 @@ namespace AbhyProject.Controllers
 
 
         }
-
         [HttpPost]
         public ActionResult district_tracker(string statename, string districtname, string year, string month)
         {
@@ -964,7 +959,6 @@ namespace AbhyProject.Controllers
 
 
 }
-
         [HttpPost]
         public ActionResult Block_tracker(string statename, string districtname,string blockname, string year, string month)
         {
@@ -2022,7 +2016,6 @@ namespace AbhyProject.Controllers
 
 
         }
-
         [HttpPost]
         public ActionResult gp_tracker(string statename, string districtname, string blockname, string gpname , string year, string month)
         {
@@ -3369,8 +3362,6 @@ namespace AbhyProject.Controllers
 
 
 }
-
-
         public ActionResult gp_tracker_excel(string statename, string districtname, string blockname, string gpname, string year, string month)
         {
             if (Session["UserId"] != null)
@@ -4160,8 +4151,6 @@ namespace AbhyProject.Controllers
 
 
         }
-
-
         public ActionResult dist_auth()
         {
             return View();
@@ -4174,7 +4163,6 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
-
         public ActionResult block_auth()
         {
             return View();
@@ -4187,24 +4175,18 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
-
-
-
         public ActionResult CurrentEventsAuth()
         {
             return View();
         }
-
         public ActionResult EventMaterialAuth()
         {
             return View();
         }
-
         public ActionResult GP_Level_Auth()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Update_geo(string id, string latitude, string longitude, string village, string locationdetail, string storagecapacity, string nooffillings, string typeofwell, string well_type_other)
         {
@@ -4296,8 +4278,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpPost]
         public ActionResult DropdownInfo_Gpdist()
         {
@@ -4329,8 +4309,6 @@ namespace AbhyProject.Controllers
                 return Json("OK");
             }
         }
-
-
         private int GetYearFromFinancialYear(string FinancialYear)
         {
             int FnYear = 0;
@@ -4391,7 +4369,6 @@ namespace AbhyProject.Controllers
             }
             return month_num;
         }
-
         [HttpPost]
         public JsonResult SaveCurrentEventForGP(string Data)
         {
@@ -4545,7 +4522,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
         [HttpPost]
         public ActionResult GetCurrentData(string State, string Dist, string Block, string Gram, string Year, string Month)
         {
@@ -4648,7 +4624,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
         public ActionResult Events_Calendar_Report_NPMU(string State1, string state_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -4656,7 +4631,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Event_Calendar_NPMU_Report(string State1, string year_state, string month_state, string state_name)
         {
@@ -4725,7 +4699,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Calendar_Report_STATE(string State1, string state_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -4733,7 +4706,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Event_Calendar_State_Report(string State1, string year_state, string month_state, string state_name)
         {
@@ -4836,7 +4808,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Calendar_Report_DISTRICT(string State1, string District1, string state_name, string district_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -4845,7 +4816,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Event_Calendar_District_Report(string State1, string District1, string year_district, string month_district, string state_name, string district_name)
         {
@@ -4920,7 +4890,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Calendar_Report_BLOCK(string State1, string District1, string Block1, string state_name, string district_name, string block_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -4930,7 +4899,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Event_Calendar_Block_Report(string State1, string District1, string Block1, string year_block, string month_block, string state_name, string district_name, string block_name)
         {
@@ -5013,7 +4981,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Current_Events_Report_NPMU(string State1, string state_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -5021,7 +4988,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Current_Events_NPMU_Report(string State1, string year_state, string month_state, string state_name)
         {
@@ -5090,7 +5056,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Current_Events_Report_STATE(string State1, string state_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -5098,7 +5063,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Current_Events_State_Report(string State1, string year_state, string month_state, string state_name)
         {
@@ -5203,7 +5167,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Current_Events_Report_DISTRICT(string State1, string District1, string state_name, string district_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -5212,7 +5175,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Current_Events_District_Report(string State1, string District1, string year_district, string month_district, string state_name, string district_name)
         {
@@ -5368,7 +5330,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Current_Events_Report_BLOCK(string State1, string District1, string Block1, string state_name, string district_name, string block_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -5378,7 +5339,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Current_Events_Block_Report(string State1, string District1, string Block1, string year_block, string month_block, string state_name, string district_name, string block_name)
         {
@@ -5606,7 +5566,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Current_Events_Report_GRAM(string State1, string District1, string Block1, string Gram1, string state_name, string district_name, string block_name, string gram_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -5617,7 +5576,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Current_Events_Gram_Report(string State1, string District1, string Block1, string Gram1, string year_gram, string month_gram, string state_name, string district_name, string block_name, string gram_name)
         {
@@ -5922,7 +5880,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Material_Report_NPMU(string State1, string state_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -5930,7 +5887,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Events_Material_NPMU_Report(string State1, string year_state, string month_state, string state_name)
         {
@@ -5999,7 +5955,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Material_Report_STATE(string State1, string state_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -6007,7 +5962,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Events_Material_State_Report(string State1, string year_state, string month_state, string state_name)
         {
@@ -6108,7 +6062,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Material_Report_DISTRICT(string State1, string District1, string state_name, string district_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -6117,8 +6070,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
-
         [HttpPost]
         public ActionResult Events_Material_District_Report(string State1, string District1, string year_district, string month_district, string state_name, string district_name)
         {
@@ -6261,7 +6212,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Material_Report_BLOCK(string State1, string District1, string Block1, string state_name, string district_name, string block_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -6271,7 +6221,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Events_Material_Block_Report(string State1, string District1, string Block1, string year_block, string month_block, string state_name, string district_name, string block_name)
         {
@@ -6498,7 +6447,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Events_Material_Report_GRAM(string State1, string District1, string Block1, string Gram1, string state_name, string district_name, string block_name, string gram_name, string year1, string month1)
         {
             Session["state_name"] = state_name;
@@ -6509,7 +6457,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         [HttpPost]
         public ActionResult Events_Material_Gram_Report(string State1, string District1, string Block1, string Gram1, string year_gram, string month_gram, string state_name, string district_name, string block_name, string gram_name)
         {
@@ -6647,7 +6594,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Pdf_Participants_level(string topic_of_event, string state1, string district1, string block01, string event_name, string year, string month, string state_name, string dist_name, string block_name)
         {
             Session["state1"] = state1;
@@ -6659,7 +6605,6 @@ namespace AbhyProject.Controllers
             Session["month"] = month;
             return View();
         }
-
         [HttpPost]
         public ActionResult Participant_Registration_Details_Report(string topic_of_event, string State1, string District1, string Block1, string state_name, string district_name, string block_name, string event_name, string year, string month)
         {
@@ -6882,7 +6827,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Pdf_Gp_Reg_Tr(string state1, string district1, string block01, string gram01, string year1, string month1)
         {
             Session["state_name"] = state1;
@@ -6893,7 +6837,6 @@ namespace AbhyProject.Controllers
             Session["month1"] = month1;
             return View();
         }
-
         public ActionResult Pdf_Gp_Reg_Tr_New(string state1, string district1, string block01, string gram01, string year1, string month1, string topic_training_new)
         {
             Session["state_name"] = state1;
@@ -6905,8 +6848,6 @@ namespace AbhyProject.Controllers
             Session["Topic_Training_New"] = topic_training_new;
             return View();
         }
-
-
         [HttpPost]
         public ActionResult Gp_Registration_Details_Report(string State1, string District1, string Block1, string Gram1, string year, string month, string state_name, string district_name, string block_name, string gram_name)
         {
@@ -7203,7 +7144,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         [HttpPost]
         public ActionResult Gp_Registration_Details_Report_New(string State1, string District1, string Block1, string Gram1, string year, string month, string state_name, string district_name, string block_name, string gram_name, string topic_training_new)
         {
@@ -7575,7 +7515,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult Pdf_feedback(string topic_of_event, string state1, string district1, string block01, string year, string month, string state_name, string dist_name, string block_name)
         {
             Session["state_name"] = state_name;
@@ -7586,7 +7525,6 @@ namespace AbhyProject.Controllers
             Session["month"] = month;
             return View();
         }
-
         [HttpPost]
         public ActionResult Participant_Feedback_Details_Report(string topic_of_event, string year, string month, string State1, string District1, string Block1, string state_name, string district_name, string block_name)
         {
@@ -7922,9 +7860,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
-
-
         [HttpPost]
         public ActionResult State()
         {
@@ -8602,15 +8537,12 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         public DateTime ParseDate(string date)
         {
             DateTimeFormatInfo dateFormatProvider = new DateTimeFormatInfo();
             dateFormatProvider.ShortDatePattern = "dd/MM/yyyy";
             return DateTime.Parse(date, dateFormatProvider);
         }
-
         [HttpGet]
         public ActionResult current_event_Data_count_new()
         {
@@ -8697,8 +8629,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpGet]
         public ActionResult current_event_Data(string year, string month, string date)
         {
@@ -8931,8 +8861,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpGet]
         public ActionResult current_event_Data_State(string STATE, string year, string month, string date)
         {
@@ -9170,7 +9098,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
         [HttpGet]
         public ActionResult current_event_Data_State_count(string STATE, string year, string month, string date)
         {
@@ -9379,8 +9306,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpGet]
         public ActionResult current_event_Data_District(string STATE, string DISTRICT, string year, string month, string date)
         {
@@ -10160,10 +10085,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
-
-
         [HttpPost]
         public ActionResult Update_Curr_Part_Info(string id, string NPMU, string topic_event, string typ, string typother_one, string typother_two, /*string State, string District, string Block, */string event_platform, string fdate_d, string tdate_d, string opendate_d, string closedate_d)
         {
@@ -10700,8 +10621,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpPost]
         public ActionResult Update_Participant_Part_Info(string id, string topic_event, string name, string gender, string age, string occupation, string qual, string phonenno, string emailid, string address, string partiState, string p_other_state_name, string reg, string State, string District, string Block)
         {
@@ -10762,8 +10681,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpGet]
         public ActionResult current_events_selection_all()
         {
@@ -11452,8 +11369,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         // Event Calender Excel code
         public ActionResult Excel_state_level_cal(string State1, string state_name, string year1, string month1)
         {
@@ -11566,7 +11481,6 @@ namespace AbhyProject.Controllers
                 }
             }
         }
-
         public ActionResult Excel_district_level_cal(string State1, string district1, string state_name, string dist_name, string year1, string month1)
         {
             var State = State1;
@@ -11734,8 +11648,6 @@ namespace AbhyProject.Controllers
                 }
             }
         }
-
-
         public ActionResult Excel_block_level_cal(string state1, string district1, string block01, string year1, string month1, string state_name, string dist_name, string block_name)
         {
             var State = state1;
@@ -12495,9 +12407,6 @@ namespace AbhyProject.Controllers
                 }
             }
         }
-
-
-
         public ActionResult Excel_all_data_current_event(string state1, string district1, string block01, string gram01, string year1, string month1, string state_name, string dist_name, string block_name, string gram_name)
         {
 
@@ -13096,8 +13005,6 @@ namespace AbhyProject.Controllers
 
             return RedirectToAction("Index");
         }
-
-
         public ActionResult Excel_state_level(string State1, string state_name, string year1, string month1)
         {
             var State = State1;
@@ -14061,8 +13968,6 @@ namespace AbhyProject.Controllers
             return RedirectToAction("Index");
 
         }
-
-
         public ActionResult Excel_gram_level(string state1, string district1, string block01, string gram01, string year1, string month1, string state_name, string dist_name, string block_name, string gram_name)
         {
             var State = state1;
@@ -14521,9 +14426,6 @@ namespace AbhyProject.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-
         public ActionResult Excel_NPMU_level(string state_name, string year1, string month1)
         {
             var state = state_name;
@@ -15829,9 +15731,7 @@ namespace AbhyProject.Controllers
             return RedirectToAction("Index");
         }
 
-
         //Event Material Excel code
-
         public ActionResult Excel_all_data_Material_event(string state1, string district1, string block01, string gram01, string year1, string month1, string state_name, string dist_name, string block_name, string gram_name)
         {
             var State = state1;
@@ -16937,7 +16837,6 @@ namespace AbhyProject.Controllers
             return RedirectToAction("Index");
 
         }
-
         public ActionResult Excel_gram_Material_level(string state1, string district1, string block01, string gram01, string year1, string month1, string state_name, string dist_name, string block_name, string gram_name)
         {
             var State = state1;
@@ -17334,8 +17233,6 @@ namespace AbhyProject.Controllers
 
             return RedirectToAction("Index");
         }
-
-
         public ActionResult Excel_NPMU_Material_level(string state_name, string year1, string month1)
         {
             var state = state_name;
@@ -17466,9 +17363,6 @@ namespace AbhyProject.Controllers
             return RedirectToAction("Index");
 
         }
-
-
-
         [HttpGet]
         public ActionResult event_calendar_Data(string Event_Calendar, string YEAR)
         {
@@ -17560,8 +17454,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
-
         [HttpPost]
         public ActionResult event_calendar_Data_New1(string spnstate_state_1, string year_state, string month_state)
         {
@@ -19119,8 +19011,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult distsubmittodpmu(string Data)
         {
@@ -19212,8 +19102,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult distsubmittogp(string Data)
         {
@@ -19444,9 +19332,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
-
         [HttpPost]
         public ActionResult submit_dpmu(string Data)
         {
@@ -19626,8 +19511,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult submit_spmu_em(string Data)
         {
@@ -19717,8 +19600,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult Reg_Gp_level_Info_Data(string state, string district, string block, string gram, string year, string month)
         {
@@ -20502,8 +20383,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpPost]
         public ActionResult Reg_Gp_Search_data(string state, string district, string block, string gram, string year, string month)
         {
@@ -20799,8 +20678,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult current_event_Data_New123(string spnstate_block_1, string dist11_block_1, string block1_block_1, string year_block, string month_block)
         {
@@ -21289,8 +21166,6 @@ namespace AbhyProject.Controllers
 
 
         }
-
-
         [HttpGet]
         public ActionResult event_calendar_selection_all()
         {
@@ -21335,8 +21210,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpGet]
         public ActionResult event_calendar_selection_state(string STATE)
         {
@@ -21565,8 +21438,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
 
         [HttpGet]
         public ActionResult Gp_Event_Data_Fetching(string state, string district, string block, string gram, string year, string month, string TopicEvent, string TypeEvent)
@@ -21812,8 +21683,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpGet]
         public ActionResult event_material_topic_Checking_block_auth(string State, string District, string block, string Year, string Month, string TypeEvent)
         {
@@ -21862,8 +21731,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpGet]
         public ActionResult gp_reg_training_topic(string state, string district, string block, string gram, string TypeEvent, string year, string month)
         {
@@ -22098,8 +21965,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpGet]
         public ActionResult Training_Reg_Data_Checking(int id)
         {
@@ -23253,9 +23118,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
-
         [HttpPost]
         public ActionResult Save_Reg_Gp_Level_Data_Full_New(string id, string state_name, string district_name, string block_name, string gp_name, string year, string month, string type_of_event, string topic_training, string from_date, string to_date, string name, string gender, string category, string mobile)
         {
@@ -23349,9 +23211,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
-
         [HttpPost]
         public ActionResult event_material_Data(string npmu, string year, string month)
         {
@@ -23609,8 +23468,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult Delete_Evt_Material_Part(string Data)
         {
@@ -23698,8 +23555,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult Update_Material_Part_Info(string id, string NPMU, string topic_event, string typ, string typother_one, string typother_two, /*string State, string District, string Block,*/ string event_platform, string fdate_d, string tdate_d, HttpPostedFileBase file_up, string remark)
         {
@@ -24390,8 +24245,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         public ActionResult Participants_Registration()
         {
             return View();
@@ -24485,9 +24338,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
-
         [HttpGet]
         public ActionResult Participant_reg_search_Data(string Topic_OF_EVENT)
         {
@@ -25259,8 +25109,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult state_npmu_feedbackdata_report(string state, string dist, string block, string gram, string year, string month)
         {
@@ -25910,8 +25758,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult npmu_total(string state, string dist, string block, string event_name, string year, string month)
         {
@@ -26491,8 +26337,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         [HttpPost]
         public ActionResult dpmu_total(string state, string dist, string block, string event_name, string year, string month)
         {
@@ -28804,9 +28648,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
-
-
         [HttpPost]
         public ActionResult abhy_Event_Cal_Info_block(string spnstate_block_1, string dist11_block_1, string block1_block_1, string year_block, string month_block)
         {
@@ -30546,8 +30387,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
-
         [HttpPost]
         public ActionResult abhy_Event_Cal_Info11(string Data)
         {
@@ -30614,8 +30453,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
-
         [HttpPost]
         public ActionResult abhy_Event_Met_Info11(string Data)
         {
@@ -30809,7 +30646,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
 
         [HttpGet]
         public ActionResult Training_evaluation()
@@ -31021,7 +30857,6 @@ namespace AbhyProject.Controllers
             }
             return month_num;
         }
-
 
         public string Get_Month_Number_new(string month)
         {
@@ -31778,9 +31613,6 @@ namespace AbhyProject.Controllers
 
             if (FileName != null && FileName != "")
             {
-
-
-
                 string Hfilepath = hdrive + '\\' + namewebside + '\\' + ff + '\\' + foldername + '\\' + one_foldername + '\\' + two_foldername + '\\';
 
                 path = @Hfilepath;
