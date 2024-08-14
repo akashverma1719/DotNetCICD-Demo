@@ -500,88 +500,138 @@ function baseline_gp_data(villageCount) {
                 //livestock_download
 
                 for (var i = 0; i < data[0].objupload.length; i++) {
-
-                    //if (data[0].objupload[i].villages_file != null && data[0].objupload[i].villages_file != "") {
-                    //    var tr1 = '<label><a href="' + data[0].objupload[i].villages_path + '" download="" target="_blank" >' + data[0].objupload[i].villages_file + '</a></label>';
-                    //    $('#village_download').html(tr1);
-
-                    //}
                     if (data[0].objupload[i].demographic_file != null && data[0].objupload[i].demographic_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].demographic_path + '" download="" target="_blank" >' + data[0].objupload[i].demographic_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'demographic_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].demographic_path + '" download="" target="_blank" >' + data[0].objupload[i].demographic_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'demographic_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#population_download').html(tr1);
 
                     }
                     if (data[0].objupload[i].livestock_file != null && data[0].objupload[i].livestock_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].livestock_path + '" download="" target="_blank" >' + data[0].objupload[i].livestock_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'livestock_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].livestock_path + '" download="" target="_blank" >' + data[0].objupload[i].livestock_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'livestock_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#livestock_download').html(tr1);
 
                     }
-                    //if (data[0].objupload[i].gparea_file != null && data[0].objupload[i].gparea_file != "") {
-                    //    var tr1 = '<label><a href="' + data[0].objupload[i].gparea_path + '" download="" target="_blank" >' + data[0].objupload[i].gparea_file + '</a></label>';
-                    //    $('#gparea_download').html(tr1);
-
-                    //}
+                    
                     if (data[0].objupload[i].netsown_area_file != null && data[0].objupload[i].netsown_area_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].netsown_area_path + '" download="" target="_blank" >' + data[0].objupload[i].netsown_area_file + '</a></label>&nbsp<a type ="button" onclick="DeleteImage(\'netsown_area_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].netsown_area_path + '" download="" target="_blank" >' + data[0].objupload[i].netsown_area_file + '</a></label>&nbsp<a type ="button" onclick="DeleteImage(\'netsown_area_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#sownarea_download').html(tr1);
 
                     }
                     if (data[0].objupload[i].area_cultivation_file != null && data[0].objupload[i].area_cultivation_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].area_cultivation_path + '" download="" target="_blank" >' + data[0].objupload[i].area_cultivation_file + '</a></label>&nbsp<a type ="button" onclick="DeleteImage(\'area_cultivation_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].area_cultivation_path + '" download="" target="_blank" >' + data[0].objupload[i].area_cultivation_file + '</a></label>&nbsp<a type ="button" onclick="DeleteImage(\'area_cultivation_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#irrigated_download').html(tr1);
 
                     }
                     if (data[0].objupload[i].suface_water_file != null && data[0].objupload[i].suface_water_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].suface_water_path + '" download="" target="_blank" >' + data[0].objupload[i].suface_water_file + '</a></label>&nbsp<a type ="button" onclick="DeleteImage(\'suface_water_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].suface_water_path + '" download="" target="_blank" >' + data[0].objupload[i].suface_water_file + '</a></label>&nbsp<a type ="button" onclick="DeleteImage(\'suface_water_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#surface_download').html(tr1);
 
                     }
                     if (data[0].objupload[i].ground_water_file != null && data[0].objupload[i].ground_water_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].ground_water_path + '" download="" target="_blank" >' + data[0].objupload[i].ground_water_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'ground_water_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].ground_water_path + '" download="" target="_blank" >' + data[0].objupload[i].ground_water_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'ground_water_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#ground_download').html(tr1);
 
                     }
                     if (data[0].objupload[i].existing_wells_file != null && data[0].objupload[i].existing_wells_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].existing_wells_path + '" download="" target="_blank" >' + data[0].objupload[i].existing_wells_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'existing_wells_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].existing_wells_path + '" download="" target="_blank" >' + data[0].objupload[i].existing_wells_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'existing_wells_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#existing_download').html(tr1);
 
                     }
                     if (data[0].objupload[i].water_lifting_file != null && data[0].objupload[i].water_lifting_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].water_lifting_path + '" download="" target="_blank" >' + data[0].objupload[i].water_lifting_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'water_lifting_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].water_lifting_path + '" download="" target="_blank" >' + data[0].objupload[i].water_lifting_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'water_lifting_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#lifting_download').html(tr1);
 
                     }
 
                     if (data[0].objupload[i].water_efficient_file != null && data[0].objupload[i].water_efficient_file != "") {
-                        var tr1 = '<label><a href="' + data[0].objupload[i].water_efficient_path + '" download="" target="_blank" >' + data[0].objupload[i].water_efficient_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'water_efficient_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
+                        var tr1 = '<label><a href="/GPlevel/ViewFile?FileName=' + data[0].objupload[i].water_efficient_path + '" download="" target="_blank" >' + data[0].objupload[i].water_efficient_file + '</a></label> &nbsp<a type ="button" onclick="DeleteImage(\'water_efficient_file\',' + data[0].objupload[i].p_id + ')" id ="' + data[0].objupload[i].id + '" class="btn btn-danger hide_btn_tr">Delete</a>';
                         $('#efficient_download').html(tr1);
 
                     }
                 }
-                //if (StateOfficer == "District Level Nodal Officer" || StateOfficer == "State Level Nodal Officer") {
-                //    $("input[type='text']").prop("disabled", true);
-                //}
-
+               
                 if (data[0].objgpdata[0].approved == "true") {
                     $("#gp_status").text("Approved").css({ 'color': 'Green' });
+                    $('#btnFinalSave').hide();
+                    $('#btn_rejectNDO').hide();
+                    $("#approved").hide();
+                    $("input[type='text']").prop("disabled", true);
+                    $('#btn_submitNDO').hide();
+                    $(".hide_btn").prop("disabled", true);
+                    $(".hide_btn_tr").hide();
+                    $(".loader").hide();
+                    return;
                 }
                 else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == false && data[0].objgpdata[0].s_reject == true) {
                     $("#gp_status").text("State-level nodal officer rejected it, and it is now pending rejection at the DPMU level.").css({ 'color': 'Red' });
+                    $('#btnFinalSave').hide();
+                    $('#btn_rejectNDO').hide();
+                    $("#approved").hide();
+                    $("input[type='text']").prop("disabled", true);
+                    $('#btn_submitNDO').hide();
+                    $(".hide_btn").prop("disabled", true);
+                    $(".hide_btn_tr").hide();
+                    $(".loader").hide();
+                    return;
                 }
                 else if (data[0].objgpdata[0].e_sent == false && data[0].objgpdata[0].reject == true) {
                     $("#gp_status").text("District-level nodal officer rejected it, and it is now pending for correction at the GP level.").css({ 'color': 'Red' });
+                    $('#btnFinalSave').hide();
+                    $('#btn_rejectNDO').hide();
+                    $("#approved").hide();
+                    $("input[type='text']").prop("disabled", true);
+                    $('#btn_submitNDO').hide();
+                    $(".hide_btn").prop("disabled", true);
+                    $(".hide_btn_tr").hide();
+                    $(".loader").hide();
+                    return;
                 }
                 else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == false) {
                     $("#gp_status").text("Verification is pending with the District-level nodal officer.").css({ 'color': 'Blue' });
+                    $('#btnFinalSave').hide();
+                    $('#btn_rejectNDO').hide();
+                    $("#approved").hide();
+                    $("input[type='text']").prop("disabled", true);
+                    $('#btn_submitNDO').hide();
+                    $(".hide_btn").prop("disabled", true);
+                    $(".hide_btn_tr").hide();
+                    $(".loader").hide();
+                    return;
                 } else if (data[0].objgpdata[0].e_sent == true && data[0].objgpdata[0].reject == false && data[0].objgpdata[0].d_sent == true) {
                     $("#gp_status").text("Verification is pending with the State-level nodal officer.").css({ 'color': 'Blue' });
+                    $('#btnFinalSave').hide();
+                    $('#btn_rejectNDO').hide();
+                    $("#approved").hide();
+                    $("input[type='text']").prop("disabled", true);
+                    $('#btn_submitNDO').hide();
+                    $(".hide_btn").prop("disabled", true);
+                    $(".hide_btn_tr").hide();
+                    $(".loader").hide();
+                    return;
                 } else if (data[0].approved == "true") {
                     $("#gp_status").text("Approved").css({ 'color': 'Green' });
+                    $('#btnFinalSave').hide();
+                    $('#btn_rejectNDO').hide();
+                    $("#approved").hide();
+                    $("input[type='text']").prop("disabled", true);
+                    $('#btn_submitNDO').hide();
+                    $(".hide_btn").prop("disabled", true);
+                    $(".hide_btn_tr").hide();
+                    $(".loader").hide();
+                    return;
 
                 }
 
                 else {
                     $("#gp_status").text("The module is ready to fill out the gathered information at GP level.").css({ 'color': 'Blue' });
+                    $('#btnFinalSave').hide();
+                    $('#btn_rejectNDO').hide();
+                    $("#approved").hide();
+                    $("input[type='text']").prop("disabled", true);
+                    $('#btn_submitNDO').hide();
+                    $(".hide_btn").prop("disabled", true);
+                    $(".hide_btn_tr").hide();
+                    $(".loader").hide();
+                    return;
                 }
 
                 aa_table_part_data_geting();
@@ -599,6 +649,7 @@ function baseline_gp_data(villageCount) {
                         $('#btn_submitNDO').hide();
                         $(".hide_btn").prop("disabled", true);
                         $(".hide_btn_tr").hide();
+                        $(".loader").hide();
                         return;
                     }
                 }
@@ -616,12 +667,14 @@ function baseline_gp_data(villageCount) {
                         $('#state_remarks').show();
                         $('#btn_submitNDO').hide();
                         $('.sarpanch_dlt_btn').prop("disabled", true);
+                        $(".loader").hide();
                     } else if (StateOfficer == "District Level Nodal Officer") {
                         $('#btn_submitspmu').hide();
                         $('#btn_rejectNDO').hide();
                         $('#btnFinalSave').hide();
                         $('#btn_submitNDO').hide();
                         $('.sarpanch_dlt_btn').prop("disabled", true);
+                        $(".loader").hide();
                         return;
                     }
 
@@ -635,6 +688,7 @@ function baseline_gp_data(villageCount) {
                         $('#btn_submitspmu').hide();
                         $('#btn_submitNDO').hide();
                         $('.sarpanch_dlt_btn').prop("disabled", true);
+                        $(".loader").hide();
                         return;
                     }
                     if (StateOfficer == "District Level Nodal Officer") {
@@ -653,6 +707,7 @@ function baseline_gp_data(villageCount) {
                         $('#btn_submitspmu').hide();
                         $('#btn_submitNDO').hide();
                         $('.sarpanch_dlt_btn').prop("disabled", true);
+                        $(".loader").hide();
                         return;
                     }
                 }
@@ -746,6 +801,7 @@ function baseline_gp_data(villageCount) {
             $('#btn_submitNDO').hide();
             $(".hide_btn").prop("disabled", true);
             $(".hide_btn_tr").hide();
+            $(".loader").hide();
         }
     });
 }
