@@ -7,9 +7,9 @@ function get_approved_status() {
         url: "/WSP_23_24_updation/get_approved_status",
         dataType: 'JSON',
         success: function (data) {
-            
 
-            if (data>=1) {
+
+            if (data >= 1) {
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)

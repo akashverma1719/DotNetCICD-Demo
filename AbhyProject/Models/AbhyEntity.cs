@@ -576,5 +576,34 @@ namespace AbhyProject.Models
         public virtual DbSet<abhy_wsp_dpmu_declaration_23> obj_abhy_wsp_dpmu_declaration_23 { get; set; }
         #endregion
 
+        //WSP 2024-25_update
+        #region 
+        public virtual DbSet<abhy_wsp_master_data_24_update> obj_abhy_wsp_master_data_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_gpdata_new_24_update> obj_abhy_wsp_gpdata_new_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_gram_images_24_update> obj_abhy_wsp_gram_images_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_gwl_24_update> obj_abhy_wsp_gwl_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_gwq_24_update> obj_abhy_wsp_gwq_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_wateravailbility_new_24_update> obj_abhy_wsp_wateravailbility_new_24_update { get; set; }
+        public virtual DbSet<abhy_uti_waterdraft_domestic_new_24_update> obj_abhy_uti_waterdraft_domestic_new_24_update { get; set; }
+        public virtual DbSet<abhy_waterdraft_irrigation_meta_24_update> obj_abhy_waterdraft_irrigation_meta_24_update { get; set; }
+        public virtual DbSet<abhy_waterdraft_irrigation_data_24_update> obj_abhy_waterdraft_irrigation_data_24_update { get; set; }
+        public virtual DbSet<abhy_waterdraft_industry_24_update> obj_abhy_waterdraft_industry_24_update { get; set; }
+        public virtual DbSet<abhy_waterdraft_other_24_update> obj_abhy_waterdraft_other_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_waterbalance_new_24_update> obj_abhy_wsp_waterbalance_new_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_waterbudget_new_24_update> obj_abhy_wsp_waterbudget_new_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_demand_meta_24_update> obj_abhy_wsp_demand_meta_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_demand_sprinkler_24_update> obj_abhy_wsp_demand_sprinkler_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_demand_drip_24_update> obj_abhy_wsp_demand_drip_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_demand_pipeline_24_update> obj_abhy_wsp_demand_pipeline_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_demand_change_crop_24_update> obj_abhy_wsp_demand_change_crop_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_demand_anyother_24_update> obj_abhy_wsp_demand_anyother_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_demand_fund_details_24_update> obj_abhy_wsp_demand_fund_details_24_update { get; set; }
+        public virtual DbSet<abhy_artificial_recharge_st_data_24_update> obj_abhy_artificial_recharge_st_data_24_update { get; set; }
+        public virtual DbSet<abhy_water_conservation_st_data_24_update> obj_abhy_water_conservation_st_data_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_pgwm_committee_member_24_update> obj_abhy_wsp_pgwm_committee_member_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_pgwm_committee_meeting_24_update> obj_abhy_wsp_pgwm_committee_meeting_24_update { get; set; }
+        public virtual DbSet<abhy_wsp_dpmu_declaration_24_update> obj_abhy_wsp_dpmu_declaration_24_update { get; set; }
+        public virtual DbSet<abhy_mis_wsp_approved_24_update> obj_abhy_mis_wsp_approved_24_update { get; set; }
+        #endregion
     }
 }
