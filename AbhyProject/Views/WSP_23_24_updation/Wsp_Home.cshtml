@@ -336,7 +336,7 @@
                             <option value="2021-22">2021-2022</option>
                             <option value="2022-23">2022-2023</option>*@
                         @*<option value="2023-24" selected>2023-2024</option>*@
-                    <option value="2023-24 Update" selected>2023-24 Update</option>
+                        <option value="2023-24 Update" selected>2023-24 Update</option>
                     </select>
                 </li>
 
@@ -1082,8 +1082,8 @@
                         optionState = '<option value="0">Select StateName</option>';
                         for (var i = 0; i < DistArray.length; i++) {
                             if (DistArray[i] != "Delhi_7") {
-                            if (DistArray[i] != null && DistArray[i] != "") {
-                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
                                 }
                             }
                         }
@@ -1333,7 +1333,7 @@
 
     var status_check = 0;
     function get_approved_reject_status() {
-        
+
         $.ajax({
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
@@ -1557,4 +1557,28 @@ window.location.href = "@Url.Action("WspDraft", "WspNew")";
         var path = $('#goto_page').val();
         window.location = path;
     }
+</script>
+<script>
+        $(document).ready(function () {
+            var currentUrl = window.location.href;
+            const myArray = currentUrl.split("/");
+            let coun = myArray.length - 1;
+            //alert(myArray[coun].toString());
+            if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
+                GetCunCurrentUser();
+            }
+        });
+
+        function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+                    if (data == "False") {
+                        //window.location.href = "/Home/LogOut";
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                }
+            });
+        }
 </script>

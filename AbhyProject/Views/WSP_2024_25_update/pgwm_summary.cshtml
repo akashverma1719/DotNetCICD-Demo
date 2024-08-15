@@ -1,0 +1,1229 @@
+﻿
+@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Content/css/baseline_gp_js.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    body {
+        font-family: Calibri !important;
+    }
+
+    .page2el2 {
+        margin-top: 50px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 17px;
+        font-weight: bold;
+        padding:3px;
+    }
+        .reportheading p{
+            margin-bottom:0px;
+        }
+        .table_img {
+            width: 200px !important;
+        }
+
+    .demandside_text > tbody > tr > td {
+        text-align: right;
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr.tableheader_text > th {
+        font-size: 14px !important;
+    }
+
+    .demandside_text > tbody > tr > td:last-child {
+        text-align: left !important;
+    }
+
+    .demanside_padding_heading1 {
+        padding: 0px !important;
+    }
+
+    .supplyside_demandside_space1 > .reportheading > p {
+        margin: 0px 0 6px !important;
+    }
+
+    .gramReport_div_start.col-md-12 {
+        padding: 0px;
+    }
+
+    .demandside_text_123 > tbody > tr > th {
+        font-size: 14px !important;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+
+        .dateandtime_ul > li {
+            display: inline-block;
+            color: #000;
+            font-size: 18px;
+            padding: 0px 15px;
+        }
+
+    .table-striped tbody tr td:last-child {
+        /*text-align: right;*/
+    }
+
+    .pgwmtable tbody tr td:last-child,
+    .demandsidetable tr td:last-child {
+        text-align: left !important;
+    }
+
+    .wateratextiablity_space {
+        margin-top: 186px;
+    }
+
+    .waterdrft_space {
+        margin-top: 18px;
+    }
+
+    .waterdrft_balance {
+        margin-top: 180px;
+    }
+
+    .waterdrft_Budgeting_space {
+        margin-top: 280px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .singnatire_table tbody tr td {
+        height: 100px;
+    }
+
+    .supplyside_demandside_space {
+        margin-top: 340px;
+    }
+
+    .pgwmCommiteee_space {
+        margin-top: 70px;
+        margin-bottom: 50px;
+    }
+
+    .pgwm_range {
+        margin-top: 280px;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        background: #fff0;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+        .text-right > .btn-success {
+            padding: 8px 20px 8px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+        }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 15px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+
+
+    .secondtable {
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    .totatal_textue_label {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn.btn-dark {
+        background: #000000b3;
+        font-weight: 500;
+        color: #fff;
+    }
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    .table-condensed {
+        font-weight: 100;
+        text-shadow: none;
+    }
+
+    .tolat_report_color {
+        color: #6FB11D !important;
+    }
+
+    .wateratextiablity_table > thead > tr > td,
+    .wateratextiablity_table > tbody > tr > td {
+        padding: 0px 3px;
+    }
+
+    table > tbody > tr > td {
+        color: #337ab7 !important;
+        font-weight: 500;
+    }
+
+    table > tbody > tr > th {
+        color: #337ab7 !important;
+    }
+
+    table > tbody > tr > td > label {
+        color: #000 !important;
+    }
+
+    table > tbody > tr > td > span {
+        color: #000 !important;
+    }
+
+    .pgwmtable > tbody > tr > td {
+        color: #000 !important;
+    }
+
+    .text_left_left {
+        text-align: left !important;
+        color: #000 !important;
+    }
+
+    #pdf_container_mom {
+        background: #ccc;
+        text-align: center;
+        display: none;
+        padding: 5px;
+        height: auto;
+        overflow: auto;
+    }
+
+    #pdf_container_res {
+        background: #ccc;
+        text-align: center;
+        display: none;
+        padding: 5px;
+        height: auto;
+        overflow: auto;
+    }
+</style>
+
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h1>
+                    PGWM Report
+                </h1>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+                @*<button class="btn btn-success" id="print" onclick="printpage()">Print</button>*@
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demo"></span></li>
+                    <li>Time : <span id="demo2"></span></li>
+                    <li>
+                        User Name:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--<div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~//GplevelMobileData/Social_Monitoring" class="btn btn-danger"> Back</a>-->
+        @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+        <!--</div>
+            </div>
+
+        </div>-->
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label id="lbldistrict">District:</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat:</label>
+                            <span id="spngram">@Session["ggram"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["Year"] != null && Session["Year"].ToString() != "null" && Session["Year"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Year:</label>
+                            <span id="Year">@Session["Year"]</span>
+
+                        </li>
+                    }
+                    @*@if (Session["month"] != null && Session["month"].ToString() != "null" && Session["month"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Month:</label>
+                            <span id="month">@Session["month"]</span>
+
+                        </li>
+                    }*@
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="gramReport_div_start col-md-12">
+            <div class="text-center reportheading">
+                <p>
+                    PGWM Committee
+
+                </p>
+            </div>
+
+            <div class="col-md-12">
+                <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                    <table class="table table-striped gp_profile table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd;">
+                        <tbody class="tablebody">
+
+                            <tr>
+                                <td>State:</td>
+                                <td>
+                                    <span id="spnstate">@Session["gstate"]</span>
+                                    @*<span id="state_name"></span>*@
+                                </td>
+                                <td>District:</td>
+                                <td>
+                                    <span id="spndistrict">@Session["gdist"]</span>
+                                    @*<span id="district_name"></span>*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Block / Taluk :</td>
+                                <td>
+                                    <span id="block_n">@Session["gblock"]</span>
+                                    @*<span id="block_name"></span>*@
+                                </td>
+                                <td>GP Name :</td>
+                                <td>
+                                    <span id="gram_panchayat_n">@Session["ggram"]</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Year :</td>
+                                <td>
+                                    <span id="year">@Session["year"]</span>
+                                    @*<span id="block_name"></span>*@
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tbl-responsive" style="overflow-x:scroll">
+                    <table style="width:100%" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <thead>
+                            <tr class="tableheader1"></tr>
+                            <tr class="success">
+
+                                <td rowspan="2"><label>Sr.no</label></td>
+                                <td rowspan="2"><label>Name</label></td>
+                                <td rowspan="2"><label>Designation</label></td>
+                                <td rowspan="2"><label>Gender</label></td>
+                                <td rowspan="2"><label>Mobile /Landline No.</label></td>
+                            </tr>
+                        </thead>
+                        <tbody id="TblData_GRAM_PANCHAYAT_DATABASE_summary"></tbody>
+                    </table>
+                    <table style="width:100%" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                        <thead>
+                            <tr class="tableheader1"></tr>
+                            <tr class="success">
+
+                                <td rowspan="2"><label>Sr.no</label></td>
+                                <td rowspan="2"><label>State</label></td>
+                                <td rowspan="2"><label>District</label></td>
+                                <td rowspan="2"><label>Block</label></td>
+                                <td rowspan="2"><label>Gram Panchayat</label></td>
+                                <td style="padding: 30px;"><label>Date</label></td>
+                                <td rowspan="2"><label>GP Name</label></td>
+                                <td rowspan="2"><label>Village Name</label></td>
+                                <td rowspan="2"><label>Meeting Location</label></td>
+                                <td rowspan="2"><label>Male</label></td>
+                                <td rowspan="2"><label>Female</label></td>
+                                <td rowspan="2"><label>Transgender</label></td>
+                                <td rowspan="2"><label>Total number of attendees</label></td>
+                                @*<td rowspan="2"><label>MOM(Minutes of Meeting)</label></td>
+                    <td rowspan="2"><label>Photograph</label></td>
+                    <td rowspan="2"><label>Resolution</label></td>
+                    <td rowspan="2"><label>Attendance Sheet</label></td>*@
+                            </tr>
+                        </thead>
+                        <tbody id="training_gp_Info_summary"></tbody>
+                    </table>
+                    <div class="text-center">
+                        <div class="text-center reportheading">
+                            <p>
+                                MOM(Minutes of Meeting)
+
+                            </p>
+
+                        </div>
+                        <div id="pdf_container_mom"></div>
+                    </div>
+                    <div class="text-center">
+                        <div class=" reportheading">
+                            <p>
+                                Photograph
+
+                            </p>
+
+                        </div>
+                        <div id="pdf_container_photo"></div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-center reportheading">
+                            <p>
+                                Resolution
+
+                            </p>
+
+                        </div>
+                        <div id="pdf_container_res"></div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-center reportheading">
+                            <p>
+                                Attendance Sheet
+
+                            </p>
+
+                        </div>
+                        <div id="pdf_container_atten"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="page2el11">
+                <div class="">
+                    <div class="col-md-12 ">
+                        <div class="text-center reportheading">
+                            <p>
+                                Social Event
+                            </p>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="col-md-12">
+
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 ">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <a href="~/PGWM/index" class="btn btn-dark"> Back</a>
+                        <a class="btn btn-primary" id="wsp_approved_spmu" href="~/WSP_2024_25_update/Total_WSP_Report">
+                            Go To Final Reports
+                        </a>
+                        <a id="dmpu_dec_a" href="~/WSP_2024_25_update/declaration" class="btn btn-primary"> Go To Declaration  </a>
+                        <a id="wsp_remarks" href="~/WSP_2024_25_update/Wspremarks" class="btn btn-primary"> Go To WSP Remarks </a>
+                        @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script>
+    $('#dmpu_dec_a').hide();
+    $('#wsp_remarks').hide();
+    var StateOfficer = '@Session["Officer"]';
+    if (StateOfficer == 'District Level Nodal Officer') {
+        $('#dmpu_dec_a').show();
+    } else {
+        $('#wsp_remarks').show();
+    }
+    function ReportPdf() {
+        $("#Data1").width(1095);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'Social_Event_report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+    }
+</script>
+
+<script>
+    //Code for print page
+    function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("print");
+        //Set the print button visibility to 'hidden'
+        //printButton.style.visibility = 'hidden';
+        $('div#btnExport').addClass('hideDownload');
+        $('div#btnExport1').addClass('hideDownload');
+        //Print the page content
+        window.print()
+        $('div#btnExport').removeClass('hideDownload');
+        $('div#btnExport1').removeClass('hideDownload');
+        //printButton.style.visibility = 'visible';
+    }
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/ ' + mm + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+<script>
+    $(document).ready(function () {
+        
+        //report_getting();
+        sarpanch_getting();
+        abhy_socialmgt_pgwm_meeting_Info();
+
+
+    });
+    function report_getting() {
+        
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/GplevelMobileData/social_report_getting',
+            data: '',
+            //data: { 'state': State, 'dist': Dist, 'block': Block, 'gram': Gram,'year': Year },
+            //data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+                
+
+                $("#state_name").text(data[0].state);
+                $("#district_name").text(data[0].district);
+                $("#block_name").text(data[0].block);
+                $("#gram_panchayat_name").text(data[0].grampanchayat);
+
+
+                if (data[0].length != 0) {
+
+
+
+                } else {
+
+                    $('#state_name').text('');
+                    $('#district_name').text('');
+                    $('#block_name').text('');
+                    $('#gram_panchayat_name').text('');
+
+                }
+            }
+        });
+
+        sarpanch_getting();
+
+    }
+
+
+    function sarpanch_getting() {
+        
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSP_2024_25_update/Getting_abhy_wsp_pgwm_committee_member',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+
+                }
+                var tr = '';
+                if (data.length != 0) {
+                    for (var i = 0; i < data.length; i++) {
+
+                        tr += '<tr><td>' + (i + 1) + '</td><td>' + data[i].member_name + '</td><td>' + data[i].designation + '</td><td>' + data[i].gender + '</td> <td>' + data[i].contact_no + '</td></tr>';
+                    }
+                }
+                if (tr == '') {
+                    tr = '<tr style="text-align:center;"><td colspan="7">No Data</td></tr>';
+                    $('#TblData_GRAM_PANCHAYAT_DATABASE_summary').html(tr);
+                }
+                else {
+                    $('#TblData_GRAM_PANCHAYAT_DATABASE_summary').html(tr);
+                }
+                aaa = 1;
+            }
+        });
+    }
+    function abhy_socialmgt_pgwm_meeting_Info() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSP_2024_25_update/Getting_abhy_wsp_pgwm_committee_meeting',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+
+                }
+                
+                //alert(data[2].meeting_gp_name)
+                var tr2 = '';
+                var tr = '';
+                if (data.length != 0) {
+                    
+                    for (var i = 0; i < data.length; i++) {
+                        var mom_doc = "";
+                        if (data[i].mom_doc != null) {
+                            mom_doc = data[i].mom_doc;
+                        }
+                        var meeting_image = "";
+                        if (data[i].meeting_image != null) {
+                            meeting_image = data[i].meeting_image;
+                        }
+
+                        var meeting_resolution = "";
+                        if (data[i].meeting_resolution != null) {
+                            meeting_resolution = data[i].meeting_resolution;
+                        }
+                        var attendance_sheet = "";
+                        if (data[i].attendance_sheet != null) {
+                            attendance_sheet = data[i].attendance_sheet;
+                        }
+
+                         /* <td><a href="' + mom_doc + '" download="">MOM(Minutes of Meeting).pdf</a></td><td><a href="' + meeting_image + '" download="">Photograph.jpg</a></td> <td><a href="' + meeting_resolution + '" download="">Resolution.pdf</a></td><td><a href="' + attendance_sheet + '">Attendance Sheet.pdf</a></td>*/
+                        tr += '<tr id="Show_Gplvl' + i + '" ><td>' + (i + 1) + '</td><td>' + data[i].state_name + '</td><td>' + data[i].district_name + '</td><td>' + data[i].block_name + '</td><td>' + data[i].gp_name + '</td><td>' + data[i].meeting_date + '</td><td>' + data[i].meeting_gp_name + '</td><td>' + data[i].meeting_village + '</td> <td>' + data[i].meeting_location + '</td> <td>' + data[i].male_attendees + '</td><td>' + data[i].female_attendees + '</td><td>' + data[i].transgender_attendees + '</td><td>' + data[i].total_attendees + '</td></tr>';
+
+                        tr2 += '<tr><td><label><a  href="/WSP_2024_25_update/ViewFile?FileName=' + meeting_image + '"><img src="/WSP_2024_25_update/ViewFile?FileName=' + meeting_image + '" style="width: 100%;"/></a></label></td></tr>';
+
+                    }
+                }
+                if (tr == '') {
+                    tr = '<tr style="text-align:center;"><td colspan="13">No Data</td></tr>';
+                    $('#training_gp_Info_summary').html(tr);
+
+                }
+                else {
+                    $('#training_gp_Info_summary').html(tr);
+                    $('#pdf_container_photo').html(tr2);
+                }
+                LoadPdfFromUrl(mom_doc, meeting_resolution, attendance_sheet);
+                /*LoadPdfFromUrl2(meeting_resolution);*/
+            }
+        });
+    }
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf_viewer.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
+    var pdfDoc = null;
+    var pdfDoc2 = null;
+    var scale = 1; //Set Scale for zooming PDF.
+    var resolution = 1; //Set Resolution to Adjust PDF clarity.
+
+    //function LoadPdfFromUrl(url1, url2, url3) {
+    //    //Read PDF from URL.
+    //    pdfjsLib.getDocument(url1).promise.then(function (pdfDoc_) {
+    //        pdfDoc = pdfDoc_;
+
+    //        //Reference the Container DIV.
+    //        var pdf_container_mom = document.getElementById("pdf_container_mom");
+    //        pdf_container_mom.style.display = "block";
+
+    //        //Loop and render all pages.
+    //        for (var i = 1; i <= pdfDoc.numPages; i++) {
+    //            RenderPage(pdf_container_mom, i);
+    //        }
+    //    });
+
+
+    //    /*LoadPdfFromUrl1(url1);*/
+    //    LoadPdfFromUrl2(url2);
+    //    LoadPdfFromUrl3(url3);
+
+    //};
+    //function LoadPdfFromUrl1(url1) {
+
+    //    $.ajax({
+    //        type: 'POST',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_23_24_updation/PDFViewFile',
+    //        data: '{"FileName":"' + encodeURIComponent(url1) + '"}',
+    //        responseType: 'blob',
+    //        success: function (response) {
+
+    //            if (response == "Logout") {
+    //                  window.location = "/Home/LogOut";
+    //            }
+
+    //            // Embed the PDF in an iframe
+    //            $('#pdf_container_mom').html('<iframe src="data:application/pdf;base64,' + response + '#view=fit&toolbar=0&navpanes=0" width="100%" height="1300px"></iframe>');
+    //        }
+    //    });
+    //}
+
+    //function LoadPdfFromUrl2(url2) {
+
+    //    $.ajax({
+    //        type: 'POST',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_23_24_updation/PDFViewFile',
+    //        data: '{"FileName":"' + encodeURIComponent(url2) + '"}',
+    //        responseType: 'blob',
+    //        success: function (response) {
+
+    //            if (response == "Logout") {
+    //                  window.location = "/Home/LogOut";
+    //            }
+
+    //            //var fileURL = URL.createObjectURL(response);
+    //            // Embed the PDF in an iframe
+    //            $('#pdf_container_res').html('<iframe src="data:application/pdf;base64,' + response + '#view=fit&toolbar=0&navpanes=0" width="100%" height="1300px"></iframe>');
+    //        }
+    //    });
+    //}
+
+    //function LoadPdfFromUrl3(url3) {
+
+    //    $.ajax({
+    //        type: 'POST',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_23_24_updation/PDFViewFile',
+    //        data: '{"FileName":"' + encodeURIComponent(url3) + '"}',
+    //        responseType: 'blob',
+    //        success: function (response) {
+
+    //            if (response == "Logout") {
+    //                  window.location = "/Home/LogOut";
+    //            }
+
+    //            // Embed the PDF in an iframe
+    //            $('#pdf_container_atten').html('<iframe src="data:application/pdf;base64,' + response + '#view=fit&toolbar=0&navpanes=0" width="100%" height="1300px"></iframe>');
+    //        }
+    //    });
+    //}
+
+
+    function LoadPdfFromUrl(url, url2,url3) {
+        //Read PDF from URL.
+        
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container_mom = document.getElementById("pdf_container_mom");
+            pdf_container_mom.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc.numPages; i++) {
+                RenderPage(pdf_container_mom, i);
+            }
+        });
+        LoadPdfFromUrl2(url2)
+        LoadPdfFromUrl3(url3)
+    };
+
+    function RenderPage(pdf_container_mom, num) {
+        pdfDoc.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container_mom.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container_mom.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+    };
+
+    function LoadPdfFromUrl2(url2) {
+        //Read PDF from URL.
+        pdfjsLib.getDocument(url2).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container_res = document.getElementById("pdf_container_res");
+            pdf_container_res.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc.numPages; i++) {
+                RenderPage2(pdf_container_res, i);
+            }
+        });
+    };
+
+    function RenderPage2(pdf_container_res, num) {
+        pdfDoc.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container_res.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container_res.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+        
+    };
+
+
+    function LoadPdfFromUrl3(url3) {
+        //Read PDF from URL.
+        pdfjsLib.getDocument(url3).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container_atten = document.getElementById("pdf_container_atten");
+            pdf_container_atten.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc.numPages; i++) {
+                RenderPage2(pdf_container_atten, i);
+            }
+        });
+    };
+
+    function RenderPage3(pdf_container_atten, num) {
+        pdfDoc.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container_atten.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container_atten.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+    };
+
+    ////function LoadPdfFromUrl2(url) {
+    ////    //Read PDF from URL.
+    ////    pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+    ////        pdfDoc2 = pdfDoc_;
+
+    ////        //Reference the Container DIV.
+    ////        var pdf_container_res = document.getElementById("pdf_container_res");
+    ////        pdf_container_res.style.display = "block";
+
+    ////        //Loop and render all pages.
+    ////        for (var i = 1; i <= pdfDoc2.numPages; i++) {
+    ////            RenderPage2(pdf_container_res, i);
+    ////        }
+    ////    });
+    ////};
+    ////function RenderPage2(pdf_container_res, num) {
+    ////    pdfDoc2.getPage(num).then(function (page) {
+    ////        //Create Canvas element and append to the Container DIV.
+    ////        var canvas = document.createElement('canvas');
+    ////        canvas.id = 'pdf-' + num;
+    ////        ctx = canvas.getContext('2d');
+    ////        pdf_container_res.appendChild(canvas);
+
+    ////        //Create and add empty DIV to add SPACE between pages.
+    ////        var spacer = document.createElement("div");
+    ////        spacer.style.height = "20px";
+    ////        pdf_container_res.appendChild(spacer);
+
+    ////        //Set the Canvas dimensions using ViewPort and Scale.
+    ////        var viewport = page.getViewport({ scale: scale });
+    ////        canvas.height = resolution * viewport.height;
+    ////        canvas.width = resolution * viewport.width;
+
+    ////        //Render the PDF page.
+    ////        var renderContext = {
+    ////            canvasContext: ctx,
+    ////            viewport: viewport,
+    ////            transform: [resolution, 0, 0, resolution, 0, 0]
+    ////        };
+
+    ////        page.render(renderContext);
+    ////    });
+    ////};
+</script>
+
