@@ -14700,6 +14700,27 @@ namespace AbhyProject.Models
 
     }
 
+    [Table("master_list_gp_wsp", Schema = "public")]
+    public class master_list_gp_wsp
+    {
+        [Key]
+        public int id { get; set; }
+        public string state_name { get; set; }
+        public int lg_state { get; set; }
+        public string district_name { get; set; }
+        public int lg_dist { get; set; }
+        public string block_name { get; set; }
+        public int lg_block { get; set; }
+        public string gram_panchayat_name { get; set; }
+        public int lg_gram { get; set; }
+        public string block_area { get; set; }
+        public string gp_area { get; set; }
+        public string village_name { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+
+    }
+
     [Table("Training_dropdown_info", Schema = "public")]
     public class Training_dropdown_info
     {
