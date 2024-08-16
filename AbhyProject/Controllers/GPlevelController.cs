@@ -6784,5 +6784,67 @@ namespace AbhyProject.Controllers
             return month_num;
         }
 
+        public void ViewFile(string FileName)
+        {
+            string Reg_Date = FileName;
+            string[] Reg_Date11 = Reg_Date.Split('/');
+            var one = Reg_Date11[1];
+            var two = Reg_Date11[2];
+            var three = Reg_Date11[3];
+            var four = Reg_Date11[4];
+            var five = Reg_Date11[5];
+            var six = Reg_Date11[6];
+            var seven = Reg_Date11[7];
+
+            var Fdrive = "I:";
+
+            string path = "";
+            string filename = Path.GetFileName(Reg_Date);
+
+            if (FileName != null && FileName != "")
+            {
+                string Hfilepath = Fdrive + '\\' + one + '\\' + two + '\\' + three + '\\' + four + '\\' + five + '\\' + six + '\\' + seven + '\\';
+                //string Hfilepath = Fdrive + FileName;
+
+                path = @Hfilepath;
+
+                DirectoryInfo directory = new DirectoryInfo(path);
+                FileInfo[] files = directory.GetFiles();
+                bool fileFound = false;
+                foreach (FileInfo file in files)
+                {
+                    if (String.Compare(file.Name, filename) == 0)
+                    {
+                        fileFound = true;
+                        Console.WriteLine(path);
+                        break;
+                    }
+                }
+
+                if (fileFound)
+                {
+                    Response.ContentType = "image/jpeg";
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filename));
+                    Response.WriteFile(path + filename);
+                    Response.Flush();
+                    Response.End();
+                }
+                else
+                {
+                    TempData["Message"] = "File not found!";
+
+                }
+
+            }
+            else
+            {
+                TempData["Message"] = "File not found!";
+
+            }
+
+
+        }
+
+
     }
 }

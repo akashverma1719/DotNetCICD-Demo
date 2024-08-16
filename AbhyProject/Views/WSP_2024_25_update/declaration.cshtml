@@ -1,0 +1,622 @@
+﻿
+@{
+    ViewBag.Title = "DpmuDeclaration";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="~/Content/JS_Files/Master_DRP.js"></script>
+<script src="~/Content/JS_Files/dpmu_declaration_25.js"></script>
+
+<style>
+    .database_trainer_row > h3 {
+        background-color: #72a230;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+
+
+    /*ends here*/
+    .second_heading {
+        background-color: #72a230;
+        color: #fff;
+        list-style: none;
+        padding: 12px 10px;
+        font-size: 18px;
+        font-weight: bold
+    }
+
+    .main_div {
+        padding-bottom: 30px;
+    }
+
+    .btn-success {
+        margin: 5px 0px !important;
+    }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0px !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+    /*PDF to Image*/
+    #pdf_container {
+        background: #ccc;
+        text-align: center;
+        display: none;
+        padding: 5px;
+        height: 820px;
+        overflow: auto;
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>declaration</title>
+
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a target="_blank" href="http://ataljal.in/" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="Javascript:;" style="color:#fff;font-size:14px;" role="link">Ministry of Jal Shakti</a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="text-transform:none; font-size:14px;">River Development & Ganga Rejuvenation</a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                            <label>DPMU Declaration</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+</head>
+<body>
+    <div class="row container-fluid main_div">
+        <div class="col-md-12 col-sm-12">
+            <div class="selectdistshowoption">
+                <label style="text-align:center;color:red;" id="Error_"></label>
+                <ul class="Select_option selectbackhome">
+
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram panchayat:</label>
+                        <span>@Session["ggram"]</span>
+                    </li>
+
+                    <li id="YearLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Year:</label>
+                        <span>@Session["year"]</span>
+                    </li>
+                    @*<li id="YearLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Month:</label>
+                        <span>@Session["month"]</span>
+                    </li>*@
+
+                    @*<li style="float:right">
+                            <button class="btn btn-success" onclick="Report_BTN()">
+                                Report
+                            </button>
+                        </li>*@
+                    <li style="float:right">
+                        <a href="/WSP_2024_25_update/wsp_home" class="btn btn-success">
+                            Back To GP Modules
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-md-12">
+            <ul class="second_heading">
+                <li>  DPMU Declartion     </li>
+            </ul>
+
+            <div class="tbl-responsive" id="DPMU_Declartion">
+                <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                    <tr>
+                        <td colspan="2">DPMU Declartion: <span style="color:red">(*.pdf)</span></td>
+                        <td>
+                            <input type="file" class="form-control" id="declaration_dpmu" onchange="Dpmu_declaration_pdf(event)" accept=".pdf" />
+                        </td>
+                        <td>
+                            <span id="upload_declaration"></span>
+                            <button class="btn btn-primary btn_disabled" id="btn_declaration_dlt" onclick="Delete_dpmu_declaration()">Delete</button>
+                        </td>
+                        <td>
+                            <span id="hidden" hidden></span>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center">
+                    <a href="~/WSP_2024_25_update/pgwm_summary" class="btn btn-danger"> Back</a>
+                    <a id="total report" href="~/WSP_2024_25_update/Wspremarks" class="btn btn-primary"> Go To WSP Remarks  </a>
+                    <a class="btn btn-primary" id="wsp_approved_spmu" onclick="wsp_approved_status()">
+                        Submit to SPMU
+                    </a>
+                    @*<a href="~/Wsp_new/Wspremarks" class="btn btn-danger"> Back</a>*@
+                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
+
+
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 main_heading_sm" id="SW_Image">
+                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    <thead>
+                        <tr>
+                            <th colspan="4" style="background-color: #ddd;">
+                                DPMU Declaration
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tablebaody" id="image_div">
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div id="pdf_container"></div>
+            @*<div class="text-center">
+                    <button class="btn btn-success" id="btnFinalSave" onclick="Upload_dpmu_declaration()">Save</button>
+                </div>*@
+            @*<div class="text-center">
+                    <button class="btn btn-success" id="btnFinalSave" onclick="Upload_dpmu_declaration()">Save</button>
+                </div>*@
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    var StateOfficer = "";
+    var access_auth = "";
+    $(document).ready(function () {
+        access_auth = '@Session["access_auth"]';
+        get_approved_status();
+        $("#btn_declaration_dlt").hide();
+        StateOfficer = '@Session["Officer"]';
+        if (StateOfficer != "District Level Nodal Officer") {
+            $('input[type=text]').prop("disabled", true)
+            $('select').prop("disabled", true);
+            $('input[type=file]').prop("disabled", true)
+            $('.btn_disabled').prop("disabled", true);
+        }
+        else if (StateOfficer != "" && StateOfficer != null) {
+
+        } else {
+              window.location = "/Home/LogOut";
+        }
+        Get_dpmu_declaration();
+    });
+
+    function wsp_approved_status() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_2024_25_update/wsp_approved_status",
+            dataType: 'JSON',
+            success: function (data) {
+                alert(data)
+
+
+                location.reload();
+            }
+        });
+    }
+
+    var Dpmu_declaration_pdf = function (event) {
+
+        //var Dpmu_declaration_pdf_output = document.getElementById('declaration_dpmu');
+        //Dpmu_declaration_pdf_output.src = URL.createObjectURL(event.target.files[0]);
+        //Dpmu_declaration_pdf_output.onload = function () {
+        //    URL.revokeObjectURL(Dpmu_declaration_pdf_output.src) // free memory
+        //}
+        Upload_dpmu_declaration();
+    };
+</script>
+@*Code For Pdf show*@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf_viewer.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
+    var pdfDoc = null;
+    var scale = 1; //Set Scale for zooming PDF.
+    var resolution = 1; //Set Resolution to Adjust PDF clarity.
+
+    function LoadPdfFromUrl(url) {
+        //Read PDF from URL.
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container = document.getElementById("pdf_container");
+            pdf_container.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc.numPages; i++) {
+                RenderPage(pdf_container, i);
+            }
+        });
+    };
+    function RenderPage(pdf_container, num) {
+        pdfDoc.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+    };
+
+
+    function get_approved_status() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_2024_25_update/get_approved_status",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                if (data == 3) {
+                    
+                    $('.btn_disabled').prop("disabled", false);
+                }
+               
+                else {
+                    $('.btn_disabled').prop("disabled", true);
+                    $("#wsp_approved_spmu").hide();
+                }
+
+                //if (StateOfficer == "District Level Nodal Officer" && data < 3) {
+                //    $('.btn_disabled').prop("disabled", false);
+                //} else if (StateOfficer == "District Level Nodal Officer" && data > 3) {
+                //    $('.btn_disabled').prop("disabled", true);
+                //}
+
+                //$('.btn_disabled').prop("disabled", true);
+                $("#wsp_approved_spmu").hide();
+                if (data == "null" && StateOfficer == "Gram Panchyat Nodal Officer") {
+                    //for Inprogress
+                    $('input[type=text]').prop("disabled", false)
+                    $('select').prop("disabled", false);
+                    $('input[type=file]').prop("disabled", false)
+                    $('.btn_disabled').prop("disabled", false);
+                }
+                if (access_auth == "Declaration") {
+                    $('.btn_disabled').prop("disabled", false);
+                    $("#wsp_approved_spmu").show();
+                }
+            }
+        });
+    }
+</script>
+
+

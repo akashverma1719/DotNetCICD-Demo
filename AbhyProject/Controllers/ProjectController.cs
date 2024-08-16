@@ -816,11 +816,11 @@ namespace AbhyProject.Controllers
                     }
                     else if (State != null && State != "0" && Year != null && Year != "0")
                     {
-                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name == State && x.fy_year == Year && (x.wsp_23_update_file != null )).OrderByDescending(s => s.wsp_23_update_date).ToList();
+                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name == State && x.fy_year == Year && (x.wsp_23_update_file != null)).OrderByDescending(s => s.wsp_23_update_date).ToList();
                     }
                     else
                     {
-                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name != "Delhi_7" && x.fy_year == Year && x.wsp_23_update_file != null ).OrderByDescending(s => s.wsp_23_update_date).ToList();
+                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name != "Delhi_7" && x.fy_year == Year && x.wsp_23_update_file != null).OrderByDescending(s => s.wsp_23_update_date).ToList();
                     }
                     var jsonResult = Json(Data, JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = int.MaxValue;
@@ -882,6 +882,59 @@ namespace AbhyProject.Controllers
                 return Json(Ex, JsonRequestBehavior.AllowGet);
             }
         }
+        /// <summary>
+        /// for 2024-25 Update 
+        /// </summary>
+        /// <param name="State"></param>
+        /// <param name="Dist"></param>
+        /// <param name="Block"></param>
+        /// <param name="Gram"></param>
+        /// <param name="Year"></param>
+        /// <returns></returns>
+        public ActionResult GET_WSP_Approved_Info_24_Update(string State, string Dist, string Block, string Gram, string Year)
+        {
+            try
+            {
+
+                List<abhy_mis_wsp_approved_24_update> ddetails = new List<abhy_mis_wsp_approved_24_update>();
+                if (Session["UserId"] != null)
+                {
+                    List<abhy_mis_wsp_approved_24_update> Data = new List<abhy_mis_wsp_approved_24_update>();
+                    if (State != null && State != "0" && Dist != null && Dist != "0" && Block != null && Block != "0" && Gram != null && Gram != "0" && Year != null && Year != "0")
+                    {
+                        Data = ABE.obj_abhy_mis_wsp_approved_24_update.Where(x => x.state == State && x.dist == Dist && x.block == Block && x.gp == Gram && x.fy_year == Year && (x.wsp_file != null || x.wsp_file != "")).OrderByDescending(s => s.wsp_date).ToList();
+                    }
+                    else if (State != null && State != "0" && Dist != null && Dist != "0" && Block != null && Block != "0" && Year != null && Year != "0")
+                    {
+                        Data = ABE.obj_abhy_mis_wsp_approved_24_update.Where(x => x.state == State && x.dist == Dist && x.block == Block && x.fy_year == Year && (x.wsp_file != null || x.wsp_file != "")).OrderByDescending(s => s.wsp_date).ToList();
+                    }
+                    else if (State != null && State != "0" && Dist != null && Dist != "0" && Year != null && Year != "0")
+                    {
+                        Data = ABE.obj_abhy_mis_wsp_approved_24_update.Where(x => x.state == State && x.dist == Dist && x.fy_year == Year && (x.wsp_file != null || x.wsp_file != "")).OrderByDescending(s => s.wsp_date).ToList();
+                    }
+                    else if (State != null && State != "0" && Year != null && Year != "0")
+                    {
+                        Data = ABE.obj_abhy_mis_wsp_approved_24_update.Where(x => x.state == State && x.fy_year == Year && (x.wsp_file != null || x.wsp_file != "")).OrderByDescending(s => s.wsp_date).ToList();
+                    }
+                    else
+                    {
+                        Data = ABE.obj_abhy_mis_wsp_approved_24_update.Where(x => x.state != "Delhi_7" && x.fy_year == Year && (x.wsp_file != null || x.wsp_file != "")).OrderByDescending(s => s.wsp_date).ToList();
+                    }
+                    var jsonResult = Json(Data, JsonRequestBehavior.AllowGet);
+                    jsonResult.MaxJsonLength = int.MaxValue;
+                    return jsonResult;
+                }
+                else
+                {
+                    return Json("Logout", JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception Ex)
+            {
+                return Json(Ex, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpGet]
         public ActionResult PIP_wsp_Approved_Info(string State, string Dist, string Block, string Gram)
         {

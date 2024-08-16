@@ -1,0 +1,934 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<meta name="viewport" content="width=device-width" />
+<title>Gram Panchayat Report</title>
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+<!--favicon end-->
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<style>
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+
+    .reportheading {
+        color: #337ab7;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .gram_water_level_table {
+        font-size: 9px !important;
+    }
+
+    .dateandtime_ul {
+        padding: 0px;
+    }
+
+    .hideDownload {
+        display: none;
+    }
+
+    .background_after_download * {
+        font-weight: normal !important;
+        text-decoration: none !important;
+        text-shadow: none !important;
+    }
+
+    .dateandtime_ul > li {
+        display: inline-block;
+        color: #000;
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+
+    .tablebaody input {
+        text-transform: capitalize;
+    }
+
+    .tableheadingbg {
+        color: #337ab7 !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        /*  background: #fff;*/
+    }
+
+    .row {
+        margin: 0px;
+    }
+
+    .colorline1 {
+        background: #ddd;
+        background-size: 100% 6px;
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 12px;
+        height: 3px;
+        width: 100%
+    }
+
+    tbody tr td {
+        font-weight: 500;
+        padding: 5px !important;
+        font-size: 14px;
+        color: black;
+    }
+
+    label {
+        margin-bottom: 0px
+    }
+
+    .col-md-9 > h1 {
+        font-weight: bold;
+        color: #404040;
+        text-shadow: -1px -1px #000;
+    }
+
+    .col-md-9 > p {
+        color: #404040;
+    }
+
+    .col12 > .firsttable > h6 {
+        letter-spacing: 0px;
+        padding-left: 10px;
+    }
+
+    .firstptag {
+        padding-left: 4%;
+    }
+
+    body {
+        background-color: #ddd;
+    }
+
+    .clearfixcolor {
+        margin-top: 15px;
+    }
+
+    .col12 {
+        background-color: #fff;
+        padding: 25px;
+    }
+
+    .highcharts-credits {
+        display: none;
+    }
+
+
+
+    .highcharts-button-box {
+        display: none;
+    }
+
+
+    .text-right > .btn-success {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .text-right {
+        padding: 5px;
+    }
+
+    .reportheading {
+        color: #5080a9;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 3px;
+        background: #ececec !important;
+    }
+
+        .reportheading p {
+            margin-bottom: 0px;
+        }
+
+    .text-right > .btn-success {
+        padding: 8px 20px 8px 20px;
+        border-radius: 50px;
+        font-size: 18px;
+    }
+
+    .btn-success {
+        color: #fff;
+        background-color: #6fb01d;
+        border-color: #4cae4c;
+    }
+
+    .coll7 {
+        padding-right: 0px;
+    }
+
+
+    ul.Select_option {
+        list-style: none;
+        display: block;
+        padding: 0px 0px 0px 0px;
+        font-size: 12px;
+        margin: 0px;
+    }
+
+        ul.Select_option > li {
+            display: inline-block;
+            padding: 0px 0px 0px 46px;
+            word-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+            ul.Select_option > li > span > i {
+                padding: 0px 0px 0px 10px;
+            }
+
+    #Select_dist_level {
+        padding: 10px 0px 5px 15px;
+        text-transform: capitalize;
+    }
+
+    ul.firstimages {
+        display: block;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+
+        ul.firstimages > li {
+            display: inline-block;
+            padding-left: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 10px 5px 10px;
+        }
+
+            ul.firstimages > li > img {
+                border-left: 2px solid #ddd;
+            }
+
+            ul.firstimages > li > span > img {
+                width: 25px;
+                height: 25px;
+            }
+
+    .highcharts-title {
+        font-weight: bold;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+    }
+
+    tspan {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    /*  .firsttable {
+        display: table-cell;
+    }*/
+    table thead tr.success td {
+        background-color: #337ab7 !important;
+        color: #fff;
+        line-height: 17px;
+        font-size: 13px;
+        border-color: #4b94d2;
+        font-weight: 600;
+    }
+
+    .secondtable {
+        /* display: table-cell;*/
+        text-align: right;
+    }
+
+    sup {
+        font-weight: bold;
+    }
+
+    .tableheadingbg > span {
+        color: purple;
+        font-size: 20px;
+    }
+
+    #Data1 {
+        background-color: #fff;
+    }
+
+    .firsttable {
+        padding: 10px 0px 0px 0px;
+    }
+
+    .report_heading_div {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn.btn-dark {
+        background: #000000b3;
+        font-weight: 500;
+        color: #fff;
+    }
+    .cololr-div {
+        background: #4cae4c;
+        height: 3px;
+        padding: 0px;
+    }
+
+    .last-div-footer {
+        padding: 10px 0px;
+    }
+
+    ul.Select_option > li:first-child {
+        padding-left: 0px;
+    }
+    #Data1{
+        width: 1200px !important;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<div class="container" id="Data1">
+    <div class="row row_padding_10">
+        <div class="col-md-12 ">
+            <div class="firsttable col-md-12">
+                <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+            </div>
+        </div>
+
+        <div class="col-md-12 report_heading_div">
+            <div class="col-md-9">
+                <h2>Gram Panchayat (Basic Hydrology Info) Report </h2>
+            </div>
+            <div class="col-md-3 text-right" id="btnExport">
+                <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+            </div>
+            <div class="col-md-12">
+                <ul class="dateandtime_ul">
+                    <li>Date : <span id="demogram"></span></li>
+                    <li>Time : <span id="demogram2"></span></li>
+                    <li>
+                        Username:
+                        @if (Session["UserName"] != null)
+                        {
+                            <span>@Session["UserName"].ToString()</span>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 state_dist_level">
+            <div class="row" id="Select_dist_level">
+                <ul class="Select_option">
+                    @if (Session["gstate"] != null && Session["gstate"].ToString() != "null" && Session["gstate"].ToString() != "")
+                    {
+
+                        <li>
+                            <label id="lblstate">State :</label>
+                            <span id="spnstate">@Session["gstate"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                    {
+                        <li>
+                            <label id="lblstate">Admin</label>
+
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <label id="lblstate">National Level Nodal Officer</label>
+
+                        </li>
+                    }
+
+
+                    @if (Session["gdist"] != null && Session["gdist"].ToString() != "null" && Session["gdist"].ToString() != "")
+                    {
+                        <li>
+
+                            <label id="lbldistrict">District :</label>
+                            <span id="spndistrict">@Session["gdist"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+
+                    }
+
+                    @if (Session["gblock"] != null && Session["gblock"].ToString() != "null" && Session["gblock"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Block:</label>
+                            <span id="spnblock">@Session["gblock"]</span>
+                            <i class="fas fa fa-angle-double-right"></i>
+                        </li>
+                    }
+                    @if (Session["ggram"] != null && Session["ggram"].ToString() != "null" && Session["ggram"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Gram panchayat :</label>
+                            <span id="spngram">@Session["ggram"]</span>
+
+                        </li>
+                    }
+                    @if (Session["Year"] != null && Session["Year"].ToString() != "null" && Session["Year"].ToString() != "")
+                    {
+                        <li>
+
+                            <label>Year :</label>
+                            <span id="Year">@Session["Year"]</span>
+
+                        </li>
+                    }
+                    @*@if (Session["month"] != null && Session["month"].ToString() != "null" && Session["month"].ToString() != "")
+                        {
+                            <li>
+
+                                <label>Month:</label>
+                                <span id="month">@Session["month"]</span>
+
+                            </li>
+                        }*@
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="text-center reportheading">
+                <p> Gram Panchayat (Basic Hydrology Info)</p>
+            </div>
+        </div>
+        <div class=" col-md-12 col-sm-12">
+            <div id="resetinfo" class="tbl-responsive" style="overflow-x:scroll">
+                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    @*<thead>
+                            <tr>
+                                <th colspan="4">
+                                    Gram Panchayat (Basic Hydrology Info)
+                                </th>
+                            </tr>
+                        </thead>*@
+                    <tbody class="tablebaody">
+
+                        <tr>
+                            <td>State:</td>
+                            <td>
+                                <label id="state_name"></label>
+                            </td>
+                            <td>District:</td>
+                            <td>
+                                <label id="district_name"></label>
+                                @*<input type="text" class="form-control decimal" id="district_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Block / Taluk :</td>
+                            <td>
+                                <label id="block_name"></label>
+                                @*<input type="text" class="form-control decimal" id="block_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                            <td>GP Name :</td>
+                            <td>
+                                <label id="gram_panchayat_name"></label>
+                                @*<input type="text" class="form-control decimal" id="gram_panchayat_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Gram Panchayat LGD Code :</td>
+                            <td>
+                                <label id="gp_id"></label>
+                                @*<input type="text" class="form-control decimal" id="gp_id" placeholder="Enter the numeric value" />*@
+                            </td>
+                            <td>Block Area  (Ha) :</td>
+                            <td>
+                                <label id="block_area"></label>
+                                @*<input type="text" class="form-control decimal" id="block_area" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>GP Area (Ha) :</td>
+                            <td>
+                                <label id="gp_area"></label>
+                                @*<input type="text" class="form-control decimal" id="gp_area" placeholder="Enter the numeric value" />*@
+                            </td>
+                            <td>Watershed Code :</td>
+                            <td>
+                                <label id="watershed_code"></label>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Watershed Name :</td>
+                            <td>
+                                <label id="watershed_name"></label>
+
+                            </td>
+                            <td>Watershed Area in Block / Taluk (Ha) :</td>
+                            <td>
+                                <label id="watershed_area_block"></label>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Sub Basin Code :</td>
+                            <td>
+                                <label id="sub_basin_code"></label>
+
+                            </td>
+                            <td>Sub Basin Name :</td>
+                            <td>
+                                <label id="sub_basin_name"></label>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Basin Code :</td>
+                            <td>
+                                <label id="basin_code"></label>
+
+                            </td>
+                            <td>Basin Name :</td>
+                            <td>
+                                <label id="basin_name"></label>
+                                @*<input type="text" class="form-control decimal" id="basin_name" placeholder="Enter the numeric value" />*@
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="html2pdf__page-break"></div>
+        <div class="col-md-12 col-sm-12 main_heading_sm" id="SW_Image">
+
+            <div class="text-center reportheading">
+                <p>  Uploaded Maps</p>
+            </div>
+
+            <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+
+                <tbody class="tablebaody" id="image_div">
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="html2pdf__page-break"></div>
+        @*<div class="col-md-12 col-sm-12 form-body" style="padding:0px 15px">
+                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    <tr>
+                        <th colspan="4" style="background-color: #ddd;">
+                            Gram Panchayat Location Point on Map
+                        </th>
+                    </tr>
+                </table>
+                <div class="text-center">
+                    <div class="" id="map" style="height:190px; width:270px"></div>
+
+                </div>
+
+            </div>*@
+        <div class="col-md-12 col-sm-12 main_heading_sm" id="SW_Image">
+            <div class="text-center reportheading">
+                <p>  Ground Water Level</p>
+            </div>
+            @*<div class="" id="">
+                <img src="" id="viewDiv" style="width:1000px" />
+            </div>*@
+        </div>
+
+        <div class="html2pdf__page-break"></div>
+        <div class="col-md-12" style="overflow-x:auto; width: 99%;">
+            <table class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                <thead>
+
+                    <tr class="gram_water_level_table success">
+                        <td class="text-center">S.No.</td>
+                        <td>Site Name</td>
+                        <td>Location Details</td>
+                        <td>Latitude</td>
+                        <td>Longitude</td>
+                        <td>Date</td>
+                        <td>Well ID</td>
+                        <td>Type of Well</td>
+                        <td>Other Well Type</td>
+                        <td>Ownership Type</td>
+                        <td>Government Source</td>
+                        <td>Diameter of well(m)</td>
+                        <td>Depth of Well(mbmp)</td>
+                        <td>Height of<br /> Measuring Point<br />(mbgl)</td>
+                        <td>Water Level<br />(mbgl)</td>
+                        <td>Water Level<br />Date</td>
+                    </tr>
+                </thead>
+                <tbody id="WaterLevel"></tbody>
+            </table>
+        </div>
+        <div class="html2pdf__page-break"></div>
+
+        
+        <div class="html2pdf__page-break"></div>
+        <div class="col-md-12 col-sm-12 main_heading_sm" id="SW_Images">
+            <div class="text-center reportheading">
+                <p>  Ground Water Quality</p>
+            </div>
+            @*<div class="" id="">
+                <img src="" id="viewDiv1" style="width:1140px" />
+            </div>*@
+            <div class="table-responsive" style="">
+                <table class="table table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    <thead>
+
+                        <tr class="gram_water_level_table success">
+                            <td class="text-center">S.No.</td>
+                            <td>Village<br>Name</td>
+                            <td>Location</td>
+                            <td>Latitude</td>
+                            <td>Longitude</td>
+                            <td>Year</td>
+                            <td>Well Type</td>
+                            <td>Source</td>
+                            <td>Well ID</td>
+                            <td>Well<br>Depth<br>(mbgl)</td>
+                            <td>Aquifer</td>
+                            <td>PH</td>
+                            <td>EC<br>(µS/cm)</td>
+                            <td>TDS<br>(mg/L)</td>
+                            <td>TH<br>(mg/L)</td>
+                            <td>Ca<br>(mg/L)</td>
+                            <td>Mg<br>(mg/L)</td>
+                            <td>Na<br>(mg/L)</td>
+                            <td>K<br>(mg/L)</td>
+                            <td>Carbonate<br>(mg/L)</td>
+                            <td>Bicarbonate<br>(mg/L)</td>
+                            <td>Sulphate<br>(mg/L)</td>
+                            <td>Chloride<br>(mg/L)</td>
+                            <td>Fluoride<br>(mg/L)</td>
+                            <td>Nitrate<br>(mg/L)</td>
+                        </tr>
+                    </thead>
+                    <tbody id="WaterQuality"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-12" style="margin-bottom: 15px;margin-top:10px; padding: 0px;">
+            <div class="col-md-12 last-div-footer hidediv" id="btnExport1" style="padding:0px;">
+                <div class="col-md-12 text-center">
+                    <a href="~/WSP_2024_25_update/Wsp_Gram" class="btn btn-dark" style="float:left;">
+                        Back
+                    </a>
+
+                    @*<button type="button" class="btn btn-success" onclick="ReportPdf();">Download</button>*@
+                    <button onclick="CheckDataGPInfo()" class="btn btn-primary" style="float:right">Go to Water Availability</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Content/JS_Files/wsp_mapview_25.js"></script>
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgurNrZ8JU8NiUs9bleClqbVul6VR5u4s&callback=initMap" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    //function myMap(lat, long) {
+
+    //    myCenter = new google.maps.LatLng(lat, long);
+    //    var mapOptions = {
+    //        center: myCenter,
+    //        zoom: 10, scrollwheel: false, draggable: false,
+    //        // mapTypeId: google.maps.MapTypeId.ROADMAP
+    //    };
+    //    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    //    var marker = new google.maps.Marker({
+    //        position: myCenter,
+    //        //title: "The Church",
+    //    });
+    //    marker.setMap(map);
+    //}
+    function CheckDataGPInfo() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_2024_25_update/CheckDataGPInfo",
+            dataType: 'JSON',
+            success: function (response) {
+                if (response.result == true) {
+                    window.location = "Wsp_Water_Availability", "WSP_2024_25_update"
+                } else {
+                    alert(response)
+                }
+            }
+        });
+    }
+    function gpimagesgeting_Location() {
+
+        var state = $('#spnstate').text();
+        var dist = $('#spndistrict').text();
+        var block = $('#spnblock').text();
+        var gram = $('#spngram').text();
+        var obj = {};
+        obj.state_name = state;
+        obj.district_name = dist;
+        obj.block_name = block;
+        obj.gpname = gram;
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSP_2024_25_update/MapImagesdetails1',
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                //alert(data.length);
+                $("#loaction_map_geting").html("");
+                $("#Drainage_map_geting").html("");
+                $("#Aquifer_map_geting").html("");
+                $("#Watershed_map_geting").html("");
+                var i = 0;
+                var tr = '';
+                if (data.length != 0) {
+                    //alert('imagegetting');
+                    for (var i = 0; i < data.length; i++) {
+                        tr += '<tr><td></td></tr > ';
+                        tr += '<tr> <th colspan="4" style=" background-color: #ececec;text-align: center;color: #5080a9; ">Location Map</th></tr > ';
+                        tr += '<tr><td><label><a  href="/WSP_2024_25_update/ViewFile?FileName=' + encodeURIComponent(data[i].gpimage1) + '"   target="_blank"><img src="/WSP_2024_25_update/ViewFile?FileName=' + encodeURIComponent(data[i].gpimage1) + '"  style="width: 100%;"/></a></label></td></tr>';
+                        tr += '<tr><th colspan="4" style=" background-color: #ececec;text-align: center;color: #5080a9; ">Watershed Map</th></tr>';
+                        tr += '<tr><td><label><a  href="/WSP_2024_25_update/ViewFile?FileName=' + encodeURIComponent(data[i].gpimage2) + '" target="_blank"><img src="/WSP_2024_25_update/ViewFile?FileName=' + encodeURIComponent(data[i].gpimage2) + '" style="width: 100%;"/></a></label></td></tr>';
+                        tr += '<tr><th colspan="4" style=" background-color: #ececec;text-align: center;color: #5080a9; ">Aquifer Map</th></tr>';
+                        tr += '<tr><td><label><a href="/WSP_2024_25_update/ViewFile?FileName=' + encodeURIComponent(data[i].gpimage3) + '"   target="_blank"><img src="/WSP_2024_25_update/ViewFile?FileName=' + encodeURIComponent(data[i].gpimage3) + '"  style="width: 100%;"/></a></label></td></tr>';
+
+                    }
+                    $('#image_div').append(tr);
+                    get_map();
+                }
+
+            }
+
+        });
+    }
+        function ReportPdf() {
+
+        $("#Data1").width(1110);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'Gram_Panchayat_Report.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            html2canvas: { dpi: 192, letterRendering: true },
+            pagebreak: { avoid: '#container_Water_Availability, avoid-all', after: '.page2el, #page_break' },
+            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+            $("#Data1").width();
+            $('#Data1').addClass('background_after_download');
+            $('div.demandsidesupplyside_space1').addClass('demandsidesupplyside_space');
+            $('div#btnExport').addClass('hideDownload');
+            $('div#btnExport1').addClass('hideDownload');
+            $('div.main_heading_pgwm').addClass('main_heading_pgwm1');
+            $('div.main_heading_sm').addClass('main_heading_sm1');
+            $('div.main_heading_pgwm_change').addClass('main_heading_pgwm_change1');
+
+            setTimeout(function () {
+                $('#Data1').removeClass('background_after_download');
+                $('div.demandsidesupplyside_space1').removeClass('demandsidesupplyside_space');
+                $('div#btnExport').removeClass('hideDownload');
+                $('div#btnExport1').removeClass('hideDownload');
+                $('div.main_heading_pgwm').removeClass('main_heading_pgwm1');
+                $('div.main_heading_sm').removeClass('main_heading_sm1');
+                $('div.main_heading_pgwm_change').removeClass('main_heading_pgwm_change1');
+            }, 2000);
+    }
+
+
+     var State = "";
+    var Dist ="";
+    var Block ="";
+    var Gram="";
+    $(document).ready(function () {
+        $('.Loader').show();
+         State = '@Session["gstate"]';
+     Dist ='@Session["gdist"]';
+     Block ='@Session["gblock"]';
+        Gram ='@Session["ggram"]';
+        $('#state_name').text(State);
+        $('#district_name').text(Dist);
+        $('#block_name').text(Block);
+        $('#gram_panchayat_name').text(Gram);
+        Details();
+        MISWaterLevelWSP()
+        $('#div_soc_mngt').hide();
+        $('#div_pgwm').hide();
+
+
+    });
+    function Details() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSP_2024_25_update/GrampanchayatDetails',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+                if (data == "Error") {
+                    window.location = "/WSP_2024_25_update/WSp_Gram_Report";
+                }
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+                if (data.length != 0) {
+                    var sub_basin_name = data[0].sub_basin_name;
+                    if (sub_basin_name == "Other") {
+                        sub_basin_name = data[0].sub_basin_name + " - " + data[0].other_sub_basin_name;
+                    } else if (sub_basin_name == "0") {
+                        sub_basin_name = "";
+                    }
+                    var basin_name = data[0].basin_name;
+                    if (basin_name == "Other") {
+                        basin_name = data[0].basin_name + " - " + data[0].other_basin_name;
+                    }
+
+                    $('#gp_id').text(data[0].gp_id);
+                    if (data[0].block_area != null) {
+                        $('#block_area').text(parseFloat(data[0].block_area).toFixed(4));
+                    }
+                    if (data[0].gp_area != null) {
+                        $('#gp_area').text(parseFloat(data[0].gp_area).toFixed(4));
+                    }
+                    $('#watershed_code').text(data[0].watershed_code);
+
+                    $('#watershed_name').text(data[0].watershed_name);
+                    $('#watershed_area_block').text(data[0].watershed_area_block);
+                    $('#sub_basin_code').text(data[0].sub_basin_code);
+                    $('#sub_basin_name').text(sub_basin_name);
+
+                    $('#basin_name').text(basin_name);
+                    $('#basin_code').text(data[0].basin_code);
+
+
+                }
+
+                $('.Loader').hide();
+                gpimagesgeting_Location();
+            }
+        });
+    }
+
+    
+
+    function get_map() {
+
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/WSP_2024_25_update/Get_gp_block_area',
+            data: '',
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data.length > 0) {
+                    Lat = parseFloat(data[0].latitude);
+                    Long = parseFloat(data[0].longitude);
+                    $(".loader").hide();
+                   //myMap(Lat, Long);
+                }
+
+            }
+        });
+    }
+
+</script>
+
+
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demogram2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/ ' + mm + '/ ' + yyyy;
+    document.getElementById("demogram").innerHTML = today;
+</script>
