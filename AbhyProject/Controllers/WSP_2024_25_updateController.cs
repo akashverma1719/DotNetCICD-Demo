@@ -104,6 +104,25 @@ namespace AbhyProject.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Sign_Up_DropdownInfo()
+        {
+            try
+            {
+               // var slist = ABE.obj_abhy_block_gp_area_info.ToList();
+                var slist = ABE.obj_master_list_gp_wsp.ToList();
+                var HouseHolddata = slist;
+                var jsonresults30 = Json(HouseHolddata, JsonRequestBehavior.AllowGet);
+                jsonresults30.MaxJsonLength = int.MaxValue;
+                return jsonresults30;
+
+            }
+            catch (Exception ex)
+            {
+                return Json("OK");
+            }
+        }
+
 
         [HttpPost]
         public ActionResult get_approved_reject_status()
@@ -240,11 +259,15 @@ namespace AbhyProject.Controllers
                             }
                         }
                     }
-                    return Json(WList, JsonRequestBehavior.AllowGet);
+                    var jsonresults30 = Json(WList, JsonRequestBehavior.AllowGet);
+                    jsonresults30.MaxJsonLength = int.MaxValue;
+                    return jsonresults30;
+                   // return Json(WList, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception Ex)
                 {
                     return Json("Error", JsonRequestBehavior.AllowGet);
+
                 }
             }
             else
