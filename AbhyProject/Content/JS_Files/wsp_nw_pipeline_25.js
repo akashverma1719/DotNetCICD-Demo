@@ -64,6 +64,7 @@ function Get_Irrigation_PipeLines() {
                 $("#Irrigation_Rabi_Data_pl").append(rabi_tr);
                 $("#Irrigation_Summer_Data_pl").append(summer_tr);
             }
+            get_approved_status();
             Get_pipe_data();
         },
         fail: function (jqXHR, textStatus) {
@@ -926,6 +927,7 @@ function Get_pipe_data() {
                 $('#total_crop_area_pipe').val(total_crop_area.toFixed(4));
                 $('#total_area_proposed_pipe').val(total_area_proposed.toFixed(4));
             }
+            get_approved_status();
             GetFunding_pipe();
         }
     });

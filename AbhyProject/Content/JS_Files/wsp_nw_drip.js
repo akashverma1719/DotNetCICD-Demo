@@ -842,6 +842,7 @@ function Get_drip_data() {
                 $('#total_crop_area_drip').val(total_crop_area.toFixed(4));
                 $('#total_area_proposed_drip').val(total_area_proposed.toFixed(4));
             }
+            get_approved_status();
             GetFunding_drip();
         }
     });

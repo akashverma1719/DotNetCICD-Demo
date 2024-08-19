@@ -19,12 +19,20 @@
 @*<script src="~/Content/JS_Files/sprinkler.js"></script>*@
 <script src="~/Scripts/sweetalert.js"></script>
 <script src="~/Content/JS_Files/IdealState.js"></script>
-<script src="~/Content/JS_Files/wsp_nw_sprinkler_25.js"></script>
-<script src="~/Content/JS_Files/wsp_nw_drip_25.js"></script>
-<script src="~/Content/JS_Files/wsp_nw_pipeline_25.js"></script>
-<script src="~/Content/JS_Files/wsp_nw_anyOther_25.js"></script>
-@*<script src="~/Content/JS_Files/wsp_nw_innovative.js"></script>*@
-<script src="~/Content/JS_Files/wsp_nw_crop_25.js"></script>
+
+@*<script src="~/Content/JS_Files/wsp_nw_sprinkler_25.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_drip_25.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_pipeline_25.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_anyOther_25.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_crop_25.js"></script>*@
+
+    <script src="~/Content/JS_Files/wsp_nw_sprinkler_25New.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_drip_25New.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_pipeline_25New.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_anyOther_25New.js"></script>
+    <script src="~/Content/JS_Files/wsp_nw_crop_25New.js"></script>
+
+    @*<script src="~/Content/JS_Files/wsp_nw_innovative.js"></script>*@
 
 <style>
     .new-form-control {
@@ -3758,7 +3766,7 @@
             success: function (response) {
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 $("#sprinkler_department").empty();
                 //$("#ar_possible_funding_source").empty();
@@ -3824,7 +3832,7 @@
             success: function (response) {
 
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 $("#sprinkler_scheme").empty();
                 //$("#ar_possible_funding_source").empty();
@@ -3875,7 +3883,7 @@
                     $('input[type=file]').prop("disabled", true)
                     $('.btn_disabled').prop("disabled", true);
                 }
-                 if (data == "null") {
+                if (data == "null") {
                     //for Inprogress
                     $('input[type=text]').prop("disabled", false)
                     $('select').prop("disabled", false);

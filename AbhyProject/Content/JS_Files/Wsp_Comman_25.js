@@ -6,7 +6,7 @@ function get_approved_status(val) {
         url: "/WSP_2024_25_update/get_approved_status",
         dataType: 'JSON',
         success: function (data) {
-            debugger;
+            //debugger;
             console.log(data)
              if (data>1) {
                 $('input[type=text]').prop("disabled", true)
