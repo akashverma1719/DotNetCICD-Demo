@@ -765,6 +765,7 @@ function GetFunding_anyother() {
                 $('#source_anyother_show').append(tr);
 
             }
+            get_approved_status();
             DropDownInnovative();
         }
     });
@@ -881,11 +882,13 @@ function Get_anyother_data() {
                 $('#Total_ground_water_demand_summer').text(parseFloat(wat_dem).toFixed(4));
                 $('#Total_Reduction_in_ground_water_demand_Summer').text(parseFloat(total_reduction).toFixed(4));
                 total_demand_any += total_reduction;
+                get_approved_status();
                 summ_all_any();
                 $('#TotalAnnual_Reduction_Other_measure').text(total_demand_any.toFixed(4));
                 $('#total_crop_area_anyother').val(total_crop_area.toFixed(4));
                 $('#total_area_proposed_anyother').val(total_area_proposed.toFixed(4));
             }
+            get_approved_status();
             GetFunding_anyother();
         }
     });

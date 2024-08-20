@@ -137,6 +137,7 @@ function fetch_Crop() {
                 //$('#irri_summer_waterdemand').text(val_summer.toFixed(4));
                 $('#total_crop_area_crop').val(total_crop_area.toFixed(4));
             }
+            get_approved_status();
             Get_crop_data_changed();
         }
     });
@@ -882,7 +883,7 @@ function Get_crop_data_changed() {
                 $('#Total_Water_Demand_for_Kharif_Crops_Crop_Diversion_1').text(0.0)
                 $('#Crop_Diversion_Total_Water_Demand_for_Rabi_Crops1').text(0.0);
                 $('#Total_Water_Demand_for_Summer_Crops_Crop_Diversion_1').text(0.0);
-
+                get_approved_status();
                 reduction_calc();
 
             }

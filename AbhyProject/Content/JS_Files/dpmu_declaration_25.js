@@ -44,7 +44,13 @@ function Get_dpmu_declaration() {
             if (data == "SessionTimeOut") {
                   window.location = "/Home/LogOut";
             }
+
             console.log(data[0].dpmu_declaration);
+
+            if (data[0].dpmu_declaration == undefined) {
+               $(".loader").hide();
+            }
+
             const d1 = new Date();
             //var IDD = $(".btn_location").attr("id");
             var tr1 = "";
@@ -66,8 +72,10 @@ function Get_dpmu_declaration() {
                 $('#btn_declaration_dlt').hide();
                 //$("#" + IDD).hide();
             }
-            var url = data[0].dpmu_declaration;
-            LoadPdfFromUrl(url);
+                var url = data[0].dpmu_declaration;
+                if (url != undefined) {
+                    LoadPdfFromUrl(url);
+                }
             //tr2 += '<tr><td><label><a href="' + data[0].dpmu_declaration + '"><img src="' + page.jpg + '" style="width: 100%;"/></a></label></td></tr>';
             //$('#image_div').append(tr2);
                 $(".loader").hide();

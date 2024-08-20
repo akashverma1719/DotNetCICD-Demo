@@ -1353,7 +1353,8 @@
                     status = 'In Progress';
                     $('#status_wsp').text(status).css({ 'color': 'blue' });
                 }
-                if (data.reject_status == "Rejected By Stat" && data.status_id == 3) {
+                //if (data.reject_status == "Rejected By Stat" && data.status_id == 3) {
+                if (data.reject_status == "Rejected By State" && data.status_id == 3) {
                     status = 'Rejected By State';
                     $('#status_wsp').text(status).css({ 'color': 'red' });
                 }
