@@ -81,7 +81,7 @@ function fetch_Crop() {
                         code += '<td>' + data[i].area + '</td>';
                         code += '<td>' + data[i].gross_water + '</td>';
                         code += '<td> ' + data[i].water_demand.toFixed(4) + '</td>';
-                        code += '<td><button id="btn_change_kh' + count_summer_pipe + '" class="btn btn-primary" onclick="set_change(' + data[i].id + ')">Change Crop</button > </td></tr>';
+                        code += '<td><button id="btn_change_kh' + count_summer_pipe + '" class="btn btn-primary btn_disabled" onclick="set_change(' + data[i].id + ')">Change Crop</button > </td></tr>';
                     }
                 }
                 code += '</tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td> ' + val_kharif.toFixed(4) + '</td></tr>'
@@ -102,7 +102,7 @@ function fetch_Crop() {
                         code += '<td>' + data[i].area + '</td>';
                         code += '<td>' + data[i].gross_water + '</td>';
                         code += '<td>' + data[i].water_demand.toFixed(4) + ' </td>';
-                        code += '<td><button id="btn_change_kh' + count_summer_pipe + '" class="btn btn-primary" onclick="set_change(' + data[i].id + ')">Change Crop</button > </td></tr>';
+                        code += '<td><button id="btn_change_kh' + count_summer_pipe + '" class="btn btn-primary btn_disabled" onclick="set_change(' + data[i].id + ')">Change Crop</button > </td></tr>';
                         $('#TblData_GRAM_PANCHAYAT_DATABASE_b_crop_or').append(code);
                     }
                 }
@@ -125,7 +125,7 @@ function fetch_Crop() {
                         code += '<td>' + data[i].area + '</td>';
                         code += '<td>' + data[i].gross_water + '</td>';
                         code += '<td>' + data[i].water_demand.toFixed(4) + ' </td>';
-                        code += '<td><button id="btn_change_kh' + count_summer_pipe + '" class="btn btn-primary" onclick="set_change(' + data[i].id + ')">Change Crop</button > </td></tr>';
+                        code += '<td><button id="btn_change_kh' + count_summer_pipe + '" class="btn btn-primary btn_disabled" onclick="set_change(' + data[i].id + ')">Change Crop</button > </td></tr>';
                         $('#TblData_GRAM_PANCHAYAT_DATABASE_c_crop_or').append(code);
                     }
                 }

@@ -423,6 +423,7 @@ function abhy_socialmgt_pgwm_meeting_Info() {
 }
 
 function GramPanchayatDetails() {
+    $('#download').addClass('hideDownload');
 
     $.ajax({
         type: 'GET',
@@ -462,6 +463,7 @@ function GramPanchayatDetails() {
                 $('#basin_code').text(data[0].basin_code);
             }
             gpimagesgeting_Location();
+            $('#download').removeClass('hideDownload');
         }
     });
 }
@@ -865,7 +867,6 @@ function WaterBudgetDeatils() {
         }
 
     });
-
 }
 
 

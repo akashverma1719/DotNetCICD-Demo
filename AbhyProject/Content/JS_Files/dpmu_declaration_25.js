@@ -31,6 +31,7 @@ function Upload_dpmu_declaration() {
 }
 
 function Get_dpmu_declaration() {
+    
     $(".loader").show();
     $.ajax({
         type: 'GET',
@@ -48,7 +49,11 @@ function Get_dpmu_declaration() {
             console.log(data[0].dpmu_declaration);
 
             if (data[0].dpmu_declaration == undefined) {
-               $(".loader").hide();
+                $(".loader").hide();
+                $(".totalreport").hide();
+                //$(".totalreport").attr("style", "display:none");
+                //$(".totalreport").removeAttr("href");
+
             }
 
             const d1 = new Date();
@@ -56,6 +61,8 @@ function Get_dpmu_declaration() {
             var tr1 = "";
             var tr2 = '';
             if (data[0].dpmu_declaration != null && data[0].dpmu_declaration != 0 && data[0].dpmu_declaration != "") {
+                $(".totalreport").show();
+
                 var post_nowDate = new Date(parseInt(data[0].entry_time.substr(6)))
                 post_curr_date = post_nowDate.getDate();
                 post_curr_month = post_nowDate.getMonth() + 1;    // months are zero based
@@ -70,6 +77,7 @@ function Get_dpmu_declaration() {
             } else {
                 $('#upload_declaration').html(tr1);
                 $('#btn_declaration_dlt').hide();
+                $('#total report').removeAttr("href");
                 //$("#" + IDD).hide();
             }
                 var url = data[0].dpmu_declaration;

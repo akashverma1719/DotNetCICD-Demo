@@ -389,10 +389,10 @@
                         <span>@Session["year"]</span>
                     </li>
                     @*<li id="YearLabel">
-                        <i class="fas fa fa-angle-double-right"></i>
-                        <label>Month:</label>
-                        <span>@Session["month"]</span>
-                    </li>*@
+                            <i class="fas fa fa-angle-double-right"></i>
+                            <label>Month:</label>
+                            <span>@Session["month"]</span>
+                        </li>*@
 
                     @*<li style="float:right">
                             <button class="btn btn-success" onclick="Report_BTN()">
@@ -437,7 +437,7 @@
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12 text-center">
                     <a href="~/WSP_2024_25_update/pgwm_summary" class="btn btn-danger"> Back</a>
-                    <a id="total report" href="~/WSP_2024_25_update/Wspremarks" class="btn btn-primary"> Go To WSP Remarks  </a>
+                    <a id="total report" href="~/WSP_2024_25_update/Wspremarks" class="btn btn-primary totalreport"> Go To WSP Remarks  </a>
                     <a class="btn btn-primary" id="wsp_approved_spmu" onclick="wsp_approved_status()">
                         Submit to SPMU
                     </a>
@@ -584,12 +584,12 @@
             url: "/WSP_2024_25_update/get_approved_status",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 if (data == 3) {
-                    
+
                     $('.btn_disabled').prop("disabled", false);
                 }
-               
+
                 else {
                     $('.btn_disabled').prop("disabled", true);
                     $("#wsp_approved_spmu").hide();
