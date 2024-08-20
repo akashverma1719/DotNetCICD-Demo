@@ -48,7 +48,7 @@ function Get_dpmu_declaration() {
 
             console.log(data[0].dpmu_declaration);
 
-            if (data[0].dpmu_declaration == undefined) {
+                if ((data[0].dpmu_declaration == undefined) || (data[0].dpmu_declaration == "")) {
                 $(".loader").hide();
                 $(".totalreport").hide();
                 //$(".totalreport").attr("style", "display:none");
