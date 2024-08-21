@@ -716,8 +716,10 @@
                         <li>Time : <span id="demo2"></span></li>
                         <li>
                             User Name :
-                        
-                            <span>@Session["UserName"].ToString()</span>
+                            @if (Session["UserName"] != null)
+                            {
+                                <span>@Session["UserName"].ToString()</span>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -4457,6 +4459,7 @@
         //$("#suppagetbl_ars1").remove();
         //$("#suppagetbl_ars2").remove();
         //GetWspApprovedDate()
+
         WaterLevelWSP();
         $("#wsp_approved").hide();
 
@@ -5523,7 +5526,7 @@
         $('div#remarks_div').addClass('hideDownload');
 
         $('div#btnExport1').addClass('hideDownload');
-
+        
         setTimeout(function () {
             $('#Data1').removeClass('background_after_download');
             //$('div.wateravaliablity_space1').removeClass('wateravaliablity_space');

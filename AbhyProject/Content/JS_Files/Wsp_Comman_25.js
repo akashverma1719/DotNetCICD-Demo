@@ -6,13 +6,15 @@ function get_approved_status(val) {
         url: "/WSP_2024_25_update/get_approved_status",
         dataType: 'JSON',
         success: function (data) {
-            debugger;
+            //debugger;
             console.log(data)
              if (data>1) {
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
                 $('.btn_disabled').prop("disabled", true);
+                $('.livestock_remove_field').removeAttr("onclick");
+                $('.livestock_remove_field').removeAttr("href");
             }
             else if (access_auth == "admin") {
                 $('input[type=text]').prop("disabled", false)

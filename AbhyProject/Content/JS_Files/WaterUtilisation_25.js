@@ -1,7 +1,13 @@
 ﻿$(document).ready(function () {
+    setTimeout(get_approved_status(), 8000);
     Fetch_LiveStock();
     fetch_Irrigation_kharif();
-    //$('#btn_summary').hide();
+    //setTimeout(get_approved_status(), 8000);
+    get_approved_status();
+    ////$('#btn_summary').hide();
+    //Fetch_LiveStock();
+    //fetch_Irrigation_kharif();
+    ////$('#btn_summary').hide();
 });
 var Ind_id = 0;
 var oth_id = 0;
@@ -215,6 +221,7 @@ function Fetch_LiveStock() {
                 option += "<option value = " + response[i].livestock_name + ">" + response[i].livestock_name + "</option>";
             }
             $("#Select_Livestock").html(option);
+            get_approved_status();
             get_domestic();
         }
     });
@@ -520,6 +527,7 @@ function fetch_Irrigation_kharif() {
             $('#irri_summer_waterdemand').text(val_summer.toFixed(4));
             Industry_get();
             sumAll();
+            get_approved_status();
         }
     });
 }

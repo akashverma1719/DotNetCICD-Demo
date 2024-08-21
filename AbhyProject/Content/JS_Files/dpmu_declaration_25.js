@@ -31,7 +31,9 @@ function Upload_dpmu_declaration() {
 }
 
 function Get_dpmu_declaration() {
+    
     $(".loader").show();
+    $(".totalreport").hide();
     $.ajax({
         type: 'GET',
         contentType: 'application/json; chatset=utf-8',
@@ -44,12 +46,24 @@ function Get_dpmu_declaration() {
             if (data == "SessionTimeOut") {
                   window.location = "/Home/LogOut";
             }
+
             console.log(data[0].dpmu_declaration);
+
+                if ((data[0].dpmu_declaration == undefined) || (data[0].dpmu_declaration == "")) {
+                $(".loader").hide();
+                $(".totalreport").hide();
+                //$(".totalreport").attr("style", "display:none");
+                //$(".totalreport").removeAttr("href");
+
+            }
+
             const d1 = new Date();
             //var IDD = $(".btn_location").attr("id");
             var tr1 = "";
             var tr2 = '';
             if (data[0].dpmu_declaration != null && data[0].dpmu_declaration != 0 && data[0].dpmu_declaration != "") {
+                $(".totalreport").show();
+
                 var post_nowDate = new Date(parseInt(data[0].entry_time.substr(6)))
                 post_curr_date = post_nowDate.getDate();
                 post_curr_month = post_nowDate.getMonth() + 1;    // months are zero based
@@ -64,10 +78,13 @@ function Get_dpmu_declaration() {
             } else {
                 $('#upload_declaration').html(tr1);
                 $('#btn_declaration_dlt').hide();
+                $('#total report').removeAttr("href");
                 //$("#" + IDD).hide();
             }
-            var url = data[0].dpmu_declaration;
-            LoadPdfFromUrl(url);
+                var url = data[0].dpmu_declaration;
+                if (url != undefined) {
+                    LoadPdfFromUrl(url);
+                }
             //tr2 += '<tr><td><label><a href="' + data[0].dpmu_declaration + '"><img src="' + page.jpg + '" style="width: 100%;"/></a></label></td></tr>';
             //$('#image_div').append(tr2);
                 $(".loader").hide();

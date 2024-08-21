@@ -420,7 +420,7 @@ function Getwspwater() {
                         html += '<td id="hide_livestockName2' + i + '"><input id="other" class="livestockOtherName livestockOther form-control alpha" value="' + avail_storages[i] + '" name="livestockpopulation" type=text placeholder="Other input"/></td>';
                         html += '<td><span id=""><input class="livestocknumericvalue form-control decimal" onpaste="return false" value="' + avail_storages_grd[i] + '" maxlength="4" name = "livestocknumericvalue1" type=text placeholder="Enter Surface Water Bodies"  /></span></td>';
                         html += '<td><span id=""><input class="livestocknumericvalue1 form-control decimal" onpaste="return false" value="' + avail_storages_sur[i] + '" maxlength="4" name = "livestocknumericvalue2" type=text placeholder="Enter Storage Capacity"  /></span></td>';
-                        html += '<td><a href="" onclick="return Deleteqry(this)" class="livestock_remove_field">Remove</a></td></tr>';
+                        html += '<td><a href="" onclick="return Deleteqry(this)" class="livestock_remove_field btn_disabled" disabled>Remove</a></td></tr>';
                     }
 
                     $('.Livestocktable > thead > tr').eq(0).after(html);

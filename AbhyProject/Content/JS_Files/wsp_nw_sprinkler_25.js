@@ -65,6 +65,7 @@ function Get_Irrigation_Sprinkler() {
                 $("#Irrigation_Rabi_Data_sp").append(rabi_tr);
                 $("#Irrigation_Summer_Data_sp").append(summer_tr);
             }
+            get_approved_status();
             Get_sprinkler_data();
         },
         fail: function (jqXHR, textStatus) {
@@ -394,6 +395,7 @@ function Get_sprinkler_data() {
                 $('#sprinkler_rabi_total_rabi_waterdemand').text("");
                 $('#sprinkler_rabi_total_reduction_waterdemand').text("");
             }
+            get_approved_status();
             GetFunding_sp();
         }
     });

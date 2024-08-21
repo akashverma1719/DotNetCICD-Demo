@@ -4263,7 +4263,7 @@ function isWithinRange(date) {
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
     var todatdate = today;
-    if (todatdate <= "2024-08-20") {
+    if (todatdate <= "2024-08-23") {
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth(); // Month is 0 indexed
         var currentYear = currentDate.getFullYear();
