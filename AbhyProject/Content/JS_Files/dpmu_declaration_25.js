@@ -33,6 +33,7 @@ function Upload_dpmu_declaration() {
 function Get_dpmu_declaration() {
     
     $(".loader").show();
+    $(".totalreport").hide();
     $.ajax({
         type: 'GET',
         contentType: 'application/json; chatset=utf-8',
