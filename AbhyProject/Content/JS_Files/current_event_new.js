@@ -3117,7 +3117,7 @@ function editrowcomp_A_Good2(i) {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-     if (today <= "2024-08-23") {
+     if (today <= "2024-08-27") {
         var mmm = "06";
         // Set the minimum and maximum attributes of the date input
         document.getElementById("fdate1" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
@@ -3210,7 +3210,7 @@ function editrowcomp_A_Good2_state(i) {
         today = yyyy + '-' + mm + '-' + dd;
 
         // Set the minimum and maximum attributes of the date input
-         if (today <= "2024-08-23") {
+         if (today <= "2024-08-27") {
             var mmm = "06";
             // Set the minimum and maximum attributes of the date input
             document.getElementById("fdate1_S" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
@@ -3301,7 +3301,7 @@ function editrowcomp_A_Good2_district(i) {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-             if (today <= "2024-08-23") {
+             if (today <= "2024-08-27") {
                 var mmm = "06";
                 // Set the minimum and maximum attributes of the date input
                 document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
@@ -3387,7 +3387,7 @@ function editrowcomp_A_Good2_block(i) {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-     if (today <= "2024-08-23") {
+     if (today <= "2024-08-27") {
         var mmm = "06";
         // Set the minimum and maximum attributes of the date input
         document.getElementById("fdate1_B" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
@@ -3471,7 +3471,7 @@ function editrowcomp_A_Good2_gram(i) {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-     if (today <= "2024-08-23") {
+     if (today <= "2024-08-27") {
         var mmm = "06";
         // Set the minimum and maximum attributes of the date input
         document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
@@ -4390,6 +4390,7 @@ function abhy_Curr_Event_Info_Search2() {    //for DISTRICT DATA search button b
             var rej = 0;
             if (data.length != 0) {
                 for (var i = 0; i < data.length; i++) {
+                    debugger;
                     var district = data[i].district;
                     if (district == null) {
                         district = "";
@@ -5345,7 +5346,7 @@ function abhy_Event_Cal_Info_Search5() {
 
 function isWithinRange(date) {
     debugger;
-        if (todatdate <= "2024-08-07") {
+        if (todatdate <= "2024-08-27") {
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth(); // Month is 0 indexed
         var currentYear = currentDate.getFullYear();
