@@ -1149,22 +1149,30 @@
     function Delete_data_ar(id) {
         var formData = new FormData();
         formData.append('id', id);
-        $.ajax({
-            url: '/WSP_2024_25_update/Delete_AR_by_id',
-            data: formData,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                alert(data);
-                GetARData();
-            },
-            error:
-                function (response) {
-                    console.dir(response)
-                    //alert("Error: " + response);
-                }
-        });
+
+        if (confirm('Are you sure to delete the entry?')) {
+            $.ajax({
+                url: '/WSP_2024_25_update/Delete_AR_by_id',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                    GetARData();
+                },
+                error:
+                    function (response) {
+                        console.dir(response)
+                        //alert("Error: " + response);
+                    }
+            });
+        }
+        else {
+            return false;
+        }
+
+      
     }
     function GetWRData() {
         var strorage_cap = 0;
@@ -1322,23 +1330,31 @@
     function Delete_data_wr(id) {
         var formData = new FormData();
         formData.append('id', id);
-        $.ajax({
-            url: '/WSP_2024_25_update/Delete_WR_by_id',
-            data: formData,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                alert(data);
-                GetWRData();
 
-            },
-            error:
-                function (response) {
-                    console.dir(response)
-                    //alert("Error: " + response);
-                }
-        });
+
+        if (confirm('Are you sure to delete the entry?')) {
+            $.ajax({
+                url: '/WSP_2024_25_update/Delete_WR_by_id',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                    GetWRData();
+
+                },
+                error:
+                    function (response) {
+                        console.dir(response)
+                        //alert("Error: " + response);
+                    }
+            });
+        }
+        else {
+            return false;
+        }
+
     }
 
         function cal_AR(e) {

@@ -819,22 +819,29 @@ function delete_ind_byid(id) {
     var obj = {};
     obj.IDD = id;
 
-    $.ajax({
-        type: 'POST',
-        contentType: 'application/json; chatset=utf-8',
-        url: "/WSP_2024_25_update/delete_ind",
-        data: "{'Data': '" + JSON.stringify(obj) + "'}",
-        dataType: 'JSON',
-        success: function (response) {
-            alert(response);
-            //$('#SAVE_BTN2').prop('disabled', false)
-            Industry_get();
-        },
-        error: function () {
-            alert("Error While Saving Data")
-            // $('#SAVE_BTN2').prop('disabled', false)
-        }
-    });
+
+    if (confirm('Are you sure to delete the entry?')) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_2024_25_update/delete_ind",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                //$('#SAVE_BTN2').prop('disabled', false)
+                Industry_get();
+            },
+            error: function () {
+                alert("Error While Saving Data")
+                // $('#SAVE_BTN2').prop('disabled', false)
+            }
+        });
+    }
+    else {
+        return false;
+    }
+
 }
 function get_ind_byid(id) {
 

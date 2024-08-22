@@ -6597,10 +6597,15 @@ namespace AbhyProject.Controllers
                 var year = "2024-25 Update";
                 //var month = Session["month"].ToString();
 
-                ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year== year).ToList();
+                ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == year).ToList();
                 if (ddetails.Count == 0)
                 {
                     ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2024-25").ToList();
+                    if (ddetails.Count == 0)
+                    {
+                        ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2023-24").ToList();
+
+                    }
                 }
                 var resultdata = Json(ddetails, JsonRequestBehavior.AllowGet);
                 resultdata.MaxJsonLength = int.MaxValue;
