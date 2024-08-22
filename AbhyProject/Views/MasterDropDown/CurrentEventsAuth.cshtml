@@ -579,7 +579,7 @@
                                         </li>
                                         <li id="7date">
 
-                                            <select class="form-control" id="month_nnn" onchange="Month_change()">
+                                            <select class="form-control" id="month_new" onchange="Month_change()">
                                                 <option value="June">June</option>
                                                 <option value="July">July</option>
                                                 <option value="August">August</option>
@@ -2169,8 +2169,19 @@
     }
     function SaveCurrentEventForGP() {
 
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        var month = "";
+        if (today <= "2024-08-23") {
+            month = $("#month_new option:selected").val();
+        }
+        else {
+             month = $("#month option:selected").val();
+        }
         var year = $("#year option:selected").val();
-        var month = $("#month option:selected").val();
         var p_training_name = $("#p_training_name").val();    //abhi
         var type_of_event = $("#type_event option:selected").val();
         var event_platform = $("#event_platform option:selected").val();

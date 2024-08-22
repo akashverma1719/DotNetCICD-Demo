@@ -1738,13 +1738,69 @@ namespace AbhyProject.Controllers
                 var Year = year1;
 
                 // Query database based on input parameters
-                if (State != "0" && !string.IsNullOrEmpty(State) && Dist != "0" && !string.IsNullOrEmpty(Dist) && Block != "0" && !string.IsNullOrEmpty(Block) && Gram != "0" && !string.IsNullOrEmpty(Gram))
+                if (State != "0" && !string.IsNullOrEmpty(State) && Dist != "0" && !string.IsNullOrEmpty(Dist) && Block != "0" && !string.IsNullOrEmpty(Block) && Gram != "0" && !string.IsNullOrEmpty(Gram) && Year != "0" && !string.IsNullOrEmpty(Year))
                 {
                     ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
                     remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
                     social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
                     social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
                     sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
+                }
+                else if (State != "0" && !string.IsNullOrEmpty(State) && Dist != "0" && !string.IsNullOrEmpty(Dist) && Block != "0" && !string.IsNullOrEmpty(Block) && Gram != "0" && !string.IsNullOrEmpty(Gram))
+                {
+                    ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderByDescending(x => x.id).ToList();
+                    remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderByDescending(x => x.id).ToList();
+                    social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderByDescending(x => x.id).ToList();
+                    social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderByDescending(x => x.id).ToList();
+                    sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderByDescending(x => x.id).ToList();
+                }
+               else if (State != "0" && !string.IsNullOrEmpty(State) && Dist != "0" && !string.IsNullOrEmpty(Dist) && Block != "0" && !string.IsNullOrEmpty(Block) && Year != "0" && !string.IsNullOrEmpty(Year))
+                {
+                    ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
+                }
+                else if (State != "0" && !string.IsNullOrEmpty(State) && Dist != "0" && !string.IsNullOrEmpty(Dist) && Block != "0" && !string.IsNullOrEmpty(Block))
+                {
+                    ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderByDescending(x => x.id).ToList();
+                    remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderByDescending(x => x.id).ToList();
+                    social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderByDescending(x => x.id).ToList();
+                    social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderByDescending(x => x.id).ToList();
+                    sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderByDescending(x => x.id).ToList();
+                }
+                else if (State != "0" && !string.IsNullOrEmpty(State) && Dist != "0" && !string.IsNullOrEmpty(Dist) && Year != "0" && !string.IsNullOrEmpty(Year))
+                {
+                    ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State && x.district_name == Dist  && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State && x.district_name == Dist  && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State && x.district_name == Dist  && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year).OrderByDescending(x => x.id).ToList();
+                }
+                else if (State != "0" && !string.IsNullOrEmpty(State) && Dist != "0" && !string.IsNullOrEmpty(Dist))
+                {
+                    ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State && x.district_name == Dist).OrderByDescending(x => x.id).ToList();
+                    remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State && x.district_name == Dist).OrderByDescending(x => x.id).ToList();
+                    social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State && x.district_name == Dist).OrderByDescending(x => x.id).ToList();
+                    social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State && x.district_name == Dist).OrderByDescending(x => x.id).ToList();
+                    sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State && x.district_name == Dist).OrderByDescending(x => x.id).ToList();
+                }
+                else if (State != "0" && !string.IsNullOrEmpty(State) && Year != "0" && !string.IsNullOrEmpty(Year))
+                {
+                    ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State && x.year == Year).OrderByDescending(x => x.id).ToList();
+                    sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State && x.year == Year).OrderByDescending(x => x.id).ToList();
+                }
+                else if (State != "0" && !string.IsNullOrEmpty(State))
+                {
+                    ddetails = ABE.obj_social_socialmgt_other_local_institues.Where(x => x.state_name == State).OrderByDescending(x => x.id).ToList();
+                    remarks_details = ABE.obj_social_socialmgt_support_agency.Where(x => x.state_name == State).OrderByDescending(x => x.id).ToList();
+                    social_farmers = ABE.obj_social_socialmgt_farmers.Where(x => x.state_name == State).OrderByDescending(x => x.id).ToList();
+                    social_grm = ABE.obj_social_socialmgt_grm.Where(x => x.state_name == State).OrderByDescending(x => x.id).ToList();
+                    sarpanch_deatls = ABE.obj_sarpanchdetails.Where(x => x.state_name == State).OrderByDescending(x => x.id).ToList();
                 }
                 // Other conditions here...
 
