@@ -225,9 +225,10 @@
                         <option value="0">Select Financial Year</option>
                         @*<option value="2019-20">2019-2020</option>*@
                         <option value="2022-23">2022-2023</option>
-                        <option value="2023-24" selected>2023-2024</option>
-                        <option value="2023-24_update" selected>2023-2024 Update</option>
-                        <option value="2024-25" selected>2024-2025</option>
+                        <option value="2023-24">2023-2024</option>
+                        <option value="2023-24_update">2023-2024 Update</option>
+                        <option value="2024-25">2024-2025</option>
+                        <option value="2024-25 Update" selected>2024-25 Update</option>
                     </select>
                 </li>
             </ul>
@@ -476,10 +477,10 @@
         $(".loader").show();
         var Year = $("#year").val();
         if (StateOfficer != "National Level Nodal Officer") {
-        if ($("#year").val() == "0") {
-            alert("Please Select Year!");
-            $("#year").focus();
-            return;
+            if ($("#year").val() == "0") {
+                alert("Please Select Year!");
+                $("#year").focus();
+                return;
             }
         }
 
@@ -508,7 +509,7 @@
                     $(".loader").hide();
                     debugger
                     if (data == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     var tr = "";
                     var j = 0;
@@ -539,7 +540,7 @@
                     $(".loader").hide();
                     debugger
                     if (data == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     var tr = "";
                     var j = 0;
@@ -567,7 +568,7 @@
                 success: function (data) {
                     $(".loader").hide();
                     if (data == "Logout") {
-                          window.location = "/Home/LogOut";
+                        window.location = "/Home/LogOut";
                     }
                     var tr = "";
                     var j = 0;
@@ -583,7 +584,39 @@
 
                 }
             });
+
+
+        }
+        else if (Year == "2024-25 Update") {
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/Project/GET_WSP_Approved_Info_24_Update',
+                data: { 'State': State, 'Dist': Dist, 'Block': Block, 'Gram': Gram, 'Year': Year },
+                dataType: 'JSON',
+                success: function (data) {
+                    $(".loader").hide();
+                    if (data == "Logout") {
+                        window.location = "/Home/LogOut";
+                    }
+                    var tr = "";
+                    var j = 0;
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            tr += '<tr><td>' + ++j + '</td><td>' + data[i].state + '</td><td>' + data[i].dist + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].wsp_date + '</td><td><a href="/WSP_2024_25_update/DownloadZipFile?Id=' + data[i].id + '  " download="">' + data[i].wsp_file + '</a></td></tr>'
+                        }
+                    }
+
+                    $("#new_wsp_body").html(tr);
+                    $('#Approved_count_new').text(data.length);
+                    Info1();
+
+                }
+            });
+
+
         }
     }
+
 </script>
 

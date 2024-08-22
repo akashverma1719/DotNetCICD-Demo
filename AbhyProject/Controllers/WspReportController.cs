@@ -109,6 +109,29 @@ namespace AbhyProject.Controllers
                     count = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name != "Delhi_7" && x.year == Year && x.status_id == 5).ToList().Count();
                 }
             }
+            else if (Year == "2024-25 Update")
+            {
+                if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                {
+                    count = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.year == Year && x.status_id == 5).ToList().Count();
+                }
+                else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                {
+                    count = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year && x.status_id == 5).ToList().Count();
+                }
+                else if (State != "0" && State != null && District != "0" && District != null)
+                {
+                    count = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.year == Year && x.status_id == 5).ToList().Count();
+                }
+                else if (State != "0" && State != null)
+                {
+                    count = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.year == Year && x.status_id == 5).ToList().Count();
+                }
+                else
+                {
+                    count = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name != "Delhi_7" && x.year == Year && x.status_id == 5).ToList().Count();
+                }
+            }
             else
             {
                 if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
@@ -46564,6 +46587,9129 @@ namespace AbhyProject.Controllers
                                         else
                                         {
                                             ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("PGWM Meeting");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Date";
+                                        worksheet.Cell(currentRow, 7).Value = "GP Name";
+                                        worksheet.Cell(currentRow, 8).Value = "Village Name";
+                                        worksheet.Cell(currentRow, 9).Value = "Meeting Location";
+                                        worksheet.Cell(currentRow, 10).Value = "Male";
+                                        worksheet.Cell(currentRow, 11).Value = "Female";
+                                        worksheet.Cell(currentRow, 12).Value = "Transgender";
+                                        worksheet.Cell(currentRow, 13).Value = "Total number of attendees";
+                                        worksheet.Cell(currentRow, 14).Value = "MOM(Minutes of Meeting)";
+                                        worksheet.Cell(currentRow, 15).Value = "Photograph";
+                                        worksheet.Cell(currentRow, 16).Value = "Resolution";
+                                        worksheet.Cell(currentRow, 17).Value = "Attendance Sheet";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gp_name;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].meeting_date;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].meeting_gp_name;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].meeting_village;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].meeting_location;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].male_attendees;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].female_attendees;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].transgender_attendees;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].total_attendees;
+                                                    worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
+                                                    worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
+                                                    worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
+                                                    worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbookAllSub.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //      "PGWM.xlsx");
+
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "PGWM AllCombine.xlsx");
+                                    robj = bytesdata;
+                                }
+
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+
+                        }
+
+
+                    }
+
+
+                    return RedirectToAction("WSP_GWM_HOME", "WspNew");
+
+                }
+                else
+                {
+                    return RedirectToAction("WSP_GWM_HOME", "WspNew");
+                }
+
+
+            }
+            catch (Exception Ex)
+            {
+                abhy_tbl_error error_data = new abhy_tbl_error();
+                error_data.error_test = Ex.Message;
+                error_data.user_email = Ex.StackTrace;
+                error_data.user_type = "WspExcel - " + Module_name;
+                error_data.error_count = "1";
+                error_data.date_time = DateTime.Now.ToString();
+                ABE.obj_abhy_tbl_error.Add(error_data);
+                ABE.SaveChanges();
+                return RedirectToAction("index", "WspReport");
+            }
+
+        }
+
+
+
+    public ActionResult Create_WSP_Excel_2024_25_update_AllVersion1(string State, string District, string Block, string Gram, double Module_name, string Year)
+        {
+
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    string path = "https://ataljal.mowr.gov.in";
+                    double[] AllVersion = { 1.1, 1.2, 1.3, 1.4, 2, 3.1, 3.2, 3.3, 3.4, 4, 5, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 7.1, 7.2, 8.1, 8.2, 9, 10 };
+                    if (Module_name == -1)
+                    {
+                        FileContentResult robj;
+                        using (var workbookAll = new XLWorkbook())
+                        {
+                            foreach (var item in AllVersion)
+                            {
+
+                                if (item == 1.1)
+                                {
+                                    List<abhy_wsp_gpdata_new_24_update> ddetails = new List<abhy_wsp_gpdata_new_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gram_panchayat_name == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("GP (Basic Hydrology Info)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Gram Panchayat LGD Code";
+                                    worksheet.Cell(currentRow, 7).Value = "Block Area (ha)";
+                                    worksheet.Cell(currentRow, 8).Value = "Gram Panchayat Area (ha)";
+                                    worksheet.Cell(currentRow, 9).Value = "Watershed Code";
+                                    worksheet.Cell(currentRow, 10).Value = "Watershed Name";
+                                    worksheet.Cell(currentRow, 11).Value = "Watershed Area in Block / Taluk (ha)";
+                                    worksheet.Cell(currentRow, 12).Value = "Sub-basin Code";
+                                    worksheet.Cell(currentRow, 13).Value = "Sub Basin Name";
+                                    worksheet.Cell(currentRow, 14).Value = "Basin Code";
+                                    worksheet.Cell(currentRow, 15).Value = "Basin Name";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gram_panchayat_name;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gram_panchayat_name;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].gp_id;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].block_area;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].gp_area;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].watershed_code;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].watershed_name;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].watershed_area_block;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].sub_basin_code;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].sub_basin_name;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].basin_code;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].basin_name;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "No Data";
+                                        worksheet.Cell(currentRow, 9).Value = "";
+                                        worksheet.Cell(currentRow, 10).Value = "";
+                                        worksheet.Cell(currentRow, 11).Value = "";
+                                        worksheet.Cell(currentRow, 12).Value = "";
+                                        worksheet.Cell(currentRow, 13).Value = "";
+                                        worksheet.Cell(currentRow, 14).Value = "";
+                                        worksheet.Cell(currentRow, 15).Value = "";
+                                    }
+
+
+                                }
+                                if (item == 1.2)
+                                {
+                                    List<abhy_wsp_gram_images_24_update> ddetails = new List<abhy_wsp_gram_images_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("GP (Maps Upload)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Location Map";
+                                    worksheet.Cell(currentRow, 7).Value = "Watershed and Drainage Map";
+                                    worksheet.Cell(currentRow, 8).Value = "Aquifer Map";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gpname;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = path + ddetails[i].gpimage1;
+                                                worksheet.Cell(currentRow, 7).Value = path + ddetails[i].gpimage2;
+                                                worksheet.Cell(currentRow, 8).Value = path + ddetails[i].gpimage3;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+
+                                }
+                                if (item == 1.3)
+                                {
+                                    List<abhy_wsp_gwl_24_update> ddetails = new List<abhy_wsp_gwl_24_update>();
+                                    List<abhy_wsp_gwl_24_update> Final_data = new List<abhy_wsp_gwl_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.grampanchayat == Gram).OrderBy(c => c.wellid).ToList();
+
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State).ToList();//total list
+                                    }
+                                    if (Final_data.Count > 0)
+                                    {
+                                        var GroupByData = Final_data.GroupBy(x => x.wellid).ToList();
+                                        int j = 0;
+                                        foreach (var items in GroupByData.AsEnumerable())
+                                        {
+                                            ++j;
+                                            var itemId = items.First();
+                                            var DataByWellId = Final_data.Where(x => x.wellid == itemId.wellid).ToList();
+                                            for (int i = 0; i < DataByWellId.Count; i++)
+                                            {
+                                                if (i == 0)
+                                                {
+                                                    var obj = new abhy_wsp_gwl_24_update()
+                                                    {
+                                                        sno = j.ToString(),
+                                                        state = DataByWellId[i].state,
+                                                        district = DataByWellId[i].district,
+                                                        block = DataByWellId[i].block,
+                                                        grampanchayat = DataByWellId[i].grampanchayat,
+                                                        sitename = DataByWellId[i].sitename,
+                                                        locationdetails = DataByWellId[i].locationdetails,
+                                                        latitude = DataByWellId[i].latitude,
+                                                        longitude = DataByWellId[i].longitude,
+                                                        datetime = DataByWellId[i].datetime,
+                                                        wellid = DataByWellId[i].wellid,
+                                                        typeofwell = DataByWellId[i].typeofwell,
+                                                        other_well_type = DataByWellId[i].other_well_type,
+                                                        source_Ownership = DataByWellId[i].source_Ownership,
+                                                        source_Ownership_type = DataByWellId[i].source_Ownership_type,
+                                                        Diameter_of_Well = DataByWellId[i].Diameter_of_Well,
+                                                        welldepth = DataByWellId[i].welldepth,
+                                                        Height_of_Measuring_Point = DataByWellId[i].Height_of_Measuring_Point,
+                                                        gwl_reading = DataByWellId[i].gwl_reading,
+                                                        gwl_date = DataByWellId[i].gwl_date
+
+                                                    };
+                                                    ddetails.Add(obj);
+                                                }
+                                                else
+                                                {
+                                                    var obj = new abhy_wsp_gwl_24_update()
+                                                    {
+                                                        sno = "",
+                                                        state = DataByWellId[i].state,
+                                                        district = DataByWellId[i].district,
+                                                        block = DataByWellId[i].block,
+                                                        grampanchayat = DataByWellId[i].grampanchayat,
+                                                        sitename = DataByWellId[i].sitename,
+                                                        locationdetails = DataByWellId[i].locationdetails,
+                                                        latitude = DataByWellId[i].latitude,
+                                                        longitude = DataByWellId[i].longitude,
+                                                        datetime = DataByWellId[i].datetime,
+                                                        wellid = DataByWellId[i].wellid,
+                                                        typeofwell = DataByWellId[i].typeofwell,
+                                                        other_well_type = DataByWellId[i].other_well_type,
+                                                        source_Ownership = DataByWellId[i].source_Ownership,
+                                                        source_Ownership_type = DataByWellId[i].source_Ownership_type,
+                                                        Diameter_of_Well = DataByWellId[i].Diameter_of_Well,
+                                                        welldepth = DataByWellId[i].welldepth,
+                                                        Height_of_Measuring_Point = DataByWellId[i].Height_of_Measuring_Point,
+                                                        gwl_reading = DataByWellId[i].gwl_reading,
+                                                        gwl_date = DataByWellId[i].gwl_date
+                                                    };
+                                                    ddetails.Add(obj);
+                                                }
+                                            }
+                                        }
+                                    }
+
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("GP (Water Level)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "S.No.";
+                                    worksheet.Cell(currentRow, 2).Value = "State";
+                                    worksheet.Cell(currentRow, 3).Value = "District";
+                                    worksheet.Cell(currentRow, 4).Value = "Block";
+                                    worksheet.Cell(currentRow, 5).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 6).Value = "Site Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                    worksheet.Cell(currentRow, 8).Value = "Latitude";
+                                    worksheet.Cell(currentRow, 9).Value = "Longitude";
+                                    worksheet.Cell(currentRow, 10).Value = "Date";
+                                    worksheet.Cell(currentRow, 11).Value = "Well ID";
+                                    worksheet.Cell(currentRow, 12).Value = "Type of Well";
+                                    worksheet.Cell(currentRow, 13).Value = "Other Well Type";
+                                    worksheet.Cell(currentRow, 14).Value = "Ownership Type";
+                                    worksheet.Cell(currentRow, 15).Value = "Government Source";
+                                    worksheet.Cell(currentRow, 16).Value = "Diameter of well(m)";
+                                    worksheet.Cell(currentRow, 17).Value = "Depth of Well(mbmp)";
+                                    worksheet.Cell(currentRow, 18).Value = "Height of Measuring Point(mbgl)";
+                                    worksheet.Cell(currentRow, 19).Value = "Water Level (mbgl)";
+                                    worksheet.Cell(currentRow, 20).Value = "Water Level Date";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string sno = Convert.ToString(ddetails[i].sno);
+                                            if (sno == "0")
+                                            {
+                                                sno = "";
+                                            }
+                                            string gp = ddetails[i].grampanchayat;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = sno;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].state;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].district;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].block;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].grampanchayat;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].sitename;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].locationdetails;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].latitude;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].longitude;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].datetime;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].wellid;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].typeofwell;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].other_well_type;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].source_Ownership;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].source_Ownership_type;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].Diameter_of_Well;
+                                                worksheet.Cell(currentRow, 17).Value = ddetails[i].welldepth;
+                                                worksheet.Cell(currentRow, 18).Value = ddetails[i].Height_of_Measuring_Point;
+                                                worksheet.Cell(currentRow, 19).Value = ddetails[i].gwl_reading;
+                                                worksheet.Cell(currentRow, 20).Value = ddetails[i].gwl_date;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 1.4)
+                                {
+                                    List<abhy_wsp_gwq_24_update> Final_data = new List<abhy_wsp_gwq_24_update>();
+                                    List<abhy_wsp_gwq_24_update> ddetails = new List<abhy_wsp_gwq_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District && x.Block == Block && x.GP == Gram).OrderBy(c => c.Well_ID).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District && x.Block == Block).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State).ToList();//total list
+                                    }
+                                    if (Final_data.Count > 0)
+                                    {
+                                        var GroupByData = Final_data.GroupBy(x => x.Well_ID).ToList();
+                                        int j = 0;
+                                        foreach (var items in GroupByData.AsEnumerable())
+                                        {
+                                            ++j;
+                                            var itemId = items.First();
+                                            var DataByWellId = Final_data.Where(x => x.Well_ID == itemId.Well_ID).ToList();
+                                            for (int i = 0; i < DataByWellId.Count; i++)
+                                            {
+                                                if (i == 0)
+                                                {
+                                                    var obj = new abhy_wsp_gwq_24_update()
+                                                    {
+                                                        sno = j.ToString(),
+                                                        State = DataByWellId[i].State,
+                                                        District = DataByWellId[i].District,
+                                                        Block = DataByWellId[i].Block,
+                                                        GP = DataByWellId[i].GP,
+                                                        Village = DataByWellId[i].Village,
+                                                        Site_Name = DataByWellId[i].Site_Name,
+                                                        Latitude = DataByWellId[i].Latitude,
+                                                        Longitude = DataByWellId[i].Longitude,
+                                                        Years = DataByWellId[i].Years,
+                                                        Well_Type = DataByWellId[i].Well_Type,
+                                                        Source = DataByWellId[i].Source,
+                                                        Well_ID = DataByWellId[i].Well_ID,
+                                                        Well_Depth = DataByWellId[i].Well_Depth,
+                                                        Aquifer = DataByWellId[i].Aquifer,
+                                                        pH = DataByWellId[i].pH,
+                                                        EC = DataByWellId[i].EC,
+                                                        TDS = DataByWellId[i].TDS,
+                                                        TH = DataByWellId[i].TH,
+                                                        Calcium = DataByWellId[i].Calcium,
+                                                        Magnesium = DataByWellId[i].Magnesium,
+                                                        Sodium = DataByWellId[i].Sodium,
+                                                        Potassium = DataByWellId[i].Potassium,
+                                                        Carbonate = DataByWellId[i].Carbonate,
+                                                        Bicarbonate = DataByWellId[i].Bicarbonate,
+                                                        Sulphate = DataByWellId[i].Sulphate,
+                                                        Chloride = DataByWellId[i].Chloride,
+                                                        Fluoride = DataByWellId[i].Fluoride,
+                                                        Nitrate = DataByWellId[i].Nitrate
+                                                    };
+                                                    ddetails.Add(obj);
+                                                }
+                                                else
+                                                {
+                                                    var obj = new abhy_wsp_gwq_24_update()
+                                                    {
+                                                        sno = "",
+                                                        State = DataByWellId[i].State,
+                                                        District = DataByWellId[i].District,
+                                                        Block = DataByWellId[i].Block,
+                                                        GP = DataByWellId[i].GP,
+                                                        Village = DataByWellId[i].Village,
+                                                        Site_Name = DataByWellId[i].Site_Name,
+                                                        Latitude = DataByWellId[i].Latitude,
+                                                        Longitude = DataByWellId[i].Longitude,
+                                                        Years = DataByWellId[i].Years,
+                                                        Well_Type = DataByWellId[i].Well_Type,
+                                                        Source = DataByWellId[i].Source,
+                                                        Well_ID = DataByWellId[i].Well_ID,
+                                                        Well_Depth = DataByWellId[i].Well_Depth,
+                                                        Aquifer = DataByWellId[i].Aquifer,
+                                                        pH = DataByWellId[i].pH,
+                                                        EC = DataByWellId[i].EC,
+                                                        TDS = DataByWellId[i].TDS,
+                                                        TH = DataByWellId[i].TH,
+                                                        Calcium = DataByWellId[i].Calcium,
+                                                        Magnesium = DataByWellId[i].Magnesium,
+                                                        Sodium = DataByWellId[i].Sodium,
+                                                        Potassium = DataByWellId[i].Potassium,
+                                                        Carbonate = DataByWellId[i].Carbonate,
+                                                        Bicarbonate = DataByWellId[i].Bicarbonate,
+                                                        Sulphate = DataByWellId[i].Sulphate,
+                                                        Chloride = DataByWellId[i].Chloride,
+                                                        Fluoride = DataByWellId[i].Fluoride,
+                                                        Nitrate = DataByWellId[i].Nitrate
+                                                    };
+                                                    ddetails.Add(obj);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("GP (Water Quaity)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "S.No.";
+                                    worksheet.Cell(currentRow, 2).Value = "State";
+                                    worksheet.Cell(currentRow, 3).Value = "District";
+                                    worksheet.Cell(currentRow, 4).Value = "Block";
+                                    worksheet.Cell(currentRow, 5).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Location";
+                                    worksheet.Cell(currentRow, 8).Value = "Latitude";
+                                    worksheet.Cell(currentRow, 9).Value = "Longitude";
+                                    worksheet.Cell(currentRow, 10).Value = "Year";
+                                    worksheet.Cell(currentRow, 11).Value = "Well Type";
+                                    worksheet.Cell(currentRow, 12).Value = "Source";
+                                    worksheet.Cell(currentRow, 13).Value = "Well ID";
+                                    worksheet.Cell(currentRow, 14).Value = "Well Depth (mbgl)";
+                                    worksheet.Cell(currentRow, 15).Value = "Aquifer";
+                                    worksheet.Cell(currentRow, 16).Value = "PH";
+                                    worksheet.Cell(currentRow, 17).Value = "EC (µS/cm)";
+                                    worksheet.Cell(currentRow, 18).Value = "TDS (mg/L)";
+                                    worksheet.Cell(currentRow, 19).Value = "TH (mg/L)";
+                                    worksheet.Cell(currentRow, 20).Value = "Ca (mg/L)";
+                                    worksheet.Cell(currentRow, 21).Value = "Mg (mg/L)";
+                                    worksheet.Cell(currentRow, 22).Value = "Na (mg/L)";
+                                    worksheet.Cell(currentRow, 23).Value = "K (mg/L)";
+                                    worksheet.Cell(currentRow, 24).Value = "Carbonate (mg/L)";
+                                    worksheet.Cell(currentRow, 25).Value = "Bicarbonate (mg/L)";
+                                    worksheet.Cell(currentRow, 26).Value = "Sulphate (mg/L)";
+                                    worksheet.Cell(currentRow, 27).Value = "Chloride (mg/L)";
+                                    worksheet.Cell(currentRow, 28).Value = "Fluoride (mg/L)";
+                                    worksheet.Cell(currentRow, 29).Value = "Nitrate (mg/L)";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string sno = Convert.ToString(ddetails[i].sno);
+                                            if (sno == "0")
+                                            {
+                                                sno = "";
+                                            }
+                                            string gp = ddetails[i].GP;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = sno;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].State;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].District;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].Block;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].GP;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].Village;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].Site_Name;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].Latitude;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].Longitude;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].Years;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].Well_Type;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].Source;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].Well_ID;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].Well_Depth;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].Aquifer;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].pH;
+                                                worksheet.Cell(currentRow, 17).Value = ddetails[i].EC;
+                                                worksheet.Cell(currentRow, 18).Value = ddetails[i].TDS;
+                                                worksheet.Cell(currentRow, 19).Value = ddetails[i].TH;
+                                                worksheet.Cell(currentRow, 20).Value = ddetails[i].Calcium;
+                                                worksheet.Cell(currentRow, 21).Value = ddetails[i].Magnesium;
+                                                worksheet.Cell(currentRow, 22).Value = ddetails[i].Sodium;
+                                                worksheet.Cell(currentRow, 23).Value = ddetails[i].Potassium;
+                                                worksheet.Cell(currentRow, 24).Value = ddetails[i].Carbonate;
+                                                worksheet.Cell(currentRow, 25).Value = ddetails[i].Bicarbonate;
+                                                worksheet.Cell(currentRow, 26).Value = ddetails[i].Sulphate;
+                                                worksheet.Cell(currentRow, 27).Value = ddetails[i].Chloride;
+                                                worksheet.Cell(currentRow, 28).Value = ddetails[i].Fluoride;
+                                                worksheet.Cell(currentRow, 29).Value = ddetails[i].Nitrate;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 2)
+                                {
+                                    List<abhy_wsp_wateravailbility_new_24_update> ddetails = new List<abhy_wsp_wateravailbility_new_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("Water Availability");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Annual Rainfall (mm)";
+                                    worksheet.Cell(currentRow, 7).Value = "Other Source Name";
+                                    worksheet.Cell(currentRow, 8).Value = "Estimated Volume of Rainfall (ha m)";
+                                    worksheet.Cell(currentRow, 9).Value = "Evapotranspiration (mm)";
+                                    worksheet.Cell(currentRow, 10).Value = "Estimated Evapotranspiration losses (ha m)";
+                                    worksheet.Cell(currentRow, 11).Value = "Estimated Water Available From Rainfall (ha m)";
+                                    worksheet.Cell(currentRow, 12).Value = "Weighted Average Runoff Coefficient";
+                                    worksheet.Cell(currentRow, 13).Value = "Rainfall Runoff (ha m)";
+                                    worksheet.Cell(currentRow, 14).Value = "GWR From Rainfall (Monsoon) (ha m)";
+                                    worksheet.Cell(currentRow, 15).Value = "GWR From Rainfall (Non-Monsoon) (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Total GWR from rainfall (ha m)";
+                                    worksheet.Cell(currentRow, 17).Value = "GWR from other sources (Monsoon) (ha m)";
+                                    worksheet.Cell(currentRow, 18).Value = "GWR from other sources (Non-Monsoon) (ha m)";
+                                    worksheet.Cell(currentRow, 19).Value = "Total GWR from other sources (ha m)";
+                                    worksheet.Cell(currentRow, 20).Value = "Losses Due to Natural Discharge (ha m)";
+                                    worksheet.Cell(currentRow, 21).Value = "Total GW Available (ha m)";
+                                    worksheet.Cell(currentRow, 22).Value = "GW Withdrawal (ha m)";
+                                    worksheet.Cell(currentRow, 23).Value = "Type of Structure";
+                                    worksheet.Cell(currentRow, 24).Value = "No. of Structures";
+                                    worksheet.Cell(currentRow, 25).Value = "Storage Capacity (ha m)";
+                                    worksheet.Cell(currentRow, 26).Value = "Total Storage Capacity of the SW bodies (ha m)";
+                                    worksheet.Cell(currentRow, 27).Value = "Losses if Any (%)";
+                                    worksheet.Cell(currentRow, 28).Value = "SW Available in Storages (ha m) ";
+                                    worksheet.Cell(currentRow, 29).Value = "Transported Water from outside GP area (ha m)";
+                                    worksheet.Cell(currentRow, 30).Value = "Total Surface Water Available (ha m)";
+                                    worksheet.Cell(currentRow, 31).Value = "Total Water Available (ha m)";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp_name;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].annual_rainfall;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].other_source_name;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].est_vol_rainfall;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].evapo_rate;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].est_evapo_loss;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].est_water_rain;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].weigh_run_conf;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].rain_runoff;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].rech_monsoon;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].rech_nonmonsoon;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].tot_grd_rech_rain;
+                                                worksheet.Cell(currentRow, 17).Value = ddetails[i].ground_monsoon;
+                                                worksheet.Cell(currentRow, 18).Value = ddetails[i].ground_nonmonsoon;
+                                                worksheet.Cell(currentRow, 19).Value = ddetails[i].tot_grd_rech_oth;
+                                                worksheet.Cell(currentRow, 20).Value = ddetails[i].loss_nature;
+                                                worksheet.Cell(currentRow, 21).Value = ddetails[i].tot_grd_wat_avail;
+                                                worksheet.Cell(currentRow, 22).Value = ddetails[i].ground_water_with;
+                                                worksheet.Cell(currentRow, 23).Value = ddetails[i].avail_storages;
+                                                worksheet.Cell(currentRow, 24).Value = ddetails[i].avail_storages_grd;
+                                                worksheet.Cell(currentRow, 25).Value = ddetails[i].avail_storages_sur;
+                                                worksheet.Cell(currentRow, 26).Value = ddetails[i].total_surface_body;
+                                                worksheet.Cell(currentRow, 27).Value = ddetails[i].loss_if;
+                                                worksheet.Cell(currentRow, 28).Value = ddetails[i].surface_water_avail;
+                                                worksheet.Cell(currentRow, 29).Value = ddetails[i].trans_water_out;
+                                                worksheet.Cell(currentRow, 30).Value = ddetails[i].total_sirface_water;
+                                                worksheet.Cell(currentRow, 31).Value = ddetails[i].total_avail_water;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 3.1)
+                                {
+                                    List<abhy_baseline_gp_livestock> livestock_details = new List<abhy_baseline_gp_livestock>();
+                                    List<abhy_uti_waterdraft_domestic_new_24_update> ddetails = new List<abhy_uti_waterdraft_domestic_new_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                    }
+                                    var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.year == Year).GroupBy(o => o.gpname).ToList();
+                                    if (BaseLineData.Count != 0)
+                                    {
+                                        foreach (var items in BaseLineData.AsEnumerable())
+                                        {
+                                            var itemId = items.First();
+                                            var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.year == Year && x.gpname == itemId.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                                            if (data != null)
+                                            {
+                                                var temp = data.ToList();
+                                                var id = Convert.ToInt32(temp[0].id);
+                                                var livestock = ABE.obj_abhy_baseline_gp_livestock.Where(x => x.id == id).ToList();
+                                                if (livestock.Count != 0)
+                                                {
+                                                    livestock_details.AddRange(livestock);
+                                                }
+                                            }
+
+                                        }
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("WU (Drinking-Domestic)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Total Human Population";
+                                    worksheet.Cell(currentRow, 7).Value = "Daily water requirement (LPCD)";
+                                    worksheet.Cell(currentRow, 8).Value = "Total Water Required For Humans (L/day) ";
+                                    worksheet.Cell(currentRow, 9).Value = "Total Livestock Population";
+                                    worksheet.Cell(currentRow, 10).Value = "Daily Average water requirement (LPCD)";
+                                    worksheet.Cell(currentRow, 11).Value = "Total Water Required for Livestock (L/day)";
+
+
+                                    worksheet.Cell(currentRow, 12).Value = "% of Water Demand Met From GW (Human)";
+                                    worksheet.Cell(currentRow, 13).Value = "% of Water Demand Met From GW (Livestock)";
+                                    worksheet.Cell(currentRow, 14).Value = "Water Demand Met From GW (Human)";
+                                    worksheet.Cell(currentRow, 15).Value = "Water Demand Met From GW (Livestock)";
+                                    worksheet.Cell(currentRow, 16).Value = "% of Water Demand Met From SW (Human)";
+                                    worksheet.Cell(currentRow, 17).Value = "% of Water Demand Met From SW (Livestock)";
+                                    worksheet.Cell(currentRow, 18).Value = "Water Demand Met From SW (Human)";
+                                    worksheet.Cell(currentRow, 19).Value = "Water Demand Met From SW (Livestock)";
+
+                                    worksheet.Cell(currentRow, 20).Value = "Livestock Name";
+                                    worksheet.Cell(currentRow, 21).Value = "Livestock Count";
+                                    worksheet.Cell(currentRow, 22).Value = "Daily water requirement (LPCD) for Livestock";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        string LiveStockName = "";
+                                        string LiveStockValue = "";
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            var List = livestock_details.Where(x => x.gpname == ddetails[i].gp).OrderByDescending(x => x.p_id).ToList();
+                                            if (List.Count != 0)
+                                            {
+                                                LiveStockName = "";
+                                                LiveStockValue = "";
+                                                foreach (var items in List)
+                                                {
+                                                    LiveStockName += items.livestock_name + ",";
+                                                    LiveStockValue += items.livestock_value + ",";
+                                                }
+                                            }
+                                            string gp = ddetails[i].gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].total_pop_human;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].daily_water_req;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].water_req_human;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].total_pop_livestock;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].avg_water_req;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].water_req_livestock;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].perc_grd_hum;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].perc_grd_liv;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].water_deman_hum;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].water_deman_liv;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].perc_sur_hum;
+                                                worksheet.Cell(currentRow, 17).Value = ddetails[i].perc_grd_liv;
+                                                worksheet.Cell(currentRow, 18).Value = ddetails[i].water_dem_hum;
+                                                worksheet.Cell(currentRow, 19).Value = ddetails[i].water_dem_liv;
+                                                worksheet.Cell(currentRow, 20).Value = LiveStockName;
+                                                worksheet.Cell(currentRow, 21).Value = LiveStockValue;
+                                                worksheet.Cell(currentRow, 22).Value = ddetails[i].daily_wat_req_per_liv;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 3.2)
+                                {
+                                    dynamic ddetails;
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                    join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                    where M.state_name == State && M.district_name == District && M.block_name == Block
+                                                    && M.gp_name == Gram
+                                                    select new
+                                                    {
+                                                        M.state_name,
+                                                        M.district_name,
+                                                        M.block_name,
+                                                        M.gp_name,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area,
+                                                        D.gross_water,
+                                                        M.total_water_dem,
+                                                        M.per_ground_water,
+                                                        M.per_surface_water,
+                                                        M.uti_ground_water,
+                                                        M.uti_surface_water
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                    join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                    where M.state_name == State && M.district_name == District && M.block_name == Block
+                                                    select new
+                                                    {
+                                                        M.state_name,
+                                                        M.district_name,
+                                                        M.block_name,
+                                                        M.gp_name,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area,
+                                                        D.gross_water,
+                                                        M.total_water_dem,
+                                                        M.per_ground_water,
+                                                        M.per_surface_water,
+                                                        M.uti_ground_water,
+                                                        M.uti_surface_water
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                    join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                    where M.state_name == State && M.district_name == District
+                                                    select new
+                                                    {
+                                                        M.state_name,
+                                                        M.district_name,
+                                                        M.block_name,
+                                                        M.gp_name,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area,
+                                                        D.gross_water,
+                                                        M.total_water_dem,
+                                                        M.per_ground_water,
+                                                        M.per_surface_water,
+                                                        M.uti_ground_water,
+                                                        M.uti_surface_water
+                                                    }).ToList();
+                                    }
+                                    else
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                    join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                    where M.state_name == State
+                                                    select new
+                                                    {
+                                                        M.state_name,
+                                                        M.district_name,
+                                                        M.block_name,
+                                                        M.gp_name,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area,
+                                                        D.gross_water,
+                                                        M.total_water_dem,
+                                                        M.per_ground_water,
+                                                        M.per_surface_water,
+                                                        M.uti_ground_water,
+                                                        M.uti_surface_water
+                                                    }).ToList();
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("WU(Irrigation)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                    worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                    worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                    worksheet.Cell(currentRow, 10).Value = "Area (ha)";
+                                    worksheet.Cell(currentRow, 11).Value = "Net Irrigation Requirement (mm)";
+                                    worksheet.Cell(currentRow, 12).Value = "Total Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 13).Value = "% of demand met from GW";
+                                    worksheet.Cell(currentRow, 14).Value = "% of demand met from SW";
+                                    worksheet.Cell(currentRow, 15).Value = "Utilization From GW (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Utilization From SW (ha m)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp_name;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].area;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].total_water_dem;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].per_ground_water;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].per_surface_water;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].uti_ground_water;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].uti_surface_water;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 3.3)
+                                {
+                                    List<abhy_waterdraft_industry_24_update> ddetails = new List<abhy_waterdraft_industry_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("WU(Industrial Use)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Industry Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Daily Water Requirement";
+                                    worksheet.Cell(currentRow, 8).Value = "No. of Days in Use";
+                                    worksheet.Cell(currentRow, 9).Value = "Total Industrial Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 10).Value = "% of Water Demand met from GW";
+                                    worksheet.Cell(currentRow, 11).Value = "% of Water Demand met from SW";
+                                    worksheet.Cell(currentRow, 12).Value = "Water Demand met from GW (ha m)";
+                                    worksheet.Cell(currentRow, 13).Value = "Water Demand met from SW (ha m)";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gpname;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].industry_name;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].industry_daily_water_req;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].industry_days_use;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].annual_ind_demand;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].industry_demand_ground_water;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].industry_demand_surface_water;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].indus_grd_water;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].indus_sur_water;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 3.4)
+                                {
+                                    List<abhy_waterdraft_other_24_update> ddetails = new List<abhy_waterdraft_other_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                    }
+                                    var worksheet = workbookAll.Worksheets.Add("WU(Other Uses)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Type of Use";
+                                    worksheet.Cell(currentRow, 7).Value = "Daily Water Requirement";
+                                    worksheet.Cell(currentRow, 8).Value = "No. of Days in Use";
+                                    worksheet.Cell(currentRow, 9).Value = "Total Water Requirement (ha m)";
+                                    worksheet.Cell(currentRow, 10).Value = "% of Water Demand met from GW";
+                                    worksheet.Cell(currentRow, 11).Value = "% of Water Demand met from SW";
+                                    worksheet.Cell(currentRow, 12).Value = "Water Demand met from GW (ha m)";
+                                    worksheet.Cell(currentRow, 13).Value = "Water Demand met from SW (ha m)";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gpname;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].use;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].daily_req;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].no_of_days_use;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].annual_req;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].demand_met_ground_water;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].demand_met_surface_water;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].oth_grd_water;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].oth_sur_water;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 4)
+                                {
+                                    List<abhy_wsp_waterbalance_new_24_update> ddetails = new List<abhy_wsp_waterbalance_new_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("Water Balance");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Total Ground Water Available (ha m)";
+                                    worksheet.Cell(currentRow, 7).Value = "Total Surface Water Available (ha m)";
+                                    worksheet.Cell(currentRow, 8).Value = "Total Water Availability (ha m)";
+                                    worksheet.Cell(currentRow, 9).Value = "Total Ground Water Utilization (ha m)";
+                                    worksheet.Cell(currentRow, 10).Value = "Total Surface Water Utilization (ha m)";
+                                    worksheet.Cell(currentRow, 11).Value = "Total Water Utilization (ha m)";
+                                    worksheet.Cell(currentRow, 12).Value = "Total Ground Water Balance (ha m)";
+                                    worksheet.Cell(currentRow, 13).Value = "Total Surface Water Balance (ha m)";
+                                    worksheet.Cell(currentRow, 14).Value = "Total Water Balance (ha m)";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gpname;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].wb_gw_avail;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].wb_sw_avail;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].wb_total_avail;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].wb_gw_utili;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].wb_sw_utili;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].wb_total_utili;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].wb_gw_balance;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].wb_sw_balance;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].wb_total_balance;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 5)
+                                {
+                                    List<abhy_wsp_waterbudget_new_24_update> ddetails = new List<abhy_wsp_waterbudget_new_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("Water Budget");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Present Human Population (as in GPDCI Module)";
+                                    worksheet.Cell(currentRow, 7).Value = "Annual population growth rate in % (r)";
+                                    worksheet.Cell(currentRow, 8).Value = "No. of years (n)";
+                                    worksheet.Cell(currentRow, 9).Value = "Projected human population (2050)";
+                                    worksheet.Cell(currentRow, 10).Value = "Per capita requirement (L)";
+                                    worksheet.Cell(currentRow, 11).Value = "Projected Water Requirement for humans (2050) (ha m)";
+                                    worksheet.Cell(currentRow, 12).Value = "Present livestock population (as in GPDCI Module)";
+                                    worksheet.Cell(currentRow, 13).Value = "Annual population growth rate in % (r)";
+                                    worksheet.Cell(currentRow, 14).Value = "No. of years (n)";
+                                    worksheet.Cell(currentRow, 15).Value = "Projected livestock population (2050)";
+                                    worksheet.Cell(currentRow, 16).Value = "Average per capita requirement (L)";
+                                    worksheet.Cell(currentRow, 17).Value = "Projected Water Requirement for livestock (2050) (ha m)";
+                                    worksheet.Cell(currentRow, 18).Value = "Total Projected Water Requirement for humans and livestock (as in 2050) (ha m)";
+                                    worksheet.Cell(currentRow, 19).Value = "Proposed share to be met from SW (in % )";
+                                    worksheet.Cell(currentRow, 20).Value = "Proposed share to be met from SW (in % )";
+                                    worksheet.Cell(currentRow, 21).Value = "Demand met from GW (ha m)";
+                                    worksheet.Cell(currentRow, 22).Value = "Demand met from SW (ha m)";
+                                    worksheet.Cell(currentRow, 23).Value = "Ground Water (ha m)";
+                                    worksheet.Cell(currentRow, 24).Value = "Surface Water (ha m)";
+                                    worksheet.Cell(currentRow, 25).Value = "Total water available for future irrigation (ha m)";
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gpname;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].human_p_pop;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].human_a_pop;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].human_no_of_year;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].human_pre_pop;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].human_per_capita;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].human_pro_water_req;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].live_p_pop;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].live_a_pop;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].live_no_of_year;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].live_pro_pop;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].live_pre_capita;
+                                                worksheet.Cell(currentRow, 17).Value = ddetails[i].live_pro_water_req;
+                                                worksheet.Cell(currentRow, 18).Value = ddetails[i].total_pro_water_req;
+                                                worksheet.Cell(currentRow, 19).Value = ddetails[i].proposed_share_gw;
+                                                worksheet.Cell(currentRow, 20).Value = ddetails[i].proposed_share_sw;
+                                                worksheet.Cell(currentRow, 21).Value = ddetails[i].demand_gw;
+                                                worksheet.Cell(currentRow, 22).Value = ddetails[i].demand_sw;
+                                                worksheet.Cell(currentRow, 23).Value = ddetails[i].ground_water;
+                                                worksheet.Cell(currentRow, 24).Value = ddetails[i].surface_water;
+                                                worksheet.Cell(currentRow, 25).Value = ddetails[i].total_wt_available;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                                if (item == 6.1)
+                                {
+                                    dynamic ddetails;
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    && M.gp == Gram
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    orderby M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District
+                                                    orderby M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                    where M.state == State
+                                                    orderby M.district, M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("DS (Sprinkler)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                    worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                    worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                    worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                    worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                    worksheet.Cell(currentRow, 12).Value = "Area Proposed for Sprinkler (ha)";
+                                    worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        //for (int i = 0; i < ddetails.Count; i++)
+                                        //{
+                                        //    string gp = ddetails[i].gp;
+                                        //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        //    if (ddetails1 != null)
+                                        //    {
+                                        //        currentRow++;
+                                        //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                        //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                        //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                        //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                        //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                        //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                        //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                        //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                        //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                        //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                        //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                        //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                        //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                        //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                        //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                        //    }
+                                        //}
+
+
+                                        var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+        .Select(g => new
+        {
+            Gp = g.Key,
+            TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+            Details = g.ToList()
+        }).ToList();
+                                        currentRow = 2;
+
+                                        foreach (var group in groupedData)
+                                        {
+                                            string gp = group.Gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                            if (ddetails1 != null)
+                                            {
+                                                int startRow = currentRow;
+
+                                                foreach (var detail in group.Details)
+                                                {
+                                                    worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                    worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                    worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                    worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                    worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                    worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                    worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                    worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                    worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                    worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                    worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                    worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                    worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                    worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                    currentRow++;
+                                                }
+
+                                                // Merge rows for the Total_Reduction column
+                                                if (group.Details.Count > 1)
+                                                {
+                                                    worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                }
+                                                worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                                if (item == 6.2)
+                                {
+                                    dynamic ddetails;
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    && M.gp == Gram
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    orderby M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District
+                                                    orderby M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                    where M.state == State
+                                                    orderby M.district, M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("DS (Drip)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                    worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                    worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                    worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                    worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                    worksheet.Cell(currentRow, 12).Value = "Area Proposed for Drip (ha)";
+                                    //worksheet.Cell(currentRow, 13).Value = "Standard Reduction in Water Demand in ha m(40%)";
+                                    worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        //for (int i = 0; i < ddetails.Count; i++)
+                                        //{
+                                        //    string gp = ddetails[i].gp;
+                                        //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        //    if (ddetails1 != null)
+                                        //    {
+                                        //        currentRow++;
+                                        //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                        //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                        //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                        //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                        //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                        //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                        //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                        //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                        //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                        //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                        //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                        //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                        //        //worksheet.Cell(currentRow, 13).Value = ddetails[i].reduction_in_demand;
+                                        //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                        //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                        //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                        //    }
+                                        //}
+
+                                        var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+        .Select(g => new
+        {
+            Gp = g.Key,
+            TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+            Details = g.ToList()
+        }).ToList();
+                                        currentRow = 2;
+                                        foreach (var group in groupedData)
+                                        {
+                                            string gp = group.Gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                            if (ddetails1 != null)
+                                            {
+                                                int startRow = currentRow;
+
+                                                foreach (var detail in group.Details)
+                                                {
+                                                    worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                    worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                    worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                    worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                    worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                    worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                    worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                    worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                    worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                    worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                    worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                    worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                    worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                    worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                    currentRow++;
+                                                }
+
+                                                // Merge rows for the Total_Reduction column
+                                                if (group.Details.Count > 1)
+                                                {
+                                                    worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                }
+                                                worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                                if (item == 6.3)
+                                {
+                                    dynamic ddetails;
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    && M.gp == Gram
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    orderby M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District
+                                                    orderby M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                    where M.state == State
+                                                    orderby M.district, M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.area_proposed,
+                                                        D.reduction_in_demand,
+                                                        D.water_demand,
+                                                        D.net_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("DS (UG Pipelines)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                    worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                    worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                    worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                    worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                    worksheet.Cell(currentRow, 12).Value = "Area Proposed for UG Pipelines (ha)";
+                                    //worksheet.Cell(currentRow, 13).Value = "Standard Reduction in Water Demand in ha m(20%)";
+                                    worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        //for (int i = 0; i < ddetails.Count; i++)
+                                        //{
+                                        //    string gp = ddetails[i].gp;
+                                        //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        //    if (ddetails1 != null)
+                                        //    {
+                                        //        currentRow++;
+                                        //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                        //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                        //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                        //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                        //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                        //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                        //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                        //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                        //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                        //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                        //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                        //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                        //        //worksheet.Cell(currentRow, 13).Value = ddetails[i].reduction_in_demand;
+                                        //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                        //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                        //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                        //    }
+                                        //}
+
+                                        var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+       .Select(g => new
+       {
+           Gp = g.Key,
+           TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+           Details = g.ToList()
+       }).ToList();
+                                        currentRow = 2;
+                                        foreach (var group in groupedData)
+                                        {
+                                            string gp = group.Gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                            if (ddetails1 != null)
+                                            {
+                                                int startRow = currentRow;
+
+                                                foreach (var detail in group.Details)
+                                                {
+                                                    worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                    worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                    worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                    worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                    worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                    worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                    worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                    worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                    worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                    worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                    worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                    worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                    worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                    worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                    currentRow++;
+                                                }
+
+                                                // Merge rows for the Total_Reduction column
+                                                if (group.Details.Count > 1)
+                                                {
+                                                    worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                }
+                                                worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                                if (item == 6.4)
+                                {
+                                    dynamic ddetails;
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    && M.gp == Gram
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.original_crop_name,
+                                                        D.original_area,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_ch,
+                                                        D.water_req,
+                                                        D.original_wt_dmd,
+                                                        D.change_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    orderby M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.original_crop_name,
+                                                        D.original_area,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_ch,
+                                                        D.water_req,
+                                                        D.original_wt_dmd,
+                                                        D.change_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District
+                                                    orderby M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.original_crop_name,
+                                                        D.original_area,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_ch,
+                                                        D.water_req,
+                                                        D.original_wt_dmd,
+                                                        D.change_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+                                    else
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                    where M.state == State
+                                                    orderby M.district, M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.original_crop_name,
+                                                        D.original_area,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_ch,
+                                                        D.water_req,
+                                                        D.original_wt_dmd,
+                                                        D.change_water_demand,
+                                                        D.reduction_gw
+                                                    }).ToList();
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("DS (Crop Diversification)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Original Crop Name";
+                                    worksheet.Cell(currentRow, 8).Value = "Original Area under Conventional Irrigation (ha)";
+                                    worksheet.Cell(currentRow, 9).Value = "Changed Crop Category";
+                                    worksheet.Cell(currentRow, 10).Value = "Changed Crop Type";
+                                    worksheet.Cell(currentRow, 11).Value = "Changed Crop Name";
+                                    worksheet.Cell(currentRow, 12).Value = "Changed Area Under Crop Shifted (ha)";
+                                    worksheet.Cell(currentRow, 13).Value = "Changed Water Requirement (mm)";
+                                    worksheet.Cell(currentRow, 14).Value = "Original Crop Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 15).Value = "Changed Crop Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Reduction in Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 17).Value = "Total Reduction in Water Demand (ha m)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        //for (int i = 0; i < ddetails.Count; i++)
+                                        //{
+                                        //    string gp = ddetails[i].gp;
+                                        //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        //    if (ddetails1 != null)
+                                        //    {
+                                        //        currentRow++;
+                                        //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                        //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                        //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                        //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                        //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                        //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                        //        worksheet.Cell(currentRow, 7).Value = ddetails[i].original_crop_name;
+                                        //        worksheet.Cell(currentRow, 8).Value = ddetails[i].original_area;
+                                        //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_category;
+                                        //        worksheet.Cell(currentRow, 10).Value = ddetails[i].crop_type;
+                                        //        worksheet.Cell(currentRow, 11).Value = ddetails[i].crop_name;
+                                        //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_ch;
+                                        //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_req;
+                                        //        worksheet.Cell(currentRow, 14).Value = ddetails[i].original_wt_dmd;
+                                        //        worksheet.Cell(currentRow, 15).Value = ddetails[i].change_water_demand;
+                                        //        worksheet.Cell(currentRow, 16).Value = ddetails[i].reduction_gw;
+                                        //    }
+                                        //}
+
+                                        var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+       .Select(g => new
+       {
+           Gp = g.Key,
+           TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+           Details = g.ToList()
+       }).ToList();
+                                        currentRow = 2;
+
+                                        foreach (var group in groupedData)
+                                        {
+                                            string gp = group.Gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                            if (ddetails1 != null)
+                                            {
+                                                int startRow = currentRow;
+
+                                                foreach (var detail in group.Details)
+                                                {
+                                                    worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                    worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                    worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                    worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                    worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                    worksheet.Cell(currentRow, 7).Value = detail.original_crop_name;
+                                                    worksheet.Cell(currentRow, 8).Value = detail.original_area;
+                                                    worksheet.Cell(currentRow, 9).Value = detail.crop_category;
+                                                    worksheet.Cell(currentRow, 10).Value = detail.crop_type;
+                                                    worksheet.Cell(currentRow, 11).Value = detail.crop_name;
+                                                    worksheet.Cell(currentRow, 12).Value = detail.area_ch;
+                                                    worksheet.Cell(currentRow, 13).Value = detail.water_req;
+                                                    worksheet.Cell(currentRow, 14).Value = detail.original_wt_dmd;
+                                                    worksheet.Cell(currentRow, 15).Value = detail.change_water_demand;
+                                                    worksheet.Cell(currentRow, 16).Value = detail.reduction_gw;
+                                                    currentRow++;
+                                                }
+
+                                                // Merge rows for the Total_Reduction column
+                                                if (group.Details.Count > 1)
+                                                {
+                                                    worksheet.Range(startRow, 17, currentRow - 1, 17).Merge();
+                                                }
+                                                worksheet.Cell(startRow, 17).Value = group.TotalReductionGw;
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                                if (item == 6.5)
+                                {
+                                    dynamic ddetails;
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    && M.gp == Gram
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.innovative_measures,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.water_save,
+                                                        D.water_demand,
+                                                        D.reduction
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    orderby M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.innovative_measures,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.water_save,
+                                                        D.water_demand,
+                                                        D.reduction
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District
+                                                    orderby M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.innovative_measures,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.water_save,
+                                                        D.water_demand,
+                                                        D.reduction
+                                                    }).ToList();
+                                    }
+                                    else
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                    where M.state == State
+                                                    orderby M.district, M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.season_type,
+                                                        D.innovative_measures,
+                                                        D.crop_category,
+                                                        D.crop_type,
+                                                        D.crop_name,
+                                                        D.area_irrigation,
+                                                        D.gross_water,
+                                                        D.water_save,
+                                                        D.water_demand,
+                                                        D.reduction
+                                                    }).ToList();
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("DS (Any Other)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Other water saving Measures/Innovative measures";
+                                    worksheet.Cell(currentRow, 8).Value = "Crop Category";
+                                    worksheet.Cell(currentRow, 9).Value = "Crop Type";
+                                    worksheet.Cell(currentRow, 10).Value = "Crop Name";
+                                    worksheet.Cell(currentRow, 11).Value = "Area Proposed (ha)";
+                                    worksheet.Cell(currentRow, 12).Value = "Water Requirement (mm)";
+                                    worksheet.Cell(currentRow, 13).Value = "Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 14).Value = "Water Saving(%)";
+                                    worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        //for (int i = 0; i < ddetails.Count; i++)
+                                        //{
+                                        //    string gp = ddetails[i].gp;
+                                        //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        //    if (ddetails1 != null)
+                                        //    {
+                                        //        currentRow++;
+                                        //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                        //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                        //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                        //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                        //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                        //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                        //        worksheet.Cell(currentRow, 7).Value = ddetails[i].innovative_measures;
+                                        //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_category;
+                                        //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_type;
+                                        //        worksheet.Cell(currentRow, 10).Value = ddetails[i].crop_name;
+                                        //        worksheet.Cell(currentRow, 11).Value = ddetails[i].area_irrigation;
+                                        //        worksheet.Cell(currentRow, 12).Value = ddetails[i].gross_water;
+                                        //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                        //        worksheet.Cell(currentRow, 14).Value = ddetails[i].water_save;
+                                        //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction;
+                                        //    }
+                                        //}
+
+                                        var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+        .Select(g => new
+        {
+            Gp = g.Key,
+            TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction, out var result) ? result : 0),
+            Details = g.ToList()
+        }).ToList();
+                                        currentRow = 2;
+
+                                        foreach (var group in groupedData)
+                                        {
+                                            string gp = group.Gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                            if (ddetails1 != null)
+                                            {
+                                                int startRow = currentRow;
+
+                                                foreach (var detail in group.Details)
+                                                {
+                                                    worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                    worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                    worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                    worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                    worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                    worksheet.Cell(currentRow, 7).Value = detail.innovative_measures;
+                                                    worksheet.Cell(currentRow, 8).Value = detail.crop_category;
+                                                    worksheet.Cell(currentRow, 9).Value = detail.crop_type;
+                                                    worksheet.Cell(currentRow, 10).Value = detail.crop_name;
+                                                    worksheet.Cell(currentRow, 11).Value = detail.area_irrigation;
+                                                    worksheet.Cell(currentRow, 12).Value = detail.gross_water;
+                                                    worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                    worksheet.Cell(currentRow, 14).Value = detail.water_save;
+                                                    worksheet.Cell(currentRow, 15).Value = detail.reduction;
+                                                    currentRow++;
+                                                }
+
+                                                // Merge rows for the Total_Reduction column
+                                                if (group.Details.Count > 1)
+                                                {
+                                                    worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                }
+                                                worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                                if (item == 6.6)
+                                {
+                                    dynamic ddetails;
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    && M.gp == Gram
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.fund_for,
+                                                        D.total_crop_area,
+                                                        D.total_area_proposed,
+                                                        D.area_proposed,
+                                                        D.financial_year,
+                                                        D.department_name,
+                                                        D.scheme_name,
+                                                        D.other_scheme,
+                                                        D.approx_est_cost,
+                                                        D.innovative_measures
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District && M.block == Block
+                                                    orderby M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.fund_for,
+                                                        D.total_crop_area,
+                                                        D.total_area_proposed,
+                                                        D.area_proposed,
+                                                        D.financial_year,
+                                                        D.department_name,
+                                                        D.scheme_name,
+                                                        D.other_scheme,
+                                                        D.approx_est_cost,
+                                                        D.innovative_measures
+                                                    }).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                    join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                    where M.state == State && M.district == District
+                                                    orderby M.block, M.gp
+                                                    select new
+                                                    {
+                                                        M.state,
+                                                        M.district,
+                                                        M.block,
+                                                        M.gp,
+                                                        M.data_year,
+                                                        D.fund_for,
+                                                        D.total_crop_area,
+                                                        D.total_area_proposed,
+                                                        D.area_proposed,
+                                                        D.financial_year,
+                                                        D.department_name,
+                                                        D.scheme_name,
+                                                        D.other_scheme,
+                                                        D.approx_est_cost,
+                                                        D.innovative_measures
+                                                    }).ToList();
+                                    }
+                                    else
+                                    {
+                                        using (var context = new AbhyEntity())
+                                        {
+                                            var list = (from M in context.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in context.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                        where M.state == State
+                                                        orderby M.district, M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.fund_for,
+                                                            D.total_crop_area,
+                                                            D.total_area_proposed,
+                                                            D.area_proposed,
+                                                            D.financial_year,
+                                                            D.department_name,
+                                                            D.scheme_name,
+                                                            D.other_scheme,
+                                                            D.approx_est_cost,
+                                                            D.innovative_measures
+                                                        }).ToList();
+
+                                            ddetails = list.ToList();
+                                        }
+                                    }
+
+                                    var worksheet = workbookAll.Worksheets.Add("DS (Funding Source)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Name of Intervention";
+                                    worksheet.Cell(currentRow, 7).Value = "Total Area under Conventional Irrigation (ha)";
+                                    worksheet.Cell(currentRow, 8).Value = "Total Area Proposed (ha)";
+                                    worksheet.Cell(currentRow, 9).Value = "Area Proposed (ha)";
+                                    worksheet.Cell(currentRow, 10).Value = "Financial Year";
+                                    worksheet.Cell(currentRow, 11).Value = "Department Name";
+                                    worksheet.Cell(currentRow, 12).Value = "Scheme Name";
+                                    worksheet.Cell(currentRow, 13).Value = "Other Scheme Name";
+                                    worksheet.Cell(currentRow, 14).Value = "Approximate Estimated Cost (in lakh)";
+                                    worksheet.Cell(currentRow, 15).Value = "Other water saving Measures/Innovative measures";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].fund_for;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].total_crop_area;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].total_area_proposed;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].area_proposed;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].financial_year;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].department_name;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].scheme_name;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].other_scheme;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].approx_est_cost;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].innovative_measures;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                                if (item == 7.1)
+                                {
+                                    List<abhy_artificial_recharge_st_data_24_update> ddetails = new List<abhy_artificial_recharge_st_data_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("Supply Side(ARS)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                    worksheet.Cell(currentRow, 8).Value = "Type of ARS";
+                                    worksheet.Cell(currentRow, 9).Value = "Latitude of proposed structure";
+                                    worksheet.Cell(currentRow, 10).Value = "Longitude of proposed structure";
+                                    worksheet.Cell(currentRow, 11).Value = "Work Proposed";
+                                    worksheet.Cell(currentRow, 12).Value = "Storage capacity (ha m)";
+                                    worksheet.Cell(currentRow, 13).Value = "Annual no. of fillings";
+                                    worksheet.Cell(currentRow, 14).Value = "Recharge (%)";
+                                    worksheet.Cell(currentRow, 15).Value = "Annual GW Recharge (ha m)";
+                                    worksheet.Cell(currentRow, 16).Value = "Financial year";
+                                    worksheet.Cell(currentRow, 17).Value = "Department Name";
+                                    worksheet.Cell(currentRow, 18).Value = "Scheme Name";
+                                    worksheet.Cell(currentRow, 19).Value = "Other Scheme Name";
+                                    worksheet.Cell(currentRow, 20).Value = "Total Approximate Estimated Cost(in lakh)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].village_name;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].location_detail;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].type_of_ar;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].latitude;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].longitude;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].work_proposed;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].storage_capacity;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].annual_filling_no;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].recharge;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].annual_gw_recharge;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].financial_year;
+                                                worksheet.Cell(currentRow, 17).Value = ddetails[i].department_name;
+                                                worksheet.Cell(currentRow, 18).Value = ddetails[i].scheme_name;
+                                                worksheet.Cell(currentRow, 19).Value = ddetails[i].other_scheme;
+                                                worksheet.Cell(currentRow, 20).Value = ddetails[i].estimated_cost;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 7.2)
+                                {
+                                    List<abhy_water_conservation_st_data_24_update> ddetails = new List<abhy_water_conservation_st_data_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("Supply Side(WCS)");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                    worksheet.Cell(currentRow, 8).Value = "Type of WCS";
+                                    worksheet.Cell(currentRow, 9).Value = "Latitude of proposed structure";
+                                    worksheet.Cell(currentRow, 10).Value = "Longitude of proposed structure";
+                                    worksheet.Cell(currentRow, 11).Value = "Work Proposed";
+                                    worksheet.Cell(currentRow, 12).Value = "Storage capacity (ha m)";
+                                    worksheet.Cell(currentRow, 13).Value = "Annual no. of fillings";
+                                    worksheet.Cell(currentRow, 14).Value = "Effective storage available for use (ha m)";
+                                    worksheet.Cell(currentRow, 15).Value = "Financial year";
+                                    worksheet.Cell(currentRow, 16).Value = "Department Name";
+                                    worksheet.Cell(currentRow, 17).Value = "Scheme Name";
+                                    worksheet.Cell(currentRow, 18).Value = "Other Scheme Name";
+                                    worksheet.Cell(currentRow, 19).Value = "Total Approximate Estimated Cost(in lakh)";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].village_name;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].location_detail;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].type_of_wr;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].latitude;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].longitude;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].work_proposed;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].storage_capacity;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].annual_filling_no;
+                                                worksheet.Cell(currentRow, 14).Value = ddetails[i].effective_storage;
+                                                worksheet.Cell(currentRow, 15).Value = ddetails[i].financial_year;
+                                                worksheet.Cell(currentRow, 16).Value = ddetails[i].department_name;
+                                                worksheet.Cell(currentRow, 17).Value = ddetails[i].scheme_name;
+                                                worksheet.Cell(currentRow, 18).Value = ddetails[i].other_scheme;
+                                                worksheet.Cell(currentRow, 19).Value = ddetails[i].estimated_cost;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 8.1)
+                                {
+                                    List<abhy_wsp_pgwm_committee_member_24_update> ddetails = new List<abhy_wsp_pgwm_committee_member_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("PGWM Committee");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Name";
+                                    worksheet.Cell(currentRow, 7).Value = "Designation";
+                                    worksheet.Cell(currentRow, 8).Value = "Gender";
+                                    worksheet.Cell(currentRow, 9).Value = "Mobile /Landline No.";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp_name;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].member_name;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].designation;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].gender;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].contact_no;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 8.2)
+                                {
+                                    List<abhy_wsp_pgwm_committee_meeting_24_update> ddetails = new List<abhy_wsp_pgwm_committee_meeting_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("PGWM Meeting");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Date";
+                                    worksheet.Cell(currentRow, 7).Value = "GP Name";
+                                    worksheet.Cell(currentRow, 8).Value = "Village Name";
+                                    worksheet.Cell(currentRow, 9).Value = "Meeting Location";
+                                    worksheet.Cell(currentRow, 10).Value = "Male";
+                                    worksheet.Cell(currentRow, 11).Value = "Female";
+                                    worksheet.Cell(currentRow, 12).Value = "Transgender";
+                                    worksheet.Cell(currentRow, 13).Value = "Total number of attendees";
+                                    worksheet.Cell(currentRow, 14).Value = "MOM(Minutes of Meeting)";
+                                    worksheet.Cell(currentRow, 15).Value = "Photograph";
+                                    worksheet.Cell(currentRow, 16).Value = "Resolution";
+                                    worksheet.Cell(currentRow, 17).Value = "Attendance Sheet";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp_name;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].meeting_date;
+                                                worksheet.Cell(currentRow, 7).Value = ddetails[i].meeting_gp_name;
+                                                worksheet.Cell(currentRow, 8).Value = ddetails[i].meeting_village;
+                                                worksheet.Cell(currentRow, 9).Value = ddetails[i].meeting_location;
+                                                worksheet.Cell(currentRow, 10).Value = ddetails[i].male_attendees;
+                                                worksheet.Cell(currentRow, 11).Value = ddetails[i].female_attendees;
+                                                worksheet.Cell(currentRow, 12).Value = ddetails[i].transgender_attendees;
+                                                worksheet.Cell(currentRow, 13).Value = ddetails[i].total_attendees;
+                                                worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
+                                                worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
+                                                worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
+                                                worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 9)
+                                {
+                                    List<abhy_wsp_dpmu_declaration_24_update> ddetails = new List<abhy_wsp_dpmu_declaration_24_update>();
+                                    List<abhy_wsp_dpmu_declaration_24_update> FinalData = new List<abhy_wsp_dpmu_declaration_24_update>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                    }
+
+
+                                    var worksheet = workbookAll.Worksheets.Add("DPMU Declaration");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "DPMU Declaration";
+
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp_name;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                worksheet.Cell(currentRow, 6).Value = ddetails[i].dpmu_declaration;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+                                if (item == 10)
+                                {
+                                    List<abhy_wsp_approved_status> ddetails = new List<abhy_wsp_approved_status>();
+                                    if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.year == Year).ToList();
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();
+
+                                    }
+                                    else if (State != "0" && State != null && District != "0" && District != null)
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();
+                                    }
+                                    else
+                                    {
+                                        ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.year == Year).ToList();
+                                    }
+                                    var worksheet = workbookAll.Worksheets.Add("Approved WSP");
+                                    var currentRow = 1;
+                                    worksheet.Cell(currentRow, 1).Value = "State";
+                                    worksheet.Cell(currentRow, 2).Value = "District";
+                                    worksheet.Cell(currentRow, 3).Value = "Block";
+                                    worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                    worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                    worksheet.Cell(currentRow, 6).Value = "Status";
+
+                                    if (ddetails.Count != 0)
+                                    {
+                                        for (int i = 0; i < ddetails.Count; i++)
+                                        {
+                                            string gp = ddetails[i].gp_name;
+                                            var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            if (ddetails1 != null)
+                                            {
+                                                string status_name = "";
+                                                if (ddetails[i].status_id == 5)
+                                                {
+                                                    status_name = "Approved";
+                                                }
+                                                else if (ddetails[i].status_id == 4)
+                                                {
+                                                    status_name = "State Level";
+                                                }
+                                                else if (ddetails[i].status_id == 3)
+                                                {
+                                                    status_name = "District Level";
+                                                }
+                                                else if (ddetails[i].status_id == 1)
+                                                {
+                                                    status_name = "GP Level";
+                                                }
+                                                currentRow++;
+                                                worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                worksheet.Cell(currentRow, 6).Value = status_name;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        currentRow++;
+                                        worksheet.Cell(currentRow, 1).Value = "";
+                                        worksheet.Cell(currentRow, 2).Value = "";
+                                        worksheet.Cell(currentRow, 3).Value = "";
+                                        worksheet.Cell(currentRow, 4).Value = "No Data";
+                                        worksheet.Cell(currentRow, 5).Value = "";
+                                        worksheet.Cell(currentRow, 6).Value = "";
+                                        worksheet.Cell(currentRow, 7).Value = "";
+                                        worksheet.Cell(currentRow, 8).Value = "";
+                                    }
+
+                                }
+
+                            }
+                            using (var stream = new MemoryStream())
+                            {
+                                workbookAll.SaveAs(stream);
+                                var content = stream.ToArray();
+                                //return File(
+                                //    content,
+                                //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                //    "AllCombine.xlsx");
+                                var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "AllCombine.xlsx");
+                                robj = bytesdata;
+                            }
+                        }
+                        return Json(robj, JsonRequestBehavior.AllowGet);
+
+                    }
+
+                    else
+                    {
+                        FileContentResult robj;
+                        if (Module_name == 1.1)
+                        {
+                            List<abhy_wsp_gpdata_new_24_update> ddetails = new List<abhy_wsp_gpdata_new_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gram_panchayat_name == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("GP (Basic Hydrology Info)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Gram Panchayat LGD Code";
+                                worksheet.Cell(currentRow, 7).Value = "Block Area (ha)";
+                                worksheet.Cell(currentRow, 8).Value = "Gram Panchayat Area (ha)";
+                                worksheet.Cell(currentRow, 9).Value = "Watershed Code";
+                                worksheet.Cell(currentRow, 10).Value = "Watershed Name";
+                                worksheet.Cell(currentRow, 11).Value = "Watershed Area in Block / Taluk (ha)";
+                                worksheet.Cell(currentRow, 12).Value = "Sub-basin Code";
+                                worksheet.Cell(currentRow, 13).Value = "Sub Basin Name";
+                                worksheet.Cell(currentRow, 14).Value = "Basin Code";
+                                worksheet.Cell(currentRow, 15).Value = "Basin Name";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gram_panchayat_name;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gram_panchayat_name;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].gp_id;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].block_area;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].gp_area;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].watershed_code;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].watershed_name;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].watershed_area_block;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].sub_basin_code;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].sub_basin_name;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].basin_code;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].basin_name;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "No Data";
+                                    worksheet.Cell(currentRow, 9).Value = "";
+                                    worksheet.Cell(currentRow, 10).Value = "";
+                                    worksheet.Cell(currentRow, 11).Value = "";
+                                    worksheet.Cell(currentRow, 12).Value = "";
+                                    worksheet.Cell(currentRow, 13).Value = "";
+                                    worksheet.Cell(currentRow, 14).Value = "";
+                                    worksheet.Cell(currentRow, 15).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Gram Panchayat (Basic Hydrology Info).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Gram Panchayat (Basic Hydrology Info).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 1.2)
+                        {
+                            List<abhy_wsp_gram_images_24_update> ddetails = new List<abhy_wsp_gram_images_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                            }
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("GP (Maps Upload)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Location Map";
+                                worksheet.Cell(currentRow, 7).Value = "Watershed and Drainage Map";
+                                worksheet.Cell(currentRow, 8).Value = "Aquifer Map";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gpname;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = path + ddetails[i].gpimage1;
+                                            worksheet.Cell(currentRow, 7).Value = path + ddetails[i].gpimage2;
+                                            worksheet.Cell(currentRow, 8).Value = path + ddetails[i].gpimage3;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Gram Panchayat (Maps Upload).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Gram Panchayat (Maps Upload).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 1.3)
+                        {
+
+                            List<abhy_wsp_gwl_24_update> ddetails = new List<abhy_wsp_gwl_24_update>();
+                            List<abhy_wsp_gwl_24_update> Final_data = new List<abhy_wsp_gwl_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.grampanchayat == Gram).OrderBy(c => c.wellid).ToList();
+
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
+                            }
+                            else
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State).ToList();//total list
+                            }
+                            if (Final_data.Count > 0)
+                            {
+                                var GroupByData = Final_data.GroupBy(x => x.wellid).ToList();
+                                int j = 0;
+                                foreach (var items in GroupByData.AsEnumerable())
+                                {
+                                    ++j;
+                                    var itemId = items.First();
+                                    var DataByWellId = Final_data.Where(x => x.wellid == itemId.wellid).ToList();
+                                    for (int i = 0; i < DataByWellId.Count; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            var obj = new abhy_wsp_gwl_24_update()
+                                            {
+                                                sno = j.ToString(),
+                                                state = DataByWellId[i].state,
+                                                district = DataByWellId[i].district,
+                                                block = DataByWellId[i].block,
+                                                grampanchayat = DataByWellId[i].grampanchayat,
+                                                sitename = DataByWellId[i].sitename,
+                                                locationdetails = DataByWellId[i].locationdetails,
+                                                latitude = DataByWellId[i].latitude,
+                                                longitude = DataByWellId[i].longitude,
+                                                datetime = DataByWellId[i].datetime,
+                                                wellid = DataByWellId[i].wellid,
+                                                typeofwell = DataByWellId[i].typeofwell,
+                                                other_well_type = DataByWellId[i].other_well_type,
+                                                source_Ownership = DataByWellId[i].source_Ownership,
+                                                source_Ownership_type = DataByWellId[i].source_Ownership_type,
+                                                Diameter_of_Well = DataByWellId[i].Diameter_of_Well,
+                                                welldepth = DataByWellId[i].welldepth,
+                                                Height_of_Measuring_Point = DataByWellId[i].Height_of_Measuring_Point,
+                                                gwl_reading = DataByWellId[i].gwl_reading,
+                                                gwl_date = DataByWellId[i].gwl_date
+
+                                            };
+                                            ddetails.Add(obj);
+                                        }
+                                        else
+                                        {
+                                            var obj = new abhy_wsp_gwl_24_update()
+                                            {
+                                                sno = "",
+                                                state = DataByWellId[i].state,
+                                                district = DataByWellId[i].district,
+                                                block = DataByWellId[i].block,
+                                                grampanchayat = DataByWellId[i].grampanchayat,
+                                                sitename = DataByWellId[i].sitename,
+                                                locationdetails = DataByWellId[i].locationdetails,
+                                                latitude = DataByWellId[i].latitude,
+                                                longitude = DataByWellId[i].longitude,
+                                                datetime = DataByWellId[i].datetime,
+                                                wellid = DataByWellId[i].wellid,
+                                                typeofwell = DataByWellId[i].typeofwell,
+                                                other_well_type = DataByWellId[i].other_well_type,
+                                                source_Ownership = DataByWellId[i].source_Ownership,
+                                                source_Ownership_type = DataByWellId[i].source_Ownership_type,
+                                                Diameter_of_Well = DataByWellId[i].Diameter_of_Well,
+                                                welldepth = DataByWellId[i].welldepth,
+                                                Height_of_Measuring_Point = DataByWellId[i].Height_of_Measuring_Point,
+                                                gwl_reading = DataByWellId[i].gwl_reading,
+                                                gwl_date = DataByWellId[i].gwl_date
+                                            };
+                                            ddetails.Add(obj);
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("GP (Water Level)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "S.No.";
+                                worksheet.Cell(currentRow, 2).Value = "State";
+                                worksheet.Cell(currentRow, 3).Value = "District";
+                                worksheet.Cell(currentRow, 4).Value = "Block";
+                                worksheet.Cell(currentRow, 5).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 6).Value = "Site Name";
+                                worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                worksheet.Cell(currentRow, 8).Value = "Latitude";
+                                worksheet.Cell(currentRow, 9).Value = "Longitude";
+                                worksheet.Cell(currentRow, 10).Value = "Date";
+                                worksheet.Cell(currentRow, 11).Value = "Well ID";
+                                worksheet.Cell(currentRow, 12).Value = "Type of Well";
+                                worksheet.Cell(currentRow, 13).Value = "Other Well Type";
+                                worksheet.Cell(currentRow, 14).Value = "Ownership Type";
+                                worksheet.Cell(currentRow, 15).Value = "Government Source";
+                                worksheet.Cell(currentRow, 16).Value = "Diameter of well(m)";
+                                worksheet.Cell(currentRow, 17).Value = "Depth of Well(mbmp)";
+                                worksheet.Cell(currentRow, 18).Value = "Height of Measuring Point(mbgl)";
+                                worksheet.Cell(currentRow, 19).Value = "Water Level (mbgl)";
+                                worksheet.Cell(currentRow, 20).Value = "Water Level Date";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string sno = Convert.ToString(ddetails[i].sno);
+                                        if (sno == "0")
+                                        {
+                                            sno = "";
+                                        }
+                                        string gp = ddetails[i].grampanchayat;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = sno;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].state;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].district;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].block;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].grampanchayat;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].sitename;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].locationdetails;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].latitude;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].longitude;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].datetime;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].wellid;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].typeofwell;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].other_well_type;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].source_Ownership;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].source_Ownership_type;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].Diameter_of_Well;
+                                            worksheet.Cell(currentRow, 17).Value = ddetails[i].welldepth;
+                                            worksheet.Cell(currentRow, 18).Value = ddetails[i].Height_of_Measuring_Point;
+                                            worksheet.Cell(currentRow, 19).Value = ddetails[i].gwl_reading;
+                                            worksheet.Cell(currentRow, 20).Value = ddetails[i].gwl_date;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Gram Panchayat (Water Level).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Gram Panchayat (Water Level).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 1.4)
+                        {
+                            List<abhy_wsp_gwq_24_update> Final_data = new List<abhy_wsp_gwq_24_update>();
+                            List<abhy_wsp_gwq_24_update> ddetails = new List<abhy_wsp_gwq_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District && x.Block == Block && x.GP == Gram).OrderBy(c => c.Well_ID).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District && x.Block == Block).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District).ToList();//total list
+                            }
+                            else
+                            {
+                                Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State).ToList();//total list
+                            }
+                            if (Final_data.Count > 0)
+                            {
+                                var GroupByData = Final_data.GroupBy(x => x.Well_ID).ToList();
+                                int j = 0;
+                                foreach (var items in GroupByData.AsEnumerable())
+                                {
+                                    ++j;
+                                    var itemId = items.First();
+                                    var DataByWellId = Final_data.Where(x => x.Well_ID == itemId.Well_ID).ToList();
+                                    for (int i = 0; i < DataByWellId.Count; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            var obj = new abhy_wsp_gwq_24_update()
+                                            {
+                                                sno = j.ToString(),
+                                                State = DataByWellId[i].State,
+                                                District = DataByWellId[i].District,
+                                                Block = DataByWellId[i].Block,
+                                                GP = DataByWellId[i].GP,
+                                                Village = DataByWellId[i].Village,
+                                                Site_Name = DataByWellId[i].Site_Name,
+                                                Latitude = DataByWellId[i].Latitude,
+                                                Longitude = DataByWellId[i].Longitude,
+                                                Years = DataByWellId[i].Years,
+                                                Well_Type = DataByWellId[i].Well_Type,
+                                                Source = DataByWellId[i].Source,
+                                                Well_ID = DataByWellId[i].Well_ID,
+                                                Well_Depth = DataByWellId[i].Well_Depth,
+                                                Aquifer = DataByWellId[i].Aquifer,
+                                                pH = DataByWellId[i].pH,
+                                                EC = DataByWellId[i].EC,
+                                                TDS = DataByWellId[i].TDS,
+                                                TH = DataByWellId[i].TH,
+                                                Calcium = DataByWellId[i].Calcium,
+                                                Magnesium = DataByWellId[i].Magnesium,
+                                                Sodium = DataByWellId[i].Sodium,
+                                                Potassium = DataByWellId[i].Potassium,
+                                                Carbonate = DataByWellId[i].Carbonate,
+                                                Bicarbonate = DataByWellId[i].Bicarbonate,
+                                                Sulphate = DataByWellId[i].Sulphate,
+                                                Chloride = DataByWellId[i].Chloride,
+                                                Fluoride = DataByWellId[i].Fluoride,
+                                                Nitrate = DataByWellId[i].Nitrate
+                                            };
+                                            ddetails.Add(obj);
+                                        }
+                                        else
+                                        {
+                                            var obj = new abhy_wsp_gwq_24_update()
+                                            {
+                                                sno = "",
+                                                State = DataByWellId[i].State,
+                                                District = DataByWellId[i].District,
+                                                Block = DataByWellId[i].Block,
+                                                GP = DataByWellId[i].GP,
+                                                Village = DataByWellId[i].Village,
+                                                Site_Name = DataByWellId[i].Site_Name,
+                                                Latitude = DataByWellId[i].Latitude,
+                                                Longitude = DataByWellId[i].Longitude,
+                                                Years = DataByWellId[i].Years,
+                                                Well_Type = DataByWellId[i].Well_Type,
+                                                Source = DataByWellId[i].Source,
+                                                Well_ID = DataByWellId[i].Well_ID,
+                                                Well_Depth = DataByWellId[i].Well_Depth,
+                                                Aquifer = DataByWellId[i].Aquifer,
+                                                pH = DataByWellId[i].pH,
+                                                EC = DataByWellId[i].EC,
+                                                TDS = DataByWellId[i].TDS,
+                                                TH = DataByWellId[i].TH,
+                                                Calcium = DataByWellId[i].Calcium,
+                                                Magnesium = DataByWellId[i].Magnesium,
+                                                Sodium = DataByWellId[i].Sodium,
+                                                Potassium = DataByWellId[i].Potassium,
+                                                Carbonate = DataByWellId[i].Carbonate,
+                                                Bicarbonate = DataByWellId[i].Bicarbonate,
+                                                Sulphate = DataByWellId[i].Sulphate,
+                                                Chloride = DataByWellId[i].Chloride,
+                                                Fluoride = DataByWellId[i].Fluoride,
+                                                Nitrate = DataByWellId[i].Nitrate
+                                            };
+                                            ddetails.Add(obj);
+                                        }
+                                    }
+                                }
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("GP (Water Quaity)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "S.No.";
+                                worksheet.Cell(currentRow, 2).Value = "State";
+                                worksheet.Cell(currentRow, 3).Value = "District";
+                                worksheet.Cell(currentRow, 4).Value = "Block";
+                                worksheet.Cell(currentRow, 5).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                worksheet.Cell(currentRow, 7).Value = "Location";
+                                worksheet.Cell(currentRow, 8).Value = "Latitude";
+                                worksheet.Cell(currentRow, 9).Value = "Longitude";
+                                worksheet.Cell(currentRow, 10).Value = "Year";
+                                worksheet.Cell(currentRow, 11).Value = "Well Type";
+                                worksheet.Cell(currentRow, 12).Value = "Source";
+                                worksheet.Cell(currentRow, 13).Value = "Well ID";
+                                worksheet.Cell(currentRow, 14).Value = "Well Depth (mbgl)";
+                                worksheet.Cell(currentRow, 15).Value = "Aquifer";
+                                worksheet.Cell(currentRow, 16).Value = "PH";
+                                worksheet.Cell(currentRow, 17).Value = "EC (µS/cm)";
+                                worksheet.Cell(currentRow, 18).Value = "TDS (mg/L)";
+                                worksheet.Cell(currentRow, 19).Value = "TH (mg/L)";
+                                worksheet.Cell(currentRow, 20).Value = "Ca (mg/L)";
+                                worksheet.Cell(currentRow, 21).Value = "Mg (mg/L)";
+                                worksheet.Cell(currentRow, 22).Value = "Na (mg/L)";
+                                worksheet.Cell(currentRow, 23).Value = "K (mg/L)";
+                                worksheet.Cell(currentRow, 24).Value = "Carbonate (mg/L)";
+                                worksheet.Cell(currentRow, 25).Value = "Bicarbonate (mg/L)";
+                                worksheet.Cell(currentRow, 26).Value = "Sulphate (mg/L)";
+                                worksheet.Cell(currentRow, 27).Value = "Chloride (mg/L)";
+                                worksheet.Cell(currentRow, 28).Value = "Fluoride (mg/L)";
+                                worksheet.Cell(currentRow, 29).Value = "Nitrate (mg/L)";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string sno = Convert.ToString(ddetails[i].sno);
+                                        if (sno == "0")
+                                        {
+                                            sno = "";
+                                        }
+                                        string gp = ddetails[i].GP;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = sno;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].State;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].District;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].Block;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].GP;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].Village;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].Site_Name;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].Latitude;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].Longitude;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].Years;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].Well_Type;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].Source;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].Well_ID;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].Well_Depth;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].Aquifer;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].pH;
+                                            worksheet.Cell(currentRow, 17).Value = ddetails[i].EC;
+                                            worksheet.Cell(currentRow, 18).Value = ddetails[i].TDS;
+                                            worksheet.Cell(currentRow, 19).Value = ddetails[i].TH;
+                                            worksheet.Cell(currentRow, 20).Value = ddetails[i].Calcium;
+                                            worksheet.Cell(currentRow, 21).Value = ddetails[i].Magnesium;
+                                            worksheet.Cell(currentRow, 22).Value = ddetails[i].Sodium;
+                                            worksheet.Cell(currentRow, 23).Value = ddetails[i].Potassium;
+                                            worksheet.Cell(currentRow, 24).Value = ddetails[i].Carbonate;
+                                            worksheet.Cell(currentRow, 25).Value = ddetails[i].Bicarbonate;
+                                            worksheet.Cell(currentRow, 26).Value = ddetails[i].Sulphate;
+                                            worksheet.Cell(currentRow, 27).Value = ddetails[i].Chloride;
+                                            worksheet.Cell(currentRow, 28).Value = ddetails[i].Fluoride;
+                                            worksheet.Cell(currentRow, 29).Value = ddetails[i].Nitrate;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Gram Panchayat (Water Quaity).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Gram Panchayat (Water Quaity).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 2)
+                        {
+                            List<abhy_wsp_wateravailbility_new_24_update> ddetails = new List<abhy_wsp_wateravailbility_new_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                            }
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("Water Availability");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Annual Rainfall (mm)";
+                                worksheet.Cell(currentRow, 7).Value = "Other Source Name";
+                                worksheet.Cell(currentRow, 8).Value = "Estimated Volume of Rainfall (ha m)";
+                                worksheet.Cell(currentRow, 9).Value = "Evapotranspiration (mm)";
+                                worksheet.Cell(currentRow, 10).Value = "Estimated Evapotranspiration losses (ha m)";
+                                worksheet.Cell(currentRow, 11).Value = "Estimated Water Available From Rainfall (ha m)";
+                                worksheet.Cell(currentRow, 12).Value = "Weighted Average Runoff Coefficient";
+                                worksheet.Cell(currentRow, 13).Value = "Rainfall Runoff (ha m)";
+                                worksheet.Cell(currentRow, 14).Value = "GWR From Rainfall (Monsoon) (ha m)";
+                                worksheet.Cell(currentRow, 15).Value = "GWR From Rainfall (Non-Monsoon) (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Total GWR from rainfall (ha m)";
+                                worksheet.Cell(currentRow, 17).Value = "GWR from other sources (Monsoon) (ha m)";
+                                worksheet.Cell(currentRow, 18).Value = "GWR from other sources (Non-Monsoon) (ha m)";
+                                worksheet.Cell(currentRow, 19).Value = "Total GWR from other sources (ha m)";
+                                worksheet.Cell(currentRow, 20).Value = "Losses Due to Natural Discharge (ha m)";
+                                worksheet.Cell(currentRow, 21).Value = "Total GW Available (ha m)";
+                                worksheet.Cell(currentRow, 22).Value = "GW Withdrawal (ha m)";
+                                worksheet.Cell(currentRow, 23).Value = "Type of Structure";
+                                worksheet.Cell(currentRow, 24).Value = "No. of Structures";
+                                worksheet.Cell(currentRow, 25).Value = "Storage Capacity (ha m)";
+                                worksheet.Cell(currentRow, 26).Value = "Total Storage Capacity of the SW bodies (ha m)";
+                                worksheet.Cell(currentRow, 27).Value = "Losses if Any (%)";
+                                worksheet.Cell(currentRow, 28).Value = "SW Available in Storages (ha m) ";
+                                worksheet.Cell(currentRow, 29).Value = "Transported Water from outside GP area (ha m)";
+                                worksheet.Cell(currentRow, 30).Value = "Total Surface Water Available (ha m)";
+                                worksheet.Cell(currentRow, 31).Value = "Total Water Available (ha m)";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp_name;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].annual_rainfall;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].other_source_name;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].est_vol_rainfall;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].evapo_rate;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].est_evapo_loss;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].est_water_rain;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].weigh_run_conf;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].rain_runoff;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].rech_monsoon;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].rech_nonmonsoon;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].tot_grd_rech_rain;
+                                            worksheet.Cell(currentRow, 17).Value = ddetails[i].ground_monsoon;
+                                            worksheet.Cell(currentRow, 18).Value = ddetails[i].ground_nonmonsoon;
+                                            worksheet.Cell(currentRow, 19).Value = ddetails[i].tot_grd_rech_oth;
+                                            worksheet.Cell(currentRow, 20).Value = ddetails[i].loss_nature;
+                                            worksheet.Cell(currentRow, 21).Value = ddetails[i].tot_grd_wat_avail;
+                                            worksheet.Cell(currentRow, 22).Value = ddetails[i].ground_water_with;
+                                            worksheet.Cell(currentRow, 23).Value = ddetails[i].avail_storages;
+                                            worksheet.Cell(currentRow, 24).Value = ddetails[i].avail_storages_grd;
+                                            worksheet.Cell(currentRow, 25).Value = ddetails[i].avail_storages_sur;
+                                            worksheet.Cell(currentRow, 26).Value = ddetails[i].total_surface_body;
+                                            worksheet.Cell(currentRow, 27).Value = ddetails[i].loss_if;
+                                            worksheet.Cell(currentRow, 28).Value = ddetails[i].surface_water_avail;
+                                            worksheet.Cell(currentRow, 29).Value = ddetails[i].trans_water_out;
+                                            worksheet.Cell(currentRow, 30).Value = ddetails[i].total_sirface_water;
+                                            worksheet.Cell(currentRow, 31).Value = ddetails[i].total_avail_water;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Water Availability.xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Availability.xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 3.1)
+                        {
+                            List<abhy_baseline_gp_livestock> livestock_details = new List<abhy_baseline_gp_livestock>();
+                            List<abhy_uti_waterdraft_domestic_new_24_update> ddetails = new List<abhy_uti_waterdraft_domestic_new_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                            }
+                            var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.year == Year).GroupBy(o => o.gpname).ToList();
+                            if (BaseLineData.Count != 0)
+                            {
+                                foreach (var items in BaseLineData.AsEnumerable())
+                                {
+                                    var item = items.First();
+                                    var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.year == Year && x.gpname == item.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                                    if (data != null)
+                                    {
+                                        var temp = data.ToList();
+                                        var id = Convert.ToInt32(temp[0].id);
+                                        var livestock = ABE.obj_abhy_baseline_gp_livestock.Where(x => x.id == id).ToList();
+                                        if (livestock.Count != 0)
+                                        {
+                                            livestock_details.AddRange(livestock);
+                                        }
+                                    }
+
+                                }
+                            }
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("WU (Drinking-Domestic)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Total Human Population";
+                                worksheet.Cell(currentRow, 7).Value = "Daily water requirement (LPCD)";
+                                worksheet.Cell(currentRow, 8).Value = "Total Water Required For Humans (L/day) ";
+                                worksheet.Cell(currentRow, 9).Value = "Total Livestock Population";
+                                worksheet.Cell(currentRow, 10).Value = "Daily Average water requirement (LPCD)";
+                                worksheet.Cell(currentRow, 11).Value = "Total Water Required for Livestock (L/day)";
+
+
+                                worksheet.Cell(currentRow, 12).Value = "% of Water Demand Met From GW (Human)";
+                                worksheet.Cell(currentRow, 13).Value = "% of Water Demand Met From GW (Livestock)";
+                                worksheet.Cell(currentRow, 14).Value = "Water Demand Met From GW (Human)";
+                                worksheet.Cell(currentRow, 15).Value = "Water Demand Met From GW (Livestock)";
+                                worksheet.Cell(currentRow, 16).Value = "% of Water Demand Met From SW (Human)";
+                                worksheet.Cell(currentRow, 17).Value = "% of Water Demand Met From SW (Livestock)";
+                                worksheet.Cell(currentRow, 18).Value = "Water Demand Met From SW (Human)";
+                                worksheet.Cell(currentRow, 19).Value = "Water Demand Met From SW (Livestock)";
+
+                                worksheet.Cell(currentRow, 20).Value = "Livestock Name";
+                                worksheet.Cell(currentRow, 21).Value = "Livestock Count";
+                                worksheet.Cell(currentRow, 22).Value = "Daily water requirement (LPCD) for Livestock";
+                                if (ddetails.Count != 0)
+                                {
+                                    string LiveStockName = "";
+                                    string LiveStockValue = "";
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        var List = livestock_details.Where(x => x.gpname == ddetails[i].gp).OrderByDescending(x => x.p_id).ToList();
+                                        if (List.Count != 0)
+                                        {
+                                            LiveStockName = "";
+                                            LiveStockValue = "";
+                                            foreach (var item in List)
+                                            {
+                                                LiveStockName += item.livestock_name + ",";
+                                                LiveStockValue += item.livestock_value + ",";
+                                            }
+                                        }
+                                        string gp = ddetails[i].gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].total_pop_human;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].daily_water_req;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].water_req_human;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].total_pop_livestock;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].avg_water_req;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].water_req_livestock;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].perc_grd_hum;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].perc_grd_liv;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].water_deman_hum;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].water_deman_liv;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].perc_sur_hum;
+                                            worksheet.Cell(currentRow, 17).Value = ddetails[i].perc_grd_liv;
+                                            worksheet.Cell(currentRow, 18).Value = ddetails[i].water_dem_hum;
+                                            worksheet.Cell(currentRow, 19).Value = ddetails[i].water_dem_liv;
+                                            worksheet.Cell(currentRow, 20).Value = LiveStockName;
+                                            worksheet.Cell(currentRow, 21).Value = LiveStockValue;
+                                            worksheet.Cell(currentRow, 22).Value = ddetails[i].daily_wat_req_per_liv;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Water Utilization(Drinking/Domestic).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Utilization(Drinking/Domestic).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 3.2)
+                        {
+                            dynamic ddetails;
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                            join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                            where M.state_name == State && M.district_name == District && M.block_name == Block
+                                            && M.gp_name == Gram
+                                            select new
+                                            {
+                                                M.state_name,
+                                                M.district_name,
+                                                M.block_name,
+                                                M.gp_name,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area,
+                                                D.gross_water,
+                                                M.total_water_dem,
+                                                M.per_ground_water,
+                                                M.per_surface_water,
+                                                M.uti_ground_water,
+                                                M.uti_surface_water
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                            join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                            where M.state_name == State && M.district_name == District && M.block_name == Block
+                                            select new
+                                            {
+                                                M.state_name,
+                                                M.district_name,
+                                                M.block_name,
+                                                M.gp_name,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area,
+                                                D.gross_water,
+                                                M.total_water_dem,
+                                                M.per_ground_water,
+                                                M.per_surface_water,
+                                                M.uti_ground_water,
+                                                M.uti_surface_water
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                            join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                            where M.state_name == State && M.district_name == District
+                                            select new
+                                            {
+                                                M.state_name,
+                                                M.district_name,
+                                                M.block_name,
+                                                M.gp_name,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area,
+                                                D.gross_water,
+                                                M.total_water_dem,
+                                                M.per_ground_water,
+                                                M.per_surface_water,
+                                                M.uti_ground_water,
+                                                M.uti_surface_water
+                                            }).ToList();
+                            }
+                            else
+                            {
+                                ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                            join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                            where M.state_name == State
+                                            select new
+                                            {
+                                                M.state_name,
+                                                M.district_name,
+                                                M.block_name,
+                                                M.gp_name,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area,
+                                                D.gross_water,
+                                                M.total_water_dem,
+                                                M.per_ground_water,
+                                                M.per_surface_water,
+                                                M.uti_ground_water,
+                                                M.uti_surface_water
+                                            }).ToList();
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("WU(Irrigation)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                worksheet.Cell(currentRow, 10).Value = "Area (ha)";
+                                worksheet.Cell(currentRow, 11).Value = "Net Irrigation Requirement (mm)";
+                                worksheet.Cell(currentRow, 12).Value = "Total Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 13).Value = "% of demand met from GW";
+                                worksheet.Cell(currentRow, 14).Value = "% of demand met from SW";
+                                worksheet.Cell(currentRow, 15).Value = "Utilization From GW (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Utilization From SW (ha m)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp_name;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].area;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].total_water_dem;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].per_ground_water;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].per_surface_water;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].uti_ground_water;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].uti_surface_water;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Water Utilization(Irrigation).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Utilization(Irrigation).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+
+                        }
+                        else if (Module_name == 3.3)
+                        {
+                            List<abhy_waterdraft_industry_24_update> ddetails = new List<abhy_waterdraft_industry_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("WU(Industrial Use)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Industry Name";
+                                worksheet.Cell(currentRow, 7).Value = "Daily Water Requirement";
+                                worksheet.Cell(currentRow, 8).Value = "No. of Days in Use";
+                                worksheet.Cell(currentRow, 9).Value = "Total Industrial Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 10).Value = "% of Water Demand met from GW";
+                                worksheet.Cell(currentRow, 11).Value = "% of Water Demand met from SW";
+                                worksheet.Cell(currentRow, 12).Value = "Water Demand met from GW (ha m)";
+                                worksheet.Cell(currentRow, 13).Value = "Water Demand met from SW (ha m)";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gpname;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].industry_name;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].industry_daily_water_req;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].industry_days_use;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].annual_ind_demand;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].industry_demand_ground_water;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].industry_demand_surface_water;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].indus_grd_water;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].indus_sur_water;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Water Utilization(Industrial Use).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Utilization(Industrial Use).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 3.4)
+                        {
+                            List<abhy_waterdraft_other_24_update> ddetails = new List<abhy_waterdraft_other_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                            }
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("WU(Other Uses)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Type of Use";
+                                worksheet.Cell(currentRow, 7).Value = "Daily Water Requirement";
+                                worksheet.Cell(currentRow, 8).Value = "No. of Days in Use";
+                                worksheet.Cell(currentRow, 9).Value = "Total Water Requirement (ha m)";
+                                worksheet.Cell(currentRow, 10).Value = "% of Water Demand met from GW";
+                                worksheet.Cell(currentRow, 11).Value = "% of Water Demand met from SW";
+                                worksheet.Cell(currentRow, 12).Value = "Water Demand met from GW (ha m)";
+                                worksheet.Cell(currentRow, 13).Value = "Water Demand met from SW (ha m)";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gpname;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].use;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].daily_req;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].no_of_days_use;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].annual_req;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].demand_met_ground_water;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].demand_met_surface_water;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].oth_grd_water;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].oth_sur_water;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Water Utilization(Other Uses).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Utilization(Other Uses).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                        }
+                        else if (Module_name == 4)
+                        {
+                            List<abhy_wsp_waterbalance_new_24_update> ddetails = new List<abhy_wsp_waterbalance_new_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbalance_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("Water Balance");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Total Ground Water Available (ha m)";
+                                worksheet.Cell(currentRow, 7).Value = "Total Surface Water Available (ha m)";
+                                worksheet.Cell(currentRow, 8).Value = "Total Water Availability (ha m)";
+                                worksheet.Cell(currentRow, 9).Value = "Total Ground Water Utilization (ha m)";
+                                worksheet.Cell(currentRow, 10).Value = "Total Surface Water Utilization (ha m)";
+                                worksheet.Cell(currentRow, 11).Value = "Total Water Utilization (ha m)";
+                                worksheet.Cell(currentRow, 12).Value = "Total Ground Water Balance (ha m)";
+                                worksheet.Cell(currentRow, 13).Value = "Total Surface Water Balance (ha m)";
+                                worksheet.Cell(currentRow, 14).Value = "Total Water Balance (ha m)";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gpname;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].wb_gw_avail;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].wb_sw_avail;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].wb_total_avail;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].wb_gw_utili;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].wb_sw_utili;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].wb_total_utili;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].wb_gw_balance;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].wb_sw_balance;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].wb_total_balance;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Water Balance.xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Balance.xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 5)
+                        {
+                            List<abhy_wsp_waterbudget_new_24_update> ddetails = new List<abhy_wsp_waterbudget_new_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                            }
+
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("Water Budget");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Present Human Population (as in GPDCI Module)";
+                                worksheet.Cell(currentRow, 7).Value = "Annual population growth rate in % (r)";
+                                worksheet.Cell(currentRow, 8).Value = "No. of years (n)";
+                                worksheet.Cell(currentRow, 9).Value = "Projected human population (2050)";
+                                worksheet.Cell(currentRow, 10).Value = "Per capita requirement (L)";
+                                worksheet.Cell(currentRow, 11).Value = "Projected Water Requirement for humans (2050) (ha m)";
+                                worksheet.Cell(currentRow, 12).Value = "Present livestock population (as in GPDCI Module)";
+                                worksheet.Cell(currentRow, 13).Value = "Annual population growth rate in % (r)";
+                                worksheet.Cell(currentRow, 14).Value = "No. of years (n)";
+                                worksheet.Cell(currentRow, 15).Value = "Projected livestock population (2050)";
+                                worksheet.Cell(currentRow, 16).Value = "Average per capita requirement (L)";
+                                worksheet.Cell(currentRow, 17).Value = "Projected Water Requirement for livestock (2050) (ha m)";
+                                worksheet.Cell(currentRow, 18).Value = "Total Projected Water Requirement for humans and livestock (as in 2050) (ha m)";
+                                worksheet.Cell(currentRow, 19).Value = "Proposed share to be met from SW (in % )";
+                                worksheet.Cell(currentRow, 20).Value = "Proposed share to be met from SW (in % )";
+                                worksheet.Cell(currentRow, 21).Value = "Demand met from GW (ha m)";
+                                worksheet.Cell(currentRow, 22).Value = "Demand met from SW (ha m)";
+                                worksheet.Cell(currentRow, 23).Value = "Ground Water (ha m)";
+                                worksheet.Cell(currentRow, 24).Value = "Surface Water (ha m)";
+                                worksheet.Cell(currentRow, 25).Value = "Total water available for future irrigation (ha m)";
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gpname;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].human_p_pop;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].human_a_pop;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].human_no_of_year;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].human_pre_pop;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].human_per_capita;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].human_pro_water_req;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].live_p_pop;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].live_a_pop;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].live_no_of_year;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].live_pro_pop;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].live_pre_capita;
+                                            worksheet.Cell(currentRow, 17).Value = ddetails[i].live_pro_water_req;
+                                            worksheet.Cell(currentRow, 18).Value = ddetails[i].total_pro_water_req;
+                                            worksheet.Cell(currentRow, 19).Value = ddetails[i].proposed_share_gw;
+                                            worksheet.Cell(currentRow, 20).Value = ddetails[i].proposed_share_sw;
+                                            worksheet.Cell(currentRow, 21).Value = ddetails[i].demand_gw;
+                                            worksheet.Cell(currentRow, 22).Value = ddetails[i].demand_sw;
+                                            worksheet.Cell(currentRow, 23).Value = ddetails[i].ground_water;
+                                            worksheet.Cell(currentRow, 24).Value = ddetails[i].surface_water;
+                                            worksheet.Cell(currentRow, 25).Value = ddetails[i].total_wt_available;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Water Budget.xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Budget.xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+
+                        else if (Module_name == 6.1)
+                        {
+                            dynamic ddetails;
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            && M.gp == Gram
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            orderby M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District
+                                            orderby M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                            where M.state == State
+                                            orderby M.district, M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("DS (Sprinkler)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                worksheet.Cell(currentRow, 12).Value = "Area Proposed for Sprinkler (ha)";
+                                worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    //for (int i = 0; i < ddetails.Count; i++)
+                                    //{
+                                    //    string gp = ddetails[i].gp;
+                                    //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                    //    if (ddetails1 != null)
+                                    //    {
+                                    //        currentRow++;
+                                    //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                    //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                    //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                    //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                    //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                    //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                    //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                    //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                    //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                    //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                    //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                    //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                    //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                    //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                    //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                    //    }
+                                    //}
+
+
+                                    var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+    .Select(g => new
+    {
+        Gp = g.Key,
+        TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+        Details = g.ToList()
+    }).ToList();
+                                    currentRow = 2;
+
+                                    foreach (var group in groupedData)
+                                    {
+                                        string gp = group.Gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                        if (ddetails1 != null)
+                                        {
+                                            int startRow = currentRow;
+
+                                            foreach (var detail in group.Details)
+                                            {
+                                                worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                currentRow++;
+                                            }
+
+                                            // Merge rows for the Total_Reduction column
+                                            if (group.Details.Count > 1)
+                                            {
+                                                worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                            }
+                                            worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Demand Side(Sprinkler).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Demand Side(Sprinkler).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+
+                        else if (Module_name == 6.2)
+                        {
+                            dynamic ddetails;
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            && M.gp == Gram
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            orderby M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District
+                                            orderby M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                            where M.state == State
+                                            orderby M.district, M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("DS (Drip)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                worksheet.Cell(currentRow, 12).Value = "Area Proposed for Drip (ha)";
+                                //worksheet.Cell(currentRow, 13).Value = "Standard Reduction in Water Demand in ha m(40%)";
+                                worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    //for (int i = 0; i < ddetails.Count; i++)
+                                    //{
+                                    //    string gp = ddetails[i].gp;
+                                    //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                    //    if (ddetails1 != null)
+                                    //    {
+                                    //        currentRow++;
+                                    //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                    //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                    //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                    //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                    //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                    //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                    //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                    //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                    //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                    //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                    //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                    //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                    //        //worksheet.Cell(currentRow, 13).Value = ddetails[i].reduction_in_demand;
+                                    //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                    //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                    //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                    //    }
+                                    //}
+
+                                    var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+    .Select(g => new
+    {
+        Gp = g.Key,
+        TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+        Details = g.ToList()
+    }).ToList();
+                                    currentRow = 2;
+                                    foreach (var group in groupedData)
+                                    {
+                                        string gp = group.Gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                        if (ddetails1 != null)
+                                        {
+                                            int startRow = currentRow;
+
+                                            foreach (var detail in group.Details)
+                                            {
+                                                worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                currentRow++;
+                                            }
+
+                                            // Merge rows for the Total_Reduction column
+                                            if (group.Details.Count > 1)
+                                            {
+                                                worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                            }
+                                            worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Demand Side(Drip).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Demand Side(Drip).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+
+                        else if (Module_name == 6.3)
+                        {
+                            dynamic ddetails;
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            && M.gp == Gram
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            orderby M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District
+                                            orderby M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                            where M.state == State
+                                            orderby M.district, M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.area_proposed,
+                                                D.reduction_in_demand,
+                                                D.water_demand,
+                                                D.net_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("DS (UG Pipelines)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                worksheet.Cell(currentRow, 12).Value = "Area Proposed for UG Pipelines (ha)";
+                                //worksheet.Cell(currentRow, 13).Value = "Standard Reduction in Water Demand in ha m(20%)";
+                                worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    //for (int i = 0; i < ddetails.Count; i++)
+                                    //{
+                                    //    string gp = ddetails[i].gp;
+                                    //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                    //    if (ddetails1 != null)
+                                    //    {
+                                    //        currentRow++;
+                                    //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                    //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                    //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                    //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                    //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                    //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                    //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                    //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                    //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                    //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                    //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                    //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                    //        //worksheet.Cell(currentRow, 13).Value = ddetails[i].reduction_in_demand;
+                                    //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                    //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                    //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                    //    }
+                                    //}
+
+                                    var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+   .Select(g => new
+   {
+       Gp = g.Key,
+       TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+       Details = g.ToList()
+   }).ToList();
+                                    currentRow = 2;
+                                    foreach (var group in groupedData)
+                                    {
+                                        string gp = group.Gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                        if (ddetails1 != null)
+                                        {
+                                            int startRow = currentRow;
+
+                                            foreach (var detail in group.Details)
+                                            {
+                                                worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                currentRow++;
+                                            }
+
+                                            // Merge rows for the Total_Reduction column
+                                            if (group.Details.Count > 1)
+                                            {
+                                                worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                            }
+                                            worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Demand Side(UnderGround Pipelines).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Demand Side(UnderGround Pipelines).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 6.4)
+                        {
+                            dynamic ddetails;
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            && M.gp == Gram
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.original_crop_name,
+                                                D.original_area,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_ch,
+                                                D.water_req,
+                                                D.original_wt_dmd,
+                                                D.change_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            orderby M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.original_crop_name,
+                                                D.original_area,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_ch,
+                                                D.water_req,
+                                                D.original_wt_dmd,
+                                                D.change_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District
+                                            orderby M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.original_crop_name,
+                                                D.original_area,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_ch,
+                                                D.water_req,
+                                                D.original_wt_dmd,
+                                                D.change_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+                            else
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                            where M.state == State
+                                            orderby M.district, M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.original_crop_name,
+                                                D.original_area,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_ch,
+                                                D.water_req,
+                                                D.original_wt_dmd,
+                                                D.change_water_demand,
+                                                D.reduction_gw
+                                            }).ToList();
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("DS (Crop Diversification)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                worksheet.Cell(currentRow, 7).Value = "Original Crop Name";
+                                worksheet.Cell(currentRow, 8).Value = "Original Area under Conventional Irrigation (ha)";
+                                worksheet.Cell(currentRow, 9).Value = "Changed Crop Category";
+                                worksheet.Cell(currentRow, 10).Value = "Changed Crop Type";
+                                worksheet.Cell(currentRow, 11).Value = "Changed Crop Name";
+                                worksheet.Cell(currentRow, 12).Value = "Changed Area Under Crop Shifted (ha)";
+                                worksheet.Cell(currentRow, 13).Value = "Changed Water Requirement (mm)";
+                                worksheet.Cell(currentRow, 14).Value = "Original Crop Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 15).Value = "Changed Crop Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Reduction in Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 17).Value = "Total Reduction in Water Demand (ha m)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    //for (int i = 0; i < ddetails.Count; i++)
+                                    //{
+                                    //    string gp = ddetails[i].gp;
+                                    //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                    //    if (ddetails1 != null)
+                                    //    {
+                                    //        currentRow++;
+                                    //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                    //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                    //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                    //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                    //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                    //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                    //        worksheet.Cell(currentRow, 7).Value = ddetails[i].original_crop_name;
+                                    //        worksheet.Cell(currentRow, 8).Value = ddetails[i].original_area;
+                                    //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_category;
+                                    //        worksheet.Cell(currentRow, 10).Value = ddetails[i].crop_type;
+                                    //        worksheet.Cell(currentRow, 11).Value = ddetails[i].crop_name;
+                                    //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_ch;
+                                    //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_req;
+                                    //        worksheet.Cell(currentRow, 14).Value = ddetails[i].original_wt_dmd;
+                                    //        worksheet.Cell(currentRow, 15).Value = ddetails[i].change_water_demand;
+                                    //        worksheet.Cell(currentRow, 16).Value = ddetails[i].reduction_gw;
+                                    //    }
+                                    //}
+
+                                    var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+   .Select(g => new
+   {
+       Gp = g.Key,
+       TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+       Details = g.ToList()
+   }).ToList();
+                                    currentRow = 2;
+
+                                    foreach (var group in groupedData)
+                                    {
+                                        string gp = group.Gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                        if (ddetails1 != null)
+                                        {
+                                            int startRow = currentRow;
+
+                                            foreach (var detail in group.Details)
+                                            {
+                                                worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                worksheet.Cell(currentRow, 7).Value = detail.original_crop_name;
+                                                worksheet.Cell(currentRow, 8).Value = detail.original_area;
+                                                worksheet.Cell(currentRow, 9).Value = detail.crop_category;
+                                                worksheet.Cell(currentRow, 10).Value = detail.crop_type;
+                                                worksheet.Cell(currentRow, 11).Value = detail.crop_name;
+                                                worksheet.Cell(currentRow, 12).Value = detail.area_ch;
+                                                worksheet.Cell(currentRow, 13).Value = detail.water_req;
+                                                worksheet.Cell(currentRow, 14).Value = detail.original_wt_dmd;
+                                                worksheet.Cell(currentRow, 15).Value = detail.change_water_demand;
+                                                worksheet.Cell(currentRow, 16).Value = detail.reduction_gw;
+                                                currentRow++;
+                                            }
+
+                                            // Merge rows for the Total_Reduction column
+                                            if (group.Details.Count > 1)
+                                            {
+                                                worksheet.Range(startRow, 17, currentRow - 1, 17).Merge();
+                                            }
+                                            worksheet.Cell(startRow, 17).Value = group.TotalReductionGw;
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Demand Side(Crop Diversification).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Demand Side(Crop Diversification).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 6.5)
+                        {
+                            dynamic ddetails;
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            && M.gp == Gram
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.innovative_measures,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.water_save,
+                                                D.water_demand,
+                                                D.reduction
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            orderby M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.innovative_measures,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.water_save,
+                                                D.water_demand,
+                                                D.reduction
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District
+                                            orderby M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.innovative_measures,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.water_save,
+                                                D.water_demand,
+                                                D.reduction
+                                            }).ToList();
+                            }
+                            else
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                            where M.state == State
+                                            orderby M.district, M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.season_type,
+                                                D.innovative_measures,
+                                                D.crop_category,
+                                                D.crop_type,
+                                                D.crop_name,
+                                                D.area_irrigation,
+                                                D.gross_water,
+                                                D.water_save,
+                                                D.water_demand,
+                                                D.reduction
+                                            }).ToList();
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("DS (Any Other)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                worksheet.Cell(currentRow, 7).Value = "Other water saving Measures/Innovative measures";
+                                worksheet.Cell(currentRow, 8).Value = "Crop Category";
+                                worksheet.Cell(currentRow, 9).Value = "Crop Type";
+                                worksheet.Cell(currentRow, 10).Value = "Crop Name";
+                                worksheet.Cell(currentRow, 11).Value = "Area Proposed (ha)";
+                                worksheet.Cell(currentRow, 12).Value = "Water Requirement (mm)";
+                                worksheet.Cell(currentRow, 13).Value = "Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 14).Value = "Water Saving(%)";
+                                worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    //for (int i = 0; i < ddetails.Count; i++)
+                                    //{
+                                    //    string gp = ddetails[i].gp;
+                                    //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                    //    if (ddetails1 != null)
+                                    //    {
+                                    //        currentRow++;
+                                    //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                    //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                    //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                    //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                    //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                    //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                    //        worksheet.Cell(currentRow, 7).Value = ddetails[i].innovative_measures;
+                                    //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_category;
+                                    //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_type;
+                                    //        worksheet.Cell(currentRow, 10).Value = ddetails[i].crop_name;
+                                    //        worksheet.Cell(currentRow, 11).Value = ddetails[i].area_irrigation;
+                                    //        worksheet.Cell(currentRow, 12).Value = ddetails[i].gross_water;
+                                    //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                    //        worksheet.Cell(currentRow, 14).Value = ddetails[i].water_save;
+                                    //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction;
+                                    //    }
+                                    //}
+
+                                    var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+    .Select(g => new
+    {
+        Gp = g.Key,
+        TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction, out var result) ? result : 0),
+        Details = g.ToList()
+    }).ToList();
+                                    currentRow = 2;
+
+                                    foreach (var group in groupedData)
+                                    {
+                                        string gp = group.Gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                        if (ddetails1 != null)
+                                        {
+                                            int startRow = currentRow;
+
+                                            foreach (var detail in group.Details)
+                                            {
+                                                worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                worksheet.Cell(currentRow, 7).Value = detail.innovative_measures;
+                                                worksheet.Cell(currentRow, 8).Value = detail.crop_category;
+                                                worksheet.Cell(currentRow, 9).Value = detail.crop_type;
+                                                worksheet.Cell(currentRow, 10).Value = detail.crop_name;
+                                                worksheet.Cell(currentRow, 11).Value = detail.area_irrigation;
+                                                worksheet.Cell(currentRow, 12).Value = detail.gross_water;
+                                                worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                worksheet.Cell(currentRow, 14).Value = detail.water_save;
+                                                worksheet.Cell(currentRow, 15).Value = detail.reduction;
+                                                currentRow++;
+                                            }
+
+                                            // Merge rows for the Total_Reduction column
+                                            if (group.Details.Count > 1)
+                                            {
+                                                worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                            }
+                                            worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Demand Side(Any Other).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Demand Side(Any Other).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                        }
+                        else if (Module_name == 6.6)
+                        {
+                            dynamic ddetails;
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            && M.gp == Gram
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.fund_for,
+                                                D.total_crop_area,
+                                                D.total_area_proposed,
+                                                D.area_proposed,
+                                                D.financial_year,
+                                                D.department_name,
+                                                D.scheme_name,
+                                                D.other_scheme,
+                                                D.approx_est_cost,
+                                                D.innovative_measures
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District && M.block == Block
+                                            orderby M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.fund_for,
+                                                D.total_crop_area,
+                                                D.total_area_proposed,
+                                                D.area_proposed,
+                                                D.financial_year,
+                                                D.department_name,
+                                                D.scheme_name,
+                                                D.other_scheme,
+                                                D.approx_est_cost,
+                                                D.innovative_measures
+                                            }).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                            join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                            where M.state == State && M.district == District
+                                            orderby M.block, M.gp
+                                            select new
+                                            {
+                                                M.state,
+                                                M.district,
+                                                M.block,
+                                                M.gp,
+                                                M.data_year,
+                                                D.fund_for,
+                                                D.total_crop_area,
+                                                D.total_area_proposed,
+                                                D.area_proposed,
+                                                D.financial_year,
+                                                D.department_name,
+                                                D.scheme_name,
+                                                D.other_scheme,
+                                                D.approx_est_cost,
+                                                D.innovative_measures
+                                            }).ToList();
+                            }
+                            else
+                            {
+                                using (var context = new AbhyEntity())
+                                {
+                                    var list = (from M in context.obj_abhy_wsp_demand_meta_24_update
+                                                join D in context.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                where M.state == State
+                                                orderby M.district, M.block, M.gp
+                                                select new
+                                                {
+                                                    M.state,
+                                                    M.district,
+                                                    M.block,
+                                                    M.gp,
+                                                    M.data_year,
+                                                    D.fund_for,
+                                                    D.total_crop_area,
+                                                    D.total_area_proposed,
+                                                    D.area_proposed,
+                                                    D.financial_year,
+                                                    D.department_name,
+                                                    D.scheme_name,
+                                                    D.other_scheme,
+                                                    D.approx_est_cost,
+                                                    D.innovative_measures
+                                                }).ToList();
+
+                                    ddetails = list.ToList();
+                                }
+                            }
+
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("DS (Funding Source)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Name of Intervention";
+                                worksheet.Cell(currentRow, 7).Value = "Total Area under Conventional Irrigation (ha)";
+                                worksheet.Cell(currentRow, 8).Value = "Total Area Proposed (ha)";
+                                worksheet.Cell(currentRow, 9).Value = "Area Proposed (ha)";
+                                worksheet.Cell(currentRow, 10).Value = "Financial Year";
+                                worksheet.Cell(currentRow, 11).Value = "Department Name";
+                                worksheet.Cell(currentRow, 12).Value = "Scheme Name";
+                                worksheet.Cell(currentRow, 13).Value = "Other Scheme Name";
+                                worksheet.Cell(currentRow, 14).Value = "Approximate Estimated Cost (in lakh)";
+                                worksheet.Cell(currentRow, 15).Value = "Other water saving Measures/Innovative measures";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].fund_for;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].total_crop_area;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].total_area_proposed;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].area_proposed;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].financial_year;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].department_name;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].scheme_name;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].other_scheme;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].approx_est_cost;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].innovative_measures;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Demand Side(Funding Source).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Demand Side(Funding Source).xlsx");
+                                    robj = bytesdata;
+
+                                }
+                            }
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+
+                        }
+
+                        else if (Module_name == 7.1)
+                        {
+                            List<abhy_artificial_recharge_st_data_24_update> ddetails = new List<abhy_artificial_recharge_st_data_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("Supply Side(ARS)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                worksheet.Cell(currentRow, 8).Value = "Type of ARS";
+                                worksheet.Cell(currentRow, 9).Value = "Latitude of proposed structure";
+                                worksheet.Cell(currentRow, 10).Value = "Longitude of proposed structure";
+                                worksheet.Cell(currentRow, 11).Value = "Work Proposed";
+                                worksheet.Cell(currentRow, 12).Value = "Storage capacity (ha m)";
+                                worksheet.Cell(currentRow, 13).Value = "Annual no. of fillings";
+                                worksheet.Cell(currentRow, 14).Value = "Recharge (%)";
+                                worksheet.Cell(currentRow, 15).Value = "Annual GW Recharge (ha m)";
+                                worksheet.Cell(currentRow, 16).Value = "Financial year";
+                                worksheet.Cell(currentRow, 17).Value = "Department Name";
+                                worksheet.Cell(currentRow, 18).Value = "Scheme Name";
+                                worksheet.Cell(currentRow, 19).Value = "Other Scheme Name";
+                                worksheet.Cell(currentRow, 20).Value = "Total Approximate Estimated Cost(in lakh)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].village_name;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].location_detail;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].type_of_ar;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].latitude;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].longitude;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].work_proposed;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].storage_capacity;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].annual_filling_no;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].recharge;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].annual_gw_recharge;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].financial_year;
+                                            worksheet.Cell(currentRow, 17).Value = ddetails[i].department_name;
+                                            worksheet.Cell(currentRow, 18).Value = ddetails[i].scheme_name;
+                                            worksheet.Cell(currentRow, 19).Value = ddetails[i].other_scheme;
+                                            worksheet.Cell(currentRow, 20).Value = ddetails[i].estimated_cost;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Supply Side(ARS).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Supply Side(ARS).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                        }
+                        else if (Module_name == 7.2)
+                        {
+                            List<abhy_water_conservation_st_data_24_update> ddetails = new List<abhy_water_conservation_st_data_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                            }
+
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("Supply Side(WCS)");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                worksheet.Cell(currentRow, 8).Value = "Type of WCS";
+                                worksheet.Cell(currentRow, 9).Value = "Latitude of proposed structure";
+                                worksheet.Cell(currentRow, 10).Value = "Longitude of proposed structure";
+                                worksheet.Cell(currentRow, 11).Value = "Work Proposed";
+                                worksheet.Cell(currentRow, 12).Value = "Storage capacity (ha m)";
+                                worksheet.Cell(currentRow, 13).Value = "Annual no. of fillings";
+                                worksheet.Cell(currentRow, 14).Value = "Effective storage available for use (ha m)";
+                                worksheet.Cell(currentRow, 15).Value = "Financial year";
+                                worksheet.Cell(currentRow, 16).Value = "Department Name";
+                                worksheet.Cell(currentRow, 17).Value = "Scheme Name";
+                                worksheet.Cell(currentRow, 18).Value = "Other Scheme Name";
+                                worksheet.Cell(currentRow, 19).Value = "Total Approximate Estimated Cost(in lakh)";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].village_name;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].location_detail;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].type_of_wr;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].latitude;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].longitude;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].work_proposed;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].storage_capacity;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].annual_filling_no;
+                                            worksheet.Cell(currentRow, 14).Value = ddetails[i].effective_storage;
+                                            worksheet.Cell(currentRow, 15).Value = ddetails[i].financial_year;
+                                            worksheet.Cell(currentRow, 16).Value = ddetails[i].department_name;
+                                            worksheet.Cell(currentRow, 17).Value = ddetails[i].scheme_name;
+                                            worksheet.Cell(currentRow, 18).Value = ddetails[i].other_scheme;
+                                            worksheet.Cell(currentRow, 19).Value = ddetails[i].estimated_cost;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Supply Side(WCS).xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Supply Side(WCS).xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            //return Json(robj, JsonRequestBehavior.AllowGet);
+                            return new JsonResult
+                            {
+                                Data = new { robj },
+                                MaxJsonLength = int.MaxValue,
+                                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                            };
+                        }
+                        else if (Module_name == 8.1)
+                        {
+                            List<abhy_wsp_pgwm_committee_member_24_update> ddetails = new List<abhy_wsp_pgwm_committee_member_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("PGWM Committee");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Name";
+                                worksheet.Cell(currentRow, 7).Value = "Designation";
+                                worksheet.Cell(currentRow, 8).Value = "Gender";
+                                worksheet.Cell(currentRow, 9).Value = "Mobile /Landline No.";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp_name;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].member_name;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].designation;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].gender;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].contact_no;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "PGWM Committee.xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "PGWM Committee.xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 8.2)
+                        {
+                            List<abhy_wsp_pgwm_committee_meeting_24_update> ddetails = new List<abhy_wsp_pgwm_committee_meeting_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("PGWM Meeting");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Date";
+                                worksheet.Cell(currentRow, 7).Value = "GP Name";
+                                worksheet.Cell(currentRow, 8).Value = "Village Name";
+                                worksheet.Cell(currentRow, 9).Value = "Meeting Location";
+                                worksheet.Cell(currentRow, 10).Value = "Male";
+                                worksheet.Cell(currentRow, 11).Value = "Female";
+                                worksheet.Cell(currentRow, 12).Value = "Transgender";
+                                worksheet.Cell(currentRow, 13).Value = "Total number of attendees";
+                                worksheet.Cell(currentRow, 14).Value = "MOM(Minutes of Meeting)";
+                                worksheet.Cell(currentRow, 15).Value = "Photograph";
+                                worksheet.Cell(currentRow, 16).Value = "Resolution";
+                                worksheet.Cell(currentRow, 17).Value = "Attendance Sheet";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp_name;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].meeting_date;
+                                            worksheet.Cell(currentRow, 7).Value = ddetails[i].meeting_gp_name;
+                                            worksheet.Cell(currentRow, 8).Value = ddetails[i].meeting_village;
+                                            worksheet.Cell(currentRow, 9).Value = ddetails[i].meeting_location;
+                                            worksheet.Cell(currentRow, 10).Value = ddetails[i].male_attendees;
+                                            worksheet.Cell(currentRow, 11).Value = ddetails[i].female_attendees;
+                                            worksheet.Cell(currentRow, 12).Value = ddetails[i].transgender_attendees;
+                                            worksheet.Cell(currentRow, 13).Value = ddetails[i].total_attendees;
+                                            worksheet.Cell(currentRow, 14).Value = path + ddetails[i].mom_doc;
+                                            worksheet.Cell(currentRow, 15).Value = path + ddetails[i].meeting_image;
+                                            worksheet.Cell(currentRow, 16).Value = path + ddetails[i].meeting_resolution;
+                                            worksheet.Cell(currentRow, 17).Value = path + ddetails[i].attendance_sheet;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "PGWM Meeting.xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "PGWM Meeting.xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 9)
+                        {
+                            List<abhy_wsp_dpmu_declaration_24_update> ddetails = new List<abhy_wsp_dpmu_declaration_24_update>();
+                            List<abhy_wsp_dpmu_declaration_24_update> FinalData = new List<abhy_wsp_dpmu_declaration_24_update>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                            }
+
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("DPMU Declaration");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "DPMU Declaration";
+
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp_name;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            worksheet.Cell(currentRow, 6).Value = ddetails[i].dpmu_declaration;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "DPMU Declaration.xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DPMU Declaration.xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (Module_name == 10)
+                        {
+                            List<abhy_wsp_approved_status> ddetails = new List<abhy_wsp_approved_status>();
+                            if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.year == Year).ToList();
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();
+
+                            }
+                            else if (State != "0" && State != null && District != "0" && District != null)
+                            {
+                                ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();
+                            }
+                            else
+                            {
+                                ddetails = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.year == Year).ToList();
+                            }
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var worksheet = workbook.Worksheets.Add("Approved WSP");
+                                var currentRow = 1;
+                                worksheet.Cell(currentRow, 1).Value = "State";
+                                worksheet.Cell(currentRow, 2).Value = "District";
+                                worksheet.Cell(currentRow, 3).Value = "Block";
+                                worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                worksheet.Cell(currentRow, 6).Value = "Status";
+
+                                if (ddetails.Count != 0)
+                                {
+                                    for (int i = 0; i < ddetails.Count; i++)
+                                    {
+                                        string gp = ddetails[i].gp_name;
+                                        var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                        if (ddetails1 != null)
+                                        {
+                                            string status_name = "";
+                                            if (ddetails[i].status_id == 5)
+                                            {
+                                                status_name = "Approved";
+                                            }
+                                            else if (ddetails[i].status_id == 4)
+                                            {
+                                                status_name = "State Level";
+                                            }
+                                            else if (ddetails[i].status_id == 3)
+                                            {
+                                                status_name = "District Level";
+                                            }
+                                            else if (ddetails[i].status_id == 1)
+                                            {
+                                                status_name = "GP Level";
+                                            }
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                            worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                            worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                            worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                            worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                            worksheet.Cell(currentRow, 6).Value = status_name;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    currentRow++;
+                                    worksheet.Cell(currentRow, 1).Value = "";
+                                    worksheet.Cell(currentRow, 2).Value = "";
+                                    worksheet.Cell(currentRow, 3).Value = "";
+                                    worksheet.Cell(currentRow, 4).Value = "No Data";
+                                    worksheet.Cell(currentRow, 5).Value = "";
+                                    worksheet.Cell(currentRow, 6).Value = "";
+                                    worksheet.Cell(currentRow, 7).Value = "";
+                                    worksheet.Cell(currentRow, 8).Value = "";
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbook.SaveAs(stream);
+                                    var content = stream.ToArray();
+
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //    "Approved WSP.xlsx");
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Approved WSP.xlsx");
+                                    robj = bytesdata;
+                                }
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+                        }
+
+
+
+                    }
+
+
+                    return Json("No File");
+                }
+                catch (Exception Ex)
+                {
+                    abhy_tbl_error error_data = new abhy_tbl_error();
+                    error_data.error_test = Ex.Message;
+                    error_data.user_email = Ex.StackTrace;
+                    error_data.user_type = "WspExcel - " + Module_name;
+                    error_data.error_count = "1";
+                    error_data.date_time = DateTime.Now.ToString();
+                    ABE.obj_abhy_tbl_error.Add(error_data);
+                    ABE.SaveChanges();
+                    return RedirectToAction("index", "WspReport");
+                }
+            }
+            else
+            {
+                return RedirectToAction("WSP_GWM_HOME", "WspNew");
+            }
+        }
+
+        public ActionResult Create_WSP_Excel_2024_25_update_AllVersion2(string State, string District, string Block, string Gram, double Module_name, string Year)
+        {
+
+            try
+            {
+                double[] AllVersion = { 1.1, 1.2, 1.3, 1.4, 2, 3.1, 3.2, 3.3, 3.4, 4, 5, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 7.1, 7.2, 8.1, 8.2, 9, 10 };
+                string path = "https://ataljal.mowr.gov.in";
+                if (Session["UserId"] != null)
+                {
+                    FileContentResult robj;
+                    //All Module
+                    if (Module_name == 1)
+                    {
+                        var Submodules_list = ABE.obj_dd_wsp_submodule.Where(x => x.module_val == Module_name && x.fin_year == Year).ToList().OrderBy(x => x.sub_module_val);
+                        if (Submodules_list.Count() > 0)
+                        {
+                            using (var workbookAllSub = new XLWorkbook())
+                            {
+                                foreach (var itemSub in Submodules_list)
+                                {
+                                    if (itemSub.sub_module_val == 1.1m)
+                                    {
+                                        List<abhy_wsp_gpdata_new_24_update> ddetails = new List<abhy_wsp_gpdata_new_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gram_panchayat_name == Gram && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("GP (Basic Hydrology Info)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Gram Panchayat LGD Code";
+                                        worksheet.Cell(currentRow, 7).Value = "Block Area (ha)";
+                                        worksheet.Cell(currentRow, 8).Value = "Gram Panchayat Area (ha)";
+                                        worksheet.Cell(currentRow, 9).Value = "Watershed Code";
+                                        worksheet.Cell(currentRow, 10).Value = "Watershed Name";
+                                        worksheet.Cell(currentRow, 11).Value = "Watershed Area in Block / Taluk (ha)";
+                                        worksheet.Cell(currentRow, 12).Value = "Sub-basin Code";
+                                        worksheet.Cell(currentRow, 13).Value = "Sub Basin Name";
+                                        worksheet.Cell(currentRow, 14).Value = "Basin Code";
+                                        worksheet.Cell(currentRow, 15).Value = "Basin Name";
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gram_panchayat_name;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gram_panchayat_name;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].gp_id;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].block_area;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].gp_area;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].watershed_code;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].watershed_name;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].watershed_area_block;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].sub_basin_code;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].sub_basin_name;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].basin_code;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].basin_name;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "No Data";
+                                            worksheet.Cell(currentRow, 9).Value = "";
+                                            worksheet.Cell(currentRow, 10).Value = "";
+                                            worksheet.Cell(currentRow, 11).Value = "";
+                                            worksheet.Cell(currentRow, 12).Value = "";
+                                            worksheet.Cell(currentRow, 13).Value = "";
+                                            worksheet.Cell(currentRow, 14).Value = "";
+                                            worksheet.Cell(currentRow, 15).Value = "";
+                                        }
+
+
+                                    }
+                                    if (itemSub.sub_module_val == 1.2m)
+                                    {
+                                        List<abhy_wsp_gram_images_24_update> ddetails = new List<abhy_wsp_gram_images_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("GP (Maps Upload)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Location Map";
+                                        worksheet.Cell(currentRow, 7).Value = "Watershed and Drainage Map";
+                                        worksheet.Cell(currentRow, 8).Value = "Aquifer Map";
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gpname;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                    worksheet.Cell(currentRow, 6).Value = path + ddetails[i].gpimage1;
+                                                    worksheet.Cell(currentRow, 7).Value = path + ddetails[i].gpimage2;
+                                                    worksheet.Cell(currentRow, 8).Value = path + ddetails[i].gpimage3;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+
+                                    }
+                                    if (itemSub.sub_module_val == 1.3m)
+                                    {
+                                        List<abhy_wsp_gwl_24_update> ddetails = new List<abhy_wsp_gwl_24_update>();
+                                        List<abhy_wsp_gwl_24_update> Final_data = new List<abhy_wsp_gwl_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.grampanchayat == Gram).OrderBy(c => c.wellid).ToList();
+
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State).ToList();//total list
+                                        }
+                                        if (Final_data.Count > 0)
+                                        {
+                                            var GroupByData = Final_data.GroupBy(x => x.wellid).ToList();
+                                            int j = 0;
+                                            foreach (var items in GroupByData.AsEnumerable())
+                                            {
+                                                ++j;
+                                                var itemId = items.First();
+                                                var DataByWellId = Final_data.Where(x => x.wellid == itemId.wellid).ToList();
+                                                for (int i = 0; i < DataByWellId.Count; i++)
+                                                {
+                                                    if (i == 0)
+                                                    {
+                                                        var obj = new abhy_wsp_gwl_24_update()
+                                                        {
+                                                            sno = j.ToString(),
+                                                            state = DataByWellId[i].state,
+                                                            district = DataByWellId[i].district,
+                                                            block = DataByWellId[i].block,
+                                                            grampanchayat = DataByWellId[i].grampanchayat,
+                                                            sitename = DataByWellId[i].sitename,
+                                                            locationdetails = DataByWellId[i].locationdetails,
+                                                            latitude = DataByWellId[i].latitude,
+                                                            longitude = DataByWellId[i].longitude,
+                                                            datetime = DataByWellId[i].datetime,
+                                                            wellid = DataByWellId[i].wellid,
+                                                            typeofwell = DataByWellId[i].typeofwell,
+                                                            other_well_type = DataByWellId[i].other_well_type,
+                                                            source_Ownership = DataByWellId[i].source_Ownership,
+                                                            source_Ownership_type = DataByWellId[i].source_Ownership_type,
+                                                            Diameter_of_Well = DataByWellId[i].Diameter_of_Well,
+                                                            welldepth = DataByWellId[i].welldepth,
+                                                            Height_of_Measuring_Point = DataByWellId[i].Height_of_Measuring_Point,
+                                                            gwl_reading = DataByWellId[i].gwl_reading,
+                                                            gwl_date = DataByWellId[i].gwl_date
+
+                                                        };
+                                                        ddetails.Add(obj);
+                                                    }
+                                                    else
+                                                    {
+                                                        var obj = new abhy_wsp_gwl_24_update()
+                                                        {
+                                                            sno = "",
+                                                            state = DataByWellId[i].state,
+                                                            district = DataByWellId[i].district,
+                                                            block = DataByWellId[i].block,
+                                                            grampanchayat = DataByWellId[i].grampanchayat,
+                                                            sitename = DataByWellId[i].sitename,
+                                                            locationdetails = DataByWellId[i].locationdetails,
+                                                            latitude = DataByWellId[i].latitude,
+                                                            longitude = DataByWellId[i].longitude,
+                                                            datetime = DataByWellId[i].datetime,
+                                                            wellid = DataByWellId[i].wellid,
+                                                            typeofwell = DataByWellId[i].typeofwell,
+                                                            other_well_type = DataByWellId[i].other_well_type,
+                                                            source_Ownership = DataByWellId[i].source_Ownership,
+                                                            source_Ownership_type = DataByWellId[i].source_Ownership_type,
+                                                            Diameter_of_Well = DataByWellId[i].Diameter_of_Well,
+                                                            welldepth = DataByWellId[i].welldepth,
+                                                            Height_of_Measuring_Point = DataByWellId[i].Height_of_Measuring_Point,
+                                                            gwl_reading = DataByWellId[i].gwl_reading,
+                                                            gwl_date = DataByWellId[i].gwl_date
+                                                        };
+                                                        ddetails.Add(obj);
+                                                    }
+                                                }
+                                            }
+                                        }
+
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("GP (Water Level)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "S.No.";
+                                        worksheet.Cell(currentRow, 2).Value = "State";
+                                        worksheet.Cell(currentRow, 3).Value = "District";
+                                        worksheet.Cell(currentRow, 4).Value = "Block";
+                                        worksheet.Cell(currentRow, 5).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 6).Value = "Site Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                        worksheet.Cell(currentRow, 8).Value = "Latitude";
+                                        worksheet.Cell(currentRow, 9).Value = "Longitude";
+                                        worksheet.Cell(currentRow, 10).Value = "Date";
+                                        worksheet.Cell(currentRow, 11).Value = "Well ID";
+                                        worksheet.Cell(currentRow, 12).Value = "Type of Well";
+                                        worksheet.Cell(currentRow, 13).Value = "Other Well Type";
+                                        worksheet.Cell(currentRow, 14).Value = "Ownership Type";
+                                        worksheet.Cell(currentRow, 15).Value = "Government Source";
+                                        worksheet.Cell(currentRow, 16).Value = "Diameter of well(m)";
+                                        worksheet.Cell(currentRow, 17).Value = "Depth of Well(mbmp)";
+                                        worksheet.Cell(currentRow, 18).Value = "Height of Measuring Point(mbgl)";
+                                        worksheet.Cell(currentRow, 19).Value = "Water Level (mbgl)";
+                                        worksheet.Cell(currentRow, 20).Value = "Water Level Date";
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string sno = Convert.ToString(ddetails[i].sno);
+                                                if (sno == "0")
+                                                {
+                                                    sno = "";
+                                                }
+                                                string gp = ddetails[i].grampanchayat;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = sno;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].state;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].district;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].block;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].grampanchayat;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].sitename;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].locationdetails;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].latitude;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].longitude;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].datetime;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].wellid;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].typeofwell;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].other_well_type;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].source_Ownership;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].source_Ownership_type;
+                                                    worksheet.Cell(currentRow, 16).Value = ddetails[i].Diameter_of_Well;
+                                                    worksheet.Cell(currentRow, 17).Value = ddetails[i].welldepth;
+                                                    worksheet.Cell(currentRow, 18).Value = ddetails[i].Height_of_Measuring_Point;
+                                                    worksheet.Cell(currentRow, 19).Value = ddetails[i].gwl_reading;
+                                                    worksheet.Cell(currentRow, 20).Value = ddetails[i].gwl_date;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 1.4m)
+                                    {
+                                        List<abhy_wsp_gwq_24_update> Final_data = new List<abhy_wsp_gwq_24_update>();
+                                        List<abhy_wsp_gwq_24_update> ddetails = new List<abhy_wsp_gwq_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District && x.Block == Block && x.GP == Gram).OrderBy(c => c.Well_ID).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District && x.Block == Block).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == District).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            Final_data = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State).ToList();//total list
+                                        }
+                                        if (Final_data.Count > 0)
+                                        {
+                                            var GroupByData = Final_data.GroupBy(x => x.Well_ID).ToList();
+                                            int j = 0;
+                                            foreach (var items in GroupByData.AsEnumerable())
+                                            {
+                                                ++j;
+                                                var itemId = items.First();
+                                                var DataByWellId = Final_data.Where(x => x.Well_ID == itemId.Well_ID).ToList();
+                                                for (int i = 0; i < DataByWellId.Count; i++)
+                                                {
+                                                    if (i == 0)
+                                                    {
+                                                        var obj = new abhy_wsp_gwq_24_update()
+                                                        {
+                                                            sno = j.ToString(),
+                                                            State = DataByWellId[i].State,
+                                                            District = DataByWellId[i].District,
+                                                            Block = DataByWellId[i].Block,
+                                                            GP = DataByWellId[i].GP,
+                                                            Village = DataByWellId[i].Village,
+                                                            Site_Name = DataByWellId[i].Site_Name,
+                                                            Latitude = DataByWellId[i].Latitude,
+                                                            Longitude = DataByWellId[i].Longitude,
+                                                            Years = DataByWellId[i].Years,
+                                                            Well_Type = DataByWellId[i].Well_Type,
+                                                            Source = DataByWellId[i].Source,
+                                                            Well_ID = DataByWellId[i].Well_ID,
+                                                            Well_Depth = DataByWellId[i].Well_Depth,
+                                                            Aquifer = DataByWellId[i].Aquifer,
+                                                            pH = DataByWellId[i].pH,
+                                                            EC = DataByWellId[i].EC,
+                                                            TDS = DataByWellId[i].TDS,
+                                                            TH = DataByWellId[i].TH,
+                                                            Calcium = DataByWellId[i].Calcium,
+                                                            Magnesium = DataByWellId[i].Magnesium,
+                                                            Sodium = DataByWellId[i].Sodium,
+                                                            Potassium = DataByWellId[i].Potassium,
+                                                            Carbonate = DataByWellId[i].Carbonate,
+                                                            Bicarbonate = DataByWellId[i].Bicarbonate,
+                                                            Sulphate = DataByWellId[i].Sulphate,
+                                                            Chloride = DataByWellId[i].Chloride,
+                                                            Fluoride = DataByWellId[i].Fluoride,
+                                                            Nitrate = DataByWellId[i].Nitrate
+                                                        };
+                                                        ddetails.Add(obj);
+                                                    }
+                                                    else
+                                                    {
+                                                        var obj = new abhy_wsp_gwq_24_update()
+                                                        {
+                                                            sno = "",
+                                                            State = DataByWellId[i].State,
+                                                            District = DataByWellId[i].District,
+                                                            Block = DataByWellId[i].Block,
+                                                            GP = DataByWellId[i].GP,
+                                                            Village = DataByWellId[i].Village,
+                                                            Site_Name = DataByWellId[i].Site_Name,
+                                                            Latitude = DataByWellId[i].Latitude,
+                                                            Longitude = DataByWellId[i].Longitude,
+                                                            Years = DataByWellId[i].Years,
+                                                            Well_Type = DataByWellId[i].Well_Type,
+                                                            Source = DataByWellId[i].Source,
+                                                            Well_ID = DataByWellId[i].Well_ID,
+                                                            Well_Depth = DataByWellId[i].Well_Depth,
+                                                            Aquifer = DataByWellId[i].Aquifer,
+                                                            pH = DataByWellId[i].pH,
+                                                            EC = DataByWellId[i].EC,
+                                                            TDS = DataByWellId[i].TDS,
+                                                            TH = DataByWellId[i].TH,
+                                                            Calcium = DataByWellId[i].Calcium,
+                                                            Magnesium = DataByWellId[i].Magnesium,
+                                                            Sodium = DataByWellId[i].Sodium,
+                                                            Potassium = DataByWellId[i].Potassium,
+                                                            Carbonate = DataByWellId[i].Carbonate,
+                                                            Bicarbonate = DataByWellId[i].Bicarbonate,
+                                                            Sulphate = DataByWellId[i].Sulphate,
+                                                            Chloride = DataByWellId[i].Chloride,
+                                                            Fluoride = DataByWellId[i].Fluoride,
+                                                            Nitrate = DataByWellId[i].Nitrate
+                                                        };
+                                                        ddetails.Add(obj);
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("GP (Water Quaity)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "S.No.";
+                                        worksheet.Cell(currentRow, 2).Value = "State";
+                                        worksheet.Cell(currentRow, 3).Value = "District";
+                                        worksheet.Cell(currentRow, 4).Value = "Block";
+                                        worksheet.Cell(currentRow, 5).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Location";
+                                        worksheet.Cell(currentRow, 8).Value = "Latitude";
+                                        worksheet.Cell(currentRow, 9).Value = "Longitude";
+                                        worksheet.Cell(currentRow, 10).Value = "Year";
+                                        worksheet.Cell(currentRow, 11).Value = "Well Type";
+                                        worksheet.Cell(currentRow, 12).Value = "Source";
+                                        worksheet.Cell(currentRow, 13).Value = "Well ID";
+                                        worksheet.Cell(currentRow, 14).Value = "Well Depth (mbgl)";
+                                        worksheet.Cell(currentRow, 15).Value = "Aquifer";
+                                        worksheet.Cell(currentRow, 16).Value = "PH";
+                                        worksheet.Cell(currentRow, 17).Value = "EC (µS/cm)";
+                                        worksheet.Cell(currentRow, 18).Value = "TDS (mg/L)";
+                                        worksheet.Cell(currentRow, 19).Value = "TH (mg/L)";
+                                        worksheet.Cell(currentRow, 20).Value = "Ca (mg/L)";
+                                        worksheet.Cell(currentRow, 21).Value = "Mg (mg/L)";
+                                        worksheet.Cell(currentRow, 22).Value = "Na (mg/L)";
+                                        worksheet.Cell(currentRow, 23).Value = "K (mg/L)";
+                                        worksheet.Cell(currentRow, 24).Value = "Carbonate (mg/L)";
+                                        worksheet.Cell(currentRow, 25).Value = "Bicarbonate (mg/L)";
+                                        worksheet.Cell(currentRow, 26).Value = "Sulphate (mg/L)";
+                                        worksheet.Cell(currentRow, 27).Value = "Chloride (mg/L)";
+                                        worksheet.Cell(currentRow, 28).Value = "Fluoride (mg/L)";
+                                        worksheet.Cell(currentRow, 29).Value = "Nitrate (mg/L)";
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string sno = Convert.ToString(ddetails[i].sno);
+                                                if (sno == "0")
+                                                {
+                                                    sno = "";
+                                                }
+                                                string gp = ddetails[i].GP;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = sno;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].State;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].District;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].Block;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].GP;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].Village;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].Site_Name;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].Latitude;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].Longitude;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].Years;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].Well_Type;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].Source;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].Well_ID;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].Well_Depth;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].Aquifer;
+                                                    worksheet.Cell(currentRow, 16).Value = ddetails[i].pH;
+                                                    worksheet.Cell(currentRow, 17).Value = ddetails[i].EC;
+                                                    worksheet.Cell(currentRow, 18).Value = ddetails[i].TDS;
+                                                    worksheet.Cell(currentRow, 19).Value = ddetails[i].TH;
+                                                    worksheet.Cell(currentRow, 20).Value = ddetails[i].Calcium;
+                                                    worksheet.Cell(currentRow, 21).Value = ddetails[i].Magnesium;
+                                                    worksheet.Cell(currentRow, 22).Value = ddetails[i].Sodium;
+                                                    worksheet.Cell(currentRow, 23).Value = ddetails[i].Potassium;
+                                                    worksheet.Cell(currentRow, 24).Value = ddetails[i].Carbonate;
+                                                    worksheet.Cell(currentRow, 25).Value = ddetails[i].Bicarbonate;
+                                                    worksheet.Cell(currentRow, 26).Value = ddetails[i].Sulphate;
+                                                    worksheet.Cell(currentRow, 27).Value = ddetails[i].Chloride;
+                                                    worksheet.Cell(currentRow, 28).Value = ddetails[i].Fluoride;
+                                                    worksheet.Cell(currentRow, 29).Value = ddetails[i].Nitrate;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbookAllSub.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //      "Gram Panchayat (Basic Hydrology Info).xlsx");
+
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Gram Panchayat All.xlsx");
+                                    robj = bytesdata;
+                                }
+
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+
+                        }
+
+
+                    }
+
+                    if (Module_name == 3)
+                    {
+                        var Submodules_list = ABE.obj_dd_wsp_submodule.Where(x => x.module_val == Module_name && x.fin_year == Year).ToList().OrderBy(x => x.sub_module_val);
+                        if (Submodules_list.Count() > 0)
+                        {
+                            using (var workbookAllSub = new XLWorkbook())
+                            {
+                                foreach (var itemSub in Submodules_list)
+                                {
+                                    if (itemSub.sub_module_val == 3.1m)
+                                    {
+                                        List<abhy_baseline_gp_livestock> livestock_details = new List<abhy_baseline_gp_livestock>();
+                                        List<abhy_uti_waterdraft_domestic_new_24_update> ddetails = new List<abhy_uti_waterdraft_domestic_new_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_uti_waterdraft_domestic_new_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                        }
+                                        var BaseLineData = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.year == Year).GroupBy(o => o.gpname).ToList();
+                                        if (BaseLineData.Count != 0)
+                                        {
+                                            foreach (var items in BaseLineData.AsEnumerable())
+                                            {
+                                                var itemId = items.First();
+                                                var data = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.year == Year && x.gpname == itemId.gpname).OrderByDescending(x => x.month_order_by).Take(1);
+                                                if (data != null)
+                                                {
+                                                    var temp = data.ToList();
+                                                    var id = Convert.ToInt32(temp[0].id);
+                                                    var livestock = ABE.obj_abhy_baseline_gp_livestock.Where(x => x.id == id).ToList();
+                                                    if (livestock.Count != 0)
+                                                    {
+                                                        livestock_details.AddRange(livestock);
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("WU (Drinking-Domestic)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Total Human Population";
+                                        worksheet.Cell(currentRow, 7).Value = "Daily water requirement (LPCD)";
+                                        worksheet.Cell(currentRow, 8).Value = "Total Water Required For Humans (L/day) ";
+                                        worksheet.Cell(currentRow, 9).Value = "Total Livestock Population";
+                                        worksheet.Cell(currentRow, 10).Value = "Daily Average water requirement (LPCD)";
+                                        worksheet.Cell(currentRow, 11).Value = "Total Water Required for Livestock (L/day)";
+
+
+                                        worksheet.Cell(currentRow, 12).Value = "% of Water Demand Met From GW (Human)";
+                                        worksheet.Cell(currentRow, 13).Value = "% of Water Demand Met From GW (Livestock)";
+                                        worksheet.Cell(currentRow, 14).Value = "Water Demand Met From GW (Human)";
+                                        worksheet.Cell(currentRow, 15).Value = "Water Demand Met From GW (Livestock)";
+                                        worksheet.Cell(currentRow, 16).Value = "% of Water Demand Met From SW (Human)";
+                                        worksheet.Cell(currentRow, 17).Value = "% of Water Demand Met From SW (Livestock)";
+                                        worksheet.Cell(currentRow, 18).Value = "Water Demand Met From SW (Human)";
+                                        worksheet.Cell(currentRow, 19).Value = "Water Demand Met From SW (Livestock)";
+
+                                        worksheet.Cell(currentRow, 20).Value = "Livestock Name";
+                                        worksheet.Cell(currentRow, 21).Value = "Livestock Count";
+                                        worksheet.Cell(currentRow, 22).Value = "Daily water requirement (LPCD) for Livestock";
+                                        if (ddetails.Count != 0)
+                                        {
+                                            string LiveStockName = "";
+                                            string LiveStockValue = "";
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                var List = livestock_details.Where(x => x.gpname == ddetails[i].gp).OrderByDescending(x => x.p_id).ToList();
+                                                if (List.Count != 0)
+                                                {
+                                                    LiveStockName = "";
+                                                    LiveStockValue = "";
+                                                    foreach (var items in List)
+                                                    {
+                                                        LiveStockName += items.livestock_name + ",";
+                                                        LiveStockValue += items.livestock_value + ",";
+                                                    }
+                                                }
+                                                string gp = ddetails[i].gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].total_pop_human;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].daily_water_req;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].water_req_human;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].total_pop_livestock;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].avg_water_req;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].water_req_livestock;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].perc_grd_hum;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].perc_grd_liv;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].water_deman_hum;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].water_deman_liv;
+                                                    worksheet.Cell(currentRow, 16).Value = ddetails[i].perc_sur_hum;
+                                                    worksheet.Cell(currentRow, 17).Value = ddetails[i].perc_grd_liv;
+                                                    worksheet.Cell(currentRow, 18).Value = ddetails[i].water_dem_hum;
+                                                    worksheet.Cell(currentRow, 19).Value = ddetails[i].water_dem_liv;
+                                                    worksheet.Cell(currentRow, 20).Value = LiveStockName;
+                                                    worksheet.Cell(currentRow, 21).Value = LiveStockValue;
+                                                    worksheet.Cell(currentRow, 22).Value = ddetails[i].daily_wat_req_per_liv;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 3.2m)
+                                    {
+                                        dynamic ddetails;
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                        join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                        where M.state_name == State && M.district_name == District && M.block_name == Block
+                                                        && M.gp_name == Gram
+                                                        select new
+                                                        {
+                                                            M.state_name,
+                                                            M.district_name,
+                                                            M.block_name,
+                                                            M.gp_name,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area,
+                                                            D.gross_water,
+                                                            M.total_water_dem,
+                                                            M.per_ground_water,
+                                                            M.per_surface_water,
+                                                            M.uti_ground_water,
+                                                            M.uti_surface_water
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                        join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                        where M.state_name == State && M.district_name == District && M.block_name == Block
+                                                        select new
+                                                        {
+                                                            M.state_name,
+                                                            M.district_name,
+                                                            M.block_name,
+                                                            M.gp_name,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area,
+                                                            D.gross_water,
+                                                            M.total_water_dem,
+                                                            M.per_ground_water,
+                                                            M.per_surface_water,
+                                                            M.uti_ground_water,
+                                                            M.uti_surface_water
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                        join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                        where M.state_name == State && M.district_name == District
+                                                        select new
+                                                        {
+                                                            M.state_name,
+                                                            M.district_name,
+                                                            M.block_name,
+                                                            M.gp_name,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area,
+                                                            D.gross_water,
+                                                            M.total_water_dem,
+                                                            M.per_ground_water,
+                                                            M.per_surface_water,
+                                                            M.uti_ground_water,
+                                                            M.uti_surface_water
+                                                        }).ToList();
+                                        }
+                                        else
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_waterdraft_irrigation_meta_24_update
+                                                        join D in ABE.obj_abhy_waterdraft_irrigation_data_24_update on M.id equals D.meta_id
+                                                        where M.state_name == State
+                                                        select new
+                                                        {
+                                                            M.state_name,
+                                                            M.district_name,
+                                                            M.block_name,
+                                                            M.gp_name,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area,
+                                                            D.gross_water,
+                                                            M.total_water_dem,
+                                                            M.per_ground_water,
+                                                            M.per_surface_water,
+                                                            M.uti_ground_water,
+                                                            M.uti_surface_water
+                                                        }).ToList();
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("WU(Irrigation)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                        worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                        worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                        worksheet.Cell(currentRow, 10).Value = "Area (ha)";
+                                        worksheet.Cell(currentRow, 11).Value = "Net Irrigation Requirement (mm)";
+                                        worksheet.Cell(currentRow, 12).Value = "Total Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 13).Value = "% of demand met from GW";
+                                        worksheet.Cell(currentRow, 14).Value = "% of demand met from SW";
+                                        worksheet.Cell(currentRow, 15).Value = "Utilization From GW (ha m)";
+                                        worksheet.Cell(currentRow, 16).Value = "Utilization From SW (ha m)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gp_name;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].area;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].total_water_dem;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].per_ground_water;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].per_surface_water;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].uti_ground_water;
+                                                    worksheet.Cell(currentRow, 16).Value = ddetails[i].uti_surface_water;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 3.3m)
+                                    {
+                                        List<abhy_waterdraft_industry_24_update> ddetails = new List<abhy_waterdraft_industry_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_industry_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("WU(Industrial Use)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Industry Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Daily Water Requirement";
+                                        worksheet.Cell(currentRow, 8).Value = "No. of Days in Use";
+                                        worksheet.Cell(currentRow, 9).Value = "Total Industrial Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 10).Value = "% of Water Demand met from GW";
+                                        worksheet.Cell(currentRow, 11).Value = "% of Water Demand met from SW";
+                                        worksheet.Cell(currentRow, 12).Value = "Water Demand met from GW (ha m)";
+                                        worksheet.Cell(currentRow, 13).Value = "Water Demand met from SW (ha m)";
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gpname;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].industry_name;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].industry_daily_water_req;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].industry_days_use;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].annual_ind_demand;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].industry_demand_ground_water;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].industry_demand_surface_water;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].indus_grd_water;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].indus_sur_water;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 3.4m)
+                                    {
+                                        List<abhy_waterdraft_other_24_update> ddetails = new List<abhy_waterdraft_other_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gpname == Gram && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.district_name == District && x.year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_waterdraft_other_24_update.Where(x => x.state_name == State && x.year == Year).ToList();//total list
+                                        }
+                                        var worksheet = workbookAllSub.Worksheets.Add("WU(Other Uses)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Type of Use";
+                                        worksheet.Cell(currentRow, 7).Value = "Daily Water Requirement";
+                                        worksheet.Cell(currentRow, 8).Value = "No. of Days in Use";
+                                        worksheet.Cell(currentRow, 9).Value = "Total Water Requirement (ha m)";
+                                        worksheet.Cell(currentRow, 10).Value = "% of Water Demand met from GW";
+                                        worksheet.Cell(currentRow, 11).Value = "% of Water Demand met from SW";
+                                        worksheet.Cell(currentRow, 12).Value = "Water Demand met from GW (ha m)";
+                                        worksheet.Cell(currentRow, 13).Value = "Water Demand met from SW (ha m)";
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gpname;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gpname;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].use;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].daily_req;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].no_of_days_use;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].annual_req;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].demand_met_ground_water;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].demand_met_surface_water;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].oth_grd_water;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].oth_sur_water;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbookAllSub.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //      "Water Utilization.xlsx");
+
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Water Utilization All.xlsx");
+                                    robj = bytesdata;
+                                }
+
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+
+                        }
+
+
+                    }
+
+                    if (Module_name == 6)
+                    {
+                        var Submodules_list = ABE.obj_dd_wsp_submodule.Where(x => x.module_val == Module_name && x.fin_year == Year).ToList().OrderBy(x => x.sub_module_val);
+                        if (Submodules_list.Count() > 0)
+                        {
+                            using (var workbookAllSub = new XLWorkbook())
+                            {
+                                foreach (var itemSub in Submodules_list)
+                                {
+                                    if (itemSub.sub_module_val == 6.1m)
+                                    {
+                                        dynamic ddetails;
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        && M.gp == Gram
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        orderby M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District
+                                                        orderby M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_sprinkler_24_update on M.id equals D.meta_id
+                                                        where M.state == State
+                                                        orderby M.district, M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("DS (Sprinkler)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                        worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                        worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                        worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                        worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                        worksheet.Cell(currentRow, 12).Value = "Area Proposed for Sprinkler (ha)";
+                                        worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            //for (int i = 0; i < ddetails.Count; i++)
+                                            //{
+                                            //    string gp = ddetails[i].gp;
+                                            //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            //    if (ddetails1 != null)
+                                            //    {
+                                            //        currentRow++;
+                                            //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                            //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                            //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                            //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                            //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                            //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                            //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                            //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                            //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                            //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                            //    }
+                                            //}
+
+
+                                            var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+            .Select(g => new
+            {
+                Gp = g.Key,
+                TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+                Details = g.ToList()
+            }).ToList();
+                                            currentRow = 2;
+
+                                            foreach (var group in groupedData)
+                                            {
+                                                string gp = group.Gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                                if (ddetails1 != null)
+                                                {
+                                                    int startRow = currentRow;
+
+                                                    foreach (var detail in group.Details)
+                                                    {
+                                                        worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                        worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                        worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                        worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                        worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                        worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                        worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                        worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                        worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                        worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                        worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                        worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                        worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                        worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                        worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                        currentRow++;
+                                                    }
+
+                                                    // Merge rows for the Total_Reduction column
+                                                    if (group.Details.Count > 1)
+                                                    {
+                                                        worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                    }
+                                                    worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                                }
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 6.2m)
+                                    {
+                                        dynamic ddetails;
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        && M.gp == Gram
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        orderby M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District
+                                                        orderby M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_drip_24_update on M.id equals D.meta_id
+                                                        where M.state == State
+                                                        orderby M.district, M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("DS (Drip)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                        worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                        worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                        worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                        worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                        worksheet.Cell(currentRow, 12).Value = "Area Proposed for Drip (ha)";
+                                        //worksheet.Cell(currentRow, 13).Value = "Standard Reduction in Water Demand in ha m(40%)";
+                                        worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            //for (int i = 0; i < ddetails.Count; i++)
+                                            //{
+                                            //    string gp = ddetails[i].gp;
+                                            //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            //    if (ddetails1 != null)
+                                            //    {
+                                            //        currentRow++;
+                                            //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                            //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                            //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                            //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                            //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                            //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                            //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                            //        //worksheet.Cell(currentRow, 13).Value = ddetails[i].reduction_in_demand;
+                                            //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                            //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                            //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                            //    }
+                                            //}
+
+                                            var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+            .Select(g => new
+            {
+                Gp = g.Key,
+                TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+                Details = g.ToList()
+            }).ToList();
+                                            currentRow = 2;
+                                            foreach (var group in groupedData)
+                                            {
+                                                string gp = group.Gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                                if (ddetails1 != null)
+                                                {
+                                                    int startRow = currentRow;
+
+                                                    foreach (var detail in group.Details)
+                                                    {
+                                                        worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                        worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                        worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                        worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                        worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                        worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                        worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                        worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                        worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                        worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                        worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                        worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                        worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                        worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                        worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                        currentRow++;
+                                                    }
+
+                                                    // Merge rows for the Total_Reduction column
+                                                    if (group.Details.Count > 1)
+                                                    {
+                                                        worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                    }
+                                                    worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 6.3m)
+                                    {
+                                        dynamic ddetails;
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        && M.gp == Gram
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        orderby M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District
+                                                        orderby M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_pipeline_24_update on M.id equals D.meta_id
+                                                        where M.state == State
+                                                        orderby M.district, M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.area_proposed,
+                                                            D.reduction_in_demand,
+                                                            D.water_demand,
+                                                            D.net_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("DS (UG Pipelines)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Crop Category";
+                                        worksheet.Cell(currentRow, 8).Value = "Crop Type";
+                                        worksheet.Cell(currentRow, 9).Value = "Crop Name";
+                                        worksheet.Cell(currentRow, 10).Value = "Area under Conventional Irrigation (ha)";
+                                        worksheet.Cell(currentRow, 11).Value = "Net Water Requirement (mm)";
+                                        worksheet.Cell(currentRow, 12).Value = "Area Proposed for UG Pipelines (ha)";
+                                        //worksheet.Cell(currentRow, 13).Value = "Standard Reduction in Water Demand in ha m(20%)";
+                                        worksheet.Cell(currentRow, 13).Value = "Total Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 14).Value = "Net Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            //for (int i = 0; i < ddetails.Count; i++)
+                                            //{
+                                            //    string gp = ddetails[i].gp;
+                                            //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            //    if (ddetails1 != null)
+                                            //    {
+                                            //        currentRow++;
+                                            //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                            //        worksheet.Cell(currentRow, 7).Value = ddetails[i].crop_category;
+                                            //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_type;
+                                            //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_name;
+                                            //        worksheet.Cell(currentRow, 10).Value = ddetails[i].area_irrigation;
+                                            //        worksheet.Cell(currentRow, 11).Value = ddetails[i].gross_water;
+                                            //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_proposed;
+                                            //        //worksheet.Cell(currentRow, 13).Value = ddetails[i].reduction_in_demand;
+                                            //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                            //        worksheet.Cell(currentRow, 14).Value = ddetails[i].net_water_demand;
+                                            //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction_gw;
+                                            //    }
+                                            //}
+
+                                            var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+           .Select(g => new
+           {
+               Gp = g.Key,
+               TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+               Details = g.ToList()
+           }).ToList();
+                                            currentRow = 2;
+                                            foreach (var group in groupedData)
+                                            {
+                                                string gp = group.Gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                                if (ddetails1 != null)
+                                                {
+                                                    int startRow = currentRow;
+
+                                                    foreach (var detail in group.Details)
+                                                    {
+                                                        worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                        worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                        worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                        worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                        worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                        worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                        worksheet.Cell(currentRow, 7).Value = detail.crop_category;
+                                                        worksheet.Cell(currentRow, 8).Value = detail.crop_type;
+                                                        worksheet.Cell(currentRow, 9).Value = detail.crop_name;
+                                                        worksheet.Cell(currentRow, 10).Value = detail.area_irrigation;
+                                                        worksheet.Cell(currentRow, 11).Value = detail.gross_water;
+                                                        worksheet.Cell(currentRow, 12).Value = detail.area_proposed;
+                                                        worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                        worksheet.Cell(currentRow, 14).Value = detail.net_water_demand;
+                                                        worksheet.Cell(currentRow, 15).Value = detail.reduction_gw;
+                                                        currentRow++;
+                                                    }
+
+                                                    // Merge rows for the Total_Reduction column
+                                                    if (group.Details.Count > 1)
+                                                    {
+                                                        worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                    }
+                                                    worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                                }
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 6.4m)
+                                    {
+                                        dynamic ddetails;
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        && M.gp == Gram
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.original_crop_name,
+                                                            D.original_area,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_ch,
+                                                            D.water_req,
+                                                            D.original_wt_dmd,
+                                                            D.change_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        orderby M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.original_crop_name,
+                                                            D.original_area,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_ch,
+                                                            D.water_req,
+                                                            D.original_wt_dmd,
+                                                            D.change_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District
+                                                        orderby M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.original_crop_name,
+                                                            D.original_area,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_ch,
+                                                            D.water_req,
+                                                            D.original_wt_dmd,
+                                                            D.change_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+                                        else
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_change_crop_24_update on M.id equals D.meta_id
+                                                        where M.state == State
+                                                        orderby M.district, M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.original_crop_name,
+                                                            D.original_area,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_ch,
+                                                            D.water_req,
+                                                            D.original_wt_dmd,
+                                                            D.change_water_demand,
+                                                            D.reduction_gw
+                                                        }).ToList();
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("DS (Crop Diversification)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Original Crop Name";
+                                        worksheet.Cell(currentRow, 8).Value = "Original Area under Conventional Irrigation (ha)";
+                                        worksheet.Cell(currentRow, 9).Value = "Changed Crop Category";
+                                        worksheet.Cell(currentRow, 10).Value = "Changed Crop Type";
+                                        worksheet.Cell(currentRow, 11).Value = "Changed Crop Name";
+                                        worksheet.Cell(currentRow, 12).Value = "Changed Area Under Crop Shifted (ha)";
+                                        worksheet.Cell(currentRow, 13).Value = "Changed Water Requirement (mm)";
+                                        worksheet.Cell(currentRow, 14).Value = "Original Crop Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 15).Value = "Changed Crop Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 16).Value = "Reduction in Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 17).Value = "Total Reduction in Water Demand (ha m)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            //for (int i = 0; i < ddetails.Count; i++)
+                                            //{
+                                            //    string gp = ddetails[i].gp;
+                                            //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            //    if (ddetails1 != null)
+                                            //    {
+                                            //        currentRow++;
+                                            //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                            //        worksheet.Cell(currentRow, 7).Value = ddetails[i].original_crop_name;
+                                            //        worksheet.Cell(currentRow, 8).Value = ddetails[i].original_area;
+                                            //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_category;
+                                            //        worksheet.Cell(currentRow, 10).Value = ddetails[i].crop_type;
+                                            //        worksheet.Cell(currentRow, 11).Value = ddetails[i].crop_name;
+                                            //        worksheet.Cell(currentRow, 12).Value = ddetails[i].area_ch;
+                                            //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_req;
+                                            //        worksheet.Cell(currentRow, 14).Value = ddetails[i].original_wt_dmd;
+                                            //        worksheet.Cell(currentRow, 15).Value = ddetails[i].change_water_demand;
+                                            //        worksheet.Cell(currentRow, 16).Value = ddetails[i].reduction_gw;
+                                            //    }
+                                            //}
+
+                                            var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+           .Select(g => new
+           {
+               Gp = g.Key,
+               TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction_gw, out var result) ? result : 0),
+               Details = g.ToList()
+           }).ToList();
+                                            currentRow = 2;
+
+                                            foreach (var group in groupedData)
+                                            {
+                                                string gp = group.Gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                                if (ddetails1 != null)
+                                                {
+                                                    int startRow = currentRow;
+
+                                                    foreach (var detail in group.Details)
+                                                    {
+                                                        worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                        worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                        worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                        worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                        worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                        worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                        worksheet.Cell(currentRow, 7).Value = detail.original_crop_name;
+                                                        worksheet.Cell(currentRow, 8).Value = detail.original_area;
+                                                        worksheet.Cell(currentRow, 9).Value = detail.crop_category;
+                                                        worksheet.Cell(currentRow, 10).Value = detail.crop_type;
+                                                        worksheet.Cell(currentRow, 11).Value = detail.crop_name;
+                                                        worksheet.Cell(currentRow, 12).Value = detail.area_ch;
+                                                        worksheet.Cell(currentRow, 13).Value = detail.water_req;
+                                                        worksheet.Cell(currentRow, 14).Value = detail.original_wt_dmd;
+                                                        worksheet.Cell(currentRow, 15).Value = detail.change_water_demand;
+                                                        worksheet.Cell(currentRow, 16).Value = detail.reduction_gw;
+                                                        currentRow++;
+                                                    }
+
+                                                    // Merge rows for the Total_Reduction column
+                                                    if (group.Details.Count > 1)
+                                                    {
+                                                        worksheet.Range(startRow, 17, currentRow - 1, 17).Merge();
+                                                    }
+                                                    worksheet.Cell(startRow, 17).Value = group.TotalReductionGw;
+                                                }
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 6.5m)
+                                    {
+                                        dynamic ddetails;
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        && M.gp == Gram
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.innovative_measures,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.water_save,
+                                                            D.water_demand,
+                                                            D.reduction
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        orderby M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.innovative_measures,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.water_save,
+                                                            D.water_demand,
+                                                            D.reduction
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District
+                                                        orderby M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.innovative_measures,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.water_save,
+                                                            D.water_demand,
+                                                            D.reduction
+                                                        }).ToList();
+                                        }
+                                        else
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_anyother_24_update on M.id equals D.meta_id
+                                                        where M.state == State
+                                                        orderby M.district, M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.season_type,
+                                                            D.innovative_measures,
+                                                            D.crop_category,
+                                                            D.crop_type,
+                                                            D.crop_name,
+                                                            D.area_irrigation,
+                                                            D.gross_water,
+                                                            D.water_save,
+                                                            D.water_demand,
+                                                            D.reduction
+                                                        }).ToList();
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("DS (Any Other)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Season Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Other water saving Measures/Innovative measures";
+                                        worksheet.Cell(currentRow, 8).Value = "Crop Category";
+                                        worksheet.Cell(currentRow, 9).Value = "Crop Type";
+                                        worksheet.Cell(currentRow, 10).Value = "Crop Name";
+                                        worksheet.Cell(currentRow, 11).Value = "Area Proposed (ha)";
+                                        worksheet.Cell(currentRow, 12).Value = "Water Requirement (mm)";
+                                        worksheet.Cell(currentRow, 13).Value = "Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 14).Value = "Water Saving(%)";
+                                        worksheet.Cell(currentRow, 15).Value = "Reduction in Water Demand (ha m)";
+                                        worksheet.Cell(currentRow, 16).Value = "Total Reduction in Water Demand (ha m)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            //for (int i = 0; i < ddetails.Count; i++)
+                                            //{
+                                            //    string gp = ddetails[i].gp;
+                                            //    var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                            //    if (ddetails1 != null)
+                                            //    {
+                                            //        currentRow++;
+                                            //        worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                            //        worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                            //        worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                            //        worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                            //        worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                            //        worksheet.Cell(currentRow, 6).Value = ddetails[i].season_type;
+                                            //        worksheet.Cell(currentRow, 7).Value = ddetails[i].innovative_measures;
+                                            //        worksheet.Cell(currentRow, 8).Value = ddetails[i].crop_category;
+                                            //        worksheet.Cell(currentRow, 9).Value = ddetails[i].crop_type;
+                                            //        worksheet.Cell(currentRow, 10).Value = ddetails[i].crop_name;
+                                            //        worksheet.Cell(currentRow, 11).Value = ddetails[i].area_irrigation;
+                                            //        worksheet.Cell(currentRow, 12).Value = ddetails[i].gross_water;
+                                            //        worksheet.Cell(currentRow, 13).Value = ddetails[i].water_demand;
+                                            //        worksheet.Cell(currentRow, 14).Value = ddetails[i].water_save;
+                                            //        worksheet.Cell(currentRow, 15).Value = ddetails[i].reduction;
+                                            //    }
+                                            //}
+
+                                            var groupedData = ((IEnumerable<dynamic>)ddetails).GroupBy(d => (string)d.gp)
+            .Select(g => new
+            {
+                Gp = g.Key,
+                TotalReductionGw = g.Sum(d => decimal.TryParse((string)d.reduction, out var result) ? result : 0),
+                Details = g.ToList()
+            }).ToList();
+                                            currentRow = 2;
+
+                                            foreach (var group in groupedData)
+                                            {
+                                                string gp = group.Gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.FirstOrDefault(x => x.gp_name == gp && x.status_id == 5);
+
+                                                if (ddetails1 != null)
+                                                {
+                                                    int startRow = currentRow;
+
+                                                    foreach (var detail in group.Details)
+                                                    {
+                                                        worksheet.Cell(currentRow, 1).Value = detail.state;
+                                                        worksheet.Cell(currentRow, 2).Value = detail.district;
+                                                        worksheet.Cell(currentRow, 3).Value = detail.block;
+                                                        worksheet.Cell(currentRow, 4).Value = detail.gp;
+                                                        worksheet.Cell(currentRow, 5).Value = detail.data_year;
+                                                        worksheet.Cell(currentRow, 6).Value = detail.season_type;
+                                                        worksheet.Cell(currentRow, 7).Value = detail.innovative_measures;
+                                                        worksheet.Cell(currentRow, 8).Value = detail.crop_category;
+                                                        worksheet.Cell(currentRow, 9).Value = detail.crop_type;
+                                                        worksheet.Cell(currentRow, 10).Value = detail.crop_name;
+                                                        worksheet.Cell(currentRow, 11).Value = detail.area_irrigation;
+                                                        worksheet.Cell(currentRow, 12).Value = detail.gross_water;
+                                                        worksheet.Cell(currentRow, 13).Value = detail.water_demand;
+                                                        worksheet.Cell(currentRow, 14).Value = detail.water_save;
+                                                        worksheet.Cell(currentRow, 15).Value = detail.reduction;
+                                                        currentRow++;
+                                                    }
+
+                                                    // Merge rows for the Total_Reduction column
+                                                    if (group.Details.Count > 1)
+                                                    {
+                                                        worksheet.Range(startRow, 16, currentRow - 1, 16).Merge();
+                                                    }
+                                                    worksheet.Cell(startRow, 16).Value = group.TotalReductionGw;
+                                                }
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 6.6m)
+                                    {
+                                        dynamic ddetails;
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        && M.gp == Gram
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.fund_for,
+                                                            D.total_crop_area,
+                                                            D.total_area_proposed,
+                                                            D.area_proposed,
+                                                            D.financial_year,
+                                                            D.department_name,
+                                                            D.scheme_name,
+                                                            D.other_scheme,
+                                                            D.approx_est_cost,
+                                                            D.innovative_measures
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District && M.block == Block
+                                                        orderby M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.fund_for,
+                                                            D.total_crop_area,
+                                                            D.total_area_proposed,
+                                                            D.area_proposed,
+                                                            D.financial_year,
+                                                            D.department_name,
+                                                            D.scheme_name,
+                                                            D.other_scheme,
+                                                            D.approx_est_cost,
+                                                            D.innovative_measures
+                                                        }).ToList();
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = (from M in ABE.obj_abhy_wsp_demand_meta_24_update
+                                                        join D in ABE.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                        where M.state == State && M.district == District
+                                                        orderby M.block, M.gp
+                                                        select new
+                                                        {
+                                                            M.state,
+                                                            M.district,
+                                                            M.block,
+                                                            M.gp,
+                                                            M.data_year,
+                                                            D.fund_for,
+                                                            D.total_crop_area,
+                                                            D.total_area_proposed,
+                                                            D.area_proposed,
+                                                            D.financial_year,
+                                                            D.department_name,
+                                                            D.scheme_name,
+                                                            D.other_scheme,
+                                                            D.approx_est_cost,
+                                                            D.innovative_measures
+                                                        }).ToList();
+                                        }
+                                        else
+                                        {
+                                            using (var context = new AbhyEntity())
+                                            {
+                                                var list = (from M in context.obj_abhy_wsp_demand_meta_24_update
+                                                            join D in context.obj_abhy_wsp_demand_fund_details_24_update on M.id equals D.meta_id
+                                                            where M.state == State
+                                                            orderby M.district, M.block, M.gp
+                                                            select new
+                                                            {
+                                                                M.state,
+                                                                M.district,
+                                                                M.block,
+                                                                M.gp,
+                                                                M.data_year,
+                                                                D.fund_for,
+                                                                D.total_crop_area,
+                                                                D.total_area_proposed,
+                                                                D.area_proposed,
+                                                                D.financial_year,
+                                                                D.department_name,
+                                                                D.scheme_name,
+                                                                D.other_scheme,
+                                                                D.approx_est_cost,
+                                                                D.innovative_measures
+                                                            }).ToList();
+
+                                                ddetails = list.ToList();
+                                            }
+                                        }
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("DS (Funding Source)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Name of Intervention";
+                                        worksheet.Cell(currentRow, 7).Value = "Total Area under Conventional Irrigation (ha)";
+                                        worksheet.Cell(currentRow, 8).Value = "Total Area Proposed (ha)";
+                                        worksheet.Cell(currentRow, 9).Value = "Area Proposed (ha)";
+                                        worksheet.Cell(currentRow, 10).Value = "Financial Year";
+                                        worksheet.Cell(currentRow, 11).Value = "Department Name";
+                                        worksheet.Cell(currentRow, 12).Value = "Scheme Name";
+                                        worksheet.Cell(currentRow, 13).Value = "Other Scheme Name";
+                                        worksheet.Cell(currentRow, 14).Value = "Approximate Estimated Cost (in lakh)";
+                                        worksheet.Cell(currentRow, 15).Value = "Other water saving Measures/Innovative measures";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].fund_for;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].total_crop_area;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].total_area_proposed;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].area_proposed;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].financial_year;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].department_name;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].scheme_name;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].other_scheme;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].approx_est_cost;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].innovative_measures;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbookAllSub.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //      "Demand Side.xlsx");
+
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Demand Side AllCombine.xlsx");
+                                    robj = bytesdata;
+                                }
+
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+
+                        }
+
+
+                    }
+
+                    if (Module_name == 7)
+                    {
+                        var Submodules_list = ABE.obj_dd_wsp_submodule.Where(x => x.module_val == Module_name && x.fin_year == Year).ToList().OrderBy(x => x.sub_module_val);
+                        if (Submodules_list.Count() > 0)
+                        {
+                            using (var workbookAllSub = new XLWorkbook())
+                            {
+                                foreach (var itemSub in Submodules_list)
+                                {
+                                    if (itemSub.sub_module_val == 7.1m)
+                                    {
+                                        List<abhy_artificial_recharge_st_data_24_update> ddetails = new List<abhy_artificial_recharge_st_data_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("Supply Side(ARS)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                        worksheet.Cell(currentRow, 8).Value = "Type of ARS";
+                                        worksheet.Cell(currentRow, 9).Value = "Latitude of proposed structure";
+                                        worksheet.Cell(currentRow, 10).Value = "Longitude of proposed structure";
+                                        worksheet.Cell(currentRow, 11).Value = "Work Proposed";
+                                        worksheet.Cell(currentRow, 12).Value = "Storage capacity (ha m)";
+                                        worksheet.Cell(currentRow, 13).Value = "Annual no. of fillings";
+                                        worksheet.Cell(currentRow, 14).Value = "Recharge (%)";
+                                        worksheet.Cell(currentRow, 15).Value = "Annual GW Recharge (ha m)";
+                                        worksheet.Cell(currentRow, 16).Value = "Financial year";
+                                        worksheet.Cell(currentRow, 17).Value = "Department Name";
+                                        worksheet.Cell(currentRow, 18).Value = "Scheme Name";
+                                        worksheet.Cell(currentRow, 19).Value = "Other Scheme Name";
+                                        worksheet.Cell(currentRow, 20).Value = "Total Approximate Estimated Cost(in lakh)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].village_name;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].location_detail;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].type_of_ar;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].latitude;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].longitude;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].work_proposed;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].storage_capacity;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].annual_filling_no;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].recharge;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].annual_gw_recharge;
+                                                    worksheet.Cell(currentRow, 16).Value = ddetails[i].financial_year;
+                                                    worksheet.Cell(currentRow, 17).Value = ddetails[i].department_name;
+                                                    worksheet.Cell(currentRow, 18).Value = ddetails[i].scheme_name;
+                                                    worksheet.Cell(currentRow, 19).Value = ddetails[i].other_scheme;
+                                                    worksheet.Cell(currentRow, 20).Value = ddetails[i].estimated_cost;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 7.2m)
+                                    {
+                                        List<abhy_water_conservation_st_data_24_update> ddetails = new List<abhy_water_conservation_st_data_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("Supply Side(WCS)");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Village Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Location Details";
+                                        worksheet.Cell(currentRow, 8).Value = "Type of WCS";
+                                        worksheet.Cell(currentRow, 9).Value = "Latitude of proposed structure";
+                                        worksheet.Cell(currentRow, 10).Value = "Longitude of proposed structure";
+                                        worksheet.Cell(currentRow, 11).Value = "Work Proposed";
+                                        worksheet.Cell(currentRow, 12).Value = "Storage capacity (ha m)";
+                                        worksheet.Cell(currentRow, 13).Value = "Annual no. of fillings";
+                                        worksheet.Cell(currentRow, 14).Value = "Effective storage available for use (ha m)";
+                                        worksheet.Cell(currentRow, 15).Value = "Financial year";
+                                        worksheet.Cell(currentRow, 16).Value = "Department Name";
+                                        worksheet.Cell(currentRow, 17).Value = "Scheme Name";
+                                        worksheet.Cell(currentRow, 18).Value = "Other Scheme Name";
+                                        worksheet.Cell(currentRow, 19).Value = "Total Approximate Estimated Cost(in lakh)";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gp;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gp;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].village_name;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].location_detail;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].type_of_wr;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].latitude;
+                                                    worksheet.Cell(currentRow, 10).Value = ddetails[i].longitude;
+                                                    worksheet.Cell(currentRow, 11).Value = ddetails[i].work_proposed;
+                                                    worksheet.Cell(currentRow, 12).Value = ddetails[i].storage_capacity;
+                                                    worksheet.Cell(currentRow, 13).Value = ddetails[i].annual_filling_no;
+                                                    worksheet.Cell(currentRow, 14).Value = ddetails[i].effective_storage;
+                                                    worksheet.Cell(currentRow, 15).Value = ddetails[i].financial_year;
+                                                    worksheet.Cell(currentRow, 16).Value = ddetails[i].department_name;
+                                                    worksheet.Cell(currentRow, 17).Value = ddetails[i].scheme_name;
+                                                    worksheet.Cell(currentRow, 18).Value = ddetails[i].other_scheme;
+                                                    worksheet.Cell(currentRow, 19).Value = ddetails[i].estimated_cost;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                }
+                                using (var stream = new MemoryStream())
+                                {
+                                    workbookAllSub.SaveAs(stream);
+                                    var content = stream.ToArray();
+                                    //return File(
+                                    //    content,
+                                    //    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    //      "Supply Side.xlsx");
+
+                                    var bytesdata = File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Supply Side AllCombine.xlsx");
+                                    robj = bytesdata;
+                                }
+
+                            }
+                            return Json(robj, JsonRequestBehavior.AllowGet);
+
+                        }
+
+
+                    }
+
+                    if (Module_name == 8)
+                    {
+                        var Submodules_list = ABE.obj_dd_wsp_submodule.Where(x => x.module_val == Module_name && x.fin_year == Year).ToList().OrderBy(x => x.sub_module_val);
+                        if (Submodules_list.Count() > 0)
+                        {
+                            using (var workbookAllSub = new XLWorkbook())
+                            {
+                                foreach (var itemSub in Submodules_list)
+                                {
+                                    if (itemSub.sub_module_val == 8.1m)
+                                    {
+                                        List<abhy_wsp_pgwm_committee_member_24_update> ddetails = new List<abhy_wsp_pgwm_committee_member_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_member_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
+                                        }
+
+
+                                        var worksheet = workbookAllSub.Worksheets.Add("PGWM Committee");
+                                        var currentRow = 1;
+                                        worksheet.Cell(currentRow, 1).Value = "State";
+                                        worksheet.Cell(currentRow, 2).Value = "District";
+                                        worksheet.Cell(currentRow, 3).Value = "Block";
+                                        worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
+                                        worksheet.Cell(currentRow, 5).Value = "WSP Prepared Financial Year";
+                                        worksheet.Cell(currentRow, 6).Value = "Name";
+                                        worksheet.Cell(currentRow, 7).Value = "Designation";
+                                        worksheet.Cell(currentRow, 8).Value = "Gender";
+                                        worksheet.Cell(currentRow, 9).Value = "Mobile /Landline No.";
+
+                                        if (ddetails.Count != 0)
+                                        {
+                                            for (int i = 0; i < ddetails.Count; i++)
+                                            {
+                                                string gp = ddetails[i].gp_name;
+                                                var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
+                                                if (ddetails1 != null)
+                                                {
+                                                    currentRow++;
+                                                    worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
+                                                    worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
+                                                    worksheet.Cell(currentRow, 3).Value = ddetails[i].block_name;
+                                                    worksheet.Cell(currentRow, 4).Value = ddetails[i].gp_name;
+                                                    worksheet.Cell(currentRow, 5).Value = ddetails[i].data_year;
+                                                    worksheet.Cell(currentRow, 6).Value = ddetails[i].member_name;
+                                                    worksheet.Cell(currentRow, 7).Value = ddetails[i].designation;
+                                                    worksheet.Cell(currentRow, 8).Value = ddetails[i].gender;
+                                                    worksheet.Cell(currentRow, 9).Value = ddetails[i].contact_no;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            currentRow++;
+                                            worksheet.Cell(currentRow, 1).Value = "";
+                                            worksheet.Cell(currentRow, 2).Value = "";
+                                            worksheet.Cell(currentRow, 3).Value = "";
+                                            worksheet.Cell(currentRow, 4).Value = "No Data";
+                                            worksheet.Cell(currentRow, 5).Value = "";
+                                            worksheet.Cell(currentRow, 6).Value = "";
+                                            worksheet.Cell(currentRow, 7).Value = "";
+                                            worksheet.Cell(currentRow, 8).Value = "";
+                                        }
+
+                                    }
+                                    if (itemSub.sub_module_val == 8.2m)
+                                    {
+                                        List<abhy_wsp_pgwm_committee_meeting_24_update> ddetails = new List<abhy_wsp_pgwm_committee_meeting_24_update>();
+                                        if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.block_name == Block && x.data_year == Year).ToList();//total list
+                                        }
+                                        else if (State != "0" && State != null && District != "0" && District != null)
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == District && x.data_year == Year).ToList();//total list
+                                        }
+                                        else
+                                        {
+                                            ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
                                         }
 
 
