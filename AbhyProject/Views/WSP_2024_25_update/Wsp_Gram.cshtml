@@ -2398,75 +2398,99 @@
         obj.IDD = $(".btn_location").attr("id");
         obj.type = "location";
 
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: "/WSP_2024_25_update/delete_data",
-            data: "{'Data': '" + JSON.stringify(obj) + "'}",
-            dataType: 'JSON',
-            success: function (response) {
-                alert(response);
-                gpimagesgeting_Location();
-                $('#btn_locaton_dlt').hide();
-                $("#output").removeAttr('src');
+
+        if (confirm('Are you sure to delete the entry?')) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/WSP_2024_25_update/delete_data",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    gpimagesgeting_Location();
+                    $('#btn_locaton_dlt').hide();
+                    $("#output").removeAttr('src');
                     $("#output_div").hide();
-                $("#Location_map_Image_Uplaod").val("");
-            },
-            error: function () {
-                alert("Error While Saving Data")
-            }
-        });
+                    $("#Location_map_Image_Uplaod").val("");
+                },
+                error: function () {
+                    alert("Error While Saving Data")
+                }
+            });
+        }
+        else {
+            return false;
+        }
+       
     }
+
     function Delete_data_w() {
         var obj = {};
         obj.IDD = $(".btn_watershed").attr("id");
         obj.type = "watershed";
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: "/WSP_2024_25_update/delete_data",
-            data: "{'Data': '" + JSON.stringify(obj) + "'}",
-            dataType: 'JSON',
-            success: function (response) {
-                alert(response);
-                $('#btn_watershed_dlt').hide();
-                // $("#Watershed_map_Image_output").hide();
-                $("#Watershed_map_Image_output_div").hide();
-                $("#Watershed_map_Image_output").removeAttr('src');
-                $("#Watershed_map_Image_Uplaod").val("");
-                gpimagesgeting_Location();
-            },
-            error: function () {
-                alert("Error While Saving Data")
-            }
-        });
+
+        if (confirm('Are you sure to delete the entry?')) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/WSP_2024_25_update/delete_data",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    $('#btn_watershed_dlt').hide();
+                    // $("#Watershed_map_Image_output").hide();
+                    $("#Watershed_map_Image_output_div").hide();
+                    $("#Watershed_map_Image_output").removeAttr('src');
+                    $("#Watershed_map_Image_Uplaod").val("");
+                    gpimagesgeting_Location();
+                },
+                error: function () {
+                    alert("Error While Saving Data")
+                }
+            });
+        }
+        else {
+            return false;
+        }
+        
     }
     function Delete_data_a() {
 
         var obj = {};
         obj.IDD = $(".btn_aquifer").attr("id");
         obj.type = "aquifer";
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: "/WSP_2024_25_update/delete_data",
-            data: "{'Data': '" + JSON.stringify(obj) + "'}",
-            dataType: 'JSON',
-            success: function (response) {
-                alert(response);
-                $('#btn_aquifer_dlt').hide();
-                //$("#Aquifer_map_Image_output").hide();
-                //$("#Aquifer_map_Image_output").hide();
-                $('#Aquifer_map_Image_output').removeAttr('src');
-                $("#Aquifer_map_Image_output_div").hide();
-                
-                $("#Aquifer_map_Image_Uplaod").val("");
-                gpimagesgeting_Location();
-            },
-            error: function () {
-                alert("Error While Saving Data")
-            }
-        });
+
+        if (confirm('Are you sure to delete the entry?')) {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/WSP_2024_25_update/delete_data",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (response) {
+                    alert(response);
+                    $('#btn_aquifer_dlt').hide();
+                    //$("#Aquifer_map_Image_output").hide();
+                    //$("#Aquifer_map_Image_output").hide();
+                    $('#Aquifer_map_Image_output').removeAttr('src');
+                    $("#Aquifer_map_Image_output_div").hide();
+
+                    $("#Aquifer_map_Image_Uplaod").val("");
+                    gpimagesgeting_Location();
+                },
+                error: function () {
+                    alert("Error While Saving Data")
+                }
+            });
+        }
+        else {
+            return false;
+        }
+
+
+
     }
 
 

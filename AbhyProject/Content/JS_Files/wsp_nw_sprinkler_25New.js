@@ -1112,24 +1112,31 @@ function Delete_funding(idd) {
     var obj = {};
     obj.IDD = idd;
 
-    $.ajax({
-        type: 'POST',
-        contentType: 'application/json; chatset=utf-8',
-        url: "/WSP_2024_25_update/Delete_data_Fundig",
-        data: "{'Data': '" + JSON.stringify(obj) + "'}",
-        dataType: 'JSON',
-        success: function (response) {
-            alert(response);
-            //$('#SAVE_BTN2').prop('disabled', false)
-            GetFunding_sp();
-            GetFunding_drip();
-            GetFunding_pipe();
-            GetFunding_crop();
-            GetFunding_anyother();
-        },
-        error: function () {
-            alert("Error While Saving Data")
-            // $('#SAVE_BTN2').prop('disabled', false)
-        }
-    });
+    if (confirm('Are you sure to delete the entry?')) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_2024_25_update/Delete_data_Fundig",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                //$('#SAVE_BTN2').prop('disabled', false)
+                GetFunding_sp();
+                GetFunding_drip();
+                GetFunding_pipe();
+                GetFunding_crop();
+                GetFunding_anyother();
+            },
+            error: function () {
+                alert("Error While Saving Data")
+                // $('#SAVE_BTN2').prop('disabled', false)
+            }
+        });
+    }
+    else {
+        return false;
+    }
+
+   
 }
