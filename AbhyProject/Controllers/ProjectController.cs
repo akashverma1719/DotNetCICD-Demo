@@ -816,11 +816,11 @@ namespace AbhyProject.Controllers
                     }
                     else if (State != null && State != "0" && Year != null && Year != "0")
                     {
-                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name == State && x.fy_year == Year && (x.wsp_23_update_file != null)).OrderByDescending(s => s.wsp_23_update_date).ToList();
+                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name == State && x.fy_year == Year && (x.wsp_23_update_file != null )).OrderByDescending(s => s.wsp_23_update_date).ToList();
                     }
                     else
                     {
-                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name != "Delhi_7" && x.fy_year == Year && x.wsp_23_update_file != null).OrderByDescending(s => s.wsp_23_update_date).ToList();
+                        Data = ABE.obj_abhy_mis_wsp_approved.Where(x => x.state_name != "Delhi_7" && x.fy_year == Year && x.wsp_23_update_file != null ).OrderByDescending(s => s.wsp_23_update_date).ToList();
                     }
                     var jsonResult = Json(Data, JsonRequestBehavior.AllowGet);
                     jsonResult.MaxJsonLength = int.MaxValue;
