@@ -2396,7 +2396,7 @@ namespace AbhyProject.Controllers
                     var Gram = Session["ggram"].ToString();
                     var Year = "2024-25 Update";
                     var Month = monthName;
-                    var CheckMap = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).FirstOrDefault();
+                    var CheckMap = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).FirstOrDefault();
                     if (CheckMap != null)
                     {
                         if (CheckMap.gpimage1 != null && CheckMap.gpimage1 != "" && CheckMap.gpimage2 != null && CheckMap.gpimage2 != "" && CheckMap.gpimage2 != null && CheckMap.gpimage2 != "")
