@@ -524,6 +524,32 @@ namespace AbhyProject.Controllers
                             return Json(Data, JsonRequestBehavior.AllowGet);
                         }
                     }
+
+                    else if (Year == "2024-25")
+                    {
+                        if (StateName != "0" && Status == "0" && Year == "0")
+                        {
+                            var Data = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == StateName).ToList();
+                            return Json(Data, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (StateName != "0" && Year != "0" && Status == "0")
+                        {
+                            var Data = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == StateName && x.year == Year).ToList();
+                            return Json(Data, JsonRequestBehavior.AllowGet);
+                        }
+                        else if (StateName != "0" && Year != "0" && Status != "0")
+                        {
+                            //if (Status == "1")
+                            //{
+                            //    var GPData = ABE.obj_abhy_wsp_gpdata_new_23.Where(x => x.state_name == StateName && x.year == Year).ToList();
+                            //    return Json(GPData, JsonRequestBehavior.AllowGet);
+                            //}
+                            var Data = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == StateName && x.year == Year && x.status_id == StatusId).ToList();
+                            return Json(Data, JsonRequestBehavior.AllowGet);
+                        }
+                    }
+
+
                     else
                     {
                         if (StateName != "0" && Status == "0" && Year == "0")
@@ -864,7 +890,8 @@ namespace AbhyProject.Controllers
                                 AllData.Add(obj2);
                             }
                         }
-                    }else if (year == "2023-24 Update")
+                    }
+                    else if (year == "2023-24 Update")
                     {
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                         {
@@ -1020,7 +1047,9 @@ namespace AbhyProject.Controllers
                             }
                         }
                     }
-                    else
+
+
+                    else if (year == "2024-25")
                     {
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                         {
@@ -1157,6 +1186,164 @@ namespace AbhyProject.Controllers
                                 }
                                 GpTracker obj2 = new GpTracker();
                                 int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24.Where(x => x.state_name == item && x.year == year).ToList().Count();//total list
+                                int SubmitGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.status_id == 3).ToList().Count();
+                                int RejectGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.reject_status == "Rejected By District" && x.status_id == 1).ToList().Count();
+                                int ApprovedGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.status_id == 4).ToList().Count();
+                                int ApprovedBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.status_id == 5).ToList().Count();
+                                int RejectBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.reject_status == "Rejected By State" && x.status_id == 3).ToList().Count();
+                                obj2.StateName = StateName;
+                                obj2.DistrinctCount = DistrinctCount;
+                                obj2.BlockCount = BlockCount;
+                                obj2.GpCount = GpCount;
+                                obj2.SavedGP = SavedGP;
+                                obj2.SubmitGP = SubmitGP;
+                                obj2.RejectGP = RejectGP;
+                                obj2.ApprovedGP = ApprovedGP;
+                                obj2.ApprovedBySPMU = ApprovedBySPMU;
+                                obj2.RejectBySPMU = RejectBySPMU;
+                                AllData.Add(obj2);
+                            }
+                        }
+                    }
+
+
+                    else
+                    {
+                        if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
+                        {
+                            int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gram_panchayat_name == gram && x.year == year).ToList().Count();//total list
+                            int SubmitGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gp_name == gram && x.year == year && x.status_id == 3).ToList().Count();
+                            int RejectGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gp_name == gram && x.year == year && x.reject_status == "Rejected By District" && x.status_id == 1).ToList().Count();
+                            int ApprovedGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gp_name == gram && x.year == year && x.status_id == 4).ToList().Count();
+                            int ApprovedBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gp_name == gram && x.year == year && x.status_id == 5).ToList().Count();
+                            int RejectBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.gp_name == gram && x.year == year && x.reject_status == "Rejected By State" && x.status_id == 3).ToList().Count();
+                            obj.StateName = StateName;
+                            obj.DistrinctCount = DistrinctCount;
+                            obj.BlockCount = BlockCount;
+                            obj.GpCount = GpCount;
+                            obj.SavedGP = SavedGP;
+                            obj.SubmitGP = SubmitGP;
+                            obj.RejectGP = RejectGP;
+                            obj.ApprovedGP = ApprovedGP;
+                            obj.ApprovedBySPMU = ApprovedBySPMU;
+                            obj.RejectBySPMU = RejectBySPMU;
+                            AllData.Add(obj);
+                        }
+                        else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && year != "0" && year != "" && year != null)
+                        {
+                            int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year).ToList().Count();//total list
+                            int SubmitGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.status_id == 3).ToList().Count();
+                            int RejectGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.reject_status == "Rejected By District" && x.status_id == 1).ToList().Count();
+                            int ApprovedGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.status_id == 4).ToList().Count();
+                            int ApprovedBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.status_id == 5).ToList().Count();
+                            int RejectBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.block_name == block && x.year == year && x.reject_status == "Rejected By State" && x.status_id == 3).ToList().Count();
+                            obj.StateName = StateName;
+                            obj.DistrinctCount = DistrinctCount;
+                            obj.BlockCount = BlockCount;
+                            obj.GpCount = GpCount;
+                            obj.SavedGP = SavedGP;
+                            obj.SubmitGP = SubmitGP;
+                            obj.RejectGP = RejectGP;
+                            obj.ApprovedGP = ApprovedGP;
+                            obj.ApprovedBySPMU = ApprovedBySPMU;
+                            obj.RejectBySPMU = RejectBySPMU;
+                            AllData.Add(obj);
+                        }
+                        else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && year != "" && year != null)
+                        {
+                            int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == state && x.district_name == district && x.year == year).ToList().Count();//total list
+                            int SubmitGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.status_id == 3).ToList().Count();
+                            int RejectGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.reject_status == "Rejected By District" && x.status_id == 1).ToList().Count();
+                            int ApprovedGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.status_id == 4).ToList().Count();
+                            int ApprovedBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.status_id == 5).ToList().Count();
+                            int RejectBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.district_name == district && x.year == year && x.reject_status == "Rejected By State" && x.status_id == 3).ToList().Count();
+                            obj.StateName = StateName;
+                            obj.DistrinctCount = DistrinctCount;
+                            obj.BlockCount = BlockCount;
+                            obj.GpCount = GpCount;
+                            obj.SavedGP = SavedGP;
+                            obj.SubmitGP = SubmitGP;
+                            obj.RejectGP = RejectGP;
+                            obj.ApprovedGP = ApprovedGP;
+                            obj.ApprovedBySPMU = ApprovedBySPMU;
+                            obj.RejectBySPMU = RejectBySPMU;
+                            AllData.Add(obj);
+                        }
+                        else if (state != "0" && state != "" && state != null && year != "" && year != null)
+                        {
+                            int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == state && x.year == year).ToList().Count();//total list
+                            int SubmitGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.year == year && x.status_id == 3).ToList().Count();
+                            int RejectGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.year == year && x.reject_status == "Rejected By District" && x.status_id == 1).ToList().Count();
+                            int ApprovedGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.year == year && x.status_id == 4).ToList().Count();
+                            int ApprovedBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.year == year && x.status_id == 5).ToList().Count();
+                            int RejectBySPMU = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == state && x.year == year && x.reject_status == "Rejected By State" && x.status_id == 3).ToList().Count();
+                            obj.StateName = StateName;
+                            obj.DistrinctCount = DistrinctCount;
+                            obj.BlockCount = BlockCount;
+                            obj.GpCount = GpCount;
+                            obj.SavedGP = SavedGP;
+                            obj.SubmitGP = SubmitGP;
+                            obj.RejectGP = RejectGP;
+                            obj.ApprovedGP = ApprovedGP;
+                            obj.ApprovedBySPMU = ApprovedBySPMU;
+                            obj.RejectBySPMU = RejectBySPMU;
+                            AllData.Add(obj);
+                        }
+                        else
+                        {
+                            foreach (var item in States)
+                            {
+                                if (item == "Gujarat_24")
+                                {
+                                    StateName = "Gujarat_24";
+                                    DistrinctCount = 6;
+                                    BlockCount = 36;
+                                    GpCount = 1873;
+                                }
+                                else if (item == "Haryana_6")
+                                {
+                                    StateName = "Haryana_6";
+                                    DistrinctCount = 14;
+                                    BlockCount = 36;
+                                    GpCount = 1656;
+                                }
+                                else if (item == "Karnataka_29")
+                                {
+                                    StateName = "Karnataka_29";
+                                    DistrinctCount = 14;
+                                    BlockCount = 41;
+                                    GpCount = 1199;
+                                }
+                                else if (item == "Madhya Pradesh_23")
+                                {
+                                    StateName = "Madhya Pradesh_23";
+                                    DistrinctCount = 6;
+                                    BlockCount = 9;
+                                    GpCount = 670;
+                                }
+                                else if (item == "Maharashtra_27")
+                                {
+                                    StateName = "Maharashtra_27";
+                                    DistrinctCount = 13;
+                                    BlockCount = 43;
+                                    GpCount = 1133;
+                                }
+                                else if (item == "Rajasthan_8")
+                                {
+                                    StateName = "Rajasthan_8";
+                                    DistrinctCount = 17;
+                                    BlockCount = 38;
+                                    GpCount = 1132;
+                                }
+                                else if (item == "Uttar Pradesh_9")
+                                {
+                                    StateName = "Uttar Pradesh_9";
+                                    DistrinctCount = 10;
+                                    BlockCount = 26;
+                                    GpCount = 550;
+                                }
+                                GpTracker obj2 = new GpTracker();
+                                int SavedGP = ABE.obj_abhy_wsp_gpdata_new_24_update.Where(x => x.state_name == item && x.year == year).ToList().Count();//total list
                                 int SubmitGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.status_id == 3).ToList().Count();
                                 int RejectGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.reject_status == "Rejected By District" && x.status_id == 1).ToList().Count();
                                 int ApprovedGP = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == item && x.year == year && x.status_id == 4).ToList().Count();

@@ -99,18 +99,26 @@ function Delete_dpmu_declaration() {
     obj.IDD = $("#hidden").text();
     obj.type = "location";
 
-    $.ajax({
-        type: 'POST',
-        contentType: 'application/json; chatset=utf-8',
-        url: "/WSP_2024_25_update/Delete_dpmu_declaration",
-        data: "{'Data': '" + JSON.stringify(obj) + "'}",
-        dataType: 'JSON',
-        success: function (response) {
-            alert(response);
-            Get_dpmu_declaration();
-        },
-        error: function () {
-            alert("Error While Saving Data")
-        }
-    });
+
+    if (confirm('Are you sure to delete the entry?')) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WSP_2024_25_update/Delete_dpmu_declaration",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (response) {
+                alert(response);
+                Get_dpmu_declaration();
+            },
+            error: function () {
+                alert("Error While Saving Data")
+            }
+        });
+    }
+    else {
+        return false;
+    }
+
+    
 }
