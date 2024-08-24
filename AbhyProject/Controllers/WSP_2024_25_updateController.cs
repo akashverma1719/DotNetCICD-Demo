@@ -3708,14 +3708,16 @@ namespace AbhyProject.Controllers
 
             if (Details != null)
             {
+
                 if ((Details.gpimage1 == "" || Details.gpimage1 == null) || (Details.gpimage2 == "" || Details.gpimage2 == null) || (Details.gpimage3 == "" || Details.gpimage3 == null))
                 {
-                    return Json("You didn't upload all maps, Please upload all maps", JsonRequestBehavior.AllowGet);
+                    return Json($"You didn't upload all maps for {Year}, Please reupload all maps", JsonRequestBehavior.AllowGet);
                 }
+
             }
             else
             {
-                return Json("You didn't upload all maps, Please upload all maps", JsonRequestBehavior.AllowGet);
+                return Json($"You didn't upload all maps for {Year}, Please reupload all maps", JsonRequestBehavior.AllowGet);
             }
             
             var WL_Map = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == Dist
@@ -10875,7 +10877,11 @@ namespace AbhyProject.Controllers
                     else
                     {
                         var DEtails1 = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").FirstOrDefault();
+                        if (DEtails1 == null)
+                        {
+                           DEtails1 = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").FirstOrDefault();
 
+                        }
                         var ID = DEtails1.id;
                         Data = ABE.obj_abhy_wsp_demand_fund_details_24_update.Where(x => x.meta_id == ID).ToList();
 
