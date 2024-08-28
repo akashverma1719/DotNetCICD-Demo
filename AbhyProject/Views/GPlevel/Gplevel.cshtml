@@ -2023,41 +2023,14 @@
 <!-- Model Popup -->
 
 <script src="~/Scripts/validations.js"></script>
-<script>
-    $(".loader").show();
-    $(document).ready(function () {
 
-            var currentUrl = window.location.href;
-            const myArray = currentUrl.split("/");
-            let coun = myArray.length - 1;
-            if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
-                GetCunCurrentUser();
-            }
-    });
-
-        function GetCunCurrentUser() {
-            $.ajax({
-                type: 'get',
-                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
-                success: function (data) {
-
-                    if (data == "False") {
-
-                        window.location.href = "../../WspNew/WSP_GWM_HOME";
-                    }
-                    $(".loader").hide();
-                }
-            });
-    }
-
-</script>
 <script>
     window.onload = function () {
         inactivityTime();
     }
 
     $(document).ready(function () {
-        
+
         $("#MonthDropdownLabel").hide();
         $('.loader').hide();
         var fin_year = getCurrentFiscalYear();
@@ -3403,10 +3376,11 @@
             //alert(myArray[coun].toString());
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
+                setInterval(GetCunCurrentUser, 30000);
             }
         });
 
-        function GetCunCurrentUser() {
+    function GetCunCurrentUser() {
             $.ajax({
                 type: 'get',
                 url: '@Url.Action("CheckCunCurrentUser", "WspNew")',

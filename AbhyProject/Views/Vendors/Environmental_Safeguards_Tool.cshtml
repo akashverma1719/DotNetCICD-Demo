@@ -1635,6 +1635,7 @@
             //alert(myArray[coun].toString());
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
+                setInterval(GetCunCurrentUser, 30000);
             }
         });
 
