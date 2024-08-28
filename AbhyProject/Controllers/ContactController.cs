@@ -1894,7 +1894,7 @@ namespace AbhyProject.Controllers
                 List<current_events> data = ABE.obj_current_events.ToList();
 
                 var ddetails = (from a in details
-                                join b in data on a.p_training_name equals b.p_training_name
+                                join b in data on a.unic_key equals b.unic_key
                                 orderby b.p_training_name
                                 select new
                                 {
