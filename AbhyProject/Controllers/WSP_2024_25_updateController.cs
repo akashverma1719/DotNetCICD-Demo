@@ -2670,7 +2670,7 @@ namespace AbhyProject.Controllers
                         var tol_population = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year && x.d_sent == true).OrderByDescending(x => x.month_order_by).FirstOrDefault();
                         if (tol_population == null)
                         {
-                            tol_population = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2024-25" && x.d_sent == true).OrderByDescending(x => x.month_order_by).FirstOrDefault();
+                            tol_population = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2023-24" && x.d_sent == true).OrderByDescending(x => x.month_order_by).FirstOrDefault();
 
                         }
                         if (tol_population != null)
@@ -3720,7 +3720,7 @@ namespace AbhyProject.Controllers
             var Dist = result.district_name;
             var Block = result.block_name;
             var Gram = result.gpname;
-            var Year = "2024-25";
+            var Year = "2023-24";
             //var Month = result.month;
 
             if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != null)
@@ -6863,7 +6863,7 @@ namespace AbhyProject.Controllers
                     var Block = Session["gblock"].ToString();
                     var Gram = Session["ggram"].ToString();
                     //var year = "2024-25";
-                    var year = "2024-25";
+                    var year = "2023-24";
                     //var month = Session["month"].ToString();
 
                     if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
@@ -8326,7 +8326,7 @@ namespace AbhyProject.Controllers
 
                     if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != "" && Year != null)
                     {
-                        var id = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2024-25" && x.d_sent == true).OrderByDescending(x => x.month_order_by).Select(x => x.id).FirstOrDefault();//total list
+                        var id = ABE.obj_abhy_baseline_gpdata.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2023-24" && x.d_sent == true).OrderByDescending(x => x.month_order_by).Select(x => x.id).FirstOrDefault();//total list
                         details = ABE.obj_abhy_baseline_gp_livestock.Where(x => x.id == id).OrderByDescending(x => x.p_id).ToList();
                     }
                     return Json(details, JsonRequestBehavior.AllowGet);
