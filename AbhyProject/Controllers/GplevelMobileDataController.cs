@@ -8107,12 +8107,8 @@ namespace AbhyProject.Controllers
                 dt.Columns.Add("Pump type", typeof(string));
                 dt.Columns.Add("Date of Installation of Waterflow meter", typeof(string));
                 dt.Columns.Add("Area Irrigated(ha)", typeof(string));
-                dt.Columns.Add("Date of Water Reading", typeof(string));
                 dt.Columns.Add("Meter ID", typeof(string));
-                dt.Columns.Add("Meter Reading", typeof(string));
-                dt.Columns.Add("Unit Of Meter Reading", typeof(string));
                 dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Status_dynamic", typeof(string));
 
                 //dynamic genrate year wise
                 int startYear = 2020;
@@ -8124,7 +8120,6 @@ namespace AbhyProject.Controllers
                     int endMonth = (years == currentYear) ? currentMonth : 12;
                     for (int months = 1; months <= endMonth; months++)
                     {
-                        //string monthName = new DateTime(years, months, 1).ToString("MMMM yyyy");
                         string monthName = new DateTime(years, months, 1).ToString("MMM-yyyy");
                         dt.Columns.Add(monthName, typeof(string));
                     }
@@ -8133,13 +8128,17 @@ namespace AbhyProject.Controllers
                 var a = abc.Count;
                 var b = data.Count;
                 int sr_no = 0;
+
+
                 if (a != 0)
                 {
+                    // Step 1: Create a dictionary to store aggregated data
+                    Dictionary<string, DataRow> aggregatedData = new Dictionary<string, DataRow>();
+
                     foreach (var itema in abc)
                     {
                         sr_no++;
                         int wellid = itema.wf_meta_id;
-                        //var final_dataa = AJE.obj_vw_waterflow_all.Where(x => x.wf_meta_id == wellid).ToList();
                         List<vw_waterflow_all> final_dataa = new List<vw_waterflow_all>();
                         if (year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
@@ -8155,6 +8154,7 @@ namespace AbhyProject.Controllers
                         }
 
                         int index = 0;
+
                         foreach (var item in final_dataa)
                         {
                             index++;
@@ -8168,16 +8168,14 @@ namespace AbhyProject.Controllers
                                 sl_no = "";
                             }
 
-
-
                             string dateInputpp = item.DateofEntry;
                             string parsedDatepp = "";
                             if (dateInputpp != null && dateInputpp != "")
                             {
                                 DateTime date = Convert.ToDateTime(dateInputpp);
                                 parsedDatepp = date.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
-
                             }
+
                             string dateInputpp1 = item.WaterFlowMeter_Installation_Date;
                             string parsedDatepp1 = "";
                             if (dateInputpp1 != null && dateInputpp1 != "")
@@ -8190,7 +8188,6 @@ namespace AbhyProject.Controllers
                                 {
                                     DateTime ddddd = Convert.ToDateTime(dateInputpp1);
                                     parsedDatepp1 = ddddd.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
-
                                 }
                                 else
                                 {
@@ -8198,9 +8195,8 @@ namespace AbhyProject.Controllers
                                     DateTime dddddd = Convert.ToDateTime(ddd);
                                     parsedDatepp1 = dddddd.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
                                 }
-
-
                             }
+
                             string dateInputpp2 = item.WaterReading_Date;
                             string parsedDatepp2 = "";
                             if (dateInputpp2 != null && dateInputpp2 != "")
@@ -8213,7 +8209,6 @@ namespace AbhyProject.Controllers
                                 {
                                     DateTime date = Convert.ToDateTime(dateInputpp2);
                                     parsedDatepp2 = date.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
-
                                 }
                                 else
                                 {
@@ -8253,64 +8248,59 @@ namespace AbhyProject.Controllers
                             {
                                 approve_data = "Approved";
                             }
-                            DataRow dataRow = dt.NewRow();
-                            dataRow["Sl.No"] = sl_no;
-                            dataRow["State"] = item.State;
-                            dataRow["District"] = item.District;
-                            dataRow["Block"] = item.Block;
-                            dataRow["Grampanchyat"] = item.GramPanchayat;
-                            dataRow["Village Name"] = item.Village;
-                            dataRow["Location Details"] = item.LocationDetails;
-                            dataRow["Latitude"] = item.Latitude;
-                            dataRow["Longitude"] = item.Longitude;
-                            dataRow["Date of Entry"] = parsedDatepp;
-                            dataRow["Name of the owner"] = item.OwnerName;
-                            dataRow["Type of Well"] = item.WellType;
-                            dataRow["Depth of Well"] = item.depthofwell;
-                            dataRow["Pump type"] = item.PumpType;
-                            dataRow["Date of Installation of Waterflow meter"] = parsedDatepp1;
-                            dataRow["Area Irrigated(ha)"] = item.AreaIrrigated;
-                            dataRow["Date of Water Reading"] = parsedDatepp2;
-                            dataRow["Meter ID"] = item.Meterid;
-                            dataRow["Meter Reading"] = item.MeterReading;
-                            dataRow["Unit Of Meter Reading"] = item.UnitReading;
-                            dataRow["Status"] = approve;
-                            dataRow["Status_dynamic"] = approve_data;
 
-                            //add value dynamically
-                            DateTime meterReadingDate = DateTime.Parse(parsedDatepp2);
-
-                            //for (int years = startYear; years <= currentYear; years++)
-                            //{
-                            //    int endMonth = (years == currentYear) ? currentMonth : 12;
-                            //    for (int months = 1; months <= endMonth; months++)
-                            //    {
-                            //        string monthName = new DateTime(years, months, 1).ToString("MMMM yyyy");
-                            //        dataRow[monthName] = GetMonthlyValue(years, months);
-                            //    }
-                            //}
-                            for (int years = startYear; years <= currentYear; years++)
+                            if (!aggregatedData.ContainsKey(item.Meterid))
                             {
-                                int endMonth = (years == currentYear) ? currentMonth : 12;
-                                for (int months = 1; months <= endMonth; months++)
+                                DataRow dataRow = dt.NewRow();
+                                dataRow["Sl.No"] = sl_no;
+                                dataRow["State"] = item.State;
+                                dataRow["District"] = item.District;
+                                dataRow["Block"] = item.Block;
+                                dataRow["Grampanchyat"] = item.GramPanchayat;
+                                dataRow["Village Name"] = item.Village;
+                                dataRow["Location Details"] = item.LocationDetails;
+                                dataRow["Latitude"] = item.Latitude;
+                                dataRow["Longitude"] = item.Longitude;
+                                dataRow["Date of Entry"] = parsedDatepp;
+                                dataRow["Name of the owner"] = item.OwnerName;
+                                dataRow["Type of Well"] = item.WellType;
+                                dataRow["Depth of Well"] = item.depthofwell;
+                                dataRow["Pump type"] = item.PumpType;
+                                dataRow["Date of Installation of Waterflow meter"] = parsedDatepp1;
+                                dataRow["Area Irrigated(ha)"] = item.AreaIrrigated;
+                                dataRow["Meter ID"] = item.Meterid;
+                                dataRow["Status"] = approve;
+
+                                // Initialize dynamic columns to "0"
+                                for (int years = startYear; years <= currentYear; years++)
                                 {
-                                    string monthName = new DateTime(years, months, 1).ToString("MMM-yyyy");
-                                    if (years == meterReadingDate.Year && months == meterReadingDate.Month)
+                                    int endMonth = (years == currentYear) ? currentMonth : 12;
+                                    for (int months = 1; months <= endMonth; months++)
                                     {
-                                        dataRow[monthName] = item.MeterReading;
-                                    }
-                                    else
-                                    {
-                                        dataRow[monthName] = "0";
+                                        string monthName = new DateTime(years, months, 1).ToString("MMM-yyyy");
+                                        dataRow[monthName] = "";
                                     }
                                 }
+
+                                aggregatedData[item.Meterid] = dataRow;
                             }
 
-                            dt.Rows.Add(dataRow);
-
+                            DataRow existingRow = aggregatedData[item.Meterid];
+                            DateTime meterReadingDate = DateTime.Parse(parsedDatepp2);
+                            string monthColumn = meterReadingDate.ToString("MMM-yyyy");
+                            existingRow[monthColumn] = item.MeterReading;
                         }
                     }
+
+                    // Step 2: Populate the DataTable from the dictionary
+                    foreach (var dataRow in aggregatedData.Values)
+                    {
+                        dt.Rows.Add(dataRow);
+                    }
                 }
+
+
+
                 if (b != 0)
                 {
                     foreach (var itema in data)
@@ -8374,9 +8364,6 @@ namespace AbhyProject.Controllers
                                     DateTime dddddd = Convert.ToDateTime(ddd);
                                     parsedDatepp1 = dddddd.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
                                 }
-                                //DateTime date = Convert.ToDateTime(dateInputpp1);
-                                //parsedDatepp1 = date.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture);
-
                             }
 
                             var approve = item_new.status;
@@ -8413,12 +8400,8 @@ namespace AbhyProject.Controllers
                             dataRow["Pump type"] = item_new.PumpType;
                             dataRow["Date of Installation of Waterflow meter"] = parsedDatepp1;
                             dataRow["Area Irrigated(ha)"] = item_new.AreaIrrigated;
-                            dataRow["Date of Water Reading"] = "";
                             dataRow["Meter ID"] = item_new.Meterid;
-                            dataRow["Meter Reading"] = "";
-                            dataRow["Unit Of Meter Reading"] = item_new.UnitReading;
                             dataRow["Status"] = approve;
-                            dataRow["Status_dynamic"] = "";
                             dt.Rows.Add(dataRow);
 
 
@@ -8445,12 +8428,8 @@ namespace AbhyProject.Controllers
                     dataRow["Pump type"] = "";
                     dataRow["Date of Installation of Waterflow meter"] = "";
                     dataRow["Area Irrigated(ha)"] = "";
-                    dataRow["Date of Water Reading"] = "";
                     dataRow["Meter ID"] = "";
-                    dataRow["Meter Reading"] = "";
-                    dataRow["Unit Of Meter Reading"] = "";
                     dataRow["Status"] = "";
-                    dataRow["Status_dynamic"] = "";
                     dt.Rows.Add(dataRow);
                 }
                 if (dt != null && dt.Rows.Count > 0)
