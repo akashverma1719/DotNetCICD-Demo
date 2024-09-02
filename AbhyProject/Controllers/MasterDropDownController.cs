@@ -31601,18 +31601,16 @@ namespace AbhyProject.Controllers
             var folder_filename = Reg_Date11[5];
 
             var Fdrive = "F:";
-            var hdrive = "H:";
+            var hdrive = "D:";
             var namewebside = "ataljal.mowr.gov.in";
             var ff = "ataljalimages";
-
-
-
 
             string path = "";
             string filename = Path.GetFileName(folder_filename);
 
             if (FileName != null && FileName != "")
             {
+            //H:\ataljal.mowr.gov.in\ataljalimages\GPReg\Attandence\Kheri Simbal Wali_30716
                 string Hfilepath = hdrive + '\\' + namewebside + '\\' + ff + '\\' + foldername + '\\' + one_foldername + '\\' + two_foldername + '\\';
 
                 path = @Hfilepath;
@@ -31622,12 +31620,13 @@ namespace AbhyProject.Controllers
                 bool fileFound = false;
                 foreach (FileInfo file in files)
                 {
-                    if (String.Compare(file.Name, filename) == 0)
+                    if (String.Compare(file.Name, filename, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         fileFound = true;
                         Console.WriteLine(path);
                         break;
                     }
+                    
                 }
 
                 if (!fileFound)
@@ -31640,8 +31639,9 @@ namespace AbhyProject.Controllers
                     FileInfo[] files1 = directory1.GetFiles();
                     foreach (FileInfo file in files1)
                     {
-                        if (String.Compare(file.Name, filename) == 0)
-                        {
+                        
+                            if (String.Compare(file.Name, filename, StringComparison.OrdinalIgnoreCase) == 0)
+                            {
                             fileFound = true;
                             break;
 
@@ -31658,7 +31658,7 @@ namespace AbhyProject.Controllers
                     FileInfo[] files1 = directory1.GetFiles();
                     foreach (FileInfo file in files1)
                     {
-                        if (String.Compare(file.Name, filename) == 0)
+                        if (String.Compare(file.Name, filename, StringComparison.OrdinalIgnoreCase) == 0)
                         {
                             fileFound = true;
                             break;
