@@ -4493,6 +4493,16 @@ namespace AbhyProject.Controllers
                     current_events.particular_expo = result.particular_expo;
                     current_events.from_date = result.from_date;
                     current_events.to_date = result.to_date;
+
+                    string monthName = result.month;
+                    string dateString = result.from_date;
+                    DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                    if (fromDate.Month != monthNumber)
+                    {
+                        return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                    }
                     current_events.Nodal_officer = "Gram Panchyat Nodal Officer";
                     string Code = DateTime.Now.Ticks.ToString();
                     current_events.unic_key = "CE" + Code;
@@ -8160,7 +8170,15 @@ namespace AbhyProject.Controllers
                     Data.to_date = to_date;
                     Data.reg_open_date = reg_open_date;
                     Data.reg_close_date = reg_close_date;
+                    string monthName = month;
+                    string dateString = from_date;
+                    DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
 
+                    if (fromDate.Month != monthNumber)
+                    {
+                        return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                    }
                     Data.Nodal_officer = officer;
                     Data.entry_by = Email;
                     ABE.obj_current_events.Add(Data);
@@ -8339,6 +8357,15 @@ namespace AbhyProject.Controllers
                     Data.event_platform = event_platform;
                     Data.from_date = from_date;
                     Data.to_date = to_date;
+                    string monthName = month;
+                    string dateString = from_date;
+                    DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                    if (fromDate.Month != monthNumber)
+                    {
+                        return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                    }
                     Data.reg_open_date = reg_open_date;
                     Data.reg_close_date = reg_close_date;
                     Data.Nodal_officer = "District Level Nodal Officer";
@@ -8514,6 +8541,15 @@ namespace AbhyProject.Controllers
                     Data.event_platform = event_platform;
                     Data.from_date = from_date;
                     Data.to_date = to_date;
+                    string monthName = month;
+                    string dateString = from_date;
+                    DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                    if (fromDate.Month != monthNumber)
+                    {
+                        return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                    }
                     Data.reg_open_date = reg_open_date;
                     Data.reg_close_date = reg_close_date;
                     Data.Nodal_officer = "Block Level Nodal Officer";
@@ -10120,6 +10156,15 @@ namespace AbhyProject.Controllers
                         Data1.to_date = tdate_d;
                         Data1.reg_open_date = opendate_d;
                         Data1.reg_close_date = closedate_d;
+                        string monthName = Data1.month;
+                        string dateString = fdate_d;
+                        DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                        if (fromDate.Month != monthNumber)
+                        {
+                            return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                        }
                         var ddetails = ABE.obj_current_events.Where(x => x.level_event == NPMU && x.year == Data1.year && x.month == Data1.month && x.type_of_event == typ && x.p_training_name == topic_event).OrderByDescending(x => x.id).ToList();
                         var CheckData = ABE.obj_events_material.Where(x => x.level_event == NPMU && x.year == Data1.year && x.month == Data1.month && x.type_of_event == Data1.type_of_event && x.p_training_name == Data1.p_training_name).OrderByDescending(x => x.id).ToList();
                         var reg_data = ABE.obj_abhy_training_newregs.Where(x => x.p_state_name == NPMU && x.year == Data1.year && x.month == Data1.month && x.typeofevent == Data1.type_of_event && x.p_training_name == Data1.p_training_name).OrderByDescending(x => x.id).ToList();
@@ -10209,6 +10254,15 @@ namespace AbhyProject.Controllers
                         Data1.to_date = tdate_d;
                         Data1.reg_open_date = opendate_d;
                         Data1.reg_close_date = closedate_d;
+                        string monthName = Data1.month;
+                        string dateString = fdate_d;
+                        DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                        if (fromDate.Month != monthNumber)
+                        {
+                            return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                        }
                         var ddetails = ABE.obj_current_events.Where(x => x.level_event == State && x.Nodal_officer == "State Level Nodal Officer" && x.year == Data1.year && x.month == Data1.month && x.type_of_event == typ && x.p_training_name == topic_event).OrderByDescending(x => x.id).ToList();
                         var CheckData = ABE.obj_events_material.Where(x => x.level_event == State && x.Nodal_officer == "State Level Nodal Officer" && x.year == Data1.year && x.month == Data1.month && x.type_of_event == Data1.type_of_event && x.p_training_name == Data1.p_training_name).OrderByDescending(x => x.id).ToList();
                         var reg_data = ABE.obj_abhy_training_newregs.Where(x => x.p_state_name == State && x.nodal == "State Level Nodal Officer" && x.year == Data1.year && x.month == Data1.month && x.typeofevent == Data1.type_of_event && x.p_training_name == Data1.p_training_name).OrderByDescending(x => x.id).ToList();
@@ -10301,6 +10355,15 @@ namespace AbhyProject.Controllers
                         Data1.event_platform = event_platform;
                         Data1.from_date = fdate_d;
                         Data1.to_date = tdate_d;
+                        string monthName = Data1.month;
+                        string dateString = fdate_d;
+                        DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                        if (fromDate.Month != monthNumber)
+                        {
+                            return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                        }
                         Data1.reg_open_date = opendate_d;
                         Data1.reg_close_date = closedate_d;
                         var ddetails = ABE.obj_current_events.Where(x => x.level_event == State && x.district == District && x.Nodal_officer == "District Level Nodal Officer" && x.year == Data1.year && x.month == Data1.month && x.type_of_event == typ && x.p_training_name == topic_event).OrderByDescending(x => x.id).ToList();
@@ -10391,6 +10454,15 @@ namespace AbhyProject.Controllers
                         Data1.event_platform = event_platform;
                         Data1.from_date = fdate_d;
                         Data1.to_date = tdate_d;
+                        string monthName = Data1.month;
+                        string dateString = fdate_d;
+                        DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                        if (fromDate.Month != monthNumber)
+                        {
+                            return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                        }
                         Data1.reg_open_date = opendate_d;
                         Data1.reg_close_date = closedate_d;
                         var ddetails = ABE.obj_current_events.Where(x => x.level_event == State && x.district == District && x.block == Block && x.Nodal_officer == "Block Level Nodal Officer" && x.year == Data1.year && x.month == Data1.month && x.type_of_event == typ && x.p_training_name == topic_event).OrderByDescending(x => x.id).ToList();
@@ -10595,6 +10667,15 @@ namespace AbhyProject.Controllers
                         Data1.event_platform = event_platform;
                         Data1.from_date = fdate_d;
                         Data1.to_date = tdate_d;
+                        string monthName = Data1.month;
+                        string dateString = fdate_d;
+                        DateTime fromDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        int monthNumber = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
+
+                        if (fromDate.Month != monthNumber)
+                        {
+                            return Json("Choose the same month from the Select Month drop-down as the one you selected in From Date.", JsonRequestBehavior.AllowGet);
+                        }
 
                         ABE.Entry(Data1).State = System.Data.Entity.EntityState.Modified;
                         int A = ABE.SaveChanges();

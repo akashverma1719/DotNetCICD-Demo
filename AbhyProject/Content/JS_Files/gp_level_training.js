@@ -4263,7 +4263,7 @@ function isWithinRange(date) {
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
     var todatdate = today;
-    if (todatdate <= "2024-08-27") {
+    if (todatdate <= "2024-09-05") {
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth(); // Month is 0 indexed
         var currentYear = currentDate.getFullYear();
@@ -4278,7 +4278,7 @@ function isWithinRange(date) {
         var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
 
         // Calculate the start date (first day of the previous month)
-        var prevMonth = currentMonth - 2;
+        var prevMonth = currentMonth - 1;
         var prevMonthYear = currentYear;
         if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
             prevMonth = 11; // December of the previous year

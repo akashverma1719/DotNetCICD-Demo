@@ -557,10 +557,16 @@
                                         </li>
                                         <li id="7date">
 
-                                            <select class="form-control" id="montha" onchange="Month_change()">
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
+                                            <select class="form-control" id="month" onchange="Month_change()">
+
                                                 <option value="August">August</option>
+                                                <option value="September">September</option>
+                                                <option value="October">October</option>
+                                                <option value="November">November</option>
+                                                <option value="December">December</option>
+                                                <option value="January">January</option>
+                                                <option value="February">February</option>
+                                                <option value="March">March</option>
                                             </select>
 
                                         </li>
@@ -1123,12 +1129,13 @@
         const m = new Date()
         let MonthName = month[m.getUTCMonth()];
         $("#month").val(MonthName);
+        $("#montha").val(MonthName);
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-08-27") {
+        if (today <= "2024-09-05") {
             $('#7date').show();
             $('#8date').hide();
         }
@@ -2028,7 +2035,7 @@
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-08-27") {
+        if (today <= "2024-09-05") {
             var currentDate = new Date();
             var currentMonth = currentDate.getMonth(); // Month is 0 indexed
             var currentYear = currentDate.getFullYear();
@@ -2043,7 +2050,7 @@
             var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
 
             // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 2;
+            var prevMonth = currentMonth - 1;
             var prevMonthYear = currentYear;
             if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
                 prevMonth = 11; // December of the previous year
@@ -2327,8 +2334,8 @@
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-08-27") {
-            var mmm = "06";
+        if (today <= "2024-09-05") {
+            var mmm = "08";
             // Set the minimum and maximum attributes of the date input
             document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
             document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
@@ -2450,8 +2457,12 @@
                 if (response == "SessionTimeOut") {
                       window.location = "/Home/LogOut";
                 }
+                if (response == "Choose the same month from the Select Month drop-down as the one you selected in From Date.") {
 
-                abhy_Curr_Event_Info_Search2();
+                }
+                else {
+                    abhy_Curr_Event_Info_Search2();
+                }
             },
             error: function () {
                 alert('Update Failed');
@@ -2550,8 +2561,8 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-    if (today <= "2024-08-27") {
-        var mmm = "06";
+    if (today <= "2024-09-05") {
+        var mmm = "08";
         // Set the minimum and maximum attributes of the date input
         document.getElementById("from_date").setAttribute("min", yyyy + '-' + mmm + '-01');
         document.getElementById("from_date").setAttribute("max", "9999-12-31");

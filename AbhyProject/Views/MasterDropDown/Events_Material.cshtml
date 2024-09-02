@@ -658,10 +658,15 @@
                                         </li>
                                         <li id="7date">
 
-                                            <select class="form-control" id="montha" onchange="Month_change()">
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
+                                            <select class="form-control" id="month" onchange="Month_change()">
                                                 <option value="August">August</option>
+                                                <option value="September">September</option>
+                                                <option value="October">October</option>
+                                                <option value="November">November</option>
+                                                <option value="December">December</option>
+                                                <option value="January">January</option>
+                                                <option value="February">February</option>
+                                                <option value="March">March</option>
                                             </select>
 
                                         </li>
@@ -1899,7 +1904,7 @@
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-08-27") {
+        if (today <= "2024-09-05") {
             $('#7date').show();
             $('#8date').hide();
         }
@@ -5261,7 +5266,7 @@
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         var todatdate = today;
-        if (todatdate <= "2024-08-27") {
+        if (todatdate <= "2024-09-05") {
             var currentDate = new Date();
             var currentMonth = currentDate.getMonth(); // Month is 0 indexed
             var currentYear = currentDate.getFullYear();
@@ -5276,7 +5281,7 @@
             var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
 
             // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 2;
+            var prevMonth = currentMonth - 1;
             var prevMonthYear = currentYear;
             if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
                 prevMonth = 11; // December of the previous year

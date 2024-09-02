@@ -693,10 +693,16 @@
                                         </li>
                                         <li id="7date">
 
-                                            <select class="form-control" id="montha" onchange="Month_change()" >
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
+                                            <select class="form-control" id="month" onchange="Month_change()">
+                                               
                                                 <option value="August">August</option>
+                                                <option value="September">September</option>
+                                                <option value="October">October</option>
+                                                <option value="November">November</option>
+                                                <option value="December">December</option>
+                                                <option value="January">January</option>
+                                                <option value="February">February</option>
+                                                <option value="March">March</option>
                                             </select>
 
                                         </li>
@@ -2169,7 +2175,8 @@ var off_1 = "";
     const m = new Date()
     let MonthName = month[m.getUTCMonth()];
     $("#month").val(MonthName);
-    $("#month_new").val(MonthName);
+        $("#month_new").val(MonthName);
+        $("#montha").val(MonthName);
     Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
     $(".loader").show();
     $('#Error_').text("States Information is Loading....");
@@ -2232,8 +2239,8 @@ var off_1 = "";
     statename_new = statename;
        
         debugger;
-        if (today <= "2024-08-27") {
-            var mmm = "06";
+        if (today <= "2024-09-05") {
+            var mmm = "08";
             $('#7date').show();
             $('#8date').hide();
             // Set the minimum and maximum attributes of the date input
