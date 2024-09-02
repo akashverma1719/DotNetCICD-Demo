@@ -2490,6 +2490,89 @@ namespace AbhyProject.Controllers
                                 return Json("Please Upload Maps!", JsonRequestBehavior.AllowGet);
                             }
                         }
+                        else
+                        {
+                            if (CheckMap.gpimage1 != null && CheckMap.gpimage1 != "" && CheckMap.gpimage2 != null && CheckMap.gpimage2 != "" && CheckMap.gpimage2 != null && CheckMap.gpimage2 != "")
+                            {
+                                //RajnISH
+                                string CheckDemandArea = ChackAreaIsEqualToFundAreaString();
+                                if (CheckDemandArea != "Success")
+                                {
+                                    return Json(CheckDemandArea, JsonRequestBehavior.AllowGet);
+                                }
+                                abhy_wsp_approved_status details = new abhy_wsp_approved_status();
+                                abhy_wsp_approved_status data = new abhy_wsp_approved_status();
+                                if (State != "" && State != null && Dist != "" && Dist != null && Block != "" && Block != null && Gram != "" && Gram != null && Year != "" && Year != null)
+                                {
+                                    data = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.year == Year).FirstOrDefault();
+                                }
+                                if (data != null)
+                                {
+                                    data.state_name = State;
+                                    data.district_name = Dist;
+                                    data.block_name = Block;
+                                    data.gp_name = Gram;
+                                    data.year = Year;
+                                    data.month_name = Month;
+
+                                    if (OfficerName == "District Level Nodal Officer")
+                                    {
+                                        var details1 = ABE.obj_abhy_wsp_dpmu_declaration_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).FirstOrDefault();
+                                        if (details1 != null)
+                                        {
+                                            if (details1.dpmu_declaration != null && details1.dpmu_declaration != "")
+                                            {
+                                                data.status_id = 4;
+                                                data.reject_status = "";
+                                                data.gp_email = Email;
+                                            }
+                                            else
+                                            {
+                                                return Json("Please Upload DPMU Declaration!", JsonRequestBehavior.AllowGet);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            return Json("Please Upload DPMU Declaration!", JsonRequestBehavior.AllowGet);
+                                        }
+                                    }
+                                    else if (OfficerName == "State Level Nodal Officer")
+                                    {
+                                        data.status_id = 5;
+                                        data.reject_status = "";
+                                        data.gp_email = Email;
+                                    }
+                                    else if (OfficerName == "Gram Panchyat Nodal Officer")
+                                    {
+                                        data.status_id = 3;
+                                        data.reject_status = "";
+                                        data.gp_email = Email;
+                                    }
+                                    ABE.Entry(data).State = EntityState.Modified;
+                                    ABE.SaveChanges();
+                                }
+                                else
+                                {
+                                    details.state_name = State;
+                                    details.district_name = Dist;
+                                    details.block_name = Block;
+                                    details.gp_name = Gram;
+                                    details.year = Year;
+                                    details.month_name = Month;
+                                    details.status_id = 3;
+                                    Session["status_id"] = 3;
+                                    details.gp_email = Email;
+                                    ABE.obj_abhy_wsp_approved_status.Add(details);
+                                    ABE.SaveChanges();
+                                }
+                                return Json("Successfully sumbit data for approved", JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                return Json("Please Upload Maps!", JsonRequestBehavior.AllowGet);
+                            }
+                        }
+
 
                     }
                    
@@ -2581,6 +2664,7 @@ namespace AbhyProject.Controllers
                     return Json("Error", JsonRequestBehavior.AllowGet);
                 }
             }
+            
             {
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
