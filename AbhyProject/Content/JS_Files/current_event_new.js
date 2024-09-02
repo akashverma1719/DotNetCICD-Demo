@@ -3117,8 +3117,8 @@ function editrowcomp_A_Good2(i) {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-     if (today <= "2024-08-27") {
-        var mmm = "06";
+     if (today <= "2024-09-05") {
+        var mmm = "08";
         // Set the minimum and maximum attributes of the date input
         document.getElementById("fdate1" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
         document.getElementById("fdate1" + i).setAttribute("max", "9999-12-31");
@@ -3210,8 +3210,8 @@ function editrowcomp_A_Good2_state(i) {
         today = yyyy + '-' + mm + '-' + dd;
 
         // Set the minimum and maximum attributes of the date input
-         if (today <= "2024-08-27") {
-            var mmm = "06";
+         if (today <= "2024-09-05") {
+            var mmm = "08";
             // Set the minimum and maximum attributes of the date input
             document.getElementById("fdate1_S" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
             document.getElementById("fdate1_S" + i).setAttribute("max", "9999-12-31");
@@ -3301,8 +3301,8 @@ function editrowcomp_A_Good2_district(i) {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-             if (today <= "2024-08-27") {
-                var mmm = "06";
+             if (today <= "2024-09-05") {
+                var mmm = "08";
                 // Set the minimum and maximum attributes of the date input
                 document.getElementById("fdate1_D" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
                 document.getElementById("fdate1_D" + i).setAttribute("max", "9999-12-31");
@@ -3387,8 +3387,8 @@ function editrowcomp_A_Good2_block(i) {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-     if (today <= "2024-08-27") {
-        var mmm = "06";
+     if (today <= "2024-09-05") {
+        var mmm = "08";
         // Set the minimum and maximum attributes of the date input
         document.getElementById("fdate1_B" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
         document.getElementById("fdate1_B" + i).setAttribute("max", "9999-12-31");
@@ -3471,8 +3471,8 @@ function editrowcomp_A_Good2_gram(i) {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-     if (today <= "2024-08-27") {
-        var mmm = "06";
+     if (today <= "2024-09-05") {
+        var mmm = "08";
         // Set the minimum and maximum attributes of the date input
         document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
         document.getElementById("fdate1_G" + i).setAttribute("max", "9999-12-31");
@@ -3651,12 +3651,18 @@ function Update_AWP1(id, RowNo) {
         contentType: false,
         processData: false,
         success: function (response) {
-
+            debugger;
             alert(response);
             if (response == "SessionTimeOut") {
                   window.location = "/Home/LogOut";
             }
-            abhy_Curr_Event_Info_Search_4();
+            if (response == "Choose the same month from the Select Month drop-down as the one you selected in From Date.") {
+
+            }
+            else {
+                abhy_Curr_Event_Info_Search_4();
+            }
+            
 
         },
         error: function () {
@@ -3752,7 +3758,13 @@ function Update_AWP1_state(id, RowNo) {
             if (response == "SessionTimeOut") {
                   window.location = "/Home/LogOut";
             }
-            abhy_Curr_Event_Info_Search1();
+            if (response == "Choose the same month from the Select Month drop-down as the one you selected in From Date.") {
+
+            }
+            else {
+                abhy_Curr_Event_Info_Search1();
+            }
+           
 
         },
         error: function () {
@@ -3848,7 +3860,13 @@ function Update_AWP1_district(id, RowNo) {
             if (response == "SessionTimeOut") {
                   window.location = "/Home/LogOut";
             }
-            abhy_Curr_Event_Info_Search2();
+            if (response == "Choose the same month from the Select Month drop-down as the one you selected in From Date.") {
+
+            }
+            else {
+                abhy_Curr_Event_Info_Search2();
+            }
+           
            
 
         },
@@ -3945,7 +3963,13 @@ function Update_AWP1_block(id, RowNo) {
             if (response == "SessionTimeOut") {
                   window.location = "/Home/LogOut";
             }
-            abhy_Curr_Event_Info_Search3();
+            if (response == "Choose the same month from the Select Month drop-down as the one you selected in From Date.") {
+
+            }
+            else {
+                abhy_Curr_Event_Info_Search3();
+            }
+            
             
 
         },
@@ -4031,8 +4055,13 @@ function Update_AWP1_gram(id, RowNo) {
             if (response == "SessionTimeOut") {
                   window.location = "/Home/LogOut";
             }
+            if (response == "Choose the same month from the Select Month drop-down as the one you selected in From Date.") {
 
+            }
+            else {
                 abhy_Event_Cal_Info_Search5();
+            }
+                
         },
         error: function () {
             alert('Update Failed');
@@ -5346,7 +5375,7 @@ function abhy_Event_Cal_Info_Search5() {
 
 function isWithinRange(date) {
     debugger;
-        if (todatdate <= "2024-08-27") {
+        if (todatdate <= "2024-09-05") {
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth(); // Month is 0 indexed
         var currentYear = currentDate.getFullYear();
@@ -5361,7 +5390,7 @@ function isWithinRange(date) {
         var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
 
         // Calculate the start date (first day of the previous month)
-        var prevMonth = currentMonth - 2;
+        var prevMonth = currentMonth - 1;
         var prevMonthYear = currentYear;
         if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
             prevMonth = 11; // December of the previous year
