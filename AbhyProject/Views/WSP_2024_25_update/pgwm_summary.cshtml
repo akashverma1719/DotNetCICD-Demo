@@ -711,7 +711,7 @@
     $('#dmpu_dec_a').hide();
     $('#wsp_remarks').hide();
     var StateOfficer = '@Session["Officer"]';
-    if (StateOfficer == 'District Level Nodal Officer') {
+    if (StateOfficer == 'District Level Nodal Officer' || StateOfficer == 'State Level Nodal Officer' || StateOfficer == 'National Level Nodal Officer') {
         $('#dmpu_dec_a').show();
     } else {
         $('#wsp_remarks').show();
