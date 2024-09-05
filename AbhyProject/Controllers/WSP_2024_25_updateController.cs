@@ -6169,7 +6169,11 @@ namespace AbhyProject.Controllers
                     //var Month = Session["month"].ToString();
 
                     var Data_details = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.year == Year).ToList();
+                    if(Data_details.Count < 1)
+                    {
+                        Data_details = ABE.obj_abhy_wsp_wateravailbility_new_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.year == "2024-25").ToList();
 
+                    }
                     return Json(Data_details, JsonRequestBehavior.AllowGet);
                 }
                 else
