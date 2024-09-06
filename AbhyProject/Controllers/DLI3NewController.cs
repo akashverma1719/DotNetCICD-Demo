@@ -2664,8 +2664,8 @@ namespace AbhyProject.Controllers
 
                     worksheet.Cell(currentRow + 1, 10).Value = "Department Name";
                     worksheet.Cell(currentRow + 1, 11).Value = "Scheme Name / Possible Funding Source";
-                    worksheet.Cell(currentRow + 1, 12).Value = "Area Proposed Under Intervention (ha)";
-                    worksheet.Cell(currentRow + 1, 13).Value = "Total Area Under Conventional Irrigation (ha)";
+                    worksheet.Cell(currentRow + 1, 12).Value = "Total Area Under Conventional Irrigation (ha)";
+                    worksheet.Cell(currentRow + 1, 13).Value = "Area Proposed Under Intervention (ha)";
                     worksheet.Cell(currentRow + 1, 14).Value = "Approximate Estimated Cost (in lakh)";
                     worksheet.Cell(currentRow + 1, 15).Value = "Total water demand (ha)";
                     worksheet.Cell(currentRow + 1, 16).Value = "Reduction in water demand";
@@ -2697,7 +2697,7 @@ namespace AbhyProject.Controllers
                         worksheet.Cell(currentRow + 1, col).Style.Font.Bold = true;
                         worksheet.Cell(currentRow, col).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                     }
-
+                    currentRow = 2;
 
 
                     if (data.Count != 0)
@@ -3154,8 +3154,8 @@ namespace AbhyProject.Controllers
 
                     worksheet.Cell(currentRow + 1, 10).Value = "Department Name";
                     worksheet.Cell(currentRow + 1, 11).Value = "Scheme Name / Possible Funding Source";
-                    worksheet.Cell(currentRow + 1, 12).Value = "Area Proposed Under Intervention (ha)";
-                    worksheet.Cell(currentRow + 1, 13).Value = "Total Area Under Conventional Irrigation (ha)";
+                    worksheet.Cell(currentRow + 1, 12).Value = "Total Area Under Conventional Irrigation (ha)";
+                    worksheet.Cell(currentRow + 1, 13).Value = "Area Proposed Under Intervention (ha)";
                     worksheet.Cell(currentRow + 1, 14).Value = "Approximate Estimated Cost (in lakh)";
                     worksheet.Cell(currentRow + 1, 15).Value = "Total water demand (ha)";
                     worksheet.Cell(currentRow + 1, 16).Value = "Reduction in water demand";
