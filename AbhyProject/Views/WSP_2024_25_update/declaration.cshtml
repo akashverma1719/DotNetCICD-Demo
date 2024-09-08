@@ -578,16 +578,20 @@
 
 
     function get_approved_status() {
+        debugger
         $.ajax({
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
             url: "/WSP_2024_25_update/get_approved_status",
             dataType: 'JSON',
             success: function (data) {
-
+                debugger
                 if (data == 3) {
 
-                    $('.btn_disabled').prop("disabled", false);
+                   // $('.btn_disabled').prop("disabled", false);
+                    $('.btn_disabled').prop("disabled", true);
+                    $('#declaration_dpmu').prop("disabled", true);
+                    
                 }
 
                 else {
@@ -605,10 +609,14 @@
                 $("#wsp_approved_spmu").hide();
                 if (data == "null" && StateOfficer == "Gram Panchyat Nodal Officer") {
                     //for Inprogress
-                    $('input[type=text]').prop("disabled", false)
-                    $('select').prop("disabled", false);
-                    $('input[type=file]').prop("disabled", false)
-                    $('.btn_disabled').prop("disabled", false);
+                    //$('input[type=text]').prop("disabled", false)
+                    //$('select').prop("disabled", false);
+                    //$('input[type=file]').prop("disabled", false)
+                    //$('.btn_disabled').prop("disabled", false
+                    $('input[type=text]').prop("disabled", true)
+                    $('select').prop("disabled", true);
+                    $('input[type=file]').prop("disabled", true)
+                    $('.btn_disabled').prop("disabled", true);
                 }
                 if (access_auth == "Declaration") {
                     $('.btn_disabled').prop("disabled", false);

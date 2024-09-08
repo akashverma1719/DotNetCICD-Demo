@@ -8,7 +8,8 @@ function get_approved_status(val) {
         success: function (data) {
             //debugger;
             console.log(data)
-             if (data>1) {
+            /*    if (data>1) {*/
+            if (data >= 1) {
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
@@ -22,7 +23,9 @@ function get_approved_status(val) {
                 $('input[type=file]').prop("disabled", false)
                 $('.btn_disabled').prop("disabled", false);
              }
-             else if ((StateOfficer == "Gram Panchyat Nodal Officer" && data == '1') || (StateOfficer == "Gram Panchyat Nodal Officer" && data == "null")) {
+            /* 
+            Disable for user
+            else if ((StateOfficer == "Gram Panchyat Nodal Officer" && data == '1') || (StateOfficer == "Gram Panchyat Nodal Officer" && data == "null")) {
                  $('input[type=text]').prop("disabled", false)
                  $('select').prop("disabled", false);
                  $('input[type=file]').prop("disabled", false)
@@ -33,7 +36,7 @@ function get_approved_status(val) {
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
                 $('.btn_disabled').prop("disabled", true);
-            }
+            }*/
             //else if (data == "null")
             //{
             //    //for Inprogress
@@ -43,6 +46,7 @@ function get_approved_status(val) {
             //    $('.btn_disabled').prop("disabled", false);
             //}
             else {
+                //$(".btnNext").show();
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
