@@ -15577,7 +15577,7 @@ namespace AbhyProject.Controllers
 
 
         [HttpPost]
-        public ActionResult Update_waterflow(string id, string DateofEntry, string Meterid, string latitude, string longitude, string village, string locationdetail, string AreaIrrigated, string depthofwell ,string OwnerName, string WaterFlowMeter_Installation_Date)
+        public ActionResult Update_waterflow(string id,string WellType, string DateofEntry, string Meterid, string latitude, string longitude, string village, string locationdetail, string AreaIrrigated, string depthofwell ,string OwnerName, string WaterFlowMeter_Installation_Date)
         {
             if (Session["UserId"] != null)
             {
@@ -15693,6 +15693,7 @@ namespace AbhyProject.Controllers
                         }
 
                         Data.Meterid = Meterid;
+                        Data.WellType = WellType;
                         AJE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
                         int A = AJE.SaveChanges();
                         if (A > 0)
