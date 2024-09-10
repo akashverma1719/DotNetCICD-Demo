@@ -1818,7 +1818,11 @@
             alert("Please Select Month");
             return;
         }
-
+        else if (ymonth != month) {
+            x = 1;
+            alert("Please Select Current Month");
+            return;
+        }
        
       
         else if (type_of_event == "0") {
@@ -1886,30 +1890,6 @@
             return;
 
         }
-        debugger;
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-09-05") {
-            if (month != "August" && month != "Septumber") {
-                if (ymonth != month) {
-                    x = 1;
-                    alert("Please Select Current Month");
-                    return;
-                }
-            }
-        }
-        else {
-            if (ymonth != month) {
-                x = 1;
-                alert("Please Select Current Month");
-                return;
-            }
-        }
-          
-        
         if (total_pop != 0) {
             if (total_pop < total_participants || total_pop != total_participants) {
                 x = 1;
