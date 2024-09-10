@@ -10374,7 +10374,6 @@ function buttonnext_water() {
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
-                            Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td><label style="color: blue;">Submitted To SPMU</label></td> ';
                             Tbodyhtml += '<td><a href="/GplevelMobileData/Mapview_MADB_waterflow?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr >';
 
@@ -10526,14 +10525,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10562,7 +10567,9 @@ function buttonnext_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
+                            //Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
+                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
+
                             Tbodyhtml += '<td><button class="btn btn-primary"  onclick="editrowcomp_A_Good4_waterflow(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
                             Tbodyhtml += '<td><button class="btn btn-danger"  onclick="Delete_waterflow(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
                             Tbodyhtml += '<td><button class="btn btn-success"  onclick="submit_spmu_waterflow(' + data[i].id + ')">Submit To SPMU</button ></td> ';
@@ -10575,14 +10582,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10624,14 +10637,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10673,14 +10692,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10722,14 +10747,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10772,15 +10803,23 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="state' + i + '" value="' + data[i].State + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10822,14 +10861,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10871,14 +10916,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10920,14 +10971,20 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -10969,19 +11026,29 @@ function buttonnext_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="Meterid' + i + '" value="' + data[i].Meterid + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="type_of_well' + i + '" value="' + data[i].UnitReading + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="UnitReading' + i + '" value="' + data[i].UnitReading + '" disabled /></td>';
+
+
+
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="Update_data_waterflow(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_waterflow(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
@@ -11039,6 +11106,7 @@ function buttonnext_water() {
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
+                            Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td><label style="color: green;">Approved By SPMU</label></td> ';
                             Tbodyhtml += '<td><a href="/GplevelMobileData/Mapview_MADB_waterflow?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;" target="_blank"><i class="bi-geo-alt"></i></a></td></tr >';
 
@@ -11062,7 +11130,7 @@ function buttonnext_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
+                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
@@ -11118,7 +11186,7 @@ function buttonnext_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
@@ -11146,7 +11214,7 @@ function buttonnext_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
@@ -11332,7 +11400,7 @@ function buttonnext_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             //Tbodyhtml += '<td><button class="btn btn-primary"  onclick="editrowcomp_A_Good4_waterflow(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
@@ -11384,7 +11452,7 @@ function buttonnext_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             //Tbodyhtml += '<td><button class="btn btn-primary"  onclick="editrowcomp_A_Good4_waterflow(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
@@ -12675,14 +12743,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -12711,7 +12785,9 @@ function buttonpre_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
+                            //Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
+                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
+
                             Tbodyhtml += '<td><button class="btn btn-primary"  onclick="editrowcomp_A_Good4_waterflow(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
                             Tbodyhtml += '<td><button class="btn btn-danger"  onclick="Delete_waterflow(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
                             Tbodyhtml += '<td><button class="btn btn-success"  onclick="submit_spmu_waterflow(' + data[i].id + ')">Submit To SPMU</button ></td> ';
@@ -12724,14 +12800,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -12773,14 +12855,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -12822,14 +12910,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -12871,14 +12965,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -12921,15 +13021,23 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="state' + i + '" value="' + data[i].State + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -12971,14 +13079,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -13020,14 +13134,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -13069,14 +13189,20 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
@@ -13118,19 +13244,29 @@ function buttonpre_water() {
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="district' + i + '" value="' + data[i].District + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="block' + i + '" value="' + data[i].Block + '" disabled /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gp' + i + '" value="' + data[i].GramPanchayat + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="village' + i + '" value="' + village + '"  /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="village' + i + '" ><option value="' + village + '">' + village + '</option></select></td>';
+
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="locationdetail' + i + '" value="' + data[i].LocationDetails + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="latitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Latitude + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" id="longitude_waterflow' + i + '" maxlength="9" data-decimal="8" oninput="enforceNumberValidation_waterflow(' + i + ' , this)" class="form-control color_database decimal" value="' + data[i].Longitude + '"  /></td>';
                             Tbodyhtml += '<td><input type="date" class="form-control" onkeypress="return false;" id="DateofEntry' + i + '" value="' + data[i].DateofEntry + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="OwnerName' + i + '" value="' + data[i].OwnerName + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].WellType + '" disabled /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="gwl_date' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '" disabled /></td>';
+
+                            Tbodyhtml += '<td><select class="form-control" id="WellType' + i + '" value="' + data[i].WellType + '"><option value="Dug Well" ' + (data[i].WellType === 'Dug Well' ? ' selected' : '') + '>Dug Well</option><option value="Tube Well" ' + (data[i].WellType === 'Tube Well' ? ' selected' : '') + '>Tube Well</option><option value="Bore Well" ' + (data[i].typeofwell === 'Bore Well' ? ' selected' : '') + '>Bore Well</option></select></td>';
+
+                            //Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '" disabled /></td>';
+                            Tbodyhtml += '<td><select class="form-control" id="PumpType' + i + '" value="' + data[i].PumpType + '"><option value="Non-energised" ' + (data[i].PumpType === 'Non-energised' ? ' selected' : '') + '>Non-energised</option><option value="Diesel Pumps" ' + (data[i].PumpType === 'Diesel Pumps' ? ' selected' : '') + '>Diesel Pumps</option><option value="Solar Pumps" ' + (data[i].PumpType === 'Solar Pumps' ? ' selected' : '') + '>Solar Pumps</option><option value="Centrifugal Pumps" ' + (data[i].PumpType === 'Centrifugal Pumps' ? ' selected' : '') + '>Centrifugal Pumps</option><option value="Submersible Pumps" ' + (data[i].PumpType === 'Submersible Pumps' ? ' selected' : '') + '>Submersible Pumps</option></select></td>';
+
+
                             Tbodyhtml += '<td><input type="date" class="form-control "  onkeypress="return false;" id="WaterFlowMeter_Installation_Date' + i + '" value="' + data[i].WaterFlowMeter_Installation_Date + '" /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="AreaIrrigated' + i + '" value="' + data[i].AreaIrrigated + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" onkeypress="return isNumberKey(this, event);" maxlength="5" id="depthofwell' + i + '" value="' + depthofwell + '"  /></td>';
                             Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="Meterid' + i + '" value="' + data[i].Meterid + '"  /></td>';
-                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="type_of_well' + i + '" value="' + data[i].UnitReading + '" disabled /></td>';
+                            Tbodyhtml += '<td><input type="text"  onpaste="return false;" class="form-control" id="UnitReading' + i + '" value="' + data[i].UnitReading + '" disabled /></td>';
+
+
+
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="Update_data_waterflow(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_waterflow(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
@@ -13212,7 +13348,7 @@ function buttonpre_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
+                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
@@ -13268,7 +13404,7 @@ function buttonpre_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
@@ -13296,7 +13432,7 @@ function buttonpre_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="find_waterflow_data(' + data[i].id + ')"> <i class="bi-clipboard-data"></i></button ></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
@@ -13482,7 +13618,7 @@ function buttonpre_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             //Tbodyhtml += '<td><button class="btn btn-primary"  onclick="editrowcomp_A_Good4_waterflow(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
@@ -13534,7 +13670,7 @@ function buttonpre_water() {
                             Tbodyhtml += '<td id="rainfall">' + depthofwell + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].Meterid + '</td>';
                             Tbodyhtml += '<td id="rainfall">' + data[i].UnitReading + '</td>';
-                            Tbodyhtml += '<td></td>';
+                            Tbodyhtml += '<td><button type="button" class="btn btn-black text-light" data-toggle="modal" data-target="#exampleModal_waterflow" onclick="find_waterflow_data(' + data[i].id + ')" style="background: #0000006b;color:#fff;"> <i class="bi-clipboard-data text-light"></i></button></td>';
                             Tbodyhtml += '<td></td>';
                             Tbodyhtml += '<td></td>';
                             //Tbodyhtml += '<td><button class="btn btn-primary"  onclick="editrowcomp_A_Good4_waterflow(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
