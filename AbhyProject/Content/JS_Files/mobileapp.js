@@ -1,5 +1,8 @@
 
-
+if (localStorage.getItem('version') !== '1.1') {
+    localStorage.setItem('version', '1.1');
+    location.reload(true);  // Reloads the page, ignoring cached content
+}
 
 
 /*waterlevel start*/

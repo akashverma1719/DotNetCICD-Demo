@@ -15590,14 +15590,11 @@ namespace AbhyProject.Controllers
                         Data.Latitude = latitude;
                         Data.Longitude = longitude;
                         string asaad = village;
+                        if (WellType == null)
+                        {
+                            return Json("Select well type");
+                        }
                         string specialChar = @"@\|!#$%&()=?»«@£§€{}.;'<>,";
-                        //foreach (var item in asaad)
-                        //{
-                        //    if (specialChar.Contains(item))
-                        //    {
-                        //        return Json("Villiage Name Not Correct");
-                        //    }
-                        //}
                         string location = locationdetail;
                         string specialCharlocation = @"@\|!#$%&?»«@£§€{}.;<>";
                         foreach (var item in location)
