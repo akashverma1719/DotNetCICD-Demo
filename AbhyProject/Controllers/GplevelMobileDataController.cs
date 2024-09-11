@@ -15577,7 +15577,7 @@ namespace AbhyProject.Controllers
 
 
         [HttpPost]
-        public ActionResult Update_waterflow(string id,string WellType, string DateofEntry, string Meterid, string latitude, string longitude, string village, string locationdetail, string AreaIrrigated, string depthofwell ,string OwnerName, string WaterFlowMeter_Installation_Date)
+        public ActionResult Update_waterflow(string id,string PumpType,string WellType, string DateofEntry, string Meterid, string latitude, string longitude, string village, string locationdetail, string AreaIrrigated, string depthofwell ,string OwnerName, string WaterFlowMeter_Installation_Date)
         {
             if (Session["UserId"] != null)
             {
@@ -15593,6 +15593,10 @@ namespace AbhyProject.Controllers
                         if (WellType == null)
                         {
                             return Json("Select well type");
+                        } 
+                        if (PumpType == null)
+                        {
+                            return Json("Select Pump Type");
                         }
                         string specialChar = @"@\|!#$%&()=?»«@£§€{}.;'<>,";
                         string location = locationdetail;
@@ -15691,6 +15695,7 @@ namespace AbhyProject.Controllers
 
                         Data.Meterid = Meterid;
                         Data.WellType = WellType;
+                        Data.PumpType = PumpType;
                         AJE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
                         int A = AJE.SaveChanges();
                         if (A > 0)
