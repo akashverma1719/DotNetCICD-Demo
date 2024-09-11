@@ -14775,6 +14775,7 @@ function Update_data_waterflow(id, RowNo) {
     var DateofEntry = $('#DateofEntry' + RowNo).val();
     var depthofwell = $('#depthofwell' + RowNo).val();
     var WellType = $('#WellType' + RowNo).val();
+    var PumpType = $('#PumpType' + RowNo).val();
 
     if (latitude == "") {
         alert("Please Enter latitude");
@@ -14920,6 +14921,7 @@ function Update_data_waterflow(id, RowNo) {
         formdata.append("DateofEntry", DateofEntry);
         formdata.append("Meterid", Meterid);
         formdata.append("WellType", WellType);
+        formdata.append("PumpType", PumpType);
         formdata.append("WaterFlowMeter_Installation_Date", WaterFlowMeter_Installation_Date);
         if (confirm("Are you sure you want to Update this entry?")) {
             $.ajax({
