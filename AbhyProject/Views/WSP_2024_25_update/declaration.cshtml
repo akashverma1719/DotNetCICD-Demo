@@ -479,6 +479,36 @@
     var StateOfficer = "";
     var access_auth = "";
     $(document).ready(function () {
+        document.addEventListener('keydown', function (event) {
+            // Disable F12
+            if (event.keyCode === 123) {
+                event.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+Shift+I
+            if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
+                event.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+Shift+C
+            if (event.ctrlKey && event.shiftKey && event.keyCode === 67) {
+                event.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+U
+            if (event.ctrlKey && event.keyCode === 85) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        // Disable Right-Click
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+
+
+
         access_auth = '@Session["access_auth"]';
         get_approved_status();
         $("#btn_declaration_dlt").hide();
@@ -587,7 +617,6 @@
             success: function (data) {
                 debugger
                 if (data == 3) {
-
                    // $('.btn_disabled').prop("disabled", false);
                     $('.btn_disabled').prop("disabled", true);
                     $('#declaration_dpmu').prop("disabled", true);
@@ -597,6 +626,7 @@
                 else {
                     $('.btn_disabled').prop("disabled", true);
                     $("#wsp_approved_spmu").hide();
+                    $('#declaration_dpmu').prop("disabled", true);
                 }
 
                 //if (StateOfficer == "District Level Nodal Officer" && data < 3) {
@@ -617,11 +647,13 @@
                     $('select').prop("disabled", true);
                     $('input[type=file]').prop("disabled", true)
                     $('.btn_disabled').prop("disabled", true);
+                    $('#declaration_dpmu').prop("disabled", true);
+
                 }
-                if (access_auth == "Declaration") {
-                    $('.btn_disabled').prop("disabled", false);
-                    $("#wsp_approved_spmu").show();
-                }
+                //if (access_auth == "Declaration") {
+                //    $('.btn_disabled').prop("disabled", false);
+                //    $("#wsp_approved_spmu").show();
+                //}
             }
         });
     }
