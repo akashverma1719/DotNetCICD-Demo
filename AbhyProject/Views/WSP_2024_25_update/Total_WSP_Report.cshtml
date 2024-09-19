@@ -4368,6 +4368,36 @@
     var StateOfficer = '@Session["Officer"]';
     var access_auth = '';
     $(document).ready(function () {
+        document.addEventListener('keydown', function (event) {
+            // Disable F12
+            if (event.keyCode === 123) {
+                event.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+Shift+I
+            if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
+                event.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+Shift+C
+            if (event.ctrlKey && event.shiftKey && event.keyCode === 67) {
+                event.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+U
+            if (event.ctrlKey && event.keyCode === 85) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        // Disable Right-Click
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+
+
+
         access_auth = '@Session["access_auth"]';
 
         $(".waterpagetbl").css("display", "none");
