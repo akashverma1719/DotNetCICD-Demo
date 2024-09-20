@@ -9,7 +9,7 @@ namespace AbhyProject
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new NoCacheGlobalActionFilter());
-            filters.Add(new StateCheckAttribute());
+            
         }
 
     }
