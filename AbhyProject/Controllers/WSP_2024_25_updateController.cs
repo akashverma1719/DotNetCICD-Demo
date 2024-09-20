@@ -21,6 +21,7 @@ using System.Text.RegularExpressions;
 
 namespace AbhyProject.Controllers
 {
+    [StateCheck]
     public class WSP_2024_25_updateController : Controller
     {
         AbhyEntity ABE = new AbhyEntity();
@@ -39,8 +40,18 @@ namespace AbhyProject.Controllers
         }
         public ActionResult Wsp_Home()
         {
-            
-            //ViewBag.GPLIst = ABE.objUsers.Take(10).ToList();
+            //var State = Session["gstate"].ToString();
+            //if (State == "Madhya Pradesh_23")
+            //{
+            //    // Proceed to render the view or return required data
+            //    return View();  // Show specific view if the condition matches
+            //}
+            //else
+            //{
+            //    // Restrict access or redirect to an error page
+            //    return RedirectToAction("wsp_page", "project"); 
+            //}
+            ViewBag.GPLIst = ABE.objUsers.Take(10).ToList();
             return View();
         }
 
