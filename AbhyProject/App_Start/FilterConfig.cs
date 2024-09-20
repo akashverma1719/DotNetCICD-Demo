@@ -27,25 +27,25 @@ namespace AbhyProject
         }
     }
 
-    public class StateCheckAttribute : ActionFilterAttribute
-    {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            // Get the state from the session
-            var state = HttpContext.Current.Session["gstate"]?.ToString();
+    //public class StateCheckAttribute : ActionFilterAttribute
+    //{
+    //    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    //    {
+    //        // Get the state from the session
+    //        var state = HttpContext.Current.Session["gstate"]?.ToString();
 
-            // Check if the state matches the required value
-            if (state != "Madhya Pradesh_23")
-            {
-                // Redirect to a different action if the state doesn't match
-                filterContext.Result = new RedirectToRouteResult(
-                    new System.Web.Routing.RouteValueDictionary(
-                        new { controller = "Project", action = "wsp_page" }
-                    )
-                );
-            }
+    //        // Check if the state matches the required value
+    //        if (state != "Madhya Pradesh_23")
+    //        {
+    //            // Redirect to a different action if the state doesn't match
+    //            filterContext.Result = new RedirectToRouteResult(
+    //                new System.Web.Routing.RouteValueDictionary(
+    //                    new { controller = "Project", action = "wsp_page" }
+    //                )
+    //            );
+    //        }
 
-            base.OnActionExecuting(filterContext);
-        }
-    }
+    //        base.OnActionExecuting(filterContext);
+    //    }
+    //}
 }
