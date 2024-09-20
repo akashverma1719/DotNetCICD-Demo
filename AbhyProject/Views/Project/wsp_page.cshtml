@@ -39,6 +39,7 @@
             </ul>
         </div>
     </div>
+    
     <div class="clearfix total_div_wsp_home user_div" style="">
         <div class="col-lg-4  col-md-4 col-sm-4 text-center sub_total_div" id="wsp_module_div">
             <a href="~/Wsp_new/WSPHOME">
@@ -103,6 +104,9 @@
                 </ul>
             </a>
         </div>
+
+    
+
         <div class=" col-lg-4  col-md-4 col-sm-4 text-center sub_total_div" id="wsp_approved_div">
             <a href="~/project/ApprovedWspReport">
                 <ul class="ul_image_wsphome text-center">
@@ -149,9 +153,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        SessionInfo();
+
         var Email = '@Session["Email"]';
         var Auth = '@Session["Access_Auth"]';
         var SateName = '@Session["gstate"]';
+       
         if (Auth == "WSP") {
             $("#wsp_approved_div").hide();
         }
@@ -159,10 +166,37 @@
         if (Auth == "admin") {
             $("#wsp_2024_25").show();
         }
-      
+       
+        if (SateName == 'Madhya Pradesh_23') {
+            $("#Madhya Pradesh_23").show();
+        }
+        else {
+            $("#wsp_2024_25_update").hide();
+        }   
+
     });
 
-   
+    function SessionInfo() {
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                var arr = data.split(",");
+                state = arr[1];
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+            }
+        });
+    }
+
+
 </script>
 <script>
         $(document).ready(function () {
@@ -187,5 +221,6 @@
                     }
                 }
             });
-        }
+    }
+
 </script>
