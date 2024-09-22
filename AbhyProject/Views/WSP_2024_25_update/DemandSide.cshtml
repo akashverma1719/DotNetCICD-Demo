@@ -26,13 +26,13 @@
     <script src="~/Content/JS_Files/wsp_nw_anyOther_25.js"></script>
     <script src="~/Content/JS_Files/wsp_nw_crop_25.js"></script>*@
 
-    <script src="~/Content/JS_Files/wsp_nw_sprinkler_25New.js"></script>
-    <script src="~/Content/JS_Files/wsp_nw_drip_25New.js"></script>
-    <script src="~/Content/JS_Files/wsp_nw_pipeline_25New.js"></script>
-    <script src="~/Content/JS_Files/wsp_nw_anyOther_25New.js"></script>
-    <script src="~/Content/JS_Files/wsp_nw_crop_25New.js"></script>
+<script src="~/Content/JS_Files/wsp_nw_sprinkler_25New.js"></script>
+<script src="~/Content/JS_Files/wsp_nw_drip_25New.js"></script>
+<script src="~/Content/JS_Files/wsp_nw_pipeline_25New.js"></script>
+<script src="~/Content/JS_Files/wsp_nw_anyOther_25New.js"></script>
+<script src="~/Content/JS_Files/wsp_nw_crop_25New.js"></script>
 
-    @*<script src="~/Content/JS_Files/wsp_nw_innovative.js"></script>*@
+@*<script src="~/Content/JS_Files/wsp_nw_innovative.js"></script>*@
 
 <style>
     .new-form-control {
@@ -3892,7 +3892,6 @@
         });
     }
 
-
     function get_approved_status() {
 
         $.ajax({
@@ -3902,79 +3901,40 @@
             dataType: 'JSON',
             success: function (data) {
 
-                if (StateOfficer != "Gram Panchyat Nodal Officer") {
+                //if (StateOfficer != "Gram Panchyat Nodal Officer") {
+                //    $('input[type=text]').prop("disabled", true)
+                //    $('select').prop("disabled", true);
+                //    $('input[type=file]').prop("disabled", true)
+                //    $('.btn_disabled').prop("disabled", true);
+                //}
+                if (data >= 1) {
                     $('input[type=text]').prop("disabled", true)
                     $('select').prop("disabled", true);
                     $('input[type=file]').prop("disabled", true)
                     $('.btn_disabled').prop("disabled", true);
                 }
-                if (data > 1) {
+                //if (data == "null") {
+                //    //for Inprogress
+                //    $('input[type=text]').prop("disabled", false)
+                //    $('select').prop("disabled", false);
+                //    $('input[type=file]').prop("disabled", false)
+                //    $('.btn_disabled').prop("disabled", false);
+                //}
+                else if (access_auth == "admin") {
+                    $('input[type=text]').prop("disabled", false)
+                    $('select').prop("disabled", false);
+                    $('input[type=file]').prop("disabled", false)
+                    $('.btn_disabled').prop("disabled", false);
+                }
+                else {
                     $('input[type=text]').prop("disabled", true)
                     $('select').prop("disabled", true);
                     $('input[type=file]').prop("disabled", true)
                     $('.btn_disabled').prop("disabled", true);
-                }
-                if (data == "null") {
-                    //for Inprogress
-                    $('input[type=text]').prop("disabled", false)
-                    $('select').prop("disabled", false);
-                    $('input[type=file]').prop("disabled", false)
-                    $('.btn_disabled').prop("disabled", false);
-                }
-                if (access_auth == "admin") {
-                    $('input[type=text]').prop("disabled", false)
-                    $('select').prop("disabled", false);
-                    $('input[type=file]').prop("disabled", false)
-                    $('.btn_disabled').prop("disabled", false);
                 }
             }
         });
     }
-
-
-    //function get_approved_status() {
-
-    //    $.ajax({
-    //        type: 'POST',
-    //        contentType: 'application/json; chatset=utf-8',
-    //        url: "/WSP_2024_25_update/get_approved_status",
-    //        dataType: 'JSON',
-    //        success: function (data) {
-
-    //            //if (StateOfficer != "Gram Panchyat Nodal Officer") {
-    //            //    $('input[type=text]').prop("disabled", true)
-    //            //    $('select').prop("disabled", true);
-    //            //    $('input[type=file]').prop("disabled", true)
-    //            //    $('.btn_disabled').prop("disabled", true);
-    //            //}
-    //            if (data>=1) {
-    //                $('input[type=text]').prop("disabled", true)
-    //                $('select').prop("disabled", true);
-    //                $('input[type=file]').prop("disabled", true)
-    //                $('.btn_disabled').prop("disabled", true);
-    //            }
-    //            //if (data == "null") {
-    //            //    //for Inprogress
-    //            //    $('input[type=text]').prop("disabled", false)
-    //            //    $('select').prop("disabled", false);
-    //            //    $('input[type=file]').prop("disabled", false)
-    //            //    $('.btn_disabled').prop("disabled", false);
-    //            //}
-    //           else if (access_auth == "admin") {
-    //                $('input[type=text]').prop("disabled", false)
-    //                $('select').prop("disabled", false);
-    //                $('input[type=file]').prop("disabled", false)
-    //                $('.btn_disabled').prop("disabled", false);
-    //            }
-    //            else {
-    //                $('input[type=text]').prop("disabled", true)
-    //                $('select').prop("disabled", true);
-    //                $('input[type=file]').prop("disabled", true)
-    //                $('.btn_disabled').prop("disabled", true);
-    //            }
-    //        }
-    //    });
-    //}
 
     function CheckOtherSP() {
         if ($("#sprinkler_scheme").val() == "Other") {
