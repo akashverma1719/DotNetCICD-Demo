@@ -26,7 +26,6 @@ document.addEventListener('contextmenu', function (event) {
     event.preventDefault();
 });
 
-
 function get_approved_status(val) {
     $.ajax({
         type: 'POST',
@@ -36,7 +35,8 @@ function get_approved_status(val) {
         success: function (data) {
             //debugger;
             console.log(data)
-            if (data > 1) {
+            /*    if (data>1) {*/
+            if (data >= 1) {
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
@@ -50,18 +50,20 @@ function get_approved_status(val) {
                 $('input[type=file]').prop("disabled", false)
                 $('.btn_disabled').prop("disabled", false);
             }
+            /* 
+            Disable for user
             else if ((StateOfficer == "Gram Panchyat Nodal Officer" && data == '1') || (StateOfficer == "Gram Panchyat Nodal Officer" && data == "null")) {
-                $('input[type=text]').prop("disabled", false)
-                $('select').prop("disabled", false);
-                $('input[type=file]').prop("disabled", false)
-                $('.btn_disabled').prop("disabled", false);
-            }
-            else if (StateOfficer != "Gram Panchyat Nodal Officer") {
+                 $('input[type=text]').prop("disabled", false)
+                 $('select').prop("disabled", false);
+                 $('input[type=file]').prop("disabled", false)
+                 $('.btn_disabled').prop("disabled", false);
+             }
+           else  if (StateOfficer != "Gram Panchyat Nodal Officer" ) {
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
                 $('.btn_disabled').prop("disabled", true);
-            }
+            }*/
             //else if (data == "null")
             //{
             //    //for Inprogress
@@ -71,6 +73,7 @@ function get_approved_status(val) {
             //    $('.btn_disabled').prop("disabled", false);
             //}
             else {
+                //$(".btnNext").show();
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
@@ -106,90 +109,6 @@ function get_approved_status(val) {
         }
     });
 }
-
-//function get_approved_status(val) {
-//    $.ajax({
-//        type: 'POST',
-//        contentType: 'application/json; chatset=utf-8',
-//        url: "/WSP_2024_25_update/get_approved_status",
-//        dataType: 'JSON',
-//        success: function (data) {
-//            //debugger;
-//            console.log(data)
-//            /*    if (data>1) {*/
-//            if (data >= 1) {
-//                $('input[type=text]').prop("disabled", true)
-//                $('select').prop("disabled", true);
-//                $('input[type=file]').prop("disabled", true)
-//                $('.btn_disabled').prop("disabled", true);
-//                $('.livestock_remove_field').removeAttr("onclick");
-//                $('.livestock_remove_field').removeAttr("href");
-//            }
-//            else if (access_auth == "admin") {
-//                $('input[type=text]').prop("disabled", false)
-//                $('select').prop("disabled", false);
-//                $('input[type=file]').prop("disabled", false)
-//                $('.btn_disabled').prop("disabled", false);
-//             }
-//            /* 
-//            Disable for user
-//            else if ((StateOfficer == "Gram Panchyat Nodal Officer" && data == '1') || (StateOfficer == "Gram Panchyat Nodal Officer" && data == "null")) {
-//                 $('input[type=text]').prop("disabled", false)
-//                 $('select').prop("disabled", false);
-//                 $('input[type=file]').prop("disabled", false)
-//                 $('.btn_disabled').prop("disabled", false);
-//             }
-//           else  if (StateOfficer != "Gram Panchyat Nodal Officer" ) {
-//                $('input[type=text]').prop("disabled", true)
-//                $('select').prop("disabled", true);
-//                $('input[type=file]').prop("disabled", true)
-//                $('.btn_disabled').prop("disabled", true);
-//            }*/
-//            //else if (data == "null")
-//            //{
-//            //    //for Inprogress
-//            //    $('input[type=text]').prop("disabled", false)
-//            //    $('select').prop("disabled", false);
-//            //    $('input[type=file]').prop("disabled", false)
-//            //    $('.btn_disabled').prop("disabled", false);
-//            //}
-//            else {
-//                //$(".btnNext").show();
-//                $('input[type=text]').prop("disabled", true)
-//                $('select').prop("disabled", true);
-//                $('input[type=file]').prop("disabled", true)
-//                $('.btn_disabled').prop("disabled", true);
-//            }
-//            //if (StateOfficer != "Gram Panchyat Nodal Officer") {
-//            //    $('input[type=text]').prop("disabled", true)
-//            //    $('select').prop("disabled", true);
-//            //    $('input[type=file]').prop("disabled", true)
-//            //    $('.btn_disabled').prop("disabled", true);
-//            //}
-//            //    if (data > 1) {
-//            //    $('input[type=text]').prop("disabled", true)
-//            //    $('select').prop("disabled", true);
-//            //    $('input[type=file]').prop("disabled", true)
-//            //    $('.btn_disabled').prop("disabled", true);
-//            //}
-//            //if (access_auth == "admin") {
-//            //    $('input[type=text]').prop("disabled", false)
-//            //    $('select').prop("disabled", false);
-//            //    $('input[type=file]').prop("disabled", false)
-//            //    $('.btn_disabled').prop("disabled", false);
-//            //    $('#domestic_annual_req_total_value').prop("disabled", true);
-//            //    $('#sum_sw').prop("disabled", true);
-//            //    $('#sum_gw').prop("disabled", true);
-//            //}
-//            //else {
-//            //    $('input[type=text]').prop("disabled", true)
-//            //    $('select').prop("disabled", true);
-//            //    $('input[type=file]').prop("disabled", true)
-//            //    $('.btn_disabled').prop("disabled", true);
-//            //}
-//        }
-//    });
-//}
 
 
 

@@ -153,7 +153,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        SessionInfo();
+        //SessionInfo();
 
         var Email = '@Session["Email"]';
         var Auth = '@Session["Access_Auth"]';
@@ -167,34 +167,34 @@
             $("#wsp_2024_25").show();
         }
        
-        if (SateName == 'Madhya Pradesh_23') {
-            $("#Madhya Pradesh_23").show();
-        }
-        else {
-            $("#wsp_2024_25_update").hide();
-        }   
+        //if (SateName == 'Madhya Pradesh_23') {
+        //    $("#Madhya Pradesh_23").show();
+        //}
+        //else {
+        //    $("#wsp_2024_25_update").hide();
+        //}   
 
     });
 
-    function SessionInfo() {
-        var obj = {};
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: "/SocialMointoring/State_SessionInfo_1",
-            data: "{'Data': '" + JSON.stringify(obj) + "'}",
-            dataType: 'JSON',
-            success: function (data) {
+    //function SessionInfo() {
+    //    var obj = {};
+    //    $.ajax({
+    //        type: 'POST',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: "/SocialMointoring/State_SessionInfo_1",
+    //        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+    //        dataType: 'JSON',
+    //        success: function (data) {
 
-                var arr = data.split(",");
-                state = arr[1];
+    //            var arr = data.split(",");
+    //            state = arr[1];
 
-                if (data == "Logout") {
-                    window.location = "/Home/LogOut";
-                }
-            }
-        });
-    }
+    //            if (data == "Logout") {
+    //                window.location = "/Home/LogOut";
+    //            }
+    //        }
+    //    });
+    //}
 
 
 </script>
