@@ -716,8 +716,10 @@
                         <li>Time : <span id="demo2"></span></li>
                         <li>
                             User Name :
-
-                            <span>@Session["UserName"].ToString()</span>
+                            @if (Session["UserName"] != null)
+                            {
+                                <span>@Session["UserName"].ToString()</span>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -4457,6 +4459,7 @@
         //$("#suppagetbl_ars1").remove();
         //$("#suppagetbl_ars2").remove();
         //GetWspApprovedDate()
+
         WaterLevelWSP();
         $("#wsp_approved").hide();
 
@@ -5211,7 +5214,10 @@
                 }
                 else if (data == "null") {
                     if (StateOfficer == "Gram Panchyat Nodal Officer") {
-                        $('#wsp_approved_dpmu').show();
+                        //$('#wsp_approved_dpmu').show();
+                        //$('#remark_div').hide();
+
+                        $('#wsp_approved_dpmu').hide();
                         $('#remark_div').hide();
                     }
                 }
@@ -5225,10 +5231,18 @@
                 else if (StateOfficer == "District Level Nodal Officer") {
 
                     if (data == 3) {
+                        //$('#wsp_approved_dpmu').hide();
+                        //$('#wsp_approved_spmu').show();
+                        //$('#wsp_reject_status').show();
+                        //$("#declaration_div").show();
+
                         $('#wsp_approved_dpmu').hide();
-                        $('#wsp_approved_spmu').show();
-                        $('#wsp_reject_status').show();
-                        $("#declaration_div").show();
+                        $('#wsp_approved_spmu').hide();
+                        $('#wsp_reject_status').hide();
+                        $("#declaration_div").hide();
+
+
+
                     } else if (data == 4) {
                         $('#wsp_approved_spmu').hide();
                         $('#wsp_reject_status').hide();
@@ -5238,15 +5252,23 @@
                 else if (StateOfficer == "Gram Panchyat Nodal Officer") {
                     $('#remark_div').hide();
                     if (data == 1) {
-                        $('#wsp_approved_dpmu').show();
+                        //$('#wsp_approved_dpmu').show();
+                        $('#wsp_approved_dpmu').hide();
                         $('#remark_div').hide();
                         $("#declaration_div").hide();
                     }
-                } else if (StateOfficer == "State Level Nodal Officer") {
+
+                }
+
+                else if (StateOfficer == "State Level Nodal Officer") {
                     if (data == 4) {
-                        $('#wsp_reject_status').show();
-                        $('#wsp_approved_state').show();
-                        $("#declaration_div").show();
+                        //$('#wsp_reject_status').show();
+                        //$('#wsp_approved_state').show();
+                        //$("#declaration_div").show();
+
+                        $('#wsp_reject_status').hide();
+                        $('#wsp_approved_state').hide();
+                        $("#declaration_div").hide();
                     } else {
                         $('#wsp_reject_status').hide();
                         $('#wsp_approved_state').hide();
