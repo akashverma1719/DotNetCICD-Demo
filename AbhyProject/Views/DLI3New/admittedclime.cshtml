@@ -482,8 +482,8 @@
                 </div>
                 @*<div class="col-md-2 pull-right">
 
-                    <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/UserManual/User Manual of DLI-3 FY 2023-2024.pdf" target="_blank">USER MANUAL</a>
-                </div>*@
+                        <a class="font-extra-bold bg-primary text-white btn btn-sm" type="button" href="/Ataljalimages/UserManual/User Manual of DLI-3 FY 2023-2024.pdf" target="_blank">USER MANUAL</a>
+                    </div>*@
             </div>
         </div>
     </header>
@@ -501,7 +501,7 @@
             </li>
         </ul>
     </div>
-   
+
     <br />
     <main>
         <div id="border" class="tbl-responsive entryfoam">
@@ -548,7 +548,8 @@
                                 <option value="2022-23">2022-23</option>
                                 <option value="2023-24 Phase1 [April 2023 - September 2023]">2023-24 Phase1 [April 2023 - September 2023]</option>
                                 <option value="2023-24 Phase2[October 2023 - March 2024]">2023-24 Phase2[October 2023 - March 2024]</option>
-                                <option value="2024-25">2024-25</option>
+                                <option value="2024-25 Phase1 [April 2024- September 2024]">2024-25 Phase1 [April 2024 - September 2024]</option>
+                                <option value="2024-25 Phase2[October 2024 - March 2025]">2024-25 Phase2[October 2024 - March 2025]</option>
 
                             </select>
                         </td>
@@ -557,7 +558,7 @@
                         <td colspan="2" class="font-bold">Description : </td>
                         <td>
                             <textarea class="form-control" type="text" id="to_date" name="name" placeholder="Please Enter Description" style="width: 300px"></textarea>
-                            
+
 
                         </td>
                     </tr>
@@ -607,7 +608,7 @@
                                                         </select>
                                                     </li>
 
-                                                   
+
                                                     <li class="">
                                                         <select name="" id="year" class="form-control">
                                                             <option value="0">Select Year</option>
@@ -615,7 +616,8 @@
                                                             <option value="2022-23">2022-23</option>
                                                             <option value="2023-24 Phase1 [April 2023 - September 2023]">2023-24 Phase1 [April 2023 - September 2023]</option>
                                                             <option value="2023-24 Phase2[October 2023 - March 2024]">2023-24 Phase2[October 2023 - March 2024]</option>
-                                                            <option value="2024-25">2024-25</option>
+                                                            <option value="2024-25 Phase1 [April 2024- September 2024]">2024-25 Phase1 [April 2024 - September 2024]</option>
+                                                            <option value="2024-25 Phase2[October 2024 - March 2025]">2024-25 Phase2[October 2024 - March 2025]</option>
 
                                                         </select>
                                                     </li>
@@ -644,14 +646,14 @@
                                 <tr class="tableheader1"></tr>
                                 <tr class="success">
                                     <td rowspan="1" class="text-center" style="background: #337ab7 !important;"><label>Sr.No</label></td>
-                                   
+
                                     <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>State Name</label></td>
                                     <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>Year</label></td>
                                     <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>Description</label></td>
                                     <td rowspan="1" class="text-center" style="background: #337ab7 !important; padding:8px 50px;"><label>Documents</label></td>
                                     <td rowspan="1" class="text-center" style="background: #337ab7 !important;"><label>Edit </label></td>
                                     <td rowspan="1" class="text-center" style="background: #337ab7 !important;"><label>Delete</label></td>
-                                
+
                                 </tr>
 
                             </thead>
@@ -691,7 +693,7 @@
 
         StateOfficer = '@Session["Officer"]';
         Email = '@Session["Email"]';
-        
+
         if (Email == "akanshakushwah-cgwb@gov.in") {
             $('.entryfoam').show();
         }
@@ -750,7 +752,7 @@
                             else if (a > b) return 1;
                             return 0;
                         });
-                        
+
                         optionState += '<option value="0">Select State Name</option>';
                         optionState += '<option value="All">All</option>';
 
@@ -1001,7 +1003,7 @@
 
     }
     function Dropdown_Search() {
-        
+
         $('.loader').show();
         var xx = 0;
         if (State == "0") {
@@ -1027,7 +1029,7 @@
 
         $('.loader').show();
         var xx = 0;
-        
+
         var state = $('#statename').val();
         var fyear = $('#fyear').val();
         var description = $('#to_date').val();
@@ -1065,7 +1067,7 @@
                     var data = new FormData();
                     data.append("state", state);
                     data.append("fyear", fyear);
-                    data.append("description", description);                 
+                    data.append("description", description);
                     data.append("image", mom_filename_files[0]);
                     return data;
                 }(),
@@ -1112,7 +1114,7 @@
 
         var obj = {};
         obj.statename = State;
-        
+
 
         $.ajax({
             type: 'POST',
@@ -1164,7 +1166,7 @@
             }
         });
     }
-   
+
     function editrow_new(i) {
         $('#AWP1_TR_new' + i).hide();
         $('#Hide_AWP1_TR_addnew' + i).show();
