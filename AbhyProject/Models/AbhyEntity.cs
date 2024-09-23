@@ -605,6 +605,22 @@ namespace AbhyProject.Models
         public virtual DbSet<abhy_wsp_pgwm_committee_meeting_24_update> obj_abhy_wsp_pgwm_committee_meeting_24_update { get; set; }
         public virtual DbSet<abhy_wsp_dpmu_declaration_24_update> obj_abhy_wsp_dpmu_declaration_24_update { get; set; }
         public virtual DbSet<abhy_mis_wsp_approved_24_update> obj_abhy_mis_wsp_approved_24_update { get; set; }
+
+        //DLI3 2025
+        public virtual DbSet<demandside_dli3_new_2025> obj_demandside_dli3_new_2025 { get; set; }
+        public virtual DbSet<demandside_dli3_addnew_2025> obj_demandside_dli3_addnew_2025 { get; set; }
+        public virtual DbSet<vw_dli3_phase1_total_summary_24_25> obj_vw_dli3_phase1_total_summary_24_25 { get; set; }
+        public virtual DbSet<vw_dli3_combine_sd_lop_phase2_report_24> obj_vw_dli3_combine_sd_lop_phase2_report_24 { get; set; }
+        public virtual DbSet<vw_dli3_demand_phase1_report_24_25> obj_vw_dli3_demand_phase1_report_24_25 { get; set; }
+        public virtual DbSet<vw_dli3_lop_phase2_demand_report_24> obj_vw_dli3_lop_phase2_demand_report_24 { get; set; }
+        public virtual DbSet<lop1demandside_dli3_phase2addnew_2025> obj_lop1demandside_dli3_phase2addnew_2025 { get; set; }
+        public virtual DbSet<vw_dli3_phase2_lop_24> obj_vw_dli3_phase2_lop_24 { get; set; }
+        public virtual DbSet<DLI3_upload_document_new_2025> obj_abhy_DLI3_upload_document_new_2025 { get; set; }
+        public virtual DbSet<supplyside_dli3_new2025> obj_supplyside_dli3_new2025 { get; set; }
+        public virtual DbSet<vw_dli3_supply_phase1_report_24_25> obj_vw_dli3_supply_phase1_report_24_25 { get; set; }
+        public virtual DbSet<vw_dli3_lop_phase2_supply_report_24> obj_vw_dli3_lop_phase2_supply_report_24 { get; set; }
+        public virtual DbSet<supplyside_dli3_new2025_dth> obj_supplyside_dli3_new2025_dth { get; set; }
+        public virtual DbSet<supplyside_dli3_new_k2025> obj_supplyside_dli3_new_k2025 { get; set; }
         #endregion
     }
 }
