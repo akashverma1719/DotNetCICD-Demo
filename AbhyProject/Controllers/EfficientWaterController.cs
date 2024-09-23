@@ -7,6 +7,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Information;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using OpenXmlPowerTools;
+using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,6 +18,32 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Drawing;
+using System.Runtime.InteropServices.ComTypes;
+using AbhyProject.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using AbhyProject.Excel;
+using System.IO;
+using ClosedXML.Excel;
+using System.Data;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Text;
+using System.Security.Cryptography;
+using Newtonsoft.Json;
+using System.Configuration;
+using AbhyProject.Classes;
+using System.Globalization;
+using AbhyProject.Utility;
+using System.Drawing;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace AbhyProject.Controllers
 {
@@ -31,7 +58,7 @@ namespace AbhyProject.Controllers
         }
         public ActionResult EfficientWater_report()
         {
-            
+
             return View();
         }
 
@@ -45,13 +72,10 @@ namespace AbhyProject.Controllers
 
             return View();
         }
-
         public ActionResult DLI4_Upload_Document()
         {
             return View();
         }
-
-
         [HttpPost]
         public ActionResult DropdownInfoDli4()
         {
@@ -59,9 +83,8 @@ namespace AbhyProject.Controllers
 
             try
             {
-                var slist = ABE.obj_abhy_wsp_approved_status.Where(x => x.status_id == 5).ToList();
-                //var slist = ABE.obj_abhy_gpdata_new.ToList();
-                //state = Session["gstate_name"].ToString();
+                var slist = ABE.obj_abhy_block_gp_area_info.ToList();
+
                 var HouseHolddata = slist;
                 var jsonresults30 = Json(HouseHolddata, JsonRequestBehavior.AllowGet);
                 jsonresults30.MaxJsonLength = int.MaxValue;
@@ -119,6 +142,7 @@ namespace AbhyProject.Controllers
                         ddetails.all_irrigation_total = Data[0].all_irrigation_total;
                         ddetails.userid = Session["Email"].ToString();
                         ddetails.entry_date = DateTime.Today.ToString("dd-MM-yyyy");
+                        ddetails.approve = "At DPMU";
 
                         ddetails.tot_spr_ben = Data[0].tot_spr_ben;
                         //ddetails.sc_spr_ben = Data[0].sc_spr_ben;
@@ -185,7 +209,7 @@ namespace AbhyProject.Controllers
                     var month = "0";
 
                     List<dli4_efficient_irrigation_system> ddetails = new List<dli4_efficient_irrigation_system>();
-                    if (year != "2023-24")
+                    if (year == "2022-23")
                     {
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                         {
@@ -251,7 +275,7 @@ namespace AbhyProject.Controllers
         public ActionResult DLI4_excel_a(string state, string district, string block, string gram, string year, string fy_phase)
         {
 
-           
+
 
             var month = "0";
             List<dli4_efficient_irrigation_system> ddetails = new List<dli4_efficient_irrigation_system>();
@@ -312,9 +336,9 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow, 2).Value = "District";
                 worksheet.Cell(currentRow, 3).Value = "Block";
                 worksheet.Cell(currentRow, 4).Value = "Gram Panchayat";
-                worksheet.Cell(currentRow, 5).Value = "Financial Year";             
+                worksheet.Cell(currentRow, 5).Value = "Financial Year";
                 worksheet.Cell(currentRow, 6).Value = "Phase";
-                
+
                 //Convergence column merge
                 worksheet.Range(currentRow, 7, currentRow, 10).Merge();
                 worksheet.Cell(currentRow, 7).Value = "Convergence";
@@ -356,10 +380,11 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow, 20).Value = "Total Sprinkler Beneficiary";
                 worksheet.Cell(currentRow, 21).Value = "Total Drip Beneficiary";
                 worksheet.Cell(currentRow, 22).Value = "Total Pipelines Beneficiary";
-                //worksheet.Cell(currentRow, 23).Value = "Reject Remark";
-                worksheet.Cell(currentRow, 23).Value = "SPMU Approval Status";
+                worksheet.Cell(currentRow, 23).Value = "All Total Beneficiary";
+                worksheet.Cell(currentRow, 24).Value = "SPMU Approval Status";
+                worksheet.Cell(currentRow, 25).Value = "Reject Remark";
 
-                for (int col = 1; col <= 23; col++)
+                for (int col = 1; col <= 25; col++)
                 {
                     worksheet.Cell(currentRow, col).Style.Font.Bold = true;
                     worksheet.Cell(currentRow, col).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
@@ -373,10 +398,14 @@ namespace AbhyProject.Controllers
                 currentRow = 2;
                 if (ddetails.Count != 0)
                 {
-                    decimal sprcon = 0, drpcon = 0, pipcon = 0, ttlcon = 0, sprinc = 0, drpinc = 0, pipinc = 0, ttlinc = 0, sprfin = 0, drpfin = 0, pipfin = 0, ttlfin = 0, irrttl = 0, totspr = 0, totdrp = 0, totpip = 0;                  
+                    decimal sprcon = 0, drpcon = 0, pipcon = 0, ttlcon = 0, sprinc = 0, drpinc = 0, pipinc = 0, ttlinc = 0, sprfin = 0, drpfin = 0, pipfin = 0, ttlfin = 0, irrttl = 0, totspr = 0, totdrp = 0, totpip = 0;
+                    decimal totalAllFinal = 0;
+
                     for (int i = 0; i < ddetails.Count; i++)
                     {
+                        decimal totalAll = 0;
                         var approval = ddetails[i].approve;
+                        totalAll += Convert.ToDecimal(ddetails[i].tot_spr_ben) + Convert.ToDecimal(ddetails[i].tot_drip_ben) + Convert.ToDecimal(ddetails[i].tot_pipe_ben);
 
 
                         if (approval == "State")
@@ -397,6 +426,8 @@ namespace AbhyProject.Controllers
                             totspr += Convert.ToDecimal(ddetails[i].tot_spr_ben);
                             totdrp += Convert.ToDecimal(ddetails[i].tot_drip_ben);
                             totpip += Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+                            totalAllFinal += Convert.ToDecimal(ddetails[i].tot_spr_ben) + Convert.ToDecimal(ddetails[i].tot_drip_ben) + Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+
                             approval = "Approved";
 
                         }
@@ -418,6 +449,8 @@ namespace AbhyProject.Controllers
                             totspr += Convert.ToDecimal(ddetails[i].tot_spr_ben);
                             totdrp += Convert.ToDecimal(ddetails[i].tot_drip_ben);
                             totpip += Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+                            totalAllFinal += Convert.ToDecimal(ddetails[i].tot_spr_ben) + Convert.ToDecimal(ddetails[i].tot_drip_ben) + Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+
                             approval = "Submitted To SPMU";
 
                         }
@@ -433,7 +466,7 @@ namespace AbhyProject.Controllers
                         }
                         currentRow++;
 
-                        
+
 
                         worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
                         worksheet.Cell(currentRow, 2).Value = ddetails[i].district;
@@ -457,8 +490,9 @@ namespace AbhyProject.Controllers
                         worksheet.Cell(currentRow, 20).Value = ddetails[i].tot_spr_ben;
                         worksheet.Cell(currentRow, 21).Value = ddetails[i].tot_drip_ben;
                         worksheet.Cell(currentRow, 22).Value = ddetails[i].tot_pipe_ben;
-                        //worksheet.Cell(currentRow, 23).Value = ddetails[i].reject;
-                        worksheet.Cell(currentRow, 23).Value = approval;
+                        worksheet.Cell(currentRow, 23).Value = totalAll;
+                        worksheet.Cell(currentRow, 24).Value = approval;
+                        worksheet.Cell(currentRow, 25).Value = ddetails[i].reject;
 
                         for (int j = 1; j <= 23; j++)
                         {
@@ -492,8 +526,14 @@ namespace AbhyProject.Controllers
                             worksheet.Cell((lastRow + 1), 20).Value = totspr;
                             worksheet.Cell((lastRow + 1), 21).Value = totdrp;
                             worksheet.Cell((lastRow + 1), 22).Value = totpip;
-                            worksheet.Cell((lastRow + 1), 23).Value = "";
+                            worksheet.Cell((lastRow + 1), 23).Value = totalAllFinal;
                             worksheet.Cell((lastRow + 1), 24).Value = "";
+                            worksheet.Cell((lastRow + 1), 25).Value = "";
+
+                            for (int k = 1; k <= 25; k++)
+                            {
+                                worksheet.Cell(currentRow, k).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
                         }
                     }
                 }
@@ -535,8 +575,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         public ActionResult DLI4_partialapproved_excel_a(string state, string district, string block, string gram, string year, string fy_phase)
         {
 
@@ -549,26 +587,26 @@ namespace AbhyProject.Controllers
                 {
                     if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year && (x.approval_status == "P" || x.approval_status == "A")).ToList();//total list
+                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year && (x.approval_status == "P" || x.approval_status == "A" || x.approval_status == "R")).ToList();//total list
                     }
                     else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null)
                     {
-                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.year == year && (x.approval_status == "P" || x.approval_status == "A")).ToList();//total list
+                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.year == year && (x.approval_status == "P" || x.approval_status == "A" || x.approval_status == "R")).ToList();//total list
                     }
                     else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null)
                     {
-                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.year == year && (x.approval_status == "P" || x.approval_status == "A")).ToList();//total list
+                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.year == year && (x.approval_status == "P" || x.approval_status == "A" || x.approval_status == "R")).ToList();//total list
                     }
                     else if (state != "0" && state != "" && state != null)
                     {
-                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && (x.approval_status == "P" || x.approval_status == "A")).ToList();//total list
+                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && (x.approval_status == "P" || x.approval_status == "A" || x.approval_status == "R")).ToList();//total list
                     }
                 }
                 else
                 {
                     if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                     {
-                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year && x.fy_phase == fy_phase && (x.approval_status == "P" || x.approval_status == "A" ||  x.approval_status == "R")).ToList();//total list
+                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year && x.fy_phase == fy_phase && (x.approval_status == "P" || x.approval_status == "A" || x.approval_status == "R")).ToList();//total list
                     }
                     else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && year != "0" && year != "" && year != null)
                     {
@@ -576,7 +614,7 @@ namespace AbhyProject.Controllers
                     }
                     else if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null)
                     {
-                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.year == year && x.fy_phase == fy_phase && (x.approval_status == "P" || x.approval_status == "A" || x.approval_status == "R") ).ToList();//total list
+                        ddetails = ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.district == district && x.year == year && x.fy_phase == fy_phase && (x.approval_status == "P" || x.approval_status == "A" || x.approval_status == "R")).ToList();//total list
                     }
                     else if (state != "0" && state != "" && state != null)
                     {
@@ -630,19 +668,20 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow + 1, 17).Value = "Irrigation through Pipelines";
                 worksheet.Cell(currentRow + 1, 18).Value = "Total";
 
-               
+
                 worksheet.Cell(currentRow, 19).Value = "Total";
                 worksheet.Cell(currentRow, 20).Value = "Total Sprinkler Beneficiary";
                 worksheet.Cell(currentRow, 21).Value = "Total Drip Beneficiary";
                 worksheet.Cell(currentRow, 22).Value = "Total Pipelines Beneficiary";
+                worksheet.Cell(currentRow, 23).Value = "All Total Beneficiary";
                 //worksheet.Cell(currentRow, 23).Value = "Reject Remark";
-                worksheet.Cell(currentRow, 23).Value = "SPMU Approval Status";
-                worksheet.Cell(currentRow, 24).Value = "NPMU Approval Status";
-                worksheet.Cell(currentRow, 25).Value = "NPMU Remarks";
-                worksheet.Cell(currentRow, 26).Value = "NPMU Admitted Claim";
+                worksheet.Cell(currentRow, 24).Value = "SPMU Approval Status";
+                worksheet.Cell(currentRow, 25).Value = "NPMU Approval Status";
+                worksheet.Cell(currentRow, 26).Value = "NPMU Remarks";
+                worksheet.Cell(currentRow, 27).Value = "NPMU Admitted Claim";
 
 
-                for (int col = 1; col <= 26; col++)
+                for (int col = 1; col <= 27; col++)
                 {
                     worksheet.Cell(currentRow, col).Style.Font.Bold = true;
                     worksheet.Cell(currentRow, col).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
@@ -657,10 +696,14 @@ namespace AbhyProject.Controllers
                 if (ddetails.Count != 0)
                 {
                     decimal sprcon = 0, drpcon = 0, pipcon = 0, ttlcon = 0, sprinc = 0, drpinc = 0, pipinc = 0, ttlinc = 0, sprfin = 0, drpfin = 0, pipfin = 0, ttlfin = 0, irrttl = 0, totspr = 0, totdrp = 0, totpip = 0;
+                    decimal totalAllFinal = 0;
                     for (int i = 0; i < ddetails.Count; i++)
                     {
+                        decimal totalAll = 0;
                         var approval = ddetails[i].approve;
                         string partial_approve = string.Empty;
+                        totalAll += Convert.ToDecimal(ddetails[i].tot_spr_ben) + Convert.ToDecimal(ddetails[i].tot_drip_ben) + Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+
 
                         if (approval == "State")
                         {
@@ -680,6 +723,8 @@ namespace AbhyProject.Controllers
                             totspr += Convert.ToDecimal(ddetails[i].tot_spr_ben);
                             totdrp += Convert.ToDecimal(ddetails[i].tot_drip_ben);
                             totpip += Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+                            totalAllFinal += Convert.ToDecimal(ddetails[i].tot_spr_ben) + Convert.ToDecimal(ddetails[i].tot_drip_ben) + Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+
                             approval = "Approved";
 
                             if (!string.IsNullOrEmpty(ddetails[i].approval_status))
@@ -718,6 +763,8 @@ namespace AbhyProject.Controllers
                             totspr += Convert.ToDecimal(ddetails[i].tot_spr_ben);
                             totdrp += Convert.ToDecimal(ddetails[i].tot_drip_ben);
                             totpip += Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+                            totalAllFinal += Convert.ToDecimal(ddetails[i].tot_spr_ben) + Convert.ToDecimal(ddetails[i].tot_drip_ben) + Convert.ToDecimal(ddetails[i].tot_pipe_ben);
+
                             approval = "Submitted To SPMU";
 
                         }
@@ -758,13 +805,14 @@ namespace AbhyProject.Controllers
                         worksheet.Cell(currentRow, 20).Value = ddetails[i].tot_spr_ben;
                         worksheet.Cell(currentRow, 21).Value = ddetails[i].tot_drip_ben;
                         worksheet.Cell(currentRow, 22).Value = ddetails[i].tot_pipe_ben;
+                        worksheet.Cell(currentRow, 23).Value = totalAll;
                         //worksheet.Cell(currentRow, 23).Value = ddetails[i].reject;
-                        worksheet.Cell(currentRow, 23).Value = approval;
-                        worksheet.Cell(currentRow, 24).Value = partial_approve;
-                        worksheet.Cell(currentRow, 25).Value = ddetails[i].approval_remarks;
-                        worksheet.Cell(currentRow, 26).Value = ddetails[i].TotalNpmuValue;
+                        worksheet.Cell(currentRow, 24).Value = approval;
+                        worksheet.Cell(currentRow, 25).Value = partial_approve;
+                        worksheet.Cell(currentRow, 26).Value = ddetails[i].approval_remarks;
+                        worksheet.Cell(currentRow, 27).Value = ddetails[i].TotalNpmuValue;
 
-                        for (int j = 1; j <= 26; j++)
+                        for (int j = 1; j <= 27; j++)
                         {
                             worksheet.Cell(currentRow, j).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         }
@@ -797,8 +845,15 @@ namespace AbhyProject.Controllers
                             worksheet.Cell((lastRow + 1), 20).Value = totspr;
                             worksheet.Cell((lastRow + 1), 21).Value = totdrp;
                             worksheet.Cell((lastRow + 1), 22).Value = totpip;
-                            worksheet.Cell((lastRow + 1), 23).Value = "";
+                            worksheet.Cell((lastRow + 1), 23).Value = totalAllFinal;
                             worksheet.Cell((lastRow + 1), 24).Value = "";
+                            worksheet.Cell((lastRow + 1), 25).Value = "";
+
+
+                            for (int k = 1; k <= 25; k++)
+                            {
+                                worksheet.Cell(currentRow, k).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
 
 
                         }
@@ -842,10 +897,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
-
-
 
         [HttpPost]
         public ActionResult Approve_RemarkUpdate(string ids, string remarks,
@@ -1040,7 +1091,6 @@ namespace AbhyProject.Controllers
             }
         }
 
-
         [HttpPost]
         public ActionResult Data_DLI4_report2(string Data)
         {
@@ -1060,7 +1110,7 @@ namespace AbhyProject.Controllers
                     var month = "0";
 
                     List<dli4_area_with_crop_shifting> ddetails = new List<dli4_area_with_crop_shifting>();
-                    if (year != "2023-24")
+                    if (year == "2022-23")
                     {
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                         {
@@ -1120,7 +1170,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult DLI4_excel_b(string state, string district, string block, string gram, string year, string fy_phase)
         {
 
@@ -1192,9 +1241,10 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow, 9).Value = "Area with crop shifting (Ha)";
                 worksheet.Cell(currentRow, 10).Value = "Name of Department";
                 worksheet.Cell(currentRow, 11).Value = "Name of Scheme";
-                worksheet.Cell(currentRow, 12).Value = "Total Beneficiary";
-                //worksheet.Cell(currentRow, 13).Value = "Reject Remark";
+                worksheet.Cell(currentRow, 12).Value = "Other Scheme";
+                worksheet.Cell(currentRow, 13).Value = "Total Beneficiary";
                 worksheet.Cell(currentRow, 14).Value = "SPMU Approval Status";
+                worksheet.Cell(currentRow, 15).Value = "Reject Remark";
 
                 if (ddetails.Count != 0)
                 {
@@ -1226,6 +1276,8 @@ namespace AbhyProject.Controllers
                             approval = "Rejected";
 
                         }
+
+
                         currentRow++;
 
                         worksheet.Cell(currentRow, 1).Value = ddetails[i].state;
@@ -1240,11 +1292,15 @@ namespace AbhyProject.Controllers
                         worksheet.Cell(currentRow, 9).Value = ddetails[i].hightolow_wcc;
                         worksheet.Cell(currentRow, 10).Value = ddetails[i].department;
                         worksheet.Cell(currentRow, 11).Value = ddetails[i].scheme;
-                        worksheet.Cell(currentRow, 12).Value = ddetails[i].total_ben;
-                        //worksheet.Cell(currentRow, 13).Value = ddetails[i].reject;
+                        worksheet.Cell(currentRow, 12).Value = ddetails[i].other_scheme;
+                        worksheet.Cell(currentRow, 13).Value = ddetails[i].total_ben;
                         worksheet.Cell(currentRow, 14).Value = approval;
+                        worksheet.Cell(currentRow, 15).Value = ddetails[i].reject;
 
-
+                        for (int j = 1; j <= 15; j++)
+                        {
+                            worksheet.Cell(currentRow, j).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        }
 
                         int lastRow = currentRow;
 
@@ -1262,7 +1318,14 @@ namespace AbhyProject.Controllers
                             worksheet.Cell((lastRow + 1), 9).Value = hghtolw;
                             worksheet.Cell((lastRow + 1), 10).Value = "";
                             worksheet.Cell((lastRow + 1), 11).Value = "";
-                            worksheet.Cell((lastRow + 1), 12).Value = totben;
+                            worksheet.Cell((lastRow + 1), 12).Value = "";
+                            worksheet.Cell((lastRow + 1), 13).Value = totben;
+
+
+                            for (int k = 1; k <= 12; k++)
+                            {
+                                worksheet.Cell(currentRow, k).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
                         }
 
                     }
@@ -1305,8 +1368,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
         public ActionResult DLI4_partialapproved_excel_b(string state, string district, string block, string gram, string year, string fy_phase)
         {
 
@@ -1377,12 +1438,14 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow, 9).Value = "Area with crop shifting (Ha)";
                 worksheet.Cell(currentRow, 10).Value = "Name of Department";
                 worksheet.Cell(currentRow, 11).Value = "Name of Scheme";
-                worksheet.Cell(currentRow, 12).Value = "Total Beneficiary";
+                worksheet.Cell(currentRow, 12).Value = "Other Scheme";
+                worksheet.Cell(currentRow, 13).Value = "Total Beneficiary";
                 //worksheet.Cell(currentRow, 13).Value = "Reject Remark";
-                worksheet.Cell(currentRow, 13).Value = "SPMU Approval Status";
-                worksheet.Cell(currentRow, 14).Value = "NPMU Approval Status";               
-                worksheet.Cell(currentRow, 15).Value = "NPMU Remarks";               
-                worksheet.Cell(currentRow, 16).Value = "NPMU Admitted Claim";
+                worksheet.Cell(currentRow, 14).Value = "SPMU Approval Status";
+                worksheet.Cell(currentRow, 15).Value = "NPMU Approval Status";
+                worksheet.Cell(currentRow, 16).Value = "NPMU Remarks";
+                worksheet.Cell(currentRow, 17).Value = "Area with crop shifting accepted by NPMU";
+                worksheet.Cell(currentRow, 18).Value = "NPMU Admitted Claim";
 
                 if (ddetails.Count != 0)
                 {
@@ -1448,15 +1511,21 @@ namespace AbhyProject.Controllers
                         worksheet.Cell(currentRow, 9).Value = ddetails[i].hightolow_wcc;
                         worksheet.Cell(currentRow, 10).Value = ddetails[i].department;
                         worksheet.Cell(currentRow, 11).Value = ddetails[i].scheme;
-                        worksheet.Cell(currentRow, 12).Value = ddetails[i].total_ben;
+                        worksheet.Cell(currentRow, 12).Value = ddetails[i].other_scheme;
+                        worksheet.Cell(currentRow, 13).Value = ddetails[i].total_ben;
                         //worksheet.Cell(currentRow, 13).Value = ddetails[i].reject;
-                        worksheet.Cell(currentRow, 13).Value = approval;
+                        worksheet.Cell(currentRow, 14).Value = approval;
                         approval = "Approved";
-                        worksheet.Cell(currentRow, 14).Value = partial_approve;
-                        worksheet.Cell(currentRow, 15).Value = ddetails[i].approval_remarks;
-                        worksheet.Cell(currentRow, 16).Value = ddetails[i].TotalNpmuValue;
+                        worksheet.Cell(currentRow, 15).Value = partial_approve;
+                        worksheet.Cell(currentRow, 16).Value = ddetails[i].approval_remarks;
+                        worksheet.Cell(currentRow, 17).Value = ddetails[i].crop_shifting_area;
+                        worksheet.Cell(currentRow, 18).Value = ddetails[i].TotalNpmuValue;
 
 
+                        for (int j = 1; j <= 18; j++)
+                        {
+                            worksheet.Cell(currentRow, j).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        }
 
 
 
@@ -1477,8 +1546,13 @@ namespace AbhyProject.Controllers
                             worksheet.Cell((lastRow + 1), 9).Value = hghtolw;
                             worksheet.Cell((lastRow + 1), 10).Value = "";
                             worksheet.Cell((lastRow + 1), 11).Value = "";
-                            worksheet.Cell((lastRow + 1), 12).Value = totben;
+                            worksheet.Cell((lastRow + 1), 12).Value = "";
+                            worksheet.Cell((lastRow + 1), 13).Value = totben;
 
+                            for (int k = 1; k <= 12; k++)
+                            {
+                                worksheet.Cell(currentRow, k).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
                         }
 
                     }
@@ -1522,10 +1596,8 @@ namespace AbhyProject.Controllers
 
         }
 
-
-
         [HttpPost]
-        public ActionResult Approve_RemarkUpdate_b(string ids, string remarks, string type, decimal croparea,decimal TotalNpmuValue)
+        public ActionResult Approve_RemarkUpdate_b(string ids, string remarks, string type, decimal croparea, decimal TotalNpmuValue)
         {
             List<dli4_area_with_crop_shifting> dataList = new List<dli4_area_with_crop_shifting>();
             if (Session["UserId"] != null)
@@ -1628,8 +1700,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
 
         [HttpPost]
         public ActionResult approve_data_state_a(string id)
@@ -1736,7 +1806,7 @@ namespace AbhyProject.Controllers
                     var month = "0";
 
                     List<dli4_water_saving_agriculture> ddetails = new List<dli4_water_saving_agriculture>();
-                    if (year != "2023-24")
+                    if (year == "2023-24")
                     {
                         if (state != "0" && state != "" && state != null && district != "0" && district != "" && district != null && block != "0" && block != "" && block != null && gram != "0" && gram != "" && gram != null && year != "0" && year != "" && year != null)
                         {
@@ -1798,7 +1868,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         public ActionResult DLI4_excel_c(string state, string district, string block, string gram, string year, string fy_phase)
         {
 
@@ -1870,7 +1939,7 @@ namespace AbhyProject.Controllers
 
                 worksheet.Cell(currentRow + 1, 7).Value = "Super seeder /happy seeder/zero tillage";
                 worksheet.Cell(currentRow + 1, 8).Value = "Polyhouse /net house";
-                worksheet.Cell(currentRow + 1, 9).Value = "Plastic mulching";
+                worksheet.Cell(currentRow + 1, 9).Value = "Mulching";
                 worksheet.Cell(currentRow + 1, 10).Value = "Hydrogel";
                 worksheet.Cell(currentRow + 1, 11).Value = "DSR";
                 worksheet.Cell(currentRow + 1, 12).Value = "Other 1";
@@ -1880,7 +1949,7 @@ namespace AbhyProject.Controllers
 
                 //worksheet.Cell(currentRow, 6).Value = "Super seeder /happy seeder/zero tillage";
                 //worksheet.Cell(currentRow, 7).Value = "Polyhouse /net house";
-                //worksheet.Cell(currentRow, 8).Value = "Plastic mulching";
+                //worksheet.Cell(currentRow, 8).Value = "Mulching";
                 //worksheet.Cell(currentRow, 9).Value = "Hydrogel";
                 //worksheet.Cell(currentRow, 10).Value = "DSR";
                 //worksheet.Cell(currentRow, 11).Value = "Other 1";
@@ -1894,7 +1963,7 @@ namespace AbhyProject.Controllers
 
                 worksheet.Cell(currentRow + 1, 16).Value = "Super seeder /happy seeder/zero tillage";
                 worksheet.Cell(currentRow + 1, 17).Value = "Polyhouse /net house";
-                worksheet.Cell(currentRow + 1, 18).Value = "Plastic mulching";
+                worksheet.Cell(currentRow + 1, 18).Value = "Mulching";
                 worksheet.Cell(currentRow + 1, 19).Value = "Hydrogel";
                 worksheet.Cell(currentRow + 1, 20).Value = "DSR";
                 worksheet.Cell(currentRow + 1, 21).Value = "Other 1";
@@ -1904,7 +1973,7 @@ namespace AbhyProject.Controllers
 
                 //worksheet.Cell(currentRow, 15).Value = "Super seeder /happy seeder/zero tillage";
                 //worksheet.Cell(currentRow, 16).Value = "Polyhouse /net house";
-                //worksheet.Cell(currentRow, 17).Value = "Plastic mulching";
+                //worksheet.Cell(currentRow, 17).Value = "Mulching";
                 //worksheet.Cell(currentRow, 18).Value = "Hydrogel";
                 //worksheet.Cell(currentRow, 19).Value = "DSR";
                 //worksheet.Cell(currentRow, 20).Value = "Other 1";
@@ -1918,7 +1987,7 @@ namespace AbhyProject.Controllers
 
                 worksheet.Cell(currentRow + 1, 25).Value = "Super seeder /happy seeder/zero tillage";
                 worksheet.Cell(currentRow + 1, 26).Value = "Polyhouse /net house";
-                worksheet.Cell(currentRow + 1, 27).Value = "Plastic mulching";
+                worksheet.Cell(currentRow + 1, 27).Value = "Mulching";
                 worksheet.Cell(currentRow + 1, 28).Value = "Hydrogel";
                 worksheet.Cell(currentRow + 1, 29).Value = "DSR";
                 worksheet.Cell(currentRow + 1, 30).Value = "Other 1";
@@ -1928,7 +1997,7 @@ namespace AbhyProject.Controllers
 
                 //worksheet.Cell(currentRow, 24).Value = "Super seeder /happy seeder/zero tillage";
                 //worksheet.Cell(currentRow, 25).Value = "Polyhouse /net house";
-                //worksheet.Cell(currentRow, 26).Value = "Plastic mulching";
+                //worksheet.Cell(currentRow, 26).Value = "Mulching";
                 //worksheet.Cell(currentRow, 27).Value = "Hydrogel";
                 //worksheet.Cell(currentRow, 28).Value = "DSR";
                 //worksheet.Cell(currentRow, 29).Value = "Other 1";
@@ -1942,18 +2011,17 @@ namespace AbhyProject.Controllers
                 worksheet.Cell(currentRow, 37).Value = "Other Type 3";
                 worksheet.Cell(currentRow, 38).Value = "Total Beneficiary Super seeder /happy seeder/zero tillage";
                 worksheet.Cell(currentRow, 39).Value = "Total Beneficiary Polyhouse /net house";
-                worksheet.Cell(currentRow, 40).Value = "Total Beneficiary Plastic mulching";
+                worksheet.Cell(currentRow, 40).Value = "Total Beneficiary Mulching";
                 worksheet.Cell(currentRow, 41).Value = "Total Beneficiary Hydrogel";
                 worksheet.Cell(currentRow, 42).Value = "Total Beneficiary DSR";
                 worksheet.Cell(currentRow, 43).Value = "Total Beneficiary Other 1";
                 worksheet.Cell(currentRow, 44).Value = "Total Beneficiary Other 2";
                 worksheet.Cell(currentRow, 45).Value = "Total Beneficiary Other 3";
                 worksheet.Cell(currentRow, 46).Value = "All Total Beneficiary";
-
-                //worksheet.Cell(currentRow, 45).Value = "Reject Remark";
                 worksheet.Cell(currentRow, 47).Value = "Status";
+                worksheet.Cell(currentRow, 48).Value = "Reject Remark";
 
-                for (int col = 1; col <= 47; col++)
+                for (int col = 1; col <= 48; col++)
                 {
                     worksheet.Cell(currentRow, col).Style.Font.Bold = true;
                     worksheet.Cell(currentRow, col).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
@@ -1978,7 +2046,7 @@ namespace AbhyProject.Controllers
 
                     for (int i = 0; i < ddetails.Count; i++)
                     {
-                        decimal totalAll = 0;                        
+                        decimal totalAll = 0;
                         var dara = ddetails.ToList().Where(s => s.approve == "State").ToList();
                         var approval = ddetails[i].approve;
                         totalAll += Convert.ToDecimal(ddetails[i].super_total_ben) + Convert.ToDecimal(ddetails[i].polyhouse_total_ben) + Convert.ToDecimal(ddetails[i].mulching_total_ben) + Convert.ToDecimal(ddetails[i].hydrogel_total_ben) + Convert.ToDecimal(ddetails[i].dsr_total_ben) + Convert.ToDecimal(ddetails[i].other1_total_ben) + Convert.ToDecimal(ddetails[i].other2_total_ben) + Convert.ToDecimal(ddetails[i].other3_total_ben);
@@ -2151,9 +2219,8 @@ namespace AbhyProject.Controllers
                         worksheet.Cell(currentRow, 44).Value = ddetails[i].other2_total_ben;
                         worksheet.Cell(currentRow, 45).Value = ddetails[i].other3_total_ben;
                         worksheet.Cell(currentRow, 46).Value = totalAll;
-
-                        //worksheet.Cell(currentRow, 45).Value = ddetails[i].reject;
                         worksheet.Cell(currentRow, 47).Value = approval;
+                        worksheet.Cell(currentRow, 48).Value = ddetails[i].reject;
 
 
                         for (int j = 1; j <= 47; j++)
@@ -2200,9 +2267,9 @@ namespace AbhyProject.Controllers
                             worksheet.Cell((lastRow + 1), 32).Value = othfin3;
                             worksheet.Cell((lastRow + 1), 33).Value = fintot;
                             worksheet.Cell((lastRow + 1), 34).Value = alltot;
-                            worksheet.Cell((lastRow + 1), 35).Value = othmet1;
-                            worksheet.Cell((lastRow + 1), 36).Value = othmet2;
-                            worksheet.Cell((lastRow + 1), 37).Value = othmet3;
+                            worksheet.Cell((lastRow + 1), 35).Value = "";
+                            worksheet.Cell((lastRow + 1), 36).Value = "";
+                            worksheet.Cell((lastRow + 1), 37).Value = "";
                             worksheet.Cell((lastRow + 1), 38).Value = supben;
                             worksheet.Cell((lastRow + 1), 39).Value = polben;
                             worksheet.Cell((lastRow + 1), 40).Value = mulben;
@@ -2213,7 +2280,10 @@ namespace AbhyProject.Controllers
                             worksheet.Cell((lastRow + 1), 45).Value = othben3;
                             worksheet.Cell((lastRow + 1), 46).Value = totalAllFinal;
 
-
+                            for (int k = 1; k <= 46; k++)
+                            {
+                                worksheet.Cell(currentRow, k).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
                         }
                     }
                 }
@@ -2235,23 +2305,21 @@ namespace AbhyProject.Controllers
 
 
                 }
-                    using (var stream = new MemoryStream())
-                    {
-                        workbook.SaveAs(stream);
-                        var content = stream.ToArray();
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
 
-                        return File(
-                            content,
-                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                            "DLI4 Increase in area under other water saving method ( Ha) used for agriculture .xlsx");
-                    }
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "DLI4 Increase in area under other water saving method ( Ha) used for agriculture .xlsx");
                 }
-            
+            }
+
 
 
         }
-
-
         public ActionResult DLI4_partialapproved_excel_c(string state, string district, string block, string gram, string year, string fy_phase)
         {
             try
@@ -2327,7 +2395,7 @@ namespace AbhyProject.Controllers
 
                     worksheet.Cell(currentRow + 1, 7).Value = "Super seeder /happy seeder/zero tillage";
                     worksheet.Cell(currentRow + 1, 8).Value = "Polyhouse /net house";
-                    worksheet.Cell(currentRow + 1, 9).Value = "Plastic mulching";
+                    worksheet.Cell(currentRow + 1, 9).Value = "Mulching";
                     worksheet.Cell(currentRow + 1, 10).Value = "Hydrogel";
                     worksheet.Cell(currentRow + 1, 11).Value = "DSR";
                     worksheet.Cell(currentRow + 1, 12).Value = "Other 1";
@@ -2337,7 +2405,7 @@ namespace AbhyProject.Controllers
 
                     //worksheet.Cell(currentRow, 6).Value = "Super seeder /happy seeder/zero tillage";
                     //worksheet.Cell(currentRow, 7).Value = "Polyhouse /net house";
-                    //worksheet.Cell(currentRow, 8).Value = "Plastic mulching";
+                    //worksheet.Cell(currentRow, 8).Value = "Mulching";
                     //worksheet.Cell(currentRow, 9).Value = "Hydrogel";
                     //worksheet.Cell(currentRow, 10).Value = "DSR";
                     //worksheet.Cell(currentRow, 11).Value = "Other 1";
@@ -2351,7 +2419,7 @@ namespace AbhyProject.Controllers
 
                     worksheet.Cell(currentRow + 1, 16).Value = "Super seeder /happy seeder/zero tillage";
                     worksheet.Cell(currentRow + 1, 17).Value = "Polyhouse /net house";
-                    worksheet.Cell(currentRow + 1, 18).Value = "Plastic mulching";
+                    worksheet.Cell(currentRow + 1, 18).Value = "Mulching";
                     worksheet.Cell(currentRow + 1, 19).Value = "Hydrogel";
                     worksheet.Cell(currentRow + 1, 20).Value = "DSR";
                     worksheet.Cell(currentRow + 1, 21).Value = "Other 1";
@@ -2361,7 +2429,7 @@ namespace AbhyProject.Controllers
 
                     //worksheet.Cell(currentRow, 15).Value = "Super seeder /happy seeder/zero tillage";
                     //worksheet.Cell(currentRow, 16).Value = "Polyhouse /net house";
-                    //worksheet.Cell(currentRow, 17).Value = "Plastic mulching";
+                    //worksheet.Cell(currentRow, 17).Value = "Mulching";
                     //worksheet.Cell(currentRow, 18).Value = "Hydrogel";
                     //worksheet.Cell(currentRow, 19).Value = "DSR";
                     //worksheet.Cell(currentRow, 20).Value = "Other 1";
@@ -2375,7 +2443,7 @@ namespace AbhyProject.Controllers
 
                     worksheet.Cell(currentRow + 1, 25).Value = "Super seeder /happy seeder/zero tillage";
                     worksheet.Cell(currentRow + 1, 26).Value = "Polyhouse /net house";
-                    worksheet.Cell(currentRow + 1, 27).Value = "Plastic mulching";
+                    worksheet.Cell(currentRow + 1, 27).Value = "Mulching";
                     worksheet.Cell(currentRow + 1, 28).Value = "Hydrogel";
                     worksheet.Cell(currentRow + 1, 29).Value = "DSR";
                     worksheet.Cell(currentRow + 1, 30).Value = "Other 1";
@@ -2389,7 +2457,7 @@ namespace AbhyProject.Controllers
                     worksheet.Cell(currentRow, 37).Value = "Other Type 3";
                     worksheet.Cell(currentRow, 38).Value = "Total Beneficiary Super seeder /happy seeder/zero tillage";
                     worksheet.Cell(currentRow, 39).Value = "Total Beneficiary Polyhouse /net house";
-                    worksheet.Cell(currentRow, 40).Value = "Total Beneficiary Plastic mulching";
+                    worksheet.Cell(currentRow, 40).Value = "Total Beneficiary Mulching";
                     worksheet.Cell(currentRow, 41).Value = "Total Beneficiary Hydrogel";
                     worksheet.Cell(currentRow, 42).Value = "Total Beneficiary DSR";
                     worksheet.Cell(currentRow, 43).Value = "Total Beneficiary Other 1";
@@ -2656,9 +2724,9 @@ namespace AbhyProject.Controllers
                                 worksheet.Cell((lastRow + 1), 32).Value = othfin3;
                                 worksheet.Cell((lastRow + 1), 33).Value = fintot;
                                 worksheet.Cell((lastRow + 1), 34).Value = alltot;
-                                worksheet.Cell((lastRow + 1), 35).Value = othmet1;
-                                worksheet.Cell((lastRow + 1), 36).Value = othmet2;
-                                worksheet.Cell((lastRow + 1), 37).Value = othmet3;
+                                worksheet.Cell((lastRow + 1), 35).Value = "";
+                                worksheet.Cell((lastRow + 1), 36).Value = "";
+                                worksheet.Cell((lastRow + 1), 37).Value = "";
                                 worksheet.Cell((lastRow + 1), 38).Value = supben;
                                 worksheet.Cell((lastRow + 1), 39).Value = polben;
                                 worksheet.Cell((lastRow + 1), 40).Value = mulben;
@@ -2669,6 +2737,11 @@ namespace AbhyProject.Controllers
                                 worksheet.Cell((lastRow + 1), 45).Value = othben3;
                                 worksheet.Cell((lastRow + 1), 46).Value = totalAllFinal;
 
+
+                                for (int k = 1; k <= 46; k++)
+                                {
+                                    worksheet.Cell(currentRow, k).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                                }
 
                             }
 
@@ -2713,9 +2786,8 @@ namespace AbhyProject.Controllers
             {
                 Log($"ex Message 24-25: {ex.InnerException.Message.ToString()}");
                 return Content(ex.Message.ToString());
-            }                
+            }
         }
-
         private void Log(string message)
         {
             string logFilePath = Server.MapPath("~/efficientlog.txt");
@@ -2724,7 +2796,6 @@ namespace AbhyProject.Controllers
                 writer.WriteLine($"{DateTime.Now}: {message}");
             }
         }
-
         [HttpPost]
         public ActionResult Approve_RemarkUpdate_c(string ids, string remarks, string type, decimal TotalNpmuValue)
         {
@@ -2824,8 +2895,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpPost]
         public ActionResult approve_data_state_b(string id)
         {
@@ -2868,7 +2937,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpPost]
         public ActionResult reject_data_b(string id, string reject)
         {
@@ -2911,9 +2979,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
-
         [HttpPost]
         public ActionResult Save_data(string state, string dist, string block, string year, string fy_phase, string separation)
         {
@@ -2924,22 +2989,28 @@ namespace AbhyProject.Controllers
                     var Data = new electricity_feeder_separation();
                     if (Data != null)
                     {
+                        var datacheck = ABE.obj_electricity_feeder_separation.Where(x => x.state == state && x.district == dist && x.block == block && year == year && x.fy_phase == fy_phase).ToList().Count;
+                        if (datacheck == 0)
+                        {
+                            Data.state = state;
+                            Data.district = dist;
+                            Data.block = block;
+                            Data.year = year;
+                            Data.fy_phase = fy_phase;
+                            Data.separation = separation;
+                            Data.entry_date = DateTime.Now;
+                            Data.user_id = Session["Officer"].ToString();
 
 
-                        Data.state = state;
-                        Data.district = dist;
-                        Data.block = block;
-                        Data.year = year;
-                        Data.fy_phase = fy_phase;
-                        Data.separation = separation;
-                        Data.entry_date = DateTime.Now;
-                        Data.user_id = Session["Officer"].ToString();
 
-
-
-                        ABE.obj_electricity_feeder_separation.Add(Data);
-                        ABE.SaveChanges();
-                        return Json("Successfully Saved", JsonRequestBehavior.AllowGet);
+                            ABE.obj_electricity_feeder_separation.Add(Data);
+                            ABE.SaveChanges();
+                            return Json("Successfully Saved", JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            return Json("You have already save data in this block", JsonRequestBehavior.AllowGet);
+                        }
 
                     }
 
@@ -2956,8 +3027,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
-
         [HttpPost]
         public ActionResult Data_upload_doc(string Data)
         {
@@ -3011,8 +3080,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
-
         [HttpPost]
         public ActionResult get_irrigation_system(string state, string district, string block, string gram, string year, string fy_phase)
         {
@@ -3124,7 +3191,6 @@ namespace AbhyProject.Controllers
                 // return RedirectToAction("WSP_GWM_HOME", "WSPNew");
             }
         }
-
         [HttpPost]
         public JsonResult Save_dli4_area_with_crop_shifting(dli4_area_with_crop_shifting model)
         {
@@ -3171,7 +3237,6 @@ namespace AbhyProject.Controllers
                 return Json("Data updated successfully.", JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpPost]
         public ActionResult get_area_with_crop_shifting(string state, string district, string block, string gram, string year, string fy_phase)
         {
@@ -3205,7 +3270,6 @@ namespace AbhyProject.Controllers
                 // return RedirectToAction("WSP_GWM_HOME", "WSPNew");
             }
         }
-
         [HttpPost]
         public JsonResult delete_area_with_crop_shifting(int id)
         {
@@ -3216,7 +3280,6 @@ namespace AbhyProject.Controllers
             int rs = ABE.SaveChanges();
             return Json(rs, JsonRequestBehavior.AllowGet);
         }
-
         [HttpPost]
         public JsonResult get_area_with_crop_shifting_byId(int id)
         {
@@ -3334,6 +3397,7 @@ namespace AbhyProject.Controllers
 
                         ddetails.entry_date = DateTime.Now.ToString("dd-MM-yyyy");
                         ddetails.userid = Session["Email"].ToString();
+                        ddetails.approve = "At DPMU";
 
                         ABE.Entry(ddetails).State = EntityState.Modified;
                         ABE.SaveChanges();
@@ -3387,8 +3451,6 @@ namespace AbhyProject.Controllers
                 // return RedirectToAction("WSP_GWM_HOME", "WSPNew");
             }
         }
-
-
         //[HttpPost]
         //public ActionResult save_agriculture_method(List<dli4_water_saving_agriculture> Data)
         //{
@@ -3456,8 +3518,6 @@ namespace AbhyProject.Controllers
             var details = ABE.obj_dli4_water_saving_agriculture.Where(x => x.id == id).FirstOrDefault();
             return Json(details, JsonRequestBehavior.AllowGet);
         }
-
-
         [HttpPost]
         public JsonResult Submit_To_SPMU(string state, string district, string block, string gram, string year, string fy_phase)
         {
@@ -3472,7 +3532,7 @@ namespace AbhyProject.Controllers
                         var ddetails3 = ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == state && x.district == district && x.block == block && x.gram == gram && x.year == year).FirstOrDefault();
                         if (ddetails1 != null)
                         {
-                            if (ddetails1.approve == "" || ddetails1.approve == null || ddetails1.approve == "Reject")
+                            if (ddetails1.approve == "" || ddetails1.approve == null || ddetails1.approve == "Reject" || ddetails1.approve == "At DPMU")
                             {
                                 ddetails1.approve = "Dist";
                                 ABE.Entry(ddetails1).State = EntityState.Modified;
@@ -3481,7 +3541,7 @@ namespace AbhyProject.Controllers
                         }
                         if (ddetails3 != null)
                         {
-                            if (ddetails3.approve == "" || ddetails3.approve == null || ddetails3.approve == "Reject")
+                            if (ddetails3.approve == "" || ddetails3.approve == null || ddetails3.approve == "Reject" || ddetails3.approve == "At DPMU")
                             {
                                 ddetails3.approve = "Dist";
                                 ABE.Entry(ddetails3).State = EntityState.Modified;
@@ -3492,7 +3552,7 @@ namespace AbhyProject.Controllers
                         {
                             foreach (var item in ddetails2)
                             {
-                                if (item.approve != "" || item.approve != null || item.approve != "Reject")
+                                if (item.approve != "" || item.approve != null || item.approve != "Reject" || item.approve != "Reject")
                                 {
                                     item.approve = "Dist";
                                     ABE.Entry(item).State = EntityState.Modified;
@@ -3557,7 +3617,6 @@ namespace AbhyProject.Controllers
             }
 
         }
-
         [HttpPost]
         public ActionResult Save_dli4_upload_document(string state, string dist, string year, string fy_phase, string description, HttpPostedFileBase image)
         {
@@ -3589,7 +3648,7 @@ namespace AbhyProject.Controllers
                                 string name = Path.GetFileNameWithoutExtension(image.FileName);
                                 string FileName = name + DateTime.Now.Ticks + ext;
                                 String FileExt = Path.GetExtension(image.FileName).ToUpper();
-                                if (FileExt != ".PDF" && FileExt != ".xlsx" && FileExt != ".XLS")
+                                if (FileExt != ".PDF" && FileExt != ".XLSX" && FileExt != ".XLS")
                                 {
                                     return Json("Please Choose Valid File!", JsonRequestBehavior.AllowGet);
 
@@ -3632,7 +3691,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpPost]
         public ActionResult Update_upload_DLI4(string id, string state, string dist, string description, HttpPostedFileBase image)
         {
@@ -3654,6 +3712,9 @@ namespace AbhyProject.Controllers
                             Data.district = dist;
                             Data.description = description;
 
+                            string phaseformat = Data.fy_phase;
+                            string phase = phaseformat.Replace("-", "_");
+
                             Malicious_File_Upload_Restriction obj_Validate = new Malicious_File_Upload_Restriction();
                             if (image != null)
                             {
@@ -3672,7 +3733,7 @@ namespace AbhyProject.Controllers
 
                                     }
                                     string BasePath = AppDomain.CurrentDomain.BaseDirectory;
-                                    string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\DLI4\\" + Data.year + "\\" + Data.fy_phase + "\\");
+                                    string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\DLI4\\" + Data.year + "\\" + phase + "\\");
                                     path = path + FileName;
                                     string[] count = image.FileName.Split('.');
                                     string[] count_special = image.FileName.Split('#', '$');
@@ -3686,7 +3747,7 @@ namespace AbhyProject.Controllers
                                     }
                                     image.SaveAs(path);
                                     Data.image_name = FileName;
-                                    Data.image_path = "/Ataljalimages/DLI4/" + Data.year + "/" + Data.fy_phase + "/" + FileName;
+                                    Data.image_path = "/Ataljalimages/DLI4/" + Data.year + "/" + phase + "/" + FileName;
 
                                 }
                             }
@@ -3723,7 +3784,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpPost]
         public ActionResult get_dli4_upload_document(string Data)
         {
@@ -3753,13 +3813,21 @@ namespace AbhyProject.Controllers
                     }
                     else
                     {
-                        if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
+                        if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
                         {
-                            details = ABE.obj_dli4_upload_document.Where(x => x.state == State && x.district == Dist && x.year == "2023-24" && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+                            details = ABE.obj_dli4_upload_document.Where(x => x.state == State && x.district == Dist && x.year == year && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+                        }
+                        else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
+                        {
+                            details = ABE.obj_dli4_upload_document.Where(x => x.state == State && x.district == Dist && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+                        }
+                        else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
+                        {
+                            details = ABE.obj_dli4_upload_document.Where(x => x.state == State && x.year == year && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
                         }
                         else if (State != "0" && State != "" && State != null)
                         {
-                            details = ABE.obj_dli4_upload_document.Where(x => x.state == State && x.year == "2023-24" && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+                            details = ABE.obj_dli4_upload_document.Where(x => x.state == State && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
                         }
                     }
 
@@ -3787,7 +3855,6 @@ namespace AbhyProject.Controllers
 
             }
         }
-
         [HttpPost]
         public ActionResult approve_data_upload(string id)
         {
@@ -3830,7 +3897,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpPost]
         public ActionResult approve_data_state_upload(string id)
         {
@@ -3873,7 +3939,6 @@ namespace AbhyProject.Controllers
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
         }
-
         [HttpPost]
         public ActionResult reject_data_upload(string id, string reject)
         {
@@ -3931,7 +3996,7 @@ namespace AbhyProject.Controllers
         {
             List<dli_4_report> DataList = new List<dli_4_report>();
             string[] areas = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
-            string[] years = { "2021-22", "2022-23", "2023-24" };
+            string[] years = { "2021-22", "2022-23", "2023-24", "2024-25" };
             string[] Phases = { "Phase-1", "Phase-2" };
             if (state == "All" && year == "All")
             {
@@ -3942,7 +4007,24 @@ namespace AbhyProject.Controllers
 
                         if (j != "2021-22")
                         {
-                            if(j == "2023-24")
+                            if (j == "2023-24")
+                            {
+                                foreach (var item in Phases)
+                                {
+                                    dli_4_report Data2 = new dli_4_report();
+                                    Data2.state = i;
+                                    Data2.year = j;
+                                    Data2.phase = item;
+                                    Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                                    Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                                    Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                                    Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                                    Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == i && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                                    Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                                    DataList.Add(Data2);
+                                }
+                            }
+                            if (j == "2024-25")
                             {
                                 foreach (var item in Phases)
                                 {
@@ -4007,22 +4089,39 @@ namespace AbhyProject.Controllers
                     if (year == "2023-24")
                     {
                         foreach (var item in Phases)
-                        {           
-                        dli_4_report Data2 = new dli_4_report();
-                        Data2.state = state;
-                        Data2.year = year;
-                        Data2.phase = item;
-                        Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
-                        Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase ==item).ToList().Sum(x => x.drip_total));
-                        Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
-                        Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
-                        Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
-                        Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
-                        DataList.Add(Data2);
+                        {
+                            dli_4_report Data2 = new dli_4_report();
+                            Data2.state = state;
+                            Data2.year = year;
+                            Data2.phase = item;
+                            Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                            Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                            Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                            Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                            Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                            Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                            DataList.Add(Data2);
                         }
                     }
-
-                    else {
+                    if (year == "2024-25")
+                    {
+                        foreach (var item in Phases)
+                        {
+                            dli_4_report Data2 = new dli_4_report();
+                            Data2.state = state;
+                            Data2.year = year;
+                            Data2.phase = item;
+                            Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                            Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                            Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                            Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                            Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == state && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                            Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                            DataList.Add(Data2);
+                        }
+                    }
+                    else
+                    {
                         dli_4_report Data = new dli_4_report();
                         Data.state = state;
                         Data.year = year;
@@ -4036,8 +4135,6 @@ namespace AbhyProject.Controllers
                     }
 
                 }
-
-
                 //2021-22
                 else
                 {
@@ -4071,6 +4168,23 @@ namespace AbhyProject.Controllers
                     if (j != "2021-22")
                     {
                         if (j == "2023-24")
+                        {
+                            foreach (var item in Phases)
+                            {
+                                dli_4_report Data2 = new dli_4_report();
+                                Data2.state = state;
+                                Data2.year = j;
+                                Data2.phase = item;
+                                Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                                Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                                Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                                Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                                Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == state && x.year == j && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                                Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                                DataList.Add(Data2);
+                            }
+                        }
+                        if (j == "2024-25")
                         {
                             foreach (var item in Phases)
                             {
@@ -4150,6 +4264,23 @@ namespace AbhyProject.Controllers
                                 DataList.Add(Data2);
                             }
                         }
+                        if (year == "2024-25")
+                        {
+                            foreach (var item in Phases)
+                            {
+                                dli_4_report Data2 = new dli_4_report();
+                                Data2.state = i;
+                                Data2.year = year;
+                                Data2.phase = item;
+                                Data2.sprinkler_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.sprinkler_total));
+                                Data2.drip_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.drip_total));
+                                Data2.pipeline_irrigation = Convert.ToDouble(ABE.obj_dli4_efficient_irrigation_system.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.pipeline_total));
+                                Data2.crop_shifting = Convert.ToDouble(ABE.obj_dli4_area_with_crop_shifting.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.hightolow_wcc));
+                                Data2.water_saving_method = Convert.ToDouble(ABE.obj_dli4_water_saving_agriculture.Where(x => x.state == i && x.year == year && x.approve == "State" && x.fy_phase == item).ToList().Sum(x => x.all_total_area));
+                                Data2.total_claim = Data2.sprinkler_irrigation + Data2.drip_irrigation + Data2.pipeline_irrigation + Data2.crop_shifting + Data2.water_saving_method;
+                                DataList.Add(Data2);
+                            }
+                        }
                         else
                         {
                             dli_4_report Data = new dli_4_report();
@@ -4190,6 +4321,299 @@ namespace AbhyProject.Controllers
             }
 
             return Json(DataList, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Delete_data_uploadfeed(int id)
+        {
+            var obj = new electricity_feeder_separation();
+            obj.id = id;
+            ABE.Entry(obj).State = EntityState.Deleted;
+            int rs = ABE.SaveChanges();
+            return Json("Deleted Successfully", JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult Update_DLI4feed(string id, string description)
+        {
+
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    int k = 0;
+                    var ID = Convert.ToInt32(id);
+                    var Data = ABE.obj_electricity_feeder_separation.Where(x => x.id == ID).SingleOrDefault();
+                    if (Data != null)
+                    {
+                        Data.separation = description;
+                        ABE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
+                        int A = ABE.SaveChanges();
+                        if (A > 0)
+                        {
+                            return Json("Successfully Update");
+                        }
+                    }
+                    else
+                    {
+                        return Json("Data not updated");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Json("");
+
+                }
+                return Json("Invalid");
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult approve_data_feed(string id)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    var ID = Convert.ToInt32(id);
+                    var Data = ABE.obj_electricity_feeder_separation.Where(x => x.id == ID).SingleOrDefault();
+                    if (Data != null)
+                    {
+
+                        Data.id = ID;
+                        Data.approve = "NPMU";
+                        Data.reject = "";
+
+
+                        ABE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
+                        int A = ABE.SaveChanges();
+                        if (A > 0)
+                        {
+                            return Json("Submit To NPMU");
+                        }
+                        else
+                        {
+                            return Json("Not Approved");
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json("Not Approved");
+
+                }
+                return Json("Invalid");
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult approve_data_state_feed(string id)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    var ID = Convert.ToInt32(id);
+                    var Data = ABE.obj_electricity_feeder_separation.Where(x => x.id == ID).SingleOrDefault();
+                    if (Data != null)
+                    {
+
+                        Data.id = ID;
+                        Data.approve = "Approve";
+                        Data.reject = "";
+
+
+                        ABE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
+                        int A = ABE.SaveChanges();
+                        if (A > 0)
+                        {
+                            return Json("Approved Successfully");
+                        }
+                        else
+                        {
+                            return Json("Not Approved");
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json("Not Approved");
+
+                }
+                return Json("Invalid");
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult reject_data_feed(string id, string reject)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    var ID = Convert.ToInt32(id);
+                    var Data = ABE.obj_electricity_feeder_separation.Where(x => x.id == ID).SingleOrDefault();
+                    if (Data != null)
+                    {
+
+                        Data.id = ID;
+                        Data.approve = "Reject";
+                        Data.reject = reject;
+
+
+                        ABE.Entry(Data).State = System.Data.Entity.EntityState.Modified;
+                        int A = ABE.SaveChanges();
+                        if (A > 0)
+                        {
+                            return Json("Rejected Successfully");
+                        }
+                        else
+                        {
+                            return Json("Not Rejected");
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json("Not Approved");
+
+                }
+                return Json("Invalid");
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult exportexcelfeed(string State, string Dist, string Block, string Year, string fy_phase)
+        {
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            List<electricity_feeder_separation> details = new List<electricity_feeder_separation>();
+            if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null && fy_phase != "0" && fy_phase != "" && fy_phase != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.district == Dist && x.block == Block && x.year == Year && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.district == Dist && x.block == Block && x.year == Year).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.district == Dist && x.block == Block && x.year == Year && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null && fy_phase != "0" && fy_phase != "" && fy_phase != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.district == Dist && x.year == Year && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.district == Dist && x.year == Year).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.district == Dist && x.year == Year && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null && fy_phase != "0" && fy_phase != "" && fy_phase != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.year == Year && x.fy_phase == fy_phase).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State && x.year == Year).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+            else if (State != "0" && State != "" && State != null)
+            {
+                details = ABE.obj_electricity_feeder_separation.Where(x => x.state == State).OrderByDescending(x => x.id).ToList();//total list                      
+            }
+
+            using (var workbook = new XLWorkbook())
+            {
+
+                var worksheet = workbook.Worksheets.Add("Training Calender State Level");
+                var currentRow = 1;
+                worksheet.Cell(currentRow, 1).Value = "State";
+                worksheet.Cell(currentRow, 2).Value = "District";
+                worksheet.Cell(currentRow, 3).Value = "Block";
+                worksheet.Cell(currentRow, 4).Value = "Year";
+                worksheet.Cell(currentRow, 5).Value = "Phase";
+                worksheet.Cell(currentRow, 6).Value = "Brought under feeder separation in claim duration";
+                worksheet.Cell(currentRow, 7).Value = "Data Validation";
+                worksheet.Cell(currentRow, 8).Value = "Reject Remark";
+
+                if (details.Count != 0)
+                {
+                    foreach (var user in details)
+                    {
+                        currentRow++;
+                        var approve = user.approve;
+                        if (approve == null || approve == "")
+                        {
+                            approve = "At SPMU";
+                        }
+                        else if (approve == "NPMU")
+                        {
+                            approve = "Submitted To NPMU";
+                        }
+                        else if (approve == "Approve")
+                        {
+                            approve = "Approved";
+                        }
+                        else if (approve == "Reject")
+                        {
+                            approve = "Rejected";
+                        }
+                        var reject_status = user.reject;
+                        if (reject_status == null)
+                        {
+                            reject_status = "";
+                        }
+                        worksheet.Cell(currentRow, 1).Value = user.state;
+                        worksheet.Cell(currentRow, 2).Value = user.district;
+                        worksheet.Cell(currentRow, 3).Value = user.block;
+                        worksheet.Cell(currentRow, 4).Value = user.year;
+                        worksheet.Cell(currentRow, 5).Value = user.fy_phase;
+                        worksheet.Cell(currentRow, 6).Value = user.separation;
+                        worksheet.Cell(currentRow, 7).Value = approve;
+                        worksheet.Cell(currentRow, 8).Value = reject_status;
+
+                    }
+                }
+                else
+                {
+                    currentRow++;
+                    worksheet.Cell(currentRow, 1).Value = "";
+                    worksheet.Cell(currentRow, 2).Value = "";
+                    worksheet.Cell(currentRow, 3).Value = "No Data";
+                    worksheet.Cell(currentRow, 4).Value = "";
+                    worksheet.Cell(currentRow, 5).Value = "";
+                    worksheet.Cell(currentRow, 6).Value = "";
+
+                }
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Electricity Feeder Sepration.xlsx");
+                }
+            }
+
         }
     }
 }
