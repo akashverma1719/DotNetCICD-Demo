@@ -1,6 +1,6 @@
 ﻿var k = 0;
 function sum_of_all() {
-    
+
     var sprinkler_convergence = $("#sprinkler_convergence").val();
     var sprinkler_incentive = $("#sprinkler_incentive").val();
     var sprinkler_financing = $("#sprinkler_financing").val();
@@ -71,7 +71,7 @@ function sum_of_all() {
 
 
 function get_irrigation_system() {
-    
+
     var year = $("#year").val();
     var fy_phase = $("#fy_phase").val();
     $.ajax({
@@ -81,7 +81,7 @@ function get_irrigation_system() {
         data: "{'state': '" + State + "','district': '" + Dist + "','block': '" + Block + "','gram': '" + Gram + "','year': '" + year + "','fy_phase': '" + fy_phase + "'}",
         dataType: 'JSON',
         success: function (data) {
-            
+
             if (data.length != 0) {
                 if (data[0].approve == "State") {
                     $("#sprinkler_convergence").val(data[0].sprinkler_convergence);
@@ -153,9 +153,11 @@ function get_irrigation_system() {
                     //$("#st_pipe_ben").prop("disabled", true);
                     //$("#obc_pipe_ben").prop("disabled", true);
                     //$("#gen_pipe_ben").prop("disabled", true);
-                    $("#hidebutton").hide();
-                    $("#Submit_To_SPMU").hide();
-                    
+                    $("#btnFinalSave2").hide();
+                    $("#saveagri").hide();
+                    $("#btnFinalSave").hide();
+                    $(".disable_btn").hide();
+
                 }
                 else if (data[0].approve == "Dist") {
                     $("#sprinkler_convergence").val(data[0].sprinkler_convergence);
@@ -226,8 +228,10 @@ function get_irrigation_system() {
                     //$("#st_pipe_ben").prop("disabled", true);
                     //$("#obc_pipe_ben").prop("disabled", true);
                     //$("#gen_pipe_ben").prop("disabled", true);
-                    $("#hidebutton").hide();
-                    $("#Submit_To_SPMU").hide();
+                    $("#btnFinalSave2").hide();
+                    $("#saveagri").hide();
+                    $("#btnFinalSave").hide();
+                    $(".disable_btn").hide();
                 }
                 else if (data[0].approve != "State") {
                     $("#sprinkler_convergence").val(data[0].sprinkler_convergence);
@@ -300,8 +304,10 @@ function get_irrigation_system() {
                     //$("#obc_pipe_ben").prop("disabled", false);
                     //$("#gen_pipe_ben").prop("disabled", false);
 
-                    $("#hidebutton").show();
-                    $("#Submit_To_SPMU").show();
+                    $("#btnFinalSave2").show();
+                    $("#saveagri").show();
+                    $("#btnFinalSave").show();
+                    $(".disable_btn").show();
                     k = 1;
                 }
                 else {
@@ -375,8 +381,11 @@ function get_irrigation_system() {
                     //$("#obc_pipe_ben").prop("disabled", false);
                     //$("#gen_pipe_ben").prop("disabled", false);
 
-                    $("#hidebutton").show();
-                    $("#Submit_To_SPMU").show();
+                    $("#btnFinalSave2").show();
+                    $("#saveagri").show();
+                    $("#btnFinalSave").show();
+                    $(".disable_btn").show();
+
                     k = 1;
                 }
             }
@@ -449,7 +458,10 @@ function get_irrigation_system() {
                 //$("#obc_pipe_ben").prop("disabled", false);
                 //$("#gen_pipe_ben").prop("disabled", false);
                 //$("input[type='text']").prop("disabled", false);
-                $("#hidebutton").show();
+                $("#btnFinalSave2").show();
+                $("#saveagri").show();
+                $("#btnFinalSave").show();
+                $(".disable_btn").show();
                 k = 1;
             }
             SumTotal();
@@ -462,7 +474,7 @@ function get_irrigation_system() {
 //============
 
 function confirm_spmu() {
-    
+
     swal({
         title: "Are you sure to submit the information for verification?",
         text: "Check: If you are certain that all of the information you have entered is correct, click the 'OK' button. You will no longer be able to edit or modify any information before it is rejected by SPMU after that.",
@@ -485,20 +497,20 @@ function Submit_To_SPMU() {
     var fy_phase = $("#fy_phase").val();
     /*var month = $("#month").val();*/
     if (State == "0") {
-        alert("Plase select state name");
+        alert("Please select state name");
         return false;
     } else if (Dist == "0") {
-        alert("Plase select district name");
+        alert("Please select district name");
         return false;
     } else if (Block == "0") {
-        alert("Plase select block name");
+        alert("Please select block name");
         return false;
     } else if (Gram == "0") {
-        alert("Plase select gram panchayat name");
+        alert("Please select gram panchayat name");
         return false;
     }
     else if (year == "0") {
-        alert("Plase select year");
+        alert("Please select year");
         return false;
     }
 
@@ -509,7 +521,7 @@ function Submit_To_SPMU() {
         data: "{'state': '" + State + "','district': '" + Dist + "','block': '" + Block + "','gram': '" + Gram + "','year': '" + year + "','fy_phase': '" + fy_phase + "'}",
         dataType: 'JSON',
         success: function (data) {
-            
+
             alert(data)
             get_irrigation_system();
 
@@ -518,25 +530,25 @@ function Submit_To_SPMU() {
 }
 
 $("#btnFinalSave2").click(function () {
-    
+    $("#scheme").attr("disabled", false);
     var year = $("#year").val();
     var fy_phase = $("#fy_phase").val();
 
     if (State == "0") {
-        alert("Plase select state name");
+        alert("Please select state name");
         return false;
     } else if (Dist == "0") {
-        alert("Plase select district name");
+        alert("Please select district name");
         return false;
     } else if (Block == "0") {
-        alert("Plase select block name");
+        alert("Please select block name");
         return false;
     } else if (Gram == "0") {
-        alert("Plase select gram panchayat name");
+        alert("Please select gram panchayat name");
         return false;
     }
     else if (year == "0") {
-        alert("Plase select year");
+        alert("Please select year");
         return false;
     }
 
@@ -544,7 +556,7 @@ $("#btnFinalSave2").click(function () {
 });
 
 $("#btnSubmit").click(function () {
-    
+
     /*var month = $("#month").val();*/
 
     var existing_high_wcc = $("#existing_high_wcc").val();
@@ -560,24 +572,24 @@ $("#btnSubmit").click(function () {
     //var obc = $("#obc").val();
     //var gen = $("#gen").val();
 
-    
+
 
     var year = $("#year").val();
     if (State == "0") {
-        alert("Plase select state name");
+        alert("Please select state name");
         return false;
     } else if (Dist == "0") {
-        alert("Plase select district name");
+        alert("Please select district name");
         return false;
     } else if (Block == "0") {
-        alert("Plase select block name");
+        alert("Please select block name");
         return false;
     } else if (Gram == "0") {
-        alert("Plase select gram panchayat name");
+        alert("Please select gram panchayat name");
         return false;
     }
     else if (year == "0") {
-        alert("Plase select year");
+        alert("Please select year");
         return false;
     }
 
@@ -594,9 +606,11 @@ $("#btnSubmit").click(function () {
         alert("Please select department name");
         return false;
     }
-    else if (scheme == "0") {
-        alert("Please select scheme name");
-        return false;
+    if (department != "Self financing") {
+        if (scheme == "0") {
+            alert("Please select scheme name");
+            return false;
+        }
     }
     if (scheme == "Others") {
         if (other_scheme == "") {
@@ -647,7 +661,7 @@ function fnSuccessCropShifting(data) {
         $("#id").val("");
         $("#modalDialogScrollable_gp").modal("hide");
         $("#existing_high_wcc").val("0");
-        
+
         $("#replacing_low_wcc").val("");
         $("#hightolow_wcc").val("");
         $("#department").val("0");
@@ -670,7 +684,7 @@ function fnOnFailureCropShifting(err) {
 }
 
 function get_area_with_crop_shifting() {
-    
+
     var year = $("#year").val();
     var fy_phase = $("#fy_phase").val();
     $.ajax({
@@ -680,10 +694,10 @@ function get_area_with_crop_shifting() {
         data: "{'state': '" + State + "','district': '" + Dist + "','block': '" + Block + "','gram': '" + Gram + "','year': '" + year + "','fy_phase': '" + fy_phase + "'}",
         dataType: 'JSON',
         success: function (data) {
-            
+
             var tr = "";
             var j = 0;
-            
+
             var total_hightolow_wcc = 0;
             var total_beneficiary = 0;
             if (data.length != 0) {
@@ -694,45 +708,23 @@ function get_area_with_crop_shifting() {
                     var existing_high_wcc = data[i].existing_high_wcc;
                     var department = data[i].department;
                     var scheme = data[i].scheme;
-
-
+                    if (scheme == null || scheme == "0") {
+                        scheme = "";
+                    }
                     if (scheme == "Others") {
                         scheme = data[i].scheme + " - " + data[i].other_scheme;
                     }
                     var total_ben = "";
-                    //var sc = "";
-                    //var st = "";
-                    //var obc = "";
-                    //var gen = "";
+
                     if (data[i].total_ben == null || data[i].total_ben == "NULL") {
                         total_ben = "";
                     } else {
                         total_ben = data[i].total_ben;
                     }
-                    //if (data[i].sc == null || data[i].sc == "NULL") {
-                    //    sc = "";
-                    //} else {
-                    //    sc = data[i].sc;
-                    //}
-                    //if (data[i].st == null || data[i].st == "NULL") {
-                    //    st = "";
-                    //} else {
-                    //    st = data[i].st;
-                    //}
-                    //if (data[i].obc == null || data[i].obc == "NULL") {
-                    //    obc = "";
-                    //} else {
-                    //    obc = data[i].obc;
-                    //}
-                    //if (data[i].gen == null || data[i].gen == "NULL") {
-                    //    gen = "";
-                    //} else {
-                    //    gen = data[i].gen;
-                    //}
 
                     total_hightolow_wcc += parseFloat(data[i].hightolow_wcc);
                     total_beneficiary += parseFloat(data[i].total_ben);
-                    
+
                     if (data[i].approve == "State") {
                         $("#Submit_To_SPMU").hide();
                         tr += '<tr><td>' + (++j) + '</td>' +
@@ -742,15 +734,10 @@ function get_area_with_crop_shifting() {
                             '<td>' + department + '</td >' +
                             '<td>' + scheme + '</td >' +
                             '<td>' + total_ben + '</td >' +
-                            //'<td>' + sc + '</td >' +
-                            //'<td>' + st + '</td >' +
-                            //'<td>' + obc + '</td >' +
-                            //'<td>' + gen + '</td >' +
                             '<td > <button class="btn btn-primary disable_btn" disabled   onclick=editCropShifting(' + data[i].id + ')><i class="fa fa-edit"></i></button></td > <td><button class="btn btn-danger disable_btn disable_btn" disabled onclick="deleteCropShifting(' + data[i].id + ') "><i class="fa fa-trash"></i></button></td></tr>';
                     }
-                    if (data[i].approve == "Dist") {
+                    else if (data[i].approve == "Dist") {
                         $("#Submit_To_SPMU").hide();
-                       //document.getElementById("btnFinalSave2").disabled = true;
                         $("#btnFinalSave2").hide();
                         tr += '<tr><td>' + (++j) + '</td>' +
                             '<td>' + existing_high_wcc + '</td >' +
@@ -759,10 +746,6 @@ function get_area_with_crop_shifting() {
                             '<td>' + department + '</td >' +
                             '<td>' + scheme + '</td >' +
                             '<td>' + total_ben + '</td >' +
-                            //'<td>' + sc + '</td >' +
-                            //'<td>' + st + '</td >' +
-                            //'<td>' + obc + '</td >' +
-                            //'<td>' + gen + '</td >' +
                             '<td > <button class="btn btn-primary disable_btn" disabled  onclick=editCropShifting(' + data[i].id + ')><i class="fa fa-edit"></i></button></td > <td><button class="btn btn-danger disable_btn" disabled onclick="deleteCropShifting(' + data[i].id + ') "><i class="fa fa-trash"></i></button></td></tr>';
                     }
                     else {
@@ -774,21 +757,17 @@ function get_area_with_crop_shifting() {
                             '<td>' + department + '</td >' +
                             '<td>' + scheme + '</td >' +
                             '<td>' + total_ben + '</td >' +
-                            //'<td>' + sc + '</td >' +
-                            //'<td>' + st + '</td >' +
-                            //'<td>' + obc + '</td >' +
-                            //'<td>' + gen + '</td >' +
-                            '<td > <button class="btn btn-primary disable_btn"  onclick=editCropShifting(' + data[i].id + ')><i class="fa fa-edit"></i></button></td > <td><button class="btn btn-danger disable_btn" onclick="deleteCropShifting(' + data[i].id + ') "><i class="fa fa-trash"></i></button></td></tr>';
-
+                            '<td > <button class="btn btn-primary"  onclick=editCropShifting(' + data[i].id + ')><i class="fa fa-edit"></i></button></td > <td><button class="btn btn-danger" onclick="deleteCropShifting(' + data[i].id + ') "><i class="fa fa-trash"></i></button></td></tr>';
                     }
                 }
 
-            } else {
+            }
+            else {
                 tr = '<tr style="text-align:center;"><td colspan="8" style="text-align:center;">No Data</td></tr>';
             }
             tr += '<tr><td style="background-color:orange;color:#fff">Total</td><td></td><td></td><td style="font-weight:bold;">' + total_hightolow_wcc + '</td><td></td><td></td><td style="font-weight:bold;">' + total_beneficiary + '</td><td></td></tr>'
             $("#crop_shifting").html(tr);
-            
+
             //$(".disable_btn").hide();
             get_dli4_water_saving_agriculture();
         }
@@ -833,15 +812,23 @@ function editCropShifting(id) {
             $("#gram1").val(data.gram);
             $("#year1").val(data.year);
             $("#existing_high_wcc").val(data.existing_high_wcc);
-            
+
             $("#replacing_low_wcc").val(data.replacing_low_wcc);
             $("#hightolow_wcc").val(data.hightolow_wcc);
             $("#department").val(data.department);
-            
+
             $("#scheme").val(data.scheme);
             if (data.scheme == "Others") {
                 $("#other_scheme").show();
                 $("#other_scheme").val(data.other_scheme);
+            }
+            if (data.department == "Self financing") {
+                $("#scheme").attr("disabled", true);
+                $("#scheme").val('0');
+            }
+            else {
+                $("#scheme").attr("disabled", false);
+                $("#scheme").val(data.scheme);
             }
             var total_ben = "";
             //var sc = "";
@@ -853,26 +840,7 @@ function editCropShifting(id) {
             } else {
                 total_ben = data.total_ben;
             }
-            //if (data.sc == null || data.sc == "NULL") {
-            //    sc = "";
-            //} else {
-            //    sc = data.sc;
-            //}
-            //if (data.st == null || data.st == "NULL") {
-            //    st = "";
-            //} else {
-            //    st = data.st;
-            //}
-            //if (data.obc == null || data.obc == "NULL") {
-            //    obc = "";
-            //} else {
-            //    obc = data.obc;
-            //}
-            //if (data.gen == null || data.gen == "NULL") {
-            //    gen = "";
-            //} else {
-            //    gen = data.gen;
-            //}
+
             $("#total_ben").val(total_ben);
             //$("#sc").val(sc);
             //$("#st").val(st);
@@ -885,7 +853,7 @@ function editCropShifting(id) {
 
 
 //function SumSc() {
-    
+
 //    var sc_spr_ben = $("#sc_spr_ben").val();
 //    var sc_drip_ben = $("#sc_drip_ben").val();
 //    var sc_pipe_ben = $("#sc_pipe_ben").val();

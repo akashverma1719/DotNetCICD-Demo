@@ -1,4 +1,4 @@
-﻿@model AbhyProject.Models.dli4_area_with_crop_shifting
+﻿﻿@model AbhyProject.Models.dli4_area_with_crop_shifting
 
 @{
     ViewBag.Title = "EfficientWater";
@@ -355,6 +355,7 @@
     .list_style li {
         line-height: 25px;
     }
+
     .notice-ribbon {
         font-size: 14px;
         background: #3585dc;
@@ -368,6 +369,10 @@
             color: #fff;
             margin-bottom: 0px;
         }
+
+    ul.Select_option > li {
+        margin-top: 10px;
+    }
 </style>
 <div class="loading-container">
     <div class="loader">
@@ -464,7 +469,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="col-sm-12">
         <ul style="color:white;">
             <li style=" text-align: right; margin-top:10px;">
 
@@ -528,15 +533,17 @@
                         <select class="form-control" id="year" Disabled>
                             <option value="0">Select Financial Year</option>
                             @*<option value="2022-23">2022-23</option>*@
-                            <option value="2023-24" selected>2023-24</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2024-25" selected>2024-25</option>
                         </select>
                     </li>
 
                     <li>
                         <select class="form-control" id="fy_phase" disabled>
                             <option value="0">---Select---</option>
-                            <option value="Phase-1" >Phase-1[Apr 2023 - Sep 2023]</option>
-                            <option value="Phase-2" selected>Phase-2[October 2023 - March 2024]</option>
+                            <option value="Phase-1">Phase-1[Apr 2023 - Sep 2023]</option>
+                            <option value="Phase-2">Phase-2[October 2023 - March 2024]</option>
+                            <option value="Phase-1" selected>Phase-1[Apr 2024 - Sep 2024]</option>
                         </select>
                     </li>
 
@@ -871,7 +878,7 @@
 
 
                                     <tr>
-                                        <td><input type="text" class="form-control" id="other_water_saving_method1" name="other_water_saving_method1" placeholder="Enter other Water Saving Methods" /></td>
+                                        <td><input type="text" class="form-control" id="other_water_saving_method1" name="other_water_saving_method1" placeholder="Enter other Water Saving Methods" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_convergence1" name="other_area_covered_through_convergence1" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_incentive1" name="other_area_covered_through_incentive1" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_financing1" name="other_area_covered_through_financing1" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
@@ -884,7 +891,7 @@
                                             <td><input type="text" maxlength="5" class="form-control decimal" id="other1_gen_ben" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="total_ben()" /></td>*@
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control" id="other_water_saving_method2" name="other_water_saving_method2" placeholder="Enter other Water Saving Methods" /></td>
+                                        <td><input type="text" class="form-control" id="other_water_saving_method2" name="other_water_saving_method2" placeholder="Enter other Water Saving Methods" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_convergence2" name="other_area_covered_through_convergence2" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_incentive2" name="other_area_covered_through_incentive2" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_financing2" name="other_area_covered_through_financing2" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
@@ -897,7 +904,7 @@
                                             <td><input type="text" maxlength="5" class="form-control decimal" id="other2_gen_ben" oninput="this.value=this.value.replace(/[^0-9]/g,'');" onkeyup="total_ben()" /></td>*@
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control" id="other_water_saving_method3" name="other_water_saving_method3" placeholder="Enter other Water Saving Methods" /></td>
+                                        <td><input type="text" class="form-control" id="other_water_saving_method3" name="other_water_saving_method3" placeholder="Enter other Water Saving Methods" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_convergence3" name="other_area_covered_through_convergence3" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_incentive3" name="other_area_covered_through_incentive3" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
                                         <td><input type="text" onpaste="return false" maxlength="8" class="form-control decimal" id="other_area_covered_through_financing3" name="other_area_covered_through_financing3" onkeypress="return isNumberKey(this, event);" onkeyup="CalAgriData()" onkeydown="CalAgriData()" /></td>
@@ -1056,7 +1063,7 @@
                                             <td>1. Name of existing high water consuming crop :</td>
                                             <td>
                                                 @Html.DropDownListFor(model => model.existing_high_wcc,
-                                                 new List<SelectListItem> {
+                                                      new List<SelectListItem> {
                                                       new SelectListItem { Value = "0" , Text = "--Select--", Selected=true},
                                                       new SelectListItem { Value = "Alfalfa" , Text = "Alfalfa" },
                                                       new SelectListItem { Value = "Banana" , Text = "Banana" },
@@ -1070,8 +1077,8 @@
                                                       //new SelectListItem { Value = "Potato" , Text = "Potato" },
                                                       new SelectListItem { Value = "Sugarcane" , Text = "Sugarcane" }
                                                       //new SelectListItem { Value = "Wheat" , Text = "Wheat" }
-                                                   },
-                                                 new { @class = "form-control" })
+                        },
+                                                      new { @class = "form-control" })
                                                 @Html.TextBoxFor(model => model.other_existing_high_wcc, new { @class = "form-control", placeholder = "Enter other name" })
                                             </td>
                                         </tr>
@@ -1087,7 +1094,7 @@
                                             <td>4. Name of Department :</td>
                                             <td>
                                                 @Html.DropDownListFor(model => model.department,
-                                                                                         new List<SelectListItem> {
+                                                                                              new List<SelectListItem> {
                                                                                               new SelectListItem { Value = "0" , Text = "--Select--", Selected=true},
                                                                                               new SelectListItem { Value = "Agriculture, Farmers Welfare and Co-operation" , Text = "Agriculture, Farmers Welfare and Co-operation" },
                                                                                               new SelectListItem { Value = "CSR/NGO/Private financing", Text = "CSR/NGO/Private financing" },
@@ -1099,8 +1106,8 @@
                                                                                               new SelectListItem { Value = "Rural development and panchayat raj department" , Text = "Rural development and panchayat raj department" },
                                                                                               new SelectListItem { Value = "Self financing" , Text = "Self financing" }
 
-                                                                                           },
-                                                                                         new { @class = "form-control" })
+                                                                },
+                                                                                              new { @class = "form-control" })
 
                                                 @Html.TextBoxFor(model => model.other_department, new { @class = "form-control", placeholder = "Enter the other Department Name" })
                                             </td>
@@ -1109,7 +1116,7 @@
                                             <td>5. Name of Scheme :</td>
                                             <td>
                                                 @Html.DropDownListFor(model => model.scheme,
-                                                                                         new List<SelectListItem> {
+                                                                                              new List<SelectListItem> {
                                                                                               new SelectListItem { Value = "0" , Text = "--Select--", Selected=true},
                                                                                               //new SelectListItem { Value = "Beej Gram" , Text = "Beej Gram" },
                                                                                               new SelectListItem { Value = "Bhauso Phundkar horticulture plantation" , Text = "Bhauso Phundkar horticulture plantation" },
@@ -1125,13 +1132,13 @@
                                                                                               new SelectListItem { Value = "NMSA" , Text ="NMSA" },
                                                                                               //new SelectListItem { Value = "RKVY and MIDH" , Text ="RKVY and MIDH" },
                                                                                               new SelectListItem { Value = "Others" , Text ="Others" }
-                                                                                           },
-                                                                                         new { @class = "form-control" })
+                                                                },
+                                                                                              new { @class = "form-control" })
                                                 @*@Html.DropDownListFor(model => model.scheme, new SelectList(ViewBag.SchemeList, "funding_soursename", "funding_soursename"), "--Select--", new { @class = "form-control" })*@
                                                 @Html.TextBoxFor(model => model.other_scheme, new { @class = "form-control", placeholder = "Enter the other Scheme Name" })
                                             </td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td>6. Number of Beneficiary</td>
                                             <td>@Html.TextBoxFor(model => model.total_ben, new { @class = "form-control", placeholder = "Enter the numeric value", maxlength = "5", onpaste = "return false", oninput = "this.value=this.value.replace(/[^0-9]/g,'');" })</td>
@@ -1160,7 +1167,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success disable_btn" id="btnSubmit">Save</button>
+                    <button type="submit" class="btn btn-success" id="btnSubmit">Save</button>
                     <button type="button" class="btn btn-danger" id="btnClose" data-dismiss="modal">Close</button>
                 </div>
             }
@@ -1236,20 +1243,20 @@
     //    var area_covered_through_financing = $("#area_covered_through_financing").val();
     //    var total_area = $("#total_area").val();
     //    if (State == "0") {
-    //        alert("Plase select state name");
+    //        alert("Please select state name");
     //        return false;
     //    } else if (Dist == "0") {
-    //        alert("Plase select district name");
+    //        alert("Please select district name");
     //        return false;
     //    } else if (Block == "0") {
-    //        alert("Plase select block name");
+    //        alert("Please select block name");
     //        return false;
     //    } else if (Gram == "0") {
-    //        alert("Plase select gram panchayat name");
+    //        alert("Please select gram panchayat name");
     //        return false;
     //    }
     //    else if (year == "0") {
-    //        alert("Plase select year");
+    //        alert("Please select year");
     //        return false;
     //    }
     //    var FinalData = [];
@@ -1452,20 +1459,20 @@
         var fy_phase = $("#fy_phase").val();
 
         if (State == "0") {
-            alert("Plase select state name");
+            alert("Please select state name");
             return false;
         } else if (Dist == "0") {
-            alert("Plase select district name");
+            alert("Please select district name");
             return false;
         } else if (Block == "0") {
-            alert("Plase select block name");
+            alert("Please select block name");
             return false;
         } else if (Gram == "0") {
-            alert("Plase select gram panchayat name");
+            alert("Please select gram panchayat name");
             return false;
         }
         else if (year == "0") {
-            alert("Plase select year");
+            alert("Please select year");
             return false;
         }
 
@@ -1491,7 +1498,7 @@
                 if (response.length != 0) {
                     Jsondata = response;
 
-                    
+
                     $("#spnstate").empty();
                     var opstate = '<option value="0">Select State Name</option>';
                     $("#spnstate").append(opstate);
@@ -1541,8 +1548,6 @@
             }
         });
     }
-
-
     function SessionInfo_ef() {
 
         var obj = {};
@@ -1661,8 +1666,6 @@
         });
 
     }
-
-
     function State_Dropdown_Function() {
 
         $("#dist11").empty();
@@ -1713,7 +1716,6 @@
         }
 
     }
-
     function Dist_fun() {
 
         $("#block1").empty();
@@ -1761,7 +1763,6 @@
 
         }
     }
-
     function Block_fun() {
 
         $("#gram").empty();
@@ -1783,9 +1784,9 @@
             for (var i = 0; i < Jsondata.length; i++) {
                 if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
 
-                    if (!ddlst[Jsondata[i].gp_name]) {
-                        ddlst[Jsondata[i].gp_name] = Jsondata[i].gp_name;
-                        all_grams.push(Jsondata[i].gp_name);
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gp_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
                         //   $("#gram").append(optionDist);
                     }
                 }
@@ -1807,7 +1808,6 @@
             $("#gram").append(optionDist);
         }
     }
-
     function Gram_Fun() {
 
         var Gram1 = $("#gram").val();
@@ -1818,7 +1818,7 @@
         }
         $("#gram1").val(Gram);
         $("#year1").val(year);
-        Dropdown_Search();
+        //Dropdown_Search();
     }
 
     $("#btnFinalSave").click(function () {
@@ -1833,24 +1833,24 @@
         var fy_phase = $("#fy_phase").val();
         /*var month = $("#month").val();*/
         if (State == "0") {
-            alert("Plase select state name");
+            alert("Please select state name");
             return false;
         } else if (Dist == "0") {
-            alert("Plase select district name");
+            alert("Please select district name");
             return false;
         } else if (Block == "0") {
-            alert("Plase select block name");
+            alert("Please select block name");
             return false;
         } else if (Gram == "0") {
-            alert("Plase select gram panchayat name");
+            alert("Please select gram panchayat name");
             return false;
         }
         else if (year == "0") {
-            alert("Plase select year");
+            alert("Please select year");
             return false;
         }
         //else if (month == "0") {
-        //    alert("Plase select month");
+        //    alert("Please select month");
         //    return false;
         //}
 
@@ -1894,20 +1894,86 @@
         //var obc_pipe_ben = $("#obc_pipe_ben").val();
         //var gen_pipe_ben = $("#gen_pipe_ben").val();
 
-        if (tot_spr_ben == "") {
-            alert("Please Enter Total Beneficiary in Sprinkler")
-            $("#tot_spr_ben").focus();
-            return false;
-        } else if (tot_drip_ben == "") {
-            alert("Please Enter Total Beneficiary in Drip")
-            $("#tot_drip_ben").focus();
-            return false;
+        if (sprinkler_convergence == "") {
+            sprinkler_convergence = 0;
         }
-        else if (tot_pipe_ben == "") {
-            alert("Please Enter Total Beneficiary in Pipepines")
-            $("#tot_pipe_ben").focus();
-            return false;
+        if (sprinkler_incentive == "") {
+            sprinkler_incentive = 0;
         }
+        if (sprinkler_financing == "") {
+            sprinkler_financing = 0;
+        }
+        if (drip_convergence == "") {
+            drip_convergence = 0;
+        }
+        if (drip_incentive == "") {
+            drip_incentive = 0;
+        }
+        if (drip_financing == "") {
+            drip_financing = 0;
+        }
+        if (pipeline_convergence == "") {
+            pipeline_convergence = 0;
+        }
+        if (pipeline_incentive == "") {
+            pipeline_incentive = 0;
+        }
+        if (pipeline_financing == "") {
+            pipeline_financing = 0;
+        }
+        if (total_convergence == "") {
+            total_convergence = 0;
+        }
+        if (total_financing == "") {
+            total_financing = 0;
+        }
+        if (total_financing == "") {
+            total_financing = 0;
+        }
+        if (all_irrigation_total == "") {
+            all_irrigation_total = 0;
+        }
+        if (sprinkler_total == "") {
+            sprinkler_total = 0;
+        }
+        if (drip_total == "") {
+            drip_total = 0;
+        }
+        if (pipeline_total == "") {
+            pipeline_total = 0;
+        }
+        //if (tot_spr_ben == "") {
+        //    tot_spr_ben = 0;
+        //}
+        //if (tot_drip_ben == "") {
+        //    tot_drip_ben = 0;
+        //}
+        //if (tot_pipe_ben == "") {
+        //    tot_pipe_ben = 0;
+        //}
+
+        if (sprinkler_convergence != "" && sprinkler_incentive != "" && sprinkler_financing != "") {
+            if (tot_spr_ben == "") {
+                alert("Please Enter Total Beneficiary in Sprinkler")
+                $("#tot_spr_ben").focus();
+                return;
+            }
+        }
+        if (drip_convergence != "" && drip_financing != "" && drip_incentive != "") {
+            if (tot_drip_ben == "") {
+                alert("Please Enter Total Beneficiary in Drip")
+                $("#tot_drip_ben").focus();
+                return;
+            }
+        }
+        if (pipeline_convergence != "" && pipeline_incentive != "" && pipeline_financing != "") {
+            if (tot_pipe_ben == "") {
+                alert("Please Enter Total Beneficiary in Pipeline")
+                $("#tot_pipe_ben").focus();
+                return;
+            }
+        }
+
         //if (sc_spr_ben == "") {
         //    sc_spr_ben = 0;
         //}
@@ -1967,54 +2033,7 @@
         //    return false;
         //}
 
-        if (sprinkler_convergence == "") {
-            sprinkler_convergence = 0;
-        }
-        if (sprinkler_incentive == "") {
-            sprinkler_incentive = 0;
-        }
-        if (sprinkler_financing == "") {
-            sprinkler_financing = 0;
-        }
-        if (drip_convergence == "") {
-            drip_convergence = 0;
-        }
-        if (drip_incentive == "") {
-            drip_incentive = 0;
-        }
-        if (drip_financing == "") {
-            drip_financing = 0;
-        }
-        if (pipeline_convergence == "") {
-            pipeline_convergence = 0;
-        }
-        if (pipeline_incentive == "") {
-            pipeline_incentive = 0;
-        }
-        if (pipeline_financing == "") {
-            pipeline_financing = 0;
-        }
-        if (total_convergence == "") {
-            total_convergence = 0;
-        }
-        if (total_financing == "") {
-            total_financing = 0;
-        }
-        if (total_financing == "") {
-            total_financing = 0;
-        }
-        if (all_irrigation_total == "") {
-            all_irrigation_total = 0;
-        }
-        if (sprinkler_total == "") {
-            sprinkler_total = 0;
-        }
-        if (drip_total == "") {
-            drip_total == 0;
-        }
-        if (pipeline_total == "") {
-            pipeline_total == 0;
-        }
+
             var FinalData = [];
 
             FinalData.push({
@@ -2118,9 +2137,15 @@
     });
 
     $("#department").click(function () {
+
+        $("#scheme").attr("disabled", false);
         if ($("#department").val() == "Others") {
             $("#other_department").show();
-        } else {
+        }
+        else if ($("#department").val() == "Self financing") {
+            $("#scheme").attr("disabled", true);
+        }
+        else {
             $("#other_department").hide();
         }
     });
@@ -2180,7 +2205,7 @@
         } else {
             let data = [
                 { Text: "Bhauso Phundkar horticulture plantation", Value: "Bhauso Phundkar horticulture plantation" },
-                { Text: "IHD & MIDH", Value: "IHD & MIDH" }, 
+                { Text: "IHD & MIDH", Value: "IHD & MIDH" },
                 { Text: "Mera Pani Meri Virasat (MPMV)", Value: "Mera Pani Meri Virasat (MPMV)" },
                 { Text: "MIDH", Value: "MIDH" },
                 { Text: "MGNREGA", Value: "MGNREGA" },
@@ -2224,23 +2249,23 @@
         var fy_phase = $("#fy_phase").val();
         /*var month = $("#month").val();*/
         if (State == "0") {
-            alert("Plase select state name");
+            alert("Please select state name");
             return false;
         } else if (Dist == "0") {
-            alert("Plase select district name");
+            alert("Please select district name");
             return false;
         } else if (Block == "0") {
-            alert("Plase select block name");
+            alert("Please select block name");
             return false;
         } else if (Gram == "0") {
-            alert("Plase select gram panchayat name");
+            alert("Please select gram panchayat name");
             return false;
         }
         else if (year == "0") {
-            alert("Plase select year");
+            alert("Please select year");
             return false;
         } else if (fy_phase == "0") {
-            alert("Plase select FY Phase");
+            alert("Please select FY Phase");
             return false;
         }
 
@@ -3364,11 +3389,12 @@
                     $("#Submit_To_SPMU").show();
                 }
                 total_ben();
-                $(".disable_btn").hide();
+
+                /*$(".disable_btn").hide();*/
                 var State = '@Session["gstate"]';
-                if (State != 'Delhi_7') {
-                    $(".disable_btn").hide();
-                }
+                //if (State != 'Delhi_7') {
+                //    $(".disable_btn").hide();
+                //}
 
                 if (access == "readonly") {
                     $(".disable_btn").hide()
@@ -3397,39 +3423,13 @@
     }
 
     function dli4_access() {
+
+
+        if (Officer != "District Level Nodal Officer") {
             $(".disable_btn").hide();
-        //if (Officer != "District Level Nodal Officer") {
-        //    $("#btnFinalSave2").hide();
-        //    $("#saveagri").hide();
-        //    $("#btnFinalSave").hide();
-        //    $(".disable_btn").hide();
-           
-        //}
-        //else {
-        //   $(".disable_btn").show();
-        //}
-        //if (State == 'Delhi_7') {
-        //    $(".disable_btn").hide();           
-        //}        
-
-        //if (State == 'Haryana_6') {
-        //    $(".disable_btn").hide()
-        //}
-        //if (State == 'Karnataka_29') {
-        //    $(".disable_btn").hide();
-        //}
-        //if (State == 'Madhya Pradesh_23') {
-        //    $(".disable_btn").hide();
-        //}
-        //if (State == 'Maharashtra_27') {
-        //    $(".disable_btn").hide();
-        //}
-     
+        }
 
 
-        
-        //$(".disable_btn").hide();
-        //$(".disable_btn").hide();
     }
     function CalAgriData() {
         var super_area_covered_through_convergence = $("#super_area_covered_through_convergence").val();
