@@ -6416,6 +6416,8 @@ namespace AbhyProject.Models
         public string separation { get; set; }
         public DateTime entry_date { get; set; }
         public string user_id { get; set; }
+        public string approve { get; set; }
+        public string reject { get; set; }
 
 
     }
@@ -6668,6 +6670,8 @@ namespace AbhyProject.Models
 
 
     }
+
+
 
     [Table("abhy_agencies1", Schema = "public")]
     public class abhy_agencies1
