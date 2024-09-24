@@ -424,11 +424,14 @@ namespace AbhyProject.Controllers
                         {
                             all_data.Add(data[i]);
                             int Check_id = data[i].id;
-                            int Check_idp1 = Convert.ToInt32(data[i].phase1_id);
-                            var details5 = ABE.obj_demandside_dli3_addnew_2025.Where(x => x.id == Check_idp1).OrderByDescending(c => c.phaseid1).ToList();
-                            for (int j = 0; j < details5.Count; j++)
+                            if (data[i].phase1_id != "Delete")
                             {
-                                all_data.Add(details5[j]);
+                                int Check_idp1 = Convert.ToInt32(data[i].phase1_id);
+                                var details5 = ABE.obj_demandside_dli3_addnew_2025.Where(x => x.id == Check_idp1).OrderByDescending(c => c.phaseid1).ToList();
+                                for (int j = 0; j < details5.Count; j++)
+                                {
+                                    all_data.Add(details5[j]);
+                                }
                             }
                         }
                     }
