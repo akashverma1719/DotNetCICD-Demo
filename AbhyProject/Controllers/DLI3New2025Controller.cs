@@ -3362,98 +3362,101 @@ namespace AbhyProject.Controllers
                                 fund_for = abc;
                             }
                             demandside_dli3_new_excel obj = new demandside_dli3_new_excel();
-                            var id = data[i].phase1_id;
-                            obj.from_table = data[i].from_table;
-                            obj.state = data[i].state;
-                            obj.district = data[i].district;
-                            obj.block = data[i].block;
-                            obj.gp = data[i].gp;
-                            obj.latitude = data[i].latitude;
-                            obj.longitude = data[i].longitude;
-                            obj.financial_year = data[i].financial_year;
-                            obj.fund_for = fund_for;
-                            obj.department_name = data[i].department_name;
-                            obj.scheme_name = scheme_name;
-                            obj.total_crop_area = data[i].total_crop_area;
-                            obj.area_proposed = data[i].area_proposed;
-                            obj.approx_est_cost = data[i].approx_est_cost;
-                            obj.total_water_demand = data[i].total_water_demand;
-                            obj.total_reduction_gw = data[i].total_reduction_gw;
-                            obj.year_subsidey_phase1 = data[i].year_subsidey_phase1;
-                            obj.departmentname_phase1 = data[i].departmentname_phase1;
-                            obj.schemename_phase1 = data[i].schemename_phase1;
-                            obj.otherschemename_phase1 = data[i].otherschemename_phase1;
-                            obj.area_covered_phase1 = data[i].area_covered_phase1;
-                            obj.total_beneficery_phase1 = data[i].total_beneficery_phase1;
-                            obj.expenditure_phase1 = data[i].expenditure_phase1;
-                            obj.remark_phase1 = data[i].remark_phase1;
-                            obj.approve = data[i].approve_phase1;
-                            obj.rejectremark_phase1 = data[i].rejectremark_phase1;
-                            obj.Phase1 = data[i].entry_phase1;
-
-                            data_excel.Add(obj);
-
-                            int iddd = Convert.ToInt32(id);
-                            var excel_data = ABE.obj_demandside_dli3_addnew_2025.Where(x => x.id == iddd).ToList();
-                            for (int j = 0; j < excel_data.Count; j++)
+                            if (data[i].phase1_id != "Delete")
                             {
-                                string idd = Convert.ToString(excel_data[j].id);
-                                var approve_phase = excel_data[j].approve_phase1;
-                                if (approve_phase == null || approve_phase == "")
-                                {
-                                    approve_phase = "At DPMU";
-                                }
-                                var scheme_name_phase1 = "";
-                                var fund_for_phase1 = "";
-                                var excel_data_phase1 = ABE.obj_demandside_dli3_new_2025.Where(x => x.phase1_id == idd).FirstOrDefault();
-                                if (excel_data_phase1 != null)
-                                {
-                                    scheme_name_phase1 = excel_data_phase1.scheme_name;
-                                    if (scheme_name_phase1 == "Other")
-                                    {
-                                        var other = excel_data_phase1.other_scheme;
-                                        var abc = scheme_name_phase1 + " - " + other;
-                                        scheme_name_phase1 = abc;
-                                    }
-                                    fund_for_phase1 = excel_data_phase1.fund_for;
-                                    if (fund_for_phase1 == "Other Measures")
-                                    {
-                                        var other = excel_data_phase1.innovative_measures;
-                                        var abc = fund_for_phase1 + " - " + other;
-                                        fund_for_phase1 = abc;
-                                    }
-                                }
-                                demandside_dli3_new_excel obj2 = new demandside_dli3_new_excel();
+                                var id = data[i].phase1_id;
+                                obj.from_table = data[i].from_table;
+                                obj.state = data[i].state;
+                                obj.district = data[i].district;
+                                obj.block = data[i].block;
+                                obj.gp = data[i].gp;
+                                obj.latitude = data[i].latitude;
+                                obj.longitude = data[i].longitude;
+                                obj.financial_year = data[i].financial_year;
+                                obj.fund_for = fund_for;
+                                obj.department_name = data[i].department_name;
+                                obj.scheme_name = scheme_name;
+                                obj.total_crop_area = data[i].total_crop_area;
+                                obj.area_proposed = data[i].area_proposed;
+                                obj.approx_est_cost = data[i].approx_est_cost;
+                                obj.total_water_demand = data[i].total_water_demand;
+                                obj.total_reduction_gw = data[i].total_reduction_gw;
+                                obj.year_subsidey_phase1 = data[i].year_subsidey_phase1;
+                                obj.departmentname_phase1 = data[i].departmentname_phase1;
+                                obj.schemename_phase1 = data[i].schemename_phase1;
+                                obj.otherschemename_phase1 = data[i].otherschemename_phase1;
+                                obj.area_covered_phase1 = data[i].area_covered_phase1;
+                                obj.total_beneficery_phase1 = data[i].total_beneficery_phase1;
+                                obj.expenditure_phase1 = data[i].expenditure_phase1;
+                                obj.remark_phase1 = data[i].remark_phase1;
+                                obj.approve = data[i].approve_phase1;
+                                obj.rejectremark_phase1 = data[i].rejectremark_phase1;
+                                obj.Phase1 = data[i].entry_phase1;
 
-                                obj2.from_table = excel_data_phase1.from_table;
-                                obj2.state = excel_data_phase1.state;
-                                obj2.district = excel_data_phase1.district;
-                                obj2.block = excel_data_phase1.block;
-                                obj2.gp = excel_data_phase1.gp;
-                                obj2.latitude = excel_data_phase1.latitude;
-                                obj2.longitude = excel_data_phase1.longitude;
-                                obj2.financial_year = excel_data_phase1.financial_year;
-                                obj2.fund_for = fund_for_phase1;
-                                obj2.department_name = excel_data_phase1.department_name;
-                                obj2.scheme_name = scheme_name_phase1;
-                                obj2.total_crop_area = excel_data_phase1.total_crop_area;
-                                obj2.area_proposed = excel_data_phase1.area_proposed;
-                                obj2.approx_est_cost = excel_data_phase1.approx_est_cost;
-                                obj2.total_water_demand = excel_data_phase1.total_water_demand;
-                                obj2.total_reduction_gw = excel_data_phase1.total_reduction_gw;
-                                obj2.year_subsidey_phase1 = excel_data[j].year_subsidey_phase1;
-                                obj2.departmentname_phase1 = excel_data[j].departmentname_phase1;
-                                obj2.schemename_phase1 = excel_data[j].schemename_phase1;
-                                obj2.otherschemename_phase1 = excel_data[j].otherschemename_phase1;
-                                obj2.area_covered_phase1 = excel_data[j].area_covered_phase1;
-                                obj2.total_beneficery_phase1 = excel_data[j].total_beneficery_phase1;
-                                obj2.expenditure_phase1 = excel_data[j].expenditure_phase1;
-                                obj2.remark_phase1 = excel_data[j].remark_phase1;
-                                obj2.approve = approve_phase;
-                                obj2.rejectremark_phase1 = excel_data_phase1.rejectremark_phase1;
-                                obj2.Phase1 = "phase1";
+                                data_excel.Add(obj);
 
-                                data_excel.Add(obj2);
+                                int iddd = Convert.ToInt32(id);
+                                var excel_data = ABE.obj_demandside_dli3_addnew_2025.Where(x => x.id == iddd).ToList();
+                                for (int j = 0; j < excel_data.Count; j++)
+                                {
+                                    string idd = Convert.ToString(excel_data[j].id);
+                                    var approve_phase = excel_data[j].approve_phase1;
+                                    if (approve_phase == null || approve_phase == "")
+                                    {
+                                        approve_phase = "At DPMU";
+                                    }
+                                    var scheme_name_phase1 = "";
+                                    var fund_for_phase1 = "";
+                                    var excel_data_phase1 = ABE.obj_demandside_dli3_new_2025.Where(x => x.phase1_id == idd).FirstOrDefault();
+                                    if (excel_data_phase1 != null)
+                                    {
+                                        scheme_name_phase1 = excel_data_phase1.scheme_name;
+                                        if (scheme_name_phase1 == "Other")
+                                        {
+                                            var other = excel_data_phase1.other_scheme;
+                                            var abc = scheme_name_phase1 + " - " + other;
+                                            scheme_name_phase1 = abc;
+                                        }
+                                        fund_for_phase1 = excel_data_phase1.fund_for;
+                                        if (fund_for_phase1 == "Other Measures")
+                                        {
+                                            var other = excel_data_phase1.innovative_measures;
+                                            var abc = fund_for_phase1 + " - " + other;
+                                            fund_for_phase1 = abc;
+                                        }
+                                    }
+                                    demandside_dli3_new_excel obj2 = new demandside_dli3_new_excel();
+
+                                    obj2.from_table = excel_data_phase1.from_table;
+                                    obj2.state = excel_data_phase1.state;
+                                    obj2.district = excel_data_phase1.district;
+                                    obj2.block = excel_data_phase1.block;
+                                    obj2.gp = excel_data_phase1.gp;
+                                    obj2.latitude = excel_data_phase1.latitude;
+                                    obj2.longitude = excel_data_phase1.longitude;
+                                    obj2.financial_year = excel_data_phase1.financial_year;
+                                    obj2.fund_for = fund_for_phase1;
+                                    obj2.department_name = excel_data_phase1.department_name;
+                                    obj2.scheme_name = scheme_name_phase1;
+                                    obj2.total_crop_area = excel_data_phase1.total_crop_area;
+                                    obj2.area_proposed = excel_data_phase1.area_proposed;
+                                    obj2.approx_est_cost = excel_data_phase1.approx_est_cost;
+                                    obj2.total_water_demand = excel_data_phase1.total_water_demand;
+                                    obj2.total_reduction_gw = excel_data_phase1.total_reduction_gw;
+                                    obj2.year_subsidey_phase1 = excel_data[j].year_subsidey_phase1;
+                                    obj2.departmentname_phase1 = excel_data[j].departmentname_phase1;
+                                    obj2.schemename_phase1 = excel_data[j].schemename_phase1;
+                                    obj2.otherschemename_phase1 = excel_data[j].otherschemename_phase1;
+                                    obj2.area_covered_phase1 = excel_data[j].area_covered_phase1;
+                                    obj2.total_beneficery_phase1 = excel_data[j].total_beneficery_phase1;
+                                    obj2.expenditure_phase1 = excel_data[j].expenditure_phase1;
+                                    obj2.remark_phase1 = excel_data[j].remark_phase1;
+                                    obj2.approve = approve_phase;
+                                    obj2.rejectremark_phase1 = excel_data_phase1.rejectremark_phase1;
+                                    obj2.Phase1 = "phase1";
+
+                                    data_excel.Add(obj2);
+                                }
                             }
                         }
                         if (data_excel.Count != 0)
