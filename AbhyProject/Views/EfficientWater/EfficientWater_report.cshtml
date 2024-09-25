@@ -1532,18 +1532,19 @@
     var Gram = "0";
     var YearForDropDown = "";
     var StateOfficer = "";
-    $(document).ready(function () {
+        $(document).ready(function () {
+        $(".npmucolumn").hide();
         StateOfficer = '@Session["Officer"]';
         if (StateOfficer == "District Level Nodal Officer" ||
             StateOfficer == "State Level Nodal Officer") {
             $(".downloadNPMU").hide();
             $(".Isenabledpahse").hide();
-            $(".npmucolumn").hide();
+            //$(".npmucolumn").hide();
 
 
         } else {
             $(".downloadNPMU").show();
-            $(".npmucolumn").show();
+            //$(".npmucolumn").show();
         }
         if (StateOfficer == "District Level Nodal Officer") {
             $("#AllStateData").hide();

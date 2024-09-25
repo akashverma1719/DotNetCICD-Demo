@@ -1241,15 +1241,15 @@
                                             tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].year + '</td><td>' + data[i].fy_phase + '</td><td><center>' + data[i].separation + '</center></td><td></td><td></td><td></td><td></td><td><label style="color: blue;">Approved</label></td></tr> ';
                                         }
                                         else if (data[i].approve == "NPMU") {
-                                            if ((email == 'madhumantiroy-cgwb@gov.in') || (email == 'pckumawat.aby@gmail.com') || (email == 'akash.verma@kreatetechnologies.com')) {
+                                            //if ((email == 'madhumantiroy-cgwb@gov.in') || (email == 'pckumawat.aby@gmail.com') || (email == 'akash.verma@kreatetechnologies.com')) {
                                                 //tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].year + '</td><td>' + data[i].fy_phase + '</td><td><center>' + data[i].separation + '</center></td><td></td><td></td><td> <button type="button" class="btn btn-primary"  onclick="approve_state(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status' + i + '"  class=" form-control" rows="" cols="40" placeholder="Remarks"  name="push_title">' + reject + '</textarea></td> </tr> ';
 
                                                 tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].year + '</td><td>' + data[i].fy_phase + '</td><td><center>' + data[i].separation + '</center></td><td></td><td></td><td></td><td></td><td><label style="color: green;">Approved</label></td></tr> ';
 
-                                            }
-                                            else {
-                                                tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].year + '</td><td>' + data[i].fy_phase + '</td><td><center>' + data[i].separation + '</center></td><td></td><td></td><td></td><td></td><td><label style="color: green;">Submitted To NPMU</label></td></tr> ';
-                                            }
+                                            //}
+                                            //else {
+                                            //    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].year + '</td><td>' + data[i].fy_phase + '</td><td><center>' + data[i].separation + '</center></td><td></td><td></td><td></td><td></td><td><label style="color: green;">Submitted To NPMU</label></td></tr> ';
+                                            //}
                                         }
                                         //else if (data[i].approve == "Reject") {
                                         //    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].year + '</td><td>' + data[i].fy_phase + '</td><td><center>' + data[i].separation + '</center></td><td></td><td></td><td></td><td>' + reject + '</td><td><label style="color: red;">Rejected</label></td></tr> ';
