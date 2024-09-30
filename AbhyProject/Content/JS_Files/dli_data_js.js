@@ -1,13 +1,14 @@
 ﻿
 var StateName = "";
 var officer = "";
+var eemail = "";
 $(document).ready(function () {
-
+    
     $('.loader').hide();
     $('#gstate1').hide();
     $('#states_hide').hide();
     $('#StatesError').text('States Information is Loading.....');
-
+    eemail = asss;
 
     $.ajax({
         type: 'GET',
@@ -241,7 +242,7 @@ function DropDownInfo_11() {
                         //  $("#spnstate").append(optionState);
                     }
                 }
-
+                
                 var StateArray = [];
                 StateArray = all_states.sort(function (a, b) {
                     if (a < b) return -1;
@@ -263,12 +264,23 @@ function DropDownInfo_11() {
     });
 }
 function HideFinctions() {
+    debugger;
     if (officer == "State") {
         setTimeout(function () {
             //$('.hidethedelete').hide();
             $(".hidethedelete").attr("disabled", true);
         }, 1000);
     }
+    if (eemail == "vivekvivektiwari80@gmail.com") {
+        $(".hidethedelete").attr("disabled", false);
+    }
+    else if (eemail == "neetynagi@gmail.com") {
+        $(".hidethedelete").attr("disabled", false);
+    }
+    else {
+        $(".hidethedelete").attr("disabled", true);
+    }
+
 }
 
 function State_Selection() {
@@ -321,7 +333,8 @@ function State_Selection() {
         Dli4_2_Upload_Details();
 
         Dli5_1_Upload_Details();
-        
+       
+
         //if (Access_Auth == 'readonly') {
         //    $('.hidetheupload').prop("disabled", true);
         //    $('.hidethedelete').prop("disabled", true);
@@ -367,7 +380,7 @@ function abhy_dli_one_one_upload_row_geting() {
 
                                 var SS1 = waterlevel_iii_20_21_filepath_1[i] + ',waterlevel_iii_20_21_filepath_1';
 
-                                waterlevel_iii_20_21_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_20_21_filepath_1[i] + '"' + 'download>' + waterlevel_iii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete" disabled  onclick="RemovePath_Dli1_20_21(' + Z + ')" >Delete</button><br/>';
+                                waterlevel_iii_20_21_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_20_21_filepath_1[i] + '"' + 'download>' + waterlevel_iii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete"   onclick="RemovePath_Dli1_20_21(' + Z + ')" >Delete</button><br/>';
 
 
                                 j = j + 1;
@@ -392,7 +405,7 @@ function abhy_dli_one_one_upload_row_geting() {
                             if (waterlevel_iii_21_22_filename_1[i] != "") {
 
 
-                                waterlevel_iii_21_22_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_21_22_filepath_1[i] + '"' + 'download>' + waterlevel_iii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button disabled   onclick="RemovePath_Dli1_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterlevel_iii_21_22_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_21_22_filepath_1[i] + '"' + 'download>' + waterlevel_iii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button    onclick="RemovePath_Dli1_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
 
 
                                 j = j + 1;
@@ -412,7 +425,7 @@ function abhy_dli_one_one_upload_row_geting() {
                         Z = Z + 1;
                         if (waterlevel_iii_22_23_filename_1[i] != "") {
                             var SS1 = waterlevel_iii_22_23_filepath_1[i] + ',waterlevel_iii_22_23_filepath_1';
-                            waterlevel_iii_22_23_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_22_23_filepath_1[i] + '"' + 'download>' + waterlevel_iii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                            waterlevel_iii_22_23_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_22_23_filepath_1[i] + '"' + 'download>' + waterlevel_iii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                             j = j + 1;
                         }
                     }
@@ -451,7 +464,7 @@ function abhy_dli_one_one_upload_row_geting() {
                             Z = Z + 1;
                             if (waterlevel_iii_24_25_filename_1[i] != "") {
                                 var SS1 = waterlevel_iii_24_25_filepath_1[i] + ',waterlevel_iii_24_25_filepath_1';
-                                waterlevel_iii_24_25_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_24_25_filepath_1[i] + '"' + 'download>' + waterlevel_iii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterlevel_iii_24_25_filename_1_1 += j + '.' + '<a href="' + waterlevel_iii_24_25_filepath_1[i] + '"' + 'download>' + waterlevel_iii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_20_21(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -509,7 +522,7 @@ function abhy_dli_one_two_upload_row_geting() {
                             Z = Z + 1;
                             if (waterlevel_vi_20_21_filename_1[i] != "") {
                                 var SS1 = waterlevel_vi_20_21_filepath_1[i] + ',waterlevel_vi_20_21_filepath_1';
-                                waterlevel_vi_20_21_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_20_21_filepath_1[i] + '"' + 'download>' + waterlevel_vi_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button class="hidethedelete" disabled onclick="RemovePath_Dli1_VI(' + Z + ')">Delete</button><br/>';
+                                waterlevel_vi_20_21_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_20_21_filepath_1[i] + '"' + 'download>' + waterlevel_vi_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete" disabled onclick="RemovePath_Dli1_VI(' + Z + ')">Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -529,7 +542,7 @@ function abhy_dli_one_two_upload_row_geting() {
                             if (waterlevel_vi_21_22_filename_1[i] != "") {
                                 var SS1 = waterlevel_vi_21_22_filepath_1[i] + ',waterlevel_vi_21_22_filepath_1';
 
-                                waterlevel_vi_21_22_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_21_22_filepath_1[i] + '"' + 'download>' + waterlevel_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button disabled onclick="RemovePath_Dli1_VI(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterlevel_vi_21_22_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_21_22_filepath_1[i] + '"' + 'download>' + waterlevel_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_VI(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -549,7 +562,7 @@ function abhy_dli_one_two_upload_row_geting() {
                                 Z = Z + 1;
                                 var SS1 = waterlevel_vi_22_23_filepath_1[i] + ',waterlevel_vi_22_23_filepath_1';
 
-                                waterlevel_vi_22_23_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_22_23_filepath_1[i] + '"' + 'download>' + waterlevel_vi_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_VI(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterlevel_vi_22_23_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_22_23_filepath_1[i] + '"' + 'download>' + waterlevel_vi_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_VI(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -589,7 +602,7 @@ function abhy_dli_one_two_upload_row_geting() {
                                 Z = Z + 1;
                                 var SS1 = waterlevel_vi_24_25_filepath_1[i] + ',waterlevel_vi_24_25_filepath_1';
 
-                                waterlevel_vi_24_25_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_24_25_filepath_1[i] + '"' + 'download>' + waterlevel_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_VI(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterlevel_vi_24_25_filename_1_1 += j + '.' + '<a href="' + waterlevel_vi_24_25_filepath_1[i] + '"' + 'download>' + waterlevel_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_Vi' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_VI(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -648,7 +661,7 @@ function abhy_dli_one_three_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_iii_20_21_filename_1[i] != "") {
                                 var SS1 = waterquality_iii_20_21_filepath_1[i] + ',waterquality_iii_20_21_filepath_1';
-                                waterquality_iii_20_21_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_20_21_filepath_1[i] + '"' + 'download>' + waterquality_iii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button class="hidethedelete" disabled onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_iii_20_21_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_20_21_filepath_1[i] + '"' + 'download>' + waterquality_iii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete" onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -667,7 +680,7 @@ function abhy_dli_one_three_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_iii_21_22_filename_1[i] != "") {
                                 var SS1 = waterquality_iii_21_22_filepath_1[i] + ',waterquality_iii_21_22_filepath_1';
-                                waterquality_iii_21_22_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_21_22_filepath_1[i] + '"' + 'download>' + waterquality_iii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button disabled onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_iii_21_22_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_21_22_filepath_1[i] + '"' + 'download>' + waterquality_iii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button   onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -686,7 +699,7 @@ function abhy_dli_one_three_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_iii_22_23_filename_1[i] != "") {
                                 var SS1 = waterquality_iii_22_23_filepath_1[i] + ',waterquality_iii_22_23_filepath_1';
-                                waterquality_iii_22_23_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_22_23_filepath_1[i] + '"' + 'download>' + waterquality_iii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_iii_22_23_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_22_23_filepath_1[i] + '"' + 'download>' + waterquality_iii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -724,7 +737,7 @@ function abhy_dli_one_three_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_iii_24_25_filename_1[i] != "") {
                                 var SS1 = waterquality_iii_24_25_filepath_1[i] + ',waterquality_iii_24_25_filepath_1';
-                                waterquality_iii_24_25_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_24_25_filepath_1[i] + '"' + 'download>' + waterquality_iii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_iii_24_25_filename_1_1 += j + '.' + '<a href="' + waterquality_iii_24_25_filepath_1[i] + '"' + 'download>' + waterquality_iii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_b_II(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -784,7 +797,7 @@ function abhy_dli_one_four_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_vi_20_21_filename_1[i] != "") {
                                 var SS1 = waterquality_vi_20_21_filepath_1[i] + ',waterquality_vi_20_21_filepath_1';
-                                waterquality_vi_20_21_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_20_21_filepath_1[i] + '"' + 'download>' + waterquality_vi_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete" disabled onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_vi_20_21_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_20_21_filepath_1[i] + '"' + 'download>' + waterquality_vi_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button   class="hidethedelete" disabled onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -803,7 +816,7 @@ function abhy_dli_one_four_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_vi_21_22_filename_1[i] != "") {
                                 var SS1 = waterquality_vi_21_22_filepath_1[i] + ',waterquality_vi_21_22_filepath_1';
-                                waterquality_vi_21_22_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_21_22_filepath_1[i] + '"' + 'download>' + waterquality_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button disabled onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_vi_21_22_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_21_22_filepath_1[i] + '"' + 'download>' + waterquality_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -822,7 +835,7 @@ function abhy_dli_one_four_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_vi_22_23_filename_1[i] != "") {
                                 var SS1 = waterquality_vi_22_23_filepath_1[i] + ',waterquality_vi_22_23_filepath_1';
-                                waterquality_vi_22_23_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_22_23_filepath_1[i] + '"' + 'download>' + waterquality_vi_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_vi_22_23_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_22_23_filepath_1[i] + '"' + 'download>' + waterquality_vi_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -860,7 +873,7 @@ function abhy_dli_one_four_upload_row_geting() {
                             Z = Z + 1;
                             if (waterquality_vi_24_25_filename_1[i] != "") {
                                 var SS1 = waterquality_vi_24_25_filepath_1[i] + ',waterquality_vi_24_25_filepath_1';
-                                waterquality_vi_24_25_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_24_25_filepath_1[i] + '"' + 'download>' + waterquality_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterquality_vi_24_25_filename_1_1 += j + '.' + '<a href="' + waterquality_vi_24_25_filepath_1[i] + '"' + 'download>' + waterquality_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_b_V' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_b_V(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -936,7 +949,7 @@ function abhy_dli_one_five_upload_row_geting() {
                             Z = Z + 1;
                             if (blockwise_ii_21_22_filename1_1[i] != "") {
                                 var SS1 = blockwise_ii_21_22_filepath_1[i] + ',blockwise_ii_21_22_filepath_1';
-                                blockwise_ii_21_22_filename1_1_1 += j + '.' + '<a href="' + blockwise_ii_21_22_filepath_1[i] + '"' + ' target="_blank" download>' + blockwise_ii_21_22_filename1_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_2_II' + Z + '" value="' + SS1 + '"> <button disabled onclick="RemovePath_Dli1_2_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                blockwise_ii_21_22_filename1_1_1 += j + '.' + '<a href="' + blockwise_ii_21_22_filepath_1[i] + '"' + ' target="_blank" download>' + blockwise_ii_21_22_filename1_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_2_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_2_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -956,7 +969,7 @@ function abhy_dli_one_five_upload_row_geting() {
                             if (blockwise_ii_22_23_filename1_1[i] != "") {
                                 var SS1 = blockwise_ii_22_23_filepath_1[i] + ',blockwise_ii_22_23_filepath_1';
 
-                                blockwise_ii_22_23_filename1_1_1 += j + '.' + '<a href="' + blockwise_ii_22_23_filepath_1[i] + '"' + ' target="_blank" download>' + blockwise_ii_22_23_filename1_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_2_II' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_2_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                blockwise_ii_22_23_filename1_1_1 += j + '.' + '<a href="' + blockwise_ii_22_23_filepath_1[i] + '"' + ' target="_blank" download>' + blockwise_ii_22_23_filename1_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_2_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_2_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
 
                                 j = j + 1;
                             }
@@ -995,7 +1008,7 @@ function abhy_dli_one_five_upload_row_geting() {
                             Z = Z + 1;
                             if (blockwise_ii_24_25_filename1_1[i] != "") {
                                 var SS1 = blockwise_ii_24_25_filepath_1[i] + ',blockwise_ii_24_25_filepath_1';
-                                blockwise_ii_24_25_filename1_1_1 += j + '.' + '<a href="' + blockwise_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + blockwise_ii_24_25_filename1_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_2_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_2_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                blockwise_ii_24_25_filename1_1_1 += j + '.' + '<a href="' + blockwise_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + blockwise_ii_24_25_filename1_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_2_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_2_II(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1059,7 +1072,7 @@ function abhy_dli_one_six_upload_row_geting() {
                             Z = Z + 1;
                             if (statewise_ii_20_21_filename_1[i] != "") {
                                 var SS1 = statewise_ii_20_21_filepath_1[i] + ',statewise_ii_20_21_filepath_1';
-                                statewise_ii_20_21_filename_1_1 += j + '.' + '<a href="' + statewise_ii_20_21_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button class="hidethedelete" disabled onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                statewise_ii_20_21_filename_1_1 += j + '.' + '<a href="' + statewise_ii_20_21_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete" disabled onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1079,7 +1092,7 @@ function abhy_dli_one_six_upload_row_geting() {
                             Z = Z + 1;
                             if (statewise_ii_21_22_filename_1[i] != "") {
                                 var SS1 = statewise_ii_21_22_filepath_1[i] + ',statewise_ii_21_22_filepath_1';
-                                statewise_ii_21_22_filename_1_1 += j + '.' + '<a href="' + statewise_ii_21_22_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button disabled onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                statewise_ii_21_22_filename_1_1 += j + '.' + '<a href="' + statewise_ii_21_22_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                             }
                         }
                         $('#statewise_ii_21_22_filename1').html(statewise_ii_21_22_filename_1_1);
@@ -1098,7 +1111,7 @@ function abhy_dli_one_six_upload_row_geting() {
                             Z = Z + 1;
                             if (statewise_ii_22_23_filename_1[i] != "") {
                                 var SS1 = statewise_ii_22_23_filepath_1[i] + ',statewise_ii_22_23_filepath_1';
-                                statewise_ii_22_23_filename_1_1 += j + '.' + '<a href="' + statewise_ii_22_23_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                statewise_ii_22_23_filename_1_1 += j + '.' + '<a href="' + statewise_ii_22_23_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1138,7 +1151,7 @@ function abhy_dli_one_six_upload_row_geting() {
                             Z = Z + 1;
                             if (statewise_ii_24_25_filename_1[i] != "") {
                                 var SS1 = statewise_ii_24_25_filepath_1[i] + ',statewise_ii_24_25_filepath_1';
-                                statewise_ii_24_25_filename_1_1 += j + '.' + '<a href="' + statewise_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                statewise_ii_24_25_filename_1_1 += j + '.' + '<a href="' + statewise_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + statewise_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_3_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_3_II(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1204,7 +1217,7 @@ function abhy_dli_one_seven_upload_row_geting() {
                                 Z = Z + 1;
 
                                 var SS1 = mow_v_20_21_filepath_1[i] + ',mow_v_20_21_filepath_1';
-                                mow_v_20_21_filename_1_1 += j + '.' + '<a href="' + mow_v_20_21_filepath_1[i] + '"' + 'download>' + mow_v_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete" disabled onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_v_20_21_filename_1_1 += j + '.' + '<a href="' + mow_v_20_21_filepath_1[i] + '"' + 'download>' + mow_v_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button  class="hidethedelete"  onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1225,7 +1238,7 @@ function abhy_dli_one_seven_upload_row_geting() {
                             var SS1 = mow_v_21_22_filepath_1[i] + ',mow_v_21_22_filepath_1';
 
                             if (mow_v_21_22_filename_1[i] != "") {
-                                mow_v_21_22_filename_1_1 += j + '.' + '<a href="' + mow_v_21_22_filepath_1[i] + '"' + 'download>' + mow_v_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button disabled onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_v_21_22_filename_1_1 += j + '.' + '<a href="' + mow_v_21_22_filepath_1[i] + '"' + 'download>' + mow_v_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1247,7 +1260,7 @@ function abhy_dli_one_seven_upload_row_geting() {
                             var SS1 = mow_v_22_23_filepath_1[i] + ',mow_v_22_23_filepath_1';
 
                             if (mow_v_22_23_filename_1[i] != "") {
-                                mow_v_22_23_filename_1_1 += j + '.' + '<a href="' + mow_v_22_23_filepath_1[i] + '"' + 'download>' + mow_v_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_v_22_23_filename_1_1 += j + '.' + '<a href="' + mow_v_22_23_filepath_1[i] + '"' + 'download>' + mow_v_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1270,7 +1283,7 @@ function abhy_dli_one_seven_upload_row_geting() {
                             var SS1 = mow_v_23_24_filepath_1[i] + ',mow_v_23_24_filepath_1';
 
                             if (mow_v_23_24_filename_1[i] != "") {
-                                mow_v_23_24_filename_1_1 += j + '.' + '<a href="' + mow_v_23_24_filepath_1[i] + '"' + 'download>' + mow_v_23_24_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_v_23_24_filename_1_1 += j + '.' + '<a href="' + mow_v_23_24_filepath_1[i] + '"' + 'download>' + mow_v_23_24_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button   onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1292,7 +1305,7 @@ function abhy_dli_one_seven_upload_row_geting() {
                             var SS1 = mow_v_24_25_filepath_1[i] + ',mow_v_24_25_filepath_1';
 
                             if (mow_v_24_25_filename_1[i] != "") {
-                                mow_v_24_25_filename_1_1 += j + '.' + '<a href="' + mow_v_24_25_filepath_1[i] + '"' + 'download>' + mow_v_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_v_24_25_filename_1_1 += j + '.' + '<a href="' + mow_v_24_25_filepath_1[i] + '"' + 'download>' + mow_v_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data7' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_7(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1352,7 +1365,7 @@ function abhy_dli_one_eigth_upload_row_geting() {
                                 Z = Z + 1;
 
                                 var SS1 = mow_vi_20_21_filepath_1[i] + ',mow_vi_20_21_filepath_1';
-                                mow_vi_20_21_filename_1_1 += j + '.' + '<a href="' + mow_vi_20_21_filepath_1[i] + '"' + 'download>' + mow_vi_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button class="hidethedelete" disabled onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_vi_20_21_filename_1_1 += j + '.' + '<a href="' + mow_vi_20_21_filepath_1[i] + '"' + 'download>' + mow_vi_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button class="hidethedelete"  onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1373,7 +1386,7 @@ function abhy_dli_one_eigth_upload_row_geting() {
                             var SS1 = mow_vi_21_22_filepath_1[i] + ',mow_vi_21_22_filepath_1';
 
                             if (mow_vi_21_22_filename_1[i] != "") {
-                                mow_vi_21_22_filename_1_1 += j + '.' + '<a href="' + mow_vi_21_22_filepath_1[i] + '"' + 'download>' + mow_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button disabled onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_vi_21_22_filename_1_1 += j + '.' + '<a href="' + mow_vi_21_22_filepath_1[i] + '"' + 'download>' + mow_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1395,7 +1408,7 @@ function abhy_dli_one_eigth_upload_row_geting() {
                             var SS1 = mow_vi_22_23_filepath_1[i] + ',mow_vi_22_23_filepath_1';
 
                             if (mow_vi_22_23_filename_1[i] != "") {
-                                mow_vi_22_23_filename_1_1 += j + '.' + '<a href="' + mow_vi_22_23_filepath_1[i] + '"' + 'download>' + mow_vi_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_vi_22_23_filename_1_1 += j + '.' + '<a href="' + mow_vi_22_23_filepath_1[i] + '"' + 'download>' + mow_vi_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1440,7 +1453,7 @@ function abhy_dli_one_eigth_upload_row_geting() {
                             var SS1 = mow_vi_24_25_filepath_1[i] + ',mow_vi_24_25_filepath_1';
 
                             if (mow_vi_24_25_filename_1[i] != "") {
-                                mow_vi_24_25_filename_1_1 += j + '.' + '<a href="' + mow_vi_24_25_filepath_1[i] + '"' + 'download>' + mow_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                mow_vi_24_25_filename_1_1 += j + '.' + '<a href="' + mow_vi_24_25_filepath_1[i] + '"' + 'download>' + mow_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="mow_data8' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli1_8(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1505,7 +1518,7 @@ function abhy_dli_two_one_upload_row_geting() {
                             if (waterbudgets_ii_20_21_filename_1[i] != "") {
                                 var SS1 = waterbudgets_ii_20_21_filepath_1[i] + ',waterbudgets_ii_20_21_filepath_1';
 
-                                waterbudgets_ii_20_21_filename_1_1 += j + '.' + '<a href="' + waterbudgets_ii_20_21_filepath_1[i] + '"' + ' target="_blank" download>' + waterbudgets_ii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterbudgets_ii_20_21_filename_1_1 += j + '.' + '<a href="' + waterbudgets_ii_20_21_filepath_1[i] + '"' + ' target="_blank" download>' + waterbudgets_ii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi' + Z + '" value="' + SS1 + '"> <button   onclick="RemovePath_Dli2_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1582,7 +1595,7 @@ function abhy_dli_two_one_upload_row_geting() {
                             if (waterbudgets_ii_24_25_filename_1[i] != "") {
                                 var SS1 = waterbudgets_ii_24_25_filepath_1[i] + ',waterbudgets_ii_24_25_filepath_1';
                                 Z = Z + 1;
-                                waterbudgets_ii_24_25_filename_1_1 += j + '.' + '<a href="' + waterbudgets_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + waterbudgets_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                waterbudgets_ii_24_25_filename_1_1 += j + '.' + '<a href="' + waterbudgets_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + waterbudgets_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_20_21(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1603,7 +1616,7 @@ function abhy_dli_two_one_upload_row_geting() {
                 $('#waterbudgets_ii_23_24_filename1').text("");
                 $('#waterbudgets_ii_24_25_filename1').text("");
             }
-
+            HideFinctions();
 
         }
     });
@@ -1722,7 +1735,7 @@ function abhy_dli_two_two_upload_row_geting() {
                             Z = Z + 1;
                             if (wsp_ii_24_25_filename_1[i] != "") {
                                 var SS1 = wsp_ii_24_25_filepath_1[i] + ',wsp_ii_24_25_filepath_1';
-                                wsp_ii_24_25_filename_1_1 += j + '.' + '<a href="' + wsp_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + wsp_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                wsp_ii_24_25_filename_1_1 += j + '.' + '<a href="' + wsp_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + wsp_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_II(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1743,7 +1756,7 @@ function abhy_dli_two_two_upload_row_geting() {
                 $('#wsp_ii_23_24_filename1').text("");
                 $('#wsp_ii_24_25_filename1').text("");
             }
-
+            HideFinctions();
 
         }
     });
@@ -1823,7 +1836,7 @@ function abhy_dli_two_three_upload_row_geting() {
                             Z = Z + 1;
                             if (community_ii_22_23_filename_1[i] != "") {
                                 var SS1 = community_ii_22_23_filepath_1[i] + ',community_ii_22_23_filepath_1';
-                                community_ii_22_23_filename_1_1 += j + '.' + '<a href="' + community_ii_22_23_filepath_1[i] + '"' + ' target="_blank" download>' + community_ii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_III' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_III(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                community_ii_22_23_filename_1_1 += j + '.' + '<a href="' + community_ii_22_23_filepath_1[i] + '"' + ' target="_blank" download>' + community_ii_22_23_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_III' + Z + '" value="' + SS1 + '"> <button   onclick="RemovePath_Dli2_III(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1842,7 +1855,7 @@ function abhy_dli_two_three_upload_row_geting() {
                             Z = Z + 1;
                             if (community_ii_23_24_filename_1[i] != "") {
                                 var SS1 = community_ii_23_24_filepath_1[i] + ',community_ii_23_24_filepath_1';
-                                community_ii_23_24_filename_1_1 += j + '.' + '<a href="' + community_ii_23_24_filepath_1[i] + '"' + ' target="_blank" download>' + community_ii_23_24_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_III' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_III(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                community_ii_23_24_filename_1_1 += j + '.' + '<a href="' + community_ii_23_24_filepath_1[i] + '"' + ' target="_blank" download>' + community_ii_23_24_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_III' + Z + '" value="' + SS1 + '"> <button   onclick="RemovePath_Dli2_III(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1862,7 +1875,7 @@ function abhy_dli_two_three_upload_row_geting() {
                             Z = Z + 1;
                             if (community_ii_24_25_filename_1[i] != "") {
                                 var SS1 = community_ii_24_25_filepath_1[i] + ',community_ii_24_25_filepath_1';
-                                community_ii_24_25_filename_1_1 += j + '.' + '<a href="' + community_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + community_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_III' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_III(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                community_ii_24_25_filename_1_1 += j + '.' + '<a href="' + community_ii_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + community_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_III' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_III(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -1883,7 +1896,7 @@ function abhy_dli_two_three_upload_row_geting() {
                 $('#community_ii_23_24_filename1').text("");
                 $('#community_ii_24_25_filename1').text("");
             }
-
+            HideFinctions();
 
         }
     });
@@ -1945,7 +1958,7 @@ function abhy_dli_two_four_upload_row_geting() {
                             Z = Z + 1;
                             if (community_vi_21_22_filename_1[i] != "") {
                                 var SS1 = community_vi_21_22_filepath_1[i] + ',community_vi_21_22_filepath_1';
-                                community_vi_21_22_filename_1_1 += j + '.' + '<a href="' + community_vi_21_22_filepath_1[i] + '"' + ' target="_blank" download>' + community_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_IV' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_IV(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                community_vi_21_22_filename_1_1 += j + '.' + '<a href="' + community_vi_21_22_filepath_1[i] + '"' + ' target="_blank" download>' + community_vi_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_IV' + Z + '" value="' + SS1 + '"> <button   onclick="RemovePath_Dli2_IV(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2002,7 +2015,7 @@ function abhy_dli_two_four_upload_row_geting() {
                             Z = Z + 1;
                             if (community_vi_24_25_filename_1[i] != "") {
                                 var SS1 = community_vi_24_25_filepath_1[i] + ',community_vi_24_25_filepath_1';
-                                community_vi_24_25_filename_1_1 += j + '.' + '<a href="' + community_vi_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + community_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_IV' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_IV(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                community_vi_24_25_filename_1_1 += j + '.' + '<a href="' + community_vi_24_25_filepath_1[i] + '"' + ' target="_blank" download>' + community_vi_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLi2_IV' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli2_IV(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2025,7 +2038,7 @@ function abhy_dli_two_four_upload_row_geting() {
                 $('#community_vi_24_25_filename').text("");
             }
 
-
+            HideFinctions();
         }
     });
 
@@ -2089,7 +2102,7 @@ function abhy_dli_three_one_upload_row_geting() {
                             if (statelevel_ii_21_22_filename_1[i] != "") {
                                 var SS1 = statelevel_ii_21_22_filepath_1[i] + ',statelevel_ii_21_22_filepath_1';
 
-                                statelevel_ii_21_22_filename_1_1 += j + '.' + '<a href="' + statelevel_ii_21_22_filepath_1[i] + '"' + 'download>' + statelevel_ii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="StateLevel' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli3_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                statelevel_ii_21_22_filename_1_1 += j + '.' + '<a href="' + statelevel_ii_21_22_filepath_1[i] + '"' + 'download>' + statelevel_ii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="StateLevel' + Z + '" value="' + SS1 + '"> <button   onclick="RemovePath_Dli3_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2152,7 +2165,7 @@ function abhy_dli_three_one_upload_row_geting() {
                                 Z = Z + 1;
                                 var SS1 = statelevel_ii_24_25_filepath_1[i] + ',statelevel_ii_24_25_filepath_1';
 
-                                statelevel_ii_24_25_filename_1_1 += j + '.' + '<a href="' + statelevel_ii_24_25_filepath_1[i] + '"' + 'download>' + statelevel_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="StateLevel' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli3_20_21(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                statelevel_ii_24_25_filename_1_1 += j + '.' + '<a href="' + statelevel_ii_24_25_filepath_1[i] + '"' + 'download>' + statelevel_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="StateLevel' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli3_20_21(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2169,7 +2182,7 @@ function abhy_dli_three_one_upload_row_geting() {
                 $('#statelevel_ii_24_25_filename1').text("");
             }
 
-
+            HideFinctions();
         }
     });
 
@@ -2292,7 +2305,7 @@ function abhy_dli_four_one_upload_row_geting() {
                             Z = Z + 1;
                             if (irrigation_iii_24_25_filename_1[i] != "") {
                                 var SS1 = irrigation_iii_24_25_filepath_1[i] + ',irrigation_iii_24_25_filepath_1';
-                                irrigation_iii_24_25_filename_1_1 += j + '.' + '<a href="' + irrigation_iii_24_25_filepath_1[i] + '"' + 'download>' + irrigation_iii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_I' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli4_I(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                irrigation_iii_24_25_filename_1_1 += j + '.' + '<a href="' + irrigation_iii_24_25_filepath_1[i] + '"' + 'download>' + irrigation_iii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_I' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli4_I(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2310,7 +2323,7 @@ function abhy_dli_four_one_upload_row_geting() {
                 $('#irrigation_iii_24_25_filename1').text("");
             }
 
-
+            HideFinctions();
         }
     });
 
@@ -2352,7 +2365,7 @@ function abhy_dli_four_two_upload_row_geting() {
                             Z = Z + 1;
                             if (cropping_v_20_21_filename_1[i] != "") {
                                 var SS1 = cropping_v_20_21_filepath_1[i] + ',cropping_v_20_21_filepath_1';
-                                cropping_v_20_21_filename_1_1 += j + '.' + '<a href="' + cropping_v_20_21_filepath_1[i] + '"' + 'download>' + cropping_v_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli4_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                cropping_v_20_21_filename_1_1 += j + '.' + '<a href="' + cropping_v_20_21_filepath_1[i] + '"' + 'download>' + cropping_v_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_II' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli4_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2372,7 +2385,7 @@ function abhy_dli_four_two_upload_row_geting() {
                             Z = Z + 1;
                             if (cropping_v_21_22_filename_1[i] != "") {
                                 var SS1 = cropping_v_21_22_filepath_1[i] + ',cropping_v_21_22_filepath_1';
-                                cropping_v_21_22_filename_1_1 += j + '.' + '<a href="' + cropping_v_21_22_filepath_1[i] + '"' + 'download>' + cropping_v_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli4_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                cropping_v_21_22_filename_1_1 += j + '.' + '<a href="' + cropping_v_21_22_filepath_1[i] + '"' + 'download>' + cropping_v_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_II' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli4_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2433,7 +2446,7 @@ function abhy_dli_four_two_upload_row_geting() {
                             Z = Z + 1;
                             if (cropping_v_24_25_filename_1[i] != "") {
                                 var SS1 = cropping_v_24_25_filepath_1[i] + ',cropping_v_24_25_filepath_1';
-                                cropping_v_24_25_filename_1_1 += j + '.' + '<a href="' + cropping_v_24_25_filepath_1[i] + '"' + 'download>' + cropping_v_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli4_II(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                cropping_v_24_25_filename_1_1 += j + '.' + '<a href="' + cropping_v_24_25_filepath_1[i] + '"' + 'download>' + cropping_v_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI4_II' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli4_II(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2452,7 +2465,7 @@ function abhy_dli_four_two_upload_row_geting() {
                 $('#cropping_v_24_25_filename1').text("");
             }
 
-
+            HideFinctions();
         }
     });
 
@@ -2496,7 +2509,7 @@ function abhy_dli_five_one_upload_row_geting() {
                             Z = Z + 1;
                             if (blockwise_ii_20_21_filename_1[i] != "") {
                                 var SS1 = blockwise_ii_20_21_filepath_1[i] + ',blockwise_ii_20_21_filepath_1';
-                                blockwise_ii_20_21_filename_1_1 += j + '.' + '<a href="' + blockwise_ii_20_21_filepath_1[i] + '"' + 'download>' + blockwise_ii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI5_I' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli5_I(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                blockwise_ii_20_21_filename_1_1 += j + '.' + '<a href="' + blockwise_ii_20_21_filepath_1[i] + '"' + 'download>' + blockwise_ii_20_21_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI5_I' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli5_I(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
 
                                 j = j + 1;
                             }
@@ -2517,7 +2530,7 @@ function abhy_dli_five_one_upload_row_geting() {
                             Z = Z + 1;
                             if (blockwise_ii_21_22_filename_1[i] != "") {
                                 var SS1 = blockwise_ii_21_22_filepath_1[i] + ',blockwise_ii_21_22_filepath_1';
-                                blockwise_ii_21_22_filename_1_1 += j + '.' + '<a href="' + blockwise_ii_21_22_filepath_1[i] + '"' + 'download>' + blockwise_ii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI5_I' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli5_I(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                blockwise_ii_21_22_filename_1_1 += j + '.' + '<a href="' + blockwise_ii_21_22_filepath_1[i] + '"' + 'download>' + blockwise_ii_21_22_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI5_I' + Z + '" value="' + SS1 + '"> <button onclick="RemovePath_Dli5_I(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2577,7 +2590,7 @@ function abhy_dli_five_one_upload_row_geting() {
                             Z = Z + 1;
                             if (blockwise_ii_24_25_filename_1[i] != "") {
                                 var SS1 = blockwise_ii_24_25_filepath_1[i] + ',blockwise_ii_24_25_filepath_1';
-                                blockwise_ii_24_25_filename_1_1 += j + '.' + '<a href="' + blockwise_ii_24_25_filepath_1[i] + '"' + 'download>' + blockwise_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI5_I' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli5_I(' + Z + ')"class="hidethedelete" >Delete</button><br/>';
+                                blockwise_ii_24_25_filename_1_1 += j + '.' + '<a href="' + blockwise_ii_24_25_filepath_1[i] + '"' + 'download>' + blockwise_ii_24_25_filename_1[i] + '\n\n' + '</a><input type="hidden" id="Waterleveldata_DLI5_I' + Z + '" value="' + SS1 + '"> <button  onclick="RemovePath_Dli5_I(' + Z + ')"class="hidethedelete2024" >Delete</button><br/>';
                                 j = j + 1;
                             }
                         }
@@ -2594,7 +2607,7 @@ function abhy_dli_five_one_upload_row_geting() {
                 $('#_blockwise_ii_24_25_filename1').text("");
             }
 
-
+            HideFinctions();
         }
     });
 

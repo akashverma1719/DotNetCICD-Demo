@@ -412,7 +412,7 @@ namespace AbhyProject.Controllers
                                 else
                                 {
                                     string name = Path.GetFileNameWithoutExtension(file.FileName);
-                                    string ext = Path.GetExtension(file.FileName);
+                                    string ext = Path.GetExtension(file.FileName).ToLower();
                                     fname = $"{name}_{Guid.NewGuid().ToString("N").Substring(0, 8)}{ext}";
                                 }
                                 Malicious_File_Upload_Restriction obj_Validate = new Malicious_File_Upload_Restriction();
