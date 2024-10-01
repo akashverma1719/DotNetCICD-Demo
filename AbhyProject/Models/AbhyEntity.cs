@@ -622,5 +622,43 @@ namespace AbhyProject.Models
         public virtual DbSet<supplyside_dli3_new2025_dth> obj_supplyside_dli3_new2025_dth { get; set; }
         public virtual DbSet<supplyside_dli3_new_k2025> obj_supplyside_dli3_new_k2025 { get; set; }
         #endregion
+
+
+        //Water Budget - 25-26
+        #region
+        public virtual DbSet<abhy_ml_with_block_gp_area_info_new> obj_abhy_ml_with_block_gp_area_info_new { get; set; }
+        public virtual DbSet<wb_grampanchayat_basic_info> obj_wb_grampanchayat_basic_info { get; set; }
+        public virtual DbSet<wb_est_ground_water_avail> obj_wb_est_ground_water_avail { get; set; }
+        public virtual DbSet<wb_est_avai_rainfall_supply_intervention> obj_wb_est_avai_rainfall_supply_intervention { get; set; }
+        public virtual DbSet<wb_avai_surface_water_stor> obj_wb_avai_surface_water_stor { get; set; }
+        public virtual DbSet<wb_art_rech_water_cons_structure> obj_wb_art_rech_water_cons_structure { get; set; }
+        public virtual DbSet<wb_water_avai_transported_water> obj_wb_water_avai_transported_water { get; set; }
+        public virtual DbSet<wb_water_avai_non_potable> obj_wb_water_avai_non_potable { get; set; }
+        public virtual DbSet<wb_tot_water_avail> obj_wb_tot_water_avail { get; set; }
+        public virtual DbSet<wb_water_drink_ind_req> obj_wb_water_drink_ind_req { get; set; }
+        public virtual DbSet<wb_area_crops_irr_water_req> obj_wb_area_crops_irr_water_req { get; set; }
+        public virtual DbSet<wb_total_water_req> obj_wb_total_water_req { get; set; }
+        public virtual DbSet<wb_water_balance> obj_wb_water_balance { get; set; }
+        public virtual DbSet<wb_ref_type_of_structure> obj_wb_ref_type_of_structure { get; set; }
+        public virtual DbSet<wb_ref_type_of_crop_net_irr_req> obj_wb_ref_type_of_crop_net_irr_req { get; set; }
+        public virtual DbSet<wb_reject_status> obj_wb_reject_status { get; set; }
+        public virtual DbSet<WbRejectStatusView> WbRejectStatusView { get; set; }
+        public virtual DbSet<WbBasicInfoViewModel> wb_basicinfoview { get; set; }
+        public virtual DbSet<WBEstGroundWaterAvailViewModel> wb_estgroundwateravailview { get; set; }
+        public virtual DbSet<WBEstRainfallSupplyInterventionViewModel> wb_estavairainfallsupplyinterventionview { get; set; }
+        public virtual DbSet<WBSurfaceWaterStorViewModel> wb_avaisurfacewaterstorview { get; set; }
+        public virtual DbSet<WBARWCstructureViewModel> wb_artrechwaterconsstructureview { get; set; }
+        public virtual DbSet<WBWaterAvaiTransportedWaterViewModel> wb_wateravaitransportedwaterview { get; set; }
+        public virtual DbSet<WBWaterAvaiNonPotableViewModel> wb_wateravainon_potableview { get; set; }
+        public virtual DbSet<WBTotWaterAvailViewModel> wb_totwateravailview { get; set; }
+        public virtual DbSet<WBWaterDrinkIndReqViewModel> wb_waterdrinkindreqview { get; set; }
+        public virtual DbSet<WBAreaCropsViewModel> wb_areacropsview { get; set; }
+        public virtual DbSet<WBTotalWaterReqViewModel> wb_totalwaterreqview { get; set; }
+        public virtual DbSet<WBWaterBalanceViewModel> wb_waterbalanceview { get; set; }
+
+        #endregion
+
+
+
     }
 }

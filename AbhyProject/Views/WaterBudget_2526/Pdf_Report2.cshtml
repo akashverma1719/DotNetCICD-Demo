@@ -1,0 +1,2431 @@
+﻿@model AbhyProject.Models.WizardViewModel
+
+@{ ViewBag.Title = "TotalReportwsp";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml"; }
+
+
+<script type="text/javascript">
+    var Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Allcrops));
+</script>
+
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link href="~/Scripts/all_scripts/w3.css" rel="stylesheet" />
+
+
+    <link href="~/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Scripts/all_scripts/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/all_scripts/jquery3.3.1.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>
+
+    <!--Pie Chart-->
+    <script src="~/Scripts/all_scripts/highcharts.js"></script>
+
+    <script src="~/Scripts/all_scripts/pareto.js"></script>
+
+
+    <!---->
+    <script src="~/Scripts/all_scripts/core.js"></script>
+
+    <script src="~/Scripts/all_scripts/charts.js"></script>
+
+    <script src="~/Scripts/all_scripts/animated.js"></script>
+    <!--Pie Chart-->
+    <script src="~/Scripts/all_scripts/exporting.js"></script>
+    <script src="~/Scripts/all_scripts/export-data.js"></script>
+    @*<script src="~/Content/JS_Files/water_demand_report_25.js"></script>*@
+
+    <script src="~/Content/waterbudget/js/main.js"></script>
+    <!--pie chart-->
+
+    <meta name="viewport" content="width=device-width" />
+    <META Http-Equiv="Cache-Control" Content="no-cache" />
+    <META Http-Equiv="Pragma" Content="no-cache" />
+    <META Http-Equiv="Expires" Content="0" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+    <!-- Latest compiled JavaScript -->
+
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+    <style>
+        .page2el {
+            margin-top: 15px;
+        }
+    </style>
+    <style>
+        body {
+            font-family: Calibri !important;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.95;
+            visibility: visible;
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+        .MainHeadingReport {
+            color: #5080a9;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 3px;
+            background: #ececec !important;
+            text-align: center;
+        }
+
+        .loading-inactive {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader > img {
+            top: 45%;
+            left: 45%;
+            position: fixed;
+            height: 150px;
+            width: 150px;
+        }
+
+        #data_sprinkler tr th {
+            color: #337ab7;
+        }
+
+        .reportheading {
+            color: #5080a9;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 3px;
+            background: #ececec !important;
+        }
+
+            .reportheading p {
+                margin-bottom: 0px;
+            }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        .table-condensed > tbody > tr > td {
+            padding: 1px 3px !important;
+            font-size: 13px;
+        }
+
+        .table-condensed > tbody > tr > th {
+            padding: 0px 3px !important;
+            font-size: 13px;
+            line-height: 16px;
+        }
+
+        .demandside_text > .data_sprinkler > tr > th {
+            font-size: 12px !important;
+            height: 10px;
+        }
+
+        .demandside_text > .data_sprinkler > tr {
+            height: 20px;
+        }
+
+        .demandside_text > .tableheader1 > tr > td {
+            font-size: 12px !important;
+            height: 10px !important;
+        }
+
+        .btn.btn-dark {
+            background: #000000b3;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .demandside_text > tbody > tr > td {
+            text-align: left;
+            font-size: 13px !important;
+            height: 20px;
+        }
+
+        .demandside_text > tbody > tr.tableheader_text > th {
+            font-size: 14px !important;
+        }
+
+        label {
+            font-size: 12px !important;
+        }
+
+        .demandside_text > tbody > tr > td:last-child {
+            text-align: left !important;
+        }
+
+        .demanside_padding_heading1 {
+            padding: 0px !important;
+        }
+
+        .supplyside_demandside_space1 > .reportheading > p {
+            margin: 0px 0 6px !important;
+        }
+
+        .demandside_text_123 > tbody > tr > th {
+            font-size: 12px !important;
+            height: 10px;
+        }
+
+        .gram_water_level_table {
+            font-size: 14px !important;
+            font-weight: 900;
+        }
+
+        .dateandtime_ul {
+            padding: 0px;
+        }
+
+        .image_space_gap {
+            margin-top: 230px;
+        }
+
+        .pgwm_table_space {
+            margin-top: 320px;
+        }
+
+        .main_heading_sm_total {
+            margin-top: 70px;
+            margin-bottom: 280px;
+        }
+
+        .sm_image_gap {
+            margin-top: 210px;
+            margin-bottom: 100px;
+        }
+
+        .image_space_gap_2 {
+            margin-top: 40px;
+        }
+
+        .image_space_gap31 {
+            margin-top: 15px;
+        }
+
+        .dateandtime_ul > li {
+            display: inline-block;
+            color: #000;
+            font-size: 18px;
+            padding: 0px 15px;
+        }
+
+        .table-striped tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        .table-striped tbody tr td:last-child {
+            text-align: right;
+        }
+
+        tbody.tablebaody tr td {
+            font-weight: 500;
+            padding: 5px !important;
+            font-size: 15px;
+            color: black;
+            text-align: left !important;
+        }
+
+        .pgwmtable tbody tr td:last-child,
+        .demandsidetable tr td:last-child {
+            text-align: left !important;
+        }
+
+        .wateravaliablity_space {
+            margin-top: 186px;
+        }
+
+        .waterdrft_space {
+            margin-top: 18px;
+        }
+
+        .waterdrft_balance {
+            margin-top: 180px;
+        }
+
+        .waterdrft_Budgeting_space {
+            margin-top: 280px;
+        }
+
+        .hideDownload {
+            display: none;
+        }
+
+        .singnatire_table tbody tr td {
+            height: 100px;
+        }
+
+        .supplyside_demandside_space {
+            margin-top: 340px;
+        }
+
+        #Data1 {
+            width: 1050px !important;
+            margin: 0 auto;
+        }
+
+        .pgwmCommiteee_space {
+            margin-top: 70px;
+            margin-bottom: 50px;
+        }
+
+        .pgwm_range {
+            margin-top: 280px;
+        }
+
+        .background_after_download * {
+            font-weight: normal !important;
+            text-decoration: none !important;
+            text-shadow: none !important;
+        }
+
+        .tableheadingbg {
+            color: #337ab7 /*!important*/;
+        }
+
+        .table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+            border: 1px solid #b4b0b0;
+        }
+
+        .table > caption + thead > tr:first-child > td, .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table > thead:first-child > tr:first-child > th {
+            border-top: 1px solid #b4b0b0;
+        }
+        /*.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            background: #fff;
+        }*/
+        .colorline1 {
+            background: #ddd;
+            background-size: 100% 6px;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin-top: 12px;
+            height: 3px;
+            width: 100%
+        }
+
+        .col-md-9 > h1 {
+            font-weight: bold;
+            color: #404040;
+            text-shadow: -1px -1px #000;
+        }
+
+        .col-md-9 > p {
+            color: #404040;
+        }
+
+        .col12 > .firsttable > h6 {
+            letter-spacing: 0px;
+            padding-left: 10px;
+        }
+
+        .firstptag {
+            padding-left: 4%;
+        }
+
+        body {
+            background-color: #ddd;
+            margin: 0 auto !important;
+            width: 1100px !important;
+        }
+
+        .clearfixcolor {
+            margin-top: 15px;
+        }
+
+        .col12 {
+            background-color: #fff;
+            padding: 25px;
+        }
+
+        .highcharts-credits {
+            display: none;
+        }
+
+
+
+        .highcharts-button-box {
+            display: none;
+        }
+
+
+        .text-right > .btn-success {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        label {
+            font-size: 14px !important;
+            margin-bottom: 0px;
+        }
+
+        table thead tr.success td {
+            line-height: 14px;
+            font-size: 14px;
+            border-color: #4b94d2;
+        }
+
+        .text-right {
+            padding: 5px;
+        }
+
+            .text-right > .btn-success {
+                padding: 8px 20px 8px 20px;
+                border-radius: 50px;
+                font-size: 18px;
+            }
+
+        .btn-success {
+            color: #fff;
+            background-color: #6fb01d;
+            border-color: #4cae4c;
+        }
+
+        .coll7 {
+            padding-right: 0px;
+        }
+
+        ul.Select_option {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 0px;
+            padding-left: 0px;
+        }
+
+            ul.Select_option > li {
+                display: inline-block;
+                word-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+                ul.Select_option > li > span > i {
+                    padding: 0px 0px 0px 10px;
+                }
+
+        #Select_dist_level {
+            padding: 10px 0px 5px 15px;
+            text-transform: capitalize;
+        }
+
+        ul.firstimages {
+            display: block;
+            margin-bottom: 0px;
+        }
+
+            ul.firstimages > li {
+                display: inline-block;
+                padding-left: 5px;
+                border: 1px solid #ddd;
+                padding: 10px 10px 5px 10px;
+            }
+
+                ul.firstimages > li > img {
+                    border-left: 2px solid #ddd;
+                }
+
+                ul.firstimages > li > span > img {
+                    width: 25px;
+                    height: 25px;
+                }
+
+        .highcharts-title {
+            font-weight: bold;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+        }
+
+        tspan {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+
+
+        .secondtable {
+            text-align: right;
+        }
+
+        sup {
+            font-weight: bold;
+        }
+
+        .tableheadingbg > span {
+            color: purple;
+            font-size: 20px;
+        }
+
+        .totatal_value_label {
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        #Data1 {
+            background-color: #fff;
+        }
+
+        .firsttable {
+            padding: 0px 0px 0px 0px;
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .report_heading_div {
+            background-color: #ddd;
+            border-top-right-radius: 25px;
+            border-top-left-radius: 25px;
+        }
+
+        .cololr-div {
+            background: #4cae4c;
+            height: 3px;
+            padding: 0px;
+        }
+
+        .last-div-footer {
+            padding: 10px 0px;
+        }
+
+        .table-condensed {
+            font-weight: 100;
+            text-shadow: none;
+            page-break-after: always !important;
+        }
+
+        table {
+            page-break-after: always !important;
+        }
+
+        .tolat_report_color {
+            color: #6FB11D !important;
+        }
+
+        .wateravaliablity_table > thead > tr > td,
+        .wateravaliablity_table > tbody > tr > td {
+            padding: 0px 3px;
+        }
+
+        table > tbody > tr > td {
+            color: #000000 /*!important*/;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        table > tbody > tr > th {
+            color: #fff /*!important*/;
+            font-size: 14px !important;
+        }
+
+        table > tbody > tr > td > label {
+            color: #000 !important;
+        }
+
+        table > tbody > tr > td > span {
+            color: #000 !important;
+            font-size: 14px;
+        }
+
+        .pgwmtable > tbody > tr > td {
+            color: #000 !important;
+            text-wrap: wrap;
+        }
+
+        #pdf_container_mom {
+            background: #ccc;
+            text-align: center;
+            display: none;
+            padding: 5px;
+            height: auto;
+            overflow: auto;
+        }
+
+        #pdf_container_res {
+            background: #ccc;
+            text-align: center;
+            display: none;
+            padding: 5px;
+            height: auto;
+            overflow: auto;
+        }
+
+        #pdf_container {
+            background: #ccc;
+            text-align: center;
+            display: none;
+            padding: 5px;
+            height: auto;
+            overflow: auto;
+        }
+
+        .page-break-avoid {
+            page-break-inside: avoid !important;
+        }
+
+        .table-condensed {
+            page-break-inside: avoid !important;
+        }
+
+            .table-condensed tr td {
+                page-break-inside: avoid !important;
+            }
+
+        @@media (min-width: 1200px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        @@media (min-width: 992px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        @@media (min-width: 768px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        @@media print {
+            .table > tbody > tr:nth-of-type(odd) {
+                background-color: #8f8484 !important;
+            }
+            /*  .page-break-avoid {
+                page-break-inside: avoid !important;
+            }
+
+            .table-condensed {
+                page-break-inside: avoid !important;
+            }
+
+                .table-condensed tr td {
+                    page-break-inside: avoid !important;
+                }
+                .table-condensed tr {
+                    page-break-inside: avoid !important;
+                }*/
+
+            .pgwmtable table {
+                page-break-inside: auto !important;
+            }
+
+            .pgwmtable tr {
+                page-break-inside: avoid !important;
+                page-break-after: auto !important;
+            }
+
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+                border: 1px solid #000;
+            }
+        }
+        /* tr {
+            page-break-inside: avoid;
+            page-break-after: auto
+        }*/
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .pgwmtabletable tr, td {
+            page-break-inside: avoid;
+        }
+
+        .pgwmtable table {
+            page-break-inside: auto !important;
+        }
+
+        .pgwmtable tr {
+            page-break-inside: avoid !important;
+            page-break-after: auto !important;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+            table tr td {
+                border-collapse: collapse;
+            }
+
+        .Tablebg_color {
+            background: #cdff54f2;
+            color: #000;
+        }
+
+        #Wellid {
+            word-break: break-all;
+            text-wrap: nowrap;
+        }
+
+        .date_break {
+            word-break: break-all;
+        }
+
+        tbody.tablebaody tr td.pdfNum {
+            font-weight: 700;
+        }
+        tbody.tablebaody tr td.positiveValue {
+            background-color: #b0d5fb;
+        }
+
+        tbody.tablebaody tr td.negativeValue {
+            background-color: #f7a8a8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loading-container">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+        </div>
+    </div>
+    <div class="container" id="Data1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="firsttable col-md-12">
+                    <h6>Atal Bhujal Yojana (ATAL JAL), Ministry of Jal Shakti, Department of Water Resources, River Development & Ganga Rejuvenation </h6>
+                </div>
+            </div>
+        </div>
+        <div class="row row_padding_10 justify-content-between">
+
+            <div class="col-md-12 report_heading_div">
+                <div class="row justify-content-between" style="justify-content: space-between; align-items: center; display: flex;">
+                    <div class="col-md-6">
+                        <h1>Water Budget Report </h1>
+
+                    </div>
+                    <div class="col-md-3 text-left" id="btnExport">
+                        <button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>
+                    </div>
+                    @*<div class="col-md-3 text-right" id="wsp_approved">
+                            <button id="bntWspApproved" class="btn btn-primary" onclick="ReportPdfUpload()">
+                                Click Here For Upload Water Budget
+                            </button>
+
+                        </div>*@
+                </div>
+
+
+                <div class="col-md-12">
+                    <ul class="dateandtime_ul">
+                        <li>Date : <span id="demo"></span></li>
+                        <li>Time : <span id="demo2"></span></li>
+                        @*<li>
+                                User Name :
+
+                                <span>@Session["UserName"].ToString()</span>
+                            </li>*@
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-12 state_dist_level">
+                <div class="row" id="Select_dist_level">
+
+                    <ul class="Select_option">
+                        @if (Session["gstate"] != null)
+                        {
+
+                            <li>
+                                <label id="lblstate">State:</label><br />
+                                <label>राज्य</label>
+                                <span id="spnstate">@Session["gstate"]</span>
+                                <i class="fas fa fa-angle-double-right"></i>
+                            </li>
+                        }
+                        else if (Session["Officer"] != null && Session["Officer"].ToString() == "Admin")
+                        {
+                            <li>
+                                <label id="lblstate">Admin</label>
+
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <label id="lblstate">National Level Nodal Officer</label>
+
+                            </li>
+                        }
+                        @*@if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }*@
+
+                        @if (Session["gdist"] != null)
+                        {
+                            <li>
+
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                                <i class="fas fa fa-angle-double-right"></i>
+                            </li>
+                        }
+
+                        @if (Session["gblock"] != null)
+                        {
+                            <li>
+
+                                <label>Block:</label>
+                                <span id="spnblock">@Session["gblock"]</span>
+                                <i class="fas fa fa-angle-double-right"></i>
+                            </li>
+                        }
+                        @if (Session["ggram"] != null)
+                        {
+                            <li>
+
+                                <label>Gram panchayat:</label>
+                                <span id="spngram">@Session["ggram"]</span>
+                                <i class="fas fa fa-angle-double-right"></i>
+
+                            </li>
+                        }
+                        @if (Session["Year"] != null && Session["Year"].ToString() != "null" && Session["Year"].ToString() != "")
+                        {
+                            <li>
+
+                                <label>Year:</label>
+                                <span id="Year">@Session["Year"]</span>
+                                <i class="fas fa fa-angle-double-right"></i>
+
+                            </li>
+                        }
+                        @if (Session["month"] != null && Session["month"].ToString() != "null" && Session["month"].ToString() != "")
+                        {
+                            <li>
+
+                                <label>Month:</label>
+                                <span id="month">@Session["month"]</span>
+
+                            </li>
+                        }
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- SECTION 1 -->
+            <div class="html2pdf__page-break"></div>
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background:#fff;">
+                    <div class="text-center reportheading">
+
+                        <p>
+                            १. ग्राम पंचायत की मूलभूत जानकारी
+                        </p>
+                        <p>1. Gram Panchayat Information</p>
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>राज्य:</span><br /><span>State:</span></td>
+                                        <td>
+                                            <input type="text" class="form-control" id="txtStateName" style="color: #939393;" disabled>
+
+                                        </td>
+                                        <td class="pdfNum">2</td>
+                                        <td><span> ज़िला:</span><br /><span>District:</span></td>
+                                        <td>
+                                            <input type="text" class="form-control" id="txtDistrictName" style="color: #939393;" disabled>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">3</td>
+                                        <td><span>ब्लॉक/तालुक:</span><br /><span>Block / Taluk:</span></td>
+                                        <td>
+                                            <input type="text" class="form-control" id="txtBlockName" style="color: #939393;" disabled>
+                                        </td>
+                                        <td class="pdfNum">4</td>
+                                        <td><span> ग्राम पंचायत नाम:</span><br /><span>GP Name:</span></td>
+                                        <td>
+                                            <input type="text" class="form-control" id="txtGPName" style="color: #939393;" disabled>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="pdfNum">5</td>
+                                        <td><span>ग्राम पंचायत क्षेत्र (हेक्टेयर):</span></br><span>GP area (ha):</span></td>
+                                        <td>
+
+                                            @Html.DisplayFor(model => model.wb_grampanchayat_basic_info.gp_area)
+
+                                            @*<input type="text" class="form-control decimal" id="gp_id" placeholder="Enter the numeric value" />*@
+                                        </td>
+                                        <td class="pdfNum">6</td>
+                                        <td><span>वार्षिक वर्षा (मिमी):</span><br /><span>Annual Rainfall (mm):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_grampanchayat_basic_info.annual_rainfall)
+
+                                            @*<input type="text" class="form-control decimal" id="block_area" placeholder="Enter the numeric value" />*@
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">7</td>
+                                        <td><span>मानव आबादी (संख्या):</span><br /> <span>Human population (Nos.):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_grampanchayat_basic_info.human_population)
+
+                                            @*<input type="text" class="form-control decimal" id="gp_area" placeholder="Enter the numeric value" />*@
+                                        </td>
+                                        <td class="pdfNum">8</td>
+                                        <td><span>पशुधन आबादी (संख्या)</span><br /><span>Livestock Population (Nos.):</span></td>
+                                        <td>
+
+                                            @Html.DisplayFor(model => model.wb_grampanchayat_basic_info.livestock_population)
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="gramReport_div_start col-md-12" style="background:#fff;margin-top:20px;">
+                    <div class="text-center reportheading">
+                        <p>२. अनुमानित भूजल उपलब्धता</p>
+                        <p>2. Estimated Ground Water Availability</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>वार्षिक वर्षा (मीटर):</span><br /><span>Annual Rainfall (m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_est_ground_water_avail.annual_rainfall)
+
+                                        </td>
+                                        <td class="pdfNum">2</td>
+                                        <td><span>वर्षा की अनुमानित मात्रा (हेक्टेयर मी):</span><br /><span>Estimated Volume of Rainfall (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_est_ground_water_avail.est_vol_rainfall)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">3</td>
+                                        <td><span>वाष्पीकरण-उत्सर्जन हानि (हेक्टेयर मी):</span><br /> <span>Evapotranspiration losses (30 % of total volume of rainfall) (ha.m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_est_ground_water_avail.evapo_loss)
+                                        </td>
+                                        <td class="pdfNum">4</td>
+                                        <td><span>वर्षा से उपलब्ध अनुमानित जल (हेक्टेयर मी):</span><br /><span>Estimated Water Available from Rainfall(ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_est_ground_water_avail.est_water_avai_rainfall)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">5</td>
+                                        <td><span>भूजल में पुनर्भरण की अनुमानित मात्रा (हेक्टेयर मी):</span><br /> <span>Estimated Volume of Recharge into Groundwater (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_est_ground_water_avail.est_vol_rech_gw)
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SECTION 2 -->
+            @*<div class="html2pdf__page-break"></div>*@
+            <!-- SECTION 3 -->
+
+
+
+            <div class="html2pdf__page-break"></div>
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>३. आपूर्ति पक्ष के हस्तक्षेप की योजना के लिए वर्षा से अनुमानित उपलब्धता</p>
+                        <p>3. Estimated Availability from Rainfall for planning of supply side interventions</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>उपयोगी वर्षा अपवाह (हेक्टेयर मी):</span><br /><span>Utilisable Rainfall Runoff(ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_est_avai_rainfall_supply_intervention.uti_rainfall_runoff)
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 4 -->
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>४. सतही जल भंडारण की उपलब्धता</p>
+                        <p>4. Availability of Surface Water Storage</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>मौजूदा सतही जल निकायों/संरचनाओं की संख्या:</span><br /><span>Number of Existing Surface Water Bodies/Structures (Nos.):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_avai_surface_water_stor.exist_structure)
+                                        </td>
+                                        <td class="pdfNum">2</td>
+                                        <td><span>वार्षिक भरण संख्या (कम से कम 2 भरण) (संख्या):</span><br /><span>Annual Number of Fillings (at least 2 fillings) (Nos.):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_avai_surface_water_stor.annual_filling)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">3</td>
+                                        <td> <span>संरचना की कुल भंडारण क्षमता (हेक्टेयर मी):</span><br /><span>Storage Capacity of the Structures (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_avai_surface_water_stor.capacity_structure)
+                                        </td>
+                                        <td class="pdfNum">4</td>
+                                        <td><span>संरचनाओं की कुल भंडारण क्षमता (हेक्टेयर मी):</span><br /><span>Total Storage Capacity of the Structures (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_avai_surface_water_stor.total_capacity_structure)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">5</td>
+                                        <td><span>हानि (@@40%) (हेक्टेयर मी):</span></br> <span>Lossess (40%) (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_avai_surface_water_stor.lossess)
+                                        </td>
+                                        <td class="pdfNum">6</td>
+                                        <td><span>उपयोग के लिए उपलब्ध कुल सतही जल भंडारण (हेक्टेयर मी):</span><br /><span>Total Surface Water Storage Available for Utilisation (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_avai_surface_water_stor.total_surface_water_uti)
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="html2pdf__page-break"></div>
+            <!-- SECTION 5 -->
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>५. कृत्रिम पुनर्भरण और जल संरक्षण संरचना का विवरण</p>
+                        <p>5. Detail of Artificial Recharge & Water Conservation Structures</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table id="Artificial_Recharge" class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <thead>
+                                    <tr>
+                                        <th><span>क्र.सं.</span><br /><span>S.No.</span></th>
+                                        <th><span>संरचना का प्रकार</span><br /><span>Type of Structure</span></th>
+                                        <th><span>संरचनाओं की संख्या (संख्या)</span><br /><span>Number of Structures (Count)</span></th>
+                                        <th><span>संरचनाओं का क्षेत्र (वर्ग मीटर)</span><br /><span>Area of Structures (sq. m)</span></th>
+                                        <th><span>संरचनाओं की औसत गहराई (मीटर)</span><br /><span>Average Depth of Structures (m)</span></th>
+                                        <th><span>कुल भंडारण क्षमता (हेक्टेयर मीटर)</span><br /><span>Total Storage Capacity (ha m)</span></th>
+                                        <th><span>वार्षिक भराव की संख्या (संख्या)</span><br /><span>Annual Filling Count (Count)</span></th>
+                                        <th><span>कृत्रिम पुनर्भरण और जल संरक्षण संरचनाओं के कारण वार्षिक रिचार्ज पानी की मात्रा (40% लगभग) (हेक्टेयर मी)</span><br /><span>Annual Recharge Water Volume Due to Artificial Recharge and Water Conservation Structures (Approximately 40%) (ha m)</span></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="tablebaody">
+                                    @if (Model.items.Count() > 0)
+                                    {
+                                        for (int i = 0; i < Model.items.Count; i++)
+                                        {
+
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>
+                                                    @{
+                                                        if (Model.items[i].type_of_structure_other != null)
+                                                        {
+
+                                                            <span>
+                                                                @Html.DisplayFor(m => Model.items[i].type_of_structure)
+                                                            </span>
+
+                                                            <span>
+                                                                @Html.DisplayFor(m => Model.items[i].type_of_structure_other)
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <span>
+                                                                @Html.DisplayFor(m => Model.items[i].type_of_structure)
+                                                            </span>
+
+                                                        }
+                                                    }
+                                                    @Html.HiddenFor(m => Model.items[i].id, new { @class = "text-danger Artificial_RechargeId" })
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.items[i].number_of_structures)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.items[i].area_of_structures)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.items[i].avg_depth_structures)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.items[i].total_storage_capacity)
+
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.items[i].annual_fillings)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.items[i].qt_annual_rech_water)
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="7">Total</th>
+                                        <th>
+                                            <span id="totalqt_annual_rech_water">@Model.structureTotal</span>
+                                            <input type="hidden" id="totalqt_annual_rech_waterhdn" value="@Model.structureTotal" />
+                                        </th>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- SECTION 6 -->
+            <div class="html2pdf__page-break"></div>
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>६. परिवहनित जल से जल की उपलब्धता (नहर/नाला/झरना/प्राकृतिक स्रोत)</p>
+                        <p>6. Water Availability from Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources)</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>परिवहनित जल (नहर/नाला/झरना/प्राकृतिक स्रोत) (हेक्टेयर मी):</span><br /><span>Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources) (ha.m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_avai_transported_water.transported_water)
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 7 -->
+
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>७. ग्रे वाटर प्रबंधन के माध्यम से गैर-पेयजल उपयोग के लिए जल उपलब्ध</p>
+                        <p>7. Water Available for non - potable use through Grey Water Management</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>ग्रे वाटर प्रबंधन के माध्यम से गैर-पेयजल उपयोग के लिए जल उपलब्ध (हेक्टेयर मी):</span><br /><span>Water Available for non - potable use through Grey Water Management (ha.m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_avai_non_potable.water_non_potable_use)
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- SECTION 8 -->
+            <div class="html2pdf__page-break"></div>
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>८. कुल जल उपलब्धता</p>
+                        <p>8. Total Water Availability</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>भूजल उपलब्धता (हेक्टेयर मीटर):</span><br /><span>Groundwater Availability(ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_tot_water_avail.groundwater_avail)
+                                        </td>
+                                        <td class="pdfNum">2</td>
+                                        <td><span>सतही जल की उपलब्धता (हेक्टेयर मीटर):</span><br /><span>Surface water Availability(ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_tot_water_avail.surface_water_avail)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">3</td>
+                                        <td><span>जल संरक्षण संरचनाओं के कारण अतिरिक्त भूजल उपलब्धता (हेक्टेयर मीटर):</span><br /><span> Additional Ground water availability due to AR & WC Structure(ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_tot_water_avail.add_ground_water)
+                                        </td>
+                                        <td class="pdfNum">4</td>
+                                        <td><span>परिवहनित जल (नहर/नाला/झरना/प्राकृतिक स्रोत) (हेक्टेयर मीटर):</span><br /><span>Transported Water (canal/Rivulet/Nala/Spring/Natural Sources)(ha.m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_tot_water_avail.transported_water)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">5</td>
+                                        <td><span>ग्रे वाटर मैनेजमेंट के माध्यम से गैर-पोर्टेबल उपयोग के लिए पानी उपलब्ध (हेक्टेयर मीटर):</span> <br /><span>Water Available for non - potable use through Grey Water Management (ha.m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_tot_water_avail.water_non_potable_use)
+                                        </td>
+                                        <td class="pdfNum">6</td>
+                                        <td><span>कुल जल उपलब्धता (हेक्टेयर मीटर):</span><br /><span>Total Water Availability (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_tot_water_avail.total_water_availability)
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SECTION 9 -->
+            <div class="html2pdf__page-break"></div>
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+
+                    <div class="text-center reportheading">
+                        <p>९. पीने/घरेलू, उद्योग और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता</p>
+                        <p>9. Water Requirement for drinking/domestic, Industries and other commercial uses</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>ग्राम पंचायत की मानव आबादी के लिए पीने और घरेलू पानी की आवश्यकता (@@55 एलपीसीडी) (हेक्टेयर मीटर)</span><br /><span>Drinking and Domestic Water Requirement for Human population of GP (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_drink_ind_req.drink_dom_water_req)
+                                        </td>
+                                        <td class="pdfNum">2</td>
+                                        <td><span>पशुधन आबादी के लिए पानी की आवश्यकता (@@20 एलपीसीडी लगभग) (हेक्टेयर मीटर):</span><br /><span>Water Requirement for Livestock Population (@@20 LPCD approx.)(ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_drink_ind_req.water_req_livestock_pop)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">3</td>
+                                        <td><span>उद्योगों और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता, यदि कोई हो (हेक्टेयर मीटर):</span><br /><span>Water requirement for industries and other commercial uses if any (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_drink_ind_req.water_req_indust)
+                                        </td>
+                                        <td class="pdfNum">4</td>
+                                        <td><span>कुल पेयजल और घरेलू जल की आवश्यकता (हेक्टेयर मीटर):</span><br /><span>Total Water Requirement (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_drink_ind_req.total_water_requirement)
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="html2pdf__page-break"></div>
+            <!-- SECTION 10 -->
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>१०. प्रमुख फसलों के अंतर्गत क्षेत्र और सिंचाई जल की आवश्यकता</p>
+                        <p>10. Area under Major Crops and Irrigation Water Requirement</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table id="Artificial_Recharge" class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <thead>
+                                    <tr>
+                                        <th><span>क्र.सं</span><br /><span>S.No.</span></th>
+                                        <th><span>फसल</span><br /><span>Crop</span></th>
+                                        <th><span>शुद्ध सिंचाई आवश्यकता (एनआईआर) (मी में)</span><br /><span>Net Irrigation Requirement (NIR) (in m)</span></th>
+                                        <th><span>खरीफ सीजन में क्षेत्रफल(हेक्टेयर)</span><br /><span>Area in Kharif Season (ha)</span></th>
+                                        <th><span>रबी सीजन में क्षेत्रफल(हेक्टेयर)</span><br /><span>Area in Rabi Season (ha)</span></th>
+                                        <th><span>ग्रीष्म ऋतु में क्षेत्र(हेक्टेयर)</span><br /><span>Area in Summer Season (ha)</span></th>
+                                        <th><span>कुल सकल फसल क्षेत्र (हेक्टेयर)</span><br /><span>Total Gross Cropped Area (ha)</span></th>
+                                        <th><span>कुल सिंचाई आवश्यकता (हेक्टेयर मी)</span><br /><span>Total Irrigation Requirement (ha m)</span></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="tablebaody">
+                                    @if (Model.itemsList.Count() > 0)
+                                    {
+                                        for (int i = 0; i < Model.itemsList.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>@(i + 1)</td>
+
+                                                <td>
+                                                    @{
+                                                        if (Model.itemsList[i].crop_other != null)
+                                                        {
+
+                                                            <span>
+                                                                @Html.DisplayFor(m => Model.itemsList[i].crop)
+                                                            </span>
+
+                                                            <span>
+                                                                @Html.DisplayFor(m => Model.itemsList[i].crop_other)
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <span>
+                                                                @Html.DisplayFor(m => Model.itemsList[i].crop)
+                                                            </span>
+
+                                                        }
+                                                    }
+                                                    @Html.HiddenFor(m => Model.itemsList[i].id)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.itemsList[i].net_irrigation_requirement)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.itemsList[i].area_kharif_season)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.itemsList[i].area_rabi_season)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.itemsList[i].area_summer_season)
+
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.itemsList[i].total_gross_cropped_area)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(m => Model.itemsList[i].total_irrigation_requirement)
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="7">Total</th>
+                                        <th>
+                                            <span id="totalqt_annual_rech_water">@Model.CropTotal</span>
+                                            <input type="hidden" id="totalqt_annual_rech_waterhdn" value="@Model.CropTotal" />
+                                        </th>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- SECTION 11 -->
+            <div class="html2pdf__page-break"></div>
+            <div class="page2el">
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>११. कुल जल आवश्यकता</p>
+                        <p>11. Total  Water Requirement</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>पीने और घरेलू पानी की आवश्यकता (हेक्टेयर मीटर):</span><br /><span>Drinking and Domestic Water Requirement (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_total_water_req.drink_dom_water_req)
+                                        </td>
+                                        <td class="pdfNum">2</td>
+                                        <td><span>पशुधन आबादी के लिए पानी की आवश्यकता (हेक्टेयर मीटर):</span><br /><span>Water Requirement for Livestock Population (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_total_water_req.water_req_livestock_pop)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">3</td>
+                                        <td><span>सिंचाई जल की आवश्यकता (हेक्टेयर मीटर):</span><br /><span>Irrigation Water Requirement (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_total_water_req.irri_water_req)
+                                        </td>
+                                        <td class="pdfNum">4</td>
+                                        <td><span>उद्योगों और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता (हेक्टेयर मीटर):</span><br /><span>Water requirement for industries and other commercial uses (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_total_water_req.water_req_indust)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">5</td>
+                                        <td><span>कुल जल आवश्यकता (हेक्टेयर मीटर):</span><br /><span>Total Water Requirement (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_total_water_req.total_water_requirement)
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- SECTION 12 -->
+
+                <div class="gramReport_div_start col-md-12" style="background: #fff; margin-top: 20px;">
+                    <div class="text-center reportheading">
+                        <p>१२. जल संतुलन </p>
+                        <p>12. Water Balance</p>
+
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div id="resetinfo" class="tbl-responsive" style="padding:5px;overflow-x:scroll">
+                            <table class="table table-striped page-break-avoid table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style=" margin-top:10px;">
+                                <tbody class="tablebaody">
+
+                                    <tr>
+                                        <td class="pdfNum">1</td>
+                                        <td><span>कुल जल उपलब्धता (हेक्टेयर मीटर):</span><br /><span>Total Water Availability (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_balance.total_water_availability)
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">2</td>
+                                        <td><span>कुल जल आवश्यकता (हेक्टेयर मीटर):</span><br /><span>Total Water Requirement (ha m):</span></td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.wb_water_balance.total_water_requirement)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pdfNum">3</td>
+                                        <td><span>जल संतुलन (हेक्टेयर मीटर):</span><br /><span>Water Balance (ha m):</span></td>
+                                        @*<td>
+                                            @Html.DisplayFor(model => model.wb_water_balance.water_balance)
+                                        </td>*@
+                                        <td class="@((Model.wb_water_balance.water_balance >= 0) ? "positiveValue" : "negativeValue")">
+                                            @Html.DisplayFor(model => model.wb_water_balance.water_balance)
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="html2pdf__page-break"></div>
+            <div class="col-md-12 last-div-footer" id="btnExport1">
+                <div class="col-md-12 text-center" style="display:flex;justify-content:space-between;align-items:center;">
+                    <a href="/WaterBudget_2526/water_budget" class="btn btn-primary">
+                        Back to Home
+                    </a>
+
+                </div>
+            </div>
+
+</body>
+</html>
+@*<script src="~/Content/JS_Files/wsp_mapview.js"></script>*@
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Your code here
+        var saveButtonLi = document.createElement('li');
+        var saveButton = document.createElement('a');
+        saveButton.href = '#save';
+        saveButton.setAttribute('role', 'menuitem');
+        saveButton.textContent = 'Save';
+        saveButton.classList.add('savebtn');
+        saveButtonLi.appendChild(saveButton);
+        document.querySelector('.actions ul li').insertAdjacentElement('afterend', saveButtonLi);
+
+        var StateOfficer = '@Session["Officer"]';
+        if (StateOfficer == "National Level Nodal Officer") {
+        var approveButtonLi = document.createElement('li');
+        var approveButton = document.createElement('button');
+        approveButton.textContent = 'Approve';
+        approveButton.classList.add('approvebtn', 'customButton');
+        approveButton.setAttribute('data-bs-toggle', 'modal');
+        approveButton.setAttribute('data-bs-target', '#approveModal');
+        approveButtonLi.appendChild(approveButton);
+        document.querySelector('.actions ul li:last-child').insertAdjacentElement('beforebegin', approveButtonLi);
+
+        var rejectButtonLi = document.createElement('li');
+        var rejectButton = document.createElement('button');
+        rejectButton.textContent = 'Reject';
+        rejectButton.classList.add('rejectbtn', 'customButton');
+        rejectButton.setAttribute('data-bs-toggle', 'modal');
+        rejectButton.setAttribute('data-bs-target', '#rejectModal');
+        rejectButtonLi.appendChild(rejectButton);
+        document.querySelector('.actions ul li:last-child').insertAdjacentElement('beforebegin', rejectButtonLi);
+        }
+        get_approved_reject_status();
+    });
+
+</script>
+
+<script>
+
+    var StateName = "0";
+    var DistName = "0";
+    var BlockName = "0";
+    var GramName = "0";
+
+    var lg_stateId = "0";
+    var lg_distId = "0";
+    var lg_blockId = "0";
+    var lg_gramId = "0";
+    var lg_year = "0";
+    $(document).ready(function () {
+
+
+
+        StateName = '@Session["lg_stateName"]';
+        DistName ='@Session["lg_distName"]';
+        BlockName = '@Session["lg_blockName"]';
+        GramName = '@Session["lg_gramName"]';
+        lg_stateId = '@Session["lg_state"]';
+        lg_distId ='@Session["lg_dist"]';
+        lg_blockId = '@Session["lg_block"]';
+        lg_gramId = '@Session["lg_gram"]';
+        lg_year = '@Session["lg_year"]';
+
+        $("#txtStateName").val(StateName);
+        $("#txtDistrictName").val(DistName);
+        $("#txtBlockName").val(BlockName);
+        $("#txtGPName").val(GramName);
+        $("#wb_grampanchayat_basic_info_state_id").val(lg_stateId);
+        $("#wb_grampanchayat_basic_info_district_id").val(lg_distId);
+        $("#wb_grampanchayat_basic_info_block_id").val(lg_blockId);
+        $("#wb_grampanchayat_basic_info_gp_id").val(lg_gramId);
+        $("#wb_grampanchayat_basic_info_year").val(lg_year);
+
+    });
+    function get_approved_reject_status() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterBudget_2526/get_approved_reject_status",
+            dataType: 'JSON',
+            success: function (data) {
+
+                status_check = data.status_id;
+                var status = '';
+                if (data == "null") {
+                    status = 'Pending';
+                    $('#status_wsp').text(status).css({ 'color': 'blue' });
+                }
+
+                if (data.status_id == 1) {
+                    status = 'Submitted to NPMU';
+                    console.log($(".savebtn"));
+                    var UserId = '@Session["UserId"]';
+                    if (UserId == "20613" || UserId =="19235" ) {
+                        $(".savebtn").show();
+                        $("input, select, textarea").prop("readonly", false);
+                    }
+                    else {
+                        $(".savebtn").hide();
+                        $("input, select, textarea").prop("readonly", true);
+
+                    }
+                    $('#status_wsp').text(status).css({ 'color': 'green' });
+                }
+
+                if (data.status_id == 2) {
+                    status = 'Reject';
+                    $('#status_wsp').text(status).css({ 'color': 'red' });
+                }
+
+                if (data.status_id == 3) {
+                    status = 'Approved';
+                    $('#status_wsp').text(status).css({ 'color': 'blue' });
+                }
+
+
+            }
+        });
+    }
+
+    // PDF generate js start
+    function ReportPdf() {
+        // Get the div element
+        $(".loader").show();
+        $("#Data1").width(1100);
+        $("tr:nth-child(5n)").css("page-break-after", "always");
+        $("thead").css("display", "table-header-group");
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            filename: GramName + '_2025_26_WaterBudget.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            html2canvas: { dpi: 96, letterRendering: true },
+            pagebreak: { avoid: '#container_Water_Availability, avoid-all', after: '.page2el, #page_break' },
+            jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' }
+        };
+        html2pdf().set(opt).from(element).toPdf().save();
+        $(".loader").hide();
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+        $('div.image_space_gap31').addClass('image_space_gap_3');
+        $(".highcharts-credits").css("display", "none");
+        $('div#btnExport').addClass('hideDownload');
+        $('div#wsp_approved').addClass('hideDownload');
+        $('div#remarks_div').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $('div.image_space_gap_31').removeClass('image_space_gap_3');
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#wsp_approved').removeClass('hideDownload');
+            $('div#remarks_div').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+    }
+
+
+    // PDF generate js end
+
+
+</script>
+<script>
+    var currentTime = new Date(),
+        hours = currentTime.getHours(),
+        minutes = currentTime.getMinutes();
+
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var suffix = "AM";
+    if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+
+    document.getElementById("demo2").innerHTML = hours + ":" + minutes + " " + suffix;
+</script>
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/ ' + mm + '/ ' + yyyy;
+    document.getElementById("demo").innerHTML = today;
+</script>
+
+
+<script>
+    var KharifArray = [];
+    var RabiArray = [];
+    var AOIArray = [];
+    var KharifArray_wcs = [];
+    var RabiArray_wcs = [];
+    var AOIArray_wcs = [];
+    var DemandSide_KharifArray = [];
+    var DemandSide_RabiArray = [];
+    var DemandSide_SummerArray = [];
+    function demandside_graph() {
+        Highcharts.chart('container_demand_side', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+
+            xAxis: {
+
+                categories: [
+                    'Micro-irrigation (Sprinkler)',
+                    'Micro-irrigation (Drip)',
+                    'Irrigation through <br/>underground <br/> pipelines ',
+                    'Crop <br/>diversification',
+                    'Any other measure <br/> for saving of <br/>water in agriculture',
+                    'Other measures <br/>for saving water'
+
+                ],
+                title: {
+                    useHTML: true,
+                    enabled: true,
+                    text: '<b>Name of intervention<b>',
+                    style: {
+                        fontWeight: 'normal'
+                    }
+                },
+
+                crosshair: true
+
+            },
+
+            yAxis: {
+                title: {
+                    useHTML: true,
+                    enabled: true,
+                    text: '<b>Volume of water (ha m)<b>',
+                    style: {
+                        fontWeight: 'normal'
+                    }
+                }
+
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.4f} (ha m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    }
+                },
+
+            },
+            series: [{
+                name: 'Total Water demand(ha m)',
+                data: DemandSide_KharifArray
+
+            }, {
+                name: 'Net Water Demand(ha m)',
+                data: DemandSide_RabiArray
+
+            }, {
+                name: 'Reduction in Water demand(ha m)',
+                data: DemandSide_SummerArray
+
+            }]
+        });
+    }
+
+
+    function Supply_SideReport() {
+        Highcharts.chart('container_supply_ar', {
+            chart: {
+                type: 'column'
+            },
+
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'AR Structures'
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                //  min: 0,
+                title: {
+                    useHTML: true,
+                    enabled: true,
+                    text: '<b>Number of Structures/Volume (ha m)<b>',
+                    style: {
+                        fontWeight: 'normal'
+                    }
+                },
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.4f} (ha m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        crop: false,
+                        overflow: 'none'
+                    }
+                }
+            },
+            series: [{
+                name: 'No. of Structures Proposed (New)',
+                data: KharifArray,
+
+            }, {
+                name: 'No. of Structures Proposed (Renovation)',
+                data: RabiArray,
+
+            }, {
+                name: 'Annual GW Recharge (ha m)',
+                data: AOIArray
+
+            }]
+        });
+    }
+
+
+    function Supply_SideReport_wcs() {
+        Highcharts.chart('container_supply_wcs', {
+            chart: {
+                type: 'column'
+            },
+
+            title: {
+                text: ''
+            },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com'
+            //},
+            xAxis: {
+                categories: [
+                    'WC Structures'
+
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    useHTML: true,
+                    enabled: true,
+                    text: '<b>Number of Structures/Volume (ha m)<b>',
+                    style: {
+                        fontWeight: 'normal'
+                    }
+                },
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.4f} (ha m)</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        crop: false,
+                        overflow: 'none'
+                    }
+                }
+            },
+            series: [{
+                name: 'No. of Structures Proposed (New)',
+                data: KharifArray_wcs,
+
+            }, {
+                name: 'No. of Structures Proposed (Renovation)',
+                data: RabiArray_wcs,
+
+            }, {
+                name: 'Effective storage available for use (ha m)',
+                data: AOIArray_wcs
+
+            }]
+        });
+    }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+@*<script src="~/Content/JS_Files/Summary_supp_dem_25.js"></script>
+    <script src="~/Content/JS_Files/WSP_Total_Report_25.js"></script>*@
+@*<script src="~/Content/JS_Files/deamendside_report_js.js"></script>*@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf_viewer.min.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
+    var pdfDoc = null;
+    var pdfDoc2 = null;
+    var pdfDoc3 = null;
+    var scale = 1; //Set Scale for zooming PDF.
+    var resolution = 1; //Set Resolution to Adjust PDF clarity.
+
+
+    function get_approved_reject_status() {
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json; chatset=utf-8',
+        url: "/WaterBudget_2526/get_approved_reject_status",
+        dataType: 'JSON',
+        success: function (data) {
+
+            status_check = data.status_id;
+            var status = '';
+            if (data == "null") {
+                status = 'Pending';
+                $('#status_wsp').text(status).css({ 'color': 'blue' });
+            }
+
+            if (data.status_id == 1) {
+                status = 'Submitted to NPMU';
+                console.log($(".savebtn"));
+                var UserId = '@Session["UserId"]';
+
+                if (UserId == "20613" || UserId =="19235" ) {
+                    $(".savebtn").show();
+                    $("input, select, textarea").prop("readonly", false);
+
+                }
+                else {
+                    $(".savebtn").hide();
+                    $("input, select, textarea").prop("readonly", true);
+
+                }
+                $('#status_wsp').text(status).css({ 'color': 'green' });
+                $('.btnshow_hide').show();
+
+            }
+
+            if (data.status_id == 2) {
+                status = 'Reject';
+                $('#status_wsp').text(status).css({ 'color': 'red' });
+                $('.btnshow_hide').show();
+            }
+
+            if (data.status_id == 5) {
+                status = 'Approved';
+                $('#status_wsp').text(status).css({ 'color': 'blue' });
+                $('.btnshow_hide').show();
+            }
+
+
+        }
+    });
+}
+
+
+
+    function LoadPdfFromUrl(url, url2, url3) {
+        //Read PDF from URL.
+
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container_mom = document.getElementById("pdf_container_mom");
+            pdf_container_mom.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc.numPages; i++) {
+                RenderPage(pdf_container_mom, i);
+            }
+        });
+        LoadPdfFromUrl2(url2)
+        LoadPdfFromUrl3(url3)
+    };
+
+    function RenderPage(pdf_container_mom, num) {
+        pdfDoc.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container_mom.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container_mom.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+    };
+
+    function LoadPdfFromUrl2(url2) {
+        //Read PDF from URL.
+        pdfjsLib.getDocument(url2).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container_res = document.getElementById("pdf_container_res");
+            pdf_container_res.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc.numPages; i++) {
+                RenderPage2(pdf_container_res, i);
+            }
+        });
+    };
+
+    function RenderPage2(pdf_container_res, num) {
+        pdfDoc.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container_res.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container_res.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+    };
+    function LoadPdfFromUrl3(url3) {
+        //Read PDF from URL.
+        pdfjsLib.getDocument(url3).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container_atten = document.getElementById("pdf_container_atten");
+            pdf_container_atten.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc.numPages; i++) {
+                RenderPage2(pdf_container_atten, i);
+            }
+        });
+    };
+
+    function RenderPage3(pdf_container_atten, num) {
+        pdfDoc.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container_atten.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container_atten.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+    };
+
+
+
+
+    function LoadPdfFromUrl_dpmu(url) {
+        //Read PDF from URL.
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+            pdfDoc3 = pdfDoc_;
+
+            //Reference the Container DIV.
+            var pdf_container = document.getElementById("pdf_container");
+            pdf_container.style.display = "block";
+
+            //Loop and render all pages.
+            for (var i = 1; i <= pdfDoc3.numPages; i++) {
+                RenderPage_dpmu(pdf_container, i);
+            }
+        });
+    };
+
+
+    function RenderPage_dpmu(pdf_container, num) {
+        pdfDoc3.getPage(num).then(function (page) {
+            //Create Canvas element and append to the Container DIV.
+            var canvas = document.createElement('canvas');
+            canvas.id = 'pdf-' + num;
+            ctx = canvas.getContext('2d');
+            pdf_container.appendChild(canvas);
+
+            //Create and add empty DIV to add SPACE between pages.
+            var spacer = document.createElement("div");
+            spacer.style.height = "20px";
+            pdf_container.appendChild(spacer);
+
+            //Set the Canvas dimensions using ViewPort and Scale.
+            var viewport = page.getViewport({ scale: scale });
+            canvas.height = resolution * viewport.height;
+            canvas.width = resolution * viewport.width;
+
+            //Render the PDF page.
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
+            };
+
+            page.render(renderContext);
+        });
+    };
+    // PDF download btn here
+
+
+    //function ReportPdfUpload() {
+    //    $(".loader").show();
+
+    //    $("#Data1").width(1100);
+    //    $("tr:nth-child(5n)").css("page-break-after", "always");
+    //    $("thead").css("display", "table-header-group");
+
+    //    var element = document.getElementById('Data1');
+    //    var w = screen.width;
+    //    var h = screen.height;
+    //    var opt = {
+    //        filename: 'WaterBudget.pdf',
+    //        image: { type: 'jpeg', quality: 1.0, w, h },
+    //        html2canvas: { dpi: 96, letterRendering: true },
+    //        pagebreak: { avoid: '#container_Water_Availability, avoid-all', after: '.page2el, #page_break' },
+    //        jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' }
+    //    };
+    //    //var blob = html2pdf(element, opt).output("blob1");
+    //    //let blob = html2pdf().set(opt).from(element);
+    //    //html2pdf().set(opt).from(element).toPdf().save();
+    //    html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdfObj) {
+    //        const perBlob = pdfObj.output('blob');
+
+    //        var formData = new FormData();
+    //        formData.append('pdf', perBlob, opt.filename);
+    //        $.ajax({
+    //            url: '/WaterBudget_2526/SaveFinalReportOnServer',
+    //            data: formData,
+    //            type: 'POST',
+    //            contentType: false,
+    //            processData: false,
+    //            success: function (response) {
+    //                alert(response);
+    //                if (response == "Water Budget Final Report Upload Successfully") {
+    //                    $("#wsp_approved").hide();
+    //                }
+    //                get_approved_reject_status();
+    //                $(".loader").hide();
+    //                //location.reload();
+    //            }
+    //        });
+    //    });
+    //    $("#Data1").width();
+    //    $('#Data1').addClass('background_after_download');
+    //    $('#Data1').addClass('table-condensed');
+    //    //$('div.wateravaliablity_space1').addClass('wateravaliablity_space');
+    //    //$('div.waterdrft_space1').addClass('waterdrft_space');
+    //    //$('div.waterdrft_balance1').addClass('waterdrft_balance');
+    //    //$('div.waterdrft_Budgeting_space1').addClass('waterdrft_Budgeting_space');
+    //    //$('div.supplyside_demandside_space1').addClass('supplyside_demandside_space');
+    //    //$('div.pgwmCommiteee_space1').addClass('pgwmCommiteee_space');
+    //    //$('div.pgwm_range1').addClass('pgwm_range');
+    //    //$('div.image_space_gap1').addClass('image_space_gap');
+    //    //$('div.image_space_gap_21').addClass('image_space_gap_2');
+    //    $('div.image_space_gap31').addClass('image_space_gap_3');
+    //    //$('div.pgwm_table_space1').addClass('pgwm_table_space');
+    //    //$('div.main_heading_sm_total1').addClass('main_heading_sm_total');
+    //    //$('div#SW_Image').addClass('sm_image_gap');
+
+    //    //$('th.demanside_padding_heading').addClass('demanside_padding_heading1');
+    //    $(".highcharts-credits").css("display", "none");
+
+    //    $('div#btnExport').addClass('hideDownload');
+    //    $('div#wsp_approved').addClass('hideDownload');
+    //    $('div#remarks_div').addClass('hideDownload');
+
+    //    $('div#btnExport1').addClass('hideDownload');
+
+    //    setTimeout(function () {
+    //        $('#Data1').removeClass('background_after_download');
+    //        //$('div.wateravaliablity_space1').removeClass('wateravaliablity_space');
+    //        //$('div.waterdrft_space1').removeClass('waterdrft_space');
+    //        //$('div.waterdrft_balance1').removeClass('waterdrft_balance');
+    //        //$('div.waterdrft_Budgeting_space1').removeClass('waterdrft_Budgeting_space');
+    //        //$('div.supplyside_demandside_space1').removeClass('supplyside_demandside_space');
+    //        //$('div.pgwmCommiteee_space1').removeClass('pgwmCommiteee_space');
+    //        //$('div.pgwm_range1').removeClass('pgwm_range');
+    //        //$('div.main_heading_sm_total1').removeClass('main_heading_sm_total');
+    //        //$('div#SW_Image').removeClass('sm_image_gap');
+    //        //$('div.image_space_gap1').removeClass('image_space_gap');
+    //        //$('div.image_space_gap_21').removeClass('image_space_gap_2');
+    //        $('div.image_space_gap_31').removeClass('image_space_gap_3');
+    //        //$('div.pgwm_table_space1').removeClass('pgwm_table_space');
+    //        //$('th.demanside_padding_heading').removeClass('demanside_padding_heading1');
+    //        $('div#btnExport').removeClass('hideDownload');
+    //        $('div#wsp_approved').removeClass('hideDownload');
+    //        $('div#remarks_div').removeClass('hideDownload');
+    //        $('div#btnExport1').removeClass('hideDownload');
+    //        //$('div#wsp_approved').removeClass('hideDownload');
+    //    }, 2000);
+
+    //}
+
+    //function ReportPdfUploadTest() {
+
+    //    $("#Data1").width(1100);
+    //    $("tr:nth-child(5n)").css("page-break-after", "always");
+    //    $("thead").css("display", "table-header-group");
+
+    //    var element = document.getElementById('Data1');
+    //    var w = screen.width;
+    //    var h = screen.height;
+    //    var opt = {
+    //        /* margin: 1,*/
+
+    //        filename: 'WaterSecurityPlan.pdf',
+    //        image: { type: 'jpeg', quality: 1.0, w, h },
+    //        //html2canvas: { scale: 2 },
+    //        html2canvas: { dpi: 96, letterRendering: true },
+    //        pagebreak: { avoid: 'tr, td, img, table,img,#container_Water_Availability,#container_balance_Report,#container_WaterbudgetReport,#container_demand_side,.table demandside_text,.heding_demandindside,.table-condensed,#pdf-1,#pdf-2,#pdf-3,#data_sprinkler_fund,#supp_WCS,#image_div1,#image_div2,#image_div3', after: '.page2el, #page_break' },
+    //        jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' }
+
+
+    //    };
+    //    //var blob = html2pdf(element, opt).output("blob1");
+    //    //let blob = html2pdf().set(opt).from(element);
+    //    html2pdf().set(opt).from(element).toPdf().save();
+    //    html2pdf().set(opt).from(element).toPdf().get('pdf').then(function (pdfObj) {
+    //        const perBlob = pdfObj.output('blob');
+
+    //        var formData = new FormData();
+    //        formData.append('pdf', perBlob, opt.filename);
+    //        $.ajax({
+    //            url: '/WSP_2024_25_update/SaveFinalReportOnServer',
+    //            data: formData,
+    //            type: 'POST',
+    //            contentType: false,
+    //            processData: false,
+    //            success: function (response) {
+    //                alert(response);
+    //                location.reload();
+    //            }
+    //        });
+    //    });
+    //    $("#Data1").width();
+    //    $('#Data1').addClass('background_after_download');
+    //    $('#Data1').addClass('table-condensed');
+    //    //$('div.wateravaliablity_space1').addClass('wateravaliablity_space');
+    //    //$('div.waterdrft_space1').addClass('waterdrft_space');
+    //    //$('div.waterdrft_balance1').addClass('waterdrft_balance');
+    //    //$('div.waterdrft_Budgeting_space1').addClass('waterdrft_Budgeting_space');
+    //    //$('div.supplyside_demandside_space1').addClass('supplyside_demandside_space');
+    //    //$('div.pgwmCommiteee_space1').addClass('pgwmCommiteee_space');
+    //    //$('div.pgwm_range1').addClass('pgwm_range');
+    //    //$('div.image_space_gap1').addClass('image_space_gap');
+    //    //$('div.image_space_gap_21').addClass('image_space_gap_2');
+    //    $('div.image_space_gap31').addClass('image_space_gap_3');
+    //    //$('div.pgwm_table_space1').addClass('pgwm_table_space');
+    //    //$('div.main_heading_sm_total1').addClass('main_heading_sm_total');
+    //    //$('div#SW_Image').addClass('sm_image_gap');
+
+    //    //$('th.demanside_padding_heading').addClass('demanside_padding_heading1');
+    //    $(".highcharts-credits").css("display", "none");
+
+    //    $('div#btnExport').addClass('hideDownload');
+
+    //    $('div#btnExport1').addClass('hideDownload');
+    //    $('div#btnExport').addClass('hideDownload');
+    //    $('div#wsp_approved').addClass('hideDownload');
+
+    //    setTimeout(function () {
+    //        $('#Data1').removeClass('background_after_download');
+    //        //$('div.wateravaliablity_space1').removeClass('wateravaliablity_space');
+    //        //$('div.waterdrft_space1').removeClass('waterdrft_space');
+    //        //$('div.waterdrft_balance1').removeClass('waterdrft_balance');
+    //        //$('div.waterdrft_Budgeting_space1').removeClass('waterdrft_Budgeting_space');
+    //        //$('div.supplyside_demandside_space1').removeClass('supplyside_demandside_space');
+    //        //$('div.pgwmCommiteee_space1').removeClass('pgwmCommiteee_space');
+    //        //$('div.pgwm_range1').removeClass('pgwm_range');
+    //        //$('div.main_heading_sm_total1').removeClass('main_heading_sm_total');
+    //        //$('div#SW_Image').removeClass('sm_image_gap');
+    //        //$('div.image_space_gap1').removeClass('image_space_gap');
+    //        //$('div.image_space_gap_21').removeClass('image_space_gap_2');
+    //        $('div.image_space_gap_31').removeClass('image_space_gap_3');
+    //        //$('div.pgwm_table_space1').removeClass('pgwm_table_space');
+    //        //$('th.demanside_padding_heading').removeClass('demanside_padding_heading1');
+    //        $('div#btnExport').removeClass('hideDownload');
+    //        $('div#btnExport1').removeClass('hideDownload');
+    //        $('div#wsp_approved').removeClass('hideDownload');
+    //    }, 2000);
+    //}
+</script>
+

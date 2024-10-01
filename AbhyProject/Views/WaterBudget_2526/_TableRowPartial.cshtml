@@ -1,0 +1,72 @@
+﻿@model AbhyProject.Models.WizardViewModel
+<tbody>
+    <!-- Existing rows will be rendered here (if any) -->
+    @if (Model.items != null && Model.items.Count() > 0)
+    {
+        for (int i = 0; i < Model.items.Count; i++)
+        {
+            <tr>
+                <td>@(i + 1)</td>
+                <td>
+                    @{
+                        if (Model.items[i].type_of_structure_other != null)
+                        {
+                            @Html.DropDownListFor(m => Model.items[i].type_of_structure,
+                                new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
+                                new { @class = "form-control dropdown Structure_Dropdown", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(m => Model.items[i].type_of_structure, "", new { @class = "text-danger" })
+
+                            @Html.TextBoxFor(m => Model.items[i].type_of_structure_other, new
+                            {
+                                @class = "form-control other-structure-textbox",
+                                @Placeholder = "Number of Structures (Nos.)",
+                                autocomplete = "off",
+                                maxlength = "8"
+                            })
+                            @Html.ValidationMessageFor(m => Model.items[i].type_of_structure_other, "", new { @class = "text-danger" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(m => Model.items[i].type_of_structure,
+                                new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
+                                new { @class = "form-control dropdown Structure_Dropdown" })
+                            @Html.ValidationMessageFor(m => Model.items[i].type_of_structure, "", new { @class = "text-danger" })
+                        }
+                    }
+
+                    <input  type="hidden" value = "@Model.items[i].id"  name="items[@i].id"  class = "text-danger Artificial_RechargeId"  />
+                    @Html.ValidationMessageFor(m => Model.items[i].type_of_structure_other, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => Model.items[i].number_of_structures, new { @class = "form-control numberofstructures", @Placeholder = "Number of Structures (Nos.)", autocomplete = "off", maxlength = "8" })
+                    @Html.ValidationMessageFor(m => Model.items[i].number_of_structures, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => Model.items[i].area_of_structures, new { @class = "form-control areastructures", @Placeholder = "Area of the Structures (Sq.m)", autocomplete = "off", maxlength = "8" })
+                    @Html.ValidationMessageFor(m => Model.items[i].area_of_structures, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => Model.items[i].avg_depth_structures, new { @class = "form-control depthstructures", @Placeholder = "Average Depth of Structures (m)", autocomplete = "off", maxlength = "8" })
+                    @Html.ValidationMessageFor(m => Model.items[i].avg_depth_structures, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => Model.items[i].total_storage_capacity, new { @class = "form-control price total_storage_capacity", @readonly = "readonly" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => Model.items[i].annual_fillings, new { @class = "form-control annualfillings", @Placeholder = "Annual No. of Fillings (Nos.)", autocomplete = "off", maxlength = "8" })
+                    @Html.ValidationMessageFor(m => Model.items[i].annual_fillings, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => Model.items[i].qt_annual_rech_water, new { @class = "form-control qt_annual_rech_water price", @readonly = "readonly" })
+                </td>
+                <td>
+                    <span class="tableFlexSpan">
+                        <button type="button" class="btn btn-primary  btn-lg btnedit" attr="@Model.items[i].id">Edit</button>
+                        <button type="button" class="btn btn-lg btn-danger remove-row" attr="@Model.items[i].id">Remove</button>
+                    </span>
+                    
+                </td>
+            </tr>
+        }
+    }
+</tbody>
