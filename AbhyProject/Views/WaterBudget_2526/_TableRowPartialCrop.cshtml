@@ -1,0 +1,69 @@
+﻿@model AbhyProject.Models.WizardViewModel
+<tbody>
+    <!-- Existing rows will be rendered here (if any) -->'
+    @{if (Model.itemsList.Count() > 0)
+        {
+            for (int i = 0; i < Model.itemsList.Count; i++)
+            {
+    <tr>
+        <td>@(i + 1)</td>
+        <td>
+            @{
+                if (Model.itemsList[i].crop_other != null)
+                { @Html.DropDownListFor(m => Model.itemsList[i].crop,
+                                   new SelectList(Model.Allcrops, "Value", "Text", Model.itemsList[i].crop),
+                                   new { @class = "form-control crop_Dropdown dropdown" })
+            @Html.ValidationMessageFor(m => Model.itemsList[i].crop, "", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => Model.itemsList[i].crop_other, new { @class = "form-control other_crop_entry", @Placeholder = "Enter New Crop", autocomplete = "off" })
+            @Html.ValidationMessageFor(m => Model.itemsList[i].crop_other, "", new { @class = "text-danger" })
+                }
+
+                else
+                {
+            @Html.DropDownListFor(m => Model.itemsList[i].crop,
+                                     new SelectList(Model.Allcrops, "Value", "Text", Model.itemsList[i].crop),
+                                     new { @class = "form-control crop_Dropdown dropdown" })
+            @Html.ValidationMessageFor(m => Model.itemsList[i].crop, "", new { @class = "text-danger" })
+
+                }
+            }
+
+            <input type="hidden" value="@Model.itemsList[i].id" name="itemsList[@i].id" class="text-danger major_CropsId" />
+
+        </td>
+        <td>
+            @Html.TextBoxFor(m => Model.itemsList[i].net_irrigation_requirement, new { @class = "form-control quantity net_irrigation_requirement", @Placeholder = "Net Irrigation Requirement (NIR) (in m", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => Model.itemsList[i].net_irrigation_requirement, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => Model.itemsList[i].area_kharif_season, new { @class = "form-control area_kharif_season", @Placeholder = "Area in Kharif Season (ha)" })
+            @Html.ValidationMessageFor(m => Model.itemsList[i].area_kharif_season, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => Model.itemsList[i].area_rabi_season, new { @class = "form-control area_rabi_season", @Placeholder = "Area in Rabi Season (ha)" })
+            @Html.ValidationMessageFor(m => Model.itemsList[i].area_rabi_season, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => Model.itemsList[i].area_summer_season, new { @class = "form-control area_summer_season", @Placeholder = "Area in Summer Season (ha)" })
+
+        </td>
+        <td>
+            @Html.TextBoxFor(m => Model.itemsList[i].total_gross_cropped_area, new { @class = "form-control total_gross_cropped_area", @Placeholder = "Annual No. of Fillings (Nos.)", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => Model.itemsList[i].total_gross_cropped_area, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => Model.itemsList[i].total_irrigation_requirement, new { @class = "form-control price total_irrigation_requirement", @readonly = "readonly" })
+
+        </td>
+        <td>
+            <span class="tableFlexSpan ">
+                <button type="button" class="btn btn-primary btn-lg btneditcrop" attr="@Model.itemsList[i].id">Edit</button>
+                <button type="button" class="btn btn-lg btn-danger remove-rowcrop" attr="@Model.itemsList[i].id">Remove</button>
+            </span>
+        </td>
+    </tr>
+                        }
+                    }
+                }
+</tbody>

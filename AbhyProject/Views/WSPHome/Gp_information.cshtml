@@ -44,9 +44,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 Select_option_div">
+    <div class="col-md-6 Select_option_div">
 
-        <ul class="Select_option pull-right col-md-2 col-sm-2">
+        <ul class="Select_option pull-left col-md-2 col-sm-2">
             <li>
                 <a href="~/WspNew/MIS_Modules" class="btn btn-primary">
                     Back
@@ -55,10 +55,10 @@
             </li>
         </ul>
     </div>
-    <div class="clearfix" style="margin-right:200px">
+    <div class="col-md-6">
 
-        <div class="col-md-12 Select_option_div">
-            <ul class="imgHome clearfix Select_option pull-right col-md-2 col-sm-2">
+        <div class="Select_option_div">
+            <ul class="imgHome clearfix Select_option pull-right" style="padding-top: 10px;">
                 <li>
                     <img src="~/Content/WspImages/user-silhouette.png" title="User" />
                     @if (Session["UserName"] != null)
@@ -80,7 +80,7 @@
                 </ul>*@
         </div>
     </div>
-    <div class="clearfix total_div_wsp_home" style="">
+    <div class="clearfix total_div_wsp_home container-fluid" style="">
         <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="gpdci_div">
             <a href="~/Gplevel/Gplevel">
                 @*<a href="~/Home/under_maintainance">*@
@@ -215,6 +215,26 @@
                 </ul>
             </a>
         </div>
+      
+
+        @*@if (Session["Officer"] == "National Level Nodal Officer")
+        {*@
+            <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="water_budget">
+                <a href="~/WaterBudget_2526/water_budget">
+                    <ul class="ul_image_wsphome ">
+                        <li>
+                            <ul class="arrow_ul_css">
+
+                                <li><img src="~/Content/Agriculture_icons/water_budget.png" /></li>
+                                <li><i class="fa fa-angle-double-right"></i></li>
+                            </ul>
+
+                        </li>
+                        <li><span></span></li>
+                    </ul>
+                </a>
+            </div>
+        @*}*@
 
     </div>
     <div id="progress">
@@ -251,9 +271,10 @@
 
 <script>
     $(document).ready(function () {
+       
         //$('#myModal').modal('show');
         SessionInfo();
-        
+
         var Auth = '@Session["Access_Auth"]';
 
         if (Auth == "Training-SM") {
@@ -270,8 +291,23 @@
             $('#social_div_new').hide();
         }
 
-
-
+        
+        var officer = '@Session["Officer"]';
+        var email = '@Session["Email"]';
+        
+        if (officer == "National Level Nodal Officer") {
+            
+            if (email == 'ranjana.devli@kreatetechnologies.com') {
+                $('#water_budget').show();
+            }
+            else {
+                $('#water_budget').hide();
+            }
+        }
+        else {
+            $('#water_budget').hide();
+        }
+       
     });
     var state = "";
     function SessionInfo() {
@@ -283,7 +319,7 @@
             data: "{'Data': '" + JSON.stringify(obj) + "'}",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 var arr = data.split(",");
                 state = arr[1];
 
@@ -293,5 +329,26 @@
             }
         });
     }
+</script>
+<script>
+    $(document).ready(function () {
+        let i = 0;
+        if (i == 0) {
+            i = i + 1;
+            GetCunCurrentUser();
+        }
+        });
 
+      function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+                    if (data == "False") {
+                        //window.location.href = "/Home/LogOut";
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                }
+            });
+        }
 </script>

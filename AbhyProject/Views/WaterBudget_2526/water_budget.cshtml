@@ -1,0 +1,1405 @@
+﻿
+@{
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WSP Home</title>
+</head>
+
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/css/abhycss.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<link href="~/Content/wspnewcss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/Content/JS_Files/wsphome.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<style>
+    .Select_option li select {
+        border-radius: 25px;
+        border: 1px solid #337ab7;
+        width: 216px;
+        height: 37px;
+    }
+
+    #DropdownSearch_btn a {
+        border-radius: 25px;
+        padding: 10px 24px;
+        margin-left: 10px;
+    }
+
+        #DropdownSearch_btn a:hover {
+            border-bottom: 0px;
+            padding: 10px 24px;
+        }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .totaldivwsphome > .totaldiv {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 15px;
+    }
+    /*.fade {
+        opacity: 0 !important;
+    }*/
+
+    .arrow_ul_css > li {
+        display: inline-block;
+    }
+    /*  .Select_option_div {
+        background-color: gray;
+        padding: 0px;
+        color: #fff;
+    }*/
+    .maniullist1 {
+        width: 100%;
+        background: #fff;
+        padding: 3px;
+        margin: 0 0 30px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: 400ms ease-in-out;
+        cursor: pointer;
+        align-items: center
+    }
+
+        .maniullist1 > li > a > span > img:hover {
+            transform: translateY(-5px);
+        }
+
+    .maniullist1 {
+        margin: 0px 0px 10px;
+    }
+
+    .ul_image_wsphome {
+        list-style: none;
+        padding: 0px;
+    }
+
+        .ul_image_wsphome > li > img {
+            width: 100%
+        }
+
+    @@media screen and (max-width: 767px) and (min-width: 300px) {
+        .ul_image_wsphome > li > img {
+            width: 35%
+        }
+    }
+
+    body {
+        background: linear-gradient(#a5b7c5,#b6c4cf, #e2e7ec,#ffffff);
+    }
+
+    .total_div_wsp_home {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0px;
+    }
+
+    .sub_total_div:hover {
+        transition: all .2s ease-in-out;
+        transform: scale(1.1);
+        border-radius: 0.7em;
+    }
+
+    .sub_total_div > a {
+        text-decoration: none;
+    }
+
+    .ul_image_wsphome > li > span {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .sub_total_div {
+    }
+</style>
+<style>
+    .arrow_ul_css > li > img {
+        width: 100%;
+    }
+
+    .arrow_ul_css {
+        padding: 0px;
+    }
+
+        .arrow_ul_css > li > i {
+            font-size: 25px;
+        }
+
+        .arrow_ul_css > li:last-child {
+            position: absolute;
+            top: 30%;
+            bottom: 0;
+        }
+
+    @@media (max-width: 980px) {
+        .arrow_ul_css > li:last-child {
+            top: 27%;
+            bottom: 0;
+        }
+    }
+</style>
+<main>
+    <header class="header hederImage">
+        <div class="clearfix">
+            <div class="clearfix">
+                <div class="col-lg-9">
+                    <div class="header-top-info">
+                        <ul class="clearfix">
+                            <li>
+                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                            </li>
+
+                            <li>
+                                <span>
+                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                </span>
+                                <span>
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                        Ministry of Jal Shakti
+                                    </a>
+                                </span>
+                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                <span style="text-align:center;">
+                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                       style="text-transform:none; font-size:14px;">
+                                        River Development & Ganga Rejuvenation
+                                    </a>
+                                </span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="imgHome clearfix">
+
+                        <li>
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            }
+
+                        </li>
+                        <li>
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-6" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                    <ul class="imgHome clearfix">
+                        <li>
+                            <a href="~/Home/index">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                </span>
+                                <label>Home <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/WspNew/WSP_GWM_HOME">
+                                <span>
+                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="WSP & GWM" />
+                                </span>
+                                <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                            </a>
+                        </li>
+                        <li>
+                            <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                            <label>WSP Home</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 pull-right" style="width:auto">
+                    @*<a href="/Ataljalimages/UserManual/WSP_User_Manual - 2024-25.pdf" target="_blank" class="font-extra-bold bg-primary text-white btn btn-sm">
+                        USER MANUAL
+                    </a>*@
+                    <a href="~/WSPHome/Gp_information" class="btn btn-danger">
+                        Back To GP Modules
+                    </a>
+                    <select class="form-control" id="goto_page" onchange="Goto_page()" style="float:right;width:140px;margin-left:2px">
+                        <option value="0">Select Page</option>
+                        <option value="/SocialMointoring_new/Social_management_new">Social Mangement</option>
+                        <option value="/Gplevel/Gplevel">GPDCI Modules</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div style="text-align: center;"> <label style="text-align:center;color:red;" id="Error_"></label></div>
+    <div class="clearfix">
+
+        <div class="col-md-12 Select_option_div">
+
+            <ul class="Select_option col-md-12 col-sm-12  text-left">
+                <li id="StateLabel">
+                    <label id="lblstate">State:</label>
+                    <span id="spnstate1">@Session["gstate"]</span>
+                </li>
+                <li id="StateDropdownLabel">
+
+                    <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
+                    </select>
+                </li>
+
+                <li id="DistLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label id="lbldistrict">District:</label>
+                    <span id="spndistrict">@Session["gdist"]</span>
+                </li>
+
+                <li id="DistDropdownLabel">
+
+                    <select class="form-control" id="dist11" onchange="Dist_fun()">
+                    </select>
+                </li>
+
+                <li id="BlockLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Block:</label>
+                    <span>@Session["gblock"] </span>
+                </li>
+
+                <li id="BlockDropdownLabel">
+
+                    <select class="form-control" id="block1" onchange="Block_fun()">
+                    </select>
+                </li>
+
+                <li id="GramLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Gram panchayat:</label>
+                    <span>@Session["ggram"]</span>
+                </li>
+
+                <li id="GramDropdownLabel">
+
+                    <select class="form-control" id="gram" onchange="Gram_change()">
+                    </select>
+                </li>
+
+
+                <li id="YearLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Year:</label>
+                    @*<span>@Session["year"]</span>*@
+                </li>
+
+                <li id="YearDropdownLabel">
+
+                    <select class="form-control" id="year" onchange="Year_change()">
+                        <option value="0">Select Financial Year</option>
+                        <option selected value="2025-26" >2025-2026</option>
+                    </select>
+                </li>
+
+                <!--<li id="MonthLabel">
+                    <i class="fas fa fa-angle-double-right"></i>
+                    <label>Month:</label>-->
+                @*<span>@Session["year"]</span>*@
+                <!--</li>
+
+                <li id="MonthDropdownLabel">
+
+                    <select class="form-control" id="month" onchange="Month_change()">
+                        <option value="0">Select Month</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                    </select>
+                </li>-->
+
+
+                <li id="DropdownSearch_btn">
+                    <a class="btn btn-success" onclick="Dropdown_Search()">Search</a>
+                </li>
+            </ul>
+            <ul class="Select_option text-right col-md-12 col-sm-12">
+                <li>
+                    <h4>Status : <label id="status_wsp"></label></h4>
+                    <span id="remarks"></span>
+                </li>
+                @*<li>
+                        <button class="btn btn-primary" onclick="Image_onchange('WSPR')">
+                            Water Security Plan Report
+                        </button>
+
+                    </li>*@
+            </ul>
+
+        </div>
+    </div>
+    <div class="clearfix total_div_wsp_home">
+
+        <div class="col-lg-4 col-md-4 col-sm-3 sub_total_div">
+            <a>
+                <ul class="ul_image_wsphome ">
+                    <li><img src="/Content/Agriculture_icons/Water-Budget-2025-26.png" onclick="Image_onchange('Wsp_Home')" /></li>
+
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-3 sub_total_div">
+            <a href="~/WaterBudget_2526/ApprovedWaterBudgetReport">
+                <ul class="ul_image_wsphome ">
+                    <li><img src="/Content/Agriculture_icons/Approved-Water-Budget.png" /></li>
+
+                </ul>
+            </a>
+        </div>
+
+        @*<div class="col-md-12  col-sm-12 ">
+            <div class="text-center Wsp_home_page_under_text">
+                <p>Water Security plan is a plan that specifies investments and actions to meet water demands of a community in a specific GP, tailored to meet the particular challenges in the GP, and includes any water-related investments/actions to ensure optimum utilization of surface and groundwater available in the GP to serve their needs and needs to be finally approved by the Gram Sabha.</p>
+            </div>
+        </div>*@
+    </div>
+
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Water Budget Home</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+</main>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            @*<div class="modal-body">
+                    <img src="~/Ataljalimages/Water%20Security%20Plan%20Under%20MAintenance.png" />
+
+                </div>*@
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+<script>
+    var StateOfficer = '@Session["Officer"]';
+    $(document).ready(function () {
+        const d = new Date();
+        var fin_year = getCurrentFiscalYear();
+        var year = fin_year;
+        Year_change();
+        if (StateOfficer != 'District Level Nodal Officer') {
+            $('#dpmu_declaration_div').hide();
+        }
+        if (StateOfficer == "State Level Nodal Officer") {
+            $('#dpmu_declaration_div').show();
+
+        }
+        if (StateOfficer == "National Level Nodal Officer") {
+            $('#dpmu_declaration_div').show();
+        }
+
+    });
+   var Jsondata = "";
+
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var Year = "0";
+    /*var Month = "0";*/
+    var off_1 = "";
+    $(document).ready(function () {
+
+        Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $('#YearLabel').hide();
+        $('#YearDropdownLabel').hide();
+        DropDownInfo();
+    });
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+    }
+</script>
+
+<script type="text/javascript">
+
+
+    function getCurrentFiscalYear() {
+        //get current date
+        var today = new Date();
+
+        //get current month
+        var curMonth = today.getMonth();
+
+        var fiscalYr = "";
+        if (curMonth > 3) { //
+            var nextYr1 = (today.getFullYear() + 1).toString();
+            fiscalYr = today.getFullYear().toString() + "-" + nextYr1.charAt(2) + nextYr1.charAt(3);
+        } else {
+            var nextYr2 = today.getFullYear().toString();
+            fiscalYr = (today.getFullYear() - 1).toString() + "-" + nextYr2.charAt(2) + nextYr2.charAt(3);
+        }
+
+        return (fiscalYr);
+    }
+
+  
+
+    
+
+    //function Water_Utilization_Info() {
+    //    $.ajax({
+    //        type: 'GET',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_2024_25_update/Water_Utilization_Info',
+    //        data: '',
+    //        dataType: 'JSON',
+    //        success: function (response) {
+
+    //            $('#WaterUtilization').text(response.toFixed(4));
+    //            if (response == "Logout") {
+    //                window.location = "/Home/LogOut";
+    //            }
+    //        }
+    //    });
+    //}
+
+    //function Info1() {
+    //    $.ajax({
+    //        type: 'GET',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_2024_25_update/WaterDraftInfo_Details',
+    //        data: '',
+    //        dataType: 'JSON',
+    //        success: function (response) {
+    //            if (response == "Logout") {
+    //                  window.location = "/Home/LogOut";
+    //            }
+    //            Irrigated_Total = 0;
+    //            var irri_utili_surface_water = 0;
+    //            var irri_utili_ground_water = 0;
+    //            if (response.length != 0) {
+    //                if (response[0].irri_utili_surface_water != null && response[0].irri_utili_surface_water != "") {
+    //                    irri_utili_surface_water = parseFloat(response[0].irri_utili_surface_water);
+    //                }
+    //                if (response[0].irri_utili_ground_water != null && response[0].irri_utili_ground_water != "") {
+    //                    irri_utili_ground_water = parseFloat(response[0].irri_utili_ground_water);
+    //                }
+    //                Irrigated_Total = irri_utili_surface_water + irri_utili_ground_water;
+    //            }
+    //            Industry_Info();
+    //        }
+    //    });
+    //}
+    //var Industry_Total = 0, industry_demand_surface_water = 0, industry_demand_ground_water = 0;
+    //function Industry_Info() {
+    //    $.ajax({
+    //        type: 'GET',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_2024_25_update/WaterIndustry_Info_Details',
+    //        data: '',
+    //        dataType: 'JSON',
+    //        success: function (response) {
+    //            if (response == "Logout") {
+    //                  window.location = "/Home/LogOut";
+    //            }
+    //            Industry_Total = 0, industry_demand_surface_water = 0, industry_demand_ground_water = 0;
+    //            if (response.length != 0) {
+    //                for (var j = 0; j < response.length; j++) {
+    //                    if (response[j].industry_demand_surface_water != null && response[j].industry_demand_surface_water != "") {
+    //                        industry_demand_surface_water += parseFloat(response[j].industry_demand_surface_water);
+    //                    }
+    //                    if (response[j].industry_demand_ground_water != null && response[j].industry_demand_ground_water != "") {
+    //                        industry_demand_ground_water += parseFloat(response[j].industry_demand_ground_water);
+    //                    }
+    //                }
+    //            }
+    //            Other_Usage_Info();
+    //        }
+    //    });
+    //}
+    //var Other_Total = 0, other_demand_ground_water = 0, other_demand_surface_water = 0;
+    //function Other_Usage_Info() {
+    //    $.ajax({
+    //        type: 'GET',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_2024_25_update/WaterOther_Usage_Info_Details',
+    //        data: '',
+    //        dataType: 'JSON',
+    //        success: function (response) {
+
+
+    //            if (response == "Logout") {
+    //                  window.location = "/Home/LogOut";
+    //            }
+    //            Other_Total = 0, other_demand_ground_water = 0, other_demand_surface_water = 0;
+    //            var tr = '';
+
+
+    //            if (response.length != 0) {
+    //                for (var i = 0; i < response.length; i++) {
+
+    //                    if (response[i].other_demand_ground_water != null && response[i].other_demand_ground_water != "") {
+    //                        other_demand_ground_water += parseFloat(response[i].other_demand_ground_water);
+    //                    }
+    //                    if (response[i].other_demand_surface_water != null && response[i].other_demand_surface_water != "") {
+    //                        other_demand_surface_water += parseFloat(response[i].other_demand_surface_water);
+    //                    }
+
+    //                }
+    //            }
+
+
+
+
+    //            Industry_Total = industry_demand_surface_water + industry_demand_ground_water;
+
+    //            Other_Total = other_demand_ground_water + other_demand_surface_water;
+
+    //            var Total = Domestic_Total + Irrigated_Total + Industry_Total + Other_Total;
+
+
+    //            $('#WaterUtilization').text(Total.toFixed(2));
+    //        }
+    //    });
+    //}
+
+    //function Balance_Info() {
+
+    //    $.ajax({
+    //        type: 'GET',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_2024_25_update/WaterBalanceInserted_Details',
+    //        data: '',
+    //        dataType: 'JSON',
+    //        success: function (response) {
+    //            if (response == "Error") {
+    //                window.location = "/WSP_2024_25_update/Balancereport";
+    //            }
+    //            if (response == "Logout") {
+    //                window.location = "/Home/LogOut";
+    //            }
+    //            if (response.length != 0) {
+
+    //                // SurfaceWater
+    //                if (response[0].wb_total_balance != null && response[0].wb_total_balance != "") {
+    //                    $('#WaterBalance').text(response[0].wb_total_balance.toFixed(4));
+    //                }
+
+
+    //            } else {
+    //                $('#WaterBalance').text("0");
+    //            }
+
+
+    //        }
+    //    });
+    //}
+
+    //function WaterBudget() {
+    //    $.ajax({
+    //        type: 'GET',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: '/WSP_2024_25_update/WaterBudgetInfo_Details',
+    //        data: '',
+    //        dataType: 'JSON',
+    //        success: function (response) {
+
+    //            $('#WaterBudget').text("0");
+    //            if (response == "Logout") {
+    //                window.location = "/Home/LogOut";
+    //            }
+    //            if (response.length != 0) {
+
+
+    //                if (response[0].total_wt_available != "" && response[0].total_wt_available != null) {
+
+    //                    var total_wt_available = parseFloat(response[0].total_wt_available).toFixed(4);
+    //                    $('#WaterBudget').text(total_wt_available);
+    //                }
+    //            }
+
+    //        }
+    //    });
+    //}
+
+
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterBudget_2526/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+                    $('#YearLabel').hide();
+                    $('#YearDropdownLabel').hide();
+                    //$('#MonthLabel').hide();
+                    //$('#MonthDropdownLabel').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $('#YearLabel').hide();
+                        $('#YearDropdownLabel').show();
+                        $(".loader").hide();
+                        //$('#MonthLabel').show();
+                        //$('#MonthDropdownLabel').show();
+
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#YearLabel').hide();
+                        $('#YearDropdownLabel').show();
+                        $('#YearLabel').show();
+                        $('#YearDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $(".loader").hide();
+                        //$('#MonthLabel').hide();
+                        //$('#MonthDropdownLabel').show();
+                        State_Dropdown_Function();
+                        //State_Dropdown_Function();
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#YearLabel').hide();
+                        $('#YearDropdownLabel').show();
+                        $('#YearLabel').hide();
+                        $('#YearDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $(".loader").hide();
+                        //$('#MonthLabel').hide();
+                        //$('#MonthDropdownLabel').show();
+                        Dist_fun();
+                       // Dist_fun();
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#YearLabel').hide();
+                        $('#YearDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        $('#YearLabel').show();
+                        $('#YearDropdownLabel').show();
+                        $(".loader").hide();
+                        //$('#MonthLabel').hide();
+                        //$('#MonthDropdownLabel').show();
+                        Block_fun();
+                        Block_fun();
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $("#year").prop("disabled", true);
+                        /*$("#month").prop("disabled", true);*/
+                        $("#DropdownSearch_btn").hide();
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#YearLabel').show();
+                        $('#YearDropdownLabel').show();
+
+                        $('#YearLabel').show();
+                        $('#YearDropdownLabel').show();
+                        $(".loader").hide();
+                        //$('#MonthLabel').show();
+                        //$('#MonthDropdownLabel').show();
+                        //Availability_Info();
+                        //Utilization_Info();
+                        //Balance_Info();
+                        //WaterBudget();
+                        //baselinedata_Check_Approved_or_Not();
+                        Dropdown_Search();
+                    }
+
+
+                }
+                //Session_month_year();
+            }
+
+        });
+
+    }
+
+
+    function DropDownInfo() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterBudget_2526/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+                if (response.length != 0) {
+                    Jsondata = response;
+                    console.log(response);
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select StateName</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                   
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (!ddlst[Jsondata[i].state_name]) {
+                                all_dists.push({ lg_state: Jsondata[i].lg_state, state_name: Jsondata[i].state_name });
+                                ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                            }
+                        }
+                        var DistArray = [];
+                        console.log("all_States", all_dists);
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        console.log(DistArray);
+                        optionState = '<option value="0">Select StateName</option>';
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != "Delhi_7") {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i].lg_state + '">' + DistArray[i].state_name + '</option>';
+                                }
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+
+    function State_Dropdown_Function() {
+        
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var StateName = $("#spnstate option:selected").text();
+        if (off_1 == "state") {
+           
+            StateName = State;
+        } else {
+            State = $("#spnstate").val();
+        }
+        console.log("StateName", StateName)
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+                    if (!ddlst[Jsondata[i].district_name]) {
+
+                        all_dists.push({ lg_dist: Jsondata[i].lg_dist, district_name: Jsondata[i].district_name });
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+            console.log("checkAll_dists", all_dists)
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            console.log("All_dists", all_dists)
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i].lg_dist + '">' + DistArray[i].district_name + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+
+    }
+
+
+
+    function Dist_fun() {
+        
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        //var dist = $("#dist11").val();
+        var distName = $("#dist11 option:selected").text();
+        var State = $("#spnstate option:selected").text();
+        if (off_1 == "dist") {
+            distName = dist;
+        } else {
+            Dist = $("#dist11").val();
+        }
+        console.log(Dist)
+        if (Dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                
+                if (distName == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+                    
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push({ lg_block: Jsondata[i].lg_block, block_name: Jsondata[i].block_name });
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                        //  $("#block").append(optionDist);
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i].lg_block + '">' + BlockArray[i].block_name + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+    }
+
+
+
+    function Block_fun() {
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        //var block = $("#block1").val();
+        var blockName = $("#block1 option:selected").text(); 
+        var StateName = $("#spnstate option:selected").text(); 
+        var DistName = $("#dist11 option:selected").text(); 
+
+        if (off_1 == "block") {
+            StateName = Block;
+        } else {
+            Block = $("#block1").val();
+        }
+
+
+        if (Block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name && DistName == Jsondata[i].district_name && blockName == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push({ lg_gram: Jsondata[i].lg_gram, gram_panchayat_name: Jsondata[i].gram_panchayat_name });
+                        //   $("#gram").append(optionDist);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i].lg_gram + '">' + GramArray[i].gram_panchayat_name + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+
+    function Gram_change() {
+        var Gram1 = $("#gram").val();
+        if (Gram1 == "0") {
+            alert("Please Select Grampanchayat");
+        } else {
+            Gram = $('#gram').val();
+        }
+    }
+
+    function Year_change() {
+
+        var Year1 = $("#year").val();
+        if (Year1 == "0") {
+            alert("Please Select Year");
+        } else {
+            Year = $('#year').val();
+        }
+    }
+
+    //function Month_change() {
+    //    var month1 = $("#month").val();
+    //    if (month1 == "0") {
+    //        alert("Please Select Month");
+    //    } else {
+    //        Month = $('#month').val();
+    //    }
+    //}
+
+
+
+    function Dropdown_Search() {
+        //let State = $('#spnstate').val();
+        //let Dist = $('#dist11').val();
+        //let Block = $('#block1').val();
+        //let Gram = $('#gram').val();
+        let Year = $('#year').val();
+        if (Gram != "0") {
+        } else {
+            Gram = $('#gram').val();
+        }
+        var xx = 0;
+        if (State == "0") {
+            xx = 1;
+            alert("Please Select StateName");
+        } else if (Dist == "0") {
+            xx = 1;
+            alert("Please Select District");
+        }
+        else if (Block == "0") {
+            xx = 1;
+            alert("Please Select Block");
+        } else if (Gram == "0") {
+            xx = 1;
+            alert("Please Select Gram Panchayat");
+        }
+        else if (Year == "0") {
+            xx = 1;
+            alert("Please Select Year");
+        }
+        else if ($("#year").val() == "0") {
+            xx = 1;
+            alert("Please Select Year");
+        }
+      
+
+        if (xx == 0) {
+
+            $.ajax({
+                type: "Post",
+                url: "/WaterBudget_2526/StateLevel_Dropdown",
+                contentType: "application/json;charset=utf-8",
+                data: "{'lg_state':'" + State + "','lg_dist':'" + Dist + "','lg_block':'" + Block + "','lg_gram':'" + Gram + "','Year':'" + Year + "'}",
+                dataType: "json",
+                success: function (results) {
+                    get_approved_reject_status();
+                }
+            });
+        }
+    }
+
+    var status_check = 0;
+    //function get_approved_reject_status() {
+    //    
+    //    $.ajax({
+    //        type: 'POST',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: "/WSP_2024_25_update/get_approved_reject_status",
+    //        dataType: 'JSON',
+    //        success: function (data) {
+    //            
+    //            status_check = data.status_id;
+    //            var status = '';
+    //            if (data == "null") {
+    //                status = 'In Progress';
+    //                $('#status_wsp').text(status).css({ 'color': 'blue' });
+    //            }
+    //            //if (data.reject_status == "Rejected By Stat" && data.status_id == 3) {
+    //            if (data.reject_status == "Rejected By State" && data.status_id == 3) {
+    //                status = 'Rejected By State';
+    //                $('#status_wsp').text(status).css({ 'color': 'red' });
+    //            }
+    //            if (data.reject_status == "Rejected By District" && data.status_id == 1) {
+    //                status = 'Rejected By District';
+    //                $('#status_wsp').text(status);
+    //            }
+    //            if ((data.reject_status == "" || data.reject_status == null) && data.status_id == 3) {
+    //                status = 'Submitted to DPMU';
+    //                $('#status_wsp').text(status).css({ 'color': 'green' });
+    //            }
+    //            if ((data.reject_status == "" || data.reject_status == null) && data.status_id == 4) {
+    //                status = 'Submitted to SPMU';
+    //                $('#status_wsp').text(status).css({ 'color': 'green' });
+    //            }
+    //            if (data.status_id == 5) {
+    //                status = 'Approved';
+    //                $('#status_wsp').text(status).css({ 'color': 'green' });
+    //            }
+    //            if ((data.reject_status == "" || data.reject_status == null) && data.status_id == 1) {
+    //                status = 'In Progress';
+    //                $('#status_wsp').text(status).css({ 'color': 'blue' });
+    //            }
+
+
+    //        }
+    //    });
+    //}
+
+
+    function get_approved_reject_status() {
+        
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterBudget_2526/get_approved_reject_status",
+            dataType: 'JSON',
+            success: function (data) {
+                
+                status_check = data.status_id;
+                var status = '';
+                if (data == "null") {
+                    status = 'Pending';
+                    $('#status_wsp').text(status).css({ 'color': 'blue' });
+                }
+                
+                if (data.status_id == 1) {
+                    status = 'Submitted to NPMU';
+                    $('#status_wsp').text(status).css({ 'color': 'green' });
+                }
+
+                if (data.status_id == 3) {
+                    status = 'Reject';
+                    $('#status_wsp').text(status).css({ 'color': 'red' });
+                }
+
+                if (data.status_id == 5) {
+                    status = 'Approved';
+                    $('#status_wsp').text(status).css({ 'color': 'blue' });
+                }
+               
+
+            }
+        });
+    }
+
+
+
+</script>
+<script type="text/javascript">
+$(function () {
+$("#btnRedirect").click(function(){
+window.location.href = "@Url.Action("WspWaterAvailability", "WspNew")";
+});
+});
+    $(function () {
+$("#btnRedirectDraft").click(function(){
+window.location.href = "@Url.Action("WspDraft", "WspNew")";
+});
+    });
+
+    let approved = 0;
+    //function baseline_gp_status() {
+    //    var year = $("#year").val();
+    //    var obj = {};
+    //    obj.state_name = State;
+    //    obj.district_name = Dist;
+    //    obj.block_name = Block;
+    //    obj.gpname = Gram;
+    //    obj.year = year;
+    //    $.ajax({
+    //        type: 'POST',
+    //        contentType: 'application/json; chatset=utf-8',
+    //        url: "/WSP_2024_25_update/baselinedata_geting_status",
+    //        data: "{'Data': '" + JSON.stringify(obj) + "'}",
+    //        dataType: 'JSON',
+    //        success: function (data) {
+    //            if (data.length != 0) {
+    //                approved = 1;
+    //            } else {
+    //                approved = 0;
+    //            }
+    //        }
+    //    });
+    //}
+    var approved_status = '';
+
+    function Image_onchange(ss) {
+        var check = 1;
+
+        var StateOfficer = '@Session["Officer"]';
+        if (State == "0") {
+            alert("Please Select StateName");
+        } else if (Dist == "0") {
+            alert("Please Select DistrictName");
+        }
+        else if (Block == "0") {
+            alert("Please Select BlockName");
+        }
+        else if (Gram == "0") {
+            alert("Please Select GramPanchayatName");
+        }
+        else if (Year == "0") {
+            alert("Please Select Year");
+        }
+        else {
+            Dropdown_Search();
+            if (ss == "Wsp_Home") {
+                window.location = "/WaterBudget_2526/Wsp_Home";
+            }
+
+            //else if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+            //        if (ss == "Wspgram") {
+            //            window.location = "/WSP_2024_25_update/WSP_gram";
+            //        }
+            //        else if (ss == "WSPR") {
+            //            window.location = "/WspNew/report_declaration";
+            //        }
+            //        else if (ss == "WaterAvailabilty") {
+            //            window.location = "Wsp_Water_Availability", "WSP_2024_25_update";
+            //        }
+            //        else if (ss == "WaterUtilization") {
+            //            window.location = " /WSP_2024_25_update/Water_Utilization";
+            //        }
+            //        else if (ss == "WaterBalance") {
+            //            window.location = " /WSP_2024_25_update/Wsp_Balance";
+            //        }
+            //        else if (ss == "WaterBudget") {
+            //            window.location = " /WSP_2024_25_update/Water_Budget";
+            //        }
+            //        else if (ss == "WSPDemandside") {
+            //            window.location = " /WSP_2024_25_update/DemandSide";
+            //        } else if (ss == "PGWM") {
+            //            window.location = " /WSP_2024_25_update/PGWM";
+            //        }
+            //        else if (ss == "Demand") {
+            //            window.location = " /WSP_2024_25_update/DemandSide";
+            //        }
+            //        else if (ss == "Supply") {
+            //            window.location = " /WSP_2024_25_update/SupplySide";
+            //        }
+            //        else if (ss == "DPMU") {
+            //            window.location = " /WSP_2024_25_update/declaration";
+            //        } else if (ss == "wsp_report") {
+            //            window.location = "/WSP_2024_25_update/Total_WSP_Report";
+            //        } else if (ss == "Wspremarks") {
+            //            window.location = "/WSP_2024_25_update/Wspremarks";
+            //        }
+            //}
+            //else if (StateOfficer != "Gram Panchyat Nodal Officer") {
+            //    if (status_check >= 3) {
+            //    if (ss == "Wspgram") {
+            //        window.location = "/WSP_2024_25_update/WSP_gram";
+            //    }
+            //    else if (ss == "WSPR") {
+            //        window.location = "/WspNew/report_declaration";
+            //    }
+            //    else if (ss == "WaterAvailabilty") {
+            //        window.location = "Wsp_Water_Availability", "WSP_2024_25_update";
+            //    }
+            //    else if (ss == "WaterUtilization") {
+            //        window.location = " /WSP_2024_25_update/Water_Utilization";
+            //    }
+            //    else if (ss == "WaterBalance") {
+            //        window.location = " /WSP_2024_25_update/Wsp_Balance";
+            //    }
+            //    else if (ss == "WaterBudget") {
+            //        window.location = " /WSP_2024_25_update/Water_Budget";
+            //    }
+            //    else if (ss == "WSPDemandside") {
+            //        window.location = " /WSP_2024_25_update/DemandSide";
+            //    } else if (ss == "PGWM") {
+            //        window.location = " /WSP_2024_25_update/PGWM";
+            //    }
+            //    else if (ss == "Demand") {
+            //        window.location = " /WSP_2024_25_update/DemandSide";
+            //    }
+            //    else if (ss == "Supply") {
+            //        window.location = " /WSP_2024_25_update/SupplySide";
+            //    }
+            //    else if (ss == "DPMU") {
+            //        window.location = " /WSP_2024_25_update/declaration";
+            //    } else if (ss == "wsp_report") {
+            //        window.location = "/WSP_2024_25_update/Total_WSP_Report";
+            //    } else if (ss == "Wspremarks") {
+            //        window.location = "/WSP_2024_25_update/Wspremarks";
+            //        }
+            //    }
+            //}
+            //else {
+            //    if (ss == "Wspgram") {
+            //        window.location = "/WSP_2024_25_update/WSP_gram";
+            //    }
+            //}
+
+        }
+    }
+
+ 
+
+    function Goto_page() {
+
+        var path = $('#goto_page').val();
+        window.location = path;
+    }
+</script>

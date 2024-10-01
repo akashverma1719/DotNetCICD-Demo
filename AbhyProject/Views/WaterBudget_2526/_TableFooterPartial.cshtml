@@ -1,0 +1,23 @@
+﻿@model AbhyProject.Models.WizardViewModel
+<tfoot>
+    <tr>
+        <td colspan="7">
+            <span class="tableFlexSpan">
+                <span>
+                    Total
+                </span>
+                <span>
+                    <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="(कुल कृत्रिम पुनर्भरण और जल संरक्षण संरचनाओं के कारण वार्षिक रिचार्ज पानी की मात्रा)</br>(Total Annual Recharge Water Volume Due to Artificial Recharge and Water Conservation Structures)">
+                        <img src="~/Content/waterbudget/images/info-button.svg" width="40" height="20" />
+                    </a>
+                </span>
+            </span>
+        </td>
+        <th>
+            <span id="totalqt_annual_rech_water">@Model.structureTotal</span>
+            <input type="hidden" id="totalqt_annual_rech_waterhdn" value="@Model.structureTotal" />
+        </th>
+        <th></th>
+    </tr>
+</tfoot>
+

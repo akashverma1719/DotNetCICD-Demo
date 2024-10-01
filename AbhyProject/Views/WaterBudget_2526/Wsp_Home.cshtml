@@ -1,0 +1,1647 @@
+﻿@model AbhyProject.Models.WizardViewModel
+@{
+    ViewBag.Title = "Gp_information";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+
+}
+
+<script type="text/javascript">
+    var Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Allcrops));
+</script>
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Water Budget</title>
+    <style>
+        input.form-control {
+            font-weight: 500;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+@*<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">*@
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+<link href="~/Content/wspnewcss.css" rel="stylesheet" />
+<link href="~/Content/waterbudget/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+@*<script src="~/Content/waterbudget/js/jquery.steps.js"></script>*@
+@*<script src="~/Content/waterbudget/js/jquery-3.3.1.min.js"></script>*@
+<script src="~/Content/waterbudget/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+
+                        <li>
+                            <span>
+                                <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                   style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                        @if (Session["UserName"] != null)
+                        {
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                        }
+
+                    </li>
+                    <li>
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-6" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                            </span>
+                            <label>Home <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/WspNew/WSP_GWM_HOME">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" title="WSP & GWM" />
+                            </span>
+                            <label>MIS Login <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+                    @*<li>
+                            <a href="~/WaterBudget_2526/water_budget">
+                                <span><img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" /></span>
+                                <label>Back to Home</label>
+                            </a>
+                        </li>*@
+                </ul>
+            </div>
+            <div class="col-md-6 text-end">
+                <div>
+                    <a href="~/WaterBudget_2526/Pdf_Report2" target="_blank" class="btn btn-md btn-danger btnshow_hide" style=" font-size: 14px; font-family: sans-serif; display: none;">
+                        PDF Report
+                    </a>
+                    <a class="btn btn-md btn-danger btnshow_hide" id="Export_Excel" style=" font-size: 14px; font-family: sans-serif; display:none;">
+                        Excel Report
+                    </a>
+                    <a href="~/WaterBudget_2526/water_budget" class="btn btn-md btn-danger" style=" font-size: 14px; font-family: sans-serif;">
+                        Back to Home
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</header>
+<main>
+    <h2 class="Main_heading">Water Budgeting</h2>
+
+    <div class="container-fluid">
+        @*<h2 class="Main_heading">Water Budgeting</h2>*@
+        <div class="navLabels">
+            <div>
+
+                <label>State :</label>
+                <label>@Session["lg_stateName"]</label>
+            </div>
+            <span>&#62;&#62;</span>
+            <div>
+                <label>District :</label>
+                <label>@Session["lg_distName"]</label>
+            </div>
+            <span>&#62;&#62;</span>
+            <div>
+                <label>Block/Taluk :</label>
+                <label>@Session["lg_blockName"]</label>
+            </div>
+            <span>&#62;&#62;</span>
+            <div>
+                <label>Gram Panchayat :</label>
+                <label>@Session["lg_gramName"]</label>
+            </div>
+        </div>
+        <div class="wrapper">
+
+            <div class="form-content">
+                @*<form action="#">*@
+                <div class="steps-wrapper">
+                    <div class="steps-nav left"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+                    <div class="steps">
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="steps-nav right"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+                </div>
+                <div id="wizard">
+                    <!-- SECTION 1 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText">ग्राम पंचायत की मूलभूत जानकारी</h3>
+                        <h3 class="HeadingText Eng_Heading">Gram Panchayat Basic Information</h3>
+                        <div class="info">
+
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+
+                                    @using (Html.BeginForm("StepOne", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_0" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>1. राज्य :</strong> <br /><strong> State :</strong></span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary" id="lblstate">
+                                                        <input type="text" class="form-control disabledInputcss2" id="txtStateName" style="color: #717171; font-weight: 500; font-size: 14px" disabled>
+                                                        @Html.HiddenFor(model => model.wb_grampanchayat_basic_info.state_id)
+                                                        @Html.HiddenFor(model => model.wb_grampanchayat_basic_info.year)
+
+                                                    </p>
+                                                </span>
+
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>2. ज़िला :</strong> <br /><strong> District :</strong></span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        <input type="text" class="form-control disabledInputcss2" id="txtDistrictName" style="color: #717171; font-weight: 500; font-size: 14px;" disabled>
+                                                        @Html.HiddenFor(model => model.wb_grampanchayat_basic_info.district_id)
+                                                    </p>
+                                                </span>
+
+
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>3. ब्लॉक/तालुक :</strong> <br /><strong> Block / Taluk:</strong></span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        <input type="text" class="form-control disabledInputcss2" id="txtBlockName" style="color: #717171; font-weight: 500; font-size: 14px;" disabled>
+                                                    </p>
+                                                </span>
+                                                @Html.HiddenFor(model => model.wb_grampanchayat_basic_info.block_id)
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>4. ग्राम पंचायत नाम :</strong> <br /><strong> GP Name :</strong></span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        <input type="text" class="form-control disabledInputcss2" id="txtGPName" style="color: #717171; font-weight: 500; font-size: 14px;" disabled>
+                                                        @Html.HiddenFor(model => model.wb_grampanchayat_basic_info.gp_id)
+                                                    </p>
+                                                </span>
+
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>5. ग्राम पंचायत क्षेत्र (हेक्टेयर) :</strong> <br /><strong> GP area (ha) :</strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_grampanchayat_basic_info.gp_area, new { @class = "form-control input gp_area", placeholder = "Enter GP area (ha)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_grampanchayat_basic_info.gp_area, null, new { @class = "text-danger" })
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>6. वार्षिक वर्षा (मिमी) :</strong> <br /><strong> Annual Rainfall (mm) :</strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_grampanchayat_basic_info.annual_rainfall, new { @class = "form-control input rainfall", placeholder = "Enter  Annual Rainfall (mm)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_grampanchayat_basic_info.annual_rainfall, null, new { @class = "text-danger" })
+
+                                                    @*<input type="text" class="form-control input" placeholder="Please Enter  Annual Rainfall (mm)">*@
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>7.  मानव आबादी (संख्या) :</strong> <br /><strong> Human population (Nos.) :</strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_grampanchayat_basic_info.human_population, new { @class = "form-control input population numeric", placeholder = "Enter Human population (Nos.)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_grampanchayat_basic_info.human_population, null, new { @class = "text-danger" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-7"><strong>8.  पशुधन आबादी (संख्या) :</strong> <br /><strong> Livestock Population (Nos.) :</strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_grampanchayat_basic_info.livestock_population, new { @class = "form-control input livestock_population numeric", placeholder = "Enter Livestock Population (Nos.)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_grampanchayat_basic_info.livestock_population, null, new { @class = "text-danger" })
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-1.png" class="w-100 Image_Icon" />
+                                    <img src="~/Content/waterbudget/images/stepp-1.png" class="w-100" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </section>
+
+                    <!-- SECTION 2 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText"> अनुमानित भूजल उपलब्धता</h3>
+                        <h3 class="HeadingText Eng_Heading"> Estimated Ground Water Availability</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+                                    @using (Html.BeginForm("StepTwo", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_1" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>1. वार्षिक वर्षा (मीटर) :</strong> <br /><strong>
+                                                        Annual Rainfall (m) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(वार्षिक वर्षा (मिमी) / 1000)</br>(Annual Rainfall (mm) / 1000)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_est_ground_water_avail.annual_rainfall, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+                                                    </p>
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        2. वर्षा की अनुमानित मात्रा (हेक्टेयर मी) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(ग्राम पंचायत क्षेत्र X वार्षिक वर्षा)</br>(Gram Panchayat Area X Annual Rainfall)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+
+                                                    </strong>
+                                                    <br />
+                                                    <strong> Estimated Volume of Rainfall (ha m) :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_est_ground_water_avail.est_vol_rainfall, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+                                                    </p>
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        3. वाष्पीकरण-उत्सर्जन हानि (हेक्टेयर मी) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(कुल वर्षा की मात्रा का 30%)</br>(30 % of total volume of rainfall)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Evapotranspiration losses (ha.m) :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_est_ground_water_avail.evapo_loss, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                    </p>
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        4. वर्षा से उपलब्ध अनुमानित जल (हेक्टेयर मी)
+                                                        :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(वर्षा की अनुमानित मात्रा - वाष्पोत्सर्जन)</br>(Estimated Volume of Rainfall - Evapotranspiration)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br />
+                                                    <strong>
+                                                        Estimated Water Available from Rainfall  (ha m) :
+                                                    </strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_est_ground_water_avail.est_water_avai_rainfall, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                    </p>
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        5. भूजल में पुनर्भरण की अनुमानित मात्रा (हेक्टेयर मी)
+                                                        :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(वर्षा की अनुमानित मात्रा  x12%)</br>(Estimated Volume of Rainfall X12%) ">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br />
+                                                    <strong>
+                                                        Estimated Volume of Recharge into Groundwater (ha m) :
+                                                    </strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_est_ground_water_avail.est_vol_rech_gw, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                    </p>
+                                                </span>
+                                            </li>
+
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-2.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+
+                    <!-- SECTION 3 -->
+                    <h4></h4>
+                    <section>
+
+                        <h3 class="HeadingText">   आपूर्ति पक्ष के हस्तक्षेप की योजना के लिए वर्षा से अनुमानित उपलब्धता</h3>
+                        <h3 class="HeadingText Eng_Heading">Estimated Availability from Rainfall for planning of supply side interventions</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+
+                                    @using (Html.BeginForm("StepThree", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_2" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        1. उपयोगी वर्षा अपवाह (हेक्टेयर मी) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(वर्षा से उपलब्ध अनुमानित जल X 0.4 (अपवाह गुणांक))</br> (Estimated water available from rainfall X 0.4 (runoff coefficient)) ">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br />
+                                                    <strong>
+                                                        Utilisable Rainfall Runoff(ha m)  :
+                                                    </strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_est_avai_rainfall_supply_intervention.uti_rainfall_runoff, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                    </p>
+                                                </span>
+                                            </li>
+
+
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-3.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </section>
+                    <!-- SECTION 4 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText">सतही जल भंडारण की उपलब्धता</h3>
+                        <h3 class="HeadingText Eng_Heading">  Availability of Surface Water Storage</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+                                    @using (Html.BeginForm("StepFour", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_3" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        1. मौजूदा सतही जल निकायों/संरचनाओं की संख्या :
+                                                    </strong> <br /><strong> Number of Existing Surface Water Bodies/Structures (Nos.) :</strong> <span class="text-danger">*</span>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_avai_surface_water_stor.exist_structure, new { @class = "form-control input BodiesStructure numeric", placeholder = "Enter Bodies/Structures (Nos.)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_avai_surface_water_stor.exist_structure, null, new { @class = "text-danger" })
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8"><strong>2. वार्षिक भरण संख्या (कम से कम 2 भरण) (संख्या) :</strong> <br /><strong> Annual Number of Fillings (at least 2 fillings) (Nos.) :</strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_avai_surface_water_stor.annual_filling, new { @class = "form-control input AnnualnoFilling numeric", placeholder = "Enter Annual Number of Filling (Nos.)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_avai_surface_water_stor.annual_filling, null, new { @class = "text-danger" })
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8"><strong>3. संरचना की कुल भंडारण क्षमता (हेक्टेयर मी) :</strong> <br /><strong> Storage Capacity of the Structures (ha m)  :</strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_avai_surface_water_stor.capacity_structure, new { @class = "form-control input StoreCapecity", placeholder = "Enter Storage Capacity of the Structures (ha m)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_avai_surface_water_stor.capacity_structure, null, new { @class = "text-danger" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        4. संरचनाओं की कुल भंडारण क्षमता (हेक्टेयर मी) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(मौजूदा सतही जल निकायों/संरचनाओं की संख्या X वार्षिक भरण X संरचना की कुल भंडारण क्षमता (हेक्टेयर मी))</br>(Number of Existing Surface Water Bodies/Structures X Annual Number of Fillings X Storage Capacity of the Structures (ha m))">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Total Storage Capacity of the Structures (ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_avai_surface_water_stor.total_capacity_structure, new { @class = "form-control TotalStoreCapecity disabledInputcss ", @readonly = "readonly" })
+                                                    </p>
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        5. हानि (@@40%) (हेक्टेयर मी) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(संरचनाओं की कुल भंडारण क्षमता (हेक्टेयर मी) X 40%)</br>(Total Storage Capacity of the Structures (ha m) X 40%)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+
+                                                    </strong> <br /><strong> Losses (40%) (ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_avai_surface_water_stor.lossess, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                    </p>
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        6. उपयोग के लिए उपलब्ध कुल सतही जल भंडारण (हेक्टेयर मी) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(संरचनाओं की कुल भंडारण क्षमता (हेक्टेयर मी) - हानि)</br>(Total Storage Capacity of the Structures (ha m) - Losses)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Total Surface Water Storage Available for Utilisation (ha m)   :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    <p class="m-0 text-secondary">
+                                                        @Html.TextBoxFor(model => model.wb_avai_surface_water_stor.total_surface_water_uti, new { @class = "disabledInputcss form-control TotalSurfaceCapecity", @readonly = "readonly" })
+                                                    </p>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    }
+
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-4.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+                    <!-- SECTION 5 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText"> कृत्रिम पुनर्भरण और जल संरक्षण संरचना का विवरण</h3>
+                        <h3 class="HeadingText Eng_Heading">  Detail of Artificial Recharge & Water Conservation Structures</h3>
+                        <div class="info" style="padding: 0px; margin-top: 18px;">
+
+
+                            @using (Html.BeginForm("StepFive", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_4" }))
+                            {
+
+
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="Artificial_Recharge">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 62px;">क्र.सं.<br />S.No.</th>
+                                                <th style="width: 142px;">संरचना का प्रकार<br />Type of Structure</th>
+                                                <th>संरचनाओं की संख्या (संख्या)<br />Number of Structures (Count)</th>
+                                                <th>संरचनाओं का क्षेत्र (वर्ग मीटर)<br />Area of Structures (sq. m)</th>
+                                                <th>संरचनाओं की औसत गहराई (मीटर)<br />Average Depth of Structures (m)</th>
+                                                <th>
+                                                    <span class="tableFlexSpan">
+                                                        <span>कुल भंडारण क्षमता (हेक्टेयर मीटर)<br />Total Storage Capacity (ha m)</span>
+                                                        <span>
+                                                            <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(संरचनाओं की संख्या X संरचनाओं का क्षेत्र (वर्ग मीटर) X संरचनाओं की औसत गहराई (मीटर) X 0.50 X 0.0001)</br>(Number of Structures X Area of Structures (sq. m) X Average Depth of Structures (m) X 0.50 X 0.0001)">
+                                                                <img src="~/Content/waterbudget/images/info-button.svg" width="30" height="20" />
+                                                            </a>
+                                                        </span>
+                                                    </span>
+                                                </th>
+                                                <th>वार्षिक भराव की संख्या (संख्या)<br />Annual Filling Count (Count)</th>
+                                                <th>
+
+                                                    <span class="tableFlexSpan">
+                                                        <span>
+                                                            कृत्रिम पुनर्भरण और जल संरक्षण संरचनाओं के कारण वार्षिक रिचार्ज पानी की मात्रा (40% लगभग) (हेक्टेयर मी)<br />Annual Recharge Water Volume Due to Artificial Recharge and Water Conservation Structures (Approximately 40%) (ha m)
+                                                        </span>
+                                                        <span>
+                                                            <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="(कुल भंडारण क्षमता (हेक्टेयर मीटर) X वार्षिक भराव की संख्या X 0.40)</br>(Total Storage Capacity (ha m) X Annual Filling Count X 0.40)">
+                                                                <img src="~/Content/waterbudget/images/info-button.svg" width="40" height="20" />
+                                                            </a>
+                                                        </span>
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span>
+                                                        <b>Click Here to Add Row</b>
+                                                    </span>
+                                                    <span style="display:flex;justify-content:center">
+                                                        <a href="javascript:void(0);" class="add-row-btn">Add</a>
+                                                    </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Existing rows will be rendered here (if any) -->
+                                            @if (Model.items.Count() > 0)
+                                            {
+                                                for (int i = 0; i < Model.items.Count; i++)
+                                                {
+
+                                                    <tr>
+                                                        <td>@(i + 1)</td>
+                                                        <td>
+                                                            @{
+                                                                if (Model.items[i].type_of_structure_other != null)
+                                                                {
+                                                                    @Html.DropDownListFor(m => Model.items[i].type_of_structure,
+                                                                                       new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
+                                                                                       new { @class = "form-control dropdown Structure_Dropdown", @disabled = "disabled" })
+                                                                    @Html.ValidationMessageFor(m => Model.items[i].type_of_structure, "", new { @class = "text-danger" })
+                                                                    @Html.TextBoxFor(m => Model.items[i].type_of_structure_other, new
+                                                                    {
+                                                                        @class = "form-control other-structure-textbox disabledInputcss",
+                                                                   @Placeholder = "Number of Structures (Nos.)",
+                                                                        autocomplete = "off",
+                                                                   @readonly = "readonly",
+                                                                        maxlength = "8"
+                                                               })
+                                                                    @Html.ValidationMessageFor(m => Model.items[i].type_of_structure_other, "", new { @class = "text-danger" })
+                                                                }
+                                                                else
+                                                                {
+                                                                    @Html.DropDownListFor(m => Model.items[i].type_of_structure,
+                                                                              new SelectList(Model.Values, "Value", "Text", Model.items[i].type_of_structure),
+                                                                              new { @class = "form-control dropdown Structure_Dropdown", @disabled = "disabled" })
+                                                                    @Html.ValidationMessageFor(m => Model.items[i].type_of_structure, "", new
+                                                                    {
+                                                                        @class = "text-danger"
+
+                                                               })
+
+                                                                }
+                                                            }
+                                                            @Html.HiddenFor(m => Model.items[i].id, new { @class = "text-danger Artificial_RechargeId" })
+                                                            @Html.ValidationMessageFor(m => Model.items[i].type_of_structure_other, "", new { @class = "text-danger" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => Model.items[i].number_of_structures, new { @class = "form-control numeric numberofstructures disabledInputcss", @Placeholder = "Number of Structures (Nos.)", autocomplete = "off", maxlength = "8", @readonly = "readonly" })
+                                                            @Html.ValidationMessageFor(m => Model.items[i].number_of_structures, "", new { @class = "text-danger" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => Model.items[i].area_of_structures, new
+                                                            {
+                                                                @class = "form-control areastructures disabledInputcss",
+                                                           @Placeholder = "Area of the Structures (Sq.m)",
+                                                                autocomplete = "off",
+                                                                maxlength = "8",
+                                                           @readonly = "readonly"
+                                                       })
+                                                            @Html.ValidationMessageFor(m => Model.items[i].area_of_structures, "", new
+                                                            {
+                                                                @class = "text-danger"
+                                                       })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => Model.items[i].avg_depth_structures, new
+                                                            {
+                                                                @class = "form-control depthstructures disabledInputcss",
+                                                           @Placeholder = "Average Depth of Structures (m)",
+                                                           @readonly = "readonly",
+                                                                autocomplete = "off",
+                                                                maxlength = "8"
+                                                       })
+                                                            @Html.ValidationMessageFor(m => Model.items[i].avg_depth_structures, "", new { @class = "text-danger disabledInputcss", @readonly = "readonly" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => Model.items[i].total_storage_capacity, new { @class = "disabledInputcss  form-control price total_storage_capacity", @readonly = "readonly" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => Model.items[i].annual_fillings, new
+                                                            {
+                                                                @class = "form-control disabledInputcss annualfillings numeric",
+                                                           @readonly = "readonly",
+                                                                @Placeholder = "Annual No. of Fillings (Nos.)",
+                                                                autocomplete = "off",
+                                                                maxlength = "8"
+                                                       })
+                                                            @Html.ValidationMessageFor(m => Model.items[i].annual_fillings, "", new { @class = "text-danger" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => Model.items[i].qt_annual_rech_water, new { @class = "disabledInputcss  form-control qt_annual_rech_water price", @readonly = "readonly" })
+
+                                                        </td>
+                                                        <td>
+                                                            <span class="tableFlexSpan">
+                                                                <button type="button" class="btn btn-primary  btn-lg btnedit" attr="@Model.items[i].id">Edit</button>
+                                                                <button type="button" class="btn btn-lg btn-danger remove-row" attr="@Model.items[i].id">Remove</button>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7">
+                                                    <span class="tableFlexSpan">
+                                                        <span>
+                                                            Total
+                                                        </span>
+                                                        <span>
+                                                            <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="(कुल कृत्रिम पुनर्भरण और जल संरक्षण संरचनाओं के कारण वार्षिक रिचार्ज पानी की मात्रा)</br>(Total Annual Recharge Water Volume Due to Artificial Recharge and Water Conservation Structures)">
+                                                                <img src="~/Content/waterbudget/images/info-button.svg" width="40" height="20" />
+                                                            </a>
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <th>
+                                                    <span id="totalqt_annual_rech_water">@Model.structureTotal</span>
+                                                    <input type="hidden" id="totalqt_annual_rech_waterhdn" value="@Model.structureTotal" />
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
+
+                                    </table>
+
+                                </div>
+                            }
+
+
+                        </div>
+
+
+                    </section>
+                    <!-- SECTION 6 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText">
+                            परिवहनित जल से जल की उपलब्धता (नहर/नाला/झरना/प्राकृतिक स्रोत)
+                        </h3>
+                        <h3 class="HeadingText Eng_Heading"> Water Availability from Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources)</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+                                    @using (Html.BeginForm("StepSix", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_5" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8"><strong>1. परिवहनित जल (नहर/नाला/झरना/प्राकृतिक स्रोत) (हेक्टेयर मी) :</strong> <br /><strong> Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources) (ha.m) :</strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+
+                                                    @Html.TextBoxFor(model => model.wb_water_avai_transported_water.transported_water, new { @class = "form-control input", placeholder = "Enter Transported Water (ha.m)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_water_avai_transported_water.transported_water, null, new { @class = "text-danger" })
+                                                </span>
+                                            </li>
+
+
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-6.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+                    <!-- SECTION 7 -->
+                    <h4></h4>
+                    <section>
+
+                        <h3 class="HeadingText"> ग्रे वाटर प्रबंधन के माध्यम से गैर-पेयजल उपयोग के लिए जल उपलब्ध</h3>
+                        <h3 class="HeadingText Eng_Heading">  Water Available for non - potable use through Grey Water Management</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+                                    @using (Html.BeginForm("StepSeven", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_6" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8"><strong>1. ग्रे वाटर प्रबंधन के माध्यम से गैर-पेयजल उपयोग के लिए जल उपलब्ध (हेक्टेयर मी) :</strong> <br /><strong>  Water Available for non - potable use through Grey Water Management <span style="padding-left: 0px;"> (ha.m) :</span></strong> <span class="text-danger">*</span></span>
+                                                <span class="col-md-3">
+
+                                                    @Html.TextBoxFor(model => model.wb_water_avai_non_potable.water_non_potable_use, new { @class = "form-control input", placeholder = "Enter Water Available (ha.m)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_water_avai_non_potable.water_non_potable_use, null, new { @class = "text-danger" })
+                                                </span>
+
+                                            </li>
+
+
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-7.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+                    <!-- SECTION 8 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText"> कुल जल उपलब्धता</h3>
+                        <h3 class="HeadingText Eng_Heading">  Total Water Availability</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+                                    @using (Html.BeginForm("StepEight", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_7" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        1. भूजल उपलब्धता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(भूजल में पुनर्भरण की अनुमानित मात्रा (हेक्टेयर मी))</br>(Estimated Volume of Recharge into Groundwater)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Groundwater Availability(ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+
+                                                    @Html.TextBoxFor(model => model.wb_tot_water_avail.groundwater_avail, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        2. सतही जल की उपलब्धता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(उपयोग के लिए उपलब्ध कुल सतही जल भंडारण (हेक्टेयर मी))</br>(Total Surface Water Storage Available for Utilisation (ha m))">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Surface water Availability(ha m)   :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_tot_water_avail.surface_water_avail, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        3. जल संरक्षण संरचनाओं के कारण अतिरिक्त भूजल उपलब्धता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(कुल कृत्रिम पुनर्भरण और जल संरक्षण संरचनाओं के कारण वार्षिक रिचार्ज पानी की मात्रा)</br>(Total Annual Recharge Water Volume Due to Artificial Recharge and Water Conservation Structures)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Additional Ground water availability due to AR & WC Structure(ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_tot_water_avail.add_ground_water, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        4. परिवहनित जल (नहर/नाला/झरना/प्राकृतिक स्रोत) (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(परिवहनित जल (नहर/नाला/झरना/प्राकृतिक स्रोत) (हेक्टेयर मी))</br>(Transported Water (Canal/Rivulet/Nala/Spring/Natural Sources) (ha.m))">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Transported Water (canal/Rivulet/Nala/Spring/Natural Sources)(ha.m) :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_tot_water_avail.transported_water, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        5. ग्रे वाटर मैनेजमेंट के माध्यम से गैर-पोर्टेबल उपयोग के लिए पानी उपलब्ध (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(ग्रे वाटर प्रबंधन के माध्यम से गैर-पेयजल उपयोग के लिए जल उपलब्ध (हेक्टेयर मी))</br>(Water Available for non - potable use through Grey Water Management (ha.m))">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Water Available for non - potable use through Grey Water Management <span style="padding-left:16px;">(ha.m) :</span> </strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_tot_water_avail.water_non_potable_use, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        6. कुल जल उपलब्धता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(भूजल उपलब्धता  + सतही जल की उपलब्धता   + जल संरक्षण संरचनाओं के कारण अतिरिक्त भूजल उपलब्धता  + परिवहनित जल + ग्रे वाटर मैनेजमेंट के माध्यम से गैर-पोर्टेबल उपयोग के लिए पानी उपलब्ध)</br>(Groundwater Availability + Surface water Availability + Additional Ground water availability due to AR & WC Structure + Transported Water + Water Available for non + potable use through Grey Water Management)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Total Water Availability(ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_tot_water_avail.total_water_availability, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    }
+
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-8.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+                    <!-- SECTION 9 -->
+
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText">पीने/घरेलू, उद्योग और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता</h3>
+                        <h3 class="HeadingText Eng_Heading">Water Requirement for drinking/domestic, Industries and other commercial uses</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+                                    @using (Html.BeginForm("StepNine", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_8" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        1. ग्राम पंचायत की मानव आबादी के लिए पीने और घरेलू पानी की आवश्यकता (@@55 एलपीसीडी) (हेक्टेयर मीटर):
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="( मानव आबादी X 55 X 365 / 10000000)</br>(Human population X 55 X 365 / 10000000)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Drinking and Domestic Water Requirement for Human population of GP (55 LPCD)(ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_water_drink_ind_req.drink_dom_water_req, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        2. पशुधन आबादी के लिए पानी की आवश्यकता (@@20 एलपीसीडी लगभग) (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="( पशुधन आबादी X 20 X 365 / 10000000)</br>(Livestock population X 20 X 365 / 10000000)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Water Requirement for Livestock Population (20 LPCD approx.)(ha m)    :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_water_drink_ind_req.water_req_livestock_pop, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        3. उद्योगों और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता, यदि कोई हो (हेक्टेयर मीटर) :
+                                                    </strong> <br /><strong> Water requirement for industries and other commercial uses, if any (ha m) :</strong> <span class="text-danger">*</span>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_water_drink_ind_req.water_req_indust, new { @class = "form-control input water_req_industcal", placeholder = "Enter Water requirement for industries and other commercial uses, if any (ha m)", autocomplete = "off", maxlength = "8" })
+                                                    @Html.ValidationMessageFor(model => model.wb_water_drink_ind_req.water_req_indust, null, new { @class = "text-danger" })
+
+                                                </span>
+
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        4. कुल पेयजल और घरेलू जल की आवश्यकता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="( ग्राम पंचायत की मानव आबादी के लिए पीने और घरेलू पानी की आवश्यकता +  पशुधन आबादी के लिए पानी की आवश्यकता  + उद्योगों और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता)</br>(Drinking and Domestic Water Requirement for Human population of GP  + Water Requirement for Livestock Population + Water requirement for industries and other commercial uses)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Total Water Requirement(ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_water_drink_ind_req.total_water_requirement, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-9.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+
+                    <!-- SECTION 10 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText">प्रमुख फसलों के अंतर्गत क्षेत्र और सिंचाई जल की आवश्यकता</h3>
+                        <h3 class="HeadingText Eng_Heading"> Area under Major Crops and Irrigation Water Requirement</h3>
+
+                        <div class="info" style="padding: 0px; margin-top: 18px;">
+
+
+
+                            @using (Html.BeginForm("StepTen", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_9" }))
+                            {
+                                <div class="table-responsive">
+
+                                    <table class="table table-bordered" id="major_Crops">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 62px;">क्र.सं<br /> Sr. no.</th>
+                                                <th style="width: 142px;">फसल <br /> Crop</th>
+                                                <th>शुद्ध सिंचाई आवश्यकता (एनआईआर) मी में)<br />Net Irrigation Requirement (NIR) (in m)</th>
+                                                <th>खरीफ सीजन में क्षेत्रफल(हेक्टेयर)<br />Area in Kharif Season (ha)</th>
+                                                <th>रबी सीजन में क्षेत्रफल(हेक्टेयर)<br />Area in Rabi Season (ha)</th>
+                                                <th>ग्रीष्म ऋतु में क्षेत्र(हेक्टेयर)<br />Area in Summer Season (ha)</th>
+                                                <th>
+
+                                                    <span class="tableFlexSpan">
+                                                        <span>
+                                                            कुल सकल फसल क्षेत्र (हेक्टेयर)<br />Total Gross Cropped Area (ha)
+                                                        </span>
+                                                        <span>
+                                                            <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="(खरीफ सीजन में क्षेत्रफल + रबी सीजन में क्षेत्रफल(हेक्टेयर) + ग्रीष्म ऋतु में क्षेत्र(हेक्टेयर))</br>(Area in Kharif Season (ha) + Area in Rabi Season + Area in Summer Season)">
+                                                                <img src="~/Content/waterbudget/images/info-button.svg" width="40" height="20" />
+                                                            </a>
+                                                        </span>
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span class="tableFlexSpan">
+                                                        <span>
+                                                            कुल सिंचाई आवश्यकता (हेक्टेयर मी)<br />Total Irrigation Requirement (ha m)
+                                                        </span>
+                                                        <span>
+                                                            <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="(शुद्ध सिंचाई आवश्यकता (एनआईआर) मी में) X कुल सकल फसल क्षेत्र )</br>(Net Irrigation Requirement X Total Gross Cropped Area )">
+                                                                <img src="~/Content/waterbudget/images/info-button.svg" width="40" height="20" />
+                                                            </a>
+                                                        </span>
+                                                    </span>
+                                                </th>
+                                                <th>
+                                                    <span><b>Click Here to Add Row</b></span>
+                                                    <a href="javascript:void(0);" class="add-row-btn2">Add</a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Existing rows will be rendered here (if any) -->'
+                                            @{if (Model.itemsList.Count() > 0)
+                                                {
+                                                    for (int i = 0; i < Model.itemsList.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>@(i + 1)</td>
+                                                            <td>
+                                                                @{
+                                                                    if (Model.itemsList[i].crop_other != null)
+                                                                    { @Html.DropDownListFor(m => Model.itemsList[i].crop,
+new SelectList(Model.Allcrops, "Value", "Text", Model.itemsList[i].crop),
+new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
+                                                                    @Html.ValidationMessageFor(m => Model.itemsList[i].crop, "", new { @class = "text-danger" })
+
+                                                                    @Html.TextBoxFor(m => Model.itemsList[i].crop_other, new { @class = "form-control other_crop_entry disabledInputcss", @Placeholder = "Enter New Crop", autocomplete = "off", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(m => Model.itemsList[i].crop_other, "", new { @class = "text-danger" })
+                                                                }
+                                                                else
+                                                                {
+                                                                    @Html.DropDownListFor(m => Model.itemsList[i].crop,
+                                                                 new SelectList(Model.Allcrops, "Value", "Text", Model.itemsList[i].crop),
+                                                                 new { @class = "form-control crop_Dropdown dropdown", @disabled = "disabled" })
+                                                                    @Html.ValidationMessageFor(m => Model.itemsList[i].crop, "", new { @class = "text-danger" })
+
+                                                                }
+                                                                }
+
+                                                                @Html.HiddenFor(m => Model.itemsList[i].id, new { @class = "text-danger major_CropsId" })
+
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(m => Model.itemsList[i].net_irrigation_requirement, new { @class = "disabledInputcss  form-control quantity net_irrigation_requirement", @Placeholder = "Net Irrigation Requirement (NIR) (in m)", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(m => Model.itemsList[i].net_irrigation_requirement, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(m => Model.itemsList[i].area_kharif_season, new { @class = "disabledInputcss form-control area_kharif_season", @Placeholder = "Area in Kharif Season (ha)", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(m => Model.itemsList[i].area_kharif_season, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(m => Model.itemsList[i].area_rabi_season, new { @class = "form-control disabledInputcss area_rabi_season", @Placeholder = "Area in Rabi Season (ha)", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(m => Model.itemsList[i].area_rabi_season, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(m => Model.itemsList[i].area_summer_season, new { @class = "form-control disabledInputcss area_summer_season", @Placeholder = "Area in Summer Season (ha)", @readonly = "readonly" })
+
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(m => Model.itemsList[i].total_gross_cropped_area, new { @class = "disabledInputcss form-control total_gross_cropped_area", @Placeholder = "Annual No. of Fillings (Nos.)", @readonly = "readonly" })
+                                                                @Html.ValidationMessageFor(m => Model.itemsList[i].total_gross_cropped_area, "", new { @class = "text-danger" })
+                                                            </td>
+                                                            <td>
+                                                                @Html.TextBoxFor(m => Model.itemsList[i].total_irrigation_requirement, new { @class = "disabledInputcss  form-control price total_irrigation_requirement", @readonly = "readonly" })
+
+                                                            </td>
+                                                            <td>
+
+                                                                <span class="tableFlexSpan ">
+                                                                    <button type="button" class="btn btn-primary btn-lg btneditcrop" attr="@Model.itemsList[i].id">Edit</button>
+                                                                    <button type="button" class="btn btn-lg btn-danger remove-rowcrop" attr="@Model.itemsList[i].id">Remove</button>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                } }
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7">
+                                                    <span class="tableFlexSpan">
+                                                        <span>
+                                                            Total Water Requirement for all Crops(ha m)
+                                                        </span>
+                                                        <span>
+                                                            <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="(फसलों के लिए कुल जल आवश्यकता (हेक्टेयर मी))</br>(Total Water Requirement for all Crops(ha m))">
+                                                                <img src="~/Content/waterbudget/images/info-button.svg" width="40" height="20" />
+                                                            </a>
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <th>
+                                                    <span id="totalcrop">@Model.CropTotal</span>
+                                                    <input type="hidden" id="totalcrop_hdn" value="@Model.CropTotal" />
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                            }
+
+                        </div>
+
+
+                    </section>
+                    <!-- SECTION 11 -->
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText">कुल जल आवश्यकता </h3>
+                        <h3 class="HeadingText Eng_Heading">Total  Water Requirement</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+
+                                    @using (Html.BeginForm("StepEleven", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_10" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        1. पीने और घरेलू पानी की आवश्यकता (हेक्टेयर मीटर) :
+                                                     
+                                                    </strong> <br /><strong> Drinking and Domestic Water Requirement (ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_total_water_req.drink_dom_water_req, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        2. पशुधन आबादी के लिए पानी की आवश्यकता (हेक्टेयर मीटर) :
+                                                        
+                                                    </strong> <br /><strong> Water Requirement for Livestock Population(ha m)    :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_total_water_req.water_req_livestock_pop, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        3. सिंचाई जल की आवश्यकता (हेक्टेयर मीटर) :
+                                                       
+                                                    </strong> <br /><strong>Irrigation Water Requirement(ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_total_water_req.irri_water_req, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        4. उद्योगों और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता (हेक्टेयर मीटर) :
+                                                       
+
+                                                    </strong> <br /><strong> Water requirement for industries and other commercial uses, if any (ha m) :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_total_water_req.water_req_indust, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        5. कुल जल आवश्यकता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="( पीने और घरेलू पानी की आवश्यकता + पशुधन आबादी के लिए पानी की आवश्यकता + सिंचाई जल की आवश्यकता + उद्योगों और अन्य वाणिज्यिक उपयोगों के लिए जल की आवश्यकता )</br>( Drinking and Domestic Water Requirement + Water Requirement for Livestock Population + Irrigation Water Requirement +  Water requirement for industries and other commercial uses )">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Total Water Requirement(ha m)  :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_total_water_req.total_water_requirement, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-11.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </section>
+
+                    <h4></h4>
+                    <section>
+                        <h3 class="HeadingText">जल संतुलन  (हेक्टेयर मीटर)</h3>
+                        <h3 class="HeadingText Eng_Heading">Water Balance (Ha. m)</h3>
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-8">
+
+
+                                    @using (Html.BeginForm("StepTwelve", "WaterBudget_2526", FormMethod.Post, new { @class = "stepForm form-div", id = "form_11" }))
+                                    {
+                                        <ul>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        1. कुल जल उपलब्धता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="( कुल जल उपलब्धता )</br>( Total Water Availability )">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong> Total Water Availability(ha m)   :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_water_balance.total_water_availability, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        2. कुल जल आवश्यकता (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="( कुल जल आवश्यकता )</br>( Total Water Requirement )">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong>  Total Water Requirement(ha m)    :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_water_balance.total_water_requirement, new { @class = "disabledInputcss form-control", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+                                            <li class="row">
+                                                <span class="col-md-8">
+                                                    <strong>
+                                                        3. जल संतुलन (हेक्टेयर मीटर) :
+                                                        <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="right" data-bs-title="(कुल जल उपलब्धता - कुल जल आवश्यकता)</br> (Total Water Availability – Total Water Requirement)">
+                                                            <img src="~/Content/waterbudget/images/info-button.svg" width="16" height="16" />
+                                                        </a>
+                                                    </strong> <br /><strong>  Water Balance(ha m) :</strong>
+                                                </span>
+                                                <span class="col-md-3">
+                                                    @Html.TextBoxFor(model => model.wb_water_balance.water_balance, new { @class = "disabledInputcss  form-control ", @readonly = "readonly" })
+
+                                                </span>
+                                            </li>
+
+
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="~/Content/waterbudget/images/step-12.png" class="w-100 Image_Icon" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <!-- SECTION 12 -->
+
+                </div>
+                @*</form>*@
+            </div>
+            <div class="modal waterBudgetModal" id="approveModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="approveModalLabel">Approve</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you want to Approve?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-success" id="btnApprove">Accept</button>
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal waterBudgetModal" id="rejectModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="rejectModalLabel">Reject</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="txtRemark" placeholder="Leave a comment here" style="height: 100px"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" id="btnReject">Reject</button>
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Your code here
+        var saveButtonLi = document.createElement('li');
+        var saveButton = document.createElement('a');
+        //saveButton.href = '#save';
+        //saveButton.setAttribute('role', 'menuitem');
+        saveButton.textContent = 'Save';
+        saveButton.classList.add('savebtn');
+        saveButtonLi.appendChild(saveButton);
+        document.querySelector('.actions ul li').insertAdjacentElement('afterend', saveButtonLi);
+
+        var StateOfficer = '@Session["Officer"]';
+        var UserId = '@Session["UserId"]';
+
+        if (StateOfficer == "National Level Nodal Officer") {
+            if (UserId == "20613" || UserId == "19235" || UserId == "19244") {
+                var approveButtonLi = document.createElement('li');
+                var approveButton = document.createElement('button');
+                approveButton.textContent = 'Approve';
+                approveButton.classList.add('approvebtn', 'customButton');
+                approveButton.setAttribute('data-bs-toggle', 'modal');
+                approveButton.setAttribute('data-bs-target', '#approveModal');
+                approveButtonLi.appendChild(approveButton);
+                document.querySelector('.actions ul li:last-child').insertAdjacentElement('beforebegin', approveButtonLi);
+
+                var rejectButtonLi = document.createElement('li');
+                var rejectButton = document.createElement('button');
+                rejectButton.textContent = 'Reject';
+                rejectButton.classList.add('rejectbtn', 'customButton');
+                rejectButton.setAttribute('data-bs-toggle', 'modal');
+                rejectButton.setAttribute('data-bs-target', '#rejectModal');
+                rejectButtonLi.appendChild(rejectButton);
+                document.querySelector('.actions ul li:last-child').insertAdjacentElement('beforebegin', rejectButtonLi);
+                approveButtonLi.classList.add('customButtonWrapper');
+                rejectButtonLi.classList.add('customButtonWrapper');
+            }
+        }
+
+
+        function showButtonsIfWizardPaneVisible() {
+            let wizardPane = document.getElementById("wizard-p-11");
+            if (wizardPane.style.display === "block" || window.getComputedStyle(wizardPane).display === "block") {
+                let pane = document.querySelectorAll(".customButtonWrapper");
+                pane.forEach((tabpane) => {
+                    tabpane.style.display = "block";
+                });
+            } else {
+                let pane = document.querySelectorAll(".customButtonWrapper");
+                pane.forEach((tabpane) => {
+                    tabpane.style.display = "none";
+                });
+            }
+        }
+        showButtonsIfWizardPaneVisible();
+        let observer = new MutationObserver(function (mutations) {
+
+            mutations.forEach(function (mutation) {
+                if (mutation.attributeName === "style") {
+                    showButtonsIfWizardPaneVisible();
+                }
+            });
+            get_approved_reject_status();
+        });
+        observer.observe(document.getElementById("wizard-p-11"), { attributes: true });
+
+        get_approved_reject_status();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+
+</script>
+
+<script>
+
+    var StateName = "0";
+    var DistName = "0";
+    var BlockName = "0";
+    var GramName = "0";
+
+    var lg_stateId = "0";
+    var lg_distId = "0";
+    var lg_blockId = "0";
+    var lg_gramId = "0";
+    var lg_year = "0";
+    $(document).ready(function () {
+        var water_balance = 0;
+         water_balance = parseFloat($("#wb_water_balance_water_balance").val()) || 0;
+        if (water_balance > 0) {
+            $("#wb_water_balance_water_balance").addClass('positiveValue');
+        } else {
+            $("#wb_water_balance_water_balance").addClass('negativeValue');
+        }
+
+        StateName = '@Session["lg_stateName"]';
+        DistName ='@Session["lg_distName"]';
+        BlockName = '@Session["lg_blockName"]';
+        GramName = '@Session["lg_gramName"]';
+        lg_stateId = '@Session["lg_state"]';
+        lg_distId ='@Session["lg_dist"]';
+        lg_blockId = '@Session["lg_block"]';
+        lg_gramId = '@Session["lg_gram"]';
+        lg_year = '@Session["lg_year"]';
+
+        $("#txtStateName").val(StateName);
+        $("#txtDistrictName").val(DistName);
+        $("#txtBlockName").val(BlockName);
+        $("#txtGPName").val(GramName);
+        $("#wb_grampanchayat_basic_info_state_id").val(lg_stateId);
+        $("#wb_grampanchayat_basic_info_district_id").val(lg_distId);
+        $("#wb_grampanchayat_basic_info_block_id").val(lg_blockId);
+        $("#wb_grampanchayat_basic_info_gp_id").val(lg_gramId);
+        $("#wb_grampanchayat_basic_info_year").val(lg_year);
+
+    });
+    function get_approved_reject_status() {
+
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/WaterBudget_2526/get_approved_reject_status",
+            dataType: 'JSON',
+            success: function (data) {
+
+                status_check = data.status_id;
+                var status = '';
+                if (data == "null") {
+                    status = 'Pending';
+                    $('#status_wsp').text(status).css({ 'color': 'blue' });
+                    $('.customButtonWrapper').hide();
+                }
+
+                if (data.status_id == 1) {
+                    status = 'Submitted to NPMU';
+                    console.log($(".savebtn"));
+                    var UserId = '@Session["UserId"]';
+                    if (UserId == "20613" || UserId == "19235" || UserId == "19244") {
+                        //$(".savebtn").show();
+                         //$('.customButtonWrapper').show();
+                        //$("input, select, textarea").prop("readonly", false);
+                    }
+                    else {
+                        //$(".savebtn").hide();
+                        //$('.customButtonWrapper').hide();
+                        //$("input, select, textarea").prop("readonly", true);
+
+                    }
+                    $('#status_wsp').text(status).css({ 'color': 'green' });
+                    $('.btnshow_hide').show();
+                    $(".savebtn").hide();
+                    $("input, select").prop("readonly", true);
+                    $('.remove-rowcrop').prop("disabled", true);
+                    $('.remove-row').prop("disabled", true);
+                    $('.add-row-btn2').hide();
+                    $('.add-row-btn').hide();
+                    $('.btnedit').prop("disabled", true);
+                    $('.btneditcrop').prop("disabled", true);
+
+                    let submitBtnLi = document.querySelector("#wizard ul[role='menu'] li:last-of-type");
+                    submitBtnLi.style.display = "none";
+                }
+
+                if (data.status_id == 3) {
+                    status = 'Reject';
+                    var UserId = '@Session["UserId"]';
+                    if (UserId == "20613" || UserId == "19235" || UserId == "19244") {
+                        $(".savebtn").hide();
+                        let submitBtnLi = document.querySelector("#wizard ul[role='menu'] li:last-of-type");
+                        submitBtnLi.style.display = "none";
+                    }
+                    else {
+                        $(".savebtn").show();
+                        //let submitBtnLi = document.querySelector("#wizard ul[role='menu'] li:last-of-type");
+                        //submitBtnLi.style.display = "block";
+                    }
+                    $('#status_wsp').text(status).css({ 'color': 'red' });
+                    $('.btnshow_hide').hide();
+                    $('.customButtonWrapper').hide();
+                }
+
+                if (data.status_id == 5) {
+                    status = 'Approved';
+                    $(".savebtn").hide();
+                    $('.customButtonWrapper').hide();
+                    $('#status_wsp').text(status).css({ 'color': 'blue' });
+                    $("input, select, textarea,button").prop("readonly", true);
+                    $('.remove-rowcrop').prop("disabled", true);
+                    $('.remove-row').prop("disabled", true);
+                    $('.add-row-btn2').hide();
+                    $('.add-row-btn').hide();
+                    $('.btnedit').prop("disabled", true);
+                    $('.btneditcrop').prop("disabled", true);
+                    $('.btnshow_hide').show();
+                    let submitBtnLi = document.querySelector("#wizard ul[role='menu'] li:last-of-type");
+                    submitBtnLi.style.display = "none";
+                }
+
+
+            }
+        });
+    }
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('.numeric').on('input', function () {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+        $('.input').on('input', function () {
+            //$(this).val($(this).val().replace(/[^0-9^.]/g, ''));
+            // Replace everything that is not a digit or a decimal point
+            // Allow only one decimal point
+            let value = $(this).val().replace(/[^0-9.]/g, '');
+
+            // Ensure only a single decimal point is allowed
+            if (value.split('.').length > 2) {
+                value = value.replace(/\.+$/, ""); // remove extra decimal points at the end
+            }
+
+            $(this).val(value);
+        });
+
+
+
+    });
+
+</script>
+
+<script>
+    $("#Export_Excel").click(function () {
+
+            lg_stateId = '@Session["lg_state"]';
+            lg_distId ='@Session["lg_dist"]';
+            lg_blockId = '@Session["lg_block"]';
+            lg_gramId = '@Session["lg_gram"]';
+            lg_year = '@Session["lg_year"]';
+            $('.loader').show();
+                $.ajax({
+                    type: "GET",
+                    url: "/WaterBudget_2526/Create_Excel_WaterBudget_All",
+                    contentType: "application/json; charset=utf-8",
+                    //data: `{"State" : '${State}',"District": '${Dist}', "Block" : '${Block}', "Gram": '${Gram}', "Module_name" : '1.1', "Year" : '${Year}'}`,
+                    data: {
+                        "State": `${lg_stateId}`,
+                        "District": `${lg_distId}`,
+                        "Block": `${lg_blockId}`,
+                        "Gram": `${lg_gramId}`,
+                        "Year": `${lg_year}`
+                    },
+
+                    success: function (Rdata) {
+                        console.log(Rdata);
+                        console.log('success');
+                        if (Rdata !== null) {
+                            console.log('robj');
+                            if (Rdata.hasOwnProperty('robj')) {
+                                console.log('ds');
+                                console.log(Rdata.robj.FileContents)
+                                var bytes = new Uint8Array(Rdata.robj.FileContents);
+                                var blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                                var link = document.createElement('a');
+                                link.href = window.URL.createObjectURL(blob);
+                                link.download = Rdata.robj.FileDownloadName;
+                                link.click();
+                                $('.loader').hide();
+                            }
+                            else {
+                                var bytes = new Uint8Array(Rdata.FileContents);
+                                var blob = new Blob([bytes], {
+                                    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                });
+                                var link = document.createElement('a');
+                                link.href = window.URL.createObjectURL(blob);
+                                link.download = Rdata.FileDownloadName;
+                                link.click();
+                                $('.loader').hide();
+                            }
+                        }
+                    },
+                    error: function (err) {
+
+                    }
+
+                });
+
+
+    });
+</script>

@@ -1,0 +1,24 @@
+﻿@model AbhyProject.Models.WizardViewModel
+<tfoot>
+    <tr>
+        <td colspan="7">
+            <span class="tableFlexSpan">
+                <span>
+                    Total Water Requirement for all Crops(ha m)
+                </span>
+                <span>
+                    <a data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="left" data-bs-title="(कुल सिंचाई आवश्यकता)</br>(Total Irrigation Requirement (ha m))">
+                        <img src="~/Content/waterbudget/images/info-button.svg" width="40" height="20" />
+                    </a>
+                </span>
+            </span>
+        </td>
+        <th>
+            <span id="totalcrop">@Model.CropTotal</span>
+            <input type="hidden" id="totalcrop_hdn" value="@Model.CropTotal" />
+        </th>
+        <th></th>
+    </tr>
+</tfoot>
+
+
