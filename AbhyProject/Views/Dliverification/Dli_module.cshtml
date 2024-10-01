@@ -15,7 +15,7 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/wspView.css" rel="stylesheet" />
 <link href="~/Content/css/Dli_css.css" rel="stylesheet" />
-<script src="~/Content/JS_Files/dli_data_js.js"></script>
+@*<script src="~/Content/JS_Files/dli_data_js.js"></script>*@
 <script src="~/Content/JS_Files/DLI.js"></script>
 <script src="~/Content/JS_Files/IdealState.js"></script>
 <script name="clear-browser-cache" src='~/Content/JS_Files/clear-browser-cache.js' value="true"></script>
@@ -347,8 +347,8 @@
                                                     <td><input type="text" id="waterlevel_i_20_21" name="waterlevel_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterlevel_i_21_22" name="waterlevel_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterlevel_i_22_23" name="waterlevel_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_i_23_24" name="waterlevel_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_i_24_25" name="waterlevel_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_i_23_24" name="waterlevel_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_i_24_25" name="waterlevel_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterlevel_i_cumulative" name="waterlevel_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="waterlevel_i_disbursible">D</label></td>
                                                 </tr>
@@ -412,16 +412,16 @@
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="" id="waterlevel_iii_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row1_download('4')" class="btn btn-success upload_button_excel">Download </button>
+                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="waterlevel_iii_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row1()" class="hidetheupload btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row1_download('4')" class="btn btn-success upload_button_excel ">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="waterlevel_iii_24_25_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" class="" id="waterlevel_iii_24_25_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row1_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -460,9 +460,9 @@
                                                     <td><input type="text" id="waterlevel_iv_baseline" name="waterlevel_iv_baseline" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterlevel_iv_20_21" name="waterlevel_iv_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterlevel_iv_21_22" name="waterlevel_iv_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_iv_22_23" name="waterlevel_iv_22_23" class="form-control decimal" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_iv_23_24" name="waterlevel_iv_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_iv_24_25" name="waterlevel_iv_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_iv_22_23" name="waterlevel_iv_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_iv_23_24" name="waterlevel_iv_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_iv_24_25" name="waterlevel_iv_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterlevel_iv_cumulative" name="waterlevel_iv_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="waterlevel_iv_disbursible">D</label></td>
                                                 </tr>
@@ -523,16 +523,16 @@
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="" id="waterlevel_vi_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row2()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row2_download('4')" class="btn btn-success upload_button_excel">Download </button>
+                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="waterlevel_vi_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row2()" class="hidetheupload btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row2_download('4')" class="btn btn-success upload_button_excel ">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="waterlevel_vi_24_25_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row2()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" class="" id="waterlevel_vi_24_25_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row2()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row2_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -568,9 +568,9 @@
                                                     <td><input type="text" id="waterlevel_vii_baseline" name="waterlevel_vii_baseline" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterlevel_vii_20_21" name="waterlevel_vii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterlevel_vii_21_22" name="waterlevel_vii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_vii_22_23" name="waterlevel_vii_22_23" class="form-control decimal" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_vii_23_24" name="waterlevel_vii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_vii_24_25" name="waterlevel_vii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_vii_22_23" name="waterlevel_vii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_vii_23_24" name="waterlevel_vii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_vii_24_25" name="waterlevel_vii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterlevel_vii_cumulative" name="waterlevel_vii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="waterlevel_vii_disbursible">D</label></td>
                                                 </tr>
@@ -612,16 +612,16 @@
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.jpg,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="" id="mow_v_23_24_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row7()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row7_download('4')" class="btn btn-success upload_button_excel">Download </button>
+                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="mow_v_23_24_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row7()" class="hidetheupload btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row7_download('4')" class="btn btn-success upload_button_excel ">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.jpg,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="mow_v_24_25_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row7()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" class="" id="mow_v_24_25_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row7()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row7_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -653,9 +653,9 @@
                                                     <td><input type="text" id="waterlevel_viii_baseline" name="waterlevel_viii_baseline" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterlevel_viii_20_21" name="waterlevel_viii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterlevel_viii_21_22" name="waterlevel_viii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_viii_22_23" name="waterlevel_viii_22_23" class="form-control decimal" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_viii_23_24" name="waterlevel_viii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterlevel_viii_24_25" name="waterlevel_viii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_viii_22_23" name="waterlevel_viii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_viii_23_24" name="waterlevel_viii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterlevel_viii_24_25" name="waterlevel_viii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterlevel_viii_cumulative" name="waterlevel_viii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="waterlevel_viii_disbursible">D</label></td>
                                                 </tr>
@@ -697,16 +697,16 @@
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.jpg,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="" id="mow_vi_23_24_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row8()" class="btn btn-primary upload_button_excel" name="Upload"> Upload </button>
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row8_download('4')" class="btn btn-success upload_button_excel">Download </button>
+                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="mow_vi_23_24_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row8()" class="hidetheupload btn btn-primary upload_button_excel" name="Upload"> Upload </button>
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row8_download('4')" class="btn btn-success upload_button_excel ">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.jpg,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="mow_vi_24_25_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row8()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" class="" id="mow_vi_24_25_filename" accept=".pdf, .csv, .jpg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row8()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row8_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -746,8 +746,8 @@
                                                     <td><input type="text" id="waterquality_i_20_21" name="waterquality_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterquality_i_21_22" name="waterquality_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterquality_i_22_23" name="waterquality_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterquality_i_23_24" name="waterquality_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterquality_i_24_25" name="waterquality_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterquality_i_23_24" name="waterquality_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterquality_i_24_25" name="waterquality_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterquality_i_cumulative" name="waterquality_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="waterquality_i_disbursible">D</label></td>
                                                 </tr>
@@ -808,16 +808,16 @@
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" class="" id="waterquality_iii_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row3()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row3_download('4')" class="btn btn-success upload_button_excel">Download </button>
+                                                            <input type="file" name="fileToUpload" class="hidetheupload" id="waterquality_iii_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row3()" class="hidetheupload btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row3_download('4')" class="btn btn-success upload_button_excel ">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" id="waterquality_iii_24_25_filename" class="hidetheupload" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row3()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="waterquality_iii_24_25_filename" class="" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row3()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row3_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -854,8 +854,8 @@
                                                     <td><input type="text" id="waterquality_iv_20_21" name="waterquality_iv_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterquality_iv_21_22" name="waterquality_iv_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterquality_iv_22_23" name="waterquality_iv_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterquality_iv_23_24" name="waterquality_iv_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterquality_iv_24_25" name="waterquality_iv_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterquality_iv_23_24" name="waterquality_iv_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterquality_iv_24_25" name="waterquality_iv_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterquality_iv_cumulative" name="waterquality_iv_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="waterquality_iv_disbursible">D</label></td>
                                                 </tr>
@@ -916,16 +916,16 @@
                                                     <td class="">
 
                                                         <span class="upload_label hide_the_upload_files">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                        <input type="file" class="" name="fileToUpload" id="waterquality_vi_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                        <button type="submit" onclick="abhy_dli_one_upload_row4()" class="hide_the_upload_files btn btn-primary upload_button_excel " name="Upload"> Upload </button>
-                                                        <button type="submit" onclick="abhy_dli_one_upload_row4_download('4')" class="hide_the_upload_files btn btn-success upload_button_excel">Download </button>
+                                                        <input type="file" class="hidetheupload" name="fileToUpload" id="waterquality_vi_23_24_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                        <button type="submit" onclick="abhy_dli_one_upload_row4()" class="hidetheupload hide_the_upload_files btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                        <button type="submit" onclick="abhy_dli_one_upload_row4_download('4')" class=" btn btn-success upload_button_excel ">Download </button>
 
                                                     </td>
                                                     <td class="">
 
                                                         <span class="upload_label hide_the_upload_files">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                        <input type="file" class="hide_the_upload_files hidetheupload" name="fileToUpload" id="waterquality_vi_24_25_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                        <button type="submit" onclick="abhy_dli_one_upload_row4()" class="hide_the_upload_files btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                        <input type="file" class="hide_the_upload_files " name="fileToUpload" id="waterquality_vi_24_25_filename" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                        <button type="submit" onclick="abhy_dli_one_upload_row4()" class="hide_the_upload_files btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                         <button type="submit" onclick="abhy_dli_one_upload_row4_download('5')" class="hide_the_upload_files btn btn-success upload_button_excel">Download </button>
 
                                                     </td>
@@ -967,8 +967,8 @@
                                                     <td><input type="text" id="blockwise_i_20_21" name="blockwise_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="blockwise_i_21_22" name="blockwise_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="blockwise_i_22_23" name="blockwise_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="blockwise_i_23_24" name="blockwise_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="blockwise_i_24_25" name="blockwise_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="blockwise_i_23_24" name="blockwise_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="blockwise_i_24_25" name="blockwise_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="blockwise_i_cumulative" name="blockwise_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="blockwise_i_disbursible">D</label></td>
                                                 </tr>
@@ -1011,16 +1011,16 @@
                                                     <td class="">
                                                         <span id="abhy_dli_one_upload_row5_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="blockwise_ii_23_24_filename1" accept=".pdf" class="">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row5()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="blockwise_ii_23_24_filename1" accept=".pdf" class="hidetheupload">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row5()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row5_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span id="abhy_dli_one_upload_row5_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="blockwise_ii_24_25_filename1" accept=".pdf" class="hidetheupload">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row5()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="blockwise_ii_24_25_filename1" accept=".pdf" class="">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row5()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row5_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -1062,8 +1062,8 @@
                                                     <td><input type="text" id="statewise_i_20_21" name="statewise_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="statewise_i_21_22" name="statewise_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="statewise_i_22_23" name="statewise_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="statewise_i_23_24" name="statewise_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="statewise_i_24_25" name="statewise_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="statewise_i_23_24" name="statewise_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="statewise_i_24_25" name="statewise_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="statewise_i_cumulative" name="statewise_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="statewise_i_disbursible">ND</label></td>
                                                 </tr>
@@ -1106,16 +1106,16 @@
                                                     <td class="">
                                                         <span id="abhy_dli_one_upload_row6_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="statewise_ii_23_24_filename" accept=".pdf" class="">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row6()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row6_download('4')" class="btn btn-success upload_button_excel">Download </button>
+                                                            <input type="file" name="fileToUpload" id="statewise_ii_23_24_filename" accept=".pdf" class="hidetheupload">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row6()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row6_download('4')" class="btn btn-success upload_button_excel ">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span id="abhy_dli_one_upload_row6_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="statewise_ii_24_25_filename" accept=".pdf" class="hidetheupload">
-                                                            <button type="submit" onclick="abhy_dli_one_upload_row6()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="statewise_ii_24_25_filename" accept=".pdf" class="">
+                                                            <button type="submit" onclick="abhy_dli_one_upload_row6()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_one_upload_row6_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -1208,8 +1208,8 @@
                                                     <td><input type="text" id="waterbudgets_i_20_21" name="waterbudgets_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="waterbudgets_i_21_22" name="waterbudgets_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterbudgets_i_22_23" name="waterbudgets_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterbudgets_i_23_24" name="waterbudgets_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="waterbudgets_i_24_25" name="waterbudgets_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterbudgets_i_23_24" name="waterbudgets_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="waterbudgets_i_24_25" name="waterbudgets_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="waterbudgets_i_cumulative" name="waterbudgets_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="waterbudgets_i_disbursible">D</label></td>
                                                 </tr>
@@ -1253,16 +1253,16 @@
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row1_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="waterbudgets_ii_23_24_filename" class="" accept=".pdf">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="waterbudgets_ii_23_24_filename" class="hidetheupload" accept=".pdf">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row1_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row1_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="waterbudgets_ii_24_25_filename" class="hidetheupload" accept=".pdf">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="waterbudgets_ii_24_25_filename" class="" accept=".pdf">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row1_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
@@ -1304,8 +1304,8 @@
                                                     <td><input type="text" id="wsp_i_20_21" name="wsp_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="wsp_i_21_22" name="wsp_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="wsp_i_22_23" name="wsp_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="wsp_i_23_24" name="wsp_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="wsp_i_24_25" name="wsp_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="wsp_i_23_24" name="wsp_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="wsp_i_24_25" name="wsp_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="wsp_i_cumulative" name="wsp_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="wsp_i_disbursible">D</label></td>
                                                 </tr>
@@ -1348,16 +1348,16 @@
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row2_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="wsp_ii_23_24_filename" class="" accept=".pdf">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row2()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="wsp_ii_23_24_filename" class="hidetheupload" accept=".pdf">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row2()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row2_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row2_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf files</span></span>
-                                                            <input type="file" name="fileToUpload" id="wsp_ii_24_25_filename" class="hidetheupload" accept=".pdf">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row2()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="wsp_ii_24_25_filename" class="" accept=".pdf">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row2()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row2_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
@@ -1400,8 +1400,8 @@
                                                     <td><input type="text" id="community_i_20_21" name="community_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="community_i_21_22" name="community_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_i_22_23" name="community_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_i_23_24" name="community_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_i_24_25" name="community_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_i_23_24" name="community_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_i_24_25" name="community_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_i_cumulative" name="community_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="community_i_disbursible">D</label></td>
                                                 </tr>
@@ -1444,16 +1444,16 @@
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row3_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.doc files</span></span>
-                                                            <input type="file" name="fileToUpload" id="community_ii_23_24_filename" class="" accept=".pdf,.doc">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row3()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="community_ii_23_24_filename" class="hidetheupload" accept=".pdf,.doc">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row3()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row3_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row3_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.doc files</span></span>
-                                                            <input type="file" name="fileToUpload" id="community_ii_24_25_filename" class="hidetheupload" accept=".pdf,.doc">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row3()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="community_ii_24_25_filename" class="" accept=".pdf,.doc">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row3()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row3_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
@@ -1489,8 +1489,8 @@
                                                     <td><input type="text" id="community_iii_20_21" name="community_iii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="community_iii_21_22" name="community_iii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_iii_22_23" name="community_iii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_iii_23_24" name="community_iii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_iii_24_25" name="community_iii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_iii_23_24" name="community_iii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_iii_24_25" name="community_iii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_iii_cumulative" name="community_iii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="community_iii_disbursible">D</label></td>
                                                 </tr>
@@ -1507,8 +1507,8 @@
                                                     <td><input type="text" id="community_iv_20_21" name="community_iv_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="community_iv_21_22" name="community_iv_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_iv_22_23" name="community_iv_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_iv_23_24" name="community_iv_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_iv_24_25" name="community_iv_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_iv_23_24" name="community_iv_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_iv_24_25" name="community_iv_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_iv_cumulative" name="community_iv_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="community_iv_disbursible">D</label></td>
                                                 </tr>
@@ -1525,8 +1525,8 @@
                                                     <td><input type="text" id="community_v_20_21" name="community_v_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="community_v_21_22" name="community_v_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_v_22_23" name="community_v_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_v_23_24" name="community_v_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="community_v_24_25" name="community_v_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_v_23_24" name="community_v_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="community_v_24_25" name="community_v_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="community_v_cumulative" name="community_v_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="community_v_disbursible">D</label></td>
                                                 </tr>
@@ -1569,16 +1569,16 @@
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row4_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.doc files</span></span>
-                                                            <input type="file" name="fileToUpload" id="community_vi_23_24_filename" class="" accept=".pdf,.doc">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row4()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="community_vi_23_24_filename" class="hidetheupload" accept=".pdf,.doc">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row4()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row4_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
                                                     <td class="">
                                                         <div id="abhy_dli_two_upload_row4_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.doc files</span></span>
-                                                            <input type="file" name="fileToUpload" id="community_vi_24_25_filename" class="hidetheupload" accept=".pdf,.doc">
-                                                            <button type="submit" onclick="abhy_dli_two_upload_row4()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="community_vi_24_25_filename" class="" accept=".pdf,.doc">
+                                                            <button type="submit" onclick="abhy_dli_two_upload_row4()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_two_upload_row4_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
@@ -1666,8 +1666,8 @@
                                                     <td><input type="text" id="statelevel_i_20_21" name="statelevel_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="statelevel_i_21_22" name="statelevel_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="statelevel_i_22_23" name="statelevel_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="statelevel_i_23_24" name="statelevel_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="statelevel_i_24_25" name="statelevel_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="statelevel_i_23_24" name="statelevel_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="statelevel_i_24_25" name="statelevel_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="statelevel_i_cumulative" name="statelevel_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="statelevel_i_disbursible">D</label></td>
                                                 </tr>
@@ -1710,16 +1710,16 @@
                                                     <td class="">
                                                         <div id="abhy_dli_three_upload_row1_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" id="statelevel_ii_23_24_filename" class="" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_three_upload_row1()" class="btn btn-primary upload_button_excel" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="statelevel_ii_23_24_filename" class="hidetheupload" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_three_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_three_upload_row1_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
                                                     <td class="">
                                                         <div id="abhy_dli_three_upload_row1_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" id="statelevel_ii_24_25_filename" class="hidetheupload" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_three_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="statelevel_ii_24_25_filename" class="" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_three_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_three_upload_row1_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
@@ -1760,8 +1760,8 @@
                                                     <td><input type="text" id="statelevel_iii_20_21" name="statelevel_iii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="statelevel_iii_21_22" name="statelevel_iii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="statelevel_iii_22_23" name="statelevel_iii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="statelevel_iii_23_24" name="statelevel_iii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="statelevel_iii_24_25" name="statelevel_iii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="statelevel_iii_23_24" name="statelevel_iii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="statelevel_iii_24_25" name="statelevel_iii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="statelevel_iii_cumulative" name="statelevel_iii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="statelevel_iii_disbursible">D</label></td>
                                                 </tr>
@@ -1835,8 +1835,8 @@
                                                     <td><input type="text" id="irrigation_i_20_21" name="irrigation_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="irrigation_i_21_22" name="irrigation_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="irrigation_i_22_23" name="irrigation_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="irrigation_i_23_24" name="irrigation_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="irrigation_i_24_25" name="irrigation_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="irrigation_i_23_24" name="irrigation_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="irrigation_i_24_25" name="irrigation_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="irrigation_i_cumulative" name="irrigation_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="irrigation_i_disbursible">D</label></td>
                                                 </tr>
@@ -1853,8 +1853,8 @@
                                                     <td><input type="text" id="irrigation_ii_20_21" name="irrigation_ii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="irrigation_ii_21_22" name="irrigation_ii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="irrigation_ii_22_23" name="irrigation_ii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="irrigation_ii_23_24" name="irrigation_ii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="irrigation_ii_24_25" name="irrigation_ii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="irrigation_ii_23_24" name="irrigation_ii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="irrigation_ii_24_25" name="irrigation_ii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="irrigation_ii_cumulative" name="irrigation_ii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="irrigation_ii_disbursible">D</label></td>
                                                 </tr>
@@ -1897,16 +1897,16 @@
                                                     <td class="">
                                                         <div id="abhy_dli_four_upload_row1_hide_4">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" id="irrigation_iii_23_24_filename" class="" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_four_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="irrigation_iii_23_24_filename" class="hidetheupload" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_four_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_four_upload_row1_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
                                                     <td class="">
                                                         <div id="abhy_dli_four_upload_row1_hide_5">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" id="irrigation_iii_24_25_filename" class="hidetheupload" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_four_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="irrigation_iii_24_25_filename" class="" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_four_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_four_upload_row1_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </div>
                                                     </td>
@@ -1948,8 +1948,8 @@
                                                     <td><input type="text" id="cropping_i_20_21" name="cropping_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="cropping_i_21_22" name="cropping_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_i_22_23" name="cropping_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_i_23_24" name="cropping_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_i_24_25" name="cropping_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_i_23_24" name="cropping_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_i_24_25" name="cropping_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_i_cumulative" name="cropping_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="cropping_i_disbursible">D</label></td>
                                                 </tr>
@@ -1966,8 +1966,8 @@
                                                     <td><input type="text" id="cropping_ii_20_21" name="cropping_ii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="cropping_ii_21_22" name="cropping_ii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_ii_22_23" name="cropping_ii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_ii_23_24" name="cropping_ii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_ii_24_25" name="cropping_ii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_ii_23_24" name="cropping_ii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_ii_24_25" name="cropping_ii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_ii_cumulative" name="cropping_ii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="cropping_ii_disbursible">D</label></td>
                                                 </tr>
@@ -1984,8 +1984,8 @@
                                                     <td><input type="text" id="cropping_iii_20_21" name="cropping_iii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="cropping_iii_21_22" name="cropping_iii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_iii_22_23" name="cropping_iii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_iii_23_24" name="cropping_iii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_iii_24_25" name="cropping_iii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_iii_23_24" name="cropping_iii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_iii_24_25" name="cropping_iii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_iii_cumulative" name="cropping_iii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="cropping_iii_disbursible">D</label></td>
                                                 </tr>
@@ -2002,8 +2002,8 @@
                                                     <td><input type="text" id="cropping_iv_20_21" name="cropping_iv_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="cropping_iv_21_22" name="cropping_iv_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_iv_22_23" name="cropping_iv_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_iv_23_24" name="cropping_iv_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="cropping_iv_24_25" name="cropping_iv_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_iv_23_24" name="cropping_iv_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="cropping_iv_24_25" name="cropping_iv_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="cropping_iv_cumulative" name="cropping_iv_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="cropping_iv_disbursible">D</label></td>
                                                 </tr>
@@ -2097,8 +2097,8 @@
                                                     <td><input type="text" id="electricity_i_20_21" name="electricity_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="electricity_i_21_22" name="electricity_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="electricity_i_22_23" name="electricity_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="electricity_i_23_24" name="electricity_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="electricity_i_24_25" name="electricity_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="electricity_i_23_24" name="electricity_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="electricity_i_24_25" name="electricity_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="electricity_i_cumulative" name="electricity_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="electricity_i_disbursible">D</label></td>
                                                 </tr>
@@ -2168,8 +2168,8 @@
                                                     <td><input type="text" id="_blockwise_i_20_21" name="_blockwise_i_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="_blockwise_i_21_22" name="_blockwise_i_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="_blockwise_i_22_23" name="_blockwise_i_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="_blockwise_i_23_24" name="_blockwise_i_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="_blockwise_i_24_25" name="_blockwise_i_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="_blockwise_i_23_24" name="_blockwise_i_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="_blockwise_i_24_25" name="_blockwise_i_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="_blockwise_i_cumulative" name="_blockwise_i_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="_blockwise_i_disbursible">ND but Mandatory requirement for Disbursement</label></td>
                                                 </tr>
@@ -2212,16 +2212,16 @@
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" id="_blockwise_ii_23_24_filename" class="" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_five_upload_row1()" class="btn btn-primary upload_button_excel" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="_blockwise_ii_23_24_filename" class="hidetheupload" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_five_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_five_upload_row1_download('4')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
                                                     <td class="">
                                                         <span class="hide_the_upload_files">
                                                             <span class="upload_label">  Upload:<span class="color_red">only .pdf,.csv,.xls,.xlsx files </span></span>
-                                                            <input type="file" name="fileToUpload" id="_blockwise_ii_24_25_filename" class="hidetheupload" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                                                            <button type="submit" onclick="abhy_dli_five_upload_row1()" class="btn btn-primary upload_button_excel hidetheupload" name="Upload"> Upload </button>
+                                                            <input type="file" name="fileToUpload" id="_blockwise_ii_24_25_filename" class="" accept=".pdf, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                            <button type="submit" onclick="abhy_dli_five_upload_row1()" class="btn btn-primary upload_button_excel " name="Upload"> Upload </button>
                                                             <button type="submit" onclick="abhy_dli_five_upload_row1_download('5')" class="btn btn-success upload_button_excel">Download </button>
                                                         </span>
                                                     </td>
@@ -2258,8 +2258,8 @@
                                                     <td><input type="text" id="_blockwise_iii_20_21" name="_blockwise_iii_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="_blockwise_iii_21_22" name="_blockwise_iii_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="_blockwise_iii_22_23" name="_blockwise_iii_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="_blockwise_iii_23_24" name="_blockwise_iii_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="_blockwise_iii_24_25" name="_blockwise_iii_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="_blockwise_iii_23_24" name="_blockwise_iii_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="_blockwise_iii_24_25" name="_blockwise_iii_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="_blockwise_iii_cumulative" name="_blockwise_iii_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="_blockwise_iii_disbursible">ND but Mandatory requirement for Disbursement</label></td>
 
@@ -2279,8 +2279,8 @@
                                                     <td><input type="text" id="_blockwise_iv_20_21" name="_blockwise_iv_20_21" class="form-control decimal hidetheupload" placeholder="Enter No." /> </td>
                                                     <td><input type="text" id="_blockwise_iv_21_22" name="_blockwise_iv_21_22" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="_blockwise_iv_22_23" name="_blockwise_iv_22_23" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="_blockwise_iv_23_24" name="_blockwise_iv_23_24" class="form-control decimal " placeholder="Enter No." />  </td>
-                                                    <td><input type="text" id="_blockwise_iv_24_25" name="_blockwise_iv_24_25" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="_blockwise_iv_23_24" name="_blockwise_iv_23_24" class="form-control decimal hidetheupload" placeholder="Enter No." />  </td>
+                                                    <td><input type="text" id="_blockwise_iv_24_25" name="_blockwise_iv_24_25" class="form-control decimal " placeholder="Enter No." />  </td>
                                                     <td><input type="text" id="_blockwise_iv_cumulative" name="_blockwise_iv_cumulative" class="form-control decimal" placeholder="Enter No." /> </td>
                                                     <td><label id="_blockwise_iv_disbursible">ND but Mandatory requirement for Disbursement</label></td>
 
@@ -2362,17 +2362,24 @@
 
 <script type="text/javascript">
     var Access_Auth = '';
+    var asss = "";
     $(document).ready(function () {
         Access_Auth = '@Session["Access_Auth"]';
-
+        debugger;
         var Email = '@Session["Email"]';
+        asss = Email;
         if (Email == "vivekvivektiwari80@gmail.com") {
 
             $(".hidetheupload").attr("disabled", false);
             $(".hide_the_upload_files").attr("disabled", false);
-            $('input[type=file]').prop("disabled", false);
-            $('input[type=text]').prop("disabled", false);
-        } else {
+            //$('input[type=file]').prop("disabled", false);
+            //$('input[type=text]').prop("disabled", false);
+        }
+        else if (Email == "neetynagi@gmail.com") {
+            $(".hidetheupload").attr("disabled", false);
+            $(".hide_the_upload_files").attr("disabled", false);
+        }
+            else {
             $(".hidetheupload").attr("disabled", true);
 
         }
@@ -2424,3 +2431,4 @@
 
 
 </script>
+<script src="~/Content/JS_Files/dli_data_js.js"></script>
