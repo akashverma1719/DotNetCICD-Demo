@@ -1110,7 +1110,7 @@
     var ymonth = "";
     var email = "";
     var statename = '@Session["gstate"]';
-    debugger;
+    
     $(document).ready(function () {
         StateOfficer = '@Session["Officer"]';
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
@@ -1152,7 +1152,7 @@
         //$("#year_gram").val(year);
         //$("#year_all").val(year);
         //$("#year_npmu").val(year);
-
+     
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const m = new Date()
         let MonthName = month[m.getUTCMonth()];
@@ -1782,6 +1782,35 @@
 
         var event = $("#event_upload").get(0);
         var event_upload = event.files;
+        debugger;
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+        var monthName = monthNames[parseInt(mm) - 1];
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        var lastMonthMonth = String(mm - 1).padStart(2, '0');
+        var lastmonthName = monthNames[parseInt(lastMonthMonth) - 1];
+        var lastMonthDay = "05";
+        var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
+        var finmm = "";
+        if (today >= startDate) {
+            finmm = monthName;
+            if (monthName != month) {
+                x = 1;
+                alert("Please Select Correct Month");
+                return;
+            }
+        }
+        else {
+            finmm = lastmonthName;
+            if (lastmonthName != month && monthName != month) {
+                x = 1;
+                alert("Please Select Correct Month");
+                return;
+            }
+        }
 
         if (State == "0") {
             x = 1;
@@ -1818,13 +1847,11 @@
             alert("Please Select Month");
             return;
         }
-        else if (ymonth != month) {
-            x = 1;
-            alert("Please Select Current Month");
-            return;
-        }
-       
-      
+       //else if (ymonth != month) {
+       //     x = 1;
+       //     alert("Please Select Current Month");
+       //     return;
+       // }
         else if (type_of_event == "0") {
             x = 1;
             alert("Please Enter Type of Event");
@@ -1865,6 +1892,27 @@
             alert("Please Enter transgender");
             return;
         }
+
+        //else if (SC == "") {
+        //    x = 1;
+        //    alert("Please Enter SC Category");
+        //    return;
+        //}
+        //else if (ST == "") {
+        //    x = 1;
+        //    alert("Please Enter ST Category");
+        //    return;
+        //}
+        //else if (OBC == "") {
+        //    x = 1;
+        //    alert("Please Enter OBC Category");
+        //    return;
+        //}
+        //else if (General == "") {
+        //    x = 1;
+        //    alert("Please Enter General Category");
+        //    return;
+        //}
         else if (atten_files.length == 0) {
             x = 1;
             alert("Please Upload  attendance sheet of the participant");
@@ -1890,6 +1938,9 @@
             return;
 
         }
+        
+          
+        
         if (total_pop != 0) {
             if (total_pop < total_participants || total_pop != total_participants) {
                 x = 1;
@@ -1980,61 +2031,36 @@
         }
     }
     function isWithinRange(date) {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        var todatdate = today;
-        if (todatdate <= "2024-09-05") {
-            var currentDate = new Date();
-            var currentMonth = currentDate.getMonth(); // Month is 0 indexed
-            var currentYear = currentDate.getFullYear();
 
-            // Calculate the 10th of the next month
-            var nextMonth = currentMonth + 1;
-            var nextMonthYear = currentYear;
-            if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
-                nextMonth = 0; // January
-                nextMonthYear += 1;
-            }
-            var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth(); // Month is 0 indexed
+        var currentYear = currentDate.getFullYear();
 
-            // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth-1;
-            var prevMonthYear = currentYear;
-            if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
-                prevMonth = 11; // December of the previous year
-                prevMonthYear -= 1;
-            }
-            var startDate = new Date(prevMonthYear, prevMonth, 1);
-            return date >= startDate && date < tenthOfNextMonth;
+        // Calculate the 10th of the next month
+        var nextMonth = currentMonth + 1;
+        var nextMonthYear = currentYear;
+        if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
+            nextMonth = 0; // January
+            nextMonthYear += 1;
         }
-        else {
-            var currentDate = new Date();
-            var currentMonth = currentDate.getMonth(); // Month is 0 indexed
-            var currentYear = currentDate.getFullYear();
+        var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 10);
 
-            // Calculate the 10th of the next month
-            var nextMonth = currentMonth + 1;
-            var nextMonthYear = currentYear;
-            if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
-                nextMonth = 0; // January
-                nextMonthYear += 1;
-            }
-            var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 10);
-
-            // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 1;
-            var prevMonthYear = currentYear;
-            if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
-                prevMonth = 11; // December of the previous year
-                prevMonthYear -= 1;
-            }
-            var startDate = new Date(prevMonthYear, prevMonth, 1);
-
-            return date >= startDate && date < tenthOfNextMonth;
+        // Calculate the start date (first day of the previous month)
+        var prevMonth = currentMonth - 1;
+        var prevMonthYear = currentYear;
+        if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
+            prevMonth = 11; // December of the previous year
+            prevMonthYear -= 1;
         }
+        var startDate = new Date(prevMonthYear, prevMonth, 1);
+
+        // Debugging logs
+        console.log("Current Date: " + currentDate);
+        console.log("Start Date: " + startDate);
+        console.log("End Date (10th of next month): " + tenthOfNextMonth);
+        console.log("Input Date: " + date);
+
+        return date >= startDate && date < tenthOfNextMonth;
     }
     function Reg_Gp_level_Info() {
         var year = $('#year').val();
