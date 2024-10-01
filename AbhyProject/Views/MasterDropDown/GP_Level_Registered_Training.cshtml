@@ -1287,20 +1287,15 @@
                                         <th>GP</th>
                                         <th>Year</th>
                                         <th>Month</th>
-
                                         <th>From Date</th>
                                         <th>To Date</th>
-
                                         <th>Uploaded attendance sheet of the participants</th>
-
                                         <th>Name of Participant</th>
                                         <th>Gender</th>
                                         <th>Category</th>
                                         <th>Mobile no.</th>
-
                                         <th>Edit</th>
                                         <th>Delete</th>
-
                                         <th>Add NEW</th>
 
                                         <th>Data Validation</th>
@@ -1774,12 +1769,6 @@
             $('#generalTraining').val("");
             $('#totalCasteTraining').val("");
         }
-        //$("#totalCaste").val(totalCasteSec);
-        //if (totalCasteSec > totalPopulation) {
-        //    alert('The total of the filled values in the categories section should equal the total population.');
-        //} else {
-        //    $("#totalCaste").val(totalCasteSec);
-        //}
     }
     function Save_Training_Gp_level_reg() {
 
@@ -1815,7 +1804,7 @@
         var month = $("#month option:selected").val();
 
         var type_of_event = $("#type_event_gp").val();
-        var topic_training = $("#p_training_name").val();
+        var topic_training = $("#p_training_name option:selected").val();
         var location = $("#location_gp").val();
         var from_date = $("#from_date").val();
         var to_date = $("#to_date").val();
@@ -1844,6 +1833,34 @@
         var event = $("#event_upload").get(0);
         var event_upload = event.files;
 
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var monthName = monthNames[parseInt(mm) - 1];
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        var lastMonthMonth = String(mm - 1).padStart(2, '0');
+        var lastmonthName = monthNames[parseInt(lastMonthMonth) - 1];
+        var lastMonthDay = "05";
+        var startDate = yyyy + '-' + mm + '-' + lastMonthDay;
+        var finmm = "";
+        if (today >= startDate) {
+            finmm = monthName;
+            if (monthName != month) {
+                x = 1;
+                alert("Please Select Correct Month");
+                return;
+            }
+        }
+        else {
+            finmm = lastmonthName;
+            if (lastmonthName != month && monthName != month) {
+                x = 1;
+                alert("Please Select Correct Month");
+                return;
+            }
+        }
         if (state_name == "0") {
             x = 1;
             alert("Please Select State Name");
@@ -1924,7 +1941,7 @@
             alert("Please Enter transgender");
             return;
         }
-       
+        
         else if (atten_files.length == 0) {
             x = 1;
             alert("Please Upload  attendance sheet of the participant");
@@ -1950,28 +1967,7 @@
             return;
 
         }
-        debugger;
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-09-05") {
-            if (month != "August" && month != "Septumber") {
-                if (ymonth != month) {
-                    x = 1;
-                    alert("Please Select Current Month");
-                    return;
-                }
-            }
-        }
-        else {
-            if (ymonth != month) {
-                x = 1;
-                alert("Please Select Current Month");
-                return;
-            }
-        }
+       
         if (total_pop != 0) {
             if (total_pop < total_participants || total_pop != total_participants) {
                 x = 1;
@@ -2414,10 +2410,9 @@
     var ymonth = "";
     var email = "";
     var ss = "";
-    var ssn = "";
     var statename = "";
     $(document).ready(function () {
-        debugger;
+        
         var Auth = '@Session["Access_Auth"]';
         StateOfficer = '@Session["Officer"]';
         email = '@Session["Email"]';
@@ -2467,10 +2462,9 @@
         $("#month_gram").val(MonthName);
         $("#month_all").val(MonthName);
         $("#month_npmu").val(MonthName);
-        debugger;
+        
         //var StateOfficer = '@Session["Officer"]';
         ss = StateOfficer;
-        ssn = statename;
         ready();
 
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
