@@ -918,6 +918,12 @@
                         else {
                             status = "Pending for Submission";
                         }
+                        var registration_no = data[i].regno;
+                        if (registration_no == null) {
+                            registration_no = "";
+                        }
+                        var input = registration_no;
+                        var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
 
                         if (data[i].from_table == "main") {
                             tr += '<tr><td id="srNo"><label>' + (++a) + '</label></td>';
@@ -951,7 +957,7 @@
                             tr += '<td>' + (data[i].gendernew ?? '') + '</td>';
                             tr += '<td>' + (data[i].categorynew ?? '') + '</td>';
                             tr += '<td>' + (data[i].mobilenonew ?? '') + '</td>';
-                            tr += '<td>' + (data[i].regno ?? '') + '</td>';
+                            tr += '<td>' + (masked ?? '') + '</td>';
                             tr += '<td>' + (data[i].todaydate ?? '') + '</td>';
                             tr += '<td>' + (data[i].structure_of_training ?? '') + '</td>';
                             tr += '<td>' + (data[i].course_material ?? '') + '</td>';
@@ -999,7 +1005,7 @@
                             tr += '<td>' + (data[i].gendernew ?? '') + '</td>';
                             tr += '<td>' + (data[i].categorynew ?? '') + '</td>';
                             tr += '<td>' + (data[i].mobilenonew ?? '') + '</td>';
-                            tr += '<td>' + (data[i].regno ?? '') + '</td>';
+                            tr += '<td>' + (masked ?? '') + '</td>';
                             tr += '<td>' + (data[i].todaydate ?? '') + '</td>';
                             tr += '<td>' + (data[i].structure_of_training ?? '') + '</td>';
                             tr += '<td>' + (data[i].course_material ?? '') + '</td>';
