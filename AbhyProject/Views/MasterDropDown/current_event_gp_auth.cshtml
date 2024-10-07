@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "WSPgram";
     Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
 }
@@ -583,7 +582,7 @@
                             <img src="~/Content/WspImages/user-silhouette.png" title="User" />
                             @if (Session["UserName"] != null)
                             {
-                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
                             }
 
                         </li>
@@ -891,73 +890,74 @@
                             <div class="col-md-12 selectdistshowoption">
                                 <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
                                 <ul class="Select_option selectbackhome" style="display:flex;justify-content:center;align-items:center;column-gap:20px;flex-wrap:wrap;row-gap:10px;">
-                                    @*<li id="StateLabel">
-                                            <label id="lblstate">State:</label>
-                                            <span id="spnstate1">@Session["gstate"]</span>
-                                        </li>
-                                        <li id="StateDropdownLabel">
+                                    @*
+                                    <li id="StateLabel">
+                                        <label id="lblstate">State:</label>
+                                        <span id="spnstate1">@Session["gstate"]</span>
+                                    </li>
+                                    <li id="StateDropdownLabel">
 
-                                            <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:25px;">
-                                            </select>
-                                        </li>
-                                        <li id="DistLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label id="lbldistrict">District:</label>
-                                            <span id="spndistrict">@Session["gdist"]</span>
-                                        </li>
-                                        <li id="DistDropdownLabel">
+                                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:25px;">
+                                        </select>
+                                    </li>
+                                    <li id="DistLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label id="lbldistrict">District:</label>
+                                        <span id="spndistrict">@Session["gdist"]</span>
+                                    </li>
+                                    <li id="DistDropdownLabel">
 
-                                            <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:25px;">
-                                            </select>
-                                        </li>
-                                        <li id="BlockLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label>Block:</label>
-                                            <span>@Session["gblock"] </span>
-                                        </li>
-                                        <li id="BlockDropdownLabel">
+                                        <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:25px;">
+                                        </select>
+                                    </li>
+                                    <li id="BlockLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>Block:</label>
+                                        <span>@Session["gblock"] </span>
+                                    </li>
+                                    <li id="BlockDropdownLabel">
 
-                                            <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:25px;">
-                                            </select>
-                                        </li>
-                                        <li id="GramLabel">
-                                            <i class="fas fa fa-angle-double-right"></i>
-                                            <label>GramPanchayat:</label>
-                                            <span id="spngram">@Session["ggram"]</span>
-                                        </li>
+                                        <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:25px;">
+                                        </select>
+                                    </li>
+                                    <li id="GramLabel">
+                                        <i class="fas fa fa-angle-double-right"></i>
+                                        <label>GramPanchayat:</label>
+                                        <span id="spngram">@Session["ggram"]</span>
+                                    </li>
 
-                                        <li id="GramDropdownLabel">
+                                    <li id="GramDropdownLabel">
 
-                                            <select class="form-control" id="gram1" onchange="Gram_Fun()"></select>
-                                        </li>
-                                        <li>
-                                            <select class="form-control" id="year_npmu">
-                                                <option value="0">Select Financial Year</option>
-                                                <option value="2021-22">2021-22</option>
-                                                <option value="2022-23">2022-23</option>
-                                                <option value="2023-24">2023-24</option>
-                                                <option value="2024-25">2024-25</option>
+                                        <select class="form-control" id="gram1" onchange="Gram_Fun()"></select>
+                                    </li>
+                                    <li>
+                                        <select class="form-control" id="year_npmu">
+                                            <option value="0">Select Financial Year</option>
+                                            <option value="2021-22">2021-22</option>
+                                            <option value="2022-23">2022-23</option>
+                                            <option value="2023-24">2023-24</option>
+                                            <option value="2024-25">2024-25</option>
 
-                                            </select>
-                                        </li>
-                                        <li id="MonthDropdownLabel">
+                                        </select>
+                                    </li>
+                                    <li id="MonthDropdownLabel">
 
-                                            <select class="form-control" id="month_npmu" onchange="Month_change()">
-                                                <option value="0">Select Month</option>
-                                                <option value="April">April</option>
-                                                <option value="May">May</option>
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                            </select>
-                                        </li>*@
+                                        <select class="form-control" id="month_npmu" onchange="Month_change()">
+                                            <option value="0">Select Month</option>
+                                            <option value="April">April</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="August">August</option>
+                                            <option value="September">September</option>
+                                            <option value="October">October</option>
+                                            <option value="November">November</option>
+                                            <option value="December">December</option>
+                                            <option value="January">January</option>
+                                            <option value="February">February</option>
+                                            <option value="March">March</option>
+                                        </select>
+                                    </li>*@
 
                                 </ul>
                             </div>
@@ -1145,6 +1145,57 @@
 
     .panel-title a {
         text-decoration: none;
+    }
+
+    .red_band {
+        color: red;
+    }
+
+    #tbl_details_feedback td {
+        font-size: 14px;
+    }
+
+        #tbl_details_feedback td:nth-of-type(11) {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #tbl_details_feedback td:nth-of-type(12) {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    .requrid_star {
+        color: red;
+    }
+
+    .check-font {
+        font-size: 14px;
+        vertical-align: middle;
+        padding-left: 5px;
+    }
+
+    table.feedback_table td {
+        padding: 3px 10px;
+        font-size: 14px;
+    }
+
+    .firstfeedback-table td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .second_feedbacktable td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    table.feedback_table.second_feedbacktable th {
+        padding: 10px 0px 0px;
     }
 </style>
 <!-----current event Modal-------->
@@ -1446,10 +1497,10 @@
     </div>
 </div>
 <div class="modal fade" id="myModal_upload_atted" data-backdrop="static" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <!-- Modal content-->
-        <div class="modal-content" style="width:130%;">
-            <div class="modal-header">
+        <div class="modal-content" style="padding:20px;">
+            <div class="modal-header" style="padding:0px;">
                 @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
                 <div class="col-md-12 text-center modal-title" id="event-title">
                     <h4 style="background-color: #337ab7; color: #fff; padding: 10px;font-weight:600;">Fill in the details according to the submitted attendance sheet</h4>
@@ -1457,28 +1508,28 @@
 
 
             </div>
-            <div class="tbl-responsive" id="demandside" style="overflow:scroll; height:60%;">
+            <div class="table-responsive" id="demandside" style="overflow:scroll; height:60%;">
                 <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
                     <thead style="color: #fff;">
                         <tr class="tableheader1"></tr>
                         <tr class="success">
-                            <th style="background-color: #337ab7;">Sr.No.</th>
-                            <th style="background-color: #337ab7;">State</th>
-                            <th style="background-color: #337ab7;">District</th>
-                            <th style="background-color: #337ab7;">Block</th>
-                            <th style="background-color: #337ab7;">GP</th>
-                            <th style="background-color: #337ab7;">Year</th>
-                            <th style="background-color: #337ab7;">Month</th>
-                            <th style="background-color: #337ab7;">From Date</th>
-                            <th style="background-color: #337ab7;">To Date</th>
-                            <th style="background-color: #337ab7;">Uploaded attendance sheet of the participants</th>
-                            <th style="background-color: #337ab7;">Name of Participant</th>
-                            <th style="background-color: #337ab7;">Gender</th>
-                            <th style="background-color: #337ab7;">Category</th>
-                            <th style="background-color: #337ab7;">Mobile no.</th>
-                            <th style="background-color: #337ab7;">Edit</th>
-                            <th style="background-color: #337ab7;">Delete</th>
-                            <th style="background-color: #337ab7;">Add New</th>
+                            <th style="background-color: #337ab7;font-size:14px;line-height:18px;">Sr.No.</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">State</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">District</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Block</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">GP</th>
+                            <th style="background-color: #337ab7; padding: 0px 45px; font-size: 14px; line-height: 18px;">Year</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Month</th>
+                            <th style="background-color: #337ab7;  font-size: 14px; line-height: 18px; ">From Date</th>
+                            <th style="background-color: #337ab7;  font-size: 14px; line-height: 18px; ">To Date</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Uploaded attendance sheet of the participants</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Name of Participant</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Gender</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Category</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Mobile no.</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Edit</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Delete</th>
+                            <th style="background-color: #337ab7; font-size: 14px; line-height: 18px;">Add New</th>
 
                         </tr>
 
@@ -1489,7 +1540,6 @@
             </div>
 
             <div class="modal-footer">
-
                 <button type="button" id="btnclose" class="btn btn-danger" style="width: 80px;" onclick="closeatt()" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -1506,61 +1556,66 @@
                     <h4 style="background-color: #337ab7; color: #fff; padding: 10px;font-weight:600;">Comman Feedback form (Gram Panchayat)</h4>
                 </div>
             </div>
-            <div class="tbl-responsive" id="demandside">
-                <table class="feedback_table">
-                    <tbody>
+            <div style="padding: 20px; height: 500px; overflow: auto;">
+                <div class="tbl-responsive" id="demandside">
+                    <table class="feedback_table firstfeedback-table">
+                        <tbody>
 
-                        <tr>
-                            <td class="text_span">  Registration No: <span class="requrid_star">*</span></td>
-                            <td colspan="2"><input type="text" onpaste="" id="registration_no" class="form-control alphanum" readonly /></td>
-                            <td class="text_span" style="padding-left: 10px;">Topic Of Training : </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="topic_tarining" name="p_training_name" class="form-control alpha" readonly /></td>
-                        </tr>
+                            <tr>
+                                <td class="text_span">  Registration No: <span class="requrid_star">*</span></td>
+                                <td colspan="2"><input type="text" onpaste="" id="registration_no" class="form-control alphanum" readonly /></td>
+                                <td class="text_span">Topic Of Training: </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="topic_tarining" name="p_training_name" class="form-control alpha" readonly /></td>
+                            </tr>
 
 
-                        <tr>
-                            <td class="text_span" style="padding-left: 10px;">Gram Panchayat (Training) : </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="gp_training" name="p_training_name" class="form-control alpha" readonly /></td>
-                            <td class="text_span" style="padding-left: 60px;">Total no. of Participant : </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="participant_name" name="participant_name" class="form-control alpha" readonly /></td>
+                            <tr>
+                                <td class="text_span">Gram Panchayat (Training): </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="gp_training" name="p_training_name" class="form-control alpha" readonly /></td>
+                                <td class="text_span">Total no. of Participant: </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="participant_name" name="participant_name" class="form-control alpha" readonly /></td>
 
-                        </tr>
-                        <tr>
-                            <td class="text_span">  Male : </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="male" class="form-control alphanum" readonly /></td>
-                            <td class="text_span" style="padding-left: 60px;">Female : </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="female" name="participant_name" class="form-control alpha" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td class="text_span">  Male: </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="male" class="form-control alphanum" readonly /></td>
+                                <td class="text_span">Female: </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="female" name="participant_name" class="form-control alpha" readonly /></td>
 
-                        </tr>
-                        <tr>
-                            <td class="text_span">  Transgender: </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="transgender" class="form-control alphanum" readonly /></td>
-                            <td class="text_span" style="padding-left: 33px;">Event Platform : </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="event_platform" name="event_platform" class="form-control alpha" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td class="text_span">  Transgender: </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="transgender" class="form-control alphanum" readonly /></td>
+                                <td class="text_span">Event Platform: </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="event_platform" name="event_platform" class="form-control alpha" readonly /></td>
 
-                        </tr>
-                        <tr>
-                            <td class="text_span"> Feedback Submission Date: </td>
-                            <td colspan="2"><input type="text" onpaste="return false;" id="todaydate" class="form-control alphanum" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td class="text_span"> Feedback Submission Date: </td>
+                                <td colspan="2"><input type="text" onpaste="return false;" id="todaydate" class="form-control alphanum" readonly /></td>
 
-                        </tr>
+                            </tr>
 
-                        <tr>
-                            <td class="text_span" style="padding-left: 10px;">From Date : </td>
-                            <td><input type="text" onpaste="return false;" id="from_date_feed" name="from_date" class="form-control alpha" readonly placeholder="MM/DD/YYYY" /></td>
+                            <tr>
+                                <td class="text_span" style="padding-top:15px;">From Date: </td>
+                                <td style="padding-top:15px;"><input type="text" onpaste="return false;" id="from_date_feed" name="from_date" class="form-control alpha" readonly placeholder="MM/DD/YYYY" /></td>
 
-                            <td class="text_span" style="padding-left: 33px;">To Date :</td>
-                            <td><input type="text" onpaste="return false;" id="to_date_feed" name="to_date" class="form-control" style="margin-left: -46px; padding-left: 6px;" readonly placeholder="MM/DD/YYYY" /></td>
-                            <td class="text_span" style="padding-left: 10px;">Total No. Of Days:</td>
-                            <td><input type="text" onpaste="return false;" id="total_days" name="total_days" class="form-control alphanum" readonly /></td>
-                            <td><input type="text" onpaste="return false;" id="unic_key" name="" class="form-control alphanum" hidden readonly style="display:none;" /></td>
+                                <td class="text_span" style="padding-top:15px;">To Date:</td>
+                                <td style="padding-top:15px;"><input type="text" onpaste="return false;" id="to_date_feed" name="to_date" class="form-control" style=" padding-left: 6px;" readonly placeholder="MM/DD/YYYY" /></td>
+                                <td style="padding-top:15px;" class="text_span">Total No. Of Days:</td>
+                                <td style="padding-top:15px;"><input type="text" onpaste="return false;" id="total_days" name="total_days" class="form-control alphanum" readonly /></td>
+                                <td style="padding-top:15px;"><input type="text" onpaste="return false;" id="unic_key" name="" class="form-control alphanum" hidden readonly style="display:none;" /></td>
 
-                        </tr>
+                            </tr>
 
-                        <tr>
-                            <td colspan="22" class="text-center text_span"><span class="red_band"><<‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐ Tick mark in relevant boxes ‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐>></span></td>
-                        </tr>
+                            <tr>
+                                <td colspan="22" class="text-center text_span" style=" padding: 25px 0px; 10px"><span class="red_band"><<‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐ Tick mark in relevant boxes ‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐>></span></td>
+                            </tr>
 
+
+                        </tbody>
+                    </table>
+                    <table class="feedback_table">
                         <tr>
                             <td colspan="22" class="text_span">
                                 <span class="red_band">
@@ -1575,27 +1630,36 @@
                                 </span>
                             </td>
                         </tr>
+                    </table>
+                    <table class="feedback_table second_feedbacktable">
+
+
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">1.Structure Of Training Program:<span class="requrid_star">*</span> </th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">1.Structure Of Training Program:<span class="requrid_star">*</span> </td>
-                            <td style="width:150px;">
+
+                            <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Very Well Planned_4" name="structure_of_training" value="" class="chk" /><span class="check-font">Very Well Planned(<label style="color:red">4</label>)</span>
 
                             </td>
 
-                            <td style="width:150px;">
+                            <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Well Planned_3" name="structure_of_training" value="" class="chk" /><span class="check-font"> Well Planned(<label style="color:red">3</label>)</span>
                             </td>
-                            <td style="width:150px;">
+                            <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Less Planned_2" name="structure_of_training" value="" class="chk" /><span class="check-font"> Less Planned(<label style="color:red">2</label>)</span>
                             </td>
-                            <td style="width:150px;">
+                            <td>
                                 <input type="checkbox" onclick="calculatesum()" id="No Planning_1" name="structure_of_training" value="" class="chk" /><span class="check-font"> No Planning(<label style="color:red">1</label>)</span>
                             </td>
                         </tr>
 
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">2.Course Material:<span class="requrid_star">*</span></th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">2.Course Material:<span class="requrid_star">*</span> </td>
+
                             <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Very Relevant_4" name="course_material" value="" class="chk1" /><span class="check-font"> Very Relevant(<label style="color:red">4</label>)</span>
                             </td>
@@ -1610,9 +1674,11 @@
                                 <input type="checkbox" onclick="calculatesum()" id="Not Relevant_1" name="course_material" value="" class="chk1" /><span class="check-font"> Not Relevant(<label style="color:red">1</label>)</span>
                             </td>
                         </tr>
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">3.Interaction With Trainer:<span class="requrid_star">*</span></th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">3.Interaction With Trainer:<span class="requrid_star">*</span> </td>
+
                             <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Excellent_4" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Excellent(<label style="color:red">4</label>)</span>
                             </td>
@@ -1626,9 +1692,11 @@
                                 <input type="checkbox" onclick="calculatesum()" id="Poor_1" name="interaction_with_trainer" value="" class="chk2" /><span class="check-font"> Poor(<label style="color:red">1</label>)</span>
                             </td>
                         </tr>
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">4.Hands on Practice/practical Session:<span class="requrid_star">*</span> </th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">4.Hands on Practice/practical Session:<span class="requrid_star">*</span> </td>
+
                             <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Very Useful_4" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Very Useful(<label style="color:red">4</label>)</span>
                             </td>
@@ -1643,9 +1711,11 @@
                                 <input type="checkbox" onclick="calculatesum()" id="Not Useful_1" name="hands_on_practice" value="" class="chk3" /><span class="check-font"> Not Useful(<label style="color:red">1</label>)</span>
                             </td>
                         </tr>
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">5.Usefullness Of Contents:<span class="requrid_star">*</span> </th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">5.Usefullness Of Contents:<span class="requrid_star">*</span> </td>
+
                             <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Very Useful_4" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font">Very Useful(<label style="color:red">4</label>)</span>
                             </td>
@@ -1660,9 +1730,11 @@
                                 <input type="checkbox" onclick="calculatesum()" id="Not Useful_1" name="usefulness_of_contents" value="" class="chk4" /><span class="check-font"> Not Useful(<label style="color:red">1</label>)</span>
                             </td>
                         </tr>
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">6.Information presented was clearly explained:<span class="requrid_star">*</span> </th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">6.Information presented was clearly explained:<span class="requrid_star">*</span> </td>
+
                             <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Strongly Agree_5" name="information_presented" value="" class="chk5" /><span class="check-font">Strongly Agree(<label style="color:red">5</label>)</span>
                             </td>
@@ -1680,10 +1752,12 @@
                                 <input type="checkbox" onclick="calculatesum()" id="Strongly Disagree_1" name="information_presented" value="" class="chk5" /><span class="check-font"> Strongly Disagree(<label style="color:red">1</label>)</span>
                             </td>
                         </tr>
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">7.Participant questions were clearly answered:<span class="requrid_star">*</span> </th>
+                        </tr>
 
                         <tr class="text_span chkAll">
-                            <td class="font-16">7.Participant questions were clearly answered:<span class="requrid_star">*</span> </td>
+
                             <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Strongly Agree_5" name="participant_questions" value="" class="chk6" /><span class="check-font"> Strongly Agree(<label style="color:red">5</label>)</span>
                             </td>
@@ -1702,9 +1776,11 @@
                             </td>
                         </tr>
 
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">8.Food Quality/Lodging Facilities (If Applicable):</th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">8.Food Quality/Lodging Facilities (If Applicable):</td>
+
                             <td>
                                 <input type="checkbox" onclick="calculatesum()" id="Excellent_4" name="food_quality" value="" class="chk7" /><span class="check-font"> Excellent(<label style="color:red">4</label>)</span>
                             </td>
@@ -1729,9 +1805,12 @@
                                 <textarea class="form-control alphanum" id="most_interesting_thing" name="most_interesting_thing" placeholder="Enter your Comments" rows="2"></textarea>
                             </td>
                         </tr>
-
+                        <tr>
+                            <th class="font-16" colspan="4" style="font-size:14px;">10.Overall Impression:<span class="requrid_star">*</span> </th>
+                        </tr>
                         <tr class="text_span chkAll">
-                            <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>
+                            @*
+                            <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>*@
                             <td>
                                 <input type="checkbox" disabled id="Very Beneficial_27-34" name="overall_impression" value="" class="chk8" /><span class="check-font"> Very Beneficial(<label style="color:red">27-34</label>)</span>
                             </td>
@@ -1758,11 +1837,8 @@
                         </tr>
 
 
-
-                    </tbody>
-                </table>
-
-
+                    </table>
+                </div>
             </div>
 
             <div class="modal-footer">
@@ -1784,26 +1860,26 @@
                                 Training Material
                             </label>
                         </h3>
-                        <br />
+
                         <div class="tbl-responsive" id="demandside" style="overflow:scroll; height:60%;">
                             <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
                                 <thead style="color: #fff;">
                                     <tr class="tableheader1"></tr>
                                     <tr class="success">
                                         <th style="background-color: #337ab7;">Sr.No</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Location</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Male</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Female</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Transgender</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Total Number of Participants</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">SC</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">ST</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">OBC</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">General</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Attendance sheet of the participant</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Photograph of the training </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Feedback from Participants </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Training Material </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Location</th>
+                                        <th style="background-color: #337ab7;font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Male</th>
+                                        <th style="background-color: #337ab7;  font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Female</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Transgender</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Total Number of Participants</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">SC</th>
+                                        <th style="background-color: #337ab7;  font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">ST</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">OBC</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">General</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Attendance sheet of the participant</th>
+                                        <th style="background-color: #337ab7;  font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Photograph of the training </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Feedback from Participants </th>
+                                        <th style="background-color: #337ab7;  font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Training Material </th>
                                         <th style="background-color: #337ab7;">Edit</th>
                                         <th style="background-color: #337ab7;">Delete</th>
 
@@ -1836,36 +1912,36 @@
                                 Comman Feedback Details
                             </label>
                         </h3>
-                        <br />
+
                         <div class="tbl-responsive" id="demandside" style="overflow:scroll; height:60%;">
                             <table id="tbldemand" class="table wa_table table-bordered table-responsive table-__web-inspector-hide-shortcut__ drinkinganddomestic" style="width:100%;">
                                 <thead style="color: #fff;">
                                     <tr class="tableheader1"></tr>
                                     <tr class="success">
                                         <th style="background-color: #337ab7;">Sr.No</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Registration No</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Topic Of Training</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Gram Panchayat (Training)</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Total no. of Participant</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Male </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Female </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Transgender</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Event Platform</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Feedback Submission Date</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">From Date</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">To Date  </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Total No. Of Days </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Structure Of Training Program </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Course Material </th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Interaction With Trainer</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Hands on Practice/practical Session</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Usefullness Of Contents</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Information presented was clearly explained</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Participant questions were clearly answered</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Food Quality/Lodging Facilities (If Applicable)</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Most interesting thing you learned</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Overall Impression</th>
-                                        <th style="background-color: #337ab7; padding: 80px; padding-top: 0px; padding-bottom: 10px;">Your suggestions /Comments for further improvements</th>
+                                        <th style="background-color: #337ab7; font-size:14px; line-height:18px; padding-top: 10px; padding-bottom: 10px;">Registration No</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Topic Of Training</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Gram Panchayat (Training)</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Total no. of Participant</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Male </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Female </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Transgender</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Event Platform</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Feedback Submission Date</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">From Date</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">To Date  </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Total No. Of Days </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Structure Of Training Program </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Course Material </th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Interaction With Trainer</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Hands on Practice/practical Session</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Usefullness Of Contents</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Information presented was clearly explained</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Participant questions were clearly answered</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Food Quality/Lodging Facilities (If Applicable)</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Most interesting thing you learned</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Overall Impression</th>
+                                        <th style="background-color: #337ab7; font-size: 14px; line-height: 18px; padding-top: 10px; padding-bottom: 10px;">Your suggestions /Comments for further improvements</th>
                                         <th style="background-color: #337ab7;">Delete</th>
 
                                     </tr>
@@ -2141,7 +2217,7 @@
         });
         let total = structure_of_training + course_material + interaction_with_trainer + hands_on_practice + usefulness_of_contents + information_presented + participant_questions + food_quality;
         debugger;
-        
+
         if (total >= 27 && total <= 34) {
             document.getElementById('Very Beneficial_27-34').checked = true;
         }
@@ -4803,162 +4879,30 @@
                             debugger;
 
                             /*if (StateOfficer == "Gram Panchyat Nodal Officer") {*/
-                                if (isWithinRange(new Date(to_date))) {
-                                    if (approve_status == "Approved") {
-                                        if (data[i].from_table == "main") {
-                                            tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td></tr>';
-                                        }
-                                        else if (data[i].from_table == "addnew") {
-                                            tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td></tr>';
-                                        }
+                            if (isWithinRange(new Date(to_date))) {
+                                if (approve_status == "Approved") {
+                                    if (data[i].from_table == "main") {
+                                        tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td></tr>';
                                     }
-                                    else if (approve_status == "Submitted") {
-                                        if (data[i].from_table == "main") {
-                                            tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td></tr>';
-                                        }
-                                        else if (data[i].from_table == "addnew") {
-                                            tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td></tr>';
-                                        }
-                                    }
-                                    else if (approve_status == "Reject") {
-                                        if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
-                                            tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
-                                        }
-                                        else {
-                                            if (data[i].from_table == "main") {
-                                                tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traa(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_add(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary" onclick="add_new( ' + i + ')"><i class="fa fa-plus"></i></button></td></tr>';
-                                                tr += '<tr id="hide_AWP1_TR_Meeting_reg' + i + '" style="display:none;"><td></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
-
-                                                    '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
-                                                    '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
-                                                    '<td> </td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
-
-
-                                                tr += '<tr id="hide_AWP1_TR_Meeting_reg_new_a' + i + '" style="display:none;"><td></td>' +
-                                                    '<td>' + data[i].level_event + ' </td>' +
-                                                    '<td>' + data[i].district + ' </td>' +
-                                                    '<td>' + data[i].block + ' </td>' +
-                                                    '<td>' + data[i].gp + ' </td>' +
-                                                    '<td>' + data[i].year + ' </td>' +
-                                                    '<td>' + data[i].month + ' </td>' +
-                                                    '<td>' + data[i].from_date + ' </td>' +
-                                                    '<td>' + data[i].to_date + ' </td>' +
-                                                    '<td> </td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
-                                                    '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
-                                                    '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
-                                            }
-                                            else if (data[i].from_table == "addnew") {
-                                                tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traaadd(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_addnew(' + data[i].addnewid + ')"><i class="fa fa-trash"></i></button></td></tr>';
-                                                tr += '<tr id="hide_AWP1_TR_Meeting_regadd' + i + '" style="display:none;"><td></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
-
-                                                    '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
-                                                    '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
-                                                    '<td> </td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
-
-
-
-                                            }
-                                        }
-                                       
-                                    }
-                                    else {
-                                        if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
-                                            tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
-                                        }
-                                        else {
-                                            if (data[i].from_table == "main") {
-                                                tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traa(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_add(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary" onclick="add_new( ' + i + ')"><i class="fa fa-plus"></i></button></td></tr>';
-                                                tr += '<tr id="hide_AWP1_TR_Meeting_reg' + i + '" style="display:none;"><td></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
-
-                                                    '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
-                                                    '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
-                                                    '<td> </td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
-
-
-                                                tr += '<tr id="hide_AWP1_TR_Meeting_reg_new_a' + i + '" style="display:none;"><td></td>' +
-                                                    '<td>' + data[i].level_event + ' </td>' +
-                                                    '<td>' + data[i].district + ' </td>' +
-                                                    '<td>' + data[i].block + ' </td>' +
-                                                    '<td>' + data[i].gp + ' </td>' +
-                                                    '<td>' + data[i].year + ' </td>' +
-                                                    '<td>' + data[i].month + ' </td>' +
-                                                    '<td>' + data[i].from_date + ' </td>' +
-                                                    '<td>' + data[i].to_date + ' </td>' +
-                                                    '<td> </td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
-                                                    '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
-                                                    '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
-                                            }
-                                            else if (data[i].from_table == "addnew") {
-                                                tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traaadd(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_addnew(' + data[i].addnewid + ')"><i class="fa fa-trash"></i></button></td></tr>';
-                                                tr += '<tr id="hide_AWP1_TR_Meeting_regadd' + i + '" style="display:none;"><td></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
-
-                                                    '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
-                                                    '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
-                                                    '<td> </td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
-                                                    '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
-                                                    '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
-
-
-
-                                            }
-                                        }
+                                    else if (data[i].from_table == "addnew") {
+                                        tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td></tr>';
                                     }
                                 }
-                                else {
+                                else if (approve_status == "Submitted") {
+                                    if (data[i].from_table == "main") {
+                                        tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td></tr>';
+                                    }
+                                    else if (data[i].from_table == "addnew") {
+                                        tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td></tr>';
+                                    }
+                                }
+                                else if (approve_status == "Reject") {
                                     if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
-                                        tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td></td></tr>';
+                                        tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
                                     }
                                     else {
                                         if (data[i].from_table == "main") {
-                                            tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td></td> <td></td><td></td></tr>';
+                                            tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traa(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_add(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary" onclick="add_new( ' + i + ')"><i class="fa fa-plus"></i></button></td></tr>';
                                             tr += '<tr id="hide_AWP1_TR_Meeting_reg' + i + '" style="display:none;"><td></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
@@ -4994,7 +4938,73 @@
                                                 '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
                                         }
                                         else if (data[i].from_table == "addnew") {
-                                            tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td></td> <td></td></tr>';
+                                            tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traaadd(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_addnew(' + data[i].addnewid + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                            tr += '<tr id="hide_AWP1_TR_Meeting_regadd' + i + '" style="display:none;"><td></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
+
+                                                '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
+                                                '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
+                                                '<td> </td>' +
+                                                '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
+                                                '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+
+
+
+                                        }
+                                    }
+
+                                }
+                                else {
+                                    if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
+                                        tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td> <button type="button" class="btn btn-primary" onclick="Save_new(' + i + ')">Save</button></td></tr>';
+                                    }
+                                    else {
+                                        if (data[i].from_table == "main") {
+                                            tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traa(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_add(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td><td><button class="btn btn-primary" onclick="add_new( ' + i + ')"><i class="fa fa-plus"></i></button></td></tr>';
+                                            tr += '<tr id="hide_AWP1_TR_Meeting_reg' + i + '" style="display:none;"><td></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
+
+                                                '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
+                                                '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
+                                                '<td> </td>' +
+                                                '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
+                                                '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
+                                                '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+
+
+                                            tr += '<tr id="hide_AWP1_TR_Meeting_reg_new_a' + i + '" style="display:none;"><td></td>' +
+                                                '<td>' + data[i].level_event + ' </td>' +
+                                                '<td>' + data[i].district + ' </td>' +
+                                                '<td>' + data[i].block + ' </td>' +
+                                                '<td>' + data[i].gp + ' </td>' +
+                                                '<td>' + data[i].year + ' </td>' +
+                                                '<td>' + data[i].month + ' </td>' +
+                                                '<td>' + data[i].from_date + ' </td>' +
+                                                '<td>' + data[i].to_date + ' </td>' +
+                                                '<td> </td>' +
+                                                '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
+                                                '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
+                                                '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
+                                                '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
+                                                '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+                                        }
+                                        else if (data[i].from_table == "addnew") {
+                                            tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_Reg_Gp_Traaadd(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Curr_Evt_addnew(' + data[i].addnewid + ')"><i class="fa fa-trash"></i></button></td></tr>';
                                             tr += '<tr id="hide_AWP1_TR_Meeting_regadd' + i + '" style="display:none;"><td></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
@@ -5017,6 +5027,72 @@
                                         }
                                     }
                                 }
+                            }
+                            else {
+                                if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
+                                    tr += '<tr id="AWP1_TR_Meetingaaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> <input type="text" onpaste="return false;" style="width:150px;" class="form-control" id="name_GN' + i + '" /></td><td><select class="form-control" style="width:150px;" id="gender_GN' + i + '"><option value="0">Select Gender</option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td><td><select class="form-control" style="width:150px;" id="category_GN' + i + '"> <option value="0">Select Category</option> <option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td><td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN' + i + '" maxlength="10"/></td><td></td></tr>';
+                                }
+                                else {
+                                    if (data[i].from_table == "main") {
+                                        tr += '<tr id="AWP1_TR_Meetingaa' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td></td> <td></td><td></td></tr>';
+                                        tr += '<tr id="hide_AWP1_TR_Meeting_reg' + i + '" style="display:none;"><td></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
+
+                                            '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
+                                            '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
+                                            '<td> </td>' +
+                                            '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_N' + i + '" value="' + data[i].nameofparticipent + '" /></td>' +
+                                            '<td><select style="width:150px;" class="form-control" id="gender_GN_N' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
+                                            '<td><select style="width:150px;" class="form-control" id="category_GN_N' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_N' + i + '" maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
+                                            '<td> <button type="button" class="btn btn-primary" onclick="updaeaa(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+
+
+                                        tr += '<tr id="hide_AWP1_TR_Meeting_reg_new_a' + i + '" style="display:none;"><td></td>' +
+                                            '<td>' + data[i].level_event + ' </td>' +
+                                            '<td>' + data[i].district + ' </td>' +
+                                            '<td>' + data[i].block + ' </td>' +
+                                            '<td>' + data[i].gp + ' </td>' +
+                                            '<td>' + data[i].year + ' </td>' +
+                                            '<td>' + data[i].month + ' </td>' +
+                                            '<td>' + data[i].from_date + ' </td>' +
+                                            '<td>' + data[i].to_date + ' </td>' +
+                                            '<td> </td>' +
+                                            '<td> <input type="text"  onpaste="return false;" style="width:150px;" class="form-control" id="name_GN_Naad' + i + '"  /></td>' +
+                                            '<td><select class="form-control" style="width:150px;" id="gender_GN_Naad' + i + '"><option value="0"> Select Gender </option> <option value="Male"> Male </option> <option value="Female"> Female </option> <option value="Transgender"> Transgender </option> </select></td>' +
+                                            '<td><select class="form-control" style="width:150px;" id="category_GN_Naad' + i + '"> <option value="0"> Select Category </option><option value="SC"> SC </option> <option value="ST"> ST </option> <option value="OBC"> OBC </option> <option value="General"> General </option> </select></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)" id="mobile_GN_Naad' + i + '" maxlength="10"  /></td>' +
+                                            '<td> <button type="button" class="btn btn-primary" onclick="Save_newaddnew(' + i + ')">Save</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tr_new(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+                                    }
+                                    else if (data[i].from_table == "addnew") {
+                                        tr += '<tr id="AWP1_TR_Meetingaaadd' + i + '" style="text-align:center"><td>' + (++h) + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td><td>' + from_date + '</td> <td>' + to_date + '</td><td><a href="/MasterDropDown/ViewFile?FileName=' + data[i].atten_sheet + '">' + atten + '</a></td> <td> ' + data[i].nameofparticipent + '</td><td>' + data[i].gendernew + '</td><td>' + data[i].categorynew + '</td><td> ' + data[i].mobilenonew + '</td><td></td> <td></td></tr>';
+                                        tr += '<tr id="hide_AWP1_TR_Meeting_regadd' + i + '" style="display:none;"><td></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="state1_GN_N' + i + '" value="' + data[i].level_event + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="district1_GN_N' + i + '" value="' + data[i].district + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="block1_GN_N' + i + '" value="' + data[i].block + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="gram1_GN_N' + i + '" value="' + data[i].gp + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="year1_GN_N' + i + '" value="' + data[i].year + '" readonly /></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" class="form-control" id="month1_GN_N' + i + '" value="' + data[i].month + '" readonly /></td>' +
+
+                                            '<td> <input type="date" class="form-control" id="fdate1_GN_N' + i + '" value="' + data[i].from_date + '" readonly /></td>' +
+                                            '<td> <input type="date" class="form-control" id="tdate1_GN_N' + i + '" value="' + data[i].to_date + '" readonly /></td>' +
+                                            '<td> </td>' +
+                                            '<td> <input type="text"  onpaste="return false;" id="name_GN_Nadd' + i + '" style="width:150px;" class="form-control"  value="' + data[i].nameofparticipent + '" /></td>' +
+                                            '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
+                                            '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
+                                            '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
+                                            '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+
+
+
+                                    }
+                                }
+                            }
                             //}
                             //else {
                             //    if (data[i].from_table == "main") {
