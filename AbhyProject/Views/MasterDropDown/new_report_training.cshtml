@@ -634,7 +634,7 @@
         $("#StateDropdownLabel").hide();
          StateOfficer = '@Session["Officer"]';
         var Email = '@Session["Email"]';
-        debugger;
+        
         if (StateOfficer == "State Level Nodal Officer") {
             $("#StateLabel").show();
             $("#event_calender_icon").show();
@@ -875,7 +875,7 @@
                 statename: state, year: year, month: month
             },
             success: function (data) {
-                debugger;
+                
                 var Tbodyhtml = '';
                 if (data == "Logout") {
                     window.location = "/WspNew/WSP_GWM_HOME";

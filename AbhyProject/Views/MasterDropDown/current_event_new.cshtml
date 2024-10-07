@@ -1,0 +1,541 @@
+﻿@{ ViewBag.Title = "training";
+    Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/datecss.css" rel="stylesheet" />
+    <link href="~/Content/css/abhycss.css" rel="stylesheet" />
+    <link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <link href="~/Content/wspView_new.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atal Jal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="~/Content/css/trainingcss.css" rel="stylesheet" />
+</head>
+
+
+
+<body>
+    <div class="loading-container">
+        <div class="loader">
+            <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+        </div>
+    </div>
+    <main>
+        <header class="header hederImage">
+            <div class="clearfix">
+                <div class="clearfix">
+                    <div class="col-lg-9">
+                        <div class="header-top-info">
+                            <ul class="clearfix">
+                                <li>
+                                    <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                                </li>
+
+                                <li>
+                                    <span>
+                                        <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                            Ministry of Jal Shakti
+                                        </a>
+                                    </span>
+                                    <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                                    <span style="text-align:center;">
+                                        <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                           style="text-transform:none; font-size:14px;">
+                                            River Development & Ganga Rejuvenation
+                                        </a>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="imgHome clearfix">
+
+                            <li>
+                                <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                                @if (Session["UserName"] != null)
+                                {
+                    <span style="color:#fff;">:@Session["UserName"].ToString()</span>}
+
+                            </li>
+                            <li>
+                                <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                        <ul class="imgHome clearfix">
+                            <li>
+                                <a href="~/Home/index">
+                                    <span>
+                                        <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                                    </span>
+                                    <label>MIS Users <i class="fa fa-angle-double-right"></i></label>
+                                </a>
+                            </li>
+                            <li>
+                                <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                                <label>Training & Workshop </label>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <a href="~/WspNew/MIS_Modules" class="btn btn-danger">
+                            Back To Module
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="completed col-md-12" style="padding:10px;">
+            <div class="wrapper" style="padding: 10px; ">
+                <div class="col-lg-12" style="border: 5px solid #337ab7; background-color: #edebeb;">
+                    <div class="col-md-12 text-center p-0">
+                        <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600; font-size: 18px;margin-bottom:10px;margin-top:10px">Completed Trainings</h4>
+                    </div>
+
+                    <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                        <p style=" margin: 0; width: fit-content; ">Note:- The below-mentioned statistics are shown based on the approved data by the competent authority. If the competent authority is approving data continuously, the statistics will change only after refreshing the page.</p>
+                    </div>
+
+                    <div id="style-1" class=" center" style="font-size: 13px;border: transparent;">
+                        <div id="atnpmu" class="table-responsive">
+                            <table id="" class="GWL_deviation_table table table-bordered  table-__web-inspector-hide-shortcut__" style="font-size: 13px;border: transparent;">
+
+                                <tbody id="">
+
+                                    <tr style="background-color: #337ab7; color: #fff; font-weight: bold;">
+                                        <td id="npmu_a" colspan="1" class="font-bold">Total Trainings Completed At NPMU</td>
+                                        <td id="spmu_a" colspan="1" class="font-bold">Total Trainings Completed At State Level</td>
+                                        <td id="dpmu_a" colspan="1" class="font-bold">Total Trainings Completed At District Level</td>
+                                        <td id="bpmu_a" colspan="1" class="font-bold">Total Trainings Completed At Block Level</td>
+                                        <td id="gpmu_a" colspan="1" class="font-bold">Total Trainings Completed At Gram Panchayat Level</td>
+                                        <td id="tota_a" colspan="1" class="font-bold">Total</td>
+                                    </tr>
+
+                                    <tr style="font-size: 13px; border: transparent;font-weight:600; background-color: #fff;">
+                                        <td id="npmu_b">
+                                            <label id="atnpmu_approve"></label>
+                                        </td>
+                                        <td id="spmu_b">
+                                            <label id="atstate_approve"></label>
+                                        </td>
+
+                                        <td id="dpmu_b">
+                                            <label id="atdpmu_approve"></label>
+                                        </td>
+                                        <td id="bpmu_b">
+                                            <label id="atblock_approve"></label>
+                                        </td>
+                                        <td id="gpmu_b">
+                                            <label id="at_gp_approve"></label>
+                                        </td>
+                                        <td id="tota_b">
+                                            <label id="at_total_approve"></label>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div>
+                        <!-- Main Tabs -->
+                        <ul class="nav nav-tabs d-flex justify-content-between  bordered-0" id="NPMU_Level_Credentials" role="tablist">
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Calendar upload
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="~/MasterDropDown/calender_npmu">NPMU</a>
+                                    <a class="dropdown-item" href="~/MasterDropDown/calender_state">State</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown npmu_style">
+                                <a class="nav-link dropdown-toggle mr-2 mb-2 mb-lg-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Training Creation </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" data-toggle="tab" href="#npmuTraining">NPMU </a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#stateTraining">State</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#distTraining">District</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#blockTraining">Block</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#gramTraining">Gram Panchayat</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown npmu_style">
+                                <a class="nav-link dropdown-toggle mr-2 mb-2 mb-lg-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Registered Participants </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" data-toggle="tab" href="#npmuRegistered">NPMU</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#stateRegistered">State</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#distRegistered">District</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#blockRegistered">Block</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#gramRegistered">Gram Panchayat</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown npmu_style">
+                                <a class="nav-link dropdown-toggle mr-2 mb-2 mb-lg-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Training Feedback </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" data-toggle="tab" href="#npmuFeedback">NPMU</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#stateFeedback">State</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#distFeedback">District</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#blockFeedback">Block</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#gramFeedback">Gram Panchayat</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown npmu_style">
+                                <a class="nav-link dropdown-toggle mr-2 mb-2 mb-lg-0 fw-bold" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Calendar upload </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" data-toggle="tab" href="~/MasterDropDown/calender_npmu">NPMU </a>
+                                    <a class="dropdown-item" data-toggle="tab" href="~/MasterDropDown/calender_state">State</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown npmu_style">
+                                <a class="nav-link dropdown-toggle mr-2 mb-2 mb-lg-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" data-toggle="tab" href="#trainingReports">Training</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#feedbackReports">Feedback</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown npmu_style">
+                                <a class="nav-link dropdown-toggle mr-2 mb-2 mb-lg-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tracker</a>
+                                <div class="dropdown-menu" id="tracker_drop">
+                                    <a class="dropdown-item" data-toggle="tab" href="#stateTracker">State</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#distTracker">District</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#blockTracker">Block</a>
+                                    <a class="dropdown-item" data-toggle="tab" href="#gramTracker">Gram Panchayat</a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!-- Tab Content -->
+                        <div class="tab-content">
+
+                            <br />
+                            <!-- Calendar upload and Data table -->
+                            <div class="tab-pane fade show" id="NPMUCalendar">
+
+                            </div>
+
+                            <div class="tab-pane fade" id="stateCalendar">
+
+                            </div>
+                            <!-- Training Creation  Table -->
+                            <div class="tab-pane fade" id="npmuTraining">
+                                <h2 class="pt-4 ml-4">Reviews Title</h2>
+                                <p class="pt-4 ml-4">Reviews content stuff</p>
+                            </div>
+
+                            <div class="tab-pane fade" id="stateTraining">
+                                <h2 class="pt-4 ml-4">State Training Title</h2>
+                                <p class="pt-4 ml-4">State training content stuff</p>
+                            </div>
+
+                            <div class="tab-pane fade" id="distTraining">
+                                <h2 class="pt-4 ml-4">Process Title</h2>
+                                <p class="pt-4 ml-4">Process content stuff</p>
+                            </div>
+
+                            <div class="tab-pane fade" id="blockTraining">
+                                <h2 class="pt-4 ml-4">Notification Title</h2>
+                                <p class="pt-4 ml-4">Notification content stuff</p>
+                            </div>
+
+                            <div class="tab-pane fade" id="gramTraining">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <!-- Registered Participants Data Table -->
+                            <div class="tab-pane fade" id="npmuRegistered">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="stateRegistered">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="distRegistered">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="blockRegistered">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="gramRegistered">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <!-- Training Feedback Data Table-->
+                            <div class="tab-pane fade" id="npmuFeedback">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="stateFeedback">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="distFeedback">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="blockFeedback">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="gramFeedback">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <!-- reports -->
+                            <div class="tab-pane fade" id="trainingReports">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="feedbackReports">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <!-- Tracker -->
+                            <div class="tab-pane fade" id="stateTracker">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="distTracker">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="blockTracker">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                            <div class="tab-pane fade" id="gramTracker">
+                                <h2 class="pt-4 ml-4">Accounting Services Posts Title</h2>
+                                <p class="pt-4 ml-4">Accounting services posts content stuff</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    @*<div class="container-fluid">
+            @RenderBody()
+        </div>*@  
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/JS_Files/trainingjs.js"></script>
+</body>
+</html>
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script src="~/Content/JS_Files/training_workshop.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.loader').show();
+        var StateOfficer = '@Session["Officer"]';
+        
+        current_event_info_count();
+        SessionInfo();
+    });
+</script>
+<script>
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/MasterDropDown/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+                    $('#spnstate_state_1').hide();
+
+                    $('#StateLabel_all').hide();
+                    $('#StateDropdownLabel_all').hide();
+                    $('#DistLabel_all').hide();
+                    $('#DistDropdownLabel_all').hide();
+                    $('#BlockLabel_all').hide();
+                    $('#BlockDropdownLabel_all').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#text_form').text('NPMU Level Events Calendar');
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                       
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        $('#text_form').text('State Level Events Calendar');
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').hide();
+
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+                       
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        $('#text_form').text('District Level Events Calendar');
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+
+                        
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        $('#text_form').text('Block Level Events Calendar');
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+                        $('#BlockLabel_block').show();
+                        $('#spnstate_state_1').hide();
+                        $('#StateLabel_state').show();
+                        
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+
+                    }
+
+
+                }
+
+            }
+
+        });
+        $('.loader').hide();
+
+    }
+    function current_event_info_count() {
+        $('.loader').show();
+
+        $.ajax({
+
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/MasterDropDown/current_event_Data_count_new',
+            data: {},
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+                var data = data.split(',');
+
+                $('#atstate_approve').text(data[0]);
+                $('#atdpmu_approve').text(data[1]);
+                $('#atblock_approve').text(data[2]);
+                $('#at_gp_approve').text(data[3]);
+                $('#atnpmu_approve').text(data[4]);
+                $('#at_total_approve').text(data[5]);
+                $('.loader').hide();
+            }
+        });
+
+    }
+
+</script>

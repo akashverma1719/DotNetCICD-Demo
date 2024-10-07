@@ -359,6 +359,22 @@
         font-weight: 900;
         display: inline-block;
     }
+
+    /*.headings_border::after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                left: 13%;
+                width: 168px;
+                height: 2px;
+                background: #5cb85c;
+            }*/
+    /*.box_shadow {
+            box-shadow: 0px 3px 46px rgb(0 0 0 / 7%);
+            padding: 15px 15px;
+            background: #f2f2f2;
+        }*/
+
     ul.Select_option {
         padding-left: 0;
         /*   text-align: initial;
@@ -635,7 +651,7 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="selectdistshowoption">
                                     <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
-                                    <ul class="Select_option selectbackhome" style="display:flex;justify-content:center;align-items:center;column-gap:20px;flex-wrap:wrap;row-gap:10px;">
+                                    <ul class="Select_option selectbackhome" style="display: flex; justify-content: flex-start; align-items: center; column-gap: 20px; flex-wrap: wrap; row-gap: 10px; padding-left: 12px;">
                                         <li>
                                             <select class="form-control" id="NPMU" disabled>
                                                 <option value="NPMU (Delhi)">NPMU (Delhi)</option>
@@ -688,27 +704,12 @@
                                                 <option value="2023-24">2023-24</option>
                                                 <option value="2024-25">2024-25</option>
                                                 @*<option value="2024">2024-2025</option>
-                <option value="2025">2025-2026</option>*@
+                                                    <option value="2025">2025-2026</option>*@
                                             </select>
                                         </li>
-                                        <li id="7date">
+                                        <li id="MonthDropdownLabel">
 
-                                            <select class="form-control" id="montha" onchange="Month_change()">
-                                               
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                            </select>
-
-                                        </li>
-                                        <li id="8date">
-
-                                            <select class="form-control" id="month" onchange="Month_change()">
+                                            <select class="form-control" id="month" onchange="Month_change()" disabled>
                                                 <option value="0">Select Month</option>
                                                 <option value="April">April</option>
                                                 <option value="May">May</option>
@@ -723,7 +724,13 @@
                                                 <option value="February">February</option>
                                                 <option value="March">March</option>
                                             </select>
+                                            <select class="form-control" id="month_new" onchange="">
+                                                <option value="0">Select Month</option>
 
+                                                <option value="June">June</option>
+                                                <option value="July">July</option>
+
+                                            </select>
                                         </li>
 
                                     </ul>
@@ -986,11 +993,11 @@
                                                 <th>Location of Exposure Visit</th>
                                                 <th>Particulars of Exposure Visit</th>
                                                 <th>NPMU (Delhi)</th>
-                                                <th>Year </th>
+                                                <th style="padding: 6px 20px;">Year </th>
                                                 <th>Month </th>
                                                 <th>Event Platform </th>
-                                                <th>From Date </th>
-                                                <th>To Date</th>
+                                                <th style="padding: 6px 28px;">From Date </th>
+                                                <th style="padding: 6px 28px;">To Date</th>
                                                 <th>Registration Open Date</th>
                                                 <th>Registration Close Date</th>
                                                 <th>Edit</th>
@@ -2116,7 +2123,7 @@
 @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
 <script>
     $(document).ready(function () {
-     
+        
         $('[data-toggle="tooltip"]').tooltip();
         $('#divssa').hide();
         $('#txtother').hide();
@@ -2146,9 +2153,8 @@ var off_1 = "";
     var StateOfficer_new = "";
     var email = "";
     var statename_new = "";
-    
     $(document).ready(function () {
-     
+        
     access = '@Session["Access_Auth"]';
     email = '@Session["Email"]';
 
@@ -2175,8 +2181,7 @@ var off_1 = "";
     const m = new Date()
     let MonthName = month[m.getUTCMonth()];
     $("#month").val(MonthName);
-        $("#month_new").val(MonthName);
-        $("#montha").val(MonthName);
+    $("#month_new").val(MonthName);
     Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
     $(".loader").show();
     $('#Error_').text("States Information is Loading....");
@@ -2228,52 +2233,35 @@ var off_1 = "";
 
     DropDownInfo();
     DropDownInfo1();
+    
+    var StateOfficer = '@Session["Officer"]';
+     statename = '@Session["gstate"]';
+    StateOfficer_new = StateOfficer;
+    statename_new = statename;
+
+       
+        $("#month").hide();
+        $("#month_new").show();
+        // Get today's date
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-    var StateOfficer = '@Session["Officer"]';
-     statename = '@Session["gstate"]';
-    StateOfficer_new = StateOfficer;
-    statename_new = statename;
+
+        // Set the minimum and maximum attributes of the date input
+        document.getElementById("from_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("from_date").setAttribute("max", "9999-12-31");
+
+        document.getElementById("to_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("to_date").setAttribute("max", "9999-12-31");
+
+        document.getElementById("reg_open_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("reg_open_date").setAttribute("max", "9999-12-31");
+
+        document.getElementById("reg_close_date").setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("reg_close_date").setAttribute("max", "9999-12-31");
        
-        debugger;
-        if (today <= "2024-09-05") {
-            var mmm = "08";
-            $('#7date').show();
-            $('#8date').hide();
-            // Set the minimum and maximum attributes of the date input
-            document.getElementById("from_date").setAttribute("min", yyyy + '-' + mmm + '-01');
-            document.getElementById("from_date").setAttribute("max", "9999-12-31");
-
-            document.getElementById("to_date").setAttribute("min", yyyy + '-' + mmm + '-01');
-            document.getElementById("to_date").setAttribute("max", "9999-12-31");
-
-            document.getElementById("reg_open_date").setAttribute("min", yyyy + '-' + mmm + '-01');
-            document.getElementById("reg_open_date").setAttribute("max", "9999-12-31");
-
-            document.getElementById("reg_close_date").setAttribute("min", yyyy + '-' + mmm + '-01');
-            document.getElementById("reg_close_date").setAttribute("max", "9999-12-31");
-
-        }
-        else {
-            $('#7date').hide();
-            $('#8date').show();
-            // Set the minimum and maximum attributes of the date input
-            document.getElementById("from_date").setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("from_date").setAttribute("max", "9999-12-31");
-
-            document.getElementById("to_date").setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("to_date").setAttribute("max", "9999-12-31");
-
-            document.getElementById("reg_open_date").setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("reg_open_date").setAttribute("max", "9999-12-31");
-
-            document.getElementById("reg_close_date").setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("reg_close_date").setAttribute("max", "9999-12-31");
-
-        }
 
 
     if (StateOfficer == "Gram Panchyat Nodal Officer" || StateOfficer == "Block Level Nodal Officer" || StateOfficer == "District Level Nodal Officer" || StateOfficer == "State Level Nodal Officer") {
@@ -2363,7 +2351,7 @@ var off_1 = "";
 <script type="text/javascript">
 
     $(document).ready(function () {
-     
+        
     $("#LEV").hide();
     $("#PEV").hide();
     state();

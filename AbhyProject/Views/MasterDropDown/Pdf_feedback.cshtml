@@ -428,7 +428,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/Contact/Admin_feedback" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/rp_state" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -548,7 +548,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/Contact/Admin_feedback" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/rp_state" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -565,6 +565,47 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
 <script>
     function ReportPdf() {
+        $("#Data1").width(3000);
+        var element = document.getElementById('Data1');
+        var w = screen.width;
+        var h = screen.height;
+        var opt = {
+            margin: 0,
+
+            filename: 'Participants Feedback Details.pdf',
+            image: { type: 'jpeg', quality: 1.0, w, h },
+            pagebreak: { mode: 'avoid-all', before: '.page2el11' },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'pt', format: 'A1', orientation: 'landscape' }
+
+        };
+        html2pdf(element, opt);
+        $("#Data1").width();
+        $('#Data1').addClass('background_after_download');
+        $('#Data1').addClass('table-condensed');
+
+        $(".highcharts-credits").css("display", "none");
+        $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+        $('div#btnExport').addClass('hideDownload');
+
+        $('div#btnExport1').addClass('hideDownload');
+
+        setTimeout(function () {
+            $('#Data1').removeClass('background_after_download');
+            $(".gp_profile.table > tbody > tr > td").css("padding", "4px 5px");
+
+
+            $('div#btnExport').removeClass('hideDownload');
+            $('div#btnExport1').removeClass('hideDownload');
+        }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
+    }
+    function ReportPdfold() {
         $("#Data1").width(1095);
         var element = document.getElementById('Data1');
         var w = screen.width;
@@ -687,8 +728,15 @@
 
         }
         else {
-            $('#state_name').text("@Session["gstate"]");
+             if ('@Session["gstate"]'=='0') {
+           $('#state_name').text("");
+            $('#spnstate').text("");
+             }
+             else {
+                 $('#state_name').text("@Session["gstate"]");
             $('#spnstate').text("@Session["gstate"]");
+             }
+
         }
 
          if (district_name1 != '' ) {
@@ -702,9 +750,16 @@
 
 
          }
-         else  {
-            $('#district_name').text("@Session["gdist"]");
-            $('#spndistrict').text("@Session["gdist"]");
+         else {
+             if ('@Session["gdist"]'=='0') {
+             $('#district_name').text("");
+            $('#spndistrict').text("");
+             }
+             else {
+                 $('#district_name').text("@Session["gdist"]");
+                 $('#spndistrict').text("@Session["gdist"]");
+             }
+
              }
 
          if (block_name1 != '' ) {
@@ -719,8 +774,14 @@
          }
 
           else {
-            $('#block_name').text("@Session["gblock"]");
+             if ('@Session["gblock"]'=='0') {
+            $('#block_name').text("");
+            $('#spnblock').text("");
+             }
+             else {
+                 $('#block_name').text("@Session["gblock"]");
             $('#spnblock').text("@Session["gblock"]");
+             }
         }
 
         if (state_name1 == 'NPMU (Delhi)') {
@@ -798,7 +859,7 @@
     }
 
     function Participant_Feedback_Details() {
-        
+
         var topic_of_event = topic_of_event1;
         var state_name = state_name1;
         var district_name = district_name1;
@@ -829,7 +890,27 @@
                         if (approve_status == null) {
                             approve_status = "";
                         }
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].registration_no + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].participant_name + '</td><td>' + data[i].level_of_event + '</td><td>' + data[i].dist + '</td><td>' + data[i].block + '</td><td>' + data[i].event_platform + '</td><td>' + data[i].from_date + '</td><td>' + data[i].to_date + '</td><td>' + data[i].total_days + '</td><td>' + data[i].structure_of_training + '</td><td>' + data[i].course_material + '</td><td>' + data[i].interaction_with_trainer + '</td><td>' + data[i].hands_on_practice + '</td><td>' + data[i].usefulness_of_contents + '</td><td>' + data[i].information_presented + '</td><td>' + data[i].participant_questions + '</td><td>' + data[i].food_quality + '</td><td>' + data[i].most_interesting_thing + '</td><td>' + data[i].overall_impression + '</td><td>' + data[i].your_suggestions + '</td><td>' + data[i].DateTime + '</td></tr> ';
+                        var level_of_event = data[i].level_of_event;
+                        if (level_of_event == null) {
+                            level_of_event = "";
+                        }
+                        var dist = data[i].dist;
+                        if (dist == null) {
+                            dist = "";
+                        }
+                        var block = data[i].block;
+                        if (block == null) {
+                            block = "";
+                        }
+                        var event_platform = data[i].event_platform;
+                        if (event_platform == null) {
+                            event_platform = "";
+                        }
+                        var structure_of_training = data[i].structure_of_training;
+                        if (structure_of_training == null) {
+                            structure_of_training = "";
+                        }
+                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].registration_no + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].participant_name + '</td><td> ' + level_of_event + '</td ><td>' + dist + '</td><td>' + block + '</td><td>' + event_platform + '</td><td>' + data[i].from_date + '</td><td>' + data[i].to_date + '</td><td>' + data[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + data[i].course_material + '</td><td>' + data[i].interaction_with_trainer + '</td><td>' + data[i].hands_on_practice + '</td><td>' + data[i].usefulness_of_contents + '</td><td>' + data[i].information_presented + '</td><td>' + data[i].participant_questions + '</td><td>' + data[i].food_quality + '</td><td>' + data[i].most_interesting_thing + '</td><td>' + data[i].overall_impression + '</td><td>' + data[i].your_suggestions + '</td><td>' + data[i].DateTime + '</td></tr > ';
 
                     }
                 }

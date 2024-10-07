@@ -33,7 +33,7 @@ namespace AbhyProject.Controllers
         }
         public ActionResult Environmental_Safeguards_Tool()
         {
-
+            
             return View();
         }
 
@@ -545,7 +545,7 @@ namespace AbhyProject.Controllers
 
         [HttpPost]
         public ActionResult Get_Training_Working_Info_all(string Data)  //abhi
-
+        
         {
             try
             {
@@ -562,7 +562,7 @@ namespace AbhyProject.Controllers
                 {
                     if (State == "All" && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                     {
-                        ddetails = ABE.obj_vw_current_events.Where(x => x.yearname == year && x.monthname == month && x.Nodal_officer != "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_vw_current_events.Where(x => x.yearname == year && x.monthname == month && x.Nodal_officer!= "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
 
                     }
                     else if (State == "All" && year != "0" && year != "" && year != null)
@@ -572,7 +572,7 @@ namespace AbhyProject.Controllers
                     }
                     else if (State == "All")
                     {
-                        ddetails = ABE.obj_vw_current_events.Where(x => x.Nodal_officer != "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
+                        ddetails = ABE.obj_vw_current_events.Where(x=> x.Nodal_officer != "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();//total list
 
                     }
                 }
@@ -643,17 +643,25 @@ namespace AbhyProject.Controllers
             try
             {
                 List<vw_current_events> current = new List<vw_current_events>();
-
+               
                 var State = state;
                 var Dist = dist;
                 var Block = block;
+                if (Dist == "undefined")
+                {
+                    Dist = "";
+                }
+                if (Block == "undefined")
+                {
+                    Block = "";
+                }
                 if (State == "NPMU (Delhi)")
                 {
                     if (event_name == "All")
                     {
                         if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
-                            current = ABE.obj_vw_current_events.Where(x => x.level_event == State && x.yearname == year && x.monthname == month && x.Nodal_officer == "").OrderByDescending(x => x.id).ToList();
+                            current = ABE.obj_vw_current_events.Where(x => x.level_event == State && x.yearname == year && x.monthname == month).OrderByDescending(x => x.id).ToList();
 
                         }
                         else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
@@ -699,7 +707,7 @@ namespace AbhyProject.Controllers
                         }
                         else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
-                            current = ABE.obj_vw_current_events.Where(x => x.level_event == State && x.district == Dist && x.yearname == year && x.monthname == month && x.Nodal_officer == "District Level Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            current = ABE.obj_vw_current_events.Where(x => x.level_event == State && x.district == Dist && x.yearname == year && x.monthname == month && x.Nodal_officer == "District Level Nodal Officer").OrderByDescending(x => x.id).ToList();                            
                         }
                         else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
                         {
@@ -958,6 +966,7 @@ namespace AbhyProject.Controllers
             data1.unic_key = result.unic_key;
             data1.typeofevent = result.typeofevent;
             data1.entry_date = DateTime.Now.ToString("yyyy-MM-dd");
+            data1.currentdate = result.currentdate;
             //string Code = randomCodeGeneration();
             Random random = new Random();
             string Code = DateTime.Now.Ticks.ToString();
@@ -1173,7 +1182,6 @@ namespace AbhyProject.Controllers
 
                         string BasePath = AppDomain.CurrentDomain.BaseDirectory;
                         string fname = $"{gpname}_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}_{acronym}{FileExt}";//67876760abc-5665.pdf
-                        //string fname = $"{gpname}_{Guid.NewGuid().ToString("N").Substring(0, 8)}_{acronym} {FileExt}";
                         string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\");
                         path = path + fname;
                         string[] count = files.FileName.Split('.');
@@ -1182,7 +1190,7 @@ namespace AbhyProject.Controllers
                             return Json("Your Upload file has Double Extention, Please Upload proper file", JsonRequestBehavior.AllowGet);
                         }
                         files.SaveAs(path);
-
+                       
                         obj.safeguard_filepath = $"/Ataljalimages/{fname}";// "/Ataljalimages/" + state_name + "_" + district_name + "_" + block_name + "_" + gpname + "_" + finacial_year + "_" + files.FileName;
                         obj.safeguard_filename = fname;// files.FileName;
 
@@ -1378,101 +1386,36 @@ namespace AbhyProject.Controllers
         }
 
         [HttpPost]
-        //public ActionResult updatesafeguard(string updatesafeguard_string)
-        //{
-
-        //    JavaScriptSerializer js = new JavaScriptSerializer();
-        //    var result = js.Deserialize<abhy_safeguard_tool>(updatesafeguard_string);
-
-        //    var Details1 = ABE.obj_abhy_safeguard_tool.Where(x => x.id == result.id).SingleOrDefault();
-
-
-        //    abhy_safeguard_tool obj = new abhy_safeguard_tool();
-        //    Details1.state_name = result.state_name;
-        //    Details1.district_name = result.district_name;
-        //    Details1.block_name = result.block_name;
-        //    Details1.gpname = result.gpname;
-        //    Details1.latitude = result.latitude;
-        //    Details1.longitude = result.longitude;
-        //    Details1.resused_water_irri = result.resused_water_irri;
-        //    Details1.finacial_year = result.finacial_year;
-        //    Details1.safeguard_waterstructure_type = result.safeguard_waterstructure_type;
-        //    Details1.safeguard_tool = result.safeguard_tool;
-        //    // Details1.safeguard_when = result.safeguard_when;
-        //    Details1.safeguard_download = result.safeguard_download;
-        //    Details1.safeguard_compliance = result.safeguard_compliance;
-        //    ABE.Entry(Details1).State = EntityState.Modified;
-        //    ABE.SaveChanges();
-        //    return Json("Updated Successfully");
-
-
-
-        //}
-
-        public ActionResult updatesafeguard(HttpPostedFileBase file, string id, string state_name, string district_name, string block_name, string gpname, string latitude, string longitude, string safeguard_tool, string safeguard_compliance)
+        public ActionResult updatesafeguard(string updatesafeguard_string)
         {
-            if (Session["UserId"] != null)
-            {
-                int DID = int.Parse(id);
-                var Details1 = ABE.obj_abhy_safeguard_tool.Where(x => x.id == DID).SingleOrDefault();
 
-                if (Details1 != null)
-                {
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        Malicious_File_Upload_Restriction obj_Validate = new Malicious_File_Upload_Restriction();
-                        string allowed_file_format = "pdf";
-                        bool flag = obj_Validate.CheckValidFile(file, allowed_file_format);
-                        if (flag == false)
-                        {
-                            return Json("Your Upload file is Not valid. Please upload a proper file", JsonRequestBehavior.AllowGet);
-                        }
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var result = js.Deserialize<abhy_safeguard_tool>(updatesafeguard_string);
 
-                        String FileExt = Path.GetExtension(file.FileName).ToUpper();
-                        String Filename = Path.GetFileNameWithoutExtension(file.FileName).ToUpper();
-                        string acronym = safeguard_tool.Substring(safeguard_tool.LastIndexOf("(") + 1).Replace(")", "");
+            var Details1 = ABE.obj_abhy_safeguard_tool.Where(x => x.id == result.id).SingleOrDefault();
 
-                        string BasePath = AppDomain.CurrentDomain.BaseDirectory;
-                        //string fname = $"{gpname}_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}_{acronym}{FileExt}";
-                        string fname = $"{gpname}_{Guid.NewGuid().ToString("N").Substring(0, 8)}_{acronym}{FileExt}";
-                        string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\");
-                        path = path + fname;
-                        string[] count = file.FileName.Split('.');
-                        if (count.Length != 2)
-                        {
-                            return Json("Your Upload file has Double Extention, Please Upload proper file", JsonRequestBehavior.AllowGet);
-                        }
-                        file.SaveAs(path);
-                        Details1.safeguard_filepath = $"/Ataljalimages/{fname}";
-                        Details1.safeguard_filename = fname;
-                    }
 
-                    Details1.state_name = state_name;
-                    Details1.district_name = district_name;
-                    Details1.block_name = block_name;
-                    Details1.gpname = gpname;
-                    Details1.latitude = latitude;
-                    Details1.longitude = longitude;
-                    //Details1.finacial_year = finacial_year;
-                    Details1.safeguard_tool = safeguard_tool;
-                    Details1.safeguard_compliance = safeguard_compliance;
+            abhy_safeguard_tool obj = new abhy_safeguard_tool();
+            Details1.state_name = result.state_name;
+            Details1.district_name = result.district_name;
+            Details1.block_name = result.block_name;
+            Details1.gpname = result.gpname;
+            Details1.latitude = result.latitude;
+            Details1.longitude = result.longitude;
+            Details1.resused_water_irri = result.resused_water_irri;
+            Details1.finacial_year = result.finacial_year;
+            Details1.safeguard_waterstructure_type = result.safeguard_waterstructure_type;
+            Details1.safeguard_tool = result.safeguard_tool;
+            // Details1.safeguard_when = result.safeguard_when;
+            Details1.safeguard_download = result.safeguard_download;
+            Details1.safeguard_compliance = result.safeguard_compliance;
+            ABE.Entry(Details1).State = EntityState.Modified;
+            ABE.SaveChanges();
+            return Json("Updated Successfully");
 
-                    ABE.Entry(Details1).State = EntityState.Modified;
-                    ABE.SaveChanges();
-                    return Json("Updated Successfully");
-                }
-                else
-                {
-                    return Json("Record not found", JsonRequestBehavior.AllowGet);
-                }
-            }
-            else
-            {
-                return Json("SessionTimeOut", JsonRequestBehavior.AllowGet);
-            }
+
+
         }
-
-
 
         public ActionResult excel(string state1)
         {
@@ -1754,8 +1697,6 @@ namespace AbhyProject.Controllers
             var Data11 = ABE.obj_current_events.Where(x => x.p_training_name == result.p_training_name).ToList();
             if (Data11.Count != 0)
             {
-
-
                 DateTime Reg_closed_date = ParseDate(Data11[0].reg_close_date);
 
                 if (DateTime.Today <= Reg_closed_date)
@@ -1764,7 +1705,8 @@ namespace AbhyProject.Controllers
                 }
                 else
                 {
-                    return Json("Event Registration Date is Already Closed", JsonRequestBehavior.AllowGet);
+                    return Json("Matched", JsonRequestBehavior.AllowGet);
+                    //return Json("Event Registration Date is Already Closed", JsonRequestBehavior.AllowGet);
                 }
             }
             else

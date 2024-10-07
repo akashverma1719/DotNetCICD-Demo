@@ -1112,7 +1112,6 @@
     var statename = '@Session["gstate"]';
     
     $(document).ready(function () {
-        window.location = "/Home/under_maintainance";
         StateOfficer = '@Session["Officer"]';
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
         $('#Error_').text("States Information is Loading....");

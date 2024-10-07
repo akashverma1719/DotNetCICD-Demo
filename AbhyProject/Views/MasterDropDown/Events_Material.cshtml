@@ -653,26 +653,12 @@
                                                 <option value="2023-24">2023-24</option>
                                                 <option value="2024-25">2024-25</option>
                                                 @*<option value="2024">2024-2025</option>
-                <option value="2025">2025-2026</option>*@
+                                                    <option value="2025">2025-2026</option>*@
                                             </select>
                                         </li>
-                                        <li id="7date">
+                                        <li id="MonthDropdownLabel">
 
-                                            <select class="form-control" id="montha" onchange="Month_change()">
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                            </select>
-
-                                        </li>
-                                        <li id="8date">
-
-                                            <select class="form-control" id="month" onchange="Month_change()" disabled>
+                                            @*<select class="form-control" id="month" onchange="Month_change()" disabled>
                                                 <option value="0">Select Month</option>
                                                 <option value="April">April</option>
                                                 <option value="May">May</option>
@@ -686,8 +672,14 @@
                                                 <option value="January">January</option>
                                                 <option value="February">February</option>
                                                 <option value="March">March</option>
-                                            </select>
+                                            </select>*@
+                                            <select class="form-control" id="month" onchange="">
+                                                <option value="0">Select Month</option>
 
+                                                <option value="June">June</option>
+                                                <option value="July">July</option>
+
+                                            </select>
                                         </li>
 
                                     </ul>
@@ -1899,19 +1891,7 @@
 
         StateOfficer = '@Session["Officer"]';
         statename_new = '@Session["gstate"]';
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-09-05") {
-            $('#7date').show();
-            $('#8date').hide();
-        }
-        else {
-            $('#7date').hide();
-            $('#8date').show();
-        }
+
 
         // by default year and month details show
         var fin_year = getCurrentFiscalYear();
@@ -4197,7 +4177,7 @@
         var formdata = new FormData();
 
 
-           var month = $("#month option:selected").val();
+            month = $("#month option:selected").val();
        
 
         var state = $("#spnstate option:selected").text();
@@ -5153,7 +5133,6 @@
         $('#remark').val("");
         var type_of_event = $("#type_event option:selected").text();
         TOP_check();
-        debugger;
         var year = $('#year').val();
         var month = $('#month').val();
         if (year == "0") {
@@ -5259,64 +5238,39 @@
             $("#EPM").show();
         }
     }
+
     function isWithinRange(date) {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        var todatdate = today;
-        if (todatdate <= "2024-09-05") {
-            var currentDate = new Date();
-            var currentMonth = currentDate.getMonth(); // Month is 0 indexed
-            var currentYear = currentDate.getFullYear();
+        
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth(); // Month is 0 indexed
+        var currentYear = currentDate.getFullYear();
 
-            // Calculate the 10th of the next month
-            var nextMonth = currentMonth + 1;
-            var nextMonthYear = currentYear;
-            if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
-                nextMonth = 0; // January
-                nextMonthYear += 1;
-            }
-            var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
-
-            // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 1;
-            var prevMonthYear = currentYear;
-            if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
-                prevMonth = 11; // December of the previous year
-                prevMonthYear -= 1;
-            }
-            var startDate = new Date(prevMonthYear, prevMonth, 1);
-            return date >= startDate && date < tenthOfNextMonth;
+        // Calculate the 10th of the next month
+        var nextMonth = currentMonth + 1;
+        var nextMonthYear = currentYear;
+        if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
+            nextMonth = 0; // January
+            nextMonthYear += 1;
         }
-        else {
-            var currentDate = new Date();
-            var currentMonth = currentDate.getMonth(); // Month is 0 indexed
-            var currentYear = currentDate.getFullYear();
+        var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 10);
 
-            // Calculate the 10th of the next month
-            var nextMonth = currentMonth + 1;
-            var nextMonthYear = currentYear;
-            if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
-                nextMonth = 0; // January
-                nextMonthYear += 1;
-            }
-            var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 10);
-
-            // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 1;
-            var prevMonthYear = currentYear;
-            if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
-                prevMonth = 11; // December of the previous year
-                prevMonthYear -= 1;
-            }
-            var startDate = new Date(prevMonthYear, prevMonth, 1);
-
-            return date >= startDate && date < tenthOfNextMonth;
+        // Calculate the start date (first day of the previous month)
+        var prevMonth = currentMonth - 1;
+        var prevMonthYear = currentYear;
+        if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
+            prevMonth = 11; // December of the previous year
+            prevMonthYear -= 1;
         }
+        var startDate = new Date(prevMonthYear, prevMonth, 1);
+
+        // Debugging logs
+        console.log("Current Date: " + currentDate);
+        console.log("Start Date: " + startDate);
+        console.log("End Date (10th of next month): " + tenthOfNextMonth);
+        console.log("Input Date: " + date);
+
+        return date >= startDate && date < tenthOfNextMonth;
     }
-   
 
 
     function abhy_Material_Info_Search() {
@@ -5825,7 +5779,7 @@
                         var uploadpath = "";
                         if (data[i].upload_content != null) {
                             uploadpath = data[i].upload_content;
-                            debugger;
+                            
                             var result = uploadpath.split('/');
                             if (result.length == 5) {
                                 upload = result[4];
@@ -5859,7 +5813,7 @@
                             else if (approve == "Submitted To DPMU") {
                                 if (isWithinRange(new Date(data[i].to_date))) {
                                     atdp++;
-                                    tr += '<tr id="AWP1_TR_Meeting_block' + i + '" style="text-align:center"><td>' + (++j) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td> <td>' + data[i].district + '</td> <td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + data[i].from_date + '</td> <td>' + data[i].to_date + '</td> <td><a href="' + uploadpath + '" download="">' + upload + '</a></td><td>' + data[i].remark + '</td> <td></td> <td></td><td><button class="btn btn-success" onclick="approve_block_em(' + data[i].id + ')">Approve</button></td>' +
+                                    tr += '<tr id="AWP1_TR_Meeting_block' + i + '" style="text-align:center"><td>' + (++j) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td> <td>' + data[i].district + '</td> <td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + data[i].from_date + '</td> <td>' + data[i].to_date + '</td> <td><a href="' + uploadpath + '" download="">' + upload + '</a></td><td>' + data[i].remark + '</td> <td></td> <td></td><td></td>' +
                                         '<tr id="hide_AWP1_TR_Meeting_block' + i + '" style="display:none;"><td></td>' +
 
                                         '<td> <input type="text"   onpaste="return false;" class="form-control" id="topic_event1_B' + i + '" value="' + data[i].p_training_name + '" readonly /></td>' +
@@ -5905,7 +5859,7 @@
                             else {
                                 if (isWithinRange(new Date(data[i].to_date))) {
                                     atgp++;
-                                    tr += '<tr id="AWP1_TR_Meeting_block' + i + '" style="text-align:center"><td>' + (++j) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td> <td>' + data[i].district + '</td> <td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + data[i].from_date + '</td> <td>' + data[i].to_date + '</td> <td><a href="' + uploadpath + '" download="">' + upload + '</a></td><td>' + data[i].remark + '</td> <td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_block(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td></td><td><button class="btn btn-success" onclick="submit_block_em(' + data[i].id + ')">Submit To DPMU</button></td>' +
+                                    tr += '<tr id="AWP1_TR_Meeting_block' + i + '" style="text-align:center"><td>' + (++j) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + data[i].level_event + '</td> <td>' + data[i].district + '</td> <td>' + data[i].block + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + data[i].from_date + '</td> <td>' + data[i].to_date + '</td> <td><a href="' + uploadpath + '" download="">' + upload + '</a></td><td>' + data[i].remark + '</td> <td><button class="btn btn-primary" onclick="editrowcomp_A_Good2_block(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td></td><td></td>' +
                                         '<tr id="hide_AWP1_TR_Meeting_block' + i + '" style="display:none;"><td></td>' +
 
                                         '<td> <input type="text"   onpaste="return false;" class="form-control" id="topic_event1_B' + i + '" value="' + data[i].p_training_name + '" readonly /></td>' +
@@ -6835,7 +6789,6 @@
             //alert(myArray[coun].toString());
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
-                setInterval(GetCunCurrentUser, 30000);
             }
         });
 

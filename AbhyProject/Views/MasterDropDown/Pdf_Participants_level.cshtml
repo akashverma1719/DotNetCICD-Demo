@@ -385,6 +385,7 @@
         text-align: left !important;
         color: #000 !important;
     }
+
     .button {
         text-align: left !important;
         color: #fff !important;
@@ -428,7 +429,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/Participants_Registration" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/rp_district" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -538,7 +539,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/Participants_Registration" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/rp_district" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -555,18 +556,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
 <script>
     function ReportPdf() {
-        $("#Data1").width(1095);
+        $("#Data1").width(3000);
         var element = document.getElementById('Data1');
         var w = screen.width;
         var h = screen.height;
         var opt = {
             margin: 0,
 
-            filename: 'Participants Registration Details.pdf',
+            filename: 'Participants Feedback Details.pdf',
             image: { type: 'jpeg', quality: 1.0, w, h },
             pagebreak: { mode: 'avoid-all', before: '.page2el11' },
             html2canvas: { dpi: 192, letterRendering: true },
-            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+            jsPDF: { unit: 'pt', format: 'A1', orientation: 'landscape' }
 
         };
         html2pdf(element, opt);
@@ -589,6 +590,11 @@
             $('div#btnExport').removeClass('hideDownload');
             $('div#btnExport1').removeClass('hideDownload');
         }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
     }
 </script>
 
@@ -673,7 +679,7 @@
         event_name = '@Session["event_name"]';
         year = '@Session["year"]';
         month = '@Session["month"]';
-
+        
         if (state_name1 == 'All') {
             $('#state_name').text("All");
             $('#spnstate').text("All");
@@ -684,8 +690,15 @@
 
         }
         else {
-            $('#state_name').text("@Session["gstate"]");
+            if ('@Session["gstate"]'=='0') {
+           $('#state_name').text("");
+            $('#spnstate').text("");
+             }
+             else {
+                 $('#state_name').text("@Session["gstate"]");
             $('#spnstate').text("@Session["gstate"]");
+             }
+
         }
 
          if (district_name1 != '' ) {
@@ -699,9 +712,16 @@
 
 
          }
-         else  {
-            $('#district_name').text("@Session["gdist"]");
-            $('#spndistrict').text("@Session["gdist"]");
+         else {
+             if ('@Session["gdist"]'=='0') {
+             $('#district_name').text("");
+            $('#spndistrict').text("");
+             }
+             else {
+                 $('#district_name').text("@Session["gdist"]");
+                 $('#spndistrict').text("@Session["gdist"]");
+             }
+
              }
 
          if (block_name1 != '' ) {
@@ -714,9 +734,16 @@
              }
 
          }
-          else {
-            $('#block_name').text("@Session["gblock"]");
+         else {
+             if ('@Session["gblock"]'=='0') {
+            $('#block_name').text("");
+            $('#spnblock').text("");
+             }
+             else {
+                 $('#block_name').text("@Session["gblock"]");
             $('#spnblock').text("@Session["gblock"]");
+             }
+
         }
 
         if (state_name1 == 'NPMU (Delhi)') {
@@ -824,8 +851,27 @@
                         if (approve_status == null) {
                             approve_status = "";
                         }
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td><td>' + data[i].p_gender + '</td><td>' + data[i].p_age + '</td><td>' + data[i].p_occupation + '</td><td>' + data[i].p_qual + '</td><td>' + data[i].p_phoneno + '</td><td>' + data[i].p_emailid + '</td><td>' + data[i].p_address + '</td><td>' + data[i].parti_state + '</td><td>' + data[i].p_other_state_name + '</td><td>' + data[i].registration_no + '</td><td>' + data[i].p_state_name + '</td><td>' + data[i].p_district_name + '</td><td>' + data[i].p_block_name + '</td></tr> ';
-
+                        var parti_state = data[i].parti_state;
+                        if (parti_state == null) {
+                            parti_state = "";
+                        }
+                        var p_other_state_name = data[i].p_other_state_name;
+                        if (p_other_state_name == null) {
+                            p_other_state_name = "";
+                        }
+                        var p_state_name = data[i].p_state_name;
+                        if (p_state_name == null) {
+                            p_state_name = "";
+                        }
+                        var p_district_name = data[i].p_district_name;
+                        if (p_district_name == null) {
+                            p_district_name = "";
+                        }
+                        var p_block_name = data[i].p_block_name;
+                        if (p_block_name == null) {
+                            p_block_name = "";
+                        }
+                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td><td>' + data[i].p_gender + '</td><td> ' + data[i].p_age + '</td ><td>' + data[i].p_occupation + '</td><td>' + data[i].p_qual + '</td><td>' + data[i].p_phoneno + '</td><td>' + data[i].p_emailid + '</td><td>' + data[i].p_address + '</td><td> ' + parti_state + '</td ><td>' + p_other_state_name + '</td><td>' + data[i].registration_no + '</td><td>' + data[i].p_state_name + '</td><td>' + p_district_name + '</td><td>' + p_block_name + '</td></tr> ';
                     }
                 }
                 if (tr == '') {

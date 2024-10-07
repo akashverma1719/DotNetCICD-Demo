@@ -577,23 +577,8 @@
                                                 <option value="2024-25">2024-25</option>
                                             </select>
                                         </li>
-                                        <li id="7date">
-
-                                            <select class="form-control" id="month_new" onchange="Month_change()">
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                            </select>
-
-                                        </li>
-                                        <li id="8date">
-
-                                            <select class="form-control" id="month" onchange="Month_change()">
+                                        <li id="MonthDropdownLabel">
+                                            <select class="form-control" id="month" onchange="" disabled>
                                                 <option value="0">Select Month</option>
                                                 <option value="April">April</option>
                                                 <option value="May">May</option>
@@ -608,9 +593,16 @@
                                                 <option value="February">February</option>
                                                 <option value="March">March</option>
                                             </select>
-
                                         </li>
-
+                                        <li id="MonthDropdownLabel_new">
+                                            <select class="form-control" id="month_new" onchange="">
+                                                <option value="0">Select Month</option>
+                                                
+                                                <option value="June">June</option>
+                                                <option value="July">July</option>
+                                               
+                                            </select>
+                                        </li>
                                         <li id="DropdownSearch">
 
                                         </li>
@@ -1293,7 +1285,6 @@
     var statename = '@Session["gstate"]';
     
     $(document).ready(function () {
-        window.location = "/Home/under_maintainance";
         $("#LEV").hide();
         $(".loader").hide();
         $('#Error_').text("States Information is Loading....");
@@ -1344,24 +1335,10 @@
         $("#month_new").val(MonthName);
         $("#MonthDropdownLabel_new").hide();
         $("#MonthDropdownLabel").show();
-        debugger;
+        
        
             $("#MonthDropdownLabel_new").show();
-        $("#MonthDropdownLabel").hide();
-
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-09-05") {
-            $('#7date').show();
-            $('#8date').hide();
-        }
-        else {
-            $('#7date').hide();
-            $('#8date').show();
-        }
+            $("#MonthDropdownLabel").hide();
        
         DropDownInfo_Auth();
 
@@ -1402,6 +1379,7 @@
 
         return (fiscalyear);
     }
+
     function DropDownInfo_Auth() {
         $.ajax({
             type: 'POST',
@@ -1469,6 +1447,8 @@
             }
         });
     }
+
+
     function SessionInfo_ef() {
 
         var obj = {};
@@ -2175,19 +2155,14 @@
     }
     function SaveCurrentEventForGP() {
 
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
+        var year = $("#year option:selected").val();
         var month = "";
-        if (today <= "2024-09-05") {
+        if (statename == "Karnataka_29" || statename == "Gujarat_24" || statename == "Maharashtra_27" || statename == "Uttar Pradesh_9" || statename == "Haryana_6" || statename == "Madhya Pradesh_23" || statename == "Rajasthan_8") {
             month = $("#month_new option:selected").val();
         }
         else {
              month = $("#month option:selected").val();
         }
-        var year = $("#year option:selected").val();
         var p_training_name = $("#p_training_name").val();    //abhi
         var type_of_event = $("#type_event option:selected").val();
         var event_platform = $("#event_platform option:selected").val();
@@ -2281,6 +2256,7 @@
                     var location_expo = $("#loc_expo").val("");
                     var particular_expo = $("#parti_expo").val("");
                     CurrentEventData();
+
                 }
             }
         })
@@ -2363,62 +2339,36 @@
         });
     }
     function isWithinRange(date) {
-        debugger;
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        var todatdate = today;
-        if (todatdate <= "2024-09-05") {
-            var currentDate = new Date();
-            var currentMonth = currentDate.getMonth(); // Month is 0 indexed
-            var currentYear = currentDate.getFullYear();
 
-            // Calculate the 10th of the next month
-            var nextMonth = currentMonth + 1;
-            var nextMonthYear = currentYear;
-            if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
-                nextMonth = 0; // January
-                nextMonthYear += 1;
-            }
-            var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 30);
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth(); // Month is 0 indexed
+        var currentYear = currentDate.getFullYear();
 
-            // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 1;
-            var prevMonthYear = currentYear;
-            if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
-                prevMonth = 11; // December of the previous year
-                prevMonthYear -= 1;
-            }
-            var startDate = new Date(prevMonthYear, prevMonth, 1);
-            return date >= startDate && date < tenthOfNextMonth;
+        // Calculate the 10th of the next month
+        var nextMonth = currentMonth + 1;
+        var nextMonthYear = currentYear;
+        if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
+            nextMonth = 0; // January
+            nextMonthYear += 1;
         }
-        else {
-            var currentDate = new Date();
-            var currentMonth = currentDate.getMonth(); // Month is 0 indexed
-            var currentYear = currentDate.getFullYear();
+        var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 10);
 
-            // Calculate the 10th of the next month
-            var nextMonth = currentMonth + 1;
-            var nextMonthYear = currentYear;
-            if (nextMonth > 11) { // Since month is 0 indexed, 11 represents December
-                nextMonth = 0; // January
-                nextMonthYear += 1;
-            }
-            var tenthOfNextMonth = new Date(nextMonthYear, nextMonth, 10);
-
-            // Calculate the start date (first day of the previous month)
-            var prevMonth = currentMonth - 1;
-            var prevMonthYear = currentYear;
-            if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
-                prevMonth = 11; // December of the previous year
-                prevMonthYear -= 1;
-            }
-            var startDate = new Date(prevMonthYear, prevMonth, 1);
-
-            return date >= startDate && date < tenthOfNextMonth;
+        // Calculate the start date (first day of the previous month)
+        var prevMonth = currentMonth - 1;
+        var prevMonthYear = currentYear;
+        if (prevMonth < 0) { // Since month is 0 indexed, 0 represents January
+            prevMonth = 11; // December of the previous year
+            prevMonthYear -= 1;
         }
+        var startDate = new Date(prevMonthYear, prevMonth, 1);
+
+        // Debugging logs
+        console.log("Current Date: " + currentDate);
+        console.log("Start Date: " + startDate);
+        console.log("End Date (10th of next month): " + tenthOfNextMonth);
+        console.log("Input Date: " + date);
+
+        return date >= startDate && date < tenthOfNextMonth;
     }
     function CurrentEventData() {       //For GP
         $(".loader").show();
@@ -2727,30 +2677,19 @@
             $('#typother1_G' + i).prop("disabled", false);
             $('#typother2_G' + i).prop("disabled", false);
         }
-        var stateaa = $('#state1_G' + i).val();
-        var yearaa = $('#year1_G' + i).val();
-        var month = $('#month1_G' + i).val();
        
-           
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-            var yyyy = today.getFullYear();
-            today = yyyy + '-' + mm + '-' + dd;
-        if (today <= "2024-09-05") {
-            var mmm = "06";
-            // Set the minimum and maximum attributes of the date input
-            document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
-            document.getElementById("fdate1_G" + i).setAttribute("max", "9999-12-31");
-            document.getElementById("tdate1_G" + i).setAttribute("min", yyyy + '-' + mmm + '-01');
-            document.getElementById("tdate1_G" + i).setAttribute("max", "9999-12-31");
-        }
-        else {
-            document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("fdate1_G" + i).setAttribute("max", "9999-12-31");
-            document.getElementById("tdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
-            document.getElementById("tdate1_G" + i).setAttribute("max", "9999-12-31");
-        }
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+
+        // Set the minimum and maximum attributes of the date input
+        document.getElementById("fdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("fdate1_G" + i).setAttribute("max", "9999-12-31");
+        document.getElementById("tdate1_G" + i).setAttribute("min", yyyy + '-' + mm + '-01');
+        document.getElementById("tdate1_G" + i).setAttribute("max", "9999-12-31");
+
         // Disable keyboard input for the date input field
         document.getElementById("fdate1_G" + i).addEventListener("keydown", function (event) {
             event.preventDefault();
@@ -2842,12 +2781,7 @@
                 if (response == "SessionTimeOut") {
                       window.location = "/Home/LogOut";
                 }
-                if (response == "Choose the same month from the Select Month drop-down as the one you selected in From Date.") {
-
-                }
-                else {
-                    CurrentEventData();
-                }
+                CurrentEventData();
             },
             error: function () {
                 alert('Update Failed');
@@ -2926,29 +2860,20 @@
     }
 </script>
 <script>
+   
         // Get today's date
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-    if (today <= "2024-09-05") {
-        var mmm = "08";
-        // Set the minimum and maximum attributes of the date input
-        document.getElementById("from_date").setAttribute("min", yyyy + '-' + mmm + '-01');
-        document.getElementById("from_date").setAttribute("max", "9999-12-31");
 
-        document.getElementById("to_date").setAttribute("min", yyyy + '-' + mmm + '-01');
-        document.getElementById("to_date").setAttribute("max", "9999-12-31");
-    }
-    else {
         // Set the minimum and maximum attributes of the date input
         document.getElementById("from_date").setAttribute("min", yyyy + '-' + mm + '-01');
         document.getElementById("from_date").setAttribute("max", "9999-12-31");
 
         document.getElementById("to_date").setAttribute("min", yyyy + '-' + mm + '-01');
         document.getElementById("to_date").setAttribute("max", "9999-12-31");
-    }
 </script>
 
 <script>
