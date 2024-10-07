@@ -192,7 +192,7 @@ function Save_NewRegs_Training_Info() {
     var dist_name = $('#drpdistrict').val();
     var block_name = $('#drpblock').val();
 
-    if (p_training_name == "0") {
+    if (p_training_name == "") {
         i = 1;
         alert("Select Name of Training");
         return;
