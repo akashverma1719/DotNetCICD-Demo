@@ -914,6 +914,7 @@
     var Block_new = "0";
     var email = "";
     $(document).ready(function () {
+        window.location = "/Home/under_maintainance";
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
           email = '@Session["Email"]';
         $('#Error_').text("States Information is Loading....");

@@ -877,6 +877,7 @@
     var ymonth = "";
     var email = "";
     $(document).ready(function () {
+        window.location = "/Home/under_maintainance";
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
         $('#Error_').text("States Information is Loading....");
          email = '@Session["Email"]';
