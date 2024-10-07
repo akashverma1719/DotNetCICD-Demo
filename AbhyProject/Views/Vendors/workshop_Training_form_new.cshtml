@@ -1027,7 +1027,6 @@
                             tr += '<tr><td>' + (i + 1) + '</td><td></td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + StateName[0] + '</td> <td>' + Dist[0] + '</td> <td>' + Block[0] + '</td> <td>' + Gp[0] + '</td> <td>' + data[i].event_platform + '</td> <td>' + data[i].from_date + '</td> <td>' + data[i].to_date + '</td><td>' + data[i].reg_open_date + '</td><td>' + data[i].reg_close_date + '</td></tr>';
                         }
                         else {
-                            
                             if (isWithinNext3Days(new Date(data[i].reg_close_date))) {
                                 tr += '<tr><td>' + (i + 1) + '</td><td><a href="/Vendors/Add_info_Training?id=' + data[i].id + '" style="font-size: 35px;color: dodgerblue;"><i class="bi-clipboard-data blue"></i></a></td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td> <td>' + data[i].location_expo + '</td> <td>' + data[i].particular_expo + '</td> <td>' + StateName[0] + '</td> <td>' + Dist[0] + '</td> <td>' + Block[0] + '</td> <td>' + Gp[0] + '</td> <td>' + data[i].event_platform + '</td> <td>' + data[i].from_date + '</td> <td>' + data[i].to_date + '</td><td>' + data[i].reg_open_date + '</td><td>' + data[i].reg_close_date + '</td></tr>';
                             }
