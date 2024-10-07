@@ -7,7 +7,6 @@
 <script src="~/Content/JS_Files/training_workshop.js"></script>
 <script src="~/Content/JS_Files/Master_DRP.js"></script>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,38 +207,52 @@
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="form-group col-md-6">
-                                                    Name of Event/training : <span class="msg">*</span>
+                                                    Name of Training : <span class="msg">*</span>
                                                     <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                     <!--<select class="form-control" id="p_training_name" name="p_training_name" required="required" onchange="Event_Checking()"></select>-->    @*//latest abhi*@
-                                                    <textarea id="p_training_name" class=" form-control" cols="50" required="required" readonly placeholder="Name of Event/training"></textarea>
+                                                    <textarea id="p_training_name" class=" form-control" cols="50" required="required" readonly placeholder="Name of Training"></textarea>
                                                     @*<input type="text"  onpaste="return false;"  class="form-control alpha" id="p_training_name" name="p_training_name" required="required" readonly placeholder="Enter your Name of training" />*@
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    State (Event/training) : <span class="msg">*</span>
+                                                    State (Training) : <span class="msg">*</span>
                                                     <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="drpstate" name="drpstate" readonly placeholder="State" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="drpstate" name="drpstate" readonly placeholder="State" />
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    District (Event/training) : <span class="msg">*</span>
+                                                    District (Training) : <span class="msg">*</span>
                                                     <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="drpdistrict" name="drpdistrict" readonly placeholder="District" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="drpdistrict" name="drpdistrict" readonly placeholder="District" />
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    Block (Event/training) : <span class="msg">*</span>
+                                                    Block (Training) : <span class="msg">*</span>
                                                     <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="drpblock" name="drpblock" readonly placeholder="Block" />
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="to_date"  hidden readonly placeholder="Block" />
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="from_date" hidden   readonly placeholder="Block" />
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="year" hidden   readonly placeholder="Block" />
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="month_new" hidden  readonly placeholder="Block" />
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="nodal" hidden  readonly placeholder="Block" />
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="training" hidden  readonly placeholder="Block" />
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="unic_key" hidden  readonly placeholder="Block" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="drpblock" name="drpblock" readonly placeholder="Block" />
+
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="year" hidden readonly placeholder="Block" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="month_new" hidden readonly placeholder="Block" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="nodal" hidden readonly placeholder="Block" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="training" hidden readonly placeholder="Block" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="unic_key" hidden readonly placeholder="Block" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    From Date : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="from_date" readonly placeholder="From Date" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    To Date : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="to_date" readonly placeholder="To Date" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    Total No. Of Days : <span class="msg">*</span>
+                                                    <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="total_days" readonly placeholder="Total days" />
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     Name of the Participant : <span class="msg">*</span>
                                                     <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text"  onpaste="return false;"  id="p_name" name="p_name" class="form-control alpha" required="required" placeholder="Enter your Name of the participant" />
+                                                    <input type="text" onpaste="return false;" id="p_name" name="p_name" class="form-control alpha" required="required" placeholder="Enter your Name of the participant" />
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     Gender : <span class="msg">*</span>
@@ -260,12 +273,12 @@
                                                 <div class="form-group col-md-6">
                                                     Occupation : <span class="msg">*</span>
                                                     <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphaspecial" id="p_occupation" name="p_occupation" required="required" placeholder="Enter your Occupation" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphaspecial" id="p_occupation" name="p_occupation" required="required" placeholder="Enter your Occupation" />
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     Qualification : <span class="msg">*</span>
                                                     <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphanumspecial" id="p_qual" name="p_qual" required="required" placeholder="Enter your Qualification" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphanumspecial" id="p_qual" name="p_qual" required="required" placeholder="Enter your Qualification" />
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     Phone No. : <span class="msg">*</span>
@@ -275,61 +288,13 @@
                                                 <div class="form-group col-md-6">
                                                     Email Id : <span class="msg">*</span>
                                                     <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text"  onpaste="return false;"  class="form-control alphanumspecial" id="p_emailid" name="p_emailid" required="required" placeholder="Enter your Email" />
+                                                    <input type="text" onpaste="return false;" class="form-control alphanumspecial" id="p_emailid" name="p_emailid" required="required" placeholder="Enter your Email" />
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     Participant Address : <span class="msg">*</span>
                                                     <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                     <textarea rows="1" id="p_address" name="p_address" class="form-control alphanumspecial" placeholder="Enter your Address"></textarea>
                                                 </div>
-                                                @*<div class="form-group col-md-6">
-                                                        State : <span class="msg">*</span>
-                                                        <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                        <select name="p_state_name" id="p_state_name" class="form-control" onchange="NewReg_State_Chnage()">
-                                                            <option value="0">Select State Name</option>
-                                                            <option value="Gujarat">Gujarat</option>
-                                                            <option value="Haryana">Haryana</option>
-                                                            <option value="Maharashtra">Maharashtra</option>
-                                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                                            <option value="Karnataka">Karnataka</option>
-                                                            <option value="Rajasthan">Rajasthan</option>
-                                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                                            <option value="Other">Other</option>
-
-                                                        </select>
-                                                        <input type="text"  onpaste="return false;"  class="form-control" id="p_other_state_name" name="p_other_state_name" required="required" placeholder="Enter your State" />
-
-
-                                                    </div>*@
-
-
-                                                <!--<div class="form-group col-md-6">
-
-                                                State : <span class="msg">*</span>
-                                                <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>-->
-                                                @*<select name="drpstate" id="drpstate" class="form-control" onchange="district()">
-                                                    </select>*@
-
-                                                <!--</div>
-
-                                                <div class="form-group col-md-6">
-
-                                                    District : <span class="msg">*</span>
-                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>-->
-                                                @*<select name="drpdistrict" id="drpdistrict" class="form-control" onchange="block()">
-                                                    </select>*@
-
-                                                <!--</div>
-
-                                                <div class="form-group col-md-6">
-
-                                                    Block : <span class="msg">*</span>
-                                                    <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>-->
-                                                @*<select name="drpblock" id="drpblock" class="form-control" onchange="grampanchayat()">
-                                                    </select>*@
-
-                                                <!--</div>-->
-
                                                 <div class="form-group col-md-6">
                                                     Participant State : <span class="msg">*</span>
                                                     <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
@@ -354,11 +319,15 @@
                                                     Participant State (Other) : <span class="msg">*</span>
                                                     <span id="" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
 
-                                                    <input type="text"  onpaste="return false;"  class="form-control" id="p_other_state_name" name="p_other_state_name" required="required" placeholder="Enter your State Other" />
+                                                    <input type="text" onpaste="return false;" class="form-control" id="p_other_state_name" name="p_other_state_name" required="required" placeholder="Enter your State Other" />
 
 
                                                 </div>
-
+                                                <div class="form-group col-md-6">
+                                                    Participant Registration Date : <span class="msg">*</span>
+                                                    <span id="Grv_status" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
+                                                    <input type="text" onpaste="return false;" class="form-control" id="todaydate" readonly placeholder="" />
+                                                </div>
 
 
 
@@ -367,7 +336,7 @@
                                                 @*<img src="/Contact/GetCaptchaImage" id="captchaimg" class="" title="Captcha" style="" />*@
                                                 <!--<img src="@Url.Action("Reg_GetCaptchaImage","Home")" id="captchaimg" style="margin-right: 175px; margin-bottom: -189px;" />
 
-                                                </div>-->
+    </div>-->
                                                 <div class="col-md-12">
                                                     <div class="row justify-content-center">
                                                         <div class="form-group col-md-2" style="position:relative; min-width:180px;">
@@ -376,7 +345,7 @@
                                                             <span id="Grv_captcha" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                         </div>
                                                         <div class="form-group col-md-4">
-                                                            <input type="text"  onpaste="return false;"  class="form-control" name="clientCaptcha" id="clientCaptcha" placeholder="Type the text" required />
+                                                            <input type="text" onpaste="return false;" class="form-control" name="clientCaptcha" id="clientCaptcha" placeholder="Type the text" required />
                                                         </div>
                                                         <div class="col-md-12 text-center">
                                                             <p id="status" class="error_captch" style="font-weight:bold;color:red;margin-bottom:0px;"></p>
@@ -422,7 +391,7 @@
                                 <th class="text-center">Email id </th>
                                 <th class="text-center">Address</th>
                                 <th class="text-center">State</th>
-                                <th class="text-center">Name of Event/training</th>
+                                <th class="text-center">Name of Training</th>
                             </tr>
                         </thead>
                         <tbody id="Newregs_Training_Workshop">
@@ -453,6 +422,13 @@
         $(".loader").hide();
         
         id = @ViewBag.id;
+        let today = new Date();
+        let day = String(today.getDate()).padStart(2, '0');
+        let month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let year = today.getFullYear();
+
+        today = year + '-' + month + '-' + day;
+        $('#todaydate').val(today);
         Event_Checking();
     });
 
@@ -495,6 +471,16 @@
                         $("#nodal").val(data[i].Nodal_officer);
                         $("#training").val(data[i].type_of_event);
                         $("#unic_key").val(data[i].unic_key);
+
+                        var dt1 = new Date(data[i].from_date);      //for total no. of days count
+                        var dt2 = new Date(data[i].to_date);
+
+                        var diff = dt2.getTime() - dt1.getTime();
+
+                        var days_diff = [diff / (1000 * 3600 * 24)];
+                        var iNum = parseInt(days_diff)
+                        var DAY_DIFF = iNum + 1;            // add 1 bcz of last day is also count for registration
+                        $('#total_days').val(DAY_DIFF);
                     }
 
                 }

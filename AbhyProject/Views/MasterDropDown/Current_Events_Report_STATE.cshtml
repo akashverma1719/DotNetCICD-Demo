@@ -386,6 +386,7 @@
         text-align: left !important;
         color: #000 !important;
     }
+
     .button {
         text-align: left !important;
         color: #fff !important;
@@ -429,7 +430,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/Current_Events" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/current_event_state" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -512,17 +513,21 @@
                             <tr class="success">
                                 <td style="text-align:center">Sr.No.</td>
                                 <td style="text-align:center">Topic of Event</td>
-                                <td style="text-align:center">Type of Event</td>
+                                <td style="text-align: center; padding: 0 38px;">Type of Event</td>
                                 <td style="text-align:center">Location of Exposure Visit</td>
                                 <td style="text-align:center">Particulars of Exposure Visit</td>
                                 <td style="text-align:center">State</td>
-                                <td style="text-align:center">Year</td>
-                                <td style="text-align:center">Month</td>
+                                <td style="text-align:center;padding:0 38px;">Year</td>
+                                <td style="text-align: center; padding: 0 38px;">Month</td>
                                 <td style="text-align:center">Event Platform</td>
-                                <td style="text-align:center">From Date</td>
-                                <td style="text-align:center">To Date</td>
+                                <td style="text-align: center; padding: 0 38px;">From Date</td>
+                                <td style="text-align: center; padding: 0 38px;">To Date</td>
                                 <td style="text-align:center">Registration Open Date</td>
                                 <td style="text-align:center">Registration Close Date</td>
+                                <td style="text-align:center">Training Material</td>
+                                <td style="text-align: center; padding: 0 38px;">Data Validation</td>
+                                <td style="text-align:center">Reject Remark</td>
+
 
                             </tr>
                         </thead>
@@ -537,7 +542,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/Current_Events" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/current_event_state" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -554,18 +559,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
 <script>
     function ReportPdf() {
-        $("#Data1").width(1095);
+        $("#Data1").width(3000);
         var element = document.getElementById('Data1');
         var w = screen.width;
         var h = screen.height;
         var opt = {
             margin: 0,
 
-            filename: 'Current Events State Level.pdf',
+            filename: 'Participants Feedback Details.pdf',
             image: { type: 'jpeg', quality: 1.0, w, h },
             pagebreak: { mode: 'avoid-all', before: '.page2el11' },
             html2canvas: { dpi: 192, letterRendering: true },
-            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+            jsPDF: { unit: 'pt', format: 'A1', orientation: 'landscape' }
 
         };
         html2pdf(element, opt);
@@ -588,6 +593,11 @@
             $('div#btnExport').removeClass('hideDownload');
             $('div#btnExport1').removeClass('hideDownload');
         }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
     }
 </script>
 
@@ -652,7 +662,7 @@
     var State = "0";
 
     $(document).ready(function () {
-        
+
         var StateOfficer = '@Session["Officer"]';
         State = '@Session["gstate"]';
         state_name1 = '@Session["state_name"]';
@@ -711,7 +721,7 @@
 
 
     function Get_Month_Number(month) {
-        
+
         var month_num = "";
         switch (month) {
             case "1":
@@ -755,7 +765,7 @@
     }
 
     function Current_Events_State() {
-        
+
         //var year = year1;
         //var month = month1;
         var year_state = year1;
@@ -769,7 +779,7 @@
             data: "{'state_name':'" + state_name + "' ,'State1':'" + State1 + "', 'year_state':'" + year_state + "' , 'month_state':'" + month_state + "'}",
             dataType: 'JSON',
             success: function (data) {
-                
+
                 $("#count_total1").text(data.length);
                 if (data == "Logout") {
                       window.location = "/Home/LogOut";
@@ -780,10 +790,27 @@
                 if (data.length != 0) {
                     for (var i = 0; i < data.length; i++) {
                         var approve_status = data[i].approve_status;
-                        if (approve_status == null) {
-                            approve_status = "";
+                        if (approve_status == "Approved") {
+                            approve_status = "Approved";
                         }
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td><td>' + data[i].location_expo + '</td><td>' + data[i].particular_expo + '</td><td>' + data[i].level_event + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].event_platform + '</td><td>' + data[i].from_date + '</td><td>' + data[i].to_date + '</td><td>' + data[i].reg_open_date + '</td><td>' + data[i].reg_close_date + '</td></tr> ';
+                        else if (approve_status == "Submitted") {
+                            approve_status = "Submitted";
+                        }
+                        else if (approve_status == "Reject") {
+                            approve_status = "Rejected";
+                        }
+                        else {
+                            approve_status = "Pending for Submission";
+                        }
+                        var filename = data[i].filename;
+                        if (filename == null) {
+                            filename = "";
+                        }
+                        var reject_status = data[i].reject_status;
+                        if (reject_status == null) {
+                            reject_status = "";
+                        }
+                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td><td>' + data[i].location_expo + '</td><td>' + data[i].particular_expo + '</td><td>' + data[i].level_event + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].event_platform + '</td><td>' + data[i].from_date + '</td><td>' + data[i].to_date + '</td><td>' + data[i].reg_open_date + '</td><td>' + data[i].reg_close_date + '</td><td>' + filename + '</td><td>' + approve_status + '</td><td>' + reject_status + '</td></tr> ';
 
                     }
                 }

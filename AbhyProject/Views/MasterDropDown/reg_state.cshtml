@@ -1,0 +1,2049 @@
+﻿
+@{
+    ViewBag.Title = "current_Training_npmu";
+    Layout = "~/Views/Shared/trainingview.cshtml";
+}
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<!-- jQuery library -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="~/Content/Website/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/Scripts/Scriptsabhy/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha256-c9vxcXyAG4paArQG3xk6DjyW/9aHxai2ef9RpMWO44A=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+
+<title>Registered Participants</title>
+
+<style>
+    tbody > tr > td > a {
+        word-break: break-all;
+    }
+
+    .table-formControl .form-control {
+        width: fit-content;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .col-md-12 {
+        padding: 0
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    .section1 {
+        padding: 0
+    }
+
+        .section1 > .row > .col-md-12 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            padding: 10px 10px 5px 10px;
+            column-gap: 30px;
+        }
+
+        .section1 > .row > .col-sm-12 > h4 {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .section1 > .row > .col-sm-12 > div.col-md-12 {
+            color: black;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+            .section1 > .row > .col-sm-12 > div.col-md-12 > p {
+                margin: 0;
+                width: fit-content;
+                padding: 10px 5px;
+                border: 1px solid #337ab7;
+                background-color: #d4e5f1;
+            }
+
+        .section1 > .row > .col-sm-12 > div.col-sm-12 {
+            padding: 0;
+        }
+
+    .table-gap {
+        height: 350px;
+        margin-bottom: 30px;
+        overflow: scroll;
+    }
+
+    .table-responsive {
+        width: 100%;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .font-bold {
+        font-weight: bold;
+    }
+
+    /*ends here*/
+    .second_heading {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+        .second_heading.tbd > th {
+            font-size: 14px;
+            text-align: center;
+        }
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /**/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0 !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    .selectdistshowoption select {
+        border-radius: 25px;
+        width: 180px;
+        text-align: left;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    /* .card {
+            margin-top: 25px;
+        }*/
+
+    /*.card-body {
+            border: 1px solid#ccc;*/
+    /*padding: 5px;*/
+    /*}*/
+
+    .headings_border {
+        position: relative;
+        color: #fff;
+        font-size: 35px;
+        text-align: center;
+        font-weight: 900;
+        display: inline-block;
+    }
+
+    ul.Select_option {
+        padding-left: 0;
+        /*   text-align: initial;
+            padding-top: 24px;*/
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .cust_center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .cust_center h6 {
+            font-size: 15px;
+        }
+
+    #NPMU_Level_Credentials .nav-item.dropdown {
+        height: 80px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: 202px;
+        padding: 0px;
+        margin-left: 8px;
+    }
+
+        #NPMU_Level_Credentials .nav-item.dropdown a {
+            text-align: center;
+        }
+
+    .nav-item dropdown.show a {
+        color: #fff !important;
+    }
+</style>
+
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<main class="main-wrapper">
+    <div class="row container-fluid main_div" style="padding:0 10px;">
+        @*for Binding*@
+        <div class="col-md-12 col-sm-12">
+            <center>
+                <div class="ss">
+                    <div class="row">
+
+                        <div class="col-md-12 text-center">
+                            <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600; margin: 0px;">Registered Participants</h4>
+                        </div>
+                    </div>
+                </div>
+            </center>
+            <div class="selectdistshowoption">
+                <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
+                <div class="Select_option_div">
+                    <ul class="Select_option selectbackhome" style="display: flex; justify-content: flex-start; align-items: center; column-gap: 10px; flex-wrap: wrap; row-gap: 10px; padding-left: 12px;">
+                        @*<li>
+                                <select class="form-control" id="NPMU" disabled>
+                                    <option value="NPMU (Delhi)">NPMU (Delhi)</option>
+                                </select>
+                            </li>*@
+                        <li id="StateLabel">
+                            <label id="lblstate">State:</label>
+                            <span id="spnstate1">@Session["gstate"]</span>
+                        </li>
+                        <li id="StateDropdownLabel">
+                            <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                        </li>
+
+                        @*<li id="DistLabel">
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label id="lbldistrict">District:</label>
+                                <span id="spndistrict">@Session["gdist"]</span>
+                            </li>
+
+                            <li id="DistDropdownLabel">
+                                <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                            </li>
+
+                            <li id="BlockLabel">
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Block:</label>
+                                <span>@Session["gblock"] </span>
+                            </li>
+
+                            <li id="BlockDropdownLabel">
+
+                                <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                            </li>
+                            <li id="GramLabel">
+                                <i class="fas fa fa-angle-double-right"></i>
+                                <label>Gram panchayat:</label>
+                                <span>@Session["ggram"]</span>
+                            </li>*@
+                        <li>
+                            <select class="form-control" id="ddlevent">
+                                <option value="All">All</option>
+                                <option value="Training">Training</option>
+                                <option value="Workshop">Workshop</option>
+                                <option value="Orientation">Orientation</option>
+                                <option value="Exposure Visits">Exposure Visits</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control" id="year">
+                                <option value="0">Select Financial Year</option>
+                                <option value="2021-22">2021-22</option>
+                                <option value="2022-23">2022-23</option>
+                                <option value="2023-24">2023-24</option>
+                                <option value="2024-25">2024-25</option>
+                            </select>
+                        </li>
+
+                        <li id="MonthDropdownLabel">
+
+                            <select class="form-control" id="month" onchange="">
+                                <option value="0">Select Month</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                            </select>
+                        </li>
+                        <li id="DropdownSearch_btn">
+                            <a class="btn btn-success" onclick="Dropdown_Search()">Search</a>
+                        </li>
+
+
+                        @*<li>
+
+                            </li>
+
+                            <li>
+
+                            </li>*@
+                    </ul>
+                </div>
+                <div style="width:100%;display:flex;align-items:center;justify-content:flex-end;margin:10px 0;column-gap:20px;">
+                    <a class="btn btn_export" style="width:100px;" id="btnsubmit1" onclick="Create_Pdf_Participants()"><img src="/Content/WspImages/pdf_icon.png" /><span>PDF</span></a>
+                    <a class="btn btn_export" style="width:100px;" id="btnsubmit" onclick="Create_Excel_Participants()"><img src="/Content/WspImages/csv_icon.png" /><span>CSV</span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="main-wrapper">
+        <div class="container-fluid" style="padding:10px;padding-bottom:0px;">
+            <div class="clearfix">
+
+                <div class="col-md-12">
+                    <div class="A_part_div">
+
+
+                        <div class="col-md-12">
+                            <div class="border">
+                                <div class="col-md-12 text-center">
+                                    <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600; margin: 0px;">Registered Participants list of Activities Conducted at State Levels</h4>
+                                </div>
+                                <div>
+
+                                    <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                                        <p class="pl-4" style=" margin: 0; width: fit-content; ">Note: - The below table will show the statistics after clicking on the "Search" button</p>
+                                    </div>
+                                </div>
+                                <div id="style-1" class="tbl-responsive">
+                                    <div id="atnpmu" class="npmutt">
+                                        <table id="" class="GWL_deviation_table table table-bordered  table-__web-inspector-hide-shortcut__">
+
+                                            <tbody id="">
+
+                                                <tr class="second_heading" style="font-size:14px;background-color: #337ab7; color: #fff; font-weight: bold;">
+                                                    <td id="all_a" colspan="1" class="font-bold">Completed Total No. of Trainings: </td>
+                                                    <td id="state_a" colspan="1" class="font-bold">Completed Total No. of Trainings: </td>
+                                                    <td colspan="1" class="font-bold">Total No. of Registrations for State Level Trainings: </td>
+
+
+                                                </tr>
+                                                <tr style="font-size: 13px;border: transparent;">
+                                                    <td id="all_b">
+                                                        <label>NPMU   : <label id="all_npmu"></label> </label>
+                                                        <br />
+                                                        <label>State   : <label id="all_state"></label> </label>
+                                                        <br />
+                                                        <label>District   : <label id="all_dist"></label> </label>
+                                                        <br />
+                                                        <label>Block   : <label id="all_block"></label> </label>
+                                                    </td>
+                                                    <td id="state_b">
+                                                        <label id="total"></label>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <label>Total   : <label id="spmutotal"></label> </label>
+                                                        <br />
+                                                        <label>Male   : <label id="spmumale"></label> </label>
+                                                        <br />
+                                                        <label>Female   : <label id="spmufemale"></label> </label>
+                                                        <br />
+                                                        <label>Transgender   : <label id="spmutrangender"></label> </label>
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                    <div id="atspmu" class="">
+                                        <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                                            <tbody id="">
+
+                                                <tr class="second_heading" style="font-size:14px;background-color: #337ab7; color: #fff; font-weight: bold;">
+                                                    <td colspan="1" class="font-bold">Completed Total No. of Trainings: </td>
+                                                    <td colspan="1" class="font-bold">Total No. of Registrations for State Level Trainings: </td>
+                                                </tr>
+                                                <tr style="font-size: 13px;border: transparent;">
+                                                    <td>
+                                                        <label id="statetotal_new"></label>
+                                                    </td>
+                                                    <td>
+                                                        <label>Total   : <label id="statespmutotal"></label> </label>
+                                                        <br />
+                                                        <label>Male   : <label id="statespmumale"></label> </label>
+                                                        <br />
+                                                        <label>Female   : <label id="statespmufemale"></label> </label>
+                                                        <br />
+                                                        <label>Transgender   : <label id="statespmutrangender"></label> </label>
+                                                    </td>
+                                                    
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                    
+                                    <div>
+
+                                        <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                                            <p class="pl-4" style=" margin: 0; width: fit-content; "> Note:- Selecting "All" in the above dropdown would not have enabled the "Select Training" selection dropdown below. Selecting “Select Training” from the dropdown below and selecting NPMU/State/District/Block above will show the subject-wise breakdown of the event.</p>
+                                        </div>
+                                    </div>
+                                    <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
+
+                                        <tbody id="">
+
+                                            <tr class="second_heading" style="background-color: #337ab7; color: #fff; font-weight: bold;">
+                                                <td colspan="1" class="font-bold">Topic of Training: </td>
+                                                <td colspan="1" class="font-bold">Total Participant registered for That Training: </td>
+
+                                            </tr>
+
+                                            <tr style="font-size: 13px;border: transparent;">
+                                                <td>
+                                                    <select name="Topic Of Event" id="p_training_name" class="form-control" onchange="search_event()">
+                                                        @*<option value="0">Select Training</option>*@
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <label>Total   : <label id="count"></label> </label>
+                                                    <br />
+                                                    <label>Male   : <label id="male_count"></label> </label>
+                                                    <br />
+                                                    <label>Female   : <label id="female_count"></label> </label>
+                                                    <br />
+                                                    <label>Transgender   : <label id="trans_count"></label> </label>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="container-fluid" style="padding:10px;padding-top:0">
+            <div class="box_shadow">
+
+                <div id="example_filter" class="dataTables_filter" style="margin-bottom: 10px; margin-left:190px;">
+                </div>
+                <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                    <p class="pl-4" style=" margin: 0; width: fit-content; ">Note:- The below table will show the registered participants data by selecting the "Topic of Event" on the above table. For more detailed information, please use the Export (CSV) option.</p>
+                </div>
+                <div id="style-1" class="table-responsive table-gap">
+                    <table id="datatable" class="GWL_deviation_table table table-bordered  table-__web-inspector-hide-shortcut__" style="font-size: 13px;border: transparent;">
+                        <thead>
+                            <tr class="text-center" style="text-align:center">
+                                <th class="text-center second_heading" style="text-align:center" colspan="22">Registered Participants list of Activities Conducted at the State</th>
+                            </tr>
+                            <tr class="second_heading tbd">
+                                <th>Sr.No</th>
+                                <th>Topic of Training</th>
+                                <th>Name of the Participant</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>Occupation/Department</th>
+                                <th>Qualification </th>
+                                <th>Contact No. </th>
+                                <th>Email ID. </th>
+                                <th>Address of Participant </th>
+                                <th>Participant State</th>
+                                <th>Participant Other(State)</th>
+                                <th>Registration Number</th>
+                                <th>State</th>
+                                <th>Mail Send Yes/No</th>
+                                <th>Last Email Sent on Date (Feedback)</th>
+                                <th>Mail Count</th>
+                                <th>Feedback Submitted Yes/No</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="Training_Workshop_New4" class="table-formControl" style="font-size: 13px;border: transparent;"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+        <br />
+
+
+    </div>
+
+
+
+
+
+
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+    <script src="~/Scripts/jquery.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="~/Scripts/validations.js"></script>
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+    <script src="~/Content/JS_Files/training_workshop.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+
+    <script>
+
+   var Jsondata = "";
+
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var StateOfficer = "";
+    var Email = "";
+    $(document).ready(function () {
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $('.npmutt').hide();
+        $('#atnpmu').hide();
+        $('#atspmu').hide();
+        $('#atdpmu').hide();
+        $('#atbpmu').hide();
+        $('#all_a').hide();
+        $('#all_b').hide();
+        $('#state_a').show();
+        $('#state_b').show();
+        StateOfficer = '@Session["Officer"]';
+        Email = '@Session["Email"]';
+        if (StateOfficer == "Block Level Nodal Officer" || StateOfficer == "District Level Nodal Officer" || StateOfficer == "State Level Nodal Officer") {
+            $('#NPMU').hide();
+        }
+        else {
+            $('#NPMU').show();
+        }
+        if (StateOfficer == "Gram Panchyat Nodal Officer" || StateOfficer == "Block Level Nodal Officer" || StateOfficer == "District Level Nodal Officer") {
+
+            $("#event_calender_icon").hide();
+
+        }
+        else {
+
+            $("#event_calender_icon").show();
+        }
+
+        if (StateOfficer == "State Level Nodal Officer") {
+            $('.npmutt').hide();
+            $('#atnpmu').hide();
+            $('#atspmu').show();
+            $('#atdpmu').hide();
+            $('#atbpmu').hide();
+        }
+        else if (StateOfficer == "District Level Nodal Officer") {
+            $('.npmutt').hide();
+            $('#atnpmu').hide();
+            $('#atspmu').hide();
+            $('#atdpmu').show();
+            $('#atbpmu').hide();
+        }
+        else if (StateOfficer == "Block Level Nodal Officer") {
+            $('.npmutt').hide();
+            $('#atnpmu').hide();
+            $('#atspmu').hide();
+            $('#atdpmu').hide();
+            $('#atbpmu').show();
+        }
+        else if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+            $('#atnpmu').show();
+            $('.npmutt').show();
+        $('#atspmu').hide();
+        $('#atdpmu').hide();
+        $('#atbpmu').hide();
+        /*npmu_total();*/
+
+        }
+        $(".loader").hide();
+        DropDownInfo();
+
+    });
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+    }
+    </script>
+    <script>
+        /* for Binding*/
+
+        function SessionInfo() {
+
+            var obj = {};
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/SocialMointoring/State_SessionInfo_1",
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    if (data == "Logout") {
+                        window.location = "/Home/LogOut";
+                    }
+                    else {
+                        $('#Error_').text("");
+
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').hide();
+
+                        var Str = data.split(',');
+                        if (Str[0] == "Admin") {
+                            $('#StateLabel').hide();
+                            $('#StateDropdownLabel').show();
+                            $('#DistLabel').hide();
+                            $('#DistDropdownLabel').show();
+                            $('#BlockLabel').hide();
+                            $('#BlockDropdownLabel').show();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            //Participant_reg_info();
+                            //Participant_reg_info_total();
+
+                        }
+                        else if (Str[0] == "State Level Nodal Officer") {
+                            State = Str[1];
+                            off_1 = "state";
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').hide();
+                            $('#DistDropdownLabel').show();
+                            $('#BlockLabel').hide();
+                            $('#BlockDropdownLabel').show();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            State_Dropdown_Function();
+                            // spmu_total();
+                            //Get_Training_Working_Events_Info_fetch();
+
+                        }
+                        else if (Str[0] == "District Level Nodal Officer") {
+                            off_1 = "dist";
+                            State = Str[1];
+                            Dist = Str[2];
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').show();
+                            $('#DistDropdownLabel').hide();
+                            $('#BlockLabel').hide();
+                            $('#BlockDropdownLabel').show();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            Dist_fun();
+                            //dpmu_total();
+                            //Get_Training_Working_Events_Info_fetch();
+
+                            //Participant_reg_info();
+                            //Participant_reg_info_total();
+                        }
+                        else if (Str[0] == "Block Level Nodal Officer") {
+                            off_1 = "block";
+                            State = Str[1];
+                            Dist = Str[2];
+                            Block = Str[3];
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').show();
+                            $('#DistDropdownLabel').hide();
+                            $('#BlockLabel').show();
+                            $('#BlockDropdownLabel').hide();
+                            $('#GramLabel').hide();
+                            $('#GramDropdownLabel').show();
+                            $('#DropdownSearch_btn').show();
+                            Block_fun();
+                            // Get_Training_Working_Events_Info_fetch();
+                            //  bpmu_total();
+
+                            //Participant_reg_info();
+                            //Participant_reg_info_total();
+
+                        }
+                        else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                            State = Str[1];
+                            Dist = Str[2];
+                            Block = Str[3];
+                            Gram = Str[4];
+                            $('#StateLabel').show();
+                            $('#StateDropdownLabel').hide();
+                            $('#DistLabel').show();
+                            $('#DistDropdownLabel').hide();
+                            $('#BlockLabel').show();
+                            $('#BlockDropdownLabel').hide();
+                            $('#GramLabel').show();
+                            $('#GramDropdownLabel').hide();
+                            $('#DropdownSearch_btn').hide();
+
+                        }
+
+
+                    }
+                }
+
+            });
+
+        }
+        function DropDownInfo() {
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: "/Home/Sign_Up_DropdownInfo",
+                data: "{ }",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    if (response.length != 0) {
+                        Jsondata = response;
+                        $("#spnstate").empty();
+                        var opstate = '<option value="0">Select StateName</option>';
+                        $("#spnstate").append(opstate);
+                        $("#dist11").empty();
+                        var opdist = '<option value="0">Select District</option>';
+                        $("#dist11").append(opdist);
+                        $("#block1").empty();
+                        var opblock = '<option value="0">Select Block</option>';
+                        $("#block1").append(opblock);
+                        $("#gram").empty();
+                        var opgram = '<option value="0">Select GramPanchayat</option>';
+                        $("#gram").append(opgram);
+                        //var StateName = $("#spnstate").text();
+                        if (Jsondata.length != 0) {
+                            var ddlst = {};
+                            var all_dists = [];
+                            var optionState = '';
+                            for (var i = 0; i < Jsondata.length; i++) {
+
+                                if (Jsondata[i].state_name != "Delhi_7") {
+                                    if (!ddlst[Jsondata[i].state_name]) {
+                                        all_dists.push(Jsondata[i].state_name);
+                                        ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                                    }
+                                }
+                            }
+                            var DistArray = [];
+                            DistArray = all_dists.sort(function (a, b) {
+                                if (a < b) return -1;
+                                else if (a > b) return 1;
+                                return 0;
+                            });
+                            optionState = '<option value="0">Select StateName</option>';
+                            for (var i = 0; i < DistArray.length; i++) {
+                                if (DistArray[i] != null && DistArray[i] != "") {
+                                    optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                                }
+                            }
+                            $("#spnstate").html(optionState);
+                            
+                        }
+
+                    }
+
+                    SessionInfo();
+
+
+                }
+            });
+        }
+        function NPMU() {
+
+            var npmu = $("#spnstate").val();
+            if (npmu == 'NPMU (Delhi)' || npmu == 'All') {
+                $("#dist11").hide();
+                $("#block1").hide();
+            }
+            else {
+                $("#dist11").show();
+                $("#block1").show();
+            }
+
+        }
+        function State_Dropdown_Function() {
+            NPMU();
+
+            $("#dist11").empty();
+            var opdist = '<option value="0">Select District</option>';
+            $("#dist11").append(opdist);
+            $("#block1").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block1").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+
+            var StateName = $("#spnstate").val();
+            if (off_1 == "state") {
+                StateName = State;
+            } else {
+                State = StateName;
+            }
+            if (State == "All") {
+                $('#all_a').show();
+                $('#all_b').show();
+                $('#state_a').hide();
+                $('#state_b').hide();
+                $('#btnsubmit1').hide();
+            }
+            else {
+                $('#all_a').hide();
+                $('#all_b').hide();
+                $('#state_a').show();
+                $('#state_b').show();
+                $('#btnsubmit1').show();
+            }
+
+            if (StateName != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_dists = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (StateName == Jsondata[i].state_name) {
+
+                        if (!ddlst[Jsondata[i].district_name]) {
+                            all_dists.push(Jsondata[i].district_name);
+                            ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                        }
+                    }
+                }
+
+
+                var DistArray = [];
+                DistArray = all_dists.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+
+                for (var i = 0; i < DistArray.length; i++) {
+                    if (DistArray[i] != null && DistArray[i] != "") {
+                        optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                    }
+                }
+                $("#dist11").append(optionDist);
+            }
+            Dist_fun();
+            /*event_participant_info_new2();*/
+        }
+        function Dist_fun() {
+
+            $("#block1").empty();
+            var opblock = '<option value="0">Select Block</option>';
+            $("#block1").append(opblock);
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+
+            var dist = $("#dist11").val();
+            if (off_1 == "dist") {
+                dist = Dist;
+            } else {
+                Dist = dist;
+            }
+            //console.log(Jsondata);
+            //console.log(dist);
+            //console.log(State);
+            if (dist != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_blocks = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    //if (Jsondata[i].district_name == 'Kaithal' ) {
+                    //    alert(dist);
+
+                    //    return;
+                    //}
+
+                    if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                        if (!ddlst[Jsondata[i].block_name]) {
+                            all_blocks.push(Jsondata[i].block_name);
+                            ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                            //  $("#block").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var BlockArray = [];
+                BlockArray = all_blocks.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < BlockArray.length; i++) {
+                    if (BlockArray[i] != null && BlockArray[i] != "") {
+                        optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                    }
+                }
+                $("#block1").append(optionDist);
+
+            }
+            Block_fun();
+            // event_participant_info_new2();
+        }
+        function Block_fun() {
+
+            $("#gram").empty();
+            var opgram = '<option value="0">Select GramPanchayat</option>';
+            $("#gram").append(opgram);
+            var block = $("#block1").val();
+
+            if (off_1 == "block") {
+                block = Block;
+            } else {
+                Block = block;
+            }
+
+
+            if (block != "0" && Jsondata.length != 0) {
+                var ddlst = {};
+                var all_grams = [];
+                var optionDist = '';
+                for (var i = 0; i < Jsondata.length; i++) {
+                    if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                        if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                            ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                            all_grams.push(Jsondata[i].gram_panchayat_name);
+                            //   $("#gram").append(optionDist);
+                        }
+                    }
+                }
+
+
+                var GramArray = [];
+                GramArray = all_grams.sort(function (a, b) {
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < GramArray.length; i++) {
+                    if (GramArray[i] != null && GramArray[i] != "") {
+
+                        optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                    }
+                }
+                $("#gram").append(optionDist);
+            }
+            // event_participant_info_new2();
+        }
+        function Gram_change() {
+            var Gram1 = $("#gram").val();
+            if (Gram1 == "0") {
+                alert("Select Grampanchayat");
+            } else {
+                Gram = $('#gram').val();
+            }
+            //event_participant_info_new2();
+        }
+        function Dropdown_Search() {
+            if (State == '0') {
+                alert("Select State Name");
+                return false;
+                $('#.loader').hide();
+            }
+
+            $.ajax({
+                type: "Post",
+                url: "/Home/StateLevel_Dropdown",
+                contentType: "application/json;charset=utf-8",
+                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+                dataType: "json",
+                success: function (results) {
+                    tr = '<tr style="text-align:center;"><td colspan="11"></td></tr>';
+                    $('#Training_Workshop_New4').html(tr);
+                    if (StateOfficer == "State Level Nodal Officer") {
+                        $('#male_count').text("");
+                        $('#female_count').text("");
+                        $('#trans_count').text("");
+                        $('#count').text("");
+                        spmu_total();
+                    }
+                    else if (StateOfficer == "District Level Nodal Officer") {
+                        $('#male_count').text("");
+                        $('#female_count').text("");
+                        $('#trans_count').text("");
+                        $('#count').text("");
+                        dpmu_total();
+                    }
+                    else if (StateOfficer == "Block Level Nodal Officer") {
+                        $('#male_count').text("");
+                        $('#female_count').text("");
+                        $('#trans_count').text("");
+                        $('#count').text("");
+                        bpmu_total();
+                    }
+                    else if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                        $('#male_count').text("");
+                        $('#female_count').text("");
+                        $('#trans_count').text("");
+                        $('#count').text("");
+                        npmu_total();
+
+                    }
+
+                    //Get_Training_Working_Events_Info_fetch();    // Available in training_workshop.js for topic of event fetching
+
+
+
+
+                }
+            });
+
+
+
+        }
+
+        function Create_Excel_Participants() {
+
+            var event = $('#ddlevent').val();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                var state_name = $('#spnstate').val();
+                var dist_name = $('#dist11').val();
+                var block_name = $('#block1').val();
+                if (state_name == "0") {
+                    alert("Select State");
+                    return false;
+                }
+                {
+                    if (state_name == "NPMU (Delhi)") {
+                        window.location.href = "/MasterDropDown/Excel_Participants_level?state1=" + state_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                    }
+                    else {
+                        window.location.href = "/MasterDropDown/Excel_Participants_level?state1=" + state_name + "&district1=" + dist_name + "&block01=" + block_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                    }
+                }
+            }
+            else if (StateOfficer == "State Level Nodal Officer") {
+                var dist_name = $('#dist11').val();
+                var block_name = $('#block1').val();
+
+                {
+                    window.location.href = "/MasterDropDown/Excel_Participants_level?state1=" + State + "&district1=" + dist_name + "&block01=" + block_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                }
+            }
+            else if (StateOfficer == "District Level Nodal Officer") {
+                var block_name = $('#block1').val();
+                {
+                    window.location.href = "/MasterDropDown/Excel_Participants_level?state1=" + State + "&district1=" + Dist + "&block01=" + block_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                }
+            }
+            else if (StateOfficer == "Block Level Nodal Officer") {
+                {
+                    window.location.href = "/MasterDropDown/Excel_Participants_level?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                }
+            }
+
+        }
+
+        function Create_Pdf_Participants() {
+            var event = $('#ddlevent').val();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            var topic_of_event = $("#p_training_name").val();
+            if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
+                var state_name = $('#spnstate').val();
+                var dist_name = $('#dist11').val();
+                var block_name = $('#block1').val();
+
+                if (state_name == "0") {
+                    alert("Select State");
+                    return false;
+                }
+                {
+                    if (state_name == "NPMU (Delhi)") {
+                        window.location.href = "/MasterDropDown/state_Pdf_Participants_level?topic_of_event=" + topic_of_event + "&state1=" + state_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                    }
+                    else {
+                        window.location.href = "/MasterDropDown/state_Pdf_Participants_level?topic_of_event=" + topic_of_event + "&state1=" + state_name + "&district1=" + dist_name + "&block01=" + block_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                    }
+                }
+            }
+            else if (StateOfficer == "State Level Nodal Officer") {
+                var dist_name = $('#dist11').val();
+                var block_name = $('#block1').val();
+
+                {
+                    window.location.href = "/MasterDropDown/state_Pdf_Participants_level?topic_of_event=" + topic_of_event + "&state1=" + State + "&district1=" + dist_name + "&block01=" + block_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                }
+            }
+            else if (StateOfficer == "District Level Nodal Officer") {
+                var block_name = $('#block1').val();
+                {
+                    window.location.href = "/MasterDropDown/state_Pdf_Participants_level?topic_of_event=" + topic_of_event + "&state1=" + State + "&district1=" + Dist + "&block01=" + block_name + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                }
+            }
+            else if (StateOfficer == "Block Level Nodal Officer") {
+                {
+                    window.location.href = "/MasterDropDown/state_Pdf_Participants_level?topic_of_event=" + topic_of_event + "&state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&event_name=" + event + "&year=" + year + "&month=" + month;
+                }
+            }
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+
+        function event_participant_info_new2() {      //for loginstatus based data fetching
+
+
+            var obj = {};
+            obj.p_state_name = State;
+            obj.p_district_name = Dist;
+            obj.p_block_name = Block;
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/abhy_Event_Parti_Info11',
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+                    /* $('#reg_total').text(data.length);*/
+                    if (data == "Logout") {
+                        window.location = "/Home/LogOut";
+
+                    }
+                    var tr = '';
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+
+
+                            tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (i + 1) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td> <td>' + data[i].p_gender + '</td> <td>' + data[i].p_age + '</td> <td>' + data[i].p_occupation + '</td> <td>' + data[i].p_qual + '</td> <td>' + data[i].p_phoneno + '</td> <td>' + data[i].p_emailid + '</td> <td>' + data[i].p_address + '</td> <td>' + data[i].parti_state + '</td> <td>' + data[i].p_other_state_name + '</td> <td>' + data[i].registration_no + '</td> <td>' + data[i].p_state_name + '</td> <td>' + data[i].p_district_name + '</td><td>' + data[i].p_block_name + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Reg_Partcipant(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                                '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td></td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="topic_event1' + i + '" value="' + data[i].p_training_name + '"  readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="name1' + i + '" value="' + data[i].p_name + '"  /></td>' +
+
+
+                                '<td><select class="form-control" id="gender1' + i + '"> <option value="0">' + data[i].p_gender + '</option> <option value="Male"> Male </option> <option value="Female"> Female </option><option value="Other"> Other </option> </select></td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="age1' + i + '" value="' + data[i].p_age + '"  /></td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="occupation1' + i + '" value="' + data[i].p_occupation + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="qual1' + i + '" value="' + data[i].p_qual + '"  /></td>' +
+                                '<td> <input type="number" class="form-control" id="phonenno1' + i + '" value="' + data[i].p_phoneno + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="emailid1' + i + '" value="' + data[i].p_emailid + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="address1' + i + '" value="' + data[i].p_address + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="parti_state1' + i + '" value="' + data[i].parti_state + '" readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="p_other_state_name1' + i + '" value="' + data[i].p_other_state_name + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="reg1' + i + '" value="' + data[i].registration_no + '" readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="state1' + i + '" value="' + data[i].p_state_name + '" readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="district1' + i + '" value="' + data[i].p_district_name + '" readonly /></td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="block1' + i + '" value="' + data[i].p_block_name + '" readonly  /></td>' +
+
+                                '<td> <button type="button" class="btn btn-primary" onclick="Update_AWP1(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger " type="button" onclick="cancelcomp_A_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+
+                        }
+                    }
+                    if (tr == '') {
+                        tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                        $('#Training_Workshop_New4').html(tr);
+                    }
+                    else {
+                        $('#Training_Workshop_New4').html(tr);
+                    }
+                    /*$('#pages_count').text(data.length);*/
+                }
+            });
+
+        }
+        var PageNumber = 1;
+        var totalsocialss = 0;
+        function Participant_reg_info_total() {
+
+            var obj = {};
+            obj.statename = State;
+            obj.districtname = Dist;
+            obj.blockname = Block;
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/totalFetch_Social_Monitoring',
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+
+                success: function (data) {
+                    /*$('#reg_total').text(data.length);*/
+                    var data = data.split(',');
+                    $('#reg_total').text("");
+                    $('#reg_total').text(data[0]);
+                    $('#pages_count').text(data[1]);
+                    totalsocialss = data[1];
+
+                    if (totalsocialss == PageNumber || totalsocialss == 0) {
+                        $('#btnpre').hide();
+                    }
+                    else {
+                        $('#btnnext').show();
+                    }
+                    //Participant_reg_info();
+                }
+            });
+
+        }
+
+        function npmu_total() {
+            $(".loader").show();
+            var option = '<option value="0">Select Training</option>';
+            $('#p_training_name').html(option);
+
+
+            var state = State;
+            var dist = Dist;
+            var block = Block;
+            var event = $('#ddlevent').val();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/npmu_total',
+                data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'event_name':'" + event + "', 'year':'" + year + "', 'month':'" + month + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    $('#all_state').text(data.sta);
+                    $('#all_dist').text(data.dis);
+                    $('#all_block').text(data.blo);
+                    $('#all_npmu').text(data.npmu);
+
+                    $('#total').text(data.count);
+                    $('#1total').text(data.totalcount);
+                    $('#1male').text(data.totalcount_male);
+                    $('#1female').text(data.totalcount_female);
+                    $('#1trangender').text(data.totalcount_trangender);
+
+                    $('#npmutotal').text(data.npmucount);
+                    $('#npmumale').text(data.npmucount_male);
+                    $('#npmufemale').text(data.npmucount_female);
+                    $('#npmutrangender').text(data.npmucount_trangender);
+
+                    $('#spmutotal').text(data.spmucount);
+                    $('#spmumale').text(data.spmucount_male);
+                    $('#spmufemale').text(data.spmucount_female);
+                    $('#spmutrangender').text(data.spmucount_trangender);
+
+                    $('#dpmutotal').text(data.dpmucount);
+                    $('#dpmumale').text(data.dpmucount_male);
+                    $('#dpmufemale').text(data.dpmucount_female);
+                    $('#dpmutrangender').text(data.dpmucount_trangender);
+
+                    $('#blocktotal').text(data.blockcount);
+                    $('#blockmale').text(data.blockcount_male);
+                    $('#blockfemale').text(data.blockcount_female);
+                    $('#blocktrangender').text(data.blockcount_trangender);
+                    $(".loader").hide();
+                    if (state != "All") {
+                        Get_Training_Working_Events_Info_fetch();
+                    }
+                }
+            });
+
+        }
+        function spmu_total() {
+            $(".loader").show();
+            var state = State;
+            var dist = Dist;
+            var block = Block;
+            var event = $('#ddlevent').val();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/spmu_total',
+                data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'event_name':'" + event + "', 'year':'" + year + "', 'month':'" + month + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    /*$('#total').text(data.count);*/
+                    $('#statetotal_new').text(data.count);
+                    $('#statespmutotal').text(data.spmucount);
+                    $('#statespmumale').text(data.spmucount_male);
+                    $('#statespmufemale').text(data.spmucount_female);
+                    $('#statespmutrangender').text(data.spmucount_trangender);
+
+                    $('#statedpmutotal').text(data.dpmucount);
+                    $('#statedpmumale').text(data.dpmucount_male);
+                    $('#statedpmufemale').text(data.dpmucount_female);
+                    $('#statedpmutrangender').text(data.dpmucount_trangender);
+
+                    $('#stateblocktotal').text(data.blockcount);
+                    $('#stateblockmale').text(data.blockcount_male);
+                    $('#stateblockfemale').text(data.blockcount_female);
+                    $('#stateblocktrangender').text(data.blockcount_trangender);
+                    Get_Training_Working_Events_Info_fetch();
+                }
+            });
+
+        }
+        function dpmu_total() {
+            $(".loader").show();
+            var state = State;
+            var dist = Dist;
+            var block = Block;
+            var event = $('#ddlevent').val();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/dpmu_total',
+                data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'event_name':'" + event + "', 'year':'" + year + "', 'month':'" + month + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    /*$('#total').text(data.count);*/
+                    $('#districttotal_new').text(data.count);
+                    $('#districtdpmutotal').text(data.dpmucount);
+                    $('#districtdpmumale').text(data.dpmucount_male);
+                    $('#districtdpmufemale').text(data.dpmucount_female);
+                    $('#districtdpmutrangender').text(data.dpmucount_trangender);
+
+                    $('#districtblocktotal').text(data.blockcount);
+                    $('#districtblockmale').text(data.blockcount_male);
+                    $('#districtblockfemale').text(data.blockcount_female);
+                    $('#districtblocktrangender').text(data.blockcount_trangender);
+                    Get_Training_Working_Events_Info_fetch();
+                }
+            });
+
+        }
+        function bpmu_total() {
+            $(".loader").show();
+            var state = State;
+            var dist = Dist;
+            var block = Block;
+            var event = $('#ddlevent').val();
+            var year = $('#year').val();
+            var month = $('#month').val();
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/bpmu_total',
+                data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'event_name':'" + event + "', 'year':'" + year + "', 'month':'" + month + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    $('#blocktotal_new').text(data.count);
+                    $('#blockblocktotal').text(data.blockcount);
+                    $('#blockblockmale').text(data.blockcount_male);
+                    $('#blockblockfemale').text(data.blockcount_female);
+                    $('#blockblocktrangender').text(data.blockcount_trangender);
+                    Get_Training_Working_Events_Info_fetch();
+                }
+            });
+
+        }
+
+        function search_event() {
+            $(".loader").show();
+            var topic_of_event = $("#p_training_name").val();
+            var male = 0;
+            var female = 0;
+            var transgender = 0;
+            var total = 0;
+            $.ajax({
+
+                type: 'GET',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/Participant_reg_search_Data',
+                /*data: { STATE: state, District: district, BLOCK: block, Topic_OF_EVENT: topic_of_event },*/
+                data: { Topic_OF_EVENT: topic_of_event },
+                dataType: 'JSON',
+                success: function (data) {
+
+                    total = data.length;
+                    if (data == "Logout") {
+                        window.location = "/Home/LogOut";
+
+                    }
+                    var tr = '';
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+
+                            if (data[i].p_gender == "Male") {
+                                male++;
+
+                            }
+                            if (data[i].p_gender == "Female") {
+                                female++;
+
+                            }
+                            if (data[i].p_gender == "Transgender") {
+                                transgender++;
+
+                            }
+                            var state = data[i].p_state_name;
+                            if (state == null) {
+                                state = "";
+
+                            }
+                            var district = data[i].p_district_name;
+                            if (district == null) {
+                                district = "";
+
+                            }
+                            var block = data[i].p_block_name;
+                            if (block == null) {
+                                block = "";
+
+                            }
+                            var feedback_yesno = data[i].feedback_yesno;
+                            if (feedback_yesno == null || feedback_yesno == "") {
+                                feedback_yesno = "No";
+
+                            }
+                            var mailsend_date = data[i].mailsend_date;
+                            if (mailsend_date == null || mailsend_date == "") {
+                                mailsend_date = "";
+
+                            }
+
+                            var p_other_state_name = data[i].p_other_state_name;
+                            if (p_other_state_name == null) {
+                                p_other_state_name = "";
+                            }
+                            var mail_count = data[i].mail_count;
+                            var mail_send = data[i].mail_send;
+                            if (mail_count == '0') {
+                                mail_count = "";
+                                mail_send = "No";
+                            }
+                            var registration_no = data[i].registration_no;
+                            if (registration_no == null) {
+                                registration_no = "";
+                            }
+                            var input = registration_no;
+                            var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
+
+                            if (Email == "akash.verma@kreatetechnologies.com") {
+
+                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (i + 1) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td> <td>' + data[i].p_gender + '</td> <td>' + data[i].p_age + '</td> <td>' + data[i].p_occupation + '</td> <td>' + data[i].p_qual + '</td> <td>' + data[i].p_phoneno + '</td> <td>' + data[i].p_emailid + '</td> <td>' + data[i].p_address + '</td> <td>' + data[i].parti_state + '</td> <td>' + p_other_state_name + '</td> <td>' + masked + '</td> <td>' + state + '</td><td>' + mail_send + '</td><td>' + mailsend_date + '</td><td>' + mail_count + '</td><td>' + feedback_yesno + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Reg_Partcipant(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                                    '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td></td>' +
+
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="topic_event1_' + i + '" value="' + data[i].p_training_name + '"  readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="name1_' + i + '" value="' + data[i].p_name + '"  /></td>' +
+                                    '<td><select class="form-control" id="gender1_' + i + '"> <option value="' + data[i].p_gender + '">' + data[i].p_gender + '</option> <option value="Male"> Male </option> <option value="Female"> Female </option><option value="Transgender"> Transgender </option> </select></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" maxlength="2" onkeypress="return /[0-9]/i.test(event.key)" id="age1_' + i + '" value="' + data[i].p_age + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="occupation1_' + i + '" value="' + data[i].p_occupation + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="qual1_' + i + '" value="' + data[i].p_qual + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control numeric" maxlength="10" onkeypress="return /[0-9]/i.test(event.key)" id="phonenno1_' + i + '" value="' + data[i].p_phoneno + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="emailid1_' + i + '" value="' + data[i].p_emailid + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="address1_' + i + '" value="' + data[i].p_address + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="parti_state1_' + i + '" value="' + data[i].parti_state + '" readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="p_other_state_name1_' + i + '" value="' + data[i].p_other_state_name + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="reg1_' + i + '" value="' + masked + '" readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="state1_' + i + '" value="' + state + '" readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="mail_send' + i + '" value="' + mail_send + '" readonly  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="mailsend_date' + i + '" value="' + mailsend_date + '" readonly  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="mail_count' + i + '" value="' + mail_count + '" readonly  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="feedback_yesno' + i + '" value="' + feedback_yesno + '" readonly  /></td>' +
+                                    '<td> <button type="button" class="btn btn-primary" onclick="Update_AWP1(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger " type="button" onclick="cancelcomp_A_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+
+                            }
+                            else {
+
+                                tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (i + 1) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td> <td>' + data[i].p_gender + '</td> <td>' + data[i].p_age + '</td> <td>' + data[i].p_occupation + '</td> <td>' + data[i].p_qual + '</td> <td>' + data[i].p_phoneno + '</td> <td>' + data[i].p_emailid + '</td> <td>' + data[i].p_address + '</td> <td>' + data[i].parti_state + '</td> <td>' + p_other_state_name + '</td> <td>' + masked + '</td> <td>' + state + '</td><td>' + mail_send + '</td><td>' + mailsend_date + '</td><td>' + mail_count + '</td><td>' + feedback_yesno + '</td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td>' +
+                                    '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="topic_event1_' + i + '" value="' + data[i].p_training_name + '"  readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="name1_' + i + '" value="' + data[i].p_name + '"  /></td>' +
+                                    '<td><select class="form-control" id="gender1_' + i + '"> <option value="' + data[i].p_gender + '">' + data[i].p_gender + '</option> <option value="Male"> Male </option> <option value="Female"> Female </option><option value="Transgender"> Transgender </option> </select></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" maxlength="2" onkeypress="return /[0-9]/i.test(event.key)" id="age1_' + i + '" value="' + data[i].p_age + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="occupation1_' + i + '" value="' + data[i].p_occupation + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="qual1_' + i + '" value="' + data[i].p_qual + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control numeric" maxlength="10" onkeypress="return /[0-9]/i.test(event.key)"  id="phonenno1_' + i + '" value="' + data[i].p_phoneno + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="emailid1_' + i + '" value="' + data[i].p_emailid + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="address1_' + i + '" value="' + data[i].p_address + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="parti_state1_' + i + '" value="' + data[i].parti_state + '" readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="p_other_state_name1_' + i + '" value="' + data[i].p_other_state_name + '"  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="reg1_' + i + '" value="' + masked + '" readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="state1_' + i + '" value="' + state + '" readonly /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="mail_send' + i + '" value="' + mail_send + '" readonly  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="mailsend_date' + i + '" value="' + mailsend_date + '" readonly  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="mail_count' + i + '" value="' + mail_count + '" readonly  /></td>' +
+                                    '<td> <input type="text"  onpaste="return false;"  class="form-control" id="feedback_yesno' + i + '" value="' + feedback_yesno + '" readonly  /></td>' +
+                                    '<td> <button type="button" class="btn btn-primary" onclick="Update_AWP1(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger " type="button" onclick="cancelcomp_A_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+                            }
+                        }
+                    }
+                    $('#male_count').text(male);
+                    $('#female_count').text(female);
+                    $('#trans_count').text(transgender);
+
+                    if (tr == '') {
+                        tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                        $('#Training_Workshop_New4').html(tr);
+                    }
+                    else {
+                        $('#Training_Workshop_New4').html(tr);
+                    }
+                    $('#count').text(total);
+                    $(".loader").hide();
+
+                }
+
+
+            });
+        }
+
+        function abhy_Event_Parti_Info_Search() {
+
+
+            //var year = $('#year').val();
+            //var month = $('#month').val();
+            var obj = {};
+            obj.p_state_name = State;
+            obj.p_district_name = Dist;
+            obj.p_block_name = Block;
+            //obj.gpname = Gram;
+            //obj.year = year;
+            //obj.month = month;
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; chatset=utf-8',
+                url: '/MasterDropDown/abhy_Event_Parti_Info',
+                data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                dataType: 'JSON',
+                success: function (data) {
+
+                    if (data == "Logout") {
+                        window.location = "/Home/LogOut";
+
+                    }
+                    var tr = '';
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+
+
+                            tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (i + 1) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].p_name + '</td> <td>' + data[i].p_gender + '</td> <td>' + data[i].p_age + '</td> <td>' + data[i].p_occupation + '</td> <td>' + data[i].p_qual + '</td> <td>' + data[i].p_phoneno + '</td> <td>' + data[i].p_emailid + '</td> <td>' + data[i].p_address + '</td><td>' + data[i].parti_state + '</td> <td>' + data[i].p_other_state_name + '</td> <td>' + data[i].registration_no + '</td> <td>' + data[i].p_state_name + '</td> <td>' + data[i].p_district_name + '</td><td>' + data[i].p_block_name + '</td><td><button class="btn btn-primary" onclick="editrowcomp_A_Good2(' + i + ')"> <i class="fa fa-edit"></i></button></td> <td><button class="btn btn-danger" onclick="Delete_Reg_Partcipant(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>' +
+                                '<tr id="hide_AWP1_TR_Meeting' + i + '" style="display:none;"><td>' + (i + 1) + '</td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="topic_event1' + i + '" value="' + data[i].p_training_name + '"  readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="name1' + i + '" value="' + data[i].p_name + '"  /></td>' +
+
+
+                                '<td><select class="form-control" id="gender1' + i + '"> <option value="0">' + data[i].p_gender + '</option> <option value="Male"> Male </option> <option value="Female"> Female </option><option value="Other"> Other </option> </select></td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="age1' + i + '" value="' + data[i].p_age + '"  /></td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="occupation1' + i + '" value="' + data[i].p_occupation + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="qual1' + i + '" value="' + data[i].p_qual + '"  /></td>' +
+                                '<td> <input type="number" class="form-control" id="phonenno1' + i + '" value="' + data[i].p_phoneno + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="emailid1' + i + '" value="' + data[i].p_emailid + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="address1' + i + '" value="' + data[i].p_address + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="parti_state1' + i + '" value="' + data[i].parti_state + '" readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="p_other_state_name1' + i + '" value="' + data[i].p_other_state_name + '"  /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="reg1' + i + '" value="' + data[i].registration_no + '" readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="state1' + i + '" value="' + data[i].p_state_name + '" readonly /></td>' +
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="district1' + i + '" value="' + data[i].p_district_name + '" readonly /></td>' +
+
+                                '<td> <input type="text"  onpaste="return false;"  class="form-control" id="block1' + i + '" value="' + data[i].p_block_name + '" readonly  /></td>' +
+
+                                '<td> <button type="button" class="btn btn-primary" onclick="Update_AWP1(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger " type="button" onclick="cancelcomp_A_Support(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr>';
+
+                        }
+                    }
+                    if (tr == '') {
+                        tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                        $('#Training_Workshop_New4').html(tr);
+                    }
+                    else {
+                        $('#Training_Workshop_New4').html(tr);
+                    }
+                    $('#pages_count').text(data.length);
+                    $('#reg_total').text("");
+                    $('#reg_total').text(data.length);
+                    /*$('.loader').hide();*/
+                }
+
+            });
+
+        }
+        function editrowcomp_A_Good2(i) {
+
+            var parti_state = $('#parti_state1_' + i).val();
+            if (parti_state == "Other") {
+                $('#p_other_state_name1_' + i).show();
+
+            }
+            else {
+                $('#p_other_state_name1_' + i).hide();
+            }
+
+            var parti_state = $('#parti_state1' + i).val();
+            if (parti_state == "Other") {
+                $('#p_other_state_name1' + i).show();
+
+            }
+            else {
+                $('#p_other_state_name1' + i).hide();
+            }
+
+
+            $('#AWP1_TR_Meeting' + i).hide();
+            $('#hide_AWP1_TR_Meeting' + i).show();
+        }
+        function cancelcomp_A_Support(i) {
+            /*  */
+            $('#AWP1_TR_Meeting' + i).show();
+            $('#hide_AWP1_TR_Meeting' + i).hide();
+        }
+        function Delete_Reg_Partcipant(Id) {
+
+            if (confirm("Do You want to delete")) {
+
+                var obj = {};
+                obj.id = Id;
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; chatset=utf-8',
+                    url: '/MasterDropDown/Delete_Reg_Partcipant_Part',
+                    data: "{'Data': '" + JSON.stringify(obj) + "'}",
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert(response);
+                        if (response == "SessionTimeOut") {
+                            window.location = "/Home/LogOut";
+                        }
+                        search_event();
+
+                        Participant_reg_info_total();
+
+
+                    }
+
+                });
+            }
+        }
+        function Update_AWP1(id, RowNo) {
+
+
+            var id = id;
+            var topic_event1 = $('#topic_event1_' + RowNo).val();
+            var name1 = $('#name1_' + RowNo).val();
+            var gender1 = $('#gender1_' + RowNo).val();
+            var age1 = $('#age1_' + RowNo).val();
+            var occupation1 = $('#occupation1_' + RowNo).val();
+
+            var qual1 = $('#qual1_' + RowNo).val();
+            var phonenno1 = $('#phonenno1_' + RowNo).val();
+
+            var emailid1 = $('#emailid1_' + RowNo).val();
+            if (IsEmail(emailid1) == false) {
+                alert("Enter a Valid Email ID");
+                return;
+            }
+
+            var address1 = $('#address1_' + RowNo).val();
+            var parti_state1 = $('#parti_state1_' + RowNo).val();
+            var p_other_state_name1 = $('#p_other_state_name1_' + RowNo).val();
+            if (p_other_state_name1 == null) {
+                p_other_state_name1 = "";
+            }
+            var reg1 = $('#reg1_' + RowNo).val();
+
+            var state1 = $('#state1_' + RowNo).val();
+            var dist1 = $('#district1_' + RowNo).val();
+            var block1 = $('#block1_' + RowNo).val();
+
+            var formData = new FormData();
+
+            formData.append("id", id);
+            formData.append("topic_event", topic_event1);
+            formData.append("name", name1);
+            formData.append("gender", gender1);
+            formData.append("age", age1);
+            formData.append("occupation", occupation1);
+            formData.append("qual", qual1);
+            formData.append("phonenno", phonenno1);
+            formData.append("emailid", emailid1);
+            formData.append("address", address1);
+            formData.append("partiState", parti_state1);
+            formData.append("p_other_state_name", p_other_state_name1);
+            formData.append("reg", reg1);
+            formData.append('State', state1);
+            formData.append('District', dist1);
+            formData.append('Block', block1);
+
+            $.ajax({
+                url: '/MasterDropDown/Update_Participant_Part_Info',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function (response) {
+
+                    alert(response);
+                    if (response == "SessionTimeOut") {
+                        window.location = "/Home/LogOut";
+                    }
+
+                    search_event();
+
+                },
+                error: function () {
+                    alert('Update Failed');
+                }
+            });
+        }
+        function Goto_page() {
+
+            var path = $('#goto_page').val();
+            if (path != "0") {
+                if (path == "/Vendors/admin_Training_Workshop") {
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer" || StateOfficer == "State Level Nodal Officer") {
+
+                        window.location = path;
+                    }
+                    else {
+                        alert("Login with NPMU or State Credentials");
+                        $('#goto_page').val("0");
+                        return;
+                    }
+                }
+                else if (path == "/MasterDropDown/Participants_Registration") {
+                    if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer" || StateOfficer == "State Level Nodal Officer" || StateOfficer == "District Level Nodal Officer" || StateOfficer == "Block Level Nodal Officer") {
+
+                        window.location = path;
+                    }
+                    else {
+                        alert("Login with NPMU, State, District or Block Credentials");
+                        $('#goto_page').val("0");
+                        return;
+                    }
+                }
+
+                else {
+                    window.location = path;
+                }
+            }
+        }
+
+    </script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#Training_Workshop_New4 tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+

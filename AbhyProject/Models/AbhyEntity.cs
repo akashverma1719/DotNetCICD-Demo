@@ -130,12 +130,18 @@ namespace AbhyProject.Models
 
         // training and workshop module
         public virtual DbSet<current_events> obj_current_events { get; set; }
+        public virtual DbSet<alldata_gplevel> obj_alldata_gplevel { get; set; }
+        public virtual DbSet<vw_current_events_addnew> obj_vw_current_events_addnew { get; set; }
+        public virtual DbSet<current_events_addnew> obj_current_events_addnew { get; set; }
         public virtual DbSet<vw_current_events> obj_vw_current_events { get; set; }
         public virtual DbSet<current_event_pop> obj_current_event_pop { get; set; }
+        public virtual DbSet<vw_training_gender_feedback_count_npmu> obj_vw_training_gender_feedback_count_npmu { get; set; }
+        public virtual DbSet<TrainingGenderCountMaterialGp> obj_TrainingGenderCountMaterialGp { get; set; }
         public virtual DbSet<vw_reg_traininggp> obj_vw_reg_traininggp { get; set; }
         public virtual DbSet<events_material> obj_events_material { get; set; }    
         public virtual DbSet<events_calendar> obj_events_calendar { get; set; }    
         public virtual DbSet<abhy_feedback_latest> obj_abhy_feedback_latest { get; set; }
+        public virtual DbSet<feedback_gp> obj_feedback_gp { get; set; }
         public virtual DbSet<vw_abhy_feedback_latest> obj_vw_abhy_feedback_latest { get; set; }
         //new regs training and workshops
         public virtual DbSet<abhy_training_newregs> obj_abhy_training_newregs { get; set; }

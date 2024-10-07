@@ -2410,7 +2410,6 @@
     var ymonth = "";
     var email = "";
     var ss = "";
-    var ssn = "";
     var statename = "";
     $(document).ready(function () {
         
@@ -2466,7 +2465,6 @@
         
         //var StateOfficer = '@Session["Officer"]';
         ss = StateOfficer;
-        ssn = statename;
         ready();
 
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
