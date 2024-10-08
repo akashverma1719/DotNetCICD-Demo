@@ -3126,6 +3126,13 @@ function Total_Population_of_the_GP_Info_wg() {  /*Not use */
                 window.location = "/Home/LogOut";
 
             }
+            $('#tol_population').val("");
+            $('#basic_data').val("");
+            $('#pop_20_21').val("");
+            $('#pop_21_22').val("");
+            $('#pop_22_23').val("");
+            $('#pop_23_24').val("");
+            $('#pop_24_25').val("");
 
 
             if (data.length != 0) {
@@ -3690,10 +3697,57 @@ function abhy_socialmgt_vulnerable_communities_Info() { //4190
                 window.location = "/Home/LogOut";
 
             }
-            //if (data.length == 0) {
+            $('#bpl_basic_data').val("");
+            $('#bpl_pop_20_21').val("");
+            $('#bpl_pop_21_22').val("");
+            $('#bpl_pop_22_23').val("");
+            $('#bpl_pop_23_24').val("");
+            $('#bpl_pop_24_25').val("");
 
+            $('#bpl_cumulative').val("");
+            $('#sc_basic_data').val("");
+            $('#sc_pop_20_21').val("");
+            $('#sc_pop_21_22').val("");
+            $('#sc_pop_22_23').val("");
+            $('#sc_pop_23_24').val("");
+            $('#sc_pop_24_25').val("");
+            $('#sc_cumulative').val("");
+            $('#st_basic_data').val("");
+            $('#st_pop_20_21').val("");
+            $('#st_pop_21_22').val("");
+            $('#st_pop_22_23').val("");
+            $('#st_pop_23_24').val("");
+            $('#st_pop_24_25').val("");
+            $('#st_cumulative').val("");
+            $('#obc_basic_data').val("");
+            $('#obc_pop_20_21').val("");
+            $('#obc_pop_21_22').val("");
+            $('#obc_pop_22_23').val("");
+            $('#obc_pop_23_24').val("");
+            $('#obc_pop_24_25').val("");
+            $('#obc_cumulative').val("");
+            $('#minorities_basic_data').val("");
+            $('#minorities_pop_20_21').val("");
+            $('#minorities_pop_21_22').val("");
+            $('#minorities_pop_22_23').val("");
+            $('#minorities_pop_23_24').val("");
+            $('#minorities_pop_24_25').val("");
+            $('#minorities_cumulative').val("");
+            $('#pwd_basic_data').val("");
+            $('#pwd_pop_20_21').val("");
+            $('#pwd_pop_21_22').val("");
+            $('#pwd_pop_22_23').val("");
+            $('#pwd_pop_23_24').val("");
+            $('#pwd_pop_24_25').val("");
+            $('#pwd_cumulative').val("");
+            $('#women_hh_basic_data').val("");
+            $('#women_hh_pop_20_21').val("");
+            $('#women_hh_pop_21_22').val("");
+            $('#women_hh_pop_22_23').val("");
+            $('#women_hh_pop_23_24').val("");
+            $('#women_hh_pop_24_25').val("");
+            $('#women_hh_cumulative').val("");
 
-            //}
 
             if (data.length != 0) {
 
@@ -3886,8 +3940,18 @@ function abhy_socialmgt_farmers_Info() {
                 window.location = "/Home/LogOut";
 
             }
+            $('#large_pop_23_24').val("");
+            $('#medium_pop_23_24').val("");
+            $('#medium_semi_pop_23_24').val("");
+            $('#small_pop_23_24').val("");
+            $('#marginal_pop_23_24').val("");
 
-
+            $('#large_pop_22_23').val("");
+            $('#medium_pop_22_23').val("");
+            $('#medium_semi_pop_22_23').val("");
+            $('#small_pop_22_23').val("");
+            $('#marginal_pop_22_23').val("");
+            debugger;
             if (data.length != 0) {
                 Data_tbl_2 = "";
                 var approve = data[0].approve;
