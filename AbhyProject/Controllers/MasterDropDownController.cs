@@ -14914,6 +14914,12 @@ namespace AbhyProject.Controllers
                         {
                             photograph_filename = "";
                         }
+                        var Nodal_officer = user.Nodal_officer;
+                        if (Nodal_officer == "Gram Panchyat Nodal Officer")
+                        {
+                            Nodal_officer = "Gram Panchayat Nodal Officer";
+                        }
+                        
                         dataRow["Topic of Event"] = user.p_training_name;
                         dataRow["Type of Event"] = user.type_of_event;
                         dataRow["Location of Exposure Visit"] = user.location_expo;
@@ -14944,7 +14950,7 @@ namespace AbhyProject.Controllers
                         dataRow["Common Feedback from Participants on prescribed format"] = feedback_filename;
                         dataRow["Data Validation"] = approve;
                         dataRow["Reject Remark"] = reject_status;
-                        dataRow["Nodal officer"] = user.Nodal_officer;
+                        dataRow["Nodal officer"] = Nodal_officer;
                         dt.Rows.Add(dataRow);
 
                     }
@@ -15644,9 +15650,9 @@ namespace AbhyProject.Controllers
             var State = state1;
             var Dist = district1;
             var Block = block01;
-            var state = state_name;
-            var dist = dist_name;
-            var block = block_name;
+            var state = state1;
+            var dist = district1;
+            var block = block01;
             var Year = year1;
             var month = month1;
             if (Year == "Select Financial Year")
@@ -17473,7 +17479,7 @@ namespace AbhyProject.Controllers
             dt.Columns.Add("Total Days", typeof(string));
             dt.Columns.Add("Structure Of Training", typeof(string));
             dt.Columns.Add("Course Material", typeof(string));
-            dt.Columns.Add("Interactio With Trainer", typeof(string));
+            dt.Columns.Add("Interaction With Trainer", typeof(string));
             dt.Columns.Add("Hands On Practice", typeof(string));
             dt.Columns.Add("Usefulness Of Course", typeof(string));
             dt.Columns.Add("Information Presented Was", typeof(string));
@@ -17512,7 +17518,7 @@ namespace AbhyProject.Controllers
                     dataRow["Total Days"] = user.total_days;
                     dataRow["Structure Of Training"] = user.structure_of_training;
                     dataRow["Course Material"] = user.course_material;
-                    dataRow["Interactio With Trainer"] = user.interaction_with_trainer;
+                    dataRow["Interaction With Trainer"] = user.interaction_with_trainer;
                     dataRow["Hands On Practice"] = user.hands_on_practice;
                     dataRow["Usefulness Of Course"] = user.usefulness_of_contents;
                     dataRow["Information Presented Was"] = user.information_presented;
@@ -17549,7 +17555,7 @@ namespace AbhyProject.Controllers
                 dataRow["Total Days"] = "";
                 dataRow["Structure Of Training"] = "";
                 dataRow["Course Material"] = "";
-                dataRow["Interactio With Trainer"] = "";
+                dataRow["Interaction With Trainer"] = "";
                 dataRow["Hands On Practice"] = "";
                 dataRow["Usefulness Of Course"] = "";
                 dataRow["Information Presented Was"] = "";
@@ -17689,7 +17695,7 @@ namespace AbhyProject.Controllers
             dt.Columns.Add("Total Days", typeof(string));
             dt.Columns.Add("Structure Of Training", typeof(string));
             dt.Columns.Add("Course Material", typeof(string));
-            dt.Columns.Add("Interactio With Trainer", typeof(string));
+            dt.Columns.Add("Interaction With Trainer", typeof(string));
             dt.Columns.Add("Hands On Practice", typeof(string));
             dt.Columns.Add("Usefulness Of Course", typeof(string));
             dt.Columns.Add("Information Presented Was", typeof(string));
@@ -17722,7 +17728,7 @@ namespace AbhyProject.Controllers
                     dataRow["Total Days"] = user.total_days;
                     dataRow["Structure Of Training"] = user.structure_of_training;
                     dataRow["Course Material"] = user.course_material;
-                    dataRow["Interactio With Trainer"] = user.interaction_with_trainer;
+                    dataRow["Interaction With Trainer"] = user.interaction_with_trainer;
                     dataRow["Hands On Practice"] = user.hands_on_practice;
                     dataRow["Usefulness Of Course"] = user.usefulness_of_contents;
                     dataRow["Information Presented Was"] = user.information_presented;
@@ -17753,7 +17759,7 @@ namespace AbhyProject.Controllers
                 dataRow["Total Days"] = "";
                 dataRow["Structure Of Training"] = "";
                 dataRow["Course Material"] = "";
-                dataRow["Interactio With Trainer"] = "";
+                dataRow["Interaction With Trainer"] = "";
                 dataRow["Hands On Practice"] = "";
                 dataRow["Usefulness Of Course"] = "";
                 dataRow["Information Presented Was"] = "";

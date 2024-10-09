@@ -913,6 +913,8 @@
 
         .event-popup-tbl td label {
             margin-bottom: 0px;
+            word-wrap: break-word;
+            word-break: break-all;
         }
 
     .panel-collapse.collapse {
@@ -1147,7 +1149,6 @@
     var yyear = "";
     var ymonth = "";
     $(document).ready(function () {
-        window.location.href = "/Home/under_maintainance";
         $('.loader').show();
         
         $("#entry_form").hide();
