@@ -145,7 +145,7 @@ function NewReg_State_Chnage() {    //latest abhi
             /*alert(data);*/
 
 
-            var slection_options = '<option value="0"> Select Event/Training </option>';
+            var slection_options = '<option value="0"> Select Training </option>';
             if (data.length == 0) {
                 alert('For This State Events Not Registered');
                 $("#p_training_name").html(slection_options);
@@ -192,64 +192,72 @@ function Save_NewRegs_Training_Info() {
     var dist_name = $('#drpdistrict').val();
     var block_name = $('#drpblock').val();
 
-    if (p_training_name == "0") {
+    if (p_training_name == "") {
         i = 1;
-        alert("Please Select Name of Training");
+        alert("Select Name of Training");
         return;
     }
 
     else if (parti_state == "Other" && parti_state_other == "") {
         i = 1;
-        alert("Please Enter Participant State Other");
+        alert("Enter Participant State Other");
         return;
 
     }
 
     else if (p_name == "") {
         i = 1;
-        alert("Please Enter Participant Name");
+        alert("Enter Participant Name");
         return;
     }
     else if (p_gender == "0") {
         i = 1;
-        alert("Please Select Gender");
+        alert("Select Gender");
         return;
     }
 
     else if (p_age == "") {
         i = 1;
-        alert("Pleae Select Age");
+        alert("Enter Your Age");
+        return;
     }
 
     else if (p_occupation == "") {
         i = 1;
-        alert("Pleae Enter Occupation");
+        alert("Enter Occupation");
         return;
     }
     else if (p_qual == "") {
         i = 1;
-        alert("Please Enter Qualification");
+        alert("Enter Qualification");
         return;
     }
     else if (p_phoneno == "") {
         i = 1;
-        alert("Please Enter Phone Number");
+        alert("Enter Phone Number");
         return;
     }
+    else if (p_phoneno.length < 10) {
+        i = 1;
+        alert('Mobile number must be at least 10 digits long.');
+        return;
+    }
+
     else if (p_emailid == "") {
         i = 1;
-        alert("Please Enter Email ID");
+        alert("Enter Email ID");
         return;
     }
     else if (IsEmail(p_emailid) == false) {
-        alert("Please Enter a Valid Email ID");
+        alert("Enter a Valid Email ID");
         return;
     }
     else if (p_address == "") {
         i = 1;
-        alert("Please Enter Address");
+        alert("Enter Address");
         return;
     }
+    
     //else if (state_name == "0") {
     //    i = 1;
     //    alert("Please Select state_name");
@@ -266,7 +274,7 @@ function Save_NewRegs_Training_Info() {
         i = 1;
         $('#status').text("Please Enter Captcha");
     }
-    debugger;
+    
     var mm = $("#month_new").val();
     
     if (i == 0) {
@@ -292,6 +300,7 @@ function Save_NewRegs_Training_Info() {
         obj.nodal = $("#nodal").val();
         obj.unic_key = $("#unic_key").val();
         obj.typeofevent = $("#training").val();
+        obj.currentdate = $("#todaydate").val();
 
 
         obj.clientCaptcha = clientCaptcha;
@@ -300,7 +309,6 @@ function Save_NewRegs_Training_Info() {
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
             url: "/Vendors/Save_NewRegs",
-            //data: "{'Data': '" + JSON.stringify(obj) + "'}",
             data: JSON.stringify(obj),
             dataType: 'JSON',
             success: function (response) {
@@ -313,6 +321,8 @@ function Save_NewRegs_Training_Info() {
                       window.location = "/Home/LogOut";
                 }
                 else if (response == "Captcha is Not Matched" || response == "Your Captcha is Expired") {
+                    $('#clientCaptcha').val("");
+                    refress1();
                     $(".loader").hide();
                 } else {
                     $('#p_name').val("");
@@ -339,10 +349,12 @@ function Save_NewRegs_Training_Info() {
                     $('#status').text("");
                     $('#clientCaptcha').val("");
                     refress1();
-
-                    Get_Newregs_Training_Info11();
+                    Event_Checking();
                     $('#reg_msg').text(reg_msg);
                     $(".loader").hide();
+                    setTimeout(function () {
+                        $('#reg_msg').text("");
+                    }, 5000);
                 }
 
             }
@@ -350,7 +362,7 @@ function Save_NewRegs_Training_Info() {
 
     }
     else {
-        Event_Date_Checking();
+       // Event_Date_Checking();
     }
 }
 
@@ -387,7 +399,7 @@ function Get_Training_Working_Events_Info() {        //for sorted topic of event
             if (response == "Logout") {
                   window.location = "/Home/LogOut";
             }
-            var option = '<option value="0">Select Event/Training</option>';
+            var option = '<option value="0">Select Training</option>';
             var ddlst = {};
             var ddlst_array = [];
             if (response.length != 0) {
@@ -440,15 +452,17 @@ function Get_Training_Working_Events_Info_fetch() {
             if (response == "Logout") {
                   window.location = "/Home/LogOut";
             }
-            var option = '<option value="0">Select Event/Training</option>';
+            var option = '<option value="0">Select Training</option>';
             var ddlst = {};
             var ddlst_array = [];
+            var ddlst_unic = [];
             if (response.length != 0) {
                 Full_Info_Events_Fetch = response;
                 for (var j = 0; j < response.length; j++) {
 
                     if (!ddlst[response[j].p_training_name]) {
                         ddlst_array.push(response[j].p_training_name);
+                        ddlst_unic.push(response[j].unic_key);
                         ddlst[response[j].p_training_name] = response[j].p_training_name;
 
                     }
@@ -459,7 +473,7 @@ function Get_Training_Working_Events_Info_fetch() {
 
             if (ddlst_array.length != 0) {
                 for (var i = 0; i < ddlst_array.length; i++) {
-                    option += '<option value="' + ddlst_array[i] + '">' + ddlst_array[i] + '</option>';
+                    option += '<option value="' + ddlst_unic[i] + '">' + ddlst_array[i] + '</option>';
                 }
             }
 
@@ -470,10 +484,6 @@ function Get_Training_Working_Events_Info_fetch() {
         }
     });
 }
-
-
-
-
 
 function Get_Newregs_Training_Info11() {
 
@@ -500,20 +510,6 @@ function Get_Newregs_Training_Info11() {
                         ' <td id = ""> ' + response[j].p_age + '</td ><td id="">' + response[j].p_occupation + '</td><td id="">' + response[j].p_qual + '</td>' +
                         ' <td id = ""> ' + response[j].p_phoneno + '</td ><td id="">' + response[j].p_emailid + '</td><td id="">' + response[j].p_address + '</td><td id="">' + StateName + '</td>' +
                         ' <td id = ""> ' + response[j].p_training_name + '</td ></tr > ';
-
-
-                    //tr += '<tr id="trtraining' + j + '" class="database_trainer_row " role="row" style="display:none">' +
-                    //    '<td>' + (j + 1) + '</td>' +
-                    //    '<td class="tdborder"><input type="text" class="form-control" id="event_name1' + j + '" value="' + response[j].event_name + '" /> </td >' +
-                    //    '<td class="tdborder"><input type="text" class="form-control" id="from_date1' + j + '" value="' + response[j].from_date + '" /> </td >' +
-                    //    '<td class="tdborder"><input type="text" class="form-control" id="to_date1' + j + '" value="' + response[j].to_date + '" /> </td >' +
-                    //    '<td class="tdborder"><input type="text" class="form-control" id="training_start1' + j + '" value="' + response[j].training_start + '" /> </td >' +
-                    //    '<td class="tdborder"><input type="text" class="form-control" id="training_end1' + j + '" value="' + response[j].training_end + '" /> </td >' +
-                    //    '<td class="tdborder"><input type="text" class="form-control" id="training_status1' + j + '" value="' + response[j].training_status + '" /> </td >' +
-                    //    '<td><button type="button"  class="btn btn-primary" onclick="updatetraining(' + response[j].id + ',' + j + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="canceltraining(' + j + ');"><i class="fa fa-remove"</button>' + '</td>' +
-                    //    '<tr role="row"  id="hidetrainging' + j + '"><td> ' + (j + 1) + '</td><td>' + response[j].event_name + '</td><td id="">' + response[j].from_date + '</td><td id="">' + response[j].to_date + '</td><td id="">' + response[j].training_start + '</td><td id="">' + response[j].training_end + '</td><td id="">' + response[j].training_status + '</td>' +
-                    //    '<td > <button class="btn btn-primary"  onclick=edittraining(' + j + ')><i class="fa fa-edit"></i></button></td > <td><button class="btn btn-danger" onclick="deletetraining(' + response[j].id + ') "><i class="fa fa-trash"></i></button></td></tr>';
-
                 }
 
                 $('#Newregs_Training_Workshop').html(tr);

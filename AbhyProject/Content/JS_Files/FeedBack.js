@@ -206,6 +206,11 @@ function Save_Info() {
         $('#status').text("Please Enter  Captcha");
         $('#clientCaptcha').focus();
     }
+    else if (clientCaptcha == "") {
+        i = 1;
+        $('#status').text("Please Enter  Captcha");
+        $('#clientCaptcha').focus();
+    }
 
 
     if (i == 0) {

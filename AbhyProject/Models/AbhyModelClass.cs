@@ -4898,7 +4898,173 @@ namespace AbhyProject.Models
         public string reg_open_date_time { get; set; }
         public string reg_close_date_time { get; set; }
         public string unic_key { get; set; }
+        public string filename { get; set; }
+        public string filepath { get; set; }
+        public string village_name { get; set; }
+        public int? male_population { get; set; }
+        public int? female_population { get; set; }
+        public int? other_population { get; set; }
+        public int? total_participants { get; set; }
+        public string SC { get; set; }
+        public string ST { get; set; }
+        public string OBC { get; set; }
+        public string General { get; set; }
+        public string event_upload_filename { get; set; }
+        public string event_upload { get; set; }
+        public string atten_sheet_filename { get; set; }
+        public string atten_sheet { get; set; }
+        public string photograph_filename { get; set; }
+        public string photograph { get; set; }
+        public string feedback_filename { get; set; }
+        public string feedback { get; set; }
+        public string nameofparticipent { get; set; }
+        public string gendernew { get; set; }
+        public string categorynew { get; set; }
+        public string mobilenonew { get; set; }
+        public string addnewid { get; set; }
+        public string feedbackentry { get; set; }
     }
+    [Table("current_events_addnew", Schema = "public")]    //abhi
+    public class current_events_addnew
+    {
+        [Key]
+        public int id { get; set; }
+        public string nameofparticipent { get; set; }
+        public string gendernew { get; set; }
+        public string categorynew { get; set; }
+        public string mobilenonew { get; set; }
+        public string addnewid { get; set; }
+        public string unic_key { get; set; }
+
+    }
+
+    [Table("vw_current_events_addnew", Schema = "public")]    //abhi
+    public class vw_current_events_addnew
+    {
+        [Key]
+        public int rw_id { get; set; }
+        public int id { get; set; }
+        public string addnewid { get; set; }
+        public string level_event { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string p_training_name { get; set; }
+        public string from_date { get; set; }
+        public string to_date { get; set; }
+        public string month { get; set; }
+        public string year { get; set; }
+        public string atten_sheet_filename { get; set; }
+        public string atten_sheet { get; set; }
+        public string nameofparticipent { get; set; }
+        public string gendernew { get; set; }
+        public string categorynew { get; set; }
+        public string mobilenonew { get; set; }
+        public string unic_key { get; set; }
+        public string from_table { get; set; }
+        public string approve_status { get; set; }
+        public string reject_status { get; set; }
+    }
+
+    [Table("feedback_gp", Schema = "public")]    //abhi
+    public class feedback_gp
+    {
+        [Key]
+        public int? id { get; set; }
+        public string feedid { get; set; }
+        public string regno { get; set; }
+        public string topictraining { get; set; }
+        public string gp_training { get; set; }
+        public string participant_name { get; set; }
+        public string male { get; set; }
+        public string female { get; set; }
+        public string transgender { get; set; }
+        public string event_platform { get; set; }
+        public string todaydate { get; set; }
+        public string from_date_feed { get; set; }
+        public string to_date_feed { get; set; }
+        public string total_days { get; set; }
+        public string unic_key { get; set; }
+        public string structure_of_training { get; set; }
+        public string course_material { get; set; }
+        public string interaction_with_trainer { get; set; }
+        public string hands_on_practice { get; set; }
+        public string usefulness_of_contents { get; set; }
+        public string information_presented { get; set; }
+        public string participant_questions { get; set; }
+        public string food_quality { get; set; }
+        public string most_interesting_thing { get; set; }
+        public string overall_impression { get; set; }
+        public string your_suggestions { get; set; }
+        public string year { get; set; }
+        public string month { get; set; }
+        public string nodal_officer { get; set; }
+    }
+
+    [Table("vw_alldata_gplevel", Schema = "public")]    //abhi
+    public class alldata_gplevel
+    {
+        [Key]
+        public int rw_id { get; set; }
+        public int id { get; set; }
+        public string p_training_name { get; set; }
+        public string type_of_event { get; set; }
+        public string location_expo { get; set; }
+        public string particular_expo { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string year { get; set; }
+        public string month { get; set; }
+        public string event_platform { get; set; }
+        public string from_date { get; set; }
+        public string to_date { get; set; }
+        public string location { set; get; }
+        public string male_population { set; get; }
+        public string female_population { get; set; }
+        public string other_population { get; set; }
+        public string total_participants { get; set; }
+        public string sc { get; set; }
+        public string st { get; set; }
+        public string obc { get; set; }
+        public string general { get; set; }
+        public string atten_sheet_filename { get; set; }
+        public string photograph_filename { get; set; }
+        public string feedback_filename { get; set; }
+        public string event_upload_filename { get; set; }
+        public string nameofparticipent { get; set; }
+        public string gendernew { get; set; }
+        public string categorynew { get; set; }
+        public string mobilenonew { get; set; }
+        public string regno { get; set; }
+        public string feed_p_training_name { get; set; }
+        public string feed_gp { get; set; }
+        public string feed_total_participants { get; set; }
+        public string male { get; set; }
+        public string female { get; set; }
+        public string other { get; set; }
+        public string feed_event_platform { get; set; }
+        public string todaydate { get; set; }
+        public string from_date_feed { get; set; }
+        public string to_date_feed { get; set; }
+        public string total_days { get; set; }
+        public string structure_of_training { get; set; }
+        public string course_material { get; set; }
+        public string interaction_with_trainer { get; set; }
+        public string hands_on_practice { get; set; }
+        public string usefulness_of_contents { get; set; }
+        public string information_presented { get; set; }
+        public string participant_questions { get; set; }
+        public string food_quality { get; set; }
+        public string most_interesting_thing { get; set; }
+        public string overall_impression { get; set; }
+        public string your_suggestions { get; set; }
+        public string from_table { get; set; }
+        public string approve_status { get; set; }
+        public string reject_status { get; set; }
+    }
+
     [Table("vw_training_count_current_events", Schema = "public")]
     public class current_event_pop
     {
@@ -4924,6 +5090,83 @@ namespace AbhyProject.Models
 
     }
 
+    public class current_event_pop_new
+    {
+        [Key]
+        public int? id { get; set; }
+        public string p_training_name { get; set; }
+        public string type_of_event { get; set; }
+        public string year { get; set; }
+        public string month { get; set; }
+        public string Nodal_officer { get; set; }
+        public string to_date { get; set; }
+        public string training_status { get; set; }
+        public string file_count { get; set; }
+        public string uploaded_content_status { get; set; }
+        public string upload_content_path { get; set; }
+        public string upload_content_file { get; set; }
+        public string male_count { get; set; }
+        public string female_count { get; set; }
+        public string transgender_count { get; set; }
+        public string total_participants { get; set; }
+        public string fd_male_count { get; set; }
+        public string fd_female_count { get; set; }
+        public string fd_transgender_count { get; set; }
+        public string fd_total_count { get; set; }
+        public string event_approve_status { get; set; }
+        public string material_approve_status { get; set; }
+
+    }
+
+    [Table("vw_training_gender_count_material_gp", Schema = "public")]
+    public class TrainingGenderCountMaterialGp
+    {
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string p_training_name { get; set; }
+        public string training_status { get; set; }
+        public string Nodal_officer { get; set; }
+        public int male_population { get; set; }
+        public int female_population { get; set; }
+        public int other_population { get; set; }
+        public int total_participants { get; set; }
+        public string event_upload_filename { get; set; }
+        public string event_upload { get; set; }
+        public string approve_status { get; set; }
+        public string reject_status { get; set; }
+        public string remark_status { get; set; }
+        public string unic_key { get; set; }
+    }
+    [Table("vw_training_gender_feedback_count_npmu", Schema = "public")]
+    public class vw_training_gender_feedback_count_npmu
+    {
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string Nodal_officer { get; set; }
+        public string p_training_name { get; set; }
+        public string training_status { get; set; }
+        public string filename { get; set; }
+        public string filepath { get; set; }
+        public int reg_male_count { get; set; }
+        public int reg_female_count { get; set; }
+        public int reg_transgender_count { get; set; }
+        public int reg_total_count { get; set; }
+        public int fd_male_count { get; set; }
+        public int fd_female_count { get; set; }
+        public int fd_transgender_count { get; set; }
+        public int fd_total_count { get; set; }
+        public string unic_key { get; set; }
+        public string approve_status { get; set; }
+        public string reject_status { get; set; }
+        public string remark_status { get; set; }
+    }
+
     [Table("vw_current_events", Schema = "public")]    //abhi
     public class vw_current_events
     {
@@ -4946,8 +5189,8 @@ namespace AbhyProject.Models
         public string district { get; set; }
         public string block { get; set; }
         public string gp { get; set; }
-        public string year { set; get; }
-        public string month { set; get; }
+        public double year { set; get; }
+        public double month { set; get; }
         public string Nodal_officer { get; set; }
         public string entry_by { get; set; }
         public string approve_status { get; set; }
@@ -4959,8 +5202,12 @@ namespace AbhyProject.Models
         public string reg_close_date_time { get; set; }
         public string FinancialMonth { get; set; }
         public string FinancialYear { get; set; }
-        public double day { get; set; }
+        public double? day { get; set; }
         public string unic_key { get; set; }
+        public string highest_date { get; set; }
+        public Double highest_date_year { get; set; }
+        public Double highest_date_month { get; set; }
+        public Double highest_date_day { get; set; }
     }
 
     [Table("vw_reg_traininggp", Schema = "public")]   //new table
@@ -5072,11 +5319,14 @@ namespace AbhyProject.Models
         public string from_date { get; set; }
         public string year { get; set; }
         public string month { get; set; }
+        public string currentdate { get; set; }
         public string entry_date { get; set; }
         public string nodal { get; set; }
         public string unic_key { get; set; }
         public string typeofevent { get; set; }
         public string mail_send { get; set; }
+        public string mailsend_date { get; set; }
+        public string feedback_yesno { get; set; }
         public Int32 mail_count { get; set; }
     }
 
@@ -5108,6 +5358,12 @@ namespace AbhyProject.Models
         public string DateTime { get; set; }
         public string dist { get; set; }
         public string block { get; set; }
+        public string unic_key { get; set; }
+        public string year { get; set; }
+        public string month { get; set; }
+        public string Nodal_officer { get; set; }
+        public string currentdate { get; set; }
+        public string gender { get; set; }
     }
 
     //[Table("abhy_IEC", Schema = "public")]
@@ -17734,6 +17990,8 @@ namespace AbhyProject.Models
         public string block { get; set; }
         public string year { get; set; }
         public string month { get; set; }
+        public string gender { get; set; }
+        public string unic_key { get; set; }
     }
     [Table("mstr_states", Schema = "public")]        //chetan mstr 
     public class mstr_states
@@ -19166,11 +19424,11 @@ namespace AbhyProject.Models
         public int blockcount_female { get; set; }
         public int blockcount_trangender { get; set; }
         public int blockcount_total { get; set; }
-        public int gramcount { get; set; }
-        public int gramcount_male { get; set; }
-        public int gramcount_female { get; set; }
-        public int gramcount_trangender { get; set; }
-        public int gramcount_total { get; set; }
+        public int? gramcount { get; set; }
+        public int? gramcount_male { get; set; }
+        public int? gramcount_female { get; set; }
+        public int? gramcount_trangender { get; set; }
+        public int? gramcount_total { get; set; }
         public double spmucount_female_per { get; set; }
         public double dpmucount_female_per { get; set; }
         public double blockcount_female_per { get; set; }

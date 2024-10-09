@@ -1,5 +1,4 @@
 ﻿@model AbhyProject.Models.Abhy_Training_Workshops
-
 @{
     ViewBag.Title = "workshop_Training_form";
     Layout = "~/Views/Shared/WebsiteLayout.cshtml";
@@ -244,7 +243,7 @@
 <br />
 <div class="row" style="text-align:center" colspan="12">
     <div class="col-md-12" style="background-color: #337ab7; text-align: center;">
-        <div class="text-h g-mb-20" style="padding: 10px; color: #e4e5e7; font-size: 20px; margin-left: 10px; font-family: raleway; margin-top: 10px; font-weight: 900;">EVENTS CALENDAR</div>
+        <div class="text-h g-mb-20" style="padding: 10px; color: #e4e5e7; font-size: 20px; margin-left: 10px; font-family: raleway; margin-top: 10px; font-weight: 900;">Trainings Calendar</div>
     </div>
 </div>
 
@@ -258,7 +257,7 @@
                 <div class="widget widget-categories" style=" display: flex; gap: 20px; ">
 
                     <div>
-                        <select name="Event Calendar" id="event_calendar" class="form-control" onchange="event_calendar_Dropdown()" style="width: 180px; border-radius: 25px;">
+                        <select name="Event Calendar" id="event_calendar" class="form-control" onchange="event_calendar_info()" style="width: 180px; border-radius: 25px;">
                             @*<option value="0">--Select Event Calendar--</option>*@
                             <option value="All">All</option>
                             <option value="NPMU (Delhi)">NPMU (Delhi)</option>
@@ -273,7 +272,7 @@
                     </div>
 
                     <div>
-                        <select name="Event Calendar Year" id="event_calendar_year" class="form-control" onchange="event_calendar_year_Dropdown()" style="width: 180px; border-radius: 25px">
+                        <select name="Event Calendar Year" id="event_calendar_year" class="form-control" onchange="event_calendar_info()" style="width: 180px; border-radius: 25px">
                             <option value="0">--Select Event Calendar Year--</option>
                             @*<option value="2020-2021">2020-2021</option>
         <option value="2021-2022">2021-2022</option>*@
@@ -332,13 +331,13 @@
                                 <table id="example" class=" display  table stripe row-border order-column table-striped table-bordered dataTable no-footer table_tender_pdf">
                                     <thead>
                                         <tr class="text-center" style="text-align:center">
-                                            <th class="text-center" style="text-align:center" colspan="12">List of Events Calendar</th>
+                                            <th class="text-center" style="text-align:center" colspan="12">List of Trainings Calendar</th>
                                         </tr>
                                         <tr>
                                             <th class="text-center">S.No</th>
                                             <th class="text-center">NPMU and State</th>
                                             <th class="text-center">Current Event year</th>
-                                            <th class="text-center">Event Details</th>
+                                            <th class="text-center">Training Details</th>
                                             <th class="text-center">Download</th>
                                         </tr>
                                     </thead>
@@ -477,7 +476,7 @@
             data: { Event_Calendar: event_calendar, YEAR: event_calendar_year },
             dataType: 'JSON',
             success: function (data) {
-                
+                console.log(data)
                 if (data == "Logout") {
                       window.location = "/Home/LogOut";
 
@@ -503,11 +502,13 @@
                         if (data[i].current_event == null) {
                             data[i].current_event = "";
                         }
-                        if (data[i].current_event == "NPMU (Delhi)") {
-                            tr_npmu = '<tr><td>' + (data.length) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
-                        } else {
-                            tr += '<tr><td>' + (++j) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
-                        }
+                        tr_npmu += '<tr style="text-align:center"><td>' + (i + 1) + '</td><td>' + StateName[0] + '</td> <td>' + data[i].current_event_year + '</td> <td>' + data[i].event_calendar + '</td><td><a href="' + data[i].download + '" download="">' + data[i].download_filename + '</a></td></tr>';
+
+                        //if (data[i].current_event == "NPMU (Delhi)") {
+                        //    tr_npmu = `<tr><td>${(data.length)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename}</a></td> </tr>`;
+                        //} else {
+                        //    tr += `<tr><td>${(++j)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename}</a></td> </tr>`;
+                        //}
                         
                     }
                 }
@@ -526,7 +527,9 @@
     }
 
 
-    function event_calendar_Dropdown() {         //abhi
+    function event_calendar_Dropdown() {
+
+    //abhi
         /*alert('2');*/
         /*$("#event_calendar_year").show();*/
         
@@ -541,7 +544,7 @@
             contentType: 'application/json',
 
             success: function (data) {
-                
+                console.log(data)    
                 if (data == "Logout") {
                       window.location = "/Home/LogOut";
                 }
@@ -564,14 +567,16 @@
                         if (data[i].current_event == null) {
                             data[i].current_event = "";
                         }
+
+
                         if (event_calendar == "All") {
                             if (data[i].current_event == "NPMU (Delhi)") {
-                                tr_npmu = '<tr><td>' + (data.length) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                                tr_npmu = `<tr><td>${(data.length)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename} </a></td></tr>`;
                             } else {
-                                tr += '<tr><td>' + (++j) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                                tr += `<tr><td>${(++j)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename} </a></td> </tr>`;
                             }
                         } else {
-                            tr += '<tr><td>' + (i + 1) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                            tr += `<tr><td>${(i + 1)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename} </a></td> </tr>`;
                         }
                         
                     }
@@ -610,6 +615,7 @@
             contentType: 'application/json',
 
             success: function (data) {
+                console.log(data)
                 if (data == "Logout") {
                       window.location = "/Home/LogOut";
 
@@ -634,14 +640,24 @@
                         if (data[i].current_event == null) {
                             data[i].current_event = "";
                         }
+                        //if (event_calendar == "All") {
+                        //    if (data[i].current_event == "NPMU (Delhi)") {
+                        //        tr_npmu = '<tr><td>' + (data.length) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                        //    } else {
+                        //        tr += '<tr><td>' + (++j) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                        //    }
+                        //} else {
+                        //    tr += '<tr><td>' + (i + 1) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a  href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                        //}
+
                         if (event_calendar == "All") {
                             if (data[i].current_event == "NPMU (Delhi)") {
-                                tr_npmu = '<tr><td>' + (data.length) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                                tr_npmu = `<tr><td>${(data.length)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename} <br/> <b>Format -</b> ${data[i].FileExt}  <b>Size -</b> ${data[i].FileSize}  <b>Language - </b> English</a></td></tr>`;
                             } else {
-                                tr += '<tr><td>' + (++j) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                                tr += `<tr><td>${(++j)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename} <br/> <b>Format -</b> ${data[i].FileExt}  <b>Size -</b> ${data[i].FileSize}  <b>Language - </b> English</a></td> </tr>`;
                             }
                         } else {
-                            tr += '<tr><td>' + (i + 1) + '</td><td>' + StateName[0] + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].event_calendar + '</td> <td><a  href="' + download1 + '" download="">' + data[i].download_filename + '</a></td> </tr>';
+                            tr += `<tr><td>${(i + 1)}</td><td>${StateName[0]}</td><td>${data[i].current_event_year}</td><td>${data[i].event_calendar}</td> <td><a href="${download1}" download="">${data[i].download_filename} <br/> <b>Format -</b> ${data[i].FileExt}  <b>Size -</b> ${data[i].FileSize} <b> Language - </b> English</a></td> </tr>`;
                         }
                     }
                 }

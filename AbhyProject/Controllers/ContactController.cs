@@ -889,37 +889,39 @@ namespace AbhyProject.Controllers
                     var Dist = result.district_name;
                     var Block = result.block_name;
                     var traning = topic_of_event;
-                    if (State == "All")
-                    {
-                        if (traning != "0" && traning != "" && traning != null)
-                        {
-                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.unic_key == topic_of_event).OrderByDescending(x => x.id).ToList();//total list
+                    //if (State == "All")
+                    //{
+                    //    if (traning != "0" && traning != "" && traning != null)
+                    //    {
+                    //        ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
 
-                        }
-                    }
-                    else
-                    {
-                        if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null)
-                        {
-                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                    //    }
+                    //}
+                    //else
+                    //{
 
-                        }
-                        else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && traning != "0" && traning != "" && traning != null)
-                        {
-                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                        //if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null)
+                        //{
+                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
 
-                        }
-                        else if (State != "0" && State != "" && State != null && traning != "0" && traning != "" && traning != null)
-                        {
-                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                        //}
+                        //else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && traning != "0" && traning != "" && traning != null)
+                        //{
+                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
 
-                        }
-                        else if (traning != "0" && traning != "" && traning != null)
-                        {
-                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                        //}
+                        //else if (State != "0" && State != "" && State != null && traning != "0" && traning != "" && traning != null)
+                        //{
+                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
 
-                        }
-                    }
+                        //}
+                        //else if (traning != "0" && traning != "" && traning != null)
+                        //{
+                        //    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+
+                        //}
+                    //}
 
 
 
@@ -1013,27 +1015,27 @@ namespace AbhyProject.Controllers
             else {
                 if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.unic_key == traning && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null && year != "0" && year != "" && year != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.unic_key == traning && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.unic_key == traning).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.unic_key == traning && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && traning != "0" && traning != "" && traning != null && year != "0" && year != "" && year != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.p_training_name == traning && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.unic_key == traning && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
@@ -1043,17 +1045,17 @@ namespace AbhyProject.Controllers
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && traning != "0" && traning != "" && traning != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.p_training_name == traning && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.unic_key == traning && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && traning != "0" && traning != "" && traning != null && year != "0" && year != "" && year != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.p_training_name == traning && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.unic_key == traning && x.year == year).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && traning != "0" && traning != "" && traning != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.unic_key == traning).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -1073,7 +1075,7 @@ namespace AbhyProject.Controllers
                 }
                 else if (State != "0" && State != "" && State != null && traning != "0" && traning != "" && traning != null)
                 {
-                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.p_training_name == traning).OrderByDescending(x => x.id).ToList();//total list
+                    ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.unic_key == traning).OrderByDescending(x => x.id).ToList();//total list
 
                 }
                 else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
@@ -1885,58 +1887,55 @@ namespace AbhyProject.Controllers
         [HttpGet]
         public ActionResult registration_selection(string REG)
         {
-            //if (Session["UserId"] != null)
-            //{
-
             try
             {
                 List<abhy_training_newregs> details = ABE.obj_abhy_training_newregs.Where(x => x.registration_no == REG).ToList();
-                List<current_events> data = ABE.obj_current_events.ToList();
+                var feedback = ABE.obj_abhy_feedback_latest.Where(x => x.registration_no == REG).ToList().Count();
+                if (feedback == 0) {
+                    List<current_events> data = ABE.obj_current_events.ToList();
 
-                var ddetails = (from a in details
-                                join b in data on a.unic_key equals b.unic_key
-                                orderby b.p_training_name
-                                select new
-                                {
-                                    a.p_name,
-                                    a.registration_no,
-                                    b.level_event,
-                                    b.district,
-                                    b.block,
-                                    b.event_platform,
-                                    a.p_training_name,
-                                    b.from_date,
-                                    b.to_date,
+                    var ddetails = (from a in details
+                                    join b in data on a.unic_key equals b.unic_key
+                                    orderby b.p_training_name
+                                    select new
+                                    {
+                                        a.p_name,
+                                        a.registration_no,
+                                        b.level_event,
+                                        b.district,
+                                        b.block,
+                                        b.event_platform,
+                                        a.p_training_name,
+                                        a.p_gender,
+                                        a.unic_key,
+                                        b.from_date,
+                                        b.to_date,
+                                        b.month,
+                                        b.year,
+                                        b.Nodal_officer,
+                                        
 
-                                }).FirstOrDefault();
-
+                                    }).FirstOrDefault();
+               
+                if (ddetails == null)
+                {
+                    return Json("", JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
                 return Json(ddetails, JsonRequestBehavior.AllowGet);
+            }
+                }
+                else
+                {
+                    return Json("You have already submitted your Feedback", JsonRequestBehavior.AllowGet);
+                }
             }
 
             catch (Exception Ex)
             {
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
-
-
-
-            //try
-            //{
-            //    var ddetails = ABE.obj_abhy_training_newregs.Where(x => x.registration_no == REG).ToList();
-
-            //    return Json(ddetails, JsonRequestBehavior.AllowGet);
-            //}
-            //catch (Exception Ex)
-            //{
-            //    return Json("Error", JsonRequestBehavior.AllowGet);
-            //}
-            ////}
-            ////else
-            ////{
-            ////    return Json("Logout", JsonRequestBehavior.AllowGet);
-
-            ////}
-
         }
 
 
@@ -1954,6 +1953,10 @@ namespace AbhyProject.Controllers
 
             var Data1 = Data.AsQueryable().FirstOrDefault();
             var registration_no = Data1.registration_no;
+            if (registration_no==null || registration_no=="")
+            {
+                return Json("Please Enter Registration No", JsonRequestBehavior.AllowGet);
+            }
             var REG = ABE.obj_abhy_feedback_latest.Where(x => x.registration_no == registration_no).ToList();
             if (REG.Count != 0)
             {
@@ -1962,7 +1965,10 @@ namespace AbhyProject.Controllers
             else
             {
                 //date save on datebase defaultbase
-
+                var aa = ABE.obj_abhy_training_newregs.Where(x => x.registration_no == registration_no).FirstOrDefault();
+                aa.feedback_yesno = "Yes";
+                ABE.Entry(aa).State = EntityState.Modified;
+                ABE.SaveChanges();
                 Data[0].DateTime = DateTime.Today.ToString("yyyy-MM-dd");
                 
 

@@ -428,7 +428,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/Vendors/admin_Training_Workshop" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/cal_npmu" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -477,20 +477,20 @@
                         <tbody class="tablebody">
 
                             <tr>
-                                <td>State :</td>
-                                <td>
+                                <td style="width:30%">State :</td>
+                                <td style="width:30%">
                                     <span id="state_name"></span>
                                 </td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>Year :</td>
-                                <td>
+                                <td style="width:30%">Year :</td>
+                                <td style="width:30%">
                                     <span id="year"></span>
                                 </td>
-                                <td>Month :</td>
-                                <td>
+                                <td style="width:30%">Month :</td>
+                                <td style="width:30%">
                                     <span id="spnmonth1"></span>
                                 </td>
                             </tr>
@@ -514,6 +514,8 @@
                                 <td style="text-align:center">Event year</td>
                                 <td style="text-align:center">Month</td>
                                 <td style="text-align:center">Download Event Calander</td>
+                                <td style="text-align:center">Data Validation</td>
+                                <td style="text-align:center">Reject Remark</td>
 
                             </tr>
                         </thead>
@@ -528,7 +530,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/Vendors/admin_Training_Workshop" class="btn btn-dark button"> Back</a>
+                    <a href="~/MasterDropDown/cal_npmu" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -545,18 +547,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
 <script>
     function ReportPdf() {
-        $("#Data1").width(1095);
+        $("#Data1").width(3000);
         var element = document.getElementById('Data1');
         var w = screen.width;
         var h = screen.height;
         var opt = {
             margin: 0,
 
-            filename: 'Events Calendar NPMU (Delhi) Level.pdf',
+            filename: 'Participants Feedback Details.pdf',
             image: { type: 'jpeg', quality: 1.0, w, h },
             pagebreak: { mode: 'avoid-all', before: '.page2el11' },
             html2canvas: { dpi: 192, letterRendering: true },
-            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+            jsPDF: { unit: 'pt', format: 'A1', orientation: 'landscape' }
 
         };
         html2pdf(element, opt);
@@ -579,6 +581,11 @@
             $('div#btnExport').removeClass('hideDownload');
             $('div#btnExport1').removeClass('hideDownload');
         }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
     }
 </script>
 
@@ -768,10 +775,23 @@
                 if (data.length != 0) {
                     for (var i = 0; i < data.length; i++) {
                         var approve_status = data[i].approve_status;
-                        if (approve_status == null) {
-                            approve_status = "";
+                        if (approve_status == "Approved") {
+                            approve_status = "Approved";
                         }
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].current_event + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].month + '</td><td>' + data[i].download_filename + '</td></tr> ';
+                        else if (approve_status == "Submitted") {
+                            approve_status = "Submitted";
+                        }
+                        else if (approve_status == "Reject") {
+                            approve_status = "Rejected";
+                        }
+                        else {
+                            approve_status = "Pending for Submission";
+                        }
+                        var reject_status = data[i].reject_status;
+                        if (reject_status == null) {
+                            reject_status = "";
+                        }
+                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].current_event + '</td><td>' + data[i].current_event_year + '</td><td>' + data[i].month + '</td><td>' + data[i].download_filename + '</td><td>' + approve_status + '</td><td>' + reject_status + '</td></tr> ';
 
                     }
                 }

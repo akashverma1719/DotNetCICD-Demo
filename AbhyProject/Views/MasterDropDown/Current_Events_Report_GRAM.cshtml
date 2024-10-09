@@ -386,6 +386,7 @@
         text-align: left !important;
         color: #000 !important;
     }
+
     .button {
         text-align: left !important;
         color: #fff !important;
@@ -534,27 +535,56 @@
                     </label>
                 </h4>
                 <div class="tbl-responsive" style="overflow-x:scroll">
-                    <table style="width:100%" class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="border:1px solid #dddddd; margin-top:10px;">
+                    <table class="table pgwmtable table-striped table-condensed table-hover row-border order-column table-striped table-bordered dataTable no-footer" style="width:100% ;border:1px solid #dddddd; margin-top:10px;">
                         <thead>
                             <tr class="tableheader1"></tr>
                             <tr class="success">
                                 <td style="text-align:center">Sr.No.</td>
-                                <td style="text-align:center">Topic of Event</td>
-                                <td style="text-align:center">Type of Event</td>
+                                <td style="text-align:center; padding: 0 38px;">Topic of Training</td>
+                                <td style="text-align:center">Type of Training</td>
                                 <td style="text-align:center">Location of Exposure Visit</td>
                                 <td style="text-align:center">Particulars of Exposure Visit</td>
                                 <td style="text-align:center">State</td>
                                 <td style="text-align:center">District</td>
                                 <td style="text-align:center">Block</td>
-                                <td style="text-align:center">GP</td>
-                                <td style="text-align:center">Year</td>
-                                <td style="text-align:center">Month</td>
-                                <td style="text-align:center">Event Platform</td>
-                                <td style="text-align:center">From Date</td>
-                                <td style="text-align:center">To Date</td>
-                                @*<td style="text-align:center">Registration Open Date</td>
-                                    <td style="text-align:center">Registration Close Date</td>*@
-
+                                <td style="text-align:center">GramPanchayat</td>
+                                <td style="text-align:center; padding: 0 38px;">Year</td>
+                                <td style="text-align:center; padding: 0 38px;">month</td>
+                                <td style="text-align:center">Training Platform</td>
+                                <td style="text-align:center; padding: 0 38px;">From Date</td>
+                                <td style="text-align:center; padding: 0 38px;">To Date</td>
+                                <td style="text-align:center">Location</td>
+                                <td style="text-align:center">Male</td>
+                                <td style="text-align:center">Female</td>
+                                <td style="text-align:center">Transgender</td>
+                                <td style="text-align:center">Total Number of Participants</td>
+                                <td style="text-align:center">SC</td>
+                                <td style="text-align:center">ST</td>
+                                <td style="text-align:center">OBC</td>
+                                <td style="text-align:center">General</td>
+                                <td style="text-align:center">Attendance sheet of the participant</td>
+                                <td style="text-align:center">Photograph of the training</td>
+                                <td style="text-align:center">Feedback from Participants</td>
+                                <td style="text-align:center">Training Material</td>
+                                <td style="text-align:center">Name of Participant</td>
+                                <td style="text-align:center">Gender</td>
+                                <td style="text-align:center">Category</td>
+                                <td style="text-align:center">Mobile no.</td>
+                                <td style="text-align:center">Registration No</td>
+                                <td style="text-align:center">Feedback Submission Date</td>
+                                <td style="text-align:center">Structure Of Training Program</td>
+                                <td style="text-align:center">Course Material</td>
+                                <td style="text-align:center">Interaction With Trainer</td>
+                                <td style="text-align:center">Hands on Practice/practical Session</td>
+                                <td style="text-align:center">Usefullness Of Contents</td>
+                                <td style="text-align:center">Information presented was clearly explained</td>
+                                <td style="text-align:center">Participant questions were clearly answered</td>
+                                <td style="text-align:center">Food Quality/Lodging Facilities (If Applicable)</td>
+                                <td style="text-align:center">Most interesting thing you learned</td>
+                                <td style="text-align:center">Overall Impression</td>
+                                <td style="text-align:center">Your suggestions /Comments for further improvements</td>
+                                <td style="text-align: center; padding: 0 38px;">Data Validation</td>
+                                <td style="text-align:center">Reject Remark</td>
                             </tr>
                         </thead>
                         <tbody id="tbldata"></tbody>
@@ -585,18 +615,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha256-EzjZPP7sOCQ+ugF/U8x2VH3PEvg3NFjis/dpwogN3T0=" crossorigin="anonymous"></script>
 <script>
     function ReportPdf() {
-        $("#Data1").width(1095);
+        $("#Data1").width(3000);
         var element = document.getElementById('Data1');
         var w = screen.width;
         var h = screen.height;
         var opt = {
             margin: 0,
 
-            filename: 'Current Events Gram Panchayat.pdf',
+            filename: 'Participants Feedback Details.pdf',
             image: { type: 'jpeg', quality: 1.0, w, h },
             pagebreak: { mode: 'avoid-all', before: '.page2el11' },
             html2canvas: { dpi: 192, letterRendering: true },
-            jsPDF: { unit: 'pt', format: 'A4', orientation: 'landscape' }
+            jsPDF: { unit: 'pt', format: 'A1', orientation: 'landscape' }
 
         };
         html2pdf(element, opt);
@@ -619,6 +649,11 @@
             $('div#btnExport').removeClass('hideDownload');
             $('div#btnExport1').removeClass('hideDownload');
         }, 2000);
+        window.setTimeout(set_detault, 1000);
+
+    }
+    function set_detault() {
+        $("#Data1").width(1095);
     }
 </script>
 
@@ -689,7 +724,7 @@
     var Gram = "0";
     var Auth = "";
     $(document).ready(function () {
-        
+
         var StateOfficer = '@Session["Officer"]';
         State = '@Session["gstate"]';
         state_name1 = '@Session["state_name"]';
@@ -702,6 +737,7 @@
         year1 = '@Session["year1"]';
         month1 = '@Session["month1"]';
         Auth = '@Session["Access_Auth"]'
+        
         if (state_name1 == 'All') {
             $('#state_name').text("All");
             $('#spnstate').text("All");
@@ -869,12 +905,122 @@
                 var a = 0;
                 if (data.length != 0) {
                     for (var i = 0; i < data.length; i++) {
-                        var approve_status = data[i].approve_status;
-                        if (approve_status == null) {
-                            approve_status = "";
+                        var status = data[i].approve_status;
+                        if (status == "Approved") {
+                            status = "Approved";
                         }
-                        tr += '<tr style="text-align:center" id="' + i + '"><td>' + (++a) + '</td><td>' + data[i].p_training_name + '</td><td>' + data[i].type_of_event + '</td><td>' + data[i].location_expo + '</td><td>' + data[i].particular_expo + '</td><td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].year + '</td><td>' + data[i].month + '</td><td>' + data[i].event_platform + '</td><td>' + data[i].from_date + '</td><td>' + data[i].to_date + '</td></tr> ';
+                        else if (status == "Submitted") {
+                            status = "Submitted";
+                        }
+                        else if (status == "Reject") {
+                            status = "Rejected";
+                        }
+                        else {
+                            status = "Pending for Submission";
+                        }
+                        var registration_no = data[i].regno;
+                        if (registration_no == null) {
+                            registration_no = "";
+                        }
+                        var input = registration_no;
+                        var masked = input.slice(0, -4).replace(/./g, '*') + input.slice(-4);
 
+                        if (data[i].from_table == "main") {
+                            tr += '<tr><td id="srNo"><label>' + (++a) + '</label></td>';
+                            tr += '<td>' + (data[i].p_training_name ?? '') + '</td>';
+                            tr += '<td>' + (data[i].type_of_event ?? '') + '</td>';
+                            tr += '<td>' + (data[i].location_expo ?? '') + '</td>';
+                            tr += '<td>' + (data[i].particular_expo ?? '') + '</td>';
+                            tr += '<td>' + (data[i].state ?? '') + '</td>';
+                            tr += '<td>' + (data[i].district ?? '') + '</td>';
+                            tr += '<td>' + (data[i].block ?? '') + '</td>';
+                            tr += '<td>' + (data[i].gp ?? '') + '</td>';
+                            tr += '<td>' + (data[i].year ?? '') + '</td>';
+                            tr += '<td>' + (data[i].month ?? '') + '</td>';
+                            tr += '<td>' + (data[i].event_platform ?? '') + '</td>';
+                            tr += '<td>' + (data[i].from_date ?? '') + '</td>';
+                            tr += '<td>' + (data[i].to_date ?? '') + '</td>';
+                            tr += '<td>' + (data[i].location ?? '') + '</td>';
+                            tr += '<td>' + (data[i].male_population ?? '') + '</td>';
+                            tr += '<td>' + (data[i].female_population ?? '') + '</td>';
+                            tr += '<td>' + (data[i].other_population ?? '') + '</td>';
+                            tr += '<td>' + (data[i].total_participants ?? '') + '</td>';
+                            tr += '<td>' + (data[i].sc ?? '') + '</td>';
+                            tr += '<td>' + (data[i].st ?? '') + '</td>';
+                            tr += '<td>' + (data[i].obc ?? '') + '</td>';
+                            tr += '<td>' + (data[i].general ?? '') + '</td>';
+                            tr += '<td>' + (data[i].atten_sheet_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].photograph_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].feedback_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].event_upload_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].nameofparticipent ?? '') + '</td>';
+                            tr += '<td>' + (data[i].gendernew ?? '') + '</td>';
+                            tr += '<td>' + (data[i].categorynew ?? '') + '</td>';
+                            tr += '<td>' + (data[i].mobilenonew ?? '') + '</td>';
+                            tr += '<td>' + (masked ?? '') + '</td>';
+                            tr += '<td>' + (data[i].todaydate ?? '') + '</td>';
+                            tr += '<td>' + (data[i].structure_of_training ?? '') + '</td>';
+                            tr += '<td>' + (data[i].course_material ?? '') + '</td>';
+                            tr += '<td>' + (data[i].interaction_with_trainer ?? '') + '</td>';
+                            tr += '<td>' + (data[i].hands_on_practice ?? '') + '</td>';
+                            tr += '<td>' + (data[i].usefulness_of_contents ?? '') + '</td>';
+                            tr += '<td>' + (data[i].information_presented ?? '') + '</td>';
+                            tr += '<td>' + (data[i].participant_questions ?? '') + '</td>';
+                            tr += '<td>' + (data[i].food_quality ?? '') + '</td>';
+                            tr += '<td>' + (data[i].most_interesting_thing ?? '') + '</td>';
+                            tr += '<td>' + (data[i].overall_impression ?? '') + '</td>';
+                            tr += '<td>' + (data[i].your_suggestions ?? '') + '</td>';
+                            tr += '<td>' + (status ?? '') + '</td>';
+                            tr += '<td>' + (data[i].reject_status ?? '') + '</td></tr >';
+                        }
+                        else {
+                            tr += '<tr><td id="srNo"></td>';
+                            tr += '<td>' + (data[i].p_training_name ?? '') + '</td>';
+                            tr += '<td>' + (data[i].type_of_event ?? '') + '</td>';
+                            tr += '<td>' + (data[i].location_expo ?? '') + '</td>';
+                            tr += '<td>' + (data[i].particular_expo ?? '') + '</td>';
+                            tr += '<td>' + (data[i].state ?? '') + '</td>';
+                            tr += '<td>' + (data[i].district ?? '') + '</td>';
+                            tr += '<td>' + (data[i].block ?? '') + '</td>';
+                            tr += '<td>' + (data[i].gp ?? '') + '</td>';
+                            tr += '<td>' + (data[i].year ?? '') + '</td>';
+                            tr += '<td>' + (data[i].month ?? '') + '</td>';
+                            tr += '<td>' + (data[i].event_platform ?? '') + '</td>';
+                            tr += '<td>' + (data[i].from_date ?? '') + '</td>';
+                            tr += '<td>' + (data[i].to_date ?? '') + '</td>';
+                            tr += '<td>' + (data[i].location ?? '') + '</td>';
+                            tr += '<td>' + (data[i].male_population ?? '') + '</td>';
+                            tr += '<td>' + (data[i].female_population ?? '') + '</td>';
+                            tr += '<td>' + (data[i].other_population ?? '') + '</td>';
+                            tr += '<td>' + (data[i].total_participants ?? '') + '</td>';
+                            tr += '<td>' + (data[i].sc ?? '') + '</td>';
+                            tr += '<td>' + (data[i].st ?? '') + '</td>';
+                            tr += '<td>' + (data[i].obc ?? '') + '</td>';
+                            tr += '<td>' + (data[i].general ?? '') + '</td>';
+                            tr += '<td>' + (data[i].atten_sheet_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].photograph_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].feedback_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].event_upload_filename ?? '') + '</td>';
+                            tr += '<td>' + (data[i].nameofparticipent ?? '') + '</td>';
+                            tr += '<td>' + (data[i].gendernew ?? '') + '</td>';
+                            tr += '<td>' + (data[i].categorynew ?? '') + '</td>';
+                            tr += '<td>' + (data[i].mobilenonew ?? '') + '</td>';
+                            tr += '<td>' + (masked ?? '') + '</td>';
+                            tr += '<td>' + (data[i].todaydate ?? '') + '</td>';
+                            tr += '<td>' + (data[i].structure_of_training ?? '') + '</td>';
+                            tr += '<td>' + (data[i].course_material ?? '') + '</td>';
+                            tr += '<td>' + (data[i].interaction_with_trainer ?? '') + '</td>';
+                            tr += '<td>' + (data[i].hands_on_practice ?? '') + '</td>';
+                            tr += '<td>' + (data[i].usefulness_of_contents ?? '') + '</td>';
+                            tr += '<td>' + (data[i].information_presented ?? '') + '</td>';
+                            tr += '<td>' + (data[i].participant_questions ?? '') + '</td>';
+                            tr += '<td>' + (data[i].food_quality ?? '') + '</td>';
+                            tr += '<td>' + (data[i].most_interesting_thing ?? '') + '</td>';
+                            tr += '<td>' + (data[i].overall_impression ?? '') + '</td>';
+                            tr += '<td>' + (data[i].your_suggestions ?? '') + '</td>';
+                            tr += '<td></td>';
+                            tr += '<td></td></tr >';
+                        }
                     }
                 }
                 if (tr == '') {
@@ -889,11 +1035,11 @@
         });
     }
     function GoToBackCurr() {
-        
+
         if (Auth == "GP-Training") {
-            window.location = "/MasterDropDown/CurrentEventsAuth";
+            window.location = "/MasterDropDown/current_event_gp_auth";
         } else {
-            window.location = "/MasterDropDown/Current_Events";
+            window.location = "/MasterDropDown/current_event_gp";
         }
     }
 

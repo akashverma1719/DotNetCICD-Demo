@@ -32,7 +32,23 @@
                     <a href="~/Home/LogOut" class="btn btn-link text-dark p-0" id="backto_login"><img src="/DashboardStyles/images/left-arrows.png" class="mx-2"> Back to Login</a>
 
                 </div>
-                <div class="col-md-4" style="margin-left:200px">
+                <div class="col-md-5">
+                    <ul class="imgHome clearfix">
+
+                        <li style="display: flex;">
+                            <img src="~/Content/WspImages/user-silhouette.png" title="User" class="MisUser_icon" style="width: 20px;" />
+                            @if (Session["UserName"] != null)
+                            {
+                                <span style="color:#000;">: @Session["UserName"].ToString()</span>
+                            }
+                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" class="MisLogout_icon" /></a>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+                @*<div class="col-md-4" style="margin-left:200px">
                     <ul class="imgHome clearfix">
 
                         <li>
@@ -43,12 +59,10 @@
                             }
                             <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
                         </li>
-                        <li class="text-center">
-                           
-                        </li>
+                    
 
                     </ul>
-                </div>
+                </div>*@
                 @*<div class="col-auto">
             <a type="button" href="#" class="btn btn-success btn-sm" id="Changepass"> Change Password</a>
         </div>*@
@@ -80,7 +94,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 mb-3" id="training_module_tab">
-                    <a href="/MasterDropDown/Training_evaluation">  
+                    <a href="#" onclick="test()">  
                         <div class="card blockBoxWhite">
                             <div class="card-body text-center iconImg">
                                 <img src="~/DashboardStyles/images/training.png" />
@@ -91,7 +105,7 @@
                 </div>
 
                 <div class="col-md-4 mb-3" id="gis_module_tab">
-                    <a href="https://ataljal-arcgis.mowr.gov.in/ajportal/apps/webappviewer/index.html?id=a3e78044cd68440f83034a0ee6fc4bc3" target="_blank">
+                    <a href=" https://ataljal-arcgis.mowr.gov.in/gis_login/index.html?id=ad93b6842c8a4176aad6bace98358370" target="_blank">
                         <div class="card blockBoxWhite">
                             <div class="card-body text-center iconImg">
                                 <img src="~/DashboardStyles/images/gis_portal.png" />
@@ -117,8 +131,10 @@
 </div>
 <script>
     var StateOfficer = "";
+    var email = "";
     $(document).ready(function () {
         StateOfficer = '@Session["Officer"]';
+        email = '@Session["email"]';
         $("#grampanchayat_module_tab").hide();
         $("#monitoring_module_tab").hide();
         $("#training_module_tab").hide();
@@ -150,7 +166,37 @@
             $("#gis_module_tab").show();
             //$("#tracker_tab").hide();
         }
+        else {
+            window.location.href = "/Home/LogOut";
+        }
     });
+    function test() {
+
+        if (email == "akash.verma@kreatetechnologies.com") {
+
+            if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin") {
+                window.location = "/MasterDropDown/current_event_npmu";
+            }
+            else if (StateOfficer == "State Level Nodal Officer") {
+                window.location = "/MasterDropDown/current_event_state";
+            }
+            else if (StateOfficer == "District Level Nodal Officer") {
+                window.location = "/MasterDropDown/current_event_district";
+            }
+            else if (StateOfficer == "Block Level Nodal Officer") {
+                window.location = "/MasterDropDown/current_event_block";
+            }
+            else if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                window.location = "/MasterDropDown/current_event_gp";
+            }
+            else {
+                window.location = "/Home/LogOut";
+            }
+        }
+        else {
+            window.location.href = "/Home/under_maintainance";
+        }
+    }
 </script>
 <script>
         $(document).ready(function () {
@@ -160,7 +206,6 @@
             //alert(myArray[coun].toString());
             if ((myArray[coun] != "WSP_GWM_HOME") && (myArray[coun] != "LogInForce")) {
                 GetCunCurrentUser();
-                setInterval(GetCunCurrentUser, 30000);
             }
         });
 
