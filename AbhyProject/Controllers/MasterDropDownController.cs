@@ -7958,32 +7958,32 @@ namespace AbhyProject.Controllers
                     {
                         if (state != "0" && state != "" && state != null && topic != "0" && topic != "" && topic != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
-                           var nndd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.unic_key == topic && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.unic_key == topic && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
                             return Json(ddetails, JsonRequestBehavior.AllowGet);
                         }
                         else if (state != "0" && state != "" && state != null && topic != "0" && topic != "" && topic != null && year != "0" && year != "" && year != null)
                         {
-                            var nndd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.unic_key == topic && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.unic_key == topic && x.year == year).OrderByDescending(x => x.id).ToList();//total list 
                             return Json(ddetails, JsonRequestBehavior.AllowGet);
                         }
                         else if (state != "0" && state != "" && state != null && topic != "0" && topic != "" && topic != null)
                         {
-                            var nndd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.unic_key == topic).OrderByDescending(x => x.id).ToList();//total list
+                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.unic_key == topic).OrderByDescending(x => x.id).ToList();//total list
                             return Json(ddetails, JsonRequestBehavior.AllowGet);
                         }
                         else if (state != "0" && state != "" && state != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
                         {
-                            var nndd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
+                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.year == year && x.month == month).OrderByDescending(x => x.id).ToList();//total list
                             return Json(ddetails, JsonRequestBehavior.AllowGet);
                         }
                         else if (state != "0" && state != "" && state != null && year != "0" && year != "" && year != null)
                         {
-                            var nndd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.year == year).OrderByDescending(x => x.id).ToList();//total list
+                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state && x.year == year).OrderByDescending(x => x.id).ToList();//total list
                             return Json(ddetails, JsonRequestBehavior.AllowGet);
                         }
                         else if (state != "0" && state != "" && state != null)
                         {
-                            var nndd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state).OrderByDescending(x => x.id).ToList();//total list
+                            ddetails = ABE.obj_vw_abhy_feedback_latest.Where(x => x.nodal_officer == "National Level Nodal Officer" && x.level_of_event == state).OrderByDescending(x => x.id).ToList();//total list
                             return Json(ddetails, JsonRequestBehavior.AllowGet);
                         }
                     }
