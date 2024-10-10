@@ -5212,17 +5212,23 @@
                 if (data == "Logout") {
                     window.location = "/Home/LogOut";
                 }
-                else if (data == "null") {
+                else if (data.data == "null" || data.status_id == 1) {
                     if (StateOfficer == "Gram Panchyat Nodal Officer") {
+                        if (data.state_name == "Haryana_6")
+                        {
+                            $('#wsp_approved_dpmu').show();
+                        } else {
+                            $('#wsp_approved_dpmu').hide();
+                            
+                        }
                         //$('#wsp_approved_dpmu').show();
                         //$('#remark_div').hide();
-
-                        $('#wsp_approved_dpmu').hide();
                         $('#remark_div').hide();
                     }
                 }
 
-                if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin" || StateOfficer == "Block Level Nodal Officer") {
+                if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin"
+                    || StateOfficer == "Block Level Nodal Officer") {
                     $('#wsp_approved_dpmu').hide();
                     $('#wsp_reject_status').hide();
                     $('#wsp_approved_state').hide();
@@ -5230,20 +5236,23 @@
                 }
                 else if (StateOfficer == "District Level Nodal Officer") {
 
-                    if (data == 3) {
-                        //$('#wsp_approved_dpmu').hide();
-                        //$('#wsp_approved_spmu').show();
-                        //$('#wsp_reject_status').show();
-                        //$("#declaration_div").show();
-
+                    if (data.status_id == 3) {
+                        if (data.state_name == "Haryana_6")
+                        {
+                        $('#wsp_approved_dpmu').hide();
+                        $('#wsp_approved_spmu').show();
+                        $('#wsp_reject_status').show();
+                        $("#declaration_div").show();
+                        }
+                        else {
                         $('#wsp_approved_dpmu').hide();
                         $('#wsp_approved_spmu').hide();
                         $('#wsp_reject_status').hide();
                         $("#declaration_div").hide();
+                    }
 
 
-
-                    } else if (data == 4) {
+                    } else if (data.status_id == 4) {
                         $('#wsp_approved_spmu').hide();
                         $('#wsp_reject_status').hide();
                     }
@@ -5251,9 +5260,13 @@
                 }
                 else if (StateOfficer == "Gram Panchyat Nodal Officer") {
                     $('#remark_div').hide();
-                    if (data == 1) {
-                        //$('#wsp_approved_dpmu').show();
-                        $('#wsp_approved_dpmu').hide();
+                    if (data.status_id == 1) {
+                        if (data.state_name == "Haryana_6") {
+                            $('#wsp_approved_dpmu').show();
+                        }
+                        else {
+                            $('#wsp_approved_dpmu').hide();
+                        }
                         $('#remark_div').hide();
                         $("#declaration_div").hide();
                     }
@@ -5261,15 +5274,20 @@
                 }
 
                 else if (StateOfficer == "State Level Nodal Officer") {
-                    if (data == 4) {
-                        //$('#wsp_reject_status').show();
-                        //$('#wsp_approved_state').show();
-                        //$("#declaration_div").show();
-
+                    if (data.status_id == 4) {
+                        if (data.state_name == "Haryana_6") {
+                            $('#wsp_reject_status').show();
+                            $('#wsp_approved_state').show();
+                            $("#declaration_div").show();
+                        }
+                        else
+                        {
                         $('#wsp_reject_status').hide();
                         $('#wsp_approved_state').hide();
-                        $("#declaration_div").hide();
-                    } else {
+                            $("#declaration_div").hide();
+                        }
+                    }
+                    else {
                         $('#wsp_reject_status').hide();
                         $('#wsp_approved_state').hide();
                     }

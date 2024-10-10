@@ -1198,11 +1198,11 @@ namespace AbhyProject.Controllers
                     {
                         var status_id = Convert.ToInt32(data.status_id);
                         ViewBag.status_id = Convert.ToInt32(data.status_id);
-                        return Json(status_id, JsonRequestBehavior.AllowGet);
+                        return Json(data, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        return Json("null", JsonRequestBehavior.AllowGet);
+                        return Json( new { state_name = State, data= "null" }, JsonRequestBehavior.AllowGet);
                     }
                 }
                 catch (Exception Ex)
