@@ -3907,19 +3907,28 @@
                 //    $('input[type=file]').prop("disabled", true)
                 //    $('.btn_disabled').prop("disabled", true);
                 //}
-                if (data >= 1) {
+                if (data.status_id > 1) {
                     $('input[type=text]').prop("disabled", true)
                     $('select').prop("disabled", true);
                     $('input[type=file]').prop("disabled", true)
                     $('.btn_disabled').prop("disabled", true);
                 }
-                //if (data == "null") {
-                //    //for Inprogress
-                //    $('input[type=text]').prop("disabled", false)
-                //    $('select').prop("disabled", false);
-                //    $('input[type=file]').prop("disabled", false)
-                //    $('.btn_disabled').prop("disabled", false);
-                //}
+                if (data.data == "null" || data.status_id==1) {
+                    //for Inprogress
+                    if (data.state_name == "Haryana_6")
+                    {
+                        $('input[type=text]').prop("disabled", false)
+                        $('select').prop("disabled", false);
+                        $('input[type=file]').prop("disabled", false)
+                        $('.btn_disabled').prop("disabled", false);
+                    }
+                    else {
+                        $('input[type=text]').prop("disabled", true)
+                        $('select').prop("disabled", true);
+                        $('input[type=file]').prop("disabled", true)
+                        $('.btn_disabled').prop("disabled", true);
+                    }
+                }
                 else if (access_auth == "admin") {
                     $('input[type=text]').prop("disabled", false)
                     $('select').prop("disabled", false);
@@ -3927,10 +3936,12 @@
                     $('.btn_disabled').prop("disabled", false);
                 }
                 else {
+
                     $('input[type=text]').prop("disabled", true)
                     $('select').prop("disabled", true);
                     $('input[type=file]').prop("disabled", true)
                     $('.btn_disabled').prop("disabled", true);
+
                 }
             }
         });
