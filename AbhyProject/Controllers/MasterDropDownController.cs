@@ -9918,9 +9918,11 @@ namespace AbhyProject.Controllers
                 int aa = Convert.ToInt32(date);
 
                 List<vw_current_events> ddetails = new List<vw_current_events>();
+                List<vw_current_events> dd = new List<vw_current_events>();
 
                 if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null && date != "0" && date != "" && date != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x=>x.yearname == year && x.monthname == month && x.day== datt).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -9974,6 +9976,7 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.yearname == year && x.monthname == month).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -10012,10 +10015,12 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.yearname == year).OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.Where(x => x.year == startYear).OrderByDescending(x => x.id).ToList();
                 }
                 else
                 {
+                    dd = ABE.obj_vw_current_events.OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.OrderByDescending(x => x.id).ToList();
                 }
                 List<vw_current_events> finaldata = new List<vw_current_events>();
@@ -10041,12 +10046,11 @@ namespace AbhyProject.Controllers
                 int blockcount = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer").ToList().Count();
                 int gramcount = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer").ToList().Count();
 
-
-                int statecount_ap = finaldata.Where(x => x.Nodal_officer == "State Level Nodal Officer").ToList().Count();
-                int statecount_ap_npmu = finaldata.Where(x => x.Nodal_officer == "National Level Nodal Officer").ToList().Count();
-                int distcount_ap = finaldata.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int blockcount_ap = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int gramcount_ap = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap = dd.Where(x => x.Nodal_officer == "State Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap_npmu = dd.Where(x => x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int distcount_ap = dd.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int blockcount_ap = dd.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int gramcount_ap = dd.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
 
                 int total = statecount + statecount_npmu + distcount + blockcount + gramcount;
                 int total_approve = statecount_ap + statecount_ap_npmu + distcount_ap + blockcount_ap + gramcount_ap;
@@ -10408,9 +10412,11 @@ namespace AbhyProject.Controllers
                     int aa = Convert.ToInt32(date);
 
                     List<vw_current_events> ddetails = new List<vw_current_events>();
+                    List<vw_current_events> dd = new List<vw_current_events>();
 
                     if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null && date != "0" && date != "" && date != null)
                     {
+                        dd = ABE.obj_vw_current_events.Where(x => x.yearname == year && x.monthname == month && x.day == datt).OrderByDescending(x => x.id).ToList();
                         string monthName = month;
                         DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                         int mm = datea.Month;
@@ -10464,6 +10470,7 @@ namespace AbhyProject.Controllers
                     }
                     else if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null)
                     {
+                        dd = ABE.obj_vw_current_events.Where(x => x.yearname == year && x.monthname == month).OrderByDescending(x => x.id).ToList();
                         string monthName = month;
                         DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                         int mm = datea.Month;
@@ -10502,10 +10509,12 @@ namespace AbhyProject.Controllers
                     }
                     else if (year != "0" && year != "" && year != null)
                     {
+                        dd = ABE.obj_vw_current_events.Where(x => x.yearname == year).OrderByDescending(x => x.id).ToList();
                         ddetails = ABE.obj_vw_current_events.Where(x => x.year == startYear).OrderByDescending(x => x.id).ToList();
                     }
                     else
                     {
+                        dd = ABE.obj_vw_current_events.OrderByDescending(x => x.id).ToList();
                         ddetails = ABE.obj_vw_current_events.OrderByDescending(x => x.id).ToList();
                     }
                     List<vw_current_events> finaldata = new List<vw_current_events>();
@@ -10531,12 +10540,11 @@ namespace AbhyProject.Controllers
                     int blockcount = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer").ToList().Count();
                     int gramcount = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer").ToList().Count();
 
-
-                    int statecount_ap = finaldata.Where(x => x.Nodal_officer == "State Level Nodal Officer").ToList().Count();
-                    int statecount_ap_npmu = finaldata.Where(x => x.Nodal_officer == "National Level Nodal Officer").ToList().Count();
-                    int distcount_ap = finaldata.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                    int blockcount_ap = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                    int gramcount_ap = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int statecount_ap = dd.Where(x => x.Nodal_officer == "State Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int statecount_ap_npmu = dd.Where(x => x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int distcount_ap = dd.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int blockcount_ap = dd.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int gramcount_ap = dd.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
 
                     int total = statecount + statecount_npmu + distcount + blockcount + gramcount;
                     int total_approve = statecount_ap + statecount_ap_npmu + distcount_ap + blockcount_ap + gramcount_ap;
@@ -10554,9 +10562,11 @@ namespace AbhyProject.Controllers
                     int aa = Convert.ToInt32(date);
 
                     List<vw_current_events> ddetails = new List<vw_current_events>();
+                    List<vw_current_events> dd = new List<vw_current_events>();
 
                     if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null && date != "0" && date != "" && date != null)
                     {
+                        dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.yearname == year && x.monthname == month && x.day == datt).OrderByDescending(x => x.id).ToList();
                         string monthName = month;
                         DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                         int mm = datea.Month;
@@ -10610,6 +10620,7 @@ namespace AbhyProject.Controllers
                     }
                     else if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null)
                     {
+                        dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.yearname == year && x.monthname == month).OrderByDescending(x => x.id).ToList();
                         string monthName = month;
                         DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                         int mm = datea.Month;
@@ -10648,10 +10659,12 @@ namespace AbhyProject.Controllers
                     }
                     else if (year != "0" && year != "" && year != null)
                     {
+                        dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.yearname == year).OrderByDescending(x => x.id).ToList();
                         ddetails = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.year == startYear).OrderByDescending(x => x.id).ToList();
                     }
                     else
                     {
+                        dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE).OrderByDescending(x => x.id).ToList();
                         ddetails = ABE.obj_vw_current_events.Where(x => x.level_event == STATE).OrderByDescending(x => x.id).ToList();
                     }
                     List<vw_current_events> finaldata = new List<vw_current_events>();
@@ -10678,11 +10691,11 @@ namespace AbhyProject.Controllers
                     int gramcount = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer").ToList().Count();
 
 
-                    int statecount_ap = finaldata.Where(x => x.Nodal_officer == "State Level Nodal Officer").ToList().Count();
-                    int statecount_ap_npmu = finaldata.Where(x => x.Nodal_officer == "National Level Nodal Officer").ToList().Count();
-                    int distcount_ap = finaldata.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                    int blockcount_ap = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                    int gramcount_ap = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int statecount_ap = dd.Where(x => x.Nodal_officer == "State Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int statecount_ap_npmu = dd.Where(x => x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int distcount_ap = dd.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int blockcount_ap = dd.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                    int gramcount_ap = dd.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
 
                     int total = statecount + statecount_npmu + distcount + blockcount + gramcount;
                     int total_approve = statecount_ap + statecount_ap_npmu + distcount_ap + blockcount_ap + gramcount_ap;
@@ -10889,9 +10902,11 @@ namespace AbhyProject.Controllers
                 int aa = Convert.ToInt32(date);
 
                 List<vw_current_events> ddetails = new List<vw_current_events>();
+                List<vw_current_events> dd = new List<vw_current_events>();
 
                 if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null && date != "0" && date != "" && date != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.yearname == year && x.monthname == month && x.day == datt).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -10945,6 +10960,7 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.yearname == year && x.monthname == month).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -10983,10 +10999,12 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.yearname == year).OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.year == startYear).OrderByDescending(x => x.id).ToList();
                 }
                 else
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT).OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT).OrderByDescending(x => x.id).ToList();
                 }
                 List<vw_current_events> finaldata = new List<vw_current_events>();
@@ -11013,11 +11031,11 @@ namespace AbhyProject.Controllers
                 int gramcount = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer").ToList().Count();
 
 
-                int statecount_ap = finaldata.Where(x => x.Nodal_officer == "State Level Nodal Officer").ToList().Count();
-                int statecount_ap_npmu = finaldata.Where(x => x.Nodal_officer == "National Level Nodal Officer").ToList().Count();
-                int distcount_ap = finaldata.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int blockcount_ap = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int gramcount_ap = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap = dd.Where(x => x.Nodal_officer == "State Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap_npmu = dd.Where(x => x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int distcount_ap = dd.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int blockcount_ap = dd.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int gramcount_ap = dd.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
 
                 int total = statecount + statecount_npmu + distcount + blockcount + gramcount;
                 int total_approve = statecount_ap + statecount_ap_npmu + distcount_ap + blockcount_ap + gramcount_ap;
@@ -11218,9 +11236,11 @@ namespace AbhyProject.Controllers
                 int aa = Convert.ToInt32(date);
 
                 List<vw_current_events> ddetails = new List<vw_current_events>();
+                List<vw_current_events> dd = new List<vw_current_events>();
 
                 if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null && date != "0" && date != "" && date != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.block == BLOCK && x.yearname == year && x.monthname == month && x.day == datt).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -11274,6 +11294,7 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.block == BLOCK && x.yearname == year && x.monthname == month).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -11312,10 +11333,12 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.block == BLOCK && x.yearname == year).OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.block == BLOCK && x.year == startYear).OrderByDescending(x => x.id).ToList();
                 }
                 else
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.block == BLOCK).OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.Where(x => x.level_event == STATE && x.district == DISTRICT && x.block == BLOCK).OrderByDescending(x => x.id).ToList();
                 }
                 List<vw_current_events> finaldata = new List<vw_current_events>();
@@ -11342,11 +11365,11 @@ namespace AbhyProject.Controllers
                 int gramcount = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer").ToList().Count();
 
 
-                int statecount_ap = finaldata.Where(x => x.Nodal_officer == "State Level Nodal Officer").ToList().Count();
-                int statecount_ap_npmu = finaldata.Where(x => x.Nodal_officer == "National Level Nodal Officer").ToList().Count();
-                int distcount_ap = finaldata.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int blockcount_ap = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int gramcount_ap = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap = dd.Where(x => x.Nodal_officer == "State Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap_npmu = dd.Where(x => x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int distcount_ap = dd.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int blockcount_ap = dd.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int gramcount_ap = dd.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
 
                 int total = statecount + statecount_npmu + distcount + blockcount + gramcount;
                 int total_approve = statecount_ap + statecount_ap_npmu + distcount_ap + blockcount_ap + gramcount_ap;
@@ -11548,9 +11571,11 @@ namespace AbhyProject.Controllers
                 int aa = Convert.ToInt32(date);
 
                 List<vw_current_events> ddetails = new List<vw_current_events>();
+                List<vw_current_events> dd = new List<vw_current_events>();
 
                 if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null && date != "0" && date != "" && date != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.gp == GRAM && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.yearname == year && x.monthname == month && x.day == datt).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -11604,6 +11629,7 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null && month_num != "0" && month_num != "" && month_num != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.gp == GRAM && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.yearname == year && x.monthname == month).OrderByDescending(x => x.id).ToList();
                     string monthName = month;
                     DateTime datea = DateTime.ParseExact(monthName, "MMMM", System.Globalization.CultureInfo.InvariantCulture);
                     int mm = datea.Month;
@@ -11642,10 +11668,12 @@ namespace AbhyProject.Controllers
                 }
                 else if (year != "0" && year != "" && year != null)
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.gp == GRAM && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.yearname == year).OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.Where(x => x.gp == GRAM && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.year == startYear).OrderByDescending(x => x.id).ToList();
                 }
                 else
                 {
+                    dd = ABE.obj_vw_current_events.Where(x => x.gp == GRAM && x.Nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
                     ddetails = ABE.obj_vw_current_events.Where(x => x.gp == GRAM && x.Nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
                 }
                 List<vw_current_events> finaldata = new List<vw_current_events>();
@@ -11672,12 +11700,11 @@ namespace AbhyProject.Controllers
                 int blockcount = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer").ToList().Count();
                 int gramcount = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer").ToList().Count();
 
-
-                int statecount_ap = finaldata.Where(x => x.Nodal_officer == "State Level Nodal Officer").ToList().Count();
-                int statecount_ap_npmu = finaldata.Where(x => x.Nodal_officer == "National Level Nodal Officer").ToList().Count();
-                int distcount_ap = finaldata.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int blockcount_ap = finaldata.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
-                int gramcount_ap = finaldata.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap = dd.Where(x => x.Nodal_officer == "State Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int statecount_ap_npmu = dd.Where(x => x.Nodal_officer == "National Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int distcount_ap = dd.Where(x => x.Nodal_officer == "District Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int blockcount_ap = dd.Where(x => x.Nodal_officer == "Block Level Nodal Officer" && x.approve_status == "Approved").ToList().Count();
+                int gramcount_ap = dd.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").ToList().Count();
 
                 int total = statecount + statecount_npmu + distcount + blockcount + gramcount;
                 int total_approve = statecount_ap + statecount_ap_npmu + distcount_ap + blockcount_ap + gramcount_ap;
@@ -16357,6 +16384,9 @@ namespace AbhyProject.Controllers
                 {
                     foreach (var user in TDetails)
                     {
+                        string registrationNo = user.regno;
+                        string maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
+
                         DataRow dataRow = dt.NewRow();
                         var status = user.approve_status;
                         if (status == "Approved")
@@ -16405,7 +16435,7 @@ namespace AbhyProject.Controllers
                         dataRow["Gender"] = user.gendernew;
                         dataRow["Category"] = user.categorynew;
                         dataRow["Mobile no."] = user.mobilenonew;
-                        dataRow["Registration No"] = user.regno;
+                        dataRow["Registration No"] = maskedRegistrationNo;
                         dataRow["Feedback Submission Date"] = user.todaydate;
                         dataRow["Structure Of Training Program"] = user.structure_of_training;
                         dataRow["Course Material"] = user.course_material;
@@ -16908,6 +16938,9 @@ namespace AbhyProject.Controllers
             {
                 foreach (var user in ddetails)
                 {
+                    string registrationNo = user.registration_no;
+                    string maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
+
 
                     DataRow dataRow = dt.NewRow();
                     dataRow["Topic of Event"] = user.p_training_name;
@@ -16921,7 +16954,7 @@ namespace AbhyProject.Controllers
                     dataRow["Address of Participant"] = user.p_address;
                     dataRow["Participant State"] = user.parti_state;
                     dataRow["Participant Other(State)"] = user.p_other_state_name;
-                    dataRow["Registration Number"] = user.registration_no;
+                    dataRow["Registration Number"] = maskedRegistrationNo;
                     dataRow["State"] = user.p_state_name;
                     if (Dist != "0" && Dist != null)
                     {
@@ -17223,6 +17256,8 @@ namespace AbhyProject.Controllers
             {
                 foreach (var user in ddetails)
                 {
+                    string registrationNo = user.registration_no;
+                    string maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
 
                     DataRow dataRow = dt.NewRow();
                     dataRow["Topic of Event"] = user.p_training_name;
@@ -17236,7 +17271,7 @@ namespace AbhyProject.Controllers
                     dataRow["Address of Participant"] = user.p_address;
                     dataRow["Participant State"] = user.parti_state;
                     dataRow["Participant Other(State)"] = user.p_other_state_name;
-                    dataRow["Registration Number"] = user.registration_no;
+                    dataRow["Registration Number"] = maskedRegistrationNo;
                     dataRow["State"] = user.p_state_name;
                     dataRow["District"] = user.p_district_name;
                     dataRow["Block"] = user.p_block_name;
@@ -17496,9 +17531,11 @@ namespace AbhyProject.Controllers
             {
                 foreach (var user in ddetails)
                 {
+                    string registrationNo = user.registration_no;
+                    string maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
 
                     DataRow dataRow = dt.NewRow();
-                    dataRow["Registration No"] = user.registration_no;
+                    dataRow["Registration No"] = maskedRegistrationNo;
                     dataRow["Topics"] = user.p_training_name;
                     dataRow["Name of the Participant"] = user.participant_name;
                     dataRow["State"] = user.level_of_event;
@@ -17712,9 +17749,12 @@ namespace AbhyProject.Controllers
             {
                 foreach (var user in ddetails)
                 {
+                    string registrationNo = user.registration_no;
+                    string maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
+
 
                     DataRow dataRow = dt.NewRow();
-                    dataRow["Registration No"] = user.registration_no;
+                    dataRow["Registration No"] = maskedRegistrationNo;
                     dataRow["Topics"] = user.p_training_name;
                     dataRow["Name of the Participant"] = user.participant_name;
                     dataRow["State"] = user.level_of_event;
