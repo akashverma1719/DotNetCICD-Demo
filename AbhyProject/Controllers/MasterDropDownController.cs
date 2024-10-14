@@ -16385,8 +16385,10 @@ namespace AbhyProject.Controllers
                     foreach (var user in TDetails)
                     {
                         string registrationNo = user.regno;
-                        string maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
-
+                        string maskedRegistrationNo = "";
+                        if (registrationNo!= null) {
+                            maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
+                        }
                         DataRow dataRow = dt.NewRow();
                         var status = user.approve_status;
                         if (status == "Approved")
