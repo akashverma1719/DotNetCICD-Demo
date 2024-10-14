@@ -2915,7 +2915,7 @@
 
                 if (data.length != 0) {
                     for (var i = 0; i < data.length; i++) {
-                        debugger;
+                        
                         var district = data[i].district;
                         if (district == null) {
                             district = "";
@@ -3411,7 +3411,7 @@
                                 }
                             }
                             else if (StateOfficer == "Gram Panchyat Nodal Officer") {
-                                debugger;
+                                
                                 if (isWithinRange(new Date(to_date))) {
 
                                     if (male_population != "") {
@@ -4658,7 +4658,7 @@
                                         '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
                                         '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
                                         '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                        '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+                                        '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
 
 
@@ -4747,7 +4747,7 @@
                                                     '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
                                                     '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
                                                     '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
 
 
@@ -4813,7 +4813,7 @@
                                                     '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
                                                     '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
                                                     '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+                                                    '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
 
 
@@ -4879,7 +4879,7 @@
                                                 '<td><select style="width:150px;" class="form-control" id="gender_GN_Nadd' + i + '" value="' + data[i].gendernew + '"><option value="Male" ' + (data[i].gendernew === 'Male' ? ' selected' : '') + '>Male</option><option value="Female" ' + (data[i].gendernew === 'Female' ? ' selected' : '') + '>Female</option><option value="Transgender" ' + (data[i].gendernew === 'Transgender' ? ' selected' : '') + '>Transgender</option></select></td>' +
                                                 '<td><select style="width:150px;" class="form-control" id="category_GN_Nadd' + i + '" value="' + data[i].categorynew + '"><option value="SC" ' + (data[i].categorynew === 'SC' ? ' selected' : '') + '>SC</option><option value="ST" ' + (data[i].categorynew === 'ST' ? ' selected' : '') + '>ST</option><option value="OBC" ' + (data[i].categorynew === 'OBC' ? ' selected' : '') + '>OBC</option><option value="General" ' + (data[i].categorynew === 'General' ? ' selected' : '') + '>General</option></select></td>' +
                                                 '<td> <input type="text"  onpaste="return false;" id="mobile_GN_Nadd' + i + '" class="form-control" style="width:150px;" onkeypress="return /[0-9]/i.test(event.key)"  maxlength="10" value="' + data[i].mobilenonew + '" /></td>' +
-                                                '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].id + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
+                                                '<td> <button type="button" class="btn btn-primary" onclick="updaeaaadd(' + data[i].addnewid + ',' + i + ')">Update</button></td>' + '<td><button class="btn btn-danger" type="button" onclick="cancelcomp_A_Support_Reg_Gp_Tradd(' + i + '); "><i class="fa fa-remove"</button>' + '</td></tr>';
 
 
 
@@ -5206,7 +5206,7 @@
                     window.location = "/Home/LogOut";
                 }
                 else if (response == "Update Successfully") {
-                    var ss = id;
+                    var ss = unic_keyatted;
                     getunickey_att(ss);
                 }
 
