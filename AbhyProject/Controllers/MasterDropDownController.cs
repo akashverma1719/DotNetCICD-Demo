@@ -16386,22 +16386,31 @@ namespace AbhyProject.Controllers
                     {
                         string registrationNo = user.regno;
                         string maskedRegistrationNo = "";
-                        if (registrationNo!= null) {
+                        if (!string.IsNullOrEmpty(registrationNo) && registrationNo.Length > 4)
+                        {
                             maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
                         }
+                        else
+                        {
+                            maskedRegistrationNo = registrationNo; // No masking if registrationNo has less than 4 characters
+                        }
+                        
+                        //if (registrationNo!= null) {
+                        //    maskedRegistrationNo = new string('*', registrationNo.Length - 4) + registrationNo.Substring(registrationNo.Length - 4);
+                        //}
                         DataRow dataRow = dt.NewRow();
                         var status = user.approve_status;
                         if (status == "Approved")
                         {
                             status = "Approved";
                         }
-                        else if (status == "Submitted")
+                        else if (status == "Submitted To DPMU")
                         {
-                            status = "Submitted";
+                            status = "Submitted To DPMU";
                         }
-                        else if (status == "Reject")
+                        else if (status == "Reject by DPMU")
                         {
-                            status = "Rejected";
+                            status = "Reject by DPMU";
                         }
                         else
                         {
