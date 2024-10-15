@@ -1,7 +1,7 @@
 ﻿/*phase1_start*/
 
 $(function () {
-    
+
     $("input[name='numonlydecimal']").on('input', function (f) {
         $(this).val($(this).val().replace(/[^0-9.]/g, ''));
     });
@@ -1192,7 +1192,6 @@ function Data_get() {
                                 }
 
                             }
-
                         }
                     }
                     if (StateOfficer == "District Level Nodal Officer") {
@@ -1243,14 +1242,19 @@ function Data_get() {
                                     tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_add_new"  onclick="data_show_phase1(' + data[i].id + ')">Edit / View Data</button ></td><td></td><td></td></tr> ';
                                 }
                                 else if (entry_phase == "Delete") {
-                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-success" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="fill_data(' + data[i].id + ')">Enter Data </button ></td><td></td><td></td></tr> ';
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button   class="btn btn-success hidebutton" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="fill_data(' + data[i].id + ')">Enter Data </button ></td><td></td><td></td></tr> ';
                                 }
                                 else {
 
-                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button  class="btn btn-success" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="fill_data(' + data[i].id + ')"> Enter Data</button ></td><td></td><td></td></tr> ';
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].financial_year + '</td><td>' + fund_for + '</td><td>' + data[i].department_name + '</td><td>' + scheme_name + '</td><td>' + total_crop_area + '</td><td>' + data[i].area_proposed + '</td><td>' + data[i].approx_est_cost + '</td><td>' + data[i].total_water_demand + '</td><td>' + data[i].total_reduction_gw + '</td><td><button  class="btn btn-success hidebutton" data-toggle="modal" data-target="#exampleModal_waterflow"  onclick="fill_data(' + data[i].id + ')"> Enter Data</button ></td><td></td><td></td></tr> ';
                                 }
                             }
-
+                            if (State == "Haryana_6") {
+                                $('.hidebutton').show();
+                            }
+                            else {
+                                $('.hidebutton').hide();
+                            }
                         }
                     }
                     if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
@@ -1318,7 +1322,12 @@ function Data_get() {
                 $(".showdiv").show();
                 $('#tbl_details').html(tr);
                 $('.disable').attr("disabled", "disabled");
-                $('.disable').hide();
+                if (State == "Haryana_6") {
+                    $('.hidebutton').show();
+                }
+                else {
+                    $('.hidebutton').hide();
+                }
                 $('#existing_well_total').html(sno);
             }
             $('.loader').hide();
@@ -1386,7 +1395,6 @@ function Other() {
         $('#div_other').hide();
     }
 }
-
 function Other_schema() {
     var schema = $('#txtschema').val();
     if (schema == "Other") {
@@ -1396,7 +1404,6 @@ function Other_schema() {
         $('#div_other_2').hide();
     }
 }
-
 function insert_data_phase1() {
 
     $('.loader').show();
@@ -1523,7 +1530,6 @@ function insert_data_phase1() {
         });
     }
 }
-
 function autoclick() {
     $("#autoclick").click();
     Data_get();
@@ -1644,11 +1650,19 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td><label style="color: black;">Not Applicable</label></td></tr>';
 
                                 }
-
+                               
                                 $('#phase1submittospmu').hide();
-                                $('#phase1submittoapprove').show();
-                                $('#txtrejectremark').show();
-                                $('#phase1reject').show();
+                                if (State == "Haryana_6") {
+                                    $('#phase1submittoapprove').show();
+                                    $('#txtrejectremark').show();
+                                    $('#phase1reject').show();
+                                }
+                                else {
+                                    $('#phase1submittoapprove').hide();
+                                    $('#txtrejectremark').hide();
+                                    $('#phase1reject').hide();
+                                }
+                               
                                 $('#gp_status').text("At SPMU").css({ 'color': 'Green' });
                             }
                             else if (approve == "Rejected") {
@@ -1842,9 +1856,9 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
-                                    Tbodyhtml += '<td><button class="btn btn-primary " type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                    Tbodyhtml += '<td><button class="btn btn-danger " type="button"  onclick="delete_phase1(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
-                                    Tbodyhtml += '<td><button type="button"  class="btn btn-success" onclick="add_new(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase1(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                    Tbodyhtml += '<td><button type="button"  class="btn btn-success hidebutton" onclick="add_new(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
 
                                     Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase1' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
@@ -1855,7 +1869,7 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase' + i + '" value="' + data[i].total_beneficery_phase1 + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
-                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase1(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="update_data_phase1(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
                                     Tbodyhtml += '<tr id="Hide_AWP1_TR_edit_new' + i + '" style="display:none;"> <td></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
@@ -1866,7 +1880,7 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase_aa' + i + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase_aa' + i + '"   /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase_aa' + i + '"  /></td>';
-                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="save_newrow(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_new(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="save_newrow(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_new(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
                                 }
                                 else if (entry_phase == "phase1_new") {
 
@@ -1879,8 +1893,8 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
-                                    Tbodyhtml += '<td><button class="btn btn-primary" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                    Tbodyhtml += '<td><button class="btn btn-danger" type="button"  onclick="delete_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
 
                                     Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
@@ -1896,11 +1910,20 @@ function data_show_phase1(id) {
 
 
                                 }
-                                $('#phase1submittoapprove').hide();
-                                $('#phase1submittospmu').show();
+                                if (State == "Haryana_6") {
+                                    $('#phase1submittoapprove').show();
+                                    $('.hidebutton').show();
+                                }
+                                else {
+                                    $('#phase1submittoapprove').hide();
+                                    $('.hidebutton').hide();
+                                }
+                                
+                                $('#phase1submittospmu').hide();
                                 $('#txtrejectremark').hide();
                                 $('#phase1reject').hide();
                                 $('#gp_status').text("Rejected").css({ 'color': 'Red' });
+                                
                             }
                             else {
                                 if (entry_phase == "phase1") {
@@ -1914,9 +1937,9 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
-                                    Tbodyhtml += '<td><button class="btn btn-primary" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                    Tbodyhtml += '<td><button class="btn btn-danger" type="button"  onclick="delete_phase1(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
-                                    Tbodyhtml += '<td><button type="button"  class="btn btn-success" onclick="add_new(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase1(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td>';
+                                    Tbodyhtml += '<td><button type="button"  class="btn btn-success hidebutton" onclick="add_new(' + data[i].id + ',' + i + ')"> <i class="bi-file-earmark-plus"></i></button ></td></tr>';
 
                                     Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase1' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
@@ -1927,7 +1950,7 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase' + i + '" value="' + data[i].total_beneficery_phase1 + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
-                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase1(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="update_data_phase1(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
                                     Tbodyhtml += '<tr id="Hide_AWP1_TR_edit_new' + i + '" style="display:none;"> <td></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="8" class="form-control"  id="year_subsidey_phase' + i + '" value="' + data[i].year_subsidey_phase1 + '" disabled /></td>';
@@ -1938,7 +1961,7 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase_aa' + i + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase_aa' + i + '"   /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase_aa' + i + '"  /></td>';
-                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="save_newrow(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_new(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="save_newrow(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data_new(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
                                 }
                                 else if (entry_phase == "phase1_new") {
 
@@ -1951,8 +1974,8 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td id="vill">' + data[i].total_beneficery_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
-                                    Tbodyhtml += '<td><button class="btn btn-primary" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                    Tbodyhtml += '<td><button class="btn btn-danger" type="button"  onclick="delete_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
 
                                     Tbodyhtml += '<tr id="Hide_AWP1_TR_edit' + i + '" style="display:none;"> <td></td>';
@@ -1964,12 +1987,19 @@ function data_show_phase1(id) {
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" id="total_beneficery_phase_new' + i + '" value="' + data[i].total_beneficery_phase1 + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control" onpaste="return false;" onkeypress="return /[0-9.]/i.test(event.key)" id="expenditure_phase_new' + i + '" value="' + data[i].expenditure_phase1 + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="150" class="form-control"  id="remark_phase_new' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
-                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="update_data_phase1_addnew(' + data[i].phaseid1 + ',' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
 
                                 }
-                                $('#phase1submittoapprove').hide();
-                                $('#phase1submittospmu').show();
+                                if (State == "Haryana_6") {
+                                    $('#phase1submittoapprove').show();
+                                    $('.hidebutton').show();
+                                }
+                                else {
+                                    $('#phase1submittoapprove').hide();
+                                    $('.hidebutton').hide();
+                                }
+                                $('#phase1submittospmu').hide();
                                 $('#txtrejectremark').hide();
                                 $('#phase1reject').hide();
                                 $('#gp_status').text("At DPMU").css({ 'color': 'Black' });
@@ -2161,6 +2191,12 @@ function data_show_phase1(id) {
                 $('#phase1_data').html(Tbodyhtml);
                 $('.disable').attr("disabled", "disabled");
                 $('.disable').hide();
+                if (State == "Haryana_6") {
+                    $('.hidebutton').show();
+                }
+                else {
+                    $('.hidebutton').hide();
+                }
             }
             fill_data_wsp(id);
             $('.loader').hide();
@@ -3020,7 +3056,7 @@ function fill_data_phase_two(id) {
         data: "{'id': '" + id + "'}",
         dataType: 'JSON',
         success: function (data) {
-            
+
             //Department_name_2phase();
             //schema_name_2phase();
             var scheme_name = data[0].scheme_name;
@@ -4419,7 +4455,7 @@ function data_show_phase2(id) {
                                 $('#gp_status2phase').text("Rejected").css({ 'color': 'Red' });
                             }
                             else {
-                                
+
                                 if (entry_phase == "phase2") {
                                     if (findinglop1data == "Yes") {
                                         Tbodyhtml += '<tr> <td></td>';
@@ -4765,7 +4801,7 @@ function data_show_phase2(id) {
                 }
 
                 $('#phase2_data_old').html(Tbodyhtml);
-                
+
                 if (lop1schemename_phase2 == "Other") {
                     $('.hhother').show();
                 }
@@ -5677,7 +5713,7 @@ function lop1data_show_phase2(id) {
 
 
                 $('#leftoverphase1_data_old').html(Tbodyhtml);
-                
+
                 if (lop1schemename_phase2 == "Other") {
                     $('.hhotherp').show();
                 }
@@ -5700,7 +5736,7 @@ function lop1data_show_phase2(id) {
 }
 
 function validatenew(e) {
-    
+
     var input = event.target;
 
     // Allow only numbers and decimal
@@ -5742,7 +5778,7 @@ function validatenew(e) {
     // If the loop completes without any issues, the input is valid
 }
 function validatenewsupply(e) {
-    
+
     var input = event.target;
 
     // Allow only numbers and decimal
@@ -7239,7 +7275,7 @@ function Data_get_supply() {
                                 }
                                 else {
 
-                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-success"  data-toggle="modal" data-target="#exampleModal_supplyside"  onclick="fill_data_supply_side(' + data[i].id + ')">Enter Data </button ></td><td></td><td></td></tr> ';
+                                    tr += '<tr id="AWP1_TR' + i + '"><td>' + (sno) + '</td><td>' + data[i].from_table + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td><td>' + data[i].gp_center_point_latitude + '</td><td>' + data[i].gp_center_point_longitude + '</td><td>' + data[i].village_name + '</td><td>' + data[i].financial_year + '</td><td>' + data[i].type_of_supply_side_structure + '</td><td>' + data[i].name_of_structure + '</td><td>' + data[i].gw_recharge_or_effective_storage + '</td><td>' + data[i].department_name + '</td><td>' + data[i].scheme_name_possible_funding_source + '</td><td>' + other_scheme + '</td><td>' + data[i].latitude + '</td><td>' + data[i].longitude + '</td><td>' + data[i].total_approximate_estimated_cost + '</td><td><button  class="btn btn-success hidebutton"  data-toggle="modal" data-target="#exampleModal_supplyside"  onclick="fill_data_supply_side(' + data[i].id + ')">Enter Data </button ></td><td></td><td></td></tr> ';
                                 }
                             }
 
@@ -7296,7 +7332,12 @@ function Data_get_supply() {
                 $('#supply_tbl_details').html(tr);
                 $('#supply_total').html(sno);
                 $('.disable').attr("disabled", "disabled");
-                $('.disable').hide();
+                
+                if (State == "Haryana_6") {
+                    $('.hidebutton').hide();
+                }
+                else {
+                    $('.hidebutton').hide();}
             }
             $('.loader').hide();
         }
@@ -7473,7 +7514,7 @@ function insert_data_supplyside_phase1() {
 
 
     if (xx == 0) {
-       var regex = /^\d{2}\.\d{1,6}$/;
+        var regex = /^\d{2}\.\d{1,6}$/;
         if (regex.test(date6)) {
         }
         else {
@@ -7722,10 +7763,18 @@ function data_show_supplyside1phase(id) {
                                     Tbodyhtml += '<td><label style="color: black;">Not Applicable</label></td></tr>';
 
                                 }
+                                if (State == "Haryana_6") {
+                                    $('#ssphase1submittoapprove').show();
+                                    $('#sstxtreject1remark').show();
+                                    $('#ssphase1reject').show();
+                                }
+                                else {
+                                    $('#ssphase1submittoapprove').hide();
+                                    $('#sstxtreject1remark').hide();
+                                    $('#ssphase1reject').hide();                                    
+                                }
                                 $('#ssphase1submittospmu').hide();
-                                $('#ssphase1submittoapprove').show();
-                                $('#sstxtreject1remark').show();
-                                $('#ssphase1reject').show();
+                               
                                 $('#ssgp_status1phase').text("At SPMU").css({ 'color': 'green' });
                             }
                             else if (approve == "Rejected") {
@@ -7868,8 +7917,8 @@ function data_show_supplyside1phase(id) {
                                     Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
-                                    Tbodyhtml += '<td><button class="btn btn-primary" type="button"  onclick="editrowcomp_A_Good_ssdata2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                    Tbodyhtml += '<td><button class="btn btn-danger" type="button"  onclick="delete_phase_supplyside(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_ssdata2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
                                     Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
                                     Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase1 + '"  /></td>';
@@ -7883,11 +7932,18 @@ function data_show_supplyside1phase(id) {
                                     Tbodyhtml += '<td><input type="text" maxlength="100" class="form-control"  id="otherschemename_phase' + i + '" value="' + otherschemename_phase + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
-                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
                                 }
-
-                                $('#ssphase1submittospmu').show();
+                                if (State == "Haryana_6") {
+                                    $('#ssphase1submittospmu').show();
+                                    $('.hidebutton').show();
+                                }
+                                else {
+                                    $('#ssphase1submittospmu').hide();
+                                    $('.hidebutton').hide();
+                                }
+                                
                                 $('#ssphase1submittoapprove').hide();
                                 $('#sstxtreject1remark').hide();
                                 $('#ssphase1reject').hide();
@@ -7909,8 +7965,8 @@ function data_show_supplyside1phase(id) {
                                     Tbodyhtml += '<td id="vill">' + otherschemename_phase + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase1 + '</td>';
                                     Tbodyhtml += '<td id="vill">' + data[i].remark_phase1 + '</td>';
-                                    Tbodyhtml += '<td><button class="btn btn-primary" type="button"  onclick="editrowcomp_A_Good_ssdata2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                    Tbodyhtml += '<td><button class="btn btn-danger" type="button"  onclick="delete_phase_supplyside(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_ssdata2(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
                                     Tbodyhtml += '<tr id="Hide_AWP2_TR_edit' + i + '" style="display:none;"> <td></td>';
                                     Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase1 + '"  /></td>';
@@ -7924,11 +7980,18 @@ function data_show_supplyside1phase(id) {
                                     Tbodyhtml += '<td><input type="text" maxlength="100" class="form-control"  id="otherschemename_phase' + i + '" value="' + otherschemename_phase + '"  /></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="expenditure_phase' + i + '" value="' + data[i].expenditure_phase1 + '"></td>';
                                     Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="remark_phase' + i + '" value="' + data[i].remark_phase1 + '"  /></td>';
-                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
                                 }
-
-                                $('#ssphase1submittospmu').show();
+                                if (State == "Haryana_6") {
+                                    $('#ssphase1submittospmu').show();
+                                    $('.hidebutton').show();
+                                }
+                                else {
+                                    $('#ssphase1submittospmu').hide();
+                                    $('.hidebutton').hide();
+                                }
+                                
                                 $('#ssphase1submittoapprove').hide();
                                 $('#sstxtreject1remark').hide();
                                 $('#ssphase1reject').hide();
@@ -8102,7 +8165,12 @@ function data_show_supplyside1phase(id) {
 
                 $('#phase1_data_supplyside').html(Tbodyhtml);
                 $('.disable').attr("disabled", "disabled");
-                $('.disable').hide();
+                if (State == "Haryana_6") {
+                    $('.hidebutton').show();
+                }
+                else {
+                    $('.hidebutton').hide();
+                }
             }
             fill_data_wsp_phase1_supplyside(id);
             $('.loader').hide();
@@ -8425,7 +8493,7 @@ function update_data_phase_supplyside(id, i) {
         other = "";
     }
     if (xx == 0) {
-       var regex = /^\d{2}\.\d{1,6}$/;
+        var regex = /^\d{2}\.\d{1,6}$/;
         if (regex.test(date6)) {
         }
         else {
@@ -9895,8 +9963,8 @@ function insert_data_supplyside_phase2() {
     }
 
     if (xx == 0) {
-        
-       var regex = /^\d{2}\.\d{1,6}$/;
+
+        var regex = /^\d{2}\.\d{1,6}$/;
         if (date17 != null && date17 !== "") {
             if (regex.test(date17)) {
             }
@@ -10130,7 +10198,7 @@ function viewdata_phase2_supplyside(id) {
             if (data.length != 0) {
                 if (StateOfficer == "State Level Nodal Officer") {
                     for (var i = 0; i < data.length; i++) {
-                        
+
                         id = data[0].id;
                         sno = i + 1;
                         var other_scheme = data[i].other_schema_name_phase2;
@@ -10306,7 +10374,7 @@ function viewdata_phase2_supplyside(id) {
                             $('#gp_status2phasess').text("Approved").css({ 'color': 'blue' });
                         }
                         else if (approve == "Submit to SPMU") {
-                            
+
                             if (p2_status_of_work_phase2 == "Completed") {
 
                             }
@@ -10330,7 +10398,7 @@ function viewdata_phase2_supplyside(id) {
                                     }
                                 }
                                 else {
-                                    
+
                                     if (entry_phase == "phase2") {
                                         if (data[i].type_of_work_phase2 != "0") {
                                             if (findinglop1data == "Yes") {
@@ -10787,95 +10855,95 @@ function viewdata_phase2_supplyside(id) {
                             if (p2_status_of_work_phase2 == "Completed") {
                             }
                             else {
-                                    if (phase1 == "Yes" && Lopphase1 == "Yes") {
-                                        Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
 
-                                        Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
-                                        Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                        Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
-                                        Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
-                                        Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><select  id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
-                                        Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
-                                        Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><select  id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
-                                        Tbodyhtml += '<td><select  id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
-                                        Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
-                                        Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
 
-                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
-                                    }
-                                    else {
-                                        if (entry_phase == "phase2") {
-                                            if (findinglop1data == "Yes") {
-                                                Tbodyhtml += '<tr> <td></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '" disabled /></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value=""   /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
-                                                Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</select></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control hhhother ssother"  id="ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value=""></td>';
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value=""   /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control hhhother ssother"  id="ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value=""></td>';
 
-                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value=""  /></td>';
-                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value=""  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
 
 
-                                            }
-                                            else {
+                                        }
+                                        else {
 
-                                                Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
 
-                                                Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
-                                                Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                                Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                            Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
-                                                Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '" disabled /></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
-                                                Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                            Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
 
-                                                Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
 
-                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
-                                            }
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
                                         }
                                     }
+                                }
                             }
                             if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
                                 $('#ssphase2submittospmu').show();
@@ -10896,97 +10964,97 @@ function viewdata_phase2_supplyside(id) {
 
                             }
                             else {
-                                    if (phase1 == "Yes" && Lopphase1 == "Yes") {
-                                        Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                if (phase1 == "Yes" && Lopphase1 == "Yes") {
+                                    Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
 
-                                        Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
-                                        Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
-                                        Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                        Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                    Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                    Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                    Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
-                                        Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
-                                        Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><select  id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
-                                        Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
-                                        Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td><select  id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
-                                        Tbodyhtml += '<td><select  id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
-                                        Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
-                                        Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+                                    Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                    Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td><select  id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                    Tbodyhtml += '<td><select  id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                    Tbodyhtml += '<td><input  type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                    Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
 
-                                        Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
-                                        Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
+                                    Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                    Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
 
-                                    }
-                                    else {
-                                        if (entry_phase == "phase2") {
+                                }
+                                else {
+                                    if (entry_phase == "phase2") {
 
-                                            if (findinglop1data == "Yes") {
-                                                Tbodyhtml += '<tr> <td></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '" disabled /></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value=""   /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
-                                                Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</select></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control ssother"  id="ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value=""></td>';
+                                        if (findinglop1data == "Yes") {
+                                            Tbodyhtml += '<tr> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + p2_work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value=""   /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + p2_type_of_work_phase2 + '">' + p2_type_of_work_phase2 + '</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + p2_latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + p2_longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + p2_department_name_phase2 + '">' + p2_department_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + p2_schema_name_phase2 + '">' + p2_schema_name_phase2 + '</select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control ssother"  id="ss2otherschemename_phase' + i + '" value="' + p2_other_schema_name_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value=""></td>';
 
-                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value=""  /></td>';
-                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value=""  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary hidebutton" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Save</button>' + '</td><td></td></tr >';
 
 
-                                            }
-                                            else {
+                                        }
+                                        else {
 
-                                                Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
+                                            Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
 
-                                                Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
-                                                Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
-                                                Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
-                                                Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_start_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].work_end_date_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].type_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].status_of_work_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].latitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].longitude_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].department_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].schema_name_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + other_scheme + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].expenditure_phase2 + '</td>';
+                                            Tbodyhtml += '<td id="vill">' + data[i].remark_phase2 + '</td>';
+                                            Tbodyhtml += '<td><button class="btn btn-primary hidebutton" type="button"  onclick="editrowcomp_A_Good_data2ss(' + i + ')"> <i class="fa fa-edit"></i></button ></td>';
+                                            Tbodyhtml += '<td><button class="btn btn-danger hidebutton" type="button"  onclick="delete_phase_supplyside2ss(' + data[i].id + ')"><i class="fa fa-trash"></i></button></td></tr>';
 
-                                                Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '" disabled /></td>';
-                                                Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
-                                                Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
-                                                Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
-                                                Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
+                                            Tbodyhtml += '<tr id="Hide_AWP2_TR_editss' + i + '" style="display:none;"> <td></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_start_date_phase' + i + '" value="' + data[i].work_start_date_phase2 + '" disabled /></td>';
+                                            Tbodyhtml += '<td><input type="date" maxlength="" class="form-control" onkeypress="return false;"  id="ss2work_end_date_phase' + i + '" value="' + data[i].work_end_date_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2type_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].type_of_work_phase2 + '">' + data[i].type_of_work_phase2 + '</option><option value="0">Select Type of Work</option><option value="New">New</option><option value="Renovation">Renovation</option></select></td>';
+                                            Tbodyhtml += '<td><select id="ss2status_of_work_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].status_of_work_phase2 + '">' + data[i].status_of_work_phase2 + '</option><option value="0">Select Status of Work</option><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cf' + i + '" value="' + data[i].latitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="9" class="form-control" onpaste="return false;" onkeypress="return /[0-9]/i.test(event.key)" oninput="ss2enforceNumberValidation(' + i + ' , this)"  id="ss2cg' + i + '" value="' + data[i].longitude_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2department_name_phase' + i + '" class="form-control select_width_set"><option value="' + data[i].department_name_phase2 + '">' + data[i].department_name_phase2 + '</option><option value="0">--Select Department name--</option><option value="Agriculture & Farmer Welfare Department">Agriculture & Farmer Welfare Department</option><option value="CSR">CSR</option><option value="Department of Education">Department of Education</option><option value="Department of Fisheries">Department of Fisheries</option><option value="Department of Forest ">Department of Forest </option><option value="Department of Horticulture">Department of Horticulture</option><option value="Department of Sericulture">Department of Sericulture</option><option value="Department of Agriculture">Department of Agriculture</option><option value="District Soil and Water Conservation Officer Department">District Soil and Water Conservation Officer Department</option><option value="Gujarat Green Revolution Company Ltd. (GGRC)">Gujarat Green Revolution Company Ltd. (GGRC)</option><option value="Gujarat Water Resources Development Corporation Ltd. (GWRDC)">Gujarat Water Resources Development Corporation Ltd. (GWRDC)</option><option value="Irrigation & Water Resource Development">Irrigation & Water Resource Development</option><option value="MICADA">MICADA</option><option value="Minor Irrigation Department">Minor Irrigation Department</option><option value="NGO">NGO</option><option value="Panchayat Raj Engineering Department">Panchayat Raj Engineering Department</option><option value="Panchayati Raj Institutions (PRI)">Panchayati Raj Institutions (PRI)</option><option value="Public Health Eingeering Department">Public Health Eingeering Department</option><option value="Rural Department and Panchayati Raj">Rural Department and Panchayati Raj</option><option value="Rural Development Department">Rural Development Department</option><option value="Rural Water Supply Department">Rural Water Supply Department</option><option value="Soil & Conservation Department">Soil & Conservation Department</option><option value="Water Resources Department">Water Resources Department</option><option value="Water Supply and Sanitation Department">Water Supply and Sanitation Department</option><option value="Watershed Development & Soil Conservation">Watershed Development & Soil Conservation</option><option value="Watershed Development Department">Watershed Development Department</option></select></td>';
+                                            Tbodyhtml += '<td><select disabled id="ss2schema_name_phase' + i + '" onchange="ss2ddlother2_new(' + i + ')" class="form-control select_width_set"><option value="' + data[i].schema_name_phase2 + '">' + data[i].schema_name_phase2 + '</option><option value="0">--Select Scheme--</option><option value="Amrit Sarovar">Amrit Sarovar</option><option value="Bundelkhand Package">Bundelkhand Package</option><option value="BVPY Pulse">BVPY Pulse</option><option value="CM Water Conservation Scheme">CM Water Conservation Scheme</option><option value="Construction of Anicut and pickup">Construction of Anicut and pickup</option><option value="CSR">CSR</option><option value="Departmental Scheme">Departmental Scheme</option><option value="District Annual Plan">District Annual Plan</option><option value="DPDC (District Planning and Development Council)">DPDC (District Planning and Development Council)</option><option value="GPDC 15th Finance Commission">GPDC 15th Finance Commission</option><option value="Gray Water Management-Phase-II">Gray Water Management-Phase-II</option><option value="IHD Scheme">IHD Scheme</option><option value="Integrated Watershed Management Programme (IWMP)">Integrated Watershed Management Programme (IWMP)</option><option value="IWDMP">IWDMP</option><option value="Jal Jeevan Mission">Jal Jeevan Mission</option><option value="Jalukt Shivar 2.0">Jalukt Shivar 2.0</option><option value="Lift Irrigation Scheme (LIS)">Lift Irrigation Scheme (LIS)</option><option value="MGNREGA">MGNREGA</option><option value="Mera Pani Meri Virasat(MPMV)">Mera Pani Meri Virasat(MPMV)</option><option value="MIDH (Mission for Integrated Development of Horticulture)">MIDH (Mission for Integrated Development of Horticulture)</option><option value="NABRD RIDF">NABRD RIDF</option><option value="NFSM (National Food Security Mission)">NFSM (National Food Security Mission)</option><option value="PMKSY">PMKSY</option><option value="PMKSY-WDC-2">PMKSY-WDC-2</option><option value="PMKSY PDN ( Piped Distribution Network)">PMKSY PDN ( Piped Distribution Network)</option><option value="PMKSY(Per Drop More Crop)">PMKSY(Per Drop More Crop)</option><option value="POCRA (Project on Climate Resilient Agriculture)">POCRA (Project on Climate Resilient Agriculture)</option><option value="Rashtriye Krishi VikasYoajan (RKVY)">Rashtriye Krishi VikasYoajan (RKVY)</option><option value="Scheme for Management of Crop Residue">Scheme for Management of Crop Residue</option><option value="Siksha Abhiyan">Siksha Abhiyan</option><option value="Soil and Water Conservation (ZP Cess Funds)">Soil and Water Conservation (ZP Cess Funds)</option><option value="State Funds (Water Conservation Corporation)">State Funds (Water Conservation Corporation)</option><option value="State HOA: 2702-00-101-0-26 under Zilla panchayat">State HOA: 2702-00-101-0-26 under Zilla panchayat</option><option value="State HOA:4702-00-101-5-01-139">State HOA:4702-00-101-5-01-139</option><option value="Swach Bharat Abhiyan (SBA)">Swach Bharat Abhiyan (SBA)</option><option value="Zila Yojana">Zila Yojana</option><option value="ZP Cess">ZP Cess</option><option value="Ground Water Department">Ground Water Department</option><option value="Other">Other</option></select></td>';
+                                            Tbodyhtml += '<td><input disabled type="text" maxlength="100" class="form-control"  id="ss2otherschemename_phase' + i + '" value="' + other_scheme + '"  /></td>';
 
-                                                Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
+                                            Tbodyhtml += '<td><input type="text" maxlength="6" class="form-control decimal" onpaste="return false;" name="numonlydecimal" onkeypress="validatenew(event)" id="ss2expenditure_phase' + i + '" value="' + data[i].expenditure_phase2 + '"></td>';
 
-                                                Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
-                                                Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
-                                            }
+                                            Tbodyhtml += '<td><input type="text" maxlength="250" class="form-control"  id="ss2remark_phase' + i + '" value="' + data[i].remark_phase2 + '"  /></td>';
+                                            Tbodyhtml += '<td> <button type="button" class="btn btn-primary" onclick="ss2update_data_phase_supplyside(' + data[i].id + ',' + i + ')">Update</button>' + '</td><td><button  class="btn btn-danger " type="button" onclick="cancelcomp_A_Support_NEW_data2ss(' + i + ');"><i class="fa fa-remove"</button>' + '</td></tr >';
                                         }
                                     }
-                                
+                                }
+
                             }
                             if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
                                 $('#ssphase2submittospmu').show();
@@ -11308,7 +11376,7 @@ function viewdata_phase2_supplyside(id) {
 
                             }
                             else {
-                                
+
                                 if (data[i].type_of_work_phase2 != "0") {
                                     if (phase1 == "Yes" && Lopphase1 == "Yes") {
                                         Tbodyhtml += '<tr id="AWP2_TR_editss' + i + '"><td id="srNo">' + (sno) + '</td>';
@@ -11729,7 +11797,7 @@ function viewdata_phase2_supplysidelop1(id) {
                 if (StateOfficer == "District Level Nodal Officer") {
                     for (var i = 0; i < data.length; i++) {
                         /*id = data[0].id;*/
-                        
+
                         sno = i + 1;
                         var other_scheme = data[i].lop1_other_schema_name_phase2;
                         if (other_scheme == null) {
@@ -11786,7 +11854,7 @@ function viewdata_phase2_supplysidelop1(id) {
                         var p2_schema_name_phase2 = data[i].schema_name_phase2;
                         var p2_other_schema_name_phase2 = data[i].other_schema_name_phase2;
 
-                        
+
 
 
                         var findinglop1data = "No";
@@ -12757,7 +12825,7 @@ function ss2update_data_phase_supplyside(id, i) {
         other = "";
     }
     if (xx == 0) {
-       var regex = /^\d{2}\.\d{1,6}$/;
+        var regex = /^\d{2}\.\d{1,6}$/;
         if (regex.test(date6)) {
         }
         else {
@@ -12939,7 +13007,7 @@ function lop1_ss2update_data_phase_supplyside(id, i) {
         other = "";
     }
     if (xx == 0) {
-       var regex = /^\d{2}\.\d{1,6}$/;
+        var regex = /^\d{2}\.\d{1,6}$/;
         if (regex.test(date6)) {
         }
         else {
@@ -13312,7 +13380,7 @@ function p2close_btn_supplyside() {
 }
 
 function sssummery() {
-    
+
     $('#ssdistrict_p1').hide();
     $('#ssdistrict_p2').hide();
     var phase = $('#phase').val();
