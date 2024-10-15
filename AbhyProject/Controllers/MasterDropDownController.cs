@@ -67,6 +67,18 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
+        public ActionResult all_dataexport_auth()
+        {
+            return View();
+        }
+        public ActionResult rp_npmu_auth()
+        {
+            return View();
+        }
+        public ActionResult rp_block_auth()
+        {
+            return View();
+        }
         public ActionResult current_event_block_auth()
         {
             return View();
@@ -14760,8 +14772,6 @@ namespace AbhyProject.Controllers
             }
         }
 
-
-
         public ActionResult Excel_all_data_current_event(string state1, string district1, string block01, string gram01, string year1, string month1, string state_name, string dist_name, string block_name, string gram_name)
         {
             try
@@ -14947,6 +14957,310 @@ namespace AbhyProject.Controllers
                             Nodal_officer = "Gram Panchayat Nodal Officer";
                         }
                         
+                        dataRow["Topic of Event"] = user.p_training_name;
+                        dataRow["Type of Event"] = user.type_of_event;
+                        dataRow["Location of Exposure Visit"] = user.location_expo;
+                        dataRow["Particulars of Exposure Visit"] = user.particular_expo;
+                        dataRow["State"] = user.level_event;
+                        dataRow["District"] = user.district;
+                        dataRow["Block"] = user.block;
+                        dataRow["Gram Panchayat"] = user.gp;
+                        dataRow["Year"] = user.year;
+                        dataRow["month"] = user.month;
+                        dataRow["Event Platform"] = user.event_platform;
+                        dataRow["From Date"] = user.from_date;
+                        dataRow["To Date"] = user.to_date;
+                        dataRow["Registration Open Date"] = user.reg_open_date;
+                        dataRow["Registration Close Date"] = user.reg_close_date;
+                        dataRow["Event Material"] = filenamefinal;
+                        dataRow["Location"] = user.village_name;
+                        dataRow["Male"] = user.male_population;
+                        dataRow["Female"] = user.female_population;
+                        dataRow["Transgender"] = user.other_population;
+                        dataRow["Total Number of Participants"] = user.total_participants;
+                        dataRow["SC"] = user.SC;
+                        dataRow["ST"] = user.ST;
+                        dataRow["OBC"] = user.OBC;
+                        dataRow["General"] = user.General;
+                        dataRow["Uploaded attendance sheet of the participants"] = atten_sheet_filename;
+                        dataRow["Upload Photograph of the training"] = photograph_filename;
+                        dataRow["Common Feedback from Participants on prescribed format"] = feedback_filename;
+                        dataRow["Data Validation"] = approve;
+                        dataRow["Reject Remark"] = reject_status;
+                        dataRow["Nodal officer"] = Nodal_officer;
+                        dt.Rows.Add(dataRow);
+
+                    }
+                }
+
+                else
+                {
+                    DataRow dataRow = dt.NewRow();
+                    dataRow["Topic of Event"] = "";
+                    dataRow["Type of Event"] = "";
+                    dataRow["Location of Exposure Visit"] = "";
+                    dataRow["Particulars of Exposure Visit"] = "";
+                    dataRow["State"] = "";
+                    dataRow["District"] = "";
+                    dataRow["Block"] = "";
+                    dataRow["Gram Panchayat"] = "No Data";
+                    dataRow["Year"] = "";
+                    dataRow["month"] = "";
+                    dataRow["Event Platform"] = "";
+                    dataRow["From Date"] = "";
+                    dataRow["To Date"] = "";
+                    dataRow["Registration Open Date"] = "";
+                    dataRow["Registration Close Date"] = "";
+                    dataRow["Event Material"] = "";
+                    dataRow["Location"] = "";
+                    dataRow["Male"] = "";
+                    dataRow["Female"] = "";
+                    dataRow["Transgender"] = "";
+                    dataRow["Total Number of Participants"] = "";
+                    dataRow["SC"] = "";
+                    dataRow["ST"] = "";
+                    dataRow["OBC"] = "";
+                    dataRow["General"] = "";
+                    dataRow["Uploaded attendance sheet of the participants"] = "";
+                    dataRow["Upload Photograph of the training"] = "";
+                    dataRow["Common Feedback from Participants on prescribed format"] = "";
+                    dataRow["Data Validation"] = "";
+                    dataRow["Reject Remark"] = "";
+                    dataRow["Nodal officer"] = "";
+                    dt.Rows.Add(dataRow);
+                }
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    System.Web.HttpContext.Current.Response.Clear();
+                    System.Web.HttpContext.Current.Response.ClearContent();
+                    System.Web.HttpContext.Current.Response.ClearHeaders();
+                    System.Web.HttpContext.Current.Response.Buffer = true;
+                    System.Web.HttpContext.Current.Response.ContentType = "text/csv";
+                    System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=Current_Event All.csv");
+                    System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("windows-1250");
+
+                    // Write the CSV header
+                    for (int j = 0; j < dt.Columns.Count; j++)
+                    {
+                        System.Web.HttpContext.Current.Response.Write("\"" + dt.Columns[j].ToString() + "\"");
+                        if (j < dt.Columns.Count - 1)
+                            System.Web.HttpContext.Current.Response.Write(",");
+                    }
+                    System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+
+                    // Write the CSV data
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        for (int i = 0; i < dt.Columns.Count; i++)
+                        {
+                            string fieldValue = row[i].ToString();
+
+                            // Enclose the field in double quotes and escape existing double quotes
+                            System.Web.HttpContext.Current.Response.Write("\"" + fieldValue.Replace("\"", "\"\"") + "\"");
+
+                            if (i < dt.Columns.Count - 1)
+                                System.Web.HttpContext.Current.Response.Write(",");
+                        }
+                        System.Web.HttpContext.Current.Response.Write(Environment.NewLine);
+                    }
+
+                    System.Web.HttpContext.Current.Response.Flush();
+                    System.Web.HttpContext.Current.Response.End();
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception Ex)
+            {
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Excel_all_data_current_event_gpauth(string state1, string district1, string block01, string gram01, string year1, string month1, string state_name, string dist_name, string block_name, string gram_name)
+        {
+            try
+            {
+                var State = state1;
+                var Dist = district1;
+                var Block = block01;
+                var Gram = gram01;
+                var Year = year1;
+                var month = month1;
+
+
+                List<current_events> TDetails = new List<current_events>();
+                if (State == "All")
+                {
+                    if (Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (Year != "0" && Year != "" && Year != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.year == Year).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else
+                    {
+                        TDetails = ABE.obj_current_events.Where(x=> x.Nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+
+                    }
+                }
+                else
+                {
+                    if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0" && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x =>x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0" && Year != "0" && Year != "" && Year != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram && x.year == Year).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != null && Gram != "" && Gram != "0")
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block && x.gp == Gram).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block && x.year == Year).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.block == Block).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist && x.year == Year).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.district == Dist).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null && month != "0" && month != "" && month != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.year == Year && x.month == month).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State && x.year == Year).OrderByDescending(x => x.id).ToList();
+
+                    }
+                    else if (State != "0" && State != "" && State != null)
+                    {
+                        TDetails = ABE.obj_current_events.Where(x => x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.level_event == State).OrderByDescending(x => x.id).ToList();
+
+                    }
+                }
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Topic of Event", typeof(string));
+                dt.Columns.Add("Type of Event", typeof(string));
+                dt.Columns.Add("Location of Exposure Visit", typeof(string));
+                dt.Columns.Add("Particulars of Exposure Visit", typeof(string));
+                dt.Columns.Add("State", typeof(string));
+                dt.Columns.Add("District", typeof(string));
+                dt.Columns.Add("Block", typeof(string));
+                dt.Columns.Add("Gram Panchayat", typeof(string));
+                dt.Columns.Add("Year", typeof(string));
+                dt.Columns.Add("month", typeof(string));
+                dt.Columns.Add("Event Platform", typeof(string));
+                dt.Columns.Add("From Date", typeof(string));
+                dt.Columns.Add("To Date", typeof(string));
+                dt.Columns.Add("Registration Open Date", typeof(string));
+                dt.Columns.Add("Registration Close Date", typeof(string));
+                dt.Columns.Add("Event Material", typeof(string));
+                dt.Columns.Add("Location", typeof(string));
+                dt.Columns.Add("Male", typeof(string));
+                dt.Columns.Add("Female", typeof(string));
+                dt.Columns.Add("Transgender", typeof(string));
+                dt.Columns.Add("Total Number of Participants", typeof(string));
+                dt.Columns.Add("SC", typeof(string));
+                dt.Columns.Add("ST", typeof(string));
+                dt.Columns.Add("OBC", typeof(string));
+                dt.Columns.Add("General", typeof(string));
+                dt.Columns.Add("Uploaded attendance sheet of the participants", typeof(string));
+                dt.Columns.Add("Upload Photograph of the training", typeof(string));
+                dt.Columns.Add("Common Feedback from Participants on prescribed format", typeof(string));
+                dt.Columns.Add("Data Validation", typeof(string));
+                dt.Columns.Add("Reject Remark", typeof(string));
+                dt.Columns.Add("Nodal officer", typeof(string));
+
+                var a = TDetails.Count;
+                if (a != 0)
+                {
+                    foreach (var user in TDetails)
+                    {
+                        DataRow dataRow = dt.NewRow();
+                        var filenamefinal = "";
+                        if (user.Nodal_officer == "Gram Panchyat Nodal Officer")
+                        {
+                            var event_upload_filename = user.event_upload_filename;
+                            if (event_upload_filename == null)
+                            {
+                                event_upload_filename = "";
+                            }
+                            filenamefinal = event_upload_filename;
+
+                        }
+                        else
+                        {
+                            var filename = user.filename;
+                            if (filename == null)
+                            {
+                                filename = "";
+                            }
+                            filenamefinal = filename;
+                        }
+                        var approve = user.approve_status;
+                        if (approve == null || approve == "")
+                        {
+                            approve = "Pending for Submission";
+                        }
+                        var reject_status = user.reject_status;
+                        if (reject_status == null || reject_status == "")
+                        {
+                            reject_status = "";
+                        }
+                        var atten_sheet_filename = user.atten_sheet_filename;
+                        if (atten_sheet_filename == null)
+                        {
+                            atten_sheet_filename = "";
+                        }
+                        var feedback_filename = user.feedback_filename;
+                        if (feedback_filename == null)
+                        {
+                            feedback_filename = "";
+                        }
+                        var photograph_filename = user.photograph_filename;
+                        if (photograph_filename == null)
+                        {
+                            photograph_filename = "";
+                        }
+                        var Nodal_officer = user.Nodal_officer;
+                        if (Nodal_officer == "Gram Panchyat Nodal Officer")
+                        {
+                            Nodal_officer = "Gram Panchayat Nodal Officer";
+                        }
+
                         dataRow["Topic of Event"] = user.p_training_name;
                         dataRow["Type of Event"] = user.type_of_event;
                         dataRow["Location of Exposure Visit"] = user.location_expo;
@@ -29291,6 +29605,647 @@ namespace AbhyProject.Controllers
             }
 
         }
+        [HttpPost]
+        public ActionResult state_npmu_feedbackdata_report_auth(string state, string dist, string block, string gram, string year, string month)
+        {
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    List<npmu_report_data> final_all_data = new List<npmu_report_data>();
+
+                    if (state == "All")
+                    {
+                        string[] states = { "Gujarat_24", "Haryana_6", "Karnataka_29", "Madhya Pradesh_23", "Maharashtra_27", "Rajasthan_8", "Uttar Pradesh_9" };
+                        for (int i = 0; i < states.Length; i++)
+                        {
+                            List<vw_abhy_feedback_latest> dd = new List<vw_abhy_feedback_latest>();
+
+                            var State = states[i];
+
+                            if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            }
+
+                            string[] topics = { "Structure Of Training Program", "Course Material", "Interaction With Trainer", "Hands on Practice/practical Session", "Usefullness Of Contents", "Information presented was clearly explained", "Participant questions were clearly answered", "Food Quality/Lodging Facilities (If Applicable)", "Overall Impression" };
+
+                            for (int j = 0; j < topics.Length; j++)
+                            {
+                                var count = new npmu_report_data();
+                                var topicsname = topics[j];
+                                count.topicsname = topicsname;
+                                count.state = State;
+                                count.district = "0";
+                                count.block = "0";
+                                count.gram = "0";
+                                count.year = year;
+                                count.month = month;
+
+                                var structure_of_training = "Structure Of Training Program";
+                                if (topicsname == structure_of_training)
+                                {
+
+                                    int structure_of_trainingverywellplanned = dd.Where(x => x.structure_of_training == "Very Well Planned_4").Count();
+                                    int structure_of_trainingwellplanned = dd.Where(x => x.structure_of_training == "Well Planned_3").Count();
+                                    int structure_of_traininglessplanned = dd.Where(x => x.structure_of_training == "Less Planned_2").Count();
+                                    int structure_of_trainingnoplanning = dd.Where(x => x.structure_of_training == "No Planning_1").Count();
+                                    int structure_of_trainingtotal = structure_of_trainingverywellplanned + structure_of_trainingwellplanned + structure_of_traininglessplanned + structure_of_trainingnoplanning;
+
+                                    count.spmutotaltarger = structure_of_trainingverywellplanned;
+                                    count.spmumonthcum = structure_of_trainingwellplanned;
+                                    count.spmutotalcum = structure_of_traininglessplanned;
+                                    count.spmucount_male = structure_of_trainingnoplanning;
+                                    count.spmucount_female = structure_of_trainingtotal;
+
+                                }
+                                var Course_Material = "Course Material";
+                                if (topicsname == Course_Material)
+                                {
+                                    int Course_Materialveryrelevant = dd.Where(x => x.course_material == "Very Relevant_4").Count();
+                                    int Course_Materialrelevant = dd.Where(x => x.course_material == "Relevant_3").Count();
+                                    int Course_Materiallessrelevant = dd.Where(x => x.course_material == "Less Relevant_2").Count();
+                                    int Course_Materialnotrelevant = dd.Where(x => x.course_material == "Not Relevant_1").Count();
+                                    int Course_Materialtotal = Course_Materialveryrelevant + Course_Materialrelevant + Course_Materiallessrelevant + Course_Materialnotrelevant;
+                                    count.spmutotaltarger = Course_Materialveryrelevant;
+                                    count.spmumonthcum = Course_Materialrelevant;
+                                    count.spmutotalcum = Course_Materiallessrelevant;
+                                    count.spmucount_male = Course_Materialnotrelevant;
+                                    count.spmucount_female = Course_Materialtotal;
+                                }
+                                var interaction_with_trainer = "Interaction With Trainer";
+                                if (topicsname == interaction_with_trainer)
+                                {
+                                    int interaction_with_trainerexcellent = dd.Where(x => x.interaction_with_trainer == "Excellent_4").Count();
+                                    int interaction_with_trainerverygood = dd.Where(x => x.interaction_with_trainer == "Very Good_3").Count();
+                                    int interaction_with_trainergood = dd.Where(x => x.interaction_with_trainer == "Good_2").Count();
+                                    int interaction_with_trainerpoor = dd.Where(x => x.interaction_with_trainer == "Poor_1").Count();
+                                    int interaction_with_trainertotal = interaction_with_trainerexcellent + interaction_with_trainerverygood + interaction_with_trainergood + interaction_with_trainerpoor;
+
+                                    count.spmutotaltarger = interaction_with_trainerexcellent;
+                                    count.spmumonthcum = interaction_with_trainerverygood;
+                                    count.spmutotalcum = interaction_with_trainergood;
+                                    count.spmucount_male = interaction_with_trainerpoor;
+                                    count.spmucount_female = interaction_with_trainertotal;
+                                }
+                                var hands_on_practice = "Hands on Practice/practical Session";
+                                if (topicsname == hands_on_practice)
+                                {
+                                    int hands_on_practiceexcellent = dd.Where(x => x.hands_on_practice == "Very Useful_4").Count();
+                                    int hands_on_practiceverygood = dd.Where(x => x.hands_on_practice == "Useful_3").Count();
+                                    int hands_on_practicegood = dd.Where(x => x.hands_on_practice == "Less Useful_2").Count();
+                                    int hands_on_practicepoor = dd.Where(x => x.hands_on_practice == "Not Useful_1").Count();
+                                    int hands_on_practicetotal = hands_on_practiceexcellent + hands_on_practiceverygood + hands_on_practicegood + hands_on_practicepoor;
+
+                                    count.spmutotaltarger = hands_on_practiceexcellent;
+                                    count.spmumonthcum = hands_on_practiceverygood;
+                                    count.spmutotalcum = hands_on_practicegood;
+                                    count.spmucount_male = hands_on_practicepoor;
+                                    count.spmucount_female = hands_on_practicetotal;
+                                }
+                                var usefulness_of_contents = "Usefullness Of Contents";
+                                if (topicsname == usefulness_of_contents)
+                                {
+                                    int usefulness_of_contentsexcellent = dd.Where(x => x.usefulness_of_contents == "Very Useful_4").Count();
+                                    int usefulness_of_contentsverygood = dd.Where(x => x.usefulness_of_contents == "Useful_3").Count();
+                                    int usefulness_of_contentsgood = dd.Where(x => x.usefulness_of_contents == "Less Useful_2").Count();
+                                    int usefulness_of_contentspoor = dd.Where(x => x.usefulness_of_contents == "Not Useful_1").Count();
+                                    int usefulness_of_contentstotal = usefulness_of_contentsexcellent + usefulness_of_contentsverygood + usefulness_of_contentsgood + usefulness_of_contentspoor;
+
+                                    count.spmutotaltarger = usefulness_of_contentsexcellent;
+                                    count.spmumonthcum = usefulness_of_contentsverygood;
+                                    count.spmutotalcum = usefulness_of_contentsgood;
+                                    count.spmucount_male = usefulness_of_contentspoor;
+                                    count.spmucount_female = usefulness_of_contentstotal;
+                                }
+                                var information_presented = "Information presented was clearly explained";
+                                if (topicsname == information_presented)
+                                {
+                                    int information_presentedexcellent = dd.Where(x => x.information_presented == "Strongly Agree_5").Count();
+                                    int information_presentedverygood = dd.Where(x => x.information_presented == "Agree_4").Count();
+                                    int information_presentedgood = dd.Where(x => x.information_presented == "Neutral_3").Count();
+                                    int information_presentedpoor = dd.Where(x => x.information_presented == "Disagree_2").Count();
+                                    int information_presentedverypoor = dd.Where(x => x.information_presented == "Strongly Disagree_1").Count();
+                                    int information_presentedtotal = information_presentedexcellent + information_presentedverygood + information_presentedgood + information_presentedpoor + information_presentedverypoor;
+
+                                    count.spmutotaltarger = information_presentedexcellent;
+                                    count.spmumonthcum = information_presentedverygood;
+                                    count.spmutotalcum = information_presentedgood;
+                                    count.spmucount_male = information_presentedpoor;
+                                    count.spmucount_female = information_presentedtotal;
+                                    count.spmucount_trangender = information_presentedverypoor;
+                                }
+                                var participant_questions = "Participant questions were clearly answered";
+                                if (topicsname == participant_questions)
+                                {
+                                    int participant_questionsexcellent = dd.Where(x => x.participant_questions == "Strongly Agree_5").Count();
+                                    int participant_questionsverygood = dd.Where(x => x.participant_questions == "Agree_4").Count();
+                                    int participant_questionsgood = dd.Where(x => x.participant_questions == "Neutral_3").Count();
+                                    int participant_questionspoor = dd.Where(x => x.participant_questions == "Disagree_2").Count();
+                                    int participant_questionsverypoor = dd.Where(x => x.participant_questions == "Strongly Disagree_1").Count();
+                                    int participant_questionstotal = participant_questionsexcellent + participant_questionsverygood + participant_questionsgood + participant_questionspoor + participant_questionsverypoor;
+
+                                    count.spmutotaltarger = participant_questionsexcellent;
+                                    count.spmumonthcum = participant_questionsverygood;
+                                    count.spmutotalcum = participant_questionsgood;
+                                    count.spmucount_male = participant_questionspoor;
+                                    count.spmucount_female = participant_questionstotal;
+                                    count.spmucount_trangender = participant_questionsverypoor;
+                                }
+                                var food_quality = "Food Quality/Lodging Facilities (If Applicable)";
+                                if (topicsname == food_quality)
+                                {
+                                    int food_qualityexcellent = dd.Where(x => x.food_quality == "Excellent_4").Count();
+                                    int food_qualityverygood = dd.Where(x => x.food_quality == "Very Good_3").Count();
+                                    int food_qualitygood = dd.Where(x => x.food_quality == "Good_2").Count();
+                                    int food_qualitypoor = dd.Where(x => x.food_quality == "Poor_1").Count();
+                                    int food_qualitytotal = food_qualityexcellent + food_qualityverygood + food_qualitygood + food_qualitypoor;
+
+                                    count.spmutotaltarger = food_qualityexcellent;
+                                    count.spmumonthcum = food_qualityverygood;
+                                    count.spmutotalcum = food_qualitygood;
+                                    count.spmucount_male = food_qualitypoor;
+                                    count.spmucount_female = food_qualitytotal;
+                                }
+                                var over_all = "Overall Impression";
+                                if (topicsname == over_all)
+                                {
+                                    int overallexcellent = dd.Where(x => x.overall_impression == "Very Beneficial_27-34").Count();
+                                    int overallverygood = dd.Where(x => x.overall_impression == "Beneficial_18-26").Count();
+                                    int overallgood = dd.Where(x => x.overall_impression == "Less Beneficial_9-17").Count();
+                                    int overallpoor = dd.Where(x => x.overall_impression == "Not Beneficial_1-8").Count();
+                                    int overalltotal = overallexcellent + overallverygood + overallgood + overallpoor;
+
+                                    count.spmutotaltarger = overallexcellent;
+                                    count.spmumonthcum = overallverygood;
+                                    count.spmutotalcum = overallgood;
+                                    count.spmucount_male = overallpoor;
+                                    count.spmucount_female = overalltotal;
+                                }
+
+                                final_all_data.Add(count);
+
+                            }
+
+                        }
+                        var jsonresult = Json(final_all_data, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+
+                    }
+                    else if (gram != "0" && gram != "" && gram != null)
+                    {
+                        List<feedback_gp> dd = new List<feedback_gp>();
+                        List<current_events> current_dd = new List<current_events>();
+
+                        var State = state;
+                        var Dist = dist;
+                        var Block = block;
+                        var Gram = gram;
+
+                        if (Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                        {
+                            dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            current_dd = ABE.obj_current_events.Where(x => x.gp == Gram && x.year == year && x.month == month && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                        }
+                        else if (Gram != "0" && Gram != "" && Gram != null && year != "0" && year != "" && year != null)
+                        {
+                            dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            current_dd = ABE.obj_current_events.Where(x => x.gp == Gram && x.year == year && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                        }
+                        else if (Gram != "0" && Gram != "" && Gram != null)
+                        {
+                            dd = ABE.obj_feedback_gp.Where(x => x.gp_training == Gram && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                            current_dd = ABE.obj_current_events.Where(x => x.gp == Gram && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                        }
+
+                        string[] topics = { "Structure Of Training Program", "Course Material", "Interaction With Trainer", "Hands on Practice/practical Session", "Usefullness Of Contents", "Information presented was clearly explained", "Participant questions were clearly answered", "Food Quality/Lodging Facilities (If Applicable)", "Overall Impression" };
+
+                        for (int j = 0; j < topics.Length; j++)
+                        {
+                            var count = new npmu_report_data();
+                            var topicsname = topics[j];
+                            count.topicsname = topicsname;
+                            count.state = State;
+                            count.district = Dist;
+                            count.block = Block;
+                            count.gram = Gram;
+                            count.year = year;
+                            count.month = month;
+                            count.totalcount = current_dd.Count();
+
+                            var structure_of_training = "Structure Of Training Program";
+                            if (topicsname == structure_of_training)
+                            {
+
+                                int structure_of_trainingverywellplanned = dd.Where(x => x.structure_of_training == "Very Well Planned_4").Count();
+                                int structure_of_trainingwellplanned = dd.Where(x => x.structure_of_training == "Well Planned_3").Count();
+                                int structure_of_traininglessplanned = dd.Where(x => x.structure_of_training == "Less Planned_2").Count();
+                                int structure_of_trainingnoplanning = dd.Where(x => x.structure_of_training == "No Planning_1").Count();
+                                int structure_of_trainingtotal = structure_of_trainingverywellplanned + structure_of_trainingwellplanned + structure_of_traininglessplanned + structure_of_trainingnoplanning;
+
+                                count.spmutotaltarger = structure_of_trainingverywellplanned;
+                                count.spmumonthcum = structure_of_trainingwellplanned;
+                                count.spmutotalcum = structure_of_traininglessplanned;
+                                count.spmucount_male = structure_of_trainingnoplanning;
+                                count.spmucount_female = structure_of_trainingtotal;
+
+                            }
+                            var Course_Material = "Course Material";
+                            if (topicsname == Course_Material)
+                            {
+                                int Course_Materialveryrelevant = dd.Where(x => x.course_material == "Very Relevant_4").Count();
+                                int Course_Materialrelevant = dd.Where(x => x.course_material == "Relevant_3").Count();
+                                int Course_Materiallessrelevant = dd.Where(x => x.course_material == "Less Relevant_2").Count();
+                                int Course_Materialnotrelevant = dd.Where(x => x.course_material == "Not Relevant_1").Count();
+                                int Course_Materialtotal = Course_Materialveryrelevant + Course_Materialrelevant + Course_Materiallessrelevant + Course_Materialnotrelevant;
+                                count.spmutotaltarger = Course_Materialveryrelevant;
+                                count.spmumonthcum = Course_Materialrelevant;
+                                count.spmutotalcum = Course_Materiallessrelevant;
+                                count.spmucount_male = Course_Materialnotrelevant;
+                                count.spmucount_female = Course_Materialtotal;
+                            }
+                            var interaction_with_trainer = "Interaction With Trainer";
+                            if (topicsname == interaction_with_trainer)
+                            {
+                                int interaction_with_trainerexcellent = dd.Where(x => x.interaction_with_trainer == "Excellent_4").Count();
+                                int interaction_with_trainerverygood = dd.Where(x => x.interaction_with_trainer == "Very Good_3").Count();
+                                int interaction_with_trainergood = dd.Where(x => x.interaction_with_trainer == "Good_2").Count();
+                                int interaction_with_trainerpoor = dd.Where(x => x.interaction_with_trainer == "Poor_1").Count();
+                                int interaction_with_trainertotal = interaction_with_trainerexcellent + interaction_with_trainerverygood + interaction_with_trainergood + interaction_with_trainerpoor;
+
+                                count.spmutotaltarger = interaction_with_trainerexcellent;
+                                count.spmumonthcum = interaction_with_trainerverygood;
+                                count.spmutotalcum = interaction_with_trainergood;
+                                count.spmucount_male = interaction_with_trainerpoor;
+                                count.spmucount_female = interaction_with_trainertotal;
+                            }
+                            var hands_on_practice = "Hands on Practice/practical Session";
+                            if (topicsname == hands_on_practice)
+                            {
+                                int hands_on_practiceexcellent = dd.Where(x => x.hands_on_practice == "Very Useful_4").Count();
+                                int hands_on_practiceverygood = dd.Where(x => x.hands_on_practice == "Useful_3").Count();
+                                int hands_on_practicegood = dd.Where(x => x.hands_on_practice == "Less Useful_2").Count();
+                                int hands_on_practicepoor = dd.Where(x => x.hands_on_practice == "Not Useful_1").Count();
+                                int hands_on_practicetotal = hands_on_practiceexcellent + hands_on_practiceverygood + hands_on_practicegood + hands_on_practicepoor;
+
+                                count.spmutotaltarger = hands_on_practiceexcellent;
+                                count.spmumonthcum = hands_on_practiceverygood;
+                                count.spmutotalcum = hands_on_practicegood;
+                                count.spmucount_male = hands_on_practicepoor;
+                                count.spmucount_female = hands_on_practicetotal;
+                            }
+                            var usefulness_of_contents = "Usefullness Of Contents";
+                            if (topicsname == usefulness_of_contents)
+                            {
+                                int usefulness_of_contentsexcellent = dd.Where(x => x.usefulness_of_contents == "Very Useful_4").Count();
+                                int usefulness_of_contentsverygood = dd.Where(x => x.usefulness_of_contents == "Useful_3").Count();
+                                int usefulness_of_contentsgood = dd.Where(x => x.usefulness_of_contents == "Less Useful_2").Count();
+                                int usefulness_of_contentspoor = dd.Where(x => x.usefulness_of_contents == "Not Useful_1").Count();
+                                int usefulness_of_contentstotal = usefulness_of_contentsexcellent + usefulness_of_contentsverygood + usefulness_of_contentsgood + usefulness_of_contentspoor;
+
+                                count.spmutotaltarger = usefulness_of_contentsexcellent;
+                                count.spmumonthcum = usefulness_of_contentsverygood;
+                                count.spmutotalcum = usefulness_of_contentsgood;
+                                count.spmucount_male = usefulness_of_contentspoor;
+                                count.spmucount_female = usefulness_of_contentstotal;
+                            }
+                            var information_presented = "Information presented was clearly explained";
+                            if (topicsname == information_presented)
+                            {
+                                int information_presentedexcellent = dd.Where(x => x.information_presented == "Strongly Agree_5").Count();
+                                int information_presentedverygood = dd.Where(x => x.information_presented == "Agree_4").Count();
+                                int information_presentedgood = dd.Where(x => x.information_presented == "Neutral_3").Count();
+                                int information_presentedpoor = dd.Where(x => x.information_presented == "Disagree_2").Count();
+                                int information_presentedverypoor = dd.Where(x => x.information_presented == "Strongly Disagree_1").Count();
+                                int information_presentedtotal = information_presentedexcellent + information_presentedverygood + information_presentedgood + information_presentedpoor + information_presentedverypoor;
+
+                                count.spmutotaltarger = information_presentedexcellent;
+                                count.spmumonthcum = information_presentedverygood;
+                                count.spmutotalcum = information_presentedgood;
+                                count.spmucount_male = information_presentedpoor;
+                                count.spmucount_female = information_presentedtotal;
+                                count.spmucount_trangender = information_presentedverypoor;
+                            }
+                            var participant_questions = "Participant questions were clearly answered";
+                            if (topicsname == participant_questions)
+                            {
+                                int participant_questionsexcellent = dd.Where(x => x.participant_questions == "Strongly Agree_5").Count();
+                                int participant_questionsverygood = dd.Where(x => x.participant_questions == "Agree_4").Count();
+                                int participant_questionsgood = dd.Where(x => x.participant_questions == "Neutral_3").Count();
+                                int participant_questionspoor = dd.Where(x => x.participant_questions == "Disagree_2").Count();
+                                int participant_questionsverypoor = dd.Where(x => x.participant_questions == "Strongly Disagree_1").Count();
+                                int participant_questionstotal = participant_questionsexcellent + participant_questionsverygood + participant_questionsgood + participant_questionspoor + participant_questionsverypoor;
+
+                                count.spmutotaltarger = participant_questionsexcellent;
+                                count.spmumonthcum = participant_questionsverygood;
+                                count.spmutotalcum = participant_questionsgood;
+                                count.spmucount_male = participant_questionspoor;
+                                count.spmucount_female = participant_questionstotal;
+                                count.spmucount_trangender = participant_questionsverypoor;
+                            }
+                            var food_quality = "Food Quality/Lodging Facilities (If Applicable)";
+                            if (topicsname == food_quality)
+                            {
+                                int food_qualityexcellent = dd.Where(x => x.food_quality == "Excellent_4").Count();
+                                int food_qualityverygood = dd.Where(x => x.food_quality == "Very Good_3").Count();
+                                int food_qualitygood = dd.Where(x => x.food_quality == "Good_2").Count();
+                                int food_qualitypoor = dd.Where(x => x.food_quality == "Poor_1").Count();
+                                int food_qualitytotal = food_qualityexcellent + food_qualityverygood + food_qualitygood + food_qualitypoor;
+
+                                count.spmutotaltarger = food_qualityexcellent;
+                                count.spmumonthcum = food_qualityverygood;
+                                count.spmutotalcum = food_qualitygood;
+                                count.spmucount_male = food_qualitypoor;
+                                count.spmucount_female = food_qualitytotal;
+                            }
+                            var over_all = "Overall Impression";
+                            if (topicsname == over_all)
+                            {
+                                int overallexcellent = dd.Where(x => x.overall_impression == "Very Beneficial_27-34").Count();
+                                int overallverygood = dd.Where(x => x.overall_impression == "Beneficial_18-26").Count();
+                                int overallgood = dd.Where(x => x.overall_impression == "Less Beneficial_9-17").Count();
+                                int overallpoor = dd.Where(x => x.overall_impression == "Not Beneficial_1-8").Count();
+                                int overalltotal = overallexcellent + overallverygood + overallgood + overallpoor;
+
+                                count.spmutotaltarger = overallexcellent;
+                                count.spmumonthcum = overallverygood;
+                                count.spmutotalcum = overallgood;
+                                count.spmucount_male = overallpoor;
+                                count.spmucount_female = overalltotal;
+                            }
+
+                            final_all_data.Add(count);
+
+                        }
+
+
+                        var jsonresult = Json(final_all_data, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+                    }
+                    else
+                    {
+                        List<vw_abhy_feedback_latest> dd = new List<vw_abhy_feedback_latest>();
+                        List<current_events> current_dd = new List<current_events>();
+
+                        var State = state;
+                        var Dist = dist;
+                        var Block = block;
+                        var Gram = gram;
+                        if (State == "NPMU (Delhi)")
+                        {
+                            if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.month == month && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                        }
+                        else
+                        {
+                            if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.block == Block && x.year == year && x.month == month && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && year != "0" && year != "" && year != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.block == Block && x.year == year && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.block == Block && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.block == Block && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.year == year && x.month == month && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && year != "0" && year != "" && year != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.year == year && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.dist == Dist && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.district == Dist && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null && month != "0" && month != "" && month != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.year == year && x.month == month && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.month == month && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null && year != "0" && year != "" && year != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.year == year && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.year == year && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                            else if (State != "0" && State != "" && State != null)
+                            {
+                                dd = ABE.obj_vw_abhy_feedback_latest.Where(x => x.level_of_event == State && x.nodal_officer == "Gram Panchyat Nodal Officer").OrderByDescending(x => x.id).ToList();
+                                current_dd = ABE.obj_current_events.Where(x => x.level_event == State && x.Nodal_officer == "Gram Panchyat Nodal Officer" && x.approve_status == "Approved").OrderByDescending(x => x.id).ToList();
+                            }
+                        }
+                        string[] topics = { "Structure Of Training Program", "Course Material", "Interaction With Trainer", "Hands on Practice/practical Session", "Usefullness Of Contents", "Information presented was clearly explained", "Participant questions were clearly answered", "Food Quality/Lodging Facilities (If Applicable)", "Overall Impression" };
+
+                        for (int j = 0; j < topics.Length; j++)
+                        {
+                            var count = new npmu_report_data();
+                            var topicsname = topics[j];
+                            count.topicsname = topicsname;
+                            count.state = State;
+                            count.district = Dist;
+                            count.block = Block;
+                            count.gram = Gram;
+                            count.year = year;
+                            count.month = month;
+                            count.totalcount = current_dd.Count();
+
+                            var structure_of_training = "Structure Of Training Program";
+                            if (topicsname == structure_of_training)
+                            {
+
+                                int structure_of_trainingverywellplanned = dd.Where(x => x.structure_of_training == "Very Well Planned_4").Count();
+                                int structure_of_trainingwellplanned = dd.Where(x => x.structure_of_training == "Well Planned_3").Count();
+                                int structure_of_traininglessplanned = dd.Where(x => x.structure_of_training == "Less Planned_2").Count();
+                                int structure_of_trainingnoplanning = dd.Where(x => x.structure_of_training == "No Planning_1").Count();
+                                int structure_of_trainingtotal = structure_of_trainingverywellplanned + structure_of_trainingwellplanned + structure_of_traininglessplanned + structure_of_trainingnoplanning;
+
+                                count.spmutotaltarger = structure_of_trainingverywellplanned;
+                                count.spmumonthcum = structure_of_trainingwellplanned;
+                                count.spmutotalcum = structure_of_traininglessplanned;
+                                count.spmucount_male = structure_of_trainingnoplanning;
+                                count.spmucount_female = structure_of_trainingtotal;
+
+                            }
+                            var Course_Material = "Course Material";
+                            if (topicsname == Course_Material)
+                            {
+                                int Course_Materialveryrelevant = dd.Where(x => x.course_material == "Very Relevant_4").Count();
+                                int Course_Materialrelevant = dd.Where(x => x.course_material == "Relevant_3").Count();
+                                int Course_Materiallessrelevant = dd.Where(x => x.course_material == "Less Relevant_2").Count();
+                                int Course_Materialnotrelevant = dd.Where(x => x.course_material == "Not Relevant_1").Count();
+                                int Course_Materialtotal = Course_Materialveryrelevant + Course_Materialrelevant + Course_Materiallessrelevant + Course_Materialnotrelevant;
+                                count.spmutotaltarger = Course_Materialveryrelevant;
+                                count.spmumonthcum = Course_Materialrelevant;
+                                count.spmutotalcum = Course_Materiallessrelevant;
+                                count.spmucount_male = Course_Materialnotrelevant;
+                                count.spmucount_female = Course_Materialtotal;
+                            }
+                            var interaction_with_trainer = "Interaction With Trainer";
+                            if (topicsname == interaction_with_trainer)
+                            {
+                                int interaction_with_trainerexcellent = dd.Where(x => x.interaction_with_trainer == "Excellent_4").Count();
+                                int interaction_with_trainerverygood = dd.Where(x => x.interaction_with_trainer == "Very Good_3").Count();
+                                int interaction_with_trainergood = dd.Where(x => x.interaction_with_trainer == "Good_2").Count();
+                                int interaction_with_trainerpoor = dd.Where(x => x.interaction_with_trainer == "Poor_1").Count();
+                                int interaction_with_trainertotal = interaction_with_trainerexcellent + interaction_with_trainerverygood + interaction_with_trainergood + interaction_with_trainerpoor;
+
+                                count.spmutotaltarger = interaction_with_trainerexcellent;
+                                count.spmumonthcum = interaction_with_trainerverygood;
+                                count.spmutotalcum = interaction_with_trainergood;
+                                count.spmucount_male = interaction_with_trainerpoor;
+                                count.spmucount_female = interaction_with_trainertotal;
+                            }
+                            var hands_on_practice = "Hands on Practice/practical Session";
+                            if (topicsname == hands_on_practice)
+                            {
+                                int hands_on_practiceexcellent = dd.Where(x => x.hands_on_practice == "Very Useful_4").Count();
+                                int hands_on_practiceverygood = dd.Where(x => x.hands_on_practice == "Useful_3").Count();
+                                int hands_on_practicegood = dd.Where(x => x.hands_on_practice == "Less Useful_2").Count();
+                                int hands_on_practicepoor = dd.Where(x => x.hands_on_practice == "Not Useful_1").Count();
+                                int hands_on_practicetotal = hands_on_practiceexcellent + hands_on_practiceverygood + hands_on_practicegood + hands_on_practicepoor;
+
+                                count.spmutotaltarger = hands_on_practiceexcellent;
+                                count.spmumonthcum = hands_on_practiceverygood;
+                                count.spmutotalcum = hands_on_practicegood;
+                                count.spmucount_male = hands_on_practicepoor;
+                                count.spmucount_female = hands_on_practicetotal;
+                            }
+                            var usefulness_of_contents = "Usefullness Of Contents";
+                            if (topicsname == usefulness_of_contents)
+                            {
+                                int usefulness_of_contentsexcellent = dd.Where(x => x.usefulness_of_contents == "Very Useful_4").Count();
+                                int usefulness_of_contentsverygood = dd.Where(x => x.usefulness_of_contents == "Useful_3").Count();
+                                int usefulness_of_contentsgood = dd.Where(x => x.usefulness_of_contents == "Less Useful_2").Count();
+                                int usefulness_of_contentspoor = dd.Where(x => x.usefulness_of_contents == "Not Useful_1").Count();
+                                int usefulness_of_contentstotal = usefulness_of_contentsexcellent + usefulness_of_contentsverygood + usefulness_of_contentsgood + usefulness_of_contentspoor;
+
+                                count.spmutotaltarger = usefulness_of_contentsexcellent;
+                                count.spmumonthcum = usefulness_of_contentsverygood;
+                                count.spmutotalcum = usefulness_of_contentsgood;
+                                count.spmucount_male = usefulness_of_contentspoor;
+                                count.spmucount_female = usefulness_of_contentstotal;
+                            }
+                            var information_presented = "Information presented was clearly explained";
+                            if (topicsname == information_presented)
+                            {
+                                int information_presentedexcellent = dd.Where(x => x.information_presented == "Strongly Agree_5").Count();
+                                int information_presentedverygood = dd.Where(x => x.information_presented == "Agree_4").Count();
+                                int information_presentedgood = dd.Where(x => x.information_presented == "Neutral_3").Count();
+                                int information_presentedpoor = dd.Where(x => x.information_presented == "Disagree_2").Count();
+                                int information_presentedverypoor = dd.Where(x => x.information_presented == "Strongly Disagree_1").Count();
+                                int information_presentedtotal = information_presentedexcellent + information_presentedverygood + information_presentedgood + information_presentedpoor + information_presentedverypoor;
+
+                                count.spmutotaltarger = information_presentedexcellent;
+                                count.spmumonthcum = information_presentedverygood;
+                                count.spmutotalcum = information_presentedgood;
+                                count.spmucount_male = information_presentedpoor;
+                                count.spmucount_female = information_presentedtotal;
+                                count.spmucount_trangender = information_presentedverypoor;
+                            }
+                            var participant_questions = "Participant questions were clearly answered";
+                            if (topicsname == participant_questions)
+                            {
+                                int participant_questionsexcellent = dd.Where(x => x.participant_questions == "Strongly Agree_5").Count();
+                                int participant_questionsverygood = dd.Where(x => x.participant_questions == "Agree_4").Count();
+                                int participant_questionsgood = dd.Where(x => x.participant_questions == "Neutral_3").Count();
+                                int participant_questionspoor = dd.Where(x => x.participant_questions == "Disagree_2").Count();
+                                int participant_questionsverypoor = dd.Where(x => x.participant_questions == "Strongly Disagree_1").Count();
+                                int participant_questionstotal = participant_questionsexcellent + participant_questionsverygood + participant_questionsgood + participant_questionspoor + participant_questionsverypoor;
+
+                                count.spmutotaltarger = participant_questionsexcellent;
+                                count.spmumonthcum = participant_questionsverygood;
+                                count.spmutotalcum = participant_questionsgood;
+                                count.spmucount_male = participant_questionspoor;
+                                count.spmucount_female = participant_questionstotal;
+                                count.spmucount_trangender = participant_questionsverypoor;
+                            }
+                            var food_quality = "Food Quality/Lodging Facilities (If Applicable)";
+                            if (topicsname == food_quality)
+                            {
+                                int food_qualityexcellent = dd.Where(x => x.food_quality == "Excellent_4").Count();
+                                int food_qualityverygood = dd.Where(x => x.food_quality == "Very Good_3").Count();
+                                int food_qualitygood = dd.Where(x => x.food_quality == "Good_2").Count();
+                                int food_qualitypoor = dd.Where(x => x.food_quality == "Poor_1").Count();
+                                int food_qualitytotal = food_qualityexcellent + food_qualityverygood + food_qualitygood + food_qualitypoor;
+
+                                count.spmutotaltarger = food_qualityexcellent;
+                                count.spmumonthcum = food_qualityverygood;
+                                count.spmutotalcum = food_qualitygood;
+                                count.spmucount_male = food_qualitypoor;
+                                count.spmucount_female = food_qualitytotal;
+                            }
+                            var over_all = "Overall Impression";
+                            if (topicsname == over_all)
+                            {
+                                int overallexcellent = dd.Where(x => x.overall_impression == "Very Beneficial_27-34").Count();
+                                int overallverygood = dd.Where(x => x.overall_impression == "Beneficial_18-26").Count();
+                                int overallgood = dd.Where(x => x.overall_impression == "Less Beneficial_9-17").Count();
+                                int overallpoor = dd.Where(x => x.overall_impression == "Not Beneficial_1-8").Count();
+                                int overalltotal = overallexcellent + overallverygood + overallgood + overallpoor;
+
+                                count.spmutotaltarger = overallexcellent;
+                                count.spmumonthcum = overallverygood;
+                                count.spmutotalcum = overallgood;
+                                count.spmucount_male = overallpoor;
+                                count.spmucount_female = overalltotal;
+                            }
+
+                            final_all_data.Add(count);
+
+                        }
+
+
+                        var jsonresult = Json(final_all_data, JsonRequestBehavior.AllowGet);
+                        jsonresult.MaxJsonLength = int.MaxValue;
+                        return jsonresult;
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    return Json("Error", JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json("Logout", JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+
 
         [HttpPost]
         public ActionResult feedbacknpmu_total(string state, string dist, string block, string year, string month)

@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "WSPgram";
-    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+    Layout = "~/Views/Shared/training_authgp.cshtml";
 }
 <title>Training</title>
 <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
@@ -47,6 +47,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 
 <style>
@@ -543,168 +545,6 @@
         <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
     </div>
 </div>
-<main>
-    <header class="header hederImage">
-        <div class="clearfix">
-            <div class="clearfix">
-                <div class="col-lg-9">
-                    <div class="header-top-info">
-                        <ul class="clearfix">
-                            <li>
-                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
-                            </li>
-
-                            <li>
-                                <span>
-                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
-                                </span>
-                                <span>
-                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
-                                        Ministry of Jal Shakti
-                                    </a>
-                                </span>
-                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
-                                <span style="text-align:center;">
-                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
-                                       style="text-transform:none; font-size:14px;">
-                                        River Development & Ganga Rejuvenation
-                                    </a>
-                                </span>
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <ul class="imgHome clearfix">
-
-                        <li>
-                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
-                            @if (Session["UserName"] != null)
-                            {
-                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
-                            }
-
-                        </li>
-                        <li>
-                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
-                    <ul class="imgHome clearfix">
-                        <li>
-                            <a href="~/Home/index">
-                                <span>
-                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
-                                </span>
-                                <label>MIS Users <i class="fa fa-angle-double-right"></i></label>
-                            </a>
-                        </li>
-                        <li>
-                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
-                            <label>Training & Workshop </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-2 pull-right">
-
-                    <a href="~/Home/LogOut" class="btn btn-danger" style="margin-bottom:10px;">
-                        Back To Login
-                    </a>
-
-
-                </div>
-            </div>
-        </div>
-    </header>
-</main>
-<div class="completed col-md-12" style="padding:10px;">
-    <div class="wrapper" style="padding: 10px; ">
-        <div class="col-lg-12" style="border: 5px solid #337ab7; background-color: #edebeb;">
-            <div class="col-md-12 text-center p-0">
-                <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600; font-size: 18px;margin-bottom:10px;margin-top:10px">Completed Trainings</h4>
-            </div>
-
-            <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
-                <p style=" margin: 0; width: fit-content; ">Note:- The below-mentioned statistics are shown based on the approved data by the competent authority. If the competent authority is approving data continuously, the statistics will change only after refreshing the page.</p>
-            </div>
-
-            <div id="style-1" class=" center" style="font-size: 13px;border: transparent;">
-                <div id="atnpmu" class="table-responsive">
-                    <table id="" class="GWL_deviation_table table table-bordered  table-__web-inspector-hide-shortcut__" style="font-size: 13px;border: transparent;">
-
-                        <tbody id="">
-
-                            <tr style="background-color: #337ab7; color: #fff; font-weight: bold;">
-                                <td id="npmu_a" colspan="1" class="font-bold">Total Trainings Completed At NPMU</td>
-                                <td id="spmu_a" colspan="1" class="font-bold">Total Trainings Completed At State Level</td>
-                                <td id="dpmu_a" colspan="1" class="font-bold">Total Trainings Completed At District Level</td>
-                                <td id="bpmu_a" colspan="1" class="font-bold">Total Trainings Completed At Block Level</td>
-                                <td id="gpmu_a" colspan="1" class="font-bold">Total Trainings Completed At Gram Panchayat Level</td>
-                                <td id="tota_a" colspan="1" class="font-bold">Total</td>
-                            </tr>
-
-                            <tr style="font-size: 13px; border: transparent;font-weight:600; background-color: #fff;">
-                                <td id="npmu_b">
-                                    <label id="atnpmu_approve"></label>
-                                </td>
-                                <td id="spmu_b">
-                                    <label id="atstate_approve"></label>
-                                </td>
-
-                                <td id="dpmu_b">
-                                    <label id="atdpmu_approve"></label>
-                                </td>
-                                <td id="bpmu_b">
-                                    <label id="atblock_approve"></label>
-                                </td>
-                                <td id="gpmu_b">
-                                    <label id="at_gp_approve"></label>
-                                </td>
-                                <td id="tota_b">
-                                    <label id="at_total_approve"></label>
-                                </td>
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!--<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-12 col-lg-12 p-0">
-            <div>-->
-                <!-- Main Tabs -->
-                <!--<ul class="nav" id="myTab" role="tablist">-->
-                    <!-- Tab 1 with Submenu -->
-                    <!--<li class="nav-item dropdown">
-                        <a class="dropdown-toggle" id="tab1-dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Training Creation</a>
-                        <div class="dropdown-menu" aria-labelledby="tab1-dropdown">
-                            <a class="dropdown-item cegp" href="/MasterDropDown/current_event_gp_auth">Gram Panchayat</a>
-                            <a class="dropdown-item" href="/MasterDropDown/alldataexport_current">All Data Export</a>
-                        </div>
-                    </li>-->
-                   
-                    <!-- Tab 5 with Submenu -->
-                    <!--<li class="nav-item dropdown">
-                        <a class="dropdown-toggle " id="tab5-dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Report</a>
-                        <div class="dropdown-menu special-drop" aria-labelledby="tab5-dropdown">
-                            <a class="dropdown-item " href="/MasterDropDown/rp_npmu">Training </a>
-                            <a class="dropdown-item " href="/MasterDropDown/rp_block">FeedBack</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>-->
 <main class="main-wrapper">
     <div class="row" id="entry_form">
         <div class="container-fluid " style="padding:10px;padding-top:0;">
@@ -918,73 +758,73 @@
                                 <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
                                 <ul class="Select_option selectbackhome" style="display:flex;justify-content:center;align-items:center;column-gap:20px;flex-wrap:wrap;row-gap:10px;">
                                     @*
-                                    <li id="StateLabel">
-                                        <label id="lblstate">State:</label>
-                                        <span id="spnstate1">@Session["gstate"]</span>
-                                    </li>
-                                    <li id="StateDropdownLabel">
+                                        <li id="StateLabel">
+                                            <label id="lblstate">State:</label>
+                                            <span id="spnstate1">@Session["gstate"]</span>
+                                        </li>
+                                        <li id="StateDropdownLabel">
 
-                                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:25px;">
-                                        </select>
-                                    </li>
-                                    <li id="DistLabel">
-                                        <i class="fas fa fa-angle-double-right"></i>
-                                        <label id="lbldistrict">District:</label>
-                                        <span id="spndistrict">@Session["gdist"]</span>
-                                    </li>
-                                    <li id="DistDropdownLabel">
+                                            <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()" style="border-radius:25px;">
+                                            </select>
+                                        </li>
+                                        <li id="DistLabel">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label id="lbldistrict">District:</label>
+                                            <span id="spndistrict">@Session["gdist"]</span>
+                                        </li>
+                                        <li id="DistDropdownLabel">
 
-                                        <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:25px;">
-                                        </select>
-                                    </li>
-                                    <li id="BlockLabel">
-                                        <i class="fas fa fa-angle-double-right"></i>
-                                        <label>Block:</label>
-                                        <span>@Session["gblock"] </span>
-                                    </li>
-                                    <li id="BlockDropdownLabel">
+                                            <select class="form-control" id="dist11" onchange="Dist_fun()" style="border-radius:25px;">
+                                            </select>
+                                        </li>
+                                        <li id="BlockLabel">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label>Block:</label>
+                                            <span>@Session["gblock"] </span>
+                                        </li>
+                                        <li id="BlockDropdownLabel">
 
-                                        <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:25px;">
-                                        </select>
-                                    </li>
-                                    <li id="GramLabel">
-                                        <i class="fas fa fa-angle-double-right"></i>
-                                        <label>GramPanchayat:</label>
-                                        <span id="spngram">@Session["ggram"]</span>
-                                    </li>
+                                            <select class="form-control" id="block1" onchange="Block_fun()" style="border-radius:25px;">
+                                            </select>
+                                        </li>
+                                        <li id="GramLabel">
+                                            <i class="fas fa fa-angle-double-right"></i>
+                                            <label>GramPanchayat:</label>
+                                            <span id="spngram">@Session["ggram"]</span>
+                                        </li>
 
-                                    <li id="GramDropdownLabel">
+                                        <li id="GramDropdownLabel">
 
-                                        <select class="form-control" id="gram1" onchange="Gram_Fun()"></select>
-                                    </li>
-                                    <li>
-                                        <select class="form-control" id="year_npmu">
-                                            <option value="0">Select Financial Year</option>
-                                            <option value="2021-22">2021-22</option>
-                                            <option value="2022-23">2022-23</option>
-                                            <option value="2023-24">2023-24</option>
-                                            <option value="2024-25">2024-25</option>
+                                            <select class="form-control" id="gram1" onchange="Gram_Fun()"></select>
+                                        </li>
+                                        <li>
+                                            <select class="form-control" id="year_npmu">
+                                                <option value="0">Select Financial Year</option>
+                                                <option value="2021-22">2021-22</option>
+                                                <option value="2022-23">2022-23</option>
+                                                <option value="2023-24">2023-24</option>
+                                                <option value="2024-25">2024-25</option>
 
-                                        </select>
-                                    </li>
-                                    <li id="MonthDropdownLabel">
+                                            </select>
+                                        </li>
+                                        <li id="MonthDropdownLabel">
 
-                                        <select class="form-control" id="month_npmu" onchange="Month_change()">
-                                            <option value="0">Select Month</option>
-                                            <option value="April">April</option>
-                                            <option value="May">May</option>
-                                            <option value="June">June</option>
-                                            <option value="July">July</option>
-                                            <option value="August">August</option>
-                                            <option value="September">September</option>
-                                            <option value="October">October</option>
-                                            <option value="November">November</option>
-                                            <option value="December">December</option>
-                                            <option value="January">January</option>
-                                            <option value="February">February</option>
-                                            <option value="March">March</option>
-                                        </select>
-                                    </li>*@
+                                            <select class="form-control" id="month_npmu" onchange="Month_change()">
+                                                <option value="0">Select Month</option>
+                                                <option value="April">April</option>
+                                                <option value="May">May</option>
+                                                <option value="June">June</option>
+                                                <option value="July">July</option>
+                                                <option value="August">August</option>
+                                                <option value="September">September</option>
+                                                <option value="October">October</option>
+                                                <option value="November">November</option>
+                                                <option value="December">December</option>
+                                                <option value="January">January</option>
+                                                <option value="February">February</option>
+                                                <option value="March">March</option>
+                                            </select>
+                                        </li>*@
 
                                 </ul>
                             </div>
@@ -1839,7 +1679,7 @@
                         </tr>
                         <tr class="text_span chkAll">
                             @*
-                            <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>*@
+                                <td class="font-16">10.Overall Impression:<span class="requrid_star">*</span> </td>*@
                             <td>
                                 <input type="checkbox" disabled id="Very Beneficial_27-34" name="overall_impression" value="" class="chk8" /><span class="check-font"> Very Beneficial(<label style="color:red">27-34</label>)</span>
                             </td>
@@ -2244,7 +2084,7 @@
             });
         });
         let total = structure_of_training + course_material + interaction_with_trainer + hands_on_practice + usefulness_of_contents + information_presented + participant_questions + food_quality;
-        
+
 
         if (total >= 27 && total <= 34) {
             document.getElementById('Very Beneficial_27-34').checked = true;
@@ -2292,7 +2132,7 @@
                         let year = today.getFullYear();
 
                         today = year + '-' + month + '-' + day;
-                        
+
                         var autoGeneratedNumber = new Date().getTime();
                         $('#registration_no').val("REGP" + autoGeneratedNumber);
                         $('#todaydate').val(today);
@@ -3214,7 +3054,7 @@
                                 }
                             }
                         }
-                        
+
                         var p_training_name = data[i].p_training_name;
                         if (email == "akash.verma@kreatetechnologies.com") {
                             if (male_population != "") {
@@ -3561,7 +3401,7 @@
 
                                 }
                                 else {
-                                    
+
                                     if (male_population != "") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
@@ -3601,7 +3441,7 @@
                                             }
                                         }
                                         else {
-                                            
+
                                             if (approve_status == "Approved") {
                                                 ++at;
                                                 tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + location_expo + '</td> <td>' + particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td><button class="btn btn-primary" data-toggle="modal"  data-target="#myModal_viewdata" onclick="abhy_Curr_Training_Info_Search_viewdata(' + data[i].id + ')">View Data</button></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: green;">Approved</label></td></tr>';
@@ -3621,7 +3461,7 @@
                                         }
                                     }
                                     else {
-                                        
+
                                         if (approve_status == "Approved") {
                                             ++at;
                                             tr += '<tr id="AWP1_TR_Meeting' + i + '" style="text-align:center"><td>' + (++h) + '</td><td><a href="#" data-toggle="modal" onclick="find_exi_data(' + data[i].id + ')"   data-target="#myModal">' + p_training_name + '</a></td><td>' + data[i].type_of_event + '</td> <td>' + location_expo + '</td> <td>' + particular_expo + '</td> <td>' + data[i].level_event + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gp + '</td> <td>' + data[i].year + '</td> <td>' + data[i].month + '</td> <td>' + data[i].event_platform + '</td> <td>' + from_date + '</td> <td>' + to_date + '</td><td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: black;">Not Applicable</label></td> <td><label style="color: black;">Not Applicable</label></td><td><label style="color: green;">Approved</label></td></tr>';
@@ -4776,7 +4616,7 @@
 
     var unic_keyatted = "";
     function getunickey_att(ss) {
-        
+
         unic_keyatted = "";
         unic_keyatted = ss;
         $('.loader').show();
@@ -4833,7 +4673,7 @@
                         if (data[i].atten_sheet_filename != null) {
                             atten = data[i].atten_sheet_filename;
                         }
-                        
+
                         var p_training_name = data[i].p_training_name;
                         if (email == "akash.verma@kreatetechnologies.com") {
                             if (data[i].nameofparticipent == null || data[i].nameofparticipent == "") {
@@ -4904,7 +4744,7 @@
 
                         }
                         else {
-                            
+
 
                             /*if (StateOfficer == "Gram Panchyat Nodal Officer") {*/
                             if (isWithinRange(new Date(to_date))) {
@@ -5151,7 +4991,7 @@
         });
     }
     function editrowcomp_A_Good2_Reg_Gp_Traa(i) {
-        
+
         $('#AWP1_TR_Meetingaa' + i).hide();
         $('#hide_AWP1_TR_Meeting_reg' + i).show();
         $('#hide_AWP1_TR_Meeting_reg_new_a' + i).hide();
@@ -5178,7 +5018,7 @@
 
     }
     function editrowcomp_A_Good2_Reg_Gp_Traaadd(i) {
-        
+
         $('#AWP1_TR_Meetingaaadd' + i).hide();
         $('#hide_AWP1_TR_Meeting_regadd' + i).show();
 
@@ -5254,7 +5094,7 @@
         });
     }
     function Save_newaddnew(RowNo) {
-        
+
         var x = 0;
         var name1 = $('#name_GN_Naad' + RowNo).val();
         var gender1 = $('#gender_GN_Naad' + RowNo).val();
@@ -5455,7 +5295,7 @@
                 data: "{'Data': '" + JSON.stringify(obj) + "'}",
                 dataType: 'JSON',
                 success: function (response) {
-                    
+
                     alert(response);
                     if (response == "SessionTimeOut") {
                         window.location = "/Home/LogOut";
@@ -5501,7 +5341,7 @@
                 dataType: 'JSON',
                 success: function (response) {
                     alert(response);
-                    
+
                     if (response == "SessionTimeOut") {
                         window.location = "/Home/LogOut";
                     }
