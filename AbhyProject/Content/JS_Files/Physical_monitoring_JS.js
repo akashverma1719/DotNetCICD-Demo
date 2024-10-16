@@ -492,7 +492,6 @@ var SupportServiceName = "";
 
 // abhishek
 function Nameofsupport1() {
-
     $('#Support_Item_Procured').prop('disabled', false); //new
     
     $('#Support_Remark').prop('disabled', false);  //new
@@ -512,10 +511,12 @@ function Nameofsupport1() {
         $('#divssb').hide(); //abhsihek1
         $('#divsbdata').hide();   //new
     }
-
     else if ($('#serviceselector').val() == "IEC/Awareness") {
         $('#divssb').hide(); //abhishek1
         $('#divsbdata').hide();  //new
+        $('#Support_Item_Procured').prop('disabled', true);
+        $('#Support_Remark').prop('disabled', true);
+        $('#physical_savebtn').prop('disabled', true);
     }
 
     else if ($('#serviceselector').val() == "Other Key Activities") {
