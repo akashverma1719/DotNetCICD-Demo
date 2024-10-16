@@ -178,7 +178,7 @@
                                                 <span id="Grv_sub" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                 <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
                                                 @*@Html.EditorFor(model => model.subject, new { htmlAttributes = new { @class = "form-control alpha", required = "required", placeholder = "Enter your subject" } })*@
-                                                <input type="text" id="subject" name="subject" class="form-control alphanumspecial border_radius" maxlength="100" required="required" placeholder="Enter your subject" />
+                                                <input type="text" onpaste="return false;"  id="subject" name="subject" class="form-control alphanumspecial border_radius" maxlength="100" required="required" placeholder="Enter your subject" />
                                             </div>
 
                                             <div class="form-group col-md-6" id="grv_type">
@@ -201,7 +201,7 @@
                                                     Grievance Type Other :  <span class="msg">*</span>
                                                     <span id="Grv_complainant_name" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                     <span id="" class="highlight" style="font-weight:normal;display:none;">Enter Grievance Type Other</span>
-                                                    <input type="text" class="form-control border_radius" maxlength="100" name="complaint_name" id="Grievance_other" required="required" placeholder="Enter Grievance Type Other" />
+                                                    <input type="text" onpaste="return false;"  class="form-control border_radius" maxlength="100" name="complaint_name" id="Grievance_other" required="required" placeholder="Enter Grievance Type Other" />
                                                 </div>
                                             </div>
 
@@ -252,7 +252,7 @@
                                                 Complainant Name   : <span class="msg">*</span>
                                                 <span id="Grv_complainant_name" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                 <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphabetic characters only</span>
-                                                <input type="text" class="form-control alphanum border_radius" name="complaint_name" id="complaint_name" required="required" maxlength="40" placeholder="Enter Your Name" />
+                                                <input type="text" onpaste="return false;"  class="form-control alphanum border_radius" name="complaint_name" id="complaint_name" required="required" maxlength="40" placeholder="Enter Your Name" />
                                                 @*@Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control alpha", maxlength = "30", required = "required", placeholder = "Enter your full name" } })*@
                                             </div>
                                             <div class="form-group col-md-6">
@@ -267,27 +267,27 @@
                                                 Mobile Number : <span class="msg">*</span>
                                                 <span id="Grv_mobile" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                 <span id="" class="highlight" style="font-weight:normal;display:none;">Enter numeric only</span>
-                                                <input type="text" class="form-control integer border_radius" id="mobile" oninput="checkmobile()" name="mobile" required="required" maxlength="10" placeholder="Enter your mobile number" />
+                                                <input type="text" onpaste="return false;"  class="form-control integer border_radius" id="mobile" oninput="checkmobile()" name="mobile" required="required" maxlength="10" placeholder="Enter your mobile number" />
 
                                                 @*@Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control integer", maxlength = "10", required = "required", placeholder = "Enter your mobile number" } })*@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 Phone Number :
                                                 <span id="Grv_phone" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                <input type="text" class="form-control integer border_radius" required="required" id="phone" name="phone" maxlength="10" placeholder="Enter your Phone Number" />
+                                                <input type="text" onpaste="return false;"  class="form-control integer border_radius" required="required" id="phone" name="phone" maxlength="10" placeholder="Enter your Phone Number" />
                                                 @*@Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control integer", maxlength = "10", placeholder = "Enter your phone number" } })*@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 Address : <span class="msg">*</span>
                                                 <span id="Grv_address1" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                 <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
-                                                <textarea name="address" rows="2" cols="20" id="address" maxlength="100" class="form-control alphanumspecial border_radius" placeholder="Enter your address"></textarea>
+                                                <textarea name="address"  onpaste="return false;" rows="2" cols="20" id="address" maxlength="100" class="form-control alphanumspecial border_radius" placeholder="Enter your address"></textarea>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 Grievance Description : <span class="msg">*</span>
                                                 <span id="Grv_description" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
                                                 <span id="" class="highlight" style="font-weight:normal;display:none;">Enter alphanumeric only</span>
-                                                <textarea name="grivance_description" rows="2" cols="20" id="grivance_description" maxlength="200" class="form-control alphanumspecial border_radius" placeholder="Enter your message"></textarea>
+                                                <textarea name="grivance_description"  onpaste="return false;" rows="2" cols="20" id="grivance_description" maxlength="200" class="form-control alphanumspecial border_radius" placeholder="Enter your message"></textarea>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 Supported Document : <span class="msg">(.pdf/ .jpg/ .png Only)(Less Than 10 MB)</span>
@@ -303,7 +303,7 @@
                                                     <img src="@Url.Action("GetCaptchaImage","Home")" id="C_img1" />
                                                     <span class="refreshicon"><i class="fa fa-refresh" onclick="refress()"></i></span>
                                                     <span id="Grv_captcha" title="Required" class="highlight" style="font-weight:normal;display:none;">Required</span>
-                                                    <input type="text" class="col-md-3 form-control border_radius" style="width:60%;" name="clientCaptcha" id="clientCaptcha" placeholder="Type the text" required />
+                                                    <input type="text" onpaste="return false;"  class="col-md-3 form-control border_radius" style="width:60%;" name="clientCaptcha" id="clientCaptcha" placeholder="Type the text" required />
 
                                                     <p id="status" style="font-weight:bold;color:red;"></p>
                                                 </div>
