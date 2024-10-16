@@ -1430,6 +1430,7 @@
         if (access == "readonly") {
             $(".disable_btn").hide()
         }
+        $(".disable_btn").hide();
         dli4_access();
         $('.loader').hide();
         $("#other_existing_high_wcc").hide();
@@ -3390,7 +3391,7 @@
                 }
                 total_ben();
 
-                /*$(".disable_btn").hide();*/
+                $(".disable_btn").hide();
                 var State = '@Session["gstate"]';
                 //if (State != 'Delhi_7') {
                 //    $(".disable_btn").hide();
