@@ -57,8 +57,9 @@ body {
     column-gap: 10px;
 }
 
-.page-wrapper.toggled .esri-ui-top-left {
-    left: 22%;
+.page-wrapper.toggled .esri-ui-top-left,
+.page-wrapper.toggled-other .esri-ui-top-left {
+    left: 27%;
 }
 
 .container {
@@ -175,7 +176,7 @@ span.logodivider {
 
 .atalMapLogo > a {
     margin-top: 10px;
-    width: 72%;
+    width: 73%;
     height: 100%;
     display: flex;
     justify-content: flex-end;
@@ -387,13 +388,13 @@ span.logodivider {
     }
 
     .data_box .content {
-        border-bottom: 1px solid #dadfe4;
-        display: grid;
-        grid-template-columns: 152px 195px;
+        display: flex;
         align-items: center;
-        /*justify-content: space-between;*/
+        justify-content: space-between;
+        border-bottom: 1px solid #dadfe4;
         padding: 5px 0;
     }
+
 
     .data_box .badge {
         margin-right: 10px; /* Add some spacing between count badge and download button */
@@ -403,6 +404,10 @@ span.logodivider {
 @media screen and (max-width: 768px) {
     .data_box h6 {
         font-size: 12px; /* Decrease font size for smaller screens */
+    }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-submenu {
+        height: 62vh;
     }
 }
 
@@ -586,14 +591,15 @@ body {
 
     /*----------------toggeled sidebar----------------*/
 
-    .page-wrapper.toggled .sidebar-wrapper {
+    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
         left: 0px;
         top: 8vw;
     }
 
 @media screen and (min-width: 768px) {
-    .page-wrapper.toggled .page-content {
-        padding-left: calc(100 - 78%);
+    .page-wrapper.toggled .page-content,
+    .page-wrapper.toggled-other .page-content {
+        padding-left: calc(100 - 73%);
     }
 }
 
@@ -647,11 +653,11 @@ body {
 }
 
 @media only screen and (max-width: 1599.98px) {
-    #ui-container {
+    /*  #ui-container {
         padding-right: 90px !important;
-    }
+    }*/
 
-    .page-wrapper.toggled .sidebar-wrapper {
+    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
         left: 0px;
         top: calc(8vw + 12px);
         z-index: 2;
@@ -1602,11 +1608,17 @@ infoPanelButtonsg {
     margin-left: 12px;
 }
 
-.page-wrapper.toggled #coordinates {
+.page-wrapper.toggled #coordinates,
+.page-wrapper.toggled-other #coordinates {
     left: 26.6%;
     font-size: 11px;
 }
 
+/*#ui-container.toggled,
+#ui-container.toggled-other {
+    padding-left: 27%;
+}
+*/
 .coordinates .latitude {
     color: blue; /* Green color for latitude */
 }
@@ -2035,8 +2047,8 @@ input[type="number"] {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     z-index: 9999;
     transition: top 0.3s, left 0.3s;
-    top: calc(6vw + 40px) !important;
-    left: 22% !important;
+    top: calc(6vw + 85px) !important;
+    left: 27% !important;
 }
 
 .popup-content {
@@ -2098,12 +2110,14 @@ input[type="number"] {
     background-color: #004592 !important;
 }
 
-.page-wrapper.toggled .esri-ui-bottom-left.esri-ui-corner {
+.page-wrapper.toggled .esri-ui-bottom-left.esri-ui-corner,
+.page-wrapper.toggled-other .esri-ui-bottom-left.esri-ui-corner {
     position: absolute;
-    left: 22%;
+    left: 27%;
 }
 
 .page-wrapper.toggled
+.esri-popup__main-container.esri-widget.esri-popup--shadow.esri-popup--is-collapsible, .page-wrapper.toggled-other
 .esri-popup__main-container.esri-widget.esri-popup--shadow.esri-popup--is-collapsible {
     left: 27%;
     top: 38px;
@@ -2177,8 +2191,8 @@ input[type="number"] {
     width: 300px;
     position: absolute;
     z-index: 2;
-    top: calc(6vw + 40px) !important;
-    left: 22% !important;
+    top: calc(6vw + 85px) !important;
+    left: 27% !important;
     border-bottom-right-radius: 15px;
     border: 1px solid #004592;
 }
@@ -2762,14 +2776,14 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 #ui-container {
     display: flex;
     gap: 10px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     position: fixed;
     top: calc(5.8vw + 41px);
     height: 48px;
     background: #004592;
-    padding-right: 140px;
+    padding-left: 28%;
 }
 
 #distanceMeasurementContainer {
@@ -3556,9 +3570,23 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-    .SeachBar:focus-visible {
-        outline: none;
-    }
+.openPopupBtn {
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    border-radius: 3px;
+    padding: 4px 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+.SeachBar:focus-visible {
+    outline: none;
+}
 
 #searchInput {
     border-top: none;
@@ -3595,6 +3623,10 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     animation: myfirst 1s ease-in-out;
 }
 
+    .searchInputWrappper ~ div#mapContainer:empty {
+        display: none;
+    }
+
 @keyframes myfirst {
     0% {
         left: 100%;
@@ -3604,6 +3636,69 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         left: 42%;
     }
 }
+
+
+.maptoggleButton a#show-sidebar {
+    display: none;
+}
+
+#popupModal {
+    width: 27%;
+    background-color: transparent;
+    padding: 0px;
+}
+
+
+    #popupModal .modal-content {
+        margin: 0;
+        margin-top: auto;
+        height: 78vh;
+        padding: 0px
+    }
+
+    #popupModal .modal-header {
+        background-color: #004592 !important;
+        color: #fff;
+    }
+
+    #popupModal .modal-body {
+        overflow: scroll;
+    }
+
+    #popupModal .form-group label {
+        width: 100%;
+    }
+
+.btn-custom-popup {
+    background-color: #004592 !important;
+    color: #fff !important;
+}
+
+.closePopupModal {
+    color: #fff !important;
+}
+
+.popUpZoom {
+    cursor: pointer;
+}
+
+.popUpText {
+    font-weight: 600;
+}
+
+.popUpText2 {
+    font-weight: 500;
+    padding-left: 8px;
+}
+
+.wellTypeContainer {
+    border-bottom: 1px solid #ccc;
+}
+
+.wellTypeCountsContainer {
+    border-bottom: 1px solid #ccc;
+}
+
 
 @media screen and (max-width: 766px) {
     .SeachBar {
@@ -3635,7 +3730,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
             .atalMapLogo > a > img {
                 width: 90% !important;
-                height: 72%;
+                height: 73%;
             }
 
     .header {
@@ -3655,18 +3750,11 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
             display: none;
         }
 
-    #ui-container {
-        padding-top: 45px;
-        display: block;
-        top: calc(9.8vw + 116px);
-        left: 86%;
-        background: transparent;
-        height: 100%;
-        padding-left: 9px;
-    }
 
     .maptoggleButton {
-        display: block;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         background-color: transparent;
     }
 
@@ -3701,12 +3789,12 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     .map-hover-btn,
     .map-hover-btn-off {
         top: 140px !important;
-        z-index: 1 !important;
+        z-index: 0 !important;
     }
 
     #toggleButton {
         top: 140px !important;
-        z-index: 1;
+        z-index: 0;
     }
 
     .map-hover-btn::after {
@@ -3741,9 +3829,10 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         margin: 0px;
     }
 
-    .page-wrapper.toggled .sidebar-wrapper {
-        top: auto;
+    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
+        top: 100px;
         width: 100%;
+        z-index: 999;
     }
 
     #legend {
@@ -3756,7 +3845,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 
     .esri-popup__main-container {
-        width: 72% !important;
+        width: 73% !important;
     }
 
     .popupwq {
@@ -3768,12 +3857,12 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         gap: 23px;
         right: calc(10% + 25px);
     }
-
+    /*
     #close-sidebar .fa-times {
         top: 1.5%;
         right: calc(1vw - -2.7%);
         padding: 5px 8px;
-    }
+    }*/
 
     #searchDiv {
         bottom: 77px;
@@ -3820,30 +3909,24 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         height: calc(100vh - 124px) !important;
     }
 
-    #ui-container {
-        padding-top: 45px;
-        display: block;
-        top: calc(9.8vw + 116px);
-        left: 92%;
-        background: transparent;
-        height: 100%;
-        padding-left: 9px;
-    }
 
     #toggleButton {
-        top: 120px !important;
-        z-index: 1;
+        top: 105px !important;
     }
 
     .map-hover-btn,
     .map-hover-btn-off {
-        top: 120px !important;
-        z-index: 1 !important;
+        top: 105px !important;
     }
 
     .sidebar-wrapper {
         width: 45%;
     }
+
+    #popupModal {
+        width: 45%;
+    }
+
 
     .chiller-theme .sidebar-wrapper .sidebar-menu ul li .sidebarButton {
         gap: 18px;
@@ -3865,7 +3948,6 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 
     .maptoggleButton {
-        display: block;
         background: transparent;
     }
 
@@ -3895,13 +3977,83 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         background-color: inherit;
         padding: 0px;
     }
-    /* #toggleButton {*/
-    /*        top: calc(5.8vw + 102px) !important;
+}
+
+@media screen and (max-width:1021px) and (orientation:portrait) {
+    #ui-container {
+        top: 170px;
+        background: transparent;
+        flex-direction: column;
+        width: fit-content;
+        padding-left: 0px;
+        right: 16px;
+        row-gap: 5px;
+        flex-wrap: wrap;
+        height: 65vh;
+        padding-top: 0px;
     }
-    .map-hover-btn, .map-hover-btn-off {
-        top: calc(5.8vw + 102px) !important;
-        
-    }*/
+
+        #ui-container .maptoggleButton {
+            flex-direction: column;
+        }
+}
+
+@media screen and (max-width:767px) and (orientation:portrait) {
+    #ui-container {
+        top: 185px;
+        height: 65vh;
+    }
+}
+
+@media screen and (max-width:767px)and (max-height:700px) and (orientation:portrait) {
+    #ui-container {
+        height: 50vh;
+    }
+
+
+
+    .sidebar-wrapper .sidebar-menu .sidebar-submenu {
+        height: 60vh;
+    }
+}
+
+@media screen and (max-width:1021px) and (max-height:500px) and (orientation:landscape) {
+    #ui-container {
+        top: 90px;
+        flex-direction: row;
+        width: 100%;
+        padding-left: 0px;
+        right: 0px;
+        row-gap: 5px;
+        height: 100px;
+        padding-top: 0px;
+        padding-right: 115px;
+        justify-content: flex-end
+    }
+
+        #ui-container .maptoggleButton {
+            flex-direction: row;
+        }
+
+    .sidebar-wrapper .sidebar-menu .sidebar-submenu {
+        height: 58vh;
+    }
+
+    #toggleButton {
+        top: 122px !important;
+    }
+
+    .map-hover-btn,
+    .map-hover-btn-off {
+        top: 122px !important;
+    }
+}
+
+@media screen and (max-width:768px) and (max-height:400px) and (orientation:landscape) {
+
+    .sidebar-wrapper .sidebar-menu .sidebar-submenu {
+        height: 40vh;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1100px) {
@@ -3910,15 +4062,15 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
         right: 45% !important;
     }
 
-    .SeachBar {
+    /* .SeachBar {
         margin-bottom: 6px;
-    }
+    }*/
 
     .header h4 {
         font-size: 13px;
     }
 
-    .page-wrapper.toggled .sidebar-wrapper {
+    .page-wrapper.toggled .sidebar-wrapper, #popupModal {
         top: calc(8vw + 24px) !important;
     }
 }
@@ -3929,7 +4081,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 
     .sidebar-wrapper {
-        width: 28%;
+        width: 27%;
     }
 
     #viewDiv {
@@ -4063,17 +4215,6 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     }
 }
 
-@media screen and (min-width: 800px) and (max-width: 900px) {
-    #ui-container {
-        display: block;
-        top: calc(5.8vw + 116px);
-        left: 92%;
-        background: transparent;
-        height: 100%;
-        padding-left: 9px;
-    }
-}
-
 /*@media screen and (min-width: 900px) and (max-width: 1000px) {
     #ui-container {
         display: block;
@@ -4088,10 +4229,6 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 @media screen and (min-width: 600px) and (max-width: 800px) {
     .esri-popup__main-container {
         width: 50% !important;
-    }
-
-    #ui-container {
-        left: 91%;
     }
 
     .esri-popup__main-container {
@@ -4117,18 +4254,8 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
     .esri-popup__main-container {
         width: 50% !important;
     }
-    /* #ui-container {
-        padding-top: 0px;
-        display: block;
-        top: calc(5.8vw + 116px);
-        left: 90%;
-        background: transparent;
-        height: 100%;
-        padding-left: 9px;
-    }
-*/
+
     .maptoggleButton {
-        display: block;
         background-color: transparent;
     }
 
@@ -4160,16 +4287,6 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
             margin-top: 3px;
         }
 
-    /*   .map-hover-btn, .map-hover-btn-off {
-        top: calc(5.8vw + 49px) !important;
-        z-index: 999 !important;
-    }
-
-    #toggleButton {
-        top: calc(5.8vw + 49px);
-        z-index: 999;
-    }
-     */
     .map-hover-btn::after {
         content: "" !important;
         background-color: inherit;
@@ -4220,7 +4337,7 @@ input[type="checkbox"]:checked ~ .legend-custom-text-container {
 
 @media screen and (min-width: 1024px) and (max-width: 1100px) {
     .sidebar-wrapper {
-        width: 25%;
+        width: 27%;
     }
 }
 
@@ -4591,15 +4708,91 @@ table .rainguage_icon1 {
 .data_box h6 {
     font-size: 14px;
 }
-@media screen and (min-width: 1700px) and (max-width: 2400px){
+
+@media screen and (min-width: 1700px) and (max-width: 2400px) {
     .data_box h6 span:nth-child(2) {
         width: 350px !important;
     }
+
     .data_box .content {
         justify-content: space-between;
     }
-  
 }
+
 .esri-popup--is-docked-top-left .esri-popup__main-container {
     max-height: 90% !important;
+}
+
+
+
+/* Modal container - hidden by default */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+@media only screen and (max-width: 430px) {
+    #mapInfo, #popupfeed {
+        left: 0px;
+        width: 100%;
+        height: 66vh;
+        overflow: scroll;
+    }
+}
+
+@media only screen and (max-width: 766px) and (max-height:500px) and (orientation:landscape) {
+
+    .map-hover-btn,
+    .map-hover-btn-off {
+        top: 122px !important;
+    }
+
+    #toggleButton {
+        top: 122px !important;
+    }
+}
+.openPopupBtn {
+    display: none; /* This hides the button by default */
 }

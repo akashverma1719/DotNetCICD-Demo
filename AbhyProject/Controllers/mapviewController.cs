@@ -24,6 +24,9 @@ using System.Globalization;
 using System.Net;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using System.Web.Hosting;
+using Microsoft.Ajax.Utilities;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace AbhyProject.Controllers
 {
@@ -67,7 +70,7 @@ namespace AbhyProject.Controllers
             }
             catch (Exception ex)
             {
-                
+
                 return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -3059,10 +3062,7 @@ namespace AbhyProject.Controllers
                     // Read the file content
                     byte[] pdfBytes = System.IO.File.ReadAllBytes(fullPath_UpdateAtaljalimages);
                     return File(pdfBytes, System.Net.Mime.MediaTypeNames.Application.Octet, sanitizedFileName);
-
-
                 }
-
             }
             else
             {
@@ -3084,7 +3084,7 @@ namespace AbhyProject.Controllers
                 else if (System.IO.File.Exists(fullPath_UpdateAtaljalimages))
                 {
 
-                    // Read the file content
+
                     byte[] pdfBytes = System.IO.File.ReadAllBytes(fullPath_UpdateAtaljalimages);
                     return File(pdfBytes, System.Net.Mime.MediaTypeNames.Application.Octet, sanitizedFileName);
                 }
@@ -3092,6 +3092,947 @@ namespace AbhyProject.Controllers
 
             return View();
         }
+
+        // for waterlevel
+
+
+        [HttpGet]
+        public JsonResult FetchLocationOptionsWL(string state = null, string district = null, string block = null, string grampanchayat = null)
+        {
+            try
+            {
+                // If no parameter is provided, fetch states
+                if (string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
+                {
+                    // Get the distinct states
+                    var distinctStates = AJE.obj_gwl_meta
+                                            .Where(x => !string.IsNullOrEmpty(x.state)) // Exclude null/empty states
+                                            .Select(x => x.state)
+                                            .Distinct()
+                                            .ToList();
+
+                    var totalStatesCount = AJE.obj_gwl_meta.Count(x => !string.IsNullOrEmpty(x.state));
+
+                    if (!distinctStates.Any())
+                    {
+                        return Json(new { success = false, message = "No Data Available" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = distinctStates, totalCount = totalStatesCount }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If only the state is provided, fetch districts
+                if (!string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
+                {
+                    var districtOptions = AJE.obj_gwl_meta
+                                                .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
+                                                .Select(x => new { name = x.district })
+                                                .Distinct()
+                                                .ToList();
+
+                    var sourceOptions = AJE.obj_gwl_meta
+                                              .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
+                                              .Select(x => x.source_Ownership)
+                                              .Distinct()
+                                              .ToList();
+
+                    if (!districtOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No districts found for this state." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = districtOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If both state and district are provided, fetch blocks
+                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
+                {
+                    var blockOptions = AJE.obj_gwl_meta
+                                           .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
+                                           .Select(x => new { name = x.block })
+                                           .Distinct()
+                                           .ToList();
+                    var sourceOptions = AJE.obj_gwl_meta
+                                          .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
+                                         .Select(x => x.source_Ownership)
+                                          .Distinct()
+                                          .ToList();
+
+                    if (!blockOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No blocks available for this district." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = blockOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If state, district, and block are provided, fetch gram panchayats
+                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && string.IsNullOrEmpty(grampanchayat))
+                {
+                    var gpOptions = AJE.obj_gwl_meta
+                                       .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.grampanchayat)) // Exclude null/empty GPs
+                                       .Select(x => x.grampanchayat)
+                                       .Distinct()
+                                       .ToList();
+                    var sourceOptions = AJE.obj_gwl_meta
+                                      .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.grampanchayat)) // Exclude null/empty GPs
+                                     .Select(x => x.source_Ownership)
+                                      .Distinct()
+                                      .ToList();
+
+                    if (!gpOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No GPs available for this block." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = gpOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If state, district, block, and gp are provided, fetch sources
+                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && !string.IsNullOrEmpty(grampanchayat))
+                {
+                    var sourceOptions = AJE.obj_gwl_meta
+                                          .Where(x => x.state == state && x.district == district && x.block == block && x.grampanchayat == grampanchayat && !string.IsNullOrEmpty(x.source_Ownership)) // Exclude null/empty sources
+                                          .Select(x => x.source_Ownership)
+                                          .Distinct()
+                                          .ToList();
+
+                    if (!sourceOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No sources available for this GP." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Return an error if some parameter is invalid
+                return Json(new { success = false, message = "Invalid parameters." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error fetching location options: " + ex.Message);
+                return Json(new { success = false, message = "Error occurred while fetching data" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        public JsonResult FetchSourceAndWellTypeOptionsWL(string state, string district, string block, string grampanchayat, string source_Ownership)
+        {
+            try
+            {
+                // Check if required parameters are provided
+                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
+                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(grampanchayat) || string.IsNullOrEmpty(source_Ownership))
+                {
+                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Fetch sources from your data source (for demonstration)
+                var sources = new List<string> { "SGWD", "PHED", "SGWB", "CGWB" };
+
+                // Fetch count of well types based on selected filters
+                var wellTypeCounts = AJE.obj_gwl_meta
+                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
+                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
+                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
+                                x.grampanchayat.Trim().ToLower() == grampanchayat.Trim().ToLower() &&
+                                x.source_Ownership.Trim().ToLower() == source_Ownership.Trim().ToLower()) // Filter by source
+                    .GroupBy(x => x.typeofwell) // Group by well_type
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+                        Count = g.Count() // Count of each well_type
+                    })
+                    .ToList();
+
+                return wellTypeCounts.Any()
+                    ? Json(new { success = true, sources, wellTypeCounts }, JsonRequestBehavior.AllowGet)
+                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        public JsonResult FetchSourceOptionsWL(string state, string district, string block, string grampanchayat)
+        {
+            try
+            {
+                // Validate parameters
+                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
+                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(grampanchayat))
+                {
+                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Fetch sources based on the selected filters
+                var sources = AJE.obj_gwl_meta
+                                  .Where(x => x.state == state &&
+                                              x.district == district &&
+                                              x.block == block &&
+                                              x.grampanchayat == grampanchayat) // Filter by parameters
+                                  .Select(x => x.source_Ownership) // Assuming 'source' is the column you want
+                                  .Distinct() // Ensure distinct sources
+                                  .ToList();
+
+                return sources.Any()
+                    ? Json(new { success = true, options = sources }, JsonRequestBehavior.AllowGet)
+                    : Json(new { success = false, message = "No sources available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception and return error response
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+        [HttpGet]
+        public JsonResult FetchWellTypeCountBySourceWL(string state = null, string district = null, string block = null, string grampanchayat = null, string source_Ownership = null)
+        {
+            try
+            {
+                // Fetch counts of well types based on selected parameters
+                var wellTypeCounts = AJE.obj_gwl_meta
+                    .Where(x =>
+                        (string.IsNullOrEmpty(state) || x.state == state) &&
+                        (string.IsNullOrEmpty(district) || x.district == district) &&
+                        (string.IsNullOrEmpty(block) || x.block == block) &&
+                        (string.IsNullOrEmpty(grampanchayat) || x.grampanchayat == grampanchayat) &&
+                        (string.IsNullOrEmpty(source_Ownership) || x.source_Ownership == source_Ownership))
+                    .GroupBy(x => x.typeofwell) // Group by well_type
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+                        Count = g.Count() // Count occurrences of each well_type
+                    })
+                    .ToList();
+
+                return Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error fetching well type count by source: " + ex.Message);
+                return Json(new { success = false, message = "Error occurred while fetching well type count" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public JsonResult FetchWellTypeCountWL(string state, string district, string block, string grampanchayat, string source_Ownership)
+        {
+            try
+            {
+                // Check if required parameters are provided
+                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
+                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(grampanchayat) || string.IsNullOrEmpty(source_Ownership))
+                {
+                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Fetch count of well types based on selected filters
+                var wellTypeCounts = AJE.obj_gwl_meta
+                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
+                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
+                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
+                                x.grampanchayat.Trim().ToLower() == grampanchayat.Trim().ToLower() &&
+                                x.source_Ownership.Trim().ToLower() == source_Ownership.Trim().ToLower()) // Filter by source
+                    .GroupBy(x => x.typeofwell) // Group by well_type
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+                        Count = g.Count() // Count of each well_type
+                    })
+                    .ToList();
+
+                return wellTypeCounts.Any()
+                    ? Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet)
+                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //  for waterquality
+
+
+        [HttpGet]
+        public JsonResult FetchLocationOptions(string state = null, string district = null, string block = null, string gp = null)
+        {
+            try
+            {
+                // If no parameter is provided, fetch states
+                if (string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
+                {
+                    // Get the distinct states
+                    var distinctStates = AJE.obj_pv_quality_meta
+                                            .Where(x => !string.IsNullOrEmpty(x.state)) // Exclude null/empty states
+                                            .Select(x => x.state)
+                                            .Distinct()
+                                            .ToList();
+
+                    var totalStatesCount = AJE.obj_pv_quality_meta.Count(x => !string.IsNullOrEmpty(x.state));
+
+                    if (!distinctStates.Any())
+                    {
+                        return Json(new { success = false, message = "No Data Available" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = distinctStates, totalCount = totalStatesCount }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If only the state is provided, fetch districts
+                if (!string.IsNullOrEmpty(state) && string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
+                {
+                    var districtOptions = AJE.obj_pv_quality_meta
+                                                .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
+                                                .Select(x => new { name = x.district })
+                                                .Distinct()
+                                                .ToList();
+
+                    var sourceOptions = AJE.obj_pv_quality_meta
+                                             .Where(x => x.state == state && !string.IsNullOrEmpty(x.district)) // Exclude null/empty districts
+                                             .Select(x => x.source)
+                                             .Distinct()
+                                             .ToList();
+
+                    if (!districtOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No districts found for this state." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = districtOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If both state and district are provided, fetch blocks
+                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
+                {
+                    var blockOptions = AJE.obj_pv_quality_meta
+                                           .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
+                                           .Select(x => new { name = x.block })
+                                           .Distinct()
+                                           .ToList();
+
+
+
+                    var sourceOptions = AJE.obj_pv_quality_meta
+                                          .Where(x => x.state == state && x.district == district && !string.IsNullOrEmpty(x.block)) // Exclude null/empty blocks
+                                         .Select(x => x.source)
+                                          .Distinct()
+                                          .ToList();
+
+                    if (!blockOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No blocks available for this district." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = blockOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If state, district, and block are provided, fetch gram panchayats
+                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && string.IsNullOrEmpty(gp))
+                {
+                    var gpOptions = AJE.obj_pv_quality_meta
+                                       .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.gp)) // Exclude null/empty GPs
+                                       .Select(x => x.gp)
+                                       .Distinct()
+                                       .ToList();
+
+                    var sourceOptions = AJE.obj_pv_quality_meta
+                                      .Where(x => x.state == state && x.district == district && x.block == block && !string.IsNullOrEmpty(x.gp)) // Exclude null/empty GPs
+                                     .Select(x => x.source)
+                                      .Distinct()
+                                      .ToList();
+
+                    if (!gpOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No GPs available for this block." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = gpOptions, sourceoption = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // If state, district, block, and gp are provided, fetch sources
+                if (!string.IsNullOrEmpty(state) && !string.IsNullOrEmpty(district) && !string.IsNullOrEmpty(block) && !string.IsNullOrEmpty(gp))
+                {
+                    var sourceOptions = AJE.obj_pv_quality_meta
+                                          .Where(x => x.state == state && x.district == district && x.block == block && x.gp == gp && !string.IsNullOrEmpty(x.source)) // Exclude null/empty sources
+                                          .Select(x => x.source)
+                                          .Distinct()
+                                          .ToList();
+
+                    if (!sourceOptions.Any())
+                    {
+                        return Json(new { success = false, message = "No sources available for this GP." }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = true, options = sourceOptions }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Return an error if some parameter is invalid
+                return Json(new { success = false, message = "Invalid parameters." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error fetching location options: " + ex.Message);
+                return Json(new { success = false, message = "Error occurred while fetching data" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public JsonResult FetchWellTypeCountBySource(string state = null, string district = null, string block = null, string gp = null, string source = null)
+        {
+            try
+            {
+                // Fetch counts of well types based on selected parameters
+                var wellTypeCounts = AJE.obj_pv_quality_meta
+                    .Where(x =>
+                        (string.IsNullOrEmpty(state) || x.state == state) &&
+                        (string.IsNullOrEmpty(district) || x.district == district) &&
+                        (string.IsNullOrEmpty(block) || x.block == block) &&
+                        (string.IsNullOrEmpty(gp) || x.gp == gp) &&
+                        (string.IsNullOrEmpty(source) || x.source == source))
+                    .GroupBy(x => x.well_type) // Group by well_type
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+                        Count = g.Count()
+                    })
+                    .ToList();
+
+                return Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error fetching well type count by source: " + ex.Message);
+                return Json(new { success = false, message = "Error occurred while fetching well type count" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        public JsonResult FetchSourceAndWellTypeOptions(string state, string district, string block, string gp, string source)
+        {
+            try
+            {
+                // Check if required parameters are provided
+                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
+                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(gp) || string.IsNullOrEmpty(source))
+                {
+                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Fetch sources from your data source (for demonstration)
+                var sources = new List<string> { "SGWD", "PHED", "SGWB", "CGWB" };
+
+                // Fetch count of well types based on selected filters
+                var wellTypeCounts = AJE.obj_pv_quality_meta
+                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
+                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
+                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
+                                x.gp.Trim().ToLower() == gp.Trim().ToLower() &&
+                                x.source.Trim().ToLower() == source.Trim().ToLower()) // Filter by source
+                    .GroupBy(x => x.well_type) // Group by well_type
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+                        Count = g.Count() // Count of each well_type
+                    })
+                    .ToList();
+
+                return wellTypeCounts.Any()
+                    ? Json(new { success = true, sources, wellTypeCounts }, JsonRequestBehavior.AllowGet)
+                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public JsonResult FetchWellTypeCount(string state, string district, string block, string gp, string source)
+        {
+            try
+            {
+                // Check if required parameters are provided
+                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
+                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(gp) || string.IsNullOrEmpty(source))
+                {
+                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Fetch count of well types based on selected filters
+                var wellTypeCounts = AJE.obj_pv_quality_meta
+                    .Where(x => x.state.Trim().ToLower() == state.Trim().ToLower() &&
+                                x.district.Trim().ToLower() == district.Trim().ToLower() &&
+                                x.block.Trim().ToLower() == block.Trim().ToLower() &&
+                                x.gp.Trim().ToLower() == gp.Trim().ToLower() &&
+                                x.source.Trim().ToLower() == source.Trim().ToLower()) // Filter by source
+                    .GroupBy(x => x.well_type) // Group by well_type
+                    .Select(g => new
+                    {
+                        TypeOfWell = g.Key,
+                        Count = g.Count() // Count of each well_type
+                    })
+                    .ToList();
+
+                return wellTypeCounts.Any()
+                    ? Json(new { success = true, wellTypeCounts }, JsonRequestBehavior.AllowGet)
+                    : Json(new { success = false, message = "No well types available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public JsonResult FetchSourceOptions(string state, string district, string block, string gp)
+        {
+            try
+            {
+                // Validate parameters
+                if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(district) ||
+                    string.IsNullOrEmpty(block) || string.IsNullOrEmpty(gp))
+                {
+                    return Json(new { success = false, message = "All parameters must be provided." }, JsonRequestBehavior.AllowGet);
+                }
+
+                // Fetch sources based on the selected filters
+                var sources = AJE.obj_pv_quality_meta
+                                  .Where(x => x.state == state &&
+                                              x.district == district &&
+                                              x.block == block &&
+                                              x.gp == gp) // Filter by parameters
+                                  .Select(x => x.source) // Assuming 'source' is the column you want
+                                  .Distinct() // Ensure distinct sources
+                                  .ToList();
+
+                return sources.Any()
+                    ? Json(new { success = true, options = sources }, JsonRequestBehavior.AllowGet)
+                    : Json(new { success = false, message = "No sources available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception and return error response
+                return Json(new { success = false, message = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // for zooming to map selected
+
+        // statewaterlevel
+
+        public JsonResult Query_WLState(string state)
+        {
+            var model = new List<gwl_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_gwl_meta.Where(x => x.state == state).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // distwaterlevel
+
+        public JsonResult Query_WLDist(string district)
+        {
+            var model = new List<gwl_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_gwl_meta.Where(x => x.district == district).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+        // blockwaterlevel
+
+        public JsonResult Query_WLBlock(string block)
+        {
+            var model = new List<gwl_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_gwl_meta.Where(x => x.block == block).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // Gpwaterlevel
+
+        public JsonResult Query_WLGP(string grampanchayat)
+        {
+            var model = new List<gwl_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_gwl_meta.Where(x => x.grampanchayat == grampanchayat).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //
+
+        public JsonResult Query_WLSource(string state, string district, string block, string grampanchayat, string source_Ownership)
+        {
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records from the database that match the selected parameters
+                var allDetails = AJE.obj_gwl_meta
+     .Where(x => (string.IsNullOrEmpty(state) || x.state == state) &&
+                  (string.IsNullOrEmpty(district) || x.district == district) &&
+                  (string.IsNullOrEmpty(block) || x.block == block) &&
+                  (string.IsNullOrEmpty(grampanchayat) || x.grampanchayat == grampanchayat) &&
+                  (string.IsNullOrEmpty(source_Ownership) || x.source_Ownership == source_Ownership))
+     .ToList();
+
+                // Log the count of records found
+                System.Diagnostics.Debug.WriteLine($"Records found: {allDetails.Count}");
+
+                // Add all coordinates for the fetched records
+                foreach (var detail in allDetails)
+                {
+                    // Handle potential null values for latitude and longitude
+                    var latitude = detail.latitude ?? "0"; // Default to "0" if null
+                    var longitude = detail.longitude ?? "0"; // Default to "0" if null
+                                                             //var sourcev = "MW";
+                                                             //if (sourcev == detail.source_Ownership)
+                                                             //{
+                                                             // Log the coordinates for debugging
+                    System.Diagnostics.Debug.WriteLine($"Latitude: {latitude}, Longitude: {longitude}");
+
+                    // Add the coordinates to the list
+                    coordinates.Add(new { Latitude = latitude, Longitude = longitude });
+                    //}
+                }
+
+                // Check if any coordinates were found
+                if (coordinates.Any())
+                {
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed for debugging
+                System.Diagnostics.Debug.WriteLine($"Exception: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
+
+
+
+        // for zooming to map selected
+
+        // statewaterquality
+
+        public JsonResult Query_WQState(string state)
+        {
+            var model = new List<pv_quality_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_pv_quality_meta.Where(x => x.state == state).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // distwaterlevel
+
+        public JsonResult Query_WQDist(string district)
+        {
+            var model = new List<pv_quality_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_pv_quality_meta.Where(x => x.district == district).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+        // blockwaterlevel
+
+        public JsonResult Query_WQBlock(string block)
+        {
+            var model = new List<pv_quality_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_pv_quality_meta.Where(x => x.block == block).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        // Gpwaterlevel
+
+        public JsonResult Query_WQGP(string gp)
+        {
+            var model = new List<pv_quality_meta>();
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records that match the specified state
+                var Details = AJE.obj_pv_quality_meta.Where(x => x.gp == gp).ToList();
+
+                // Check if any records were found
+                if (Details.Any())
+                {
+                    foreach (var detail in Details)
+                    {
+                        coordinates.Add(new { Latitude = detail.latitude ?? "0", Longitude = detail.longitude ?? "0" });
+                    }
+
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available for the selected state." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        //d
+
+        public JsonResult Query_WQSource(string state, string district, string block, string gp, string source)
+        {
+            var coordinates = new List<object>();
+
+            try
+            {
+                // Fetch all records from the database that match the selected parameters
+                var allDetails = AJE.obj_pv_quality_meta
+     .Where(x => (string.IsNullOrEmpty(state) || x.state == state) &&
+                  (string.IsNullOrEmpty(district) || x.district == district) &&
+                  (string.IsNullOrEmpty(block) || x.block == block) &&
+                  (string.IsNullOrEmpty(gp) || x.gp == gp) &&
+                  (string.IsNullOrEmpty(source) || x.source == source))
+     .ToList();
+
+                // Log the count of records found
+                System.Diagnostics.Debug.WriteLine($"Records found: {allDetails.Count}");
+
+                // Add all coordinates for the fetched records
+                foreach (var detail in allDetails)
+                {
+                    // Handle potential null values for latitude and longitude
+                    var latitude = detail.latitude ?? "0"; // Default to "0" if null
+                    var longitude = detail.longitude ?? "0"; // Default to "0" if null
+                                                             //var sourcev = "MW";
+                                                             //if (sourcev == detail.source)
+                                                             //{
+                                                             // Log the coordinates for debugging
+                    System.Diagnostics.Debug.WriteLine($"Latitude: {latitude}, Longitude: {longitude}");
+
+                    // Add the coordinates to the list
+                    coordinates.Add(new { Latitude = latitude, Longitude = longitude });
+                    //}
+                }
+
+                // Check if any coordinates were found
+                if (coordinates.Any())
+                {
+                    return Json(new { success = true, coordinates = coordinates }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "No data available." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed for debuggingggg
+                System.Diagnostics.Debug.WriteLine($"Exception: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
+
+
 
     }
 

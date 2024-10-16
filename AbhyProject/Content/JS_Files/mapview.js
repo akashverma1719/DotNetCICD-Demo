@@ -3045,7 +3045,7 @@ require([
             distSelectwl.addEventListener("change", function () {
                 const loader = document.getElementById('loader');
                 loader.style.display = 'block';
-                
+
                 const selecteddistwl = distSelectwl.value;
                 WaterLevel.featureEffect = new FeatureEffect({
                     filter: new FeatureFilter({
@@ -3079,7 +3079,7 @@ require([
             }
             // block query
             const baseUrlwlb = 'https://ataljal-arcgis.mowr.gov.in/ajserver/rest/services/NewFolder/Datapoint/MapServer/5/query';
-            
+
             const blockSelectwl = document.getElementById("Block");
 
             // Event listener for the "change" event on the select element
@@ -3148,7 +3148,7 @@ require([
                     console.log("wl g", data);
 
                     const wlElementg = document.getElementById("wl_count");
-                    
+
                     wlElementg.textContent = data.count;
                     loader.style.display = 'none';
 
@@ -3156,7 +3156,7 @@ require([
                     console.error('wl g fetching data:', error);
                 }
             }
-            
+
         })
         .catch((error) => {
             console.error('Error loading data:', error);
@@ -3253,7 +3253,7 @@ require([
 
     // Event listener for the "change" event on the select element
     blockSelectwq.addEventListener("change", function () {
-       
+
         const selectedblockwq = blockSelectwq.value;
         WaterQuality.featureEffect = new FeatureEffect({
             filter: new FeatureFilter({
@@ -3340,7 +3340,7 @@ require([
         // Query the feature service to get the count of features based on the selected dropdown option
         esriRequest(qwaterqm).then(function (response) {
             var totalCount = response.data.count;
-           // console.log("Total feature count for selected state (" + wqNamem + "): " + totalCount);
+            // console.log("Total feature count for selected state (" + wqNamem + "): " + totalCount);
             // Do something with the total feature count, such as displaying it in HTML
             $("#wqm_count").text(totalCount);
         });
@@ -3363,7 +3363,7 @@ require([
             document.getElementById("Block").style.display = "none";
             DistrictLayer.definitionExpression = "";
             getcountrydata = document.getElementById("cntry").value;
-          //  console.log("getcountrydata", getcountrydata);
+            //  console.log("getcountrydata", getcountrydata);
             StateLayer.visible = false;
             DistrictLayer.visible = true;
             BlockLayer.visible = false;
@@ -3385,7 +3385,7 @@ require([
             })
 
 
-           // console.log("done")
+            // console.log("done")
         }
         StateLayer.visible = false;
         DistrictLayer.visible = true;
@@ -3397,7 +3397,7 @@ require([
         // Query the feature service to get the count of features based on the selected dropdown option
         esriRequest(qwaterqmd).then(function (response) {
             var totalCount = response.data.count;
-           // console.log("Total feature count for selected district (" + wqNamed + "): " + totalCount);
+            // console.log("Total feature count for selected district (" + wqNamed + "): " + totalCount);
             // Update the wqm_count HTML element with the total count
             $("#wqm_count").text(totalCount);
         });
@@ -3415,7 +3415,7 @@ require([
 
     BlockDDL.addEventListener("change", function () {
         var wqNameb = BlockDDL.value;
-       // console.log("wqNameb", wqNameb)
+        // console.log("wqNameb", wqNameb)
         if (wqNameb === '0') {
             document.getElementById("Gram").style.display = "none";
             DistrictLayer.definitionExpression = "";
@@ -3467,7 +3467,7 @@ require([
         // Query the feature service to get the count of features based on the selected dropdown option
         esriRequest(qwaterqmg).then(function (response) {
             var totalCount = response.data.count;
-           // console.log("Total feature count for selected district (" + wqNameg + "): " + totalCount);
+            // console.log("Total feature count for selected district (" + wqNameg + "): " + totalCount);
             // Update the wqm_count HTML element with the total count
             $("#wqm_count").text(totalCount);
         });
@@ -3521,7 +3521,7 @@ require([
             const response = await fetch(urlrg);
             const data = await response.json();
 
-           // console.log("rg", data);
+            // console.log("rg", data);
 
             const rgElementd = document.getElementById("rg_count");
             rgElementd.textContent = data.count;
@@ -3569,7 +3569,7 @@ require([
             console.error('rain fetching data:', error);
         }
     }
-    
+
     //block
 
 
@@ -3577,7 +3577,7 @@ require([
 
     // Event listener for the "change" event on the select element
     blockSelectrg.addEventListener("change", function () {
-       
+
         const selectedblockrg = blockSelectrg.value;
         Rainguage.featureEffect = new FeatureEffect({
             filter: new FeatureFilter({
@@ -3610,7 +3610,7 @@ require([
         }
     }
 
-    
+
     //gram
 
 
@@ -3691,7 +3691,7 @@ require([
             const response = await fetch(urlwf);
             const data = await response.json();
 
-           // console.log("wf", data);
+            // console.log("wf", data);
 
             const wfElement = document.getElementById("wf_count");
             wfElement.textContent = data.count;
@@ -3746,7 +3746,7 @@ require([
 
     // Event listener for the "change" event on the select element
     blockSelectwf.addEventListener("change", function () {
-       
+
         const selectedblockwf = blockSelectwf.value;
         WaterFlow.featureEffect = new FeatureEffect({
             filter: new FeatureFilter({
@@ -3818,9 +3818,9 @@ require([
             console.error('Wf fetching data:', error);
         }
     }
-    
+
     //
-    
+
 
     // for wsp count in databox
 
@@ -3866,7 +3866,7 @@ require([
             console.error('wspp fetching data:', error);
         }
     }
-    
+
     //dist
 
 
@@ -4224,7 +4224,7 @@ require([
     })
 
     //
-    
+
 
     function toggleVisibility(id, visible) {
         const element = document.getElementById(id);
@@ -4235,7 +4235,7 @@ require([
 
 
     //
-    
+
     view.ui.add(
         new Expand({
             view,
@@ -4433,15 +4433,15 @@ require([
     container.appendChild(hoverOffButton);
     container.appendChild(hoverOnButton);
     //
-    hoverOffButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        const mapData = document.getElementById('map_data_off');
-        if (mapData.style.display === 'none') {
-            mapData.style.display = 'block';
-        } else {
-            mapData.style.display = 'block';
-        }
-    });
+    //hoverOffButton.addEventListener('click', function (event) {
+    //    event.preventDefault();
+    //    const mapData = document.getElementById('map_data_off');
+    //    if (mapData.style.display === 'none') {
+    //        mapData.style.display = 'block';
+    //    } else {
+    //        mapData.style.display = 'block';
+    //    }
+    //});
 
     //
 
@@ -4457,14 +4457,18 @@ require([
         document.body.appendChild(container);
     }
 
-    document.getElementById("map_data").addEventListener("click", map_data);
-    document.getElementById('map_data_off').style.visibility = 'hidden';
+    function map_data_off() {
+        document.getElementById("info").style.display = "none";
+        document.getElementById('map_data_off').style.visibility = 'visible';
+        document.getElementById('map_data').style.visibility = 'hidden';
+        false;
+    }
     createLegendId();
 
     function map_data() {
-        document.getElementById("info").style.display = "";
-        document.getElementById('map_data').style.visibility = 'hidden';
-        document.getElementById('map_data_off').style.visibility = 'visible';
+        document.getElementById("info").style.display = "block";
+        document.getElementById('map_data').style.visibility = 'visible';
+        document.getElementById('map_data_off').style.visibility = 'hidden';
 
 
         view.ui.add("info", "top-left");
@@ -5084,18 +5088,10 @@ require([
 
 
     }
-    document.getElementById("map_data_off").addEventListener("click", map_data_off);
 
-    function map_data_off() {
-        document.getElementById("info").style.display = "none";
-        document.getElementById('map_data_off').style.visibility = 'hidden';
-        document.getElementById('map_data').style.visibility = 'visible';
-
-        false;
-
-
-    }
-
+    document.getElementById("map_data_off").addEventListener("click", map_data);
+    document.getElementById('map_data').style.visibility = 'hidden';
+    document.getElementById("map_data").addEventListener("click", map_data_off);
 
     // Select all buttons on the page
 
@@ -5585,13 +5581,26 @@ require([
 
         $("#close-sidebar").click(function () {
             $(".page-wrapper").removeClass("toggled");
-            $(".map_view").addClass("toggled");
+            //$(".map_view").addClass("toggled");
             $('#popupfeed').hide();
             $('#mapInfo').hide();
+            $('#close-sidebar2').css('display', 'none');
+            $('#show-sidebar').css('display', 'flex');
+        });
+        $("#close-sidebar2").click(function () {
+            $(".page-wrapper").removeClass("toggled");
+            //$(".map_view").addClass("toggled");
+            $('#popupfeed').hide();
+            $('#mapInfo').hide();
+            $('#close-sidebar2').css('display', 'none');
+            $('#show-sidebar').css('display', 'flex');
         });
         $("#show-sidebar").click(function () {
             $(".page-wrapper").addClass("toggled");
-            $(".map_view").removeClass("toggled");
+            $('#popupModal').hide();
+            //$(".map_view").removeClass("toggled");
+            $('#show-sidebar').css('display', 'none');
+            $('#close-sidebar2').css('display', 'flex');
             GPLayer.visible = true;
             BlockLayer.visible = true;
             DistrictLayer.visible = true;
@@ -5989,7 +5998,7 @@ require([
                     success: function (response) {
 
                         if (response == "Logout") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         var Tbodyhtml = '';
                         if (response == 'No Data') {
@@ -6192,7 +6201,7 @@ require([
         buttonViewGraph.addEventListener("click", () => {
             console.log("Water Level ID (View Graph):", attributeswl.partition_id);
             const partition_id = attributeswl.partition_id;
-            console.log(partition_id,"sss")
+            console.log(partition_id, "sss")
             function handleViewGraphClick(partition_) {
                 console.log("Handling View Graph click for ID:", partition_id);
                 $.ajax({
@@ -6388,7 +6397,7 @@ require([
                     dataType: 'JSON',
                     success: function (response) {
                         if (response == "Logout") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
 
                         console.log(response)
@@ -6614,7 +6623,7 @@ require([
                     dataType: 'JSON',
                     success: function (response) {
                         if (response == "Logout") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         var Tbodyhtml = '';
                         if (response == 'No Data') {
@@ -6626,7 +6635,7 @@ require([
                         } else {
                             for (var i = 0; i < response.length; i++) {
 
-                               
+
 
                                 const dateStr = response[i].WaterReading_Date;
 
@@ -6642,7 +6651,7 @@ require([
                                 Tbodyhtml += '<tr id="AWP1_TR_data_waterflow' + i + '"><td id="srNo">' + (i + 1) + '</td>';
                                 Tbodyhtml += '<td id="vill">' + response[i].wf_meta_id + '</td>';
                                 Tbodyhtml += '<td id="vill">' + response[i].MeterReading + '</td>';
-                                Tbodyhtml += '<td id="vill">' +formattedDate + '</td></tr >';
+                                Tbodyhtml += '<td id="vill">' + formattedDate + '</td></tr >';
 
                             }
                             $('#flowtbl_details').html(Tbodyhtml);
@@ -6668,7 +6677,7 @@ require([
         const formattedLatitude = parseFloat(attributeswf.latitude).toFixed(4);
         const formattedLongitude = parseFloat(attributeswf.longitude).toFixed(4);
 
-       
+
 
         const dateStr = attributeswf.waterflowmeter_installation_date;
 
@@ -6974,7 +6983,7 @@ require([
             dataType: 'JSON',
             success: function (response) {
                 if (response == "Logout") {
-                      window.location = "/Home/LogOut";
+                    window.location = "/Home/LogOut";
                 }
                 var Tbodyhtml = '';
                 if (response == 'No Data') {
@@ -7226,7 +7235,7 @@ require([
                     dataType: 'JSON',
                     success: function (response) {
                         if (response == "Logout") {
-                              window.location = "/Home/LogOut";
+                            window.location = "/Home/LogOut";
                         }
                         var Tbodyhtml = '';
 
@@ -7516,7 +7525,7 @@ require([
     function createCustomPopupContentWQM(feature) {
         console.log("Creating custom popup content for Water Quality FTK...");
         const attributesWQM = feature.graphic.attributes;
-        let selectedId = attributesWQM.id; 
+        let selectedId = attributesWQM.id;
 
         function showNewPopupwqm() {
             const newPopup = document.getElementById('newPopupwqm');
@@ -7569,66 +7578,66 @@ require([
                                 bisValue: '6.5-8.5'
                             },
 
-                                {
-                                    label: 'EC(µS/cm)',
-                                    value: item.chloride,
-                                    bisValue: ''
-                                },
-                                {
-                                    label: 'Chlorine(mg/L)',
-                                    value: item.free_chlorine,
-                                    bisValue: '250'
-                                },
-                                {
-                                    label: 'Turbudity(mg/L)',
-                                    value: item.turbudity,
-                                    bisValue: '1'
-                                },
-                                {
-                                    label: 'Total Hardness (mg/L)',
-                                    value: item.total_hardness_mgl,
-                                    bisValue: '200'
-                                },
-                                {
-                                    label: 'Alkanility (mg/L)',
-                                    value: item.alkalinity_mgl,
-                                    bisValue: '200'
-                                },
-                                {
-                                    label: 'Nitrate(mg/L)',
-                                    value: item.nitrate_mgl,
-                                    bisValue: '45'
-                                },
-                                {
-                                    label: 'Fluoride(mg/L)',
-                                    value: item.fluoride_mgl,
-                                    bisValue: '1'
-                                },
-                                {
-                                    label: 'Arsenic)',
-                                    value: item.arsenic_mgl,
-                                    bisValue: ''
-                                },
-                                {
-                                    label: 'Electrical Conductivity',
-                                    value: item.ec_us_cm,
-                                    bisValue: ''
-                                },
-                                {
-                                    label: 'TDS(mg/L)',
-                                    value: item.tds,
-                                    bisValue: '500'
-                                },
-                                {
-                                    label: 'Bacterial Test',
-                                    value: item.bacterial_test,
-                                    bisValue: ''
-                                },
-                                {
-                                    label: 'Entry Time',
-                                    value: formattedDate,
-                                    bisValue: ''
-                                },
+                            {
+                                label: 'EC(µS/cm)',
+                                value: item.chloride,
+                                bisValue: ''
+                            },
+                            {
+                                label: 'Chlorine(mg/L)',
+                                value: item.free_chlorine,
+                                bisValue: '250'
+                            },
+                            {
+                                label: 'Turbudity(mg/L)',
+                                value: item.turbudity,
+                                bisValue: '1'
+                            },
+                            {
+                                label: 'Total Hardness (mg/L)',
+                                value: item.total_hardness_mgl,
+                                bisValue: '200'
+                            },
+                            {
+                                label: 'Alkanility (mg/L)',
+                                value: item.alkalinity_mgl,
+                                bisValue: '200'
+                            },
+                            {
+                                label: 'Nitrate(mg/L)',
+                                value: item.nitrate_mgl,
+                                bisValue: '45'
+                            },
+                            {
+                                label: 'Fluoride(mg/L)',
+                                value: item.fluoride_mgl,
+                                bisValue: '1'
+                            },
+                            {
+                                label: 'Arsenic)',
+                                value: item.arsenic_mgl,
+                                bisValue: ''
+                            },
+                            {
+                                label: 'Electrical Conductivity',
+                                value: item.ec_us_cm,
+                                bisValue: ''
+                            },
+                            {
+                                label: 'TDS(mg/L)',
+                                value: item.tds,
+                                bisValue: '500'
+                            },
+                            {
+                                label: 'Bacterial Test',
+                                value: item.bacterial_test,
+                                bisValue: ''
+                            },
+                            {
+                                label: 'Entry Time',
+                                value: formattedDate,
+                                bisValue: ''
+                            },
                             ];
 
                             Tbodyhtml += '<tr><th colspan="4">Data</th></tr>';
@@ -7671,7 +7680,7 @@ require([
             }
         });
 
-      
+
         $("#yearDropdownwq").off("change").on("change", function () {
             selectedYear = $(this).val();
             console.log("Dropdown changed. New selected year: ", selectedYear);
@@ -7682,11 +7691,11 @@ require([
             }
         });
 
-        
+
         $(".wq-item").off("click").on("click", function () {
             selectedId = $(this).data("id");
             console.log("Clicked Item ID: ", selectedId);
-            fetchDataAndPopulateTable(selectedId, selectedYear); 
+            fetchDataAndPopulateTable(selectedId, selectedYear);
         });
 
         const exportButton = document.createElement("button");
@@ -9265,7 +9274,7 @@ ${additionalContent}
 
     DistrictLayer.popupTemplate = {
         title: function (feature) {
-           
+
             var districtName = feature.graphic.attributes.District_N.split('_')[0];
             return "District: " + districtName;
         },
@@ -12332,7 +12341,7 @@ ${additionalContent}
                 var legendCustomTextContainer = container.find('.legend-custom-text-container');
 
                 parentCheckbox.prop('checked', anyChecked);
-                
+
                 if (id === "layer20Toggle") {
                     $('#layer20Toggle').prop('checked', isCheckedin);
                 }
@@ -12660,15 +12669,21 @@ ${additionalContent}
     //ui-container
     var uiContainer = document.getElementById("ui-container");
 
-
     var customToggleButton = document.createElement("div");
     customToggleButton.className = "maptoggleButton";
+
+    var customCloseButton = document.createElement("a");
+    customCloseButton.id = "close-sidebar2";
+    customCloseButton.title = "Close Sidebar";
+    customCloseButton.href = "#";
+    customCloseButton.innerHTML = " <i class='fas fa-bars'></i>";
+
     var customToggleButton1 = document.createElement("a");
     customToggleButton1.id = "show-sidebar";
+    customToggleButton1.title = "Show Sidebar";
     customToggleButton1.href = "#";
-
-
     customToggleButton1.innerHTML = " <i class='fas fa-bars'></i>";
+
     var customToggleButton2 = document.createElement("a");
     customToggleButton2.id = "show-sidebar1";
     customToggleButton2.target = "_blank"
@@ -12685,8 +12700,9 @@ ${additionalContent}
 
     uiContainer.appendChild(customToggleButton);
     customToggleButton.appendChild(customToggleButton1);
+    customToggleButton.appendChild(customCloseButton);
     customToggleButton1.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent default anchor behavior
+        event.preventDefault();
         $(".page-wrapper").addClass("toggled");
     });
     customToggleButton.appendChild(customToggleButton2);
@@ -12731,7 +12747,1524 @@ ${additionalContent}
     });
 
 
+    // for Querying waterlevel
+
+
+
+    $(document).ready(function () {
+        console.log("Document is ready");
+        $('#stateDropdown, #districtDropdown, #blockDropdown, #gpDropdown, #sourceDropdown').on('change', function () {
+            // Get selected values
+            var selectedState = $('#stateDropdown').val();
+            var selectedDistrict = $('#districtDropdown').val();
+            var selectedBlock = $('#blockDropdown').val();
+            var selectedGp = $('#gpDropdown').val();
+            var selectedSource = $('#sourceDropdown').val();
+
+            // Call the function to fetch well type count
+            fetchWellTypeCountWL(selectedState, selectedDistrict, selectedBlock, selectedGp, selectedSource);
+        });
+        // Fetch states when the page loads
+        FetchLocationOptionsWL();
+        //$('#sourceDropdownQuality').change(function () {
+        //    // Fetch the selected values from other dropdowns (state, district, etc.)
+        //    let state = $('#stateDropdown').val(); // Example: assuming you have a state dropdown
+        //    let district = $('#districtDropdown').val(); // Example: district dropdown
+        //    let block = $('#blockDropdown').val(); // Example: block dropdown
+        //    let gp = $('#gpDropdown').val(); // Example: gp dropdown
+
+        //    fetchSourceAndWellTypeOptions(state, district, block, gp);
+        //});
+        // Function to fetch source and well_type counts based on selected parameters
+
+
+
+        function fetchSourceAndWellTypeOptionsWL(state, district, block, grampanchayat) {
+            let url = '/mapview/FetchLocationOptionsWL';  // Adjust endpoint if needed
+
+            // Append query parameters based on input
+            if (state) url += `?state=${encodeURIComponent(state)}`;
+            if (district) url += `&district=${encodeURIComponent(district)}`;
+            if (block) url += `&block=${encodeURIComponent(block)}`;
+            if (grampanchayat) url += `&grampanchayat=${encodeURIComponent(grampanchayat)}`;
+
+            console.log("Fetching source and well type URL:", url); // Log the URL
+
+            // Fetch data from the server for sources and well types
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (data) {
+                    console.log("Source and well type data received:", data); // Log the response
+
+                    if (data.success) {
+                        // Populate the source dropdown (assuming the ID is 'sourceDropdownQuality')
+                        populateDropdown('sourceDropdown', data.options, 'Source');
+
+                        // You can also handle well type options similarly if needed
+                        // populateDropdown('wellTypeDropdownQuality', data.wellTypeOptions, 'Well Type');
+                    } else {
+                        alert(data.message);  // Notify if there's no data
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching source and well type options:", error);
+                    alert("An error occurred while fetching source and well type options.");
+                }
+            });
+        }
+
+        // Function to fetch data based on parameters
+        function FetchLocationOptionsWL(state = null, district = null, block = null, grampanchayat = null) {
+
+            let url = '/mapview/FetchLocationOptionsWL';
+
+            // Append query parameters based on input
+            if (state) url += `?state=${encodeURIComponent(state)}`;
+            if (district) url += `&district=${encodeURIComponent(district)}`;
+            if (block) url += `&block=${encodeURIComponent(block)}`;
+            if (grampanchayat) url += `&grampanchayat=${encodeURIComponent(grampanchayat)}`;
+
+            console.log("Fetching URL:", url); // Log the URL being fetched
+
+            // Fetch data from the server
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (data) {
+
+                    console.log("Data received:", data); // Log the response
+                    if (data.success) {
+                        if (!state && !district && !block && !grampanchayat) {
+                            // Populate the state dropdown
+                            populateDropdown('stateDropdown', data.options, 'State');
+
+                        } else if (state && !district && !block && !grampanchayat) {
+                            // Populate the district dropdown
+                            populateDropdown('districtDropdown', data.options, 'District');
+                            populatesource('sourceDropdown', data.sourceoption, 'source');
+
+                        } else if (state && district && !block && !grampanchayat) {
+                            // Populate the block dropdown
+                            populateDropdown('blockDropdown', data.options, 'Block');
+                            populatesource('sourceDropdown', data.sourceoption, 'source');
+                        } else if (state && district && block && !grampanchayat) {
+                            // Populate the Gram Panchayat dropdown
+                            populateDropdown('gpDropdown', data.options, 'Gram Panchayat');
+                            populatesource('sourceDropdown', data.sourceoption, 'source');
+                        } else if (state && district && block && grampanchayat) {
+                            // Fetch and update source and well_type counts after GP is selected
+                            fetchSourceAndWellTypeOptionsWL(state, district, block, grampanchayat);
+                        }
+                    } else {
+                        alert(data.message); // Alert the user if no data found
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching data:", error);
+                    alert("An error occurred while fetching data.");
+                }
+            });
+        }
+
+
+
+
+        function fetchSourceOptions(state, district, block, grampanchayat) {
+            if (!state || !district || !block || !grampanchayat) {
+                console.log("All parameters must be provided.");
+                return;
+            }
+
+            let url = `/mapview/FetchSourceOptionsWL?state=${encodeURIComponent(state)}&district=${encodeURIComponent(district)}&block=${encodeURIComponent(block)}&grampanchayat=${encodeURIComponent(grampanchayat)}`;
+            console.log("Fetching Source Options URL:", url); // Log the URL being fetched
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (data) {
+                    console.log("Source Options Data received:", data); // Log the response
+                    if (data.success) {
+                        $('#sourceDropdown').empty();
+                        $('#sourceDropdown').append(new Option("Select Source", ""));
+                        $.each(data.options, function (index, source_Ownership) {
+                            $('#sourceDropdown').append(new Option(source_Ownership, source_Ownership));
+                        });
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching source options:", error);
+                    alert("An error occurred while fetching source options.");
+                }
+            });
+        }
+
+
+        // Call this function when the page loads or when relevant selections change
+        $(document).ready(function () {
+            fetchSourceOptions(); // Fetch sources on page load or when a selection is made
+        });
+        // Function to populate a dropdown with options and display only the part before '_'
+        function populateDropdown(dropdownId, options, placeholderName) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.innerHTML = ''; // Clear existing options
+
+            // Add default 'Select' option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = `Select ${placeholderName}`;
+            dropdown.appendChild(defaultOption);
+
+            // Populate dropdown with fetched options
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                const value = option.name || option;
+                if (value === 'Delhi_7') {
+                    return;
+                }
+                const displayText = value.split('_')[0]; // Show only the part before '_'
+
+                opt.value = value; // Keep the full value for submission
+                opt.textContent = displayText; // Show only the first part before the underscore
+                dropdown.appendChild(opt);
+            });
+        }
+
+        //  for dropdown being seen one by one
+
+
+        $(document).ready(function () {
+            $("#districtDropdown, #blockDropdown, #gpDropdown").hide();
+            $("#stateDropdown").change(function () {
+                var selectedState = $(this).val();
+                if (selectedState === "Select State") {
+                    $("#districtDropdown, #blockDropdown, #gpDropdown").hide();
+                } else {
+                    $("#districtDropdown").show();
+                }
+            });
+            $("#districtDropdown").change(function () {
+                var selectedDistrict = $(this).val();
+                if (selectedDistrict === "Select District") {
+                    $("#blockDropdown").hide();
+                } else {
+                    $("#blockDropdown").show();
+                }
+            });
+            $("#blockDropdown").change(function () {
+                var selectedDistrict = $(this).val();
+
+                if (selectedDistrict === "Select Block") {
+                    $("#gpDropdown").hide();
+                } else {
+                    $("#gpDropdown").show();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#districtDropdownQuality, #blockDropdownQuality, #gpDropdownQuality").hide();
+            $("#stateDropdownQuality").change(function () {
+                var selectedState = $(this).val();
+                if (selectedState === "Select State") {
+                    $("#districtDropdownQuality, #blockDropdownQuality, #gpDropdownQuality").hide();
+                } else {
+                    $("#districtDropdownQuality").show();
+                }
+            });
+            $("#districtDropdownQuality").change(function () {
+                var selectedDistrict = $(this).val();
+                if (selectedDistrict === "Select District") {
+                    $("#blockDropdownQuality").hide();
+                } else {
+                    $("#blockDropdownQuality").show();
+                }
+            });
+            $("#blockDropdownQuality").change(function () {
+                var selectedDistrict = $(this).val();
+
+                if (selectedDistrict === "Select Block") {
+                    $("#gpDropdownQuality").hide();
+                } else {
+                    $("#gpDropdownQuality").show();
+                }
+            });
+        });
+        //
+
+        $(document).ready(function () {
+            // Change event for districtDropdownQuality
+            $('#districtDropdownQuality').change(function () {
+                var selectedDistrict = $(this).val();
+
+                // If the district is "Select District", reset the block and GP dropdowns
+                if (selectedDistrict === "Select District") {
+                    $('#blockDropdownQuality').html('<option value="">Select Block</option>'); // Reset Block
+                    $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>'); // Reset GP
+                } else {
+                    // When a district is selected, reset and show the block and GP dropdowns
+                    $('#blockDropdownQuality').html('<option value="">Select Block</option>').show(); // Ensure Block dropdown shows
+                    $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>').hide(); // Reset GP but hide it until block is selected
+                }
+            });
+
+            // Change event for blockDropdownQuality
+            $('#blockDropdownQuality').change(function () {
+                var selectedBlock = $(this).val();
+
+                // If block is "Select Block", reset the GP dropdown
+                if (selectedBlock === "Select Block") {
+                    $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>'); // Reset GP
+                } else {
+                    // When a block is selected, show the GP dropdown
+                    $('#gpDropdownQuality').show();
+                }
+            });
+
+        //    // Change event for stateDropdownQuality
+        //    $('#stateDropdownQuality').change(function () {
+        //        var selectedState = $(this).val();
+
+        //        // If state is "Select State", reset the district, block, and GP dropdowns
+        //        if (selectedState === "Select State") {
+        //            $('#districtDropdownQuality').html('<option value="">Select District</option>'); // Reset District
+        //            $('#blockDropdownQuality').html('<option value="">Select Block</option>'); // Reset Block
+        //            $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>'); // Reset GP
+        //        } else {
+        //            // State is selected, show district dropdown and reset others
+        //            $('#districtDropdownQuality').html('<option value="">Select District</option>').show(); // Ensure District dropdown shows
+        //            $('#blockDropdownQuality').html('<option value="">Select Block</option>').hide(); // Reset and hide Block
+        //            $('#gpDropdownQuality').html('<option value="">Select Gram Panchayat</option>').hide(); // Reset and hide GP
+        //        }
+        //    });
+        });
+
+
+
+
+
+        //
+        function populatesource(dropdownId, sourceoption, placeholderName) {
+
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.innerHTML = ''; // Clear existing options
+
+            // Add default 'Select' option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = `Select ${placeholderName}`;
+            dropdown.appendChild(defaultOption);
+            // Populate dropdown with fetched options
+            sourceoption.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option.name || option; // Use the name property or the direct string if available
+                opt.textContent = option.name || option; // Use the name property or the direct string if available
+                dropdown.appendChild(opt);
+            });
+
+        }
+
+        // Event listeners for dropdown changes
+        $('#stateDropdown').change(function () {
+            const state = this.value;
+            FetchLocationOptionsWL(state); // Fetch districts based on the selected state
+        });
+
+        $('#districtDropdown').change(function () {
+            const state = $('#stateDropdown').val();
+            const district = this.value;
+            FetchLocationOptionsWL(state, district); // Fetch blocks based on the selected district
+        });
+
+        $('#blockDropdown').change(function () {
+            const state = $('#stateDropdown').val();
+            const district = $('#districtDropdown').val();
+            const block = this.value;
+            FetchLocationOptionsWL(state, district, block); // Fetch GPs based on the selected block
+        });
+
+        $('#gpDropdown').change(function () {
+            const state = $('#stateDropdown').val();
+            const district = $('#districtDropdown').val();
+            const block = $('#blockDropdown').val();
+            const grampanchayat = this.value;
+            FetchLocationOptionsWL(state, district, block, grampanchayat); // Fetch source and well type data based on GP
+        });
+
+        $('#sourceDropdown').change(function () {
+            const state = $('#stateDropdown').val();
+            const district = $('#districtDropdown').val();
+            const block = $('#blockDropdown').val();
+            const grampanchayat = $('#gpDropdown').val();
+            const source_Ownership = this.value;
+
+            // Fetch the unique well types based on the selected source
+            // fetchWellTypeCountBySource(state, district, block, grampanchayat, source_Ownership);
+        });
+        function fetchWellTypeCountWL(state, district, block, grampanchayat, source_Ownership) {
+            let url = `/mapview/FetchWellTypeCountBySourceWL?state=${encodeURIComponent(state)}&district=${encodeURIComponent(district)}&block=${encodeURIComponent(block)}&grampanchayat=${encodeURIComponent(grampanchayat)}&source_Ownership=${encodeURIComponent(source_Ownership)}`;
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (data) {
+                    let container = $('#wellTypeCountsContainer');
+                    let messageContainer = $('#messageContainer');  // Add a div to display messages
+                    container.empty();  // Clear any previous results
+                    messageContainer.empty();  // Clear previous messages
+
+                    if (data.success) {
+                        console.log("Well Type Counts:", data.wellTypeCounts);
+
+                        // Check if there are no wellTypeCounts and show a message in the div
+                        if (data.wellTypeCounts.length === 0) {
+                            messageContainer.html('<div class="alert alert-info">Please update the dropdown</div>');
+                        } else {
+                            // If data exists, clear any message and display the results
+                            data.wellTypeCounts.forEach(function (wellTypeCount, index) {
+                                var wellTypeHtml = `
+                        <div id="wellTypeContainer1_${index}" class="wellTypeContainer d-flex justify-content-between align-items-center mb-2">
+                            <span id="wellType1_${index}" class="popUpText">${wellTypeCount.TypeOfWell}:</span>
+                            <span id="wellCount1_${index}" class="popUpText2 badge badge-primary">${wellTypeCount.Count}</span>
+                        </div>
+                        `;
+                                container.append(wellTypeHtml);
+                            });
+                        }
+                    } else {
+                        messageContainer.html(`<div class="alert alert-danger">${data.message}</div>`);  // Show the error message in a div
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching well type count:", error);
+                    $('#messageContainer').html('<div class="alert alert-danger">An error occurred while fetching well type counts.</div>');  // Show error in a div
+                }
+            });
+        }
+
+    });
     //
+
+
+
+
+
+
+
+
+    //  // Function to waterlevel query ends
+    // Function to waterquality query start
+
+    $(document).ready(function () {
+        console.log("Document is ready");
+
+        // Event listener for dropdown changes
+        $('#stateDropdownQuality, #districtDropdownQuality, #blockDropdownQuality, #gpDropdownQuality, #sourceDropdownQuality').on('change', function () {
+            // Get selected values
+            var selectedState = $('#stateDropdownQuality').val();
+            var selectedDistrict = $('#districtDropdownQuality').val();
+            var selectedBlock = $('#blockDropdownQuality').val();
+            var selectedGp = $('#gpDropdownQuality').val();
+            var selectedSource = $('#sourceDropdownQuality').val();
+
+            // Call the function to fetch well type count
+            fetchWellTypeCount(selectedState, selectedDistrict, selectedBlock, selectedGp, selectedSource);
+        });
+
+        // Fetch states when the page loads
+        fetchLocationOptions();
+
+        // Function to fetch location options for states, districts, blocks, and GPs
+        function fetchLocationOptions(state = null, district = null, block = null, gp = null) {
+            let url = '/mapview/FetchLocationOptions';
+
+            // Append query parameters based on input
+            if (state) url += `?state=${encodeURIComponent(state)}`;
+            if (district) url += `&district=${encodeURIComponent(district)}`;
+            if (block) url += `&block=${encodeURIComponent(block)}`;
+            if (gp) url += `&gp=${encodeURIComponent(gp)}`;
+
+            console.log("Fetching URL:", url); // Log the URL being fetched
+
+            // Fetch data from the server
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (data) {
+                    console.log("Data received:", data); // Log the response
+                    if (data.success) {
+                        // Populate the dropdowns based on the state of other selections
+                        if (!state && !district && !block && !gp) {
+                            populateDropdown('stateDropdownQuality', data.options, 'State');
+                        } else if (state && !district) {
+                            populateDropdown('districtDropdownQuality', data.options, 'District');
+                            fetchSourceAndWellTypeOptions(state);
+                        } else if (state && district && !block) {
+                            populateDropdown('blockDropdownQuality', data.options, 'Block');
+                            fetchSourceAndWellTypeOptions(state, district);
+                        } else if (state && district && block && !gp) {
+                            populateDropdown('gpDropdownQuality', data.options, 'Gram Panchayat');
+                            fetchSourceAndWellTypeOptions(state, district, block);
+                        } else if (state && district && block && gp) {
+                            fetchSourceAndWellTypeOptions(state, district, block, gp);
+                        }
+                    } else {
+                        alert(data.message); // Alert the user if no data found
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching data:", error);
+                    alert("An error occurred while fetching data.");
+                }
+            });
+        }
+
+        // Function to fetch source and well_type counts based on selected parameters
+        function fetchSourceAndWellTypeOptions(state, district, block, gp) {
+            let url = '/mapview/FetchLocationOptions';
+
+            // Add parameters to the array only if they have a value
+            if (state) {
+                url += `?state=${encodeURIComponent(state)}`;
+                if (district) url += `&district=${encodeURIComponent(district)}`;
+                if (block) url += `&block=${encodeURIComponent(block)}`;
+                if (gp) url += `&grampanchayat=${encodeURIComponent(gp)}`;
+            } else if (district) {
+                url += `?district=${encodeURIComponent(district)}`;
+                if (block) url += `&block=${encodeURIComponent(block)}`;
+                if (gp) url += `&grampanchayat=${encodeURIComponent(gp)}`;
+            } else if (block) {
+                url += `?block=${encodeURIComponent(block)}`;
+                if (gp) url += `&grampanchayat=${encodeURIComponent(gp)}`;
+            } else if (gp) {
+                url += `?grampanchayat=${encodeURIComponent(gp)}`;
+            }
+
+            console.log("Fetching source and well type URL:", url); // Log the final URL
+
+            // Fetch data from the server for sources and well types
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (data) {
+                    console.log("Source and well type data received:", data); // Log the response
+                    if (data.success) {
+                        // Populate the source dropdown
+                        populatesource('sourceDropdownQuality', data.sourceoption, 'Source');
+                    } else {
+                        alert(data.message);  // Notify if there's no data
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching source and well type options:", error);
+                    alert("An error occurred while fetching source and well type options.");
+                }
+            });
+        }
+
+        // Function to populate a dropdown with options and display only the part before '_'
+        function populateDropdown(dropdownId, options, placeholderName) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.innerHTML = ''; // Clear existing options
+
+            // Add default 'Select' option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = `Select ${placeholderName}`;
+            dropdown.appendChild(defaultOption);
+
+            // Populate dropdown with fetched options
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                const value = option.name || option; // Use the name property or the direct string if available
+                const displayText = value.split('_')[0]; // Show only the part before '_'
+
+                opt.value = value; // Keep the full value for submission
+                opt.textContent = displayText; // Show only the first part before the underscore
+                dropdown.appendChild(opt);
+            });
+        }
+
+        function populatesource(dropdownId, sourceoption, placeholderName) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.innerHTML = ''; // Clear existing options
+
+            // Add default 'Select' option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = `Select ${placeholderName}`;
+            dropdown.appendChild(defaultOption);
+
+            // Populate dropdown with fetched options
+            sourceoption.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option.name || option;
+                opt.textContent = option.name || option;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        // Event listeners for dropdown changes
+        $('#stateDropdownQuality').change(function () {
+            const state = this.value;
+            fetchLocationOptions(state); // Fetch districts based on the selected state
+        });
+
+        $('#districtDropdownQuality').change(function () {
+            const state = $('#stateDropdownQuality').val();
+            const district = this.value;
+            fetchLocationOptions(state, district); // Fetch blocks based on the selected district
+        });
+
+        $('#blockDropdownQuality').change(function () {
+            const state = $('#stateDropdownQuality').val();
+            const district = $('#districtDropdownQuality').val();
+            const block = this.value;
+            fetchLocationOptions(state, district, block); // Fetch GPs based on the selected block
+        });
+
+        $('#gpDropdownQuality').change(function () {
+            const state = $('#stateDropdownQuality').val();
+            const district = $('#districtDropdownQuality').val();
+            const block = $('#blockDropdownQuality').val();
+            const gp = this.value;
+            fetchLocationOptions(state, district, block, gp); // Fetch source and well type data based on GP
+        });
+
+        $('#sourceDropdownQuality').change(function () {
+            const state = $('#stateDropdownQuality').val();
+            const district = $('#districtDropdownQuality').val();
+            const block = $('#blockDropdownQuality').val();
+            const gp = $('#gpDropdownQuality').val();
+            const source = this.value;
+
+            // Fetch the unique well types based on the selected source
+            fetchWellTypeCount(state, district, block, gp, source);
+        });
+        function fetchWellTypeCount(state, district, block, gp, source) {
+            let url = `/mapview/FetchWellTypeCountBySource?state=${encodeURIComponent(state)}&district=${encodeURIComponent(district)}&block=${encodeURIComponent(block)}&gp=${encodeURIComponent(gp)}&source=${encodeURIComponent(source)}`;
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function (data) {
+                    let container = $('#wellCountsContainer');
+                    let messageContainerQ = $('#messageContainerQ');  // Add a div to display messages
+                    container.empty();  // Clear any previous results
+                    messageContainerQ.empty();  // Clear previous messages
+
+                    if (data.success) {
+                        console.log("Well Type Counts WQ:", data.wellTypeCounts);
+
+                        // Check if there are no wellTypeCounts and show a message in the div
+                        if (data.wellTypeCounts.length === 0) {
+                            messageContainerQ.html('<div class="alert alert-info">No well type data found for the selected filters. Please update the dropdown.</div>');
+                        } else {
+                            // If data exists, clear any message and display the results
+                            data.wellTypeCounts.forEach(function (wellTypeCount, index) {
+                                var wellTypeHtml = `
+                        <div id="wellTypeContainer_${index}" class="wellTypeContainer d-flex justify-content-between align-items-center mb-2">
+                            <span id="wellType_${index}" class="popUpText">${wellTypeCount.TypeOfWell}:</span>
+                            <span id="wellCount_${index}" class="popUpText2 badge badge-primary">${wellTypeCount.Count}</span>
+                        </div>
+                        `;
+                                container.append(wellTypeHtml);
+                            });
+                        }
+                    } else {
+                        messageContainerQ.html(`<div class="alert alert-danger">${data.message}</div>`);  // Show the error message in a div
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching well type counts:", error);
+                    $('#messageContainerQ').html('<div class="alert alert-danger">An error occurred while fetching well type counts.</div>');  // Show error in a div
+                }
+            });
+        }
+    });
+    //
+    // Close the modal when the 'x' is clicked
+    document.querySelector('.close').onclick = function () {
+        document.getElementById('popupModal').style.display = 'none';
+    };
+
+    // Close the modal when clicking outside of the modal
+    window.onclick = function (event) {
+        const modal = document.getElementById('popupModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+    // Toggle forms
+    document.getElementById('waterLevelBtn').onclick = function () {
+        document.getElementById('waterLevelForm').style.display = 'none';
+        document.getElementById('waterQualityForm').style.display = 'block';
+    };
+
+    document.getElementById('waterQualityBtn').onclick = function () {
+        document.getElementById('waterQualityForm').style.display = 'none';
+        document.getElementById('waterLevelForm').style.display = 'block';
+    };
+
+    // Set initial state
+    document.getElementById('waterLevelForm').style.display = 'block';
+    document.getElementById('waterQualityForm').style.display = 'none';
+
+    //
+
+    //function plotPointsOnMapS(coordinates) {
+    //    // Clear any existing points
+    //    graphicsLayer.removeAll();
+
+    //    // Loop through each coordinate and create a point
+    //    coordinates.forEach(function (coord) {
+    //        var point = {
+    //            type: "point", // autocasts as new Point()
+    //            longitude: parseFloat(coord.Longitude),
+    //            latitude: parseFloat(coord.Latitude)
+    //        };
+
+    //        var simpleMarkerSymbol = {
+    //            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+    //            color: [226, 119, 40], // Orange color
+    //            outline: {
+    //                color: [255, 255, 255], // White outline
+    //                width: 1
+    //            }
+    //        };
+
+    //        var pointGraphic = new Graphic({
+    //            geometry: point,
+    //            symbol: simpleMarkerSymbol
+    //        });
+
+    //        // Add the point to the graphics layer
+    //        graphicsLayer.add(pointGraphic);
+    //    });
+
+    //    // Zoom to the first coordinate
+    //    if (coordinates.length > 0) {
+    //        view.goTo({
+    //            center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+    //            zoom: 8
+    //        });
+    //    }
+    //}
+
+    //$(document).ready(function () {
+    //    $('#sourceDropdown').change(function () {
+    //        var selectedS = $(this).val();
+    //        if (selectedS) {
+    //            $.ajax({
+    //                url: queryUrlWLSource,
+    //                type: 'GET',
+    //                data: { source_Ownership: selectedS },
+    //                success: function (response) {
+    //                    if (response.success) {
+    //                        console.log(response, "sourceww");
+
+    //                        plotPointsOnMapS(response.coordinates);
+    //                    } else {
+    //                        console.log(response.message);
+    //                    }
+    //                },
+    //                error: function () {
+    //                    console.log("An error occurred while fetching coordinates.");
+    //                }
+    //            });
+    //        }
+    //    });
+    //});
+    //  for zooming in
+
+    function plotPointsOnMap(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 7
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#stateDropdown').change(function () {
+            var selectedState = $(this).val(); // Get the selected state value
+            if (selectedState) {
+                $.ajax({
+                    url: queryUrlWLSta, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { state: selectedState },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMap(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+    // for state level viewing in map ends
+    //for dist  level viewing in map starts
+
+
+
+    function plotPointsOnMapD(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 8
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#districtDropdown').change(function () {
+            var selectedDist = $(this).val(); // Get the selected state value
+            if (selectedDist) {
+                $.ajax({
+                    url: queryUrlWLDist, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { district: selectedDist },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMapD(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+
+    //
+
+
+
+    function plotPointsOnMapB(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 10
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#blockDropdown').change(function () {
+            var selectedBlock = $(this).val(); // Get the selected state value
+            if (selectedBlock) {
+                $.ajax({
+                    url: queryUrlWLBlock, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { block: selectedBlock },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMapB(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+    //
+
+
+
+    function plotPointsOnMapGP(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 14
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#gpDropdown').change(function () {
+
+            var selectedGP = $(this).val(); // Get the selected state value
+            if (selectedGP) {
+                $.ajax({
+                    url: queryUrlWLGP, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { grampanchayat: selectedGP },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMapGP(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+
+
+    //
+
+    //function plotPointsOnMapS(coordinates) {
+    //    // Clear any existing points
+    //    graphicsLayer.removeAll();
+
+    //    // Loop through each coordinate and create a point
+    //    coordinates.forEach(function (coord) {
+    //        var point = {
+    //            type: "point", // autocasts as new Point()
+    //            longitude: parseFloat(coord.Longitude),
+    //            latitude: parseFloat(coord.Latitude)
+    //        };
+
+    //        var simpleMarkerSymbol = {
+    //            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+    //            color: [226, 119, 40], // Orange color
+    //            outline: {
+    //                color: [255, 255, 255], // White outline
+    //                width: 1
+    //            }
+    //        };
+
+    //        var pointGraphic = new Graphic({
+    //            geometry: point,
+    //            symbol: simpleMarkerSymbol
+    //        });
+
+    //        // Add the point to the graphics layer
+    //        graphicsLayer.add(pointGraphic);
+    //    });
+
+    //    // Zoom to the first coordinate
+    //    if (coordinates.length > 0) {
+    //        view.goTo({
+    //            center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+    //            zoom: 8
+    //        });
+    //    }
+    //}
+    //$(document).ready(function () {
+    //    $('#sourceDropdown').change(function () {
+    //        var selectedS = $(this).val(); // Get the selected source value
+
+
+    //        if (selectedS) {
+    //            $.ajax({
+    //                url: queryUrlWLSource,
+    //                type: 'GET',
+    //                data: { source_Ownership: selectedS },
+    //                success: function (response) {
+    //                    if (response.success) {
+    //                        console.log(response, "source");
+
+    //                        plotPointsOnMapS(response.coordinates);
+    //                    } else {
+    //                        console.log(response.message);
+    //                    }
+    //                },
+    //                error: function () {
+    //                    console.log("An error occurred while fetching coordinates.");
+    //                }
+    //            });
+    //        }
+    //    });
+    //});
+
+
+
+    function plotPointsOnMapS(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 8
+            });
+        }
+    }
+    $(document).ready(function () {
+        $('#sourceDropdown').change(function () {
+            var selectedSource = $('#sourceDropdown').val(); // Get the selected source value
+            var selectedState = $('#stateDropdown').val(); // Get the selected state
+            var selectedDistrict = $('#districtDropdown').val(); // Get the selected district
+            var selectedBlock = $('#blockDropdown').val(); // Get the selected block
+            var selectedGP = $('#gpDropdown').val(); // Get the selected GP
+
+            // Create a data object to hold only the selected dropdown values
+            var requestData = { source_Ownership: selectedSource };
+
+            // Add selected values only if they exist
+            if (selectedState) {
+                requestData.state = selectedState;
+            }
+            if (selectedDistrict) {
+                requestData.district = selectedDistrict;
+            }
+            if (selectedBlock) {
+                requestData.block = selectedBlock;
+            }
+            if (selectedGP) {
+                requestData.grampanchayat = selectedGP;
+            }
+
+            // Log the selected combinations
+            console.log("Selected Dropdown Values:", requestData);
+
+            if (selectedSource) { // Ensure the source is selected
+                // Clear previous points on the map
+
+
+                $.ajax({
+                    url: queryUrlWLSource, // Ensure the correct URL is set
+                    type: 'GET',
+                    data: requestData, // Send only selected values
+                    success: function (response) {
+                        console.log("AJAX URL:", queryUrlWLSource); // Log the request URL
+                        if (response.success) {
+                            console.log(response.coordinates, "Coordinates received"); // Log the coordinates
+                            plotPointsOnMapS(response.coordinates); // Plot the new points using the function
+                        } else {
+                            console.log(response.message); // Log any failure message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+
+
+    });
+
+
+    // for wq zooming
+
+
+    function plotPointsOnMapQ(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 7
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#stateDropdownQuality').change(function () {
+            var selectedState = $(this).val(); // Get the selected state value
+            if (selectedState) {
+                $.ajax({
+                    url: queryUrlWQSta, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { state: selectedState },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMapQ(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+    // for state level viewing in map ends
+    //for dist  level viewing in map starts
+
+
+
+    function plotPointsOnMapDQ(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate ff
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 8
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#districtDropdownQuality').change(function () {
+            var selectedDist = $(this).val(); // Get the selected state value
+            if (selectedDist) {
+                $.ajax({
+                    url: queryUrlWQDist, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { district: selectedDist },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMapDQ(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+
+    //
+
+
+
+    function plotPointsOnMapBQ(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 10
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#blockDropdownQuality').change(function () {
+            var selectedBlock = $(this).val(); // Get the selected state value
+            if (selectedBlock) {
+                $.ajax({
+                    url: queryUrlWQBlock, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { block: selectedBlock },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMapBQ(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+    //
+
+
+
+    function plotPointsOnMapGPQ(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 14
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $('#gpDropdownQuality').change(function () {
+
+            var selectedGP = $(this).val(); // Get the selected state value
+            if (selectedGP) {
+                $.ajax({
+                    url: queryUrlWQGP, // Use the global variable for the URL
+                    type: 'GET',
+                    data: { gp: selectedGP },
+                    success: function (response) {
+                        if (response.success) {
+                            // Call the function to plot the points on the map
+                            plotPointsOnMapGPQ(response.coordinates);
+                        } else {
+                            console.log(response.message); // Log the error message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+
+
+    //
+
+    function plotPointsOnMapSQ(coordinates) {
+        // Clear any existing points
+        graphicsLayer.removeAll();
+
+        // Loop through each coordinate and create a point
+        coordinates.forEach(function (coord) {
+            var point = {
+                type: "point", // autocasts as new Point()
+                longitude: parseFloat(coord.Longitude),
+                latitude: parseFloat(coord.Latitude)
+            };
+
+            var simpleMarkerSymbol = {
+                type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+                color: [226, 119, 40], // Orange color
+                outline: {
+                    color: [255, 255, 255], // White outline
+                    width: 1
+                }
+            };
+
+            var pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+
+            // Add the point to the graphics layer
+            graphicsLayer.add(pointGraphic);
+        });
+
+        // Zoom to the first coordinate
+        if (coordinates.length > 0) {
+            view.goTo({
+                center: [parseFloat(coordinates[0].Longitude), parseFloat(coordinates[0].Latitude)],
+                zoom: 8
+            });
+        }
+    }
+    $(document).ready(function () {
+        $('#sourceDropdownQuality').change(function () {
+            var selectedS = $(sourceDropdownQuality).val(); // Get the selected source value
+            var selectedState = $('#stateDropdownQuality').val(); // Get the selected state
+            var selectedDistrict = $('#districtDropdownQuality').val(); // Get the selected district
+            var selectedBlock = $('#blockDropdownQuality').val(); // Get the selected block
+            var selectedGP = $('#gpDropdownQuality').val(); // Get the selected group
+
+            // Log the selected values for debugging
+            console.log("Selected Values:", selectedState, selectedDistrict, selectedBlock, selectedGP, selectedS);
+
+            if (selectedS) { // Make sure the source is selected
+                $.ajax({
+                    url: queryUrlWQSource, // The URL should be set correctly here
+                    type: 'GET',
+                    data: {
+                        state: selectedState || "", // Send empty string if null
+                        district: selectedDistrict || "",
+                        block: selectedBlock || "",
+                        gp: selectedGP || "",
+                        source: selectedS
+                    },
+                    success: function (response) {
+                        console.log("AJAX URL:", queryUrlWQSource);
+
+                        if (response.success) {
+                            console.log(response.coordinates); // Log coordinates
+                            plotPointsOnMapSQ(response.coordinates); // Ensure this function exists to plot the points
+                        } else {
+                            console.log(response.message); // Log failure message
+                        }
+                    },
+                    error: function () {
+                        console.log("An error occurred while fetching coordinates.");
+                    }
+                });
+            }
+        });
+    });
+
+
 
     var zoomInBtn = document.createElement("div");
     zoomInBtn.id = "zoomInBtn";
@@ -12762,15 +14295,15 @@ ${additionalContent}
     distanceButton.innerHTML = "<svg id='Layer_1' enable-background='new 0 0 512.064 512.064' height='30' width='33' viewBox='0 0 512.064 512.064' width='512' xmlns='http://www.w3.org/2000/svg'><g><path d='m92.131 246.868c-50.801 0-92.131 41.33-92.131 92.132 0 25.683 14.043 56.703 41.74 92.199 19.782 25.352 39.332 43.685 40.155 44.453l10.237 9.558 10.237-9.558c.823-.768 20.373-19.101 40.155-44.453 27.696-35.496 41.74-66.516 41.74-92.199-.001-50.802-41.331-92.132-92.133-92.132zm0 121.938c-16.435 0-29.806-13.371-29.806-29.806s13.371-29.806 29.806-29.806 29.806 13.371 29.806 29.806-13.371 29.806-29.806 29.806z'/><path d='m419.932 26.854c-50.801 0-92.131 41.33-92.131 92.131 0 25.683 14.043 56.703 41.739 92.199 19.781 25.352 39.332 43.685 40.154 44.453l10.237 9.558 10.236-9.558c.823-.768 20.374-19.101 40.155-44.453 27.697-35.496 41.74-66.516 41.74-92.199.002-50.8-41.328-92.131-92.13-92.131zm0 121.938c-16.435 0-29.806-13.371-29.806-29.806s13.371-29.806 29.806-29.806c16.436 0 29.807 13.371 29.807 29.806s-13.371 29.806-29.807 29.806z'/><g><path d='m364.929 479.688h-212.794v-30h212.794c22.058 0 40.003-17.945 40.003-40.003s-17.945-40.003-40.003-40.003h-83.896c-38.6 0-70.004-31.403-70.004-70.003s31.404-70.003 70.004-70.003h78.895v30h-78.895c-22.059 0-40.004 17.945-40.004 40.003s17.945 40.003 40.004 40.003h83.896c38.6 0 70.003 31.403 70.003 70.003s-31.403 70.003-70.003 70.003z'/></g></g></svg>";
     distanceButton.title = "Distance";
     uiContainer.appendChild(distanceButton); // Append to uiContainer
-    function map_data_off() {
-        document.getElementById("info").style.display = "none";
-        document.getElementById('map_data_off').style.visibility = 'hidden';
-        document.getElementById('map_data').style.visibility = 'visible';
+    //function map_data_off() {
+    //    document.getElementById("info").style.display = "none";
+    //    document.getElementById('map_data_off').style.visibility = 'hidden';
+    //    document.getElementById('map_data').style.visibility = 'visible';
 
-        false;
+    //    false;
 
 
-    }
+    //}
     distanceButton.addEventListener('click', function () {
         const mapData = document.getElementById('map_data_off');
         if (mapData.style.visibility === 'visible') {
@@ -12807,15 +14340,15 @@ ${additionalContent}
     areaButton.innerHTML = "<svg id='Layer_1' enable-background='new 0 0 512 512' height='30' width='33' viewBox='0 0 512 512' width='512' xmlns='http://www.w3.org/2000/svg'><path d='m378.212 165.885 2.786-23.57-113.685 113.685 113.686 113.686-2.786-23.571c-.519-4.388 2.618-8.365 7.006-8.884 4.386-.514 8.365 2.618 8.884 7.006l5.494 46.475c.288 2.433-.556 4.863-2.288 6.596-1.509 1.509-3.548 2.343-5.656 2.343-.312 0-.625-.018-.939-.055l-46.476-5.493c-4.388-.519-7.524-4.496-7.006-8.884s4.49-7.525 8.884-7.006l23.57 2.786-113.686-113.686-113.686 113.686 23.571-2.786c4.385-.515 8.365 2.618 8.884 7.006s-2.618 8.365-7.006 8.884l-46.475 5.494c-.313.037-.627.055-.939.055-2.109 0-4.147-.834-5.656-2.343-1.732-1.732-2.576-4.163-2.288-6.596l5.493-46.475c.519-4.388 4.487-7.527 8.884-7.006 4.388.519 7.524 4.496 7.006 8.884l-2.786 23.57 113.684-113.686-113.685-113.685 2.786 23.571c.519 4.388-2.618 8.365-7.006 8.884-.318.038-.636.056-.949.056-3.999 0-7.454-2.992-7.935-7.062l-5.494-46.475c-.288-2.433.556-4.863 2.288-6.596 1.732-1.731 4.163-2.573 6.596-2.288l46.476 5.493c4.388.519 7.524 4.496 7.006 8.884-.519 4.387-4.494 7.522-8.884 7.006l-23.57-2.786 113.685 113.684 113.685-113.685-23.57 2.786c-4.386.521-8.365-2.618-8.884-7.006s2.618-8.365 7.006-8.884l46.475-5.494c2.432-.291 4.863.555 6.596 2.288 1.732 1.732 2.576 4.163 2.288 6.596l-5.493 46.475c-.481 4.069-3.937 7.062-7.935 7.062-.313 0-.63-.018-.949-.056-4.388-.518-7.525-4.495-7.007-8.883zm-294.75-157.885v67.462c0 4.418-3.582 8-8 8h-67.462c-4.418 0-8-3.582-8-8v-67.462c0-4.418 3.582-8 8-8h67.462c4.419 0 8 3.582 8 8zm-16 8h-51.462v51.462h51.462zm16 420.538v67.462c0 4.418-3.582 8-8 8h-67.462c-4.418 0-8-3.582-8-8v-67.462c0-4.418 3.582-8 8-8h67.462c4.419 0 8 3.581 8 8zm-16 8h-51.462v51.462h51.462zm444.538-436.538v67.462c0 4.418-3.582 8-8 8h-67.462c-4.418 0-8-3.582-8-8v-67.462c0-4.418 3.582-8 8-8h67.462c4.418 0 8 3.582 8 8zm-16 8h-51.462v51.462h51.462zm16 420.538v67.462c0 4.418-3.582 8-8 8h-67.462c-4.418 0-8-3.582-8-8v-67.462c0-4.418 3.582-8 8-8h67.462c4.418 0 8 3.581 8 8zm-16 8h-51.462v51.462h51.462zm-388.468-394.807h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8zm65.801 0h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8zm65.801 0h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8zm65.802 0h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8h-33.731c-4.418 0-8 3.582-8 8s3.581 8 8 8zm99.532-16h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8zm-263.204 428.538h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8zm65.8 0h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8h33.731c4.418 0 8-3.582 8-8s-3.581-8-8-8zm65.802 0h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8zm65.801 0h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8zm65.801 0h-33.731c-4.418 0-8 3.582-8 8s3.582 8 8 8h33.731c4.418 0 8-3.582 8-8s-3.582-8-8-8zm65.801-313.005c4.418 0 8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8v33.731c0 4.418 3.582 8 8 8zm-8 57.8c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8zm0 65.802c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8zm0 65.801c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8zm0 65.801c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8zm-420.538-255.204c4.418 0 8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8v33.731c0 4.418 3.582 8 8 8zm-8 57.8c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8zm0 65.802c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8zm0 65.801c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8zm0 65.801c0 4.418 3.582 8 8 8s8-3.582 8-8v-33.731c0-4.418-3.582-8-8-8s-8 3.582-8 8z'/></svg>";
     areaButton.title = "Area";
     uiContainer.appendChild(areaButton); // Append to uiContainer
-    function map_data_off() {
-        document.getElementById("info").style.display = "none";
-        document.getElementById('map_data_off').style.visibility = 'hidden';
-        document.getElementById('map_data').style.visibility = 'visible';
+    //function map_data_off() {
+    //    document.getElementById("info").style.display = "none";
+    //    document.getElementById('map_data_off').style.visibility = 'hidden';
+    //    document.getElementById('map_data').style.visibility = 'visible';
 
-        false;
+    //    false;
 
 
-    }
+    //}
     areaButton.addEventListener('click', function () {
         const mapData = document.getElementById('map_data_off');
         if (mapData.style.visibility === 'visible') {
@@ -13186,10 +14719,10 @@ ${additionalContent}
     });
 
 
-    var mapContainer = document.createElement("div");
-    mapContainer.id = "mapContainer";
-    mapContainer.style.height = "400px"; // Set the height to 400 pixels
-    uiContainer.appendChild(mapContainer);
+    //var mapContainer = document.createElement("div");
+    //mapContainer.id = "mapContainer";
+    //mapContainer.style.height = "400px"; // Set the height to 400 pixels
+    //uiContainer.appendChild(mapContainer);
 
 
     var dropdownDiv = document.createElement("div");
@@ -13288,11 +14821,72 @@ ${additionalContent}
         });
     });
 
+    var openPopupBtn = document.createElement("button");
+    openPopupBtn.className = "openPopupBtn";
+    openPopupBtn.id = "openPopupBtn";
+    openPopupBtn.innerHTML = "<i class='fas fa-database'></i>"
+    openPopupBtn.title = "Query";
+    uiContainer.appendChild(openPopupBtn);
     window.addEventListener("click", function (event) {
         if (!event.target.matches("#basemapDropdownBtn")) {
             dropdownContent.classList.remove("show");
         }
     });
+
+    // Show the modal and load state options on button click
+    $(document).ready(function () {
+        // Show the modal and load state options on button click
+        $('#openPopupBtn').click(function () {
+            $(".page-wrapper").removeClass("toggled");
+            //$(".map_view").removeClass("toggled");
+            $(".page-wrapper").addClass("toggled-other");
+            $('#popupfeed').hide();
+            $('#mapInfo').hide();
+            $('#close-sidebar2').css('display', 'none');
+            $('#show-sidebar').css('display', 'flex');
+        });
+
+        // Close the modal when the 'x' is clicked
+        $('.closePopupModal').click(function () {
+            $('#popupModal').hide();
+            $(".page-wrapper").removeClass("toggled-other");
+        });
+
+        //// Close the modal when clicking outside of the modal
+        //$(window).click(function (event) {
+        //    if ($(event.target).is('#popupModal')) {
+        //        $('#popupModal').hide();
+        //    }
+        //});
+
+        // Get the buttons   Button ID is reversed
+        const waterLevelBtn = document.getElementById('waterLevelBtn');
+        const waterQualityBtn = document.getElementById('waterQualityBtn');
+
+        // Get the formswaterLevelBtn
+        const waterLevelForm = document.getElementById('waterLevelForm');
+        const waterQualityForm = document.getElementById('waterQualityForm');
+
+        // Add click event listeners to the buttons
+        waterLevelBtn.addEventListener('click', function () {
+            waterLevelForm.style.display = 'block';     // Show Water Level form
+            waterQualityForm.style.display = 'none';    // Hide Water Quality form
+        });
+
+        waterQualityBtn.addEventListener('click', function () {
+            waterQualityForm.style.display = 'block';   // Show Water Quality form
+            waterLevelForm.style.display = 'none';      // Hide Water Level form
+        });
+
+        // Optional: Set initial state
+        waterLevelForm.style.display = 'block'; // Show Water Level form by default
+        waterQualityForm.style.display = 'none'; // Hide Water Quality form by default
+    });
+    // Show the modal and load state options on button click
+    document.getElementById('openPopupBtn').onclick = function () {
+        document.getElementById('popupModal').style.display = 'block';
+
+    };
 
 });
 
@@ -13341,7 +14935,7 @@ document.addEventListener("DOMContentLoaded", function () {
     customLegend.addEventListener('click', function () {
         var uiContainer = document.querySelector('.uiContainer');
         if (uiContainer.style.display === 'none') {
-            uiContainer.style.display = 'block';
+            uiContainer.style.display = 'flex';
         } else {
             uiContainer.style.display = 'none';
         }
@@ -13349,20 +14943,24 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleClassBasedOnWidth();
 
     $(window).resize(toggleClassBasedOnWidth);
-    $(window).resize(checkwindowWidth);
-    $(window).resize(checkwindowWidthSmall);
+    //$(window).resize(checkwindowWidth);
+    //$(window).resize(checkwindowWidthSmall);
 
 });
 
 
-function checkwindowWidth() {
-    if ($(window).width() > 1000) {
-        document.getElementById("ui-container").style.display = 'flex';
-    }
-}
+//function checkwindowWidth() {
+//    if ($(window).width() > 1021 && $(window).height() > 500) {
+//        document.getElementById("ui-container").style.flexDirection = 'row';
+//    }
+//}
 
-function checkwindowWidthSmall() {
-    if ($(window).width() < 1000) {
-        document.getElementById("ui-container").style.display = 'block';
-    }
-}
+//function checkwindowWidthSmall() {
+//    if ($(window).width() <= 1021 && $(window).height() > 500) {
+//        document.getElementById("ui-container").style.flexDirection = 'column';
+//    }
+//}
+
+
+
+

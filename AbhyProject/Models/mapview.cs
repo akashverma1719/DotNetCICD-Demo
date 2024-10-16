@@ -25,7 +25,9 @@ namespace AbhyProject.Models
         public virtual DbSet<feedback_map> obj_feedback_map { get; set; }
         public virtual DbSet<water_wq_data> obj_water_wq_data { get; set; }
         public virtual DbSet<vw_wellinventory> obj_vw_wellinventory { get; set; }
-
+        public virtual DbSet<gwl_meta> obj_gwl_meta { get; set; }
+        public virtual DbSet<master_list_gp> obj_master_list_gp { get; set; }
+        public virtual DbSet<pv_quality_meta> obj_pv_quality_meta { get; set; }
 
     }
 
