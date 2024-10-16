@@ -34,73 +34,6 @@
 
 
 <style>
-    tbody > tr > td > a {
-        word-break: break-all;
-    }
-
-    .table-formControl .form-control {
-        width: fit-content;
-    }
-
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .col-md-12 {
-        padding: 0
-    }
-
-    .row {
-        margin: 0;
-    }
-
-    .section1 {
-        padding: 0
-    }
-
-        .section1 > .row > .col-md-12 {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 0;
-            padding: 10px 10px 5px 10px;
-            column-gap: 30px;
-        }
-
-        .section1 > .row > .col-sm-12 > h4 {
-            background-color: #337ab7;
-            color: #fff;
-            padding: 10px;
-        }
-
-        .section1 > .row > .col-sm-12 > div.col-md-12 {
-            color: black;
-            font-weight: 500;
-            font-size: 14px;
-            padding: 0;
-            margin-bottom: 10px;
-        }
-
-            .section1 > .row > .col-sm-12 > div.col-md-12 > p {
-                margin: 0;
-                width: fit-content;
-                padding: 10px 5px;
-                border: 1px solid #337ab7;
-                background-color: #d4e5f1;
-            }
-
-        .section1 > .row > .col-sm-12 > div.col-sm-12 {
-            padding: 0;
-        }
-
-    .table-gap {
-        height: 350px;
-        margin-bottom: 30px;
-        overflow: scroll;
-    }
-
     .table-responsive {
         width: 100%;
     }
@@ -124,7 +57,6 @@
         background: white;
         position: sticky;
         top: 0;
-        z-index: 1;
     }
 
     .font-bold {
@@ -136,6 +68,7 @@
         background-color: #337ab7;
         color: #fff;
         padding: 10px;
+        font-family: raleway;
         font-size: 18px;
         font-weight: 600;
     }
@@ -144,6 +77,15 @@
             font-size: 14px;
             text-align: center;
         }
+
+
+    /*    .main_div {
+            padding-bottom: 30px;
+        }
+    */
+    /*.btn-success {
+            margin: 5px 0px !important;
+        }*/
 
 
     table#TblData_b_part tr.info > th,
@@ -258,7 +200,7 @@
     span.marqueegwr {
         font-weight: 700;
         margin-top: 10px;
-        /**/
+        /*font-family: raleway;*/
         color: #333;
         font-size: 1vw;
     }
@@ -317,7 +259,7 @@
 
     .selectdistshowoption select {
         border-radius: 25px;
-        width: 192px;
+        width: 200px;
         text-align: left;
     }
 
@@ -347,20 +289,30 @@
         color: #fff;
         font-size: 35px;
         text-align: center;
+        font-family: raleway;
         font-weight: 900;
         display: inline-block;
     }
+
+    /*.headings_border::after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                left: 13%;
+                width: 168px;
+                height: 2px;
+                background: #5cb85c;
+            }*/
+    /*.box_shadow {
+            box-shadow: 0px 3px 46px rgb(0 0 0 / 7%);
+            padding: 15px 15px;
+            background: #f2f2f2;
+        }*/
 
     ul.Select_option {
         padding-left: 0;
         /*   text-align: initial;
             padding-top: 24px;*/
-    }
-
-    .Select_option_div select {
-        border-radius: 25px;
-        width: 200px;
-        text-align: left;
     }
 </style>
 <style>
@@ -424,23 +376,23 @@
         .cust_center h6 {
             font-size: 15px;
         }
-
-    #NPMU_Level_Credentials .nav-item.dropdown {
-        height: 80px;
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        width: 202px;
-        padding: 0px;
-        margin-left: 8px;
+</style>
+<style>
+    table {
+        border: 1px solid #ddd;
     }
 
-        #NPMU_Level_Credentials .nav-item.dropdown a {
-            text-align: center;
+        table tr th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 12px;
         }
 
-    .nav-item dropdown.show a {
-        color: #fff !important;
+    .vertical th {
+        font-size: 12px;
+        transform: rotate(180deg);
+        white-space: nowrap;
+        writing-mode: vertical-rl;
     }
 </style>
 <header class="header hederImage">
@@ -519,678 +471,248 @@
 
 
 <main>
-    <div class="row container-fluid" style="padding:10px;padding-bottom:0;">
-        <div class="col-md-12 text-center">
 
-            <h4 id="text_form_new" style="background-color: #337ab7;font-weight:600; color: #fff; padding: 10px; ">Participants Feedback</h4>
-        </div>
+    <div class="row main_div" style="border: 1px solid #ddd;margin:10px">
+        @*for Binding*@
+        <div class="col-md-12 col-sm-12">
+            <center>
+                <div class="ss">
+                    <div class="row">
 
-
-        <div class="container-fluid" style="padding:0;">
-            <div class="clearfix">
-
-
-
-
-                <div class="col-md-12 Select_option_div">
-
-                    <ul class="Select_option col-md-12 col-sm-8 " style="display:flex;justify-content:flex-start;align-items:center;column-gap:20px;flex-wrap:wrap;row-gap:10px; padding-left:12px;">
-                        <li id="StateLabel">
-                            <label id="lblstate">State:</label>
-                            <span id="spnstate1">@Session["gstate"]</span>
-                        </li>
-                        <li id="StateDropdownLabel">
-
-                            <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()">
-                            </select>
-                        </li>
-
-                        <li id="DistLabel">
-                            <i class="fas fa fa-angle-double-right"></i>
-                            <label id="lbldistrict">District:</label>
-                            <span id="spndistrict">@Session["gdist"]</span>
-                        </li>
-
-                        <li id="DistDropdownLabel">
-
-                            <select class="form-control" id="dist11" onchange="Dist_fun()">
-                            </select>
-                        </li>
-
-                        <li id="BlockLabel">
-                            <i class="fas fa fa-angle-double-right"></i>
-                            <label>Block:</label>
-                            <span>@Session["gblock"] </span>
-                        </li>
-
-                        <li id="BlockDropdownLabel">
-
-                            <select class="form-control" id="block1" onchange="Block_fun()">
-                            </select>
-                        </li>
-                        <li>
-                            <select class="form-control" id="year">
-                                <option value="0">Select Financial Year</option>
-                                <option value="2021-22">2021-22</option>
-                                <option value="2022-23">2022-23</option>
-                                <option value="2023-24">2023-24</option>
-                                <option value="2024-25">2024-25</option>
-                                @* <option value="2025">2025-2026</option>*@
-                            </select>
-                        </li>
-                        <li id="MonthDropdownLabel">
-
-                            <select class="form-control" id="month" onchange="Month_change()">
-                                <option value="0">Select Month</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                            </select>
-                        </li>
-                        <li id="DropdownSearch_btn">
-                            <a class="btn btn-success" onclick="Dropdown_Search_new()">Search</a>
-                        </li>
-                    </ul>
-
+                        <div class="col-md-12 text-center">
+                            <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-family: raleway;font-weight:600; margin-top: 0px;">FeedBack Details</h4>
+                        </div>
+                    </div>
                 </div>
-                <br />
-                <div style="width:100%;display:flex;align-items:center;justify-content:flex-end;margin:10px 0;column-gap:20px;padding-top:10px">
-                    <a class="btn btn_export" style="width:100px;" id="btnsubmit1" onclick="PDF()"><img src="/Content/WspImages/pdf_icon.png" /><span>PDF</span></a>
-                    <a class="btn btn_export" style="width:100px;" id="btnsubmit" onclick="Excel()"><img src="/Content/WspImages/csv_icon.png" /><span>CSV</span></a>
-                </div>
-                @*<div style="display:flex;justify-content:flex-end;align-items:center;padding:10px;column-gap:10px;">
-                        <a class="btn btn-export" style="width:100px;" id="btnpdf" onclick="PDF()"><img src="/Content/WspImages/pdf_icon.png" /><span>Export</span> </a>
-                        <a class="btn btn-success" style="width:100px;" onclick="Excel()"><img src="/Content/WspImages/csv_icon.png" /><span>Export</span></a>
-                    </div>*@
+            </center>
+            <div class="selectdistshowoption">
+                <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
+                <ul class="Select_option selectbackhome" style="display:flex;justify-content:flex-start;align-items:center;column-gap:10px;flex-wrap:wrap;row-gap:10px; margin-bottom: 12px; padding-left: 12px;">
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+                    <li id="StateDropdownLabel">
+                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                    </li>
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+                    <li id="DistDropdownLabel">
+                        <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                    </li>
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+                    <li id="BlockDropdownLabel">
+
+                        <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                    </li>
+
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram Panchayat:</label>
+                        <span>@Session["ggram"] </span>
+                    </li>
+
+                    <li id="GramDropdownLabel">
+
+                        <select class="form-control" id="gram" onchange="Gram_change()"></select>
+                    </li>
+                    <li>
+                        <select class="form-control" id="year">
+                            <option value="0">Select Financial Year</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2022-23">2022-23</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2024-25">2024-25</option>
+                        </select>
+                    </li>
+
+                    <li id="MonthDropdownLabel">
+
+                        <select class="form-control" id="month" onchange="">
+                            <option value="0">Select Month</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                        </select>
+                    </li>
+                    <li id="DropdownSearch_btn">
+                        <a class="btn btn-success" onclick="npmu_data()">Search</a>
+                    </li>
+                    <li style="float:right">
+
+                        <button class="btn" id="exportBtn"><img src="/Content/WspImages/xls_icon.png" /><span>xlsx</span></button>
+                        <button class="btn" id="exportBtn_dist"><img src="/Content/WspImages/xls_icon.png" /><span>xlsx</span></button>
+                        <button class="btn" id="exportBtn_block"><img src="/Content/WspImages/xls_icon.png" /><span>xlsx</span></button>
+                        <button class="btn" id="exportBtn_gp"><img src="/Content/WspImages/xls_icon.png" /><span>xlsx</span></button>
+                    </li>
+
+
+
+                </ul>
             </div>
         </div>
-
 
     </div>
-    <div class="col-md-12">
-        <div class="">
-            <div class="col-md-12 text-center">
-                <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600;">Feedback at the Block, District, State and National Levels</h4>
-            </div>
-            <div>
-
+    <div class="container-fluid mt-5 mb-5" style="padding: 0 10px !important;">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
-                    <p style=" margin: 0; width: fit-content; padding-left:10px; ">Note: - The below table will show the statistics after clicking on the "Search" button</p>
+                    <p style="margin: 0; width: fit-content; padding-left: 12px;">Note: - The below table will show the statistics after clicking on the "Search" button</p>
                 </div>
-            </div>
-            <div>
-                <table id="" class="GWL_deviation_table table table-bordered  table-__web-inspector-hide-shortcut__">
+                <div class="table-responsive">
+                    <table id="state_tt" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #337ab7; color: #fff;">
+                                <th colspan="46" class="text-center"> FeedBack Details</th>
+                            </tr>
 
-                    <tbody id="">
+                            <tr>
+                                <th>SL.No.</th>
+                                <th>State</th>
+                                <th style="width: 7%;">Year</th>
+                                <th style="width: 7%;">Month</th>
+                                <th style="width: 7%;">Total no. of Training Conducted</th>
+                                <th>Feedback Topics</th>
+                                <th style="width: 12%;">Total Feedback Recived</th>
+                                <th style="width: 12%;">Very Well Planned / Very Relevant / Excellent / Very useful / Strongly Agree /Very Beneficial </th>
+                                <th style="width: 12%;">Well Planned / Relevant / Very Good / Useful / Agree / Beneficial</th>
+                                <th style="width: 12%;">Less Planned /  Less Relevant / Good / Less Useful / Neutral / Less Beneficial </th>
+                                <th style="width: 12%;">No Planning / Not Relevant / Poor / Not Useful / Disagree / Not Beneficial</th>
+                                <th style="width: 12%;">Strongly Disagree</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata_state"></tbody>
+                    </table>
+                    <table id="ddldist" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="46" class="text-center"> FeedBack Details</th>
+                            </tr>
 
-                        <tr class="second_heading" style="font-size:14px;background-color: #337ab7; color: #fff; font-weight: bold;">
-                            <td id="all_a" colspan="1" class="font-bold">Completed Total No. of Trainings: </td>
-                            <td id="state_a" colspan="1" class="font-bold">Completed Total No. of Trainings: </td>
-                            <td id="labletotal" colspan="1" class="font-bold">Total No. of Recived  Feedback for Trainings: </td>
-                            <td id="lablenpmu" colspan="1" class="font-bold">Total No. of Recived Feedback for NPMU Level Trainings: </td>
-                            <td id="lablestate" colspan="1" class="font-bold">Total No. of Recived Feedback for State Level Trainings: </td>
-                            <td id="labledistr" colspan="1" class="font-bold">Total No. of Recived Feedback for District Level Trainings: </td>
-                            <td id="lableblock" colspan="1" class="font-bold">Total No. of Recived Feedback for Block Level Trainings: </td>
+                            <tr>
+                                <th>SL. No.</th>
+                                <th>State</th>
+                                <th>District</th>
+                                <th style="width: 7%;">Year</th>
+                                <th style="width: 7%;">Month</th>
+                                <th style="width: 7%;">Total no. of Training Conducted</th>
+                                <th>Feedback Topics</th>
+                                <th style="width: 12%;">Total Feedback Recived</th>
+                                <th style="width: 12%;">Very Well Planned / Very Relevant / Excellent / Very useful / Strongly Agree /Very Beneficial </th>
+                                <th style="width: 12%;">Well Planned / Relevant / Very Good / Useful / Agree / Beneficial</th>
+                                <th style="width: 12%;">Less Planned /  Less Relevant / Good / Less Useful / Neutral / Less Beneficial </th>
+                                <th style="width: 12%;">No Planning / Not Relevant / Poor / Not Useful / Disagree / Not Beneficial</th>
+                                <th style="width: 12%;">Strongly Disagree</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata_dist"></tbody>
+                    </table>
+                    <table id="ddlblock" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="46" class="text-center"> FeedBack Details</th>
+                            </tr>
 
-                        </tr>
-                        <tr style="font-size: 13px;border: transparent;">
-                            <td id="all_b">
-                                <label>NPMU   : <label id="all_npmu"></label> </label>
-                                <br />
-                                <label>State   : <label id="all_state"></label> </label>
-                                <br />
-                                <label>District   : <label id="all_dist"></label> </label>
-                                <br />
-                                <label>Block   : <label id="all_block"></label> </label>
-                            </td>
-                            <td id="state_b">
-                                <label id="total"></label>
-                            </td>
-                            <td id="2labletotal">
-                                <label> <label id="1total"></label> </label>
-                                <br />
+                            <tr>
+                                <th>SL. No.</th>
+                                <th>State</th>
+                                <th>District</th>
+                                <th>Block</th>
+                                <th style="width: 7%;">Year</th>
+                                <th style="width: 7%;">Month</th>
+                                <th style="width: 7%;">Total no. of Training Conducted</th>
+                                <th>Feedback Topics</th>
+                                <th style="width: 12%;">Total Feedback Recived</th>
+                                <th style="width: 12%;">Very Well Planned / Very Relevant / Excellent / Very useful / Strongly Agree /Very Beneficial </th>
+                                <th style="width: 12%;">Well Planned / Relevant / Very Good / Useful / Agree / Beneficial</th>
+                                <th style="width: 12%;">Less Planned /  Less Relevant / Good / Less Useful / Neutral / Less Beneficial </th>
+                                <th style="width: 12%;">No Planning / Not Relevant / Poor / Not Useful / Disagree / Not Beneficial</th>
+                                <th style="width: 12%;">Strongly Disagree</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata_block"></tbody>
+                    </table>
+                    <table id="ddlgram" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="46" class="text-center"> FeedBack Details</th>
+                            </tr>
 
-                            </td>
-                            <td id="2lablenpmu">
-                                <label> <label id="npmutotal"></label> </label>
-                                <br />
-
-                            </td>
-                            <td id="2lablestate">
-                                <label> <label id="spmutotal"></label> </label>
-                                <br />
-
-                            </td>
-                            <td id="2labledistr">
-                                <label> <label id="dpmutotal"></label> </label>
-                                <br />
-
-                            </td>
-                            <td id="2lableblock">
-                                <label> <label id="blocktotal"></label> </label>
-                                <br />
-
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-            </div>
-
-            <div>
-
-                <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
-                    <p style=" margin: 0; width: fit-content; "> Note:- Selecting "All" in the above dropdown would not have enabled the "Select Training" selection dropdown below. Selecting “Select Training” from the dropdown below and selecting NPMU/State/District/Block above will show the subject-wise breakdown of the event.</p>
+                            <tr>
+                                <th>SL. No.</th>
+                                <th>State</th>
+                                <th>District</th>
+                                <th>Block</th>
+                                <th>Grampanchayat</th>
+                                <th style="width: 7%;">Year</th>
+                                <th style="width: 7%;">Month</th>
+                                <th style="width: 7%;">Total no. of Training Conducted</th>
+                                <th>Feedback Topics</th>
+                                <th style="width: 12%;">Total Feedback Recived</th>
+                                <th style="width: 12%;">Very Well Planned / Very Relevant / Excellent / Very useful / Strongly Agree /Very Beneficial </th>
+                                <th style="width: 12%;">Well Planned / Relevant / Very Good / Useful / Agree / Beneficial</th>
+                                <th style="width: 12%;">Less Planned /  Less Relevant / Good / Less Useful / Neutral / Less Beneficial </th>
+                                <th style="width: 12%;">No Planning / Not Relevant / Poor / Not Useful / Disagree / Not Beneficial</th>
+                                <th style="width: 12%;">Strongly Disagree</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbldata_gram"></tbody>
+                    </table>
                 </div>
-                <table id="" class="GWL_deviation_table table table-bordered table-responsive table-__web-inspector-hide-shortcut__">
-
-                    <tbody id="">
-
-                        <tr class="second_heading" style="background-color: #337ab7; color: #fff; font-weight: bold;">
-                            <td colspan="1" class="font-bold">Topic of Training: </td>
-                            <td colspan="1" class="font-bold">Total Feedback for That Training: </td>
-
-                        </tr>
-
-                        <tr style="font-size: 13px;border: transparent;">
-                            <td>
-                                <select name="Topic Of Event" id="p_training_name" class="form-control" onchange="search_feedback()">
-                                    <option value="0">Select Training</option>
-                                </select>
-                            </td>
-                            <td>
-                                <label> <label id="search_total"></label> </label>
-                                <br />
-                            </td>
-                        </tr>
-
-
-                    </tbody>
-
-                </table>
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
-
+    <!-- Bootstrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </main>
-<div class="col-md-12" style=" color: red; font-weight: 500; font-size: 14px; padding: 0 10px;">
-    <p style=" margin: 0; font-weight:600; ">Note:- Feedback details will be visible in the below table as per selection of "Dropdown" above and only after selecting "Topics" from the dropdown.</p>
-</div>
-<div class="col-md-12 text-center" style="margin-top:30px;padding:0 10px ">
-    <h4 style="background-color: #337ab7; color: #fff; padding: 10px;margin-top:0px; font-weight:600;">Feedback</h4>
-</div>
-<div id="style-1" class="table-responsive table-gap" style="padding:10px;margin-bottom:50px;">
-    <table id="TBL_11" class="table  FrameWork_Matrix_table  table-hover row-border order-column table-striped table-bordered  no-footer" style="font-size: 13px;">
-        <thead>
-            <tr class="tableheader1">
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">S.No</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Registration No.</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Topics</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Name of the Participant</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">State</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">District</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Block</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Trainings Platform</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">From Date</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">To Date</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Total Days</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Structure Of Training</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Course Material</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Interaction With Trainer</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Hands On Practice</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Usefulness Of Course</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Information Presented Was</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Participant Questions Were</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Food Quality/Logging Facilities</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Most Interesting Thing You Learn</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Overall Impression</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Your Suggestions</th>
-                <th style="background-color: #337ab7;color: #fff;font-weight: bold;text-align:center">Feedback Submission Date</th>
 
-
-            </tr>
-        </thead>
-        <tbody id="FeedBack_TBL_Info"></tbody>
-    </table>
-</div>
-
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script src="~/Content/JS_Files/jquery.fixedheadertable.js"></script>
-    <script src="~/Content/JS_Files/fixedheadertable.js"></script>*@
-
-<script type="text/javascript">
-
-    var StateOfficer = "";
-    var State = "";
-    var Dist = "";
-    var Block = "";
-    $(document).ready(function () {
-        StateOfficer = '@Session["Officer"]';
-
-
-    });
-    var Main_Statename = "";
-    function DropDownInfo1() {
-
-        $('#StateWiseDropdown').hide();
-        $('#StateWise').hide();
-
-        Main_Statename = "";
-
-
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json; chatset=utf-8',
-            url: '/AgencyDashBoard/State_SessionInfo',
-            data: '',
-            dataType: 'JSON',
-            success: function (data) {
-
-
-                if (data == "Logout") {
-                      window.location = "/Home/LogOut";
-                }
-                else if (data == "Admin") {
-                    $('#StateWiseDropdown').show();
-                    $('#StateWise').hide();
-
-                    States_Info();
-
-                }
-                else {
-                    $('#StateWiseDropdown').hide();
-                    $('#StateWise').show();
-
-                    Main_Statename = data;
-                    $('#spnstate').val(data);
-
-                }
-            }
-
-        });
-
-    }
-    function States_Info() {
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json; chatset=utf-8',
-            url: '/AgencyDashBoard/PIP_Agency_Info',
-            data: '',
-            dataType: 'JSON',
-            success: function (data) {
-                if (data == "Logout") {
-                      window.location = "/Home/LogOut";
-                }
-                var slection_options = '<option value="0">Select State</option>';
-
-                if (data.length != 0) {
-                    slection_options += '<option value="ALL">ALL</option>';
-                    slection_options += '<option value="NPMU">NPMU</option>';
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i].observation_type == "pip") {
-
-                            slection_options += '<option value="' + data[i].state_name + '"> ' + data[i].state_name + ' </option>';
-                        }
-
-                    }
-                    slection_options += '<option value="Other">Other</option>';
-
-                    $('#States').html(slection_options);
-
-                }
-            }
-
-        });
-    }
-    function StateWiseInfo() {
-        var State = $('#States').val();
-        if (State != "0") {
-            Main_Statename = State;
-            FeedBack_Info();
-
-        } else {
-            alert("Please Select StateName")
-        }
-    }
-    function FeedBack_Info() {
-
-        var obj = {};
-        obj.state_name = State;
-        obj.district_name = Dist;
-        obj.block_name = Block;
-
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: '/Contact/FeedBackInforamtion',
-            data: "{'Data': '" + JSON.stringify(obj) + "'}",
-            dataType: 'JSON',
-            success: function (response) {
-                /*alert(response.length);*/
-               // $('#feedback_total').text(response.length);
-                $('#search_total').text(response.length);
-                if (response == "LogOut") {
-                      window.location = "/Home/LogOut";
-                }
-                var Z = 0;
-                var tr = '';
-                $('#FeedBack_TBL_Info').html(tr);
-
-                if (response.length != 0) {
-                    Z = 0;
-
-                    for (var i = 0; i < response.length; i++) {
-
-
-
-                            var StateName = response[i].level_of_event;
-                            if (StateName == null) {
-                                StateName = "";
-                            } else {
-                                StateName = response[i].level_of_event;
-                            }
-                            var dist = response[i].dist;
-                            if (dist == null) {
-                                dist = "";
-                            }
-                            else {
-                                dist = response[i].dist;
-                            }
-                            var block = response[i].block;
-                            if (block == null) {
-                                block = "";
-                            }
-                            else {
-                                block = response[i].block;
-
-                            }
-                        var food = response[i].food_quality;
-                        if (food == null) {
-                            food = "";
-                        }
-                        else {
-                            food = response[i].food_quality;
-                        }
-                            Z += 1;
-                            tr += '<tr><td>' + Z + '</td><td>' + response[i].registration_no + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + block + '</td><td>' + response[i].event_platform + '</td><td>' + response[i].from_date + '</td>' +
-                                '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + response[i].structure_of_training + '</td><td>' + response[i].course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
-                                '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td></tr>';
-
-                    }
-                }
-
-                if (tr == '') {
-                    tr += '<tr style="text-align: center;"><td colspan="21"> No Data</td></tr>';
-                }
-
-                $('#FeedBack_TBL_Info').html(tr);
-
-            }
-
-        });
-    }
-    function Totalfeedback() {
-        var year = $('#year').val();
-        var month = $('#month').val();
-        var obj = {};
-        obj.state_name = State;
-        obj.district_name = Dist;
-        obj.block_name = Block;
-        obj.year = year;
-        obj.month = month;
-
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: '/Contact/FeedBackInforamtion_total',
-            data: "{'Data': '" + JSON.stringify(obj) + "'}",
-            dataType: 'JSON',
-            success: function (response) {
-
-                $('#feedback_total').text(response.length);
-            }
-
-        });
-    }
-    function search_feedback() {
-
-        var topic_of_event = $("#p_training_name").val();
-        var tr = '';
-        $('#FeedBack_TBL_Info').html(tr);
-        var obj = {};
-        obj.state_name = State;
-        obj.district_name = Dist;
-        obj.block_name = Block;
-
-
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: '/Contact/FeedBackInforamtion_search',
-            data: "{'Data': '" + JSON.stringify(obj) + "', 'topic_of_event':'" + topic_of_event + "' }",
-            dataType: 'JSON',
-            success: function (response) {
-
-                $('#search_total').text("");
-                $('#search_total').text(response.length);
-                if (response == "LogOut") {
-                      window.location = "/Home/LogOut";
-                }
-                var Z = 0;
-                var tr = '';
-                $('#FeedBack_TBL_Info').html(tr);
-
-                if (response.length != 0) {
-                    Z = 0;
-
-                    for (var i = 0; i < response.length; i++) {
-                        var StateName = response[i].level_of_event;
-                        if (StateName == null) {
-                            StateName = "";
-                        } else {
-                            StateName = response[i].level_of_event;
-                        }
-                        var dist = response[i].dist;
-                        if (dist == null) {
-                            dist = "";
-                        }
-                        else {
-                            dist = response[i].dist;
-                        }
-                        var block = response[i].block;
-                        if (block == null) {
-                            block = "";
-                        }
-                        else {
-                            block = response[i].block;
-                        }
-                        var food = response[i].food_quality;
-                        if (food == null) {
-                            food = "";
-                        }
-                        else {
-                            food = response[i].food_quality;
-                        }
-                        var event_platform = response[i].event_platform;
-                        if (event_platform == null) {
-                            event_platform = "";
-                        }
-                        var structure_of_training = response[i].structure_of_training;
-                        if (structure_of_training == null) {
-                            structure_of_training = "";
-                        }
-                        var course_material = response[i].course_material;
-                        if (course_material == null) {
-                            course_material = "";
-                        }
-                        Z += 1;
-                        tr += '<tr><td>' + Z + '</td><td>' + response[i].registration_no + '</td><td>' + response[i].p_training_name + '</td><td>' + response[i].participant_name + '</td><td>' + StateName + '</td><td>' + dist + '</td><td>' + block + '</td><td>' + event_platform + '</td><td>' + response[i].from_date + '</td>' +
-                            '<td>' + response[i].to_date + '</td><td>' + response[i].total_days + '</td><td>' + structure_of_training + '</td><td>' + course_material + '</td><td>' + response[i].interaction_with_trainer + '</td><td>' + response[i].hands_on_practice + '</td>' +
-                            '<td>' + response[i].usefulness_of_contents + '</td><td>' + response[i].information_presented + '</td><td>' + response[i].participant_questions + '</td><td>' + food + '</td> <td>' + response[i].most_interesting_thing + '</td><td>' + response[i].overall_impression + '</td><td>' + response[i].your_suggestions + '</td><td>' + response[i].DateTime + '</td></tr>';
-
-
-                    }
-                }
-
-                if (tr == '') {
-                    tr += '<tr style="text-align: center;"><td colspan="21"> No Data</td></tr>';
-                }
-
-                $('#FeedBack_TBL_Info').html(tr);
-
-
-            }
-
-        });
-    }
-
-    function Get_Training_Working_Events_Info_all() {
-        $(".loader").show();
-        var state = State;
-        var dist = Dist;
-        var block = Block;
-        var event = "All";
-        var year = $('#year').val();
-        var month = $('#month').val();
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: '/Vendors/Get_Training_Working_Info_fetch',
-            data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'event_name':'" + event + "', 'year':'" + year + "', 'month':'" + month + "'}",
-            dataType: 'JSON',
-            success: function (response) {
-
-                if (response == "Logout") {
-                      window.location = "/Home/LogOut";
-                }
-                var option = '<option value="0">Select Training</option>';
-                var ddlst = {};
-                var ddlst_array = [];
-                var ddlst_unic = [];
-                if (response.length != 0) {
-                    Full_Info_Events_Fetch = response;
-                    for (var j = 0; j < response.length; j++) {
-
-                        if (!ddlst[response[j].p_training_name]) {
-                            ddlst_array.push(response[j].p_training_name);
-                            ddlst_unic.push(response[j].unic_key);
-                            ddlst[response[j].p_training_name] = response[j].p_training_name;
-
-                        }
-
-                    }
-
-                }
-
-                if (ddlst_array.length != 0) {
-                    for (var i = 0; i < ddlst_array.length; i++) {
-                        option += '<option value="' + ddlst_unic[i] + '">' + ddlst_array[i] + '</option>';
-                    }
-                }
-
-                $('#p_training_name').html(option);
-                $(".loader").hide();
-                /*Participant_reg_info_total();*/
-
-            }
-        });
-    }
-
-    function Excel() {
-        var topic_of_event = $('#p_training_name').val();
-        var year = $('#year').val();
-        var month = $('#month').val();
-        if (State == "0") {
-            alert("Please Select State");
-            return false;
-        }
-        if (month != "0") {
-            if (year == "0") {
-                alert("Please select Financial Year");
-                $('#month_state').val("0");
-                $(".loader").hide();
-                return;
-            }
-        }
-        {
-            window.location = "/Contact/feedback_Excel?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&traning1=" + topic_of_event + "&year1=" + year + "&month1=" + month;
-        }
-    }
-
-    function PDF() {
-
-        var topic_of_event = $("#p_training_name").val();
-        var year = $('#year').val();
-        var month = $('#month').val();
-        if (month != "0") {
-            if (year == "0") {
-                alert("Please select Financial Year");
-                $('#month_state').val("0");
-                $(".loader").hide();
-                return;
-            }
-        }
-        if (StateOfficer == "Admin" || StateOfficer == "National Level Nodal Officer") {
-            var state_name = $('#spnstate').val();
-            var dist_name = $('#dist11').val();
-            var block_name = $('#block1').val();
-
-            if (state_name == "0") {
-                alert("Please Select State");
-                return false;
-            }
-            {
-                if (state_name == "NPMU (Delhi)") {
-                    window.location.href = "/MasterDropDown/Pdf_feedback?topic_of_event=" + topic_of_event + "&state_name=" + state_name + "&year=" + year + "&month=" + month;
-                }
-                else {
-                    window.location.href = "/MasterDropDown/Pdf_feedback?topic_of_event=" + topic_of_event + "&state_name=" + state_name + "&dist_name=" + dist_name + "&block_name=" + block_name + "&year=" + year + "&month=" + month;
-                }
-            }
-        }
-        else if (StateOfficer == "State Level Nodal Officer") {
-            var dist_name = $('#dist11').val();
-            var block_name = $('#block1').val();
-
-            {
-                window.location.href = "/MasterDropDown/Pdf_feedback?topic_of_event=" + topic_of_event + "&state1=" + State + "&dist_name=" + dist_name + "&block_name=" + block_name + "&year=" + year + "&month=" + month;
-            }
-        }
-        else if (StateOfficer == "District Level Nodal Officer") {
-            var block_name = $('#block1').val();
-            {
-                window.location.href = "/MasterDropDown/Pdf_feedback?topic_of_event=" + topic_of_event + "&state1=" + State + "&district1=" + Dist + "&block_name=" + block_name + "&year=" + year + "&month=" + month;
-            }
-        }
-        else if (StateOfficer == "Block Level Nodal Officer") {
-            {
-                window.location.href = "/MasterDropDown/Pdf_feedback?topic_of_event=" + topic_of_event + "&state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&year=" + year + "&month=" + month;
-            }
-        }
-    }
-
-</script>
+@*
+    <script src="~/Scripts/jquery-3.3.1.js"></script>*@
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 <script>
 
-   var Jsondata = "";
+    var Jsondata = "";
 
     var WaterAvialability = 0;
     var WaterDropt = 0;
@@ -1200,64 +722,9 @@
     var Block = "0";
     var Gram = "0";
     var off_1 = "";
+    var StateOfficer = "";
+    var Email = "";
     $(document).ready(function () {
-        var StateOfficer = '@Session["Officer"]';
-        if (StateOfficer == "") {
-              window.location = "/Home/LogOut";
-        }
-
-        if (StateOfficer == "State Level Nodal Officer") {
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').show();
-            $('#labledistr').hide();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').show();
-            $('#2labledistr').hide();
-            $('#2lableblock').hide();
-
-        }
-        if (StateOfficer == "District Level Nodal Officer") {
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').hide();
-            $('#labledistr').show();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').hide();
-            $('#2labledistr').show();
-            $('#2lableblock').hide();
-        }
-        if (StateOfficer == "Block Level Nodal Officer") {
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').hide();
-            $('#labledistr').hide();
-            $('#lableblock').show();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').hide();
-            $('#2labledistr').hide();
-            $('#2lableblock').show();
-        }
-        else if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin"  ){
-            $('#labletotal').show();
-            $('#lablenpmu').show();
-            $('#lablestate').show();
-            $('#labledistr').show();
-            $('#lableblock').show();
-            $('#2labletotal').show();
-            $('#2lablenpmu').show();
-            $('#2lablestate').show();
-            $('#2labledistr').show();
-            $('#2lableblock').show();
-
-        }
-
-
         Jsondata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.GPLIst));
         $('#Error_').text("States Information is Loading....");
         $('#StateLabel').hide();
@@ -1266,33 +733,40 @@
         $('#DistDropdownLabel').hide();
         $('#BlockLabel').hide();
         $('#BlockDropdownLabel').hide();
-        //$('#GramLabel').hide();
-        //$('#GramDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
         $('#DropdownSearch_btn').hide();
-        $('#all_a').hide();
-        $('#all_b').hide();
-        $('#state_a').show();
-        $('#state_b').show();
+        $("#state_tt").hide();
+        $("#ddldist").hide();
+        $("#ddlblock").hide();
+        $("#ddlgram").hide();
+        $("#exportBtn_dist").hide();
+        $("#exportBtn_block").hide();
+        $("#exportBtn_gp").hide();
+        $("#exportBtn").attr("disabled", "disabled");
+        $("#exportBtn_dist").attr("disabled", "disabled");
+        $("#exportBtn_block").attr("disabled", "disabled");
 
+        StateOfficer = '@Session["Officer"]';
+        Email = '@Session["Email"]';
+
+        $(".loader").hide();
         DropDownInfo();
-
-
 
     });
     function pagechange() {
         window.location = "WspWaterAvailability", "WspNew"
     }
-
 </script>
-
 <script>
+
     function SessionInfo() {
 
         var obj = {};
         $.ajax({
             type: 'POST',
             contentType: 'application/json; chatset=utf-8',
-            url: "/Contact/State_SessionInfo_1",
+            url: "/SocialMointoring/State_SessionInfo_1",
             data: "{'Data': '" + JSON.stringify(obj) + "'}",
             dataType: 'JSON',
             success: function (data) {
@@ -1324,8 +798,8 @@
                         $('#GramLabel').hide();
                         $('#GramDropdownLabel').show();
                         $('#DropdownSearch_btn').show();
-                        // Get_Training_Working_Events_Info_all();
 
+                        $("#state_tt").show();
                     }
                     else if (Str[0] == "State Level Nodal Officer") {
                         State = Str[1];
@@ -1340,9 +814,6 @@
                         $('#GramDropdownLabel').show();
                         $('#DropdownSearch_btn').show();
                         State_Dropdown_Function();
-                        DropDownInfo1();
-                        //Get_Training_Working_Events_Info_all();
-                        //Totalfeedback();
 
 
                     }
@@ -1360,9 +831,6 @@
                         $('#GramDropdownLabel').show();
                         $('#DropdownSearch_btn').show();
                         Dist_fun();
-                        DropDownInfo1();
-                        //Get_Training_Working_Events_Info_all();
-                        //Totalfeedback();
 
                     }
                     else if (Str[0] == "Block Level Nodal Officer") {
@@ -1380,14 +848,11 @@
                         $('#GramDropdownLabel').show();
                         $('#DropdownSearch_btn').show();
                         Block_fun();
-                        DropDownInfo1();
-                        //Get_Training_Working_Events_Info_all();
-                        //Totalfeedback();
+
 
                     }
                     else if (Str[0] == "Gram Panchyat Nodal Officer") {
-
-
+                        off_1 = "gram";
                         State = Str[1];
                         Dist = Str[2];
                         Block = Str[3];
@@ -1401,9 +866,8 @@
                         $('#GramLabel').show();
                         $('#GramDropdownLabel').hide();
                         $('#DropdownSearch_btn').show();
-                        DropDownInfo1();
-                        //Get_Training_Working_Events_Info_all();
-                        //Totalfeedback();
+                        Gram_change();
+
                     }
 
 
@@ -1459,8 +923,8 @@
                             return 0;
                         });
                         optionState = '<option value="0">Select StateName</option>';
-                        optionState += '<option value="All">All</option>';
-                        optionState += '<option value="NPMU (Delhi)">NPMU (Delhi)</option>';
+                        /* optionState += '<option value="All">All</option>';*/
+                        /*optionState += '<option value="NPMU (Delhi)">NPMU (Delhi)</option>';*/
                         for (var i = 0; i < DistArray.length; i++) {
                             if (DistArray[i] != null && DistArray[i] != "") {
                                 optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
@@ -1480,20 +944,24 @@
     function NPMU() {
 
         var npmu = $("#spnstate").val();
-        if (npmu == 'NPMU (Delhi)') {
+        if (npmu == 'NPMU (Delhi)' || npmu == 'All') {
             $("#dist11").hide();
             $("#block1").hide();
+            $("#gram").hide();
         }
         else {
             $("#dist11").show();
             $("#block1").show();
+            $("#gram").show();
         }
 
     }
-
     function State_Dropdown_Function() {
-
         NPMU();
+        var Tbodyhtml = '';
+        $('#tbldata_state').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
         $("#dist11").empty();
         var opdist = '<option value="0">Select District</option>';
         $("#dist11").append(opdist);
@@ -1510,102 +978,6 @@
         } else {
             State = StateName;
         }
-
-        if (StateName == "All") {
-            $('#all_a').show();
-            $('#all_b').show();
-            $('#state_a').hide();
-            $('#state_b').hide();
-            $("#btnpdf").hide();
-            $('#labletotal').show();
-            $('#lablenpmu').show();
-            $('#lablestate').show();
-            $('#labledistr').show();
-            $('#lableblock').show();
-            $('#2labletotal').show();
-            $('#2lablenpmu').show();
-            $('#2lablestate').show();
-            $('#2labledistr').show();
-            $('#2lableblock').show();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
-
-        }
-        else if (StateName == "NPMU (Delhi)") {
-            $('#all_a').hide();
-            $('#all_b').hide();
-            $('#state_a').show();
-            $('#state_b').show();
-            $("#btnpdf").show();
-            $('#labletotal').hide();
-            $('#lablenpmu').show();
-            $('#lablestate').hide();
-            $('#labledistr').hide();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').show();
-            $('#2lablestate').hide();
-            $('#2labledistr').hide();
-            $('#2lableblock').hide();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
-
-        }
-        else if (StateName == "NPMU (Delhi)") {
-            $('#all_a').hide();
-            $('#all_b').hide();
-            $('#state_a').show();
-            $('#state_b').show();
-            $("#btnpdf").show();
-            $('#labletotal').hide();
-            $('#lablenpmu').show();
-            $('#lablestate').hide();
-            $('#labledistr').hide();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').show();
-            $('#2lablestate').hide();
-            $('#2labledistr').hide();
-            $('#2lableblock').hide();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
-
-        }
-        else {
-            $('#all_a').hide();
-            $('#all_b').hide();
-            $('#state_a').show();
-            $('#state_b').show();
-            $("#btnpdf").show();
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').show();
-            $('#labledistr').hide();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').show();
-            $('#2labledistr').hide();
-            $('#2lableblock').hide();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
-
-        }
-
-
-
         if (StateName != "0" && Jsondata.length != 0) {
             var ddlst = {};
             var all_dists = [];
@@ -1628,6 +1000,7 @@
                 else if (a > b) return 1;
                 return 0;
             });
+
             for (var i = 0; i < DistArray.length; i++) {
                 if (DistArray[i] != null && DistArray[i] != "") {
                     optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
@@ -1635,10 +1008,13 @@
             }
             $("#dist11").append(optionDist);
         }
-
+        Dist_fun();
     }
     function Dist_fun() {
-
+        var Tbodyhtml = '';
+        $('#tbldata_state').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
         $("#block1").empty();
         var opblock = '<option value="0">Select Block</option>';
         $("#block1").append(opblock);
@@ -1652,58 +1028,57 @@
         } else {
             Dist = dist;
         }
-        if (dist == "0") {
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').show();
-            $('#labledistr').hide();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').show();
-            $('#2labledistr').hide();
-            $('#2lableblock').hide();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
+        if (Dist == '0') {
+            $("#exportBtn").show();
+            $("#exportBtn_dist").hide();
+            $("#exportBtn_block").hide();
+            $("#exportBtn_gp").hide();
+            $("#state_tt").show();
+            $("#ddldist").hide();
+            $("#ddlblock").hide();
+            $("#ddlgram").hide();
+            $("#statel1").show();
+            $("#statel2").show();
+            $("#state1").show();
+            $("#state2").show();
+            $("#state3").show();
+            $("#state4").show();
+            $("#state5").show();
+            $("#state6").show();
+            $("#state7").show();
+            $("#state8").show();
         }
         else {
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').hide();
-            $('#labledistr').show();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').hide();
-            $('#2labledistr').show();
-            $('#2lableblock').hide();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
+            $("#exportBtn").hide();
+            $("#exportBtn_dist").show();
+            $("#exportBtn_block").hide();
+            $("#exportBtn_gp").hide();
+            $("#state_tt").hide();
+            $("#ddldist").show();
+            $("#ddlblock").hide();
+            $("#ddlgram").hide();
+            $("#statel1").hide();
+            $("#statel2").hide();
+            $("#state1").hide();
+            $("#state2").hide();
+            $("#state3").hide();
+            $("#state4").hide();
+            $("#state5").hide();
+            $("#state6").hide();
+            $("#state7").hide();
+            $("#state8").hide();
         }
-
         if (dist != "0" && Jsondata.length != 0) {
             var ddlst = {};
             var all_blocks = [];
             var optionDist = '';
             for (var i = 0; i < Jsondata.length; i++) {
-                //if (Jsondata[i].district_name == 'Kaithal' ) {
-                //    alert(dist);
-
-                //    return;
-                //}
 
                 if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
 
                     if (!ddlst[Jsondata[i].block_name]) {
                         all_blocks.push(Jsondata[i].block_name);
                         ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
-                        //  $("#block").append(optionDist);
                     }
                 }
             }
@@ -1723,9 +1098,13 @@
             $("#block1").append(optionDist);
 
         }
+        Block_fun();
     }
     function Block_fun() {
-
+        var Tbodyhtml = '';
+        $('#tbldata_state').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
         $("#gram").empty();
         var opgram = '<option value="0">Select GramPanchayat</option>';
         $("#gram").append(opgram);
@@ -1736,41 +1115,48 @@
         } else {
             Block = block;
         }
-        if (block == "0") {
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').hide();
-            $('#labledistr').show();
-            $('#lableblock').hide();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').hide();
-            $('#2labledistr').show();
-            $('#2lableblock').hide();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
+        if (Dist != '0') {
+            if (Block == '0') {
+                $("#exportBtn").hide();
+                $("#exportBtn_dist").show();
+                $("#exportBtn_block").hide();
+                $("#exportBtn_gp").hide();
+                $("#state_tt").hide();
+                $("#ddldist").show();
+                $("#ddlblock").hide();
+                $("#ddlgram").hide();
+                $("#distl1").show();
+                $("#distl2").show();
+                $("#dist1").show();
+                $("#dist2").show();
+                $("#dist3").show();
+                $("#dist4").show();
+                $("#dist5").show();
+                $("#dist6").show();
+                $("#dist7").show();
+                $("#dist8").show();
+            }
+            else {
+                $("#exportBtn").hide();
+                $("#exportBtn_dist").hide();
+                $("#exportBtn_block").show();
+                $("#exportBtn_gp").hide();
+                $("#state_tt").hide();
+                $("#ddldist").hide();
+                $("#ddlblock").show();
+                $("#ddlgram").hide();
+                $("#distl1").hide();
+                $("#distl2").hide();
+                $("#dist1").hide();
+                $("#dist2").hide();
+                $("#dist3").hide();
+                $("#dist4").hide();
+                $("#dist5").hide();
+                $("#dist6").hide();
+                $("#dist7").hide();
+                $("#dist8").hide();
+            }
         }
-        else {
-            $('#labletotal').hide();
-            $('#lablenpmu').hide();
-            $('#lablestate').hide();
-            $('#labledistr').hide();
-            $('#lableblock').show();
-            $('#2labletotal').hide();
-            $('#2lablenpmu').hide();
-            $('#2lablestate').hide();
-            $('#2labledistr').hide();
-            $('#2lableblock').show();
-            $('#2labletotal').val("");
-            $('#2lablenpmu').val("");
-            $('#2lablestate').val("");
-            $('#2labledistr').val("");
-            $('#2lableblock').val("");
-        }
-
         if (block != "0" && Jsondata.length != 0) {
             var ddlst = {};
             var all_grams = [];
@@ -1781,7 +1167,6 @@
                     if (!ddlst[Jsondata[i].gram_panchayat_name]) {
                         ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
                         all_grams.push(Jsondata[i].gram_panchayat_name);
-                        //   $("#gram").append(optionDist);
                     }
                 }
             }
@@ -1803,118 +1188,320 @@
         }
     }
     function Gram_change() {
-        var Gram1 = $("#gram").val();
-        if (Gram1 == "0") {
-            alert("Please Select Grampanchayat");
+        debugger;
+        var Tbodyhtml = '';
+        $('#tbldata_state').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
+        $('#tbldata_gram').html(Tbodyhtml);
+        var Gram1 = "";
+        if (off_1 == "gram") {
+            Gram1 = Gram;
         } else {
-            Gram = $('#gram').val();
+            Gram1 = $("#gram").val();
+            Gram = $("#gram").val();
+        }
+        if (Gram1 == '0') {
+            $("#exportBtn").hide();
+            $("#exportBtn_dist").hide();
+            $("#exportBtn_block").show();
+            $("#exportBtn_gp").hide();
+            $("#state_tt").hide();
+            $("#ddldist").hide();
+            $("#ddlblock").show();
+            $("#ddlgram").hide();
+            $("#blockl1").show();
+            $("#blockl2").show();
+            $("#block11").show();
+            $("#block21").show();
+            $("#block31").show();
+            $("#block41").show();
+            $("#block51").show();
+            $("#block61").show();
+            $("#block71").show();
+            $("#block81").show();
+        }
+        else {
+            $("#exportBtn").hide();
+            $("#exportBtn_dist").hide();
+            $("#exportBtn_block").hide();
+            $("#exportBtn_gp").show();
+            $("#state_tt").hide();
+            $("#ddldist").hide();
+            $("#ddlblock").hide();
+            $("#ddlgram").show();
+            $("#blockl1").hide();
+            $("#blockl2").hide();
+            $("#block11").hide();
+            $("#block21").hide();
+            $("#block31").hide();
+            $("#block41").hide();
+            $("#block51").hide();
+            $("#block61").hide();
+            $("#block71").hide();
+            $("#block81").hide();
         }
     }
-    function Dropdown_Search_new() {
-        $(".loader").show();
-        $('#alert_waiting').show();
-        var xx = 0;
-        if (State == "0") {
-            xx = 1;
-            alert("Please Select StateName");
-            $(".loader").hide();
-            return;
+    function Dropdown_Search() {
+
+        if (State == '0') {
+            alert("Plaese Select State Name");
+            return false;
+            $('#.loader').hide();
         }
-        var year = $('#year').val();
-        var month = $('#month').val();
-        if (month != "0") {
-            if (year == "0") {
-                alert("Please select Financial Year");
-                $('#month_state').val("0");
-                $(".loader").hide();
-                return;
+
+        $.ajax({
+            type: "Post",
+            url: "/Home/StateLevel_Dropdown",
+            contentType: "application/json;charset=utf-8",
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+            dataType: "json",
+            success: function (results) {
+
+                npmu_data();
+
+
             }
-        }
+        });
 
-        if (xx == 0) {
-            $.ajax({
 
-                type: "Post",
-                url: "/Home/StateLevel_Dropdown",
-                contentType: "application/json;charset=utf-8",
-                data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
-                dataType: "json",
-                success: function (results) {
-                    var tr = '';
-                    $('#FeedBack_TBL_Info').html(tr);
-                    $('#search_total').text("");
-                    DropDownInfo1();
-                    npmu_total();
-                }
-            });
-        }
+
     }
 
-    function npmu_total() {
+    function npmu_data() {
         $(".loader").show();
-        var option = '<option value="0">Select Training</option>';
-        $('#p_training_name').html(option);
 
-
+        if (State == '0') {
+            alert("Select State Name");
+            $('.loader').hide();
+            return false;
+        }
+        debugger;
         var state = State;
         var dist = Dist;
         var block = Block;
+        var gram = Gram;
         var year = $('#year').val();
         var month = $('#month').val();
         if (month != "0") {
             if (year == "0") {
-                alert("Please select Financial Year");
-                $('#month_state').val("0");
-                $(".loader").hide();
+                alert("select Financial Year");
+                $('#month').val("0");
+                $('.loader').hide();
                 return;
             }
         }
         $.ajax({
             type: 'POST',
-            contentType: 'application/json; chatset=utf-8',
-            url: '/MasterDropDown/feedbacknpmu_total',
-            data: "{'state':'" + state + "' , 'dist':'" + dist + "' , 'block':'" + block + "', 'year':'" + year + "', 'month':'" + month + "'}",
-            dataType: 'JSON',
-            success: function (data) {
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/MasterDropDown/state_npmu_feedbackdata_report',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+                if (results == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+                var Tbodyhtml = '';
+                if (results.length != 0) {
+                    $("#exportBtn").removeAttr("disabled");
+                    $("#exportBtn_dist").removeAttr("disabled");
+                    $("#exportBtn_block").removeAttr("disabled");
+                    $("#exportBtn_gp").removeAttr("disabled");
+                    var state = results[0].state;
+                    var district = results[0].district;
+                    var block = results[0].block;
+                    var gram = results[0].gram;
+                    if (state != "0" && district == "0" && block == "0" && gram == "0") {
 
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year'
+                            }
+                            var mm = results[i].month;
+                            if (mm == '0') {
+                                mm = 'All Month'
+                            }
 
-                $('#all_state').text(data.sta);
-                $('#all_dist').text(data.dis);
-                $('#all_block').text(data.blo);
-                $('#all_npmu').text(data.npmu);
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].totalcount + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].topicsname + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotaltarger + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmumonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_trangender + '</label></td></tr>';
+                        }
+                        $('#tbldata_state').html(Tbodyhtml);
 
-                $('#total').text(data.count);
+                    }
+                    if (state != "0" && district != "0" && block == "0" && gram == "0") {
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year'
+                            }
+                            var mm = results[i].month;
+                            if (mm == '0') {
+                                mm = 'All Month'
+                            }
 
-                $('#1total').text(data.totalcount);
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].district + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].totalcount + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].topicsname + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotaltarger + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmumonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_trangender + '</label></td></tr>';
+                        }
+                        $('#tbldata_dist').html(Tbodyhtml);
+                    }
+                    if (state != "0" && district != "0" && block != "0" && gram == "0") {
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year'
+                            }
+                            var mm = results[i].month;
+                            if (mm == '0') {
+                                mm = 'All Month'
+                            }
 
-                $('#npmutotal').text(data.npmucount);
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].district + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].block + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].totalcount + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].topicsname + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotaltarger + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmumonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_trangender + '</label></td></tr>';
+                        }
+                        $('#tbldata_block').html(Tbodyhtml);
+                    }
+                    if (state != "0" && district != "0" && block != "0" && gram != "0") {
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year'
+                            }
+                            var mm = results[i].month;
+                            if (mm == '0') {
+                                mm = 'All Month'
+                            }
 
-                $('#spmutotal').text(data.spmucount);
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].district + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].block + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gram + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].totalcount + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].topicsname + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotaltarger + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmumonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_trangender + '</label></td></tr>';
+                        }
+                        $('#tbldata_gram').html(Tbodyhtml);
+                    }
+                }
+                else {
+                    tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                    $('#tbldata_block').html(tr);
 
-                $('#dpmutotal').text(data.dpmucount);
-
-                $('#blocktotal').text(data.blockcount);
+                }
 
                 $(".loader").hide();
-                if (state != "All") {
-                    Get_Training_Working_Events_Info_all();
-                }
+            },
+            error: function (error) {
+                console.log('Error:', error);
             }
         });
-
     }
-</script>
 
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    var tableToExcel = (function () {
-        var uri = 'data:application/vnd.ms-excel;base64,'
-            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
-            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
-            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
-        return function (table, name) {
-            if (!table.nodeType) table = document.getElementById(table)
-            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
-            window.location.href = uri + base64(format(template, ctx))
-        }
-    })()
+    $(document).ready(function () {
+        $("#exportBtn").click(function () {
+            var tableClone = $("#state_tt").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'FeedbackDetails');
+            XLSX.writeFile(wb, 'FeedbackDetails.xlsx');
+        });
+    });
+    $(document).ready(function () {
+        $("#exportBtn_dist").click(function () {
+            var tableClone = $("#ddldist").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata_dist").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'FeedbackDetails');
+            XLSX.writeFile(wb, 'FeedbackDetails.xlsx');
+        });
+    });
+    $(document).ready(function () {
+        $("#exportBtn_block").click(function () {
+            var tableClone = $("#ddlblock").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata_block").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'FeedbackDetails');
+            XLSX.writeFile(wb, 'FeedbackDetails.xlsx');
+        });
+    });
+    $(document).ready(function () {
+        $("#exportBtn_gp").click(function () {
+            var tableClone = $("#ddlgram").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata_gram").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'FeedbackDetails');
+            XLSX.writeFile(wb, 'FeedbackDetails.xlsx');
+        });
+    });
 </script>
