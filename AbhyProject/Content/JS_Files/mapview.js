@@ -14956,7 +14956,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //}
 
 //function checkwindowWidthSmall() {
-//    if ($(window).width() <= 1021 && $(window).height() > 500) {
+////    if ($(window).width() <= 1021 && $(window).height() > 500) {
 //        document.getElementById("ui-container").style.flexDirection = 'column';
 //    }
 //}
