@@ -616,19 +616,11 @@
             dataType: 'JSON',
             success: function (data) {
                 debugger
-                if (data.status_id == 3) {
-                    if (data.state_name == "Haryana_6")
-                    {
-                        $('.btn_disabled').prop("disabled", false);
-                        $('#declaration_dpmu').prop("disabled", false);
-                    }
-                    else {
-                        $('.btn_disabled').prop("disabled", true);
-                        $('#declaration_dpmu').prop("disabled", true);
-                        $("#wsp_approved_spmu").hide();
-                    }
+                if (data == 3) {
                     // $('.btn_disabled').prop("disabled", false);
-               
+                    $('.btn_disabled').prop("disabled", true);
+                    $('#declaration_dpmu').prop("disabled", true);
+                    $("#wsp_approved_spmu").hide();
                 }
 
                 else {
@@ -645,26 +637,18 @@
 
                 //$('.btn_disabled').prop("disabled", true);
                 $("#wsp_approved_spmu").hide();
-                if (data.data == "null" && StateOfficer == "Gram Panchyat Nodal Officer") {
+                if (data == "null" && StateOfficer == "Gram Panchyat Nodal Officer") {
                     //for Inprogress
                     //$('input[type=text]').prop("disabled", false)
                     //$('select').prop("disabled", false);
                     //$('input[type=file]').prop("disabled", false)
                     //$('.btn_disabled').prop("disabled", false
+                    $('input[type=text]').prop("disabled", true)
+                    $('select').prop("disabled", true);
+                    $('input[type=file]').prop("disabled", true)
+                    $('.btn_disabled').prop("disabled", true);
+                    $('#declaration_dpmu').prop("disabled", true);
 
-                    if (data.state_name == "Haryana_6") {
-                        $('input[type=text]').prop("disabled", false)
-                        $('select').prop("disabled", false);
-                        $('input[type=file]').prop("disabled", false)
-                        $('.btn_disabled').prop("disabled", false);
-                    }
-                    else {
-                        $('input[type=text]').prop("disabled", true)
-                        $('select').prop("disabled", true);
-                        $('input[type=file]').prop("disabled", true)
-                        $('.btn_disabled').prop("disabled", true);
-                        $('#declaration_dpmu').prop("disabled", true);
-                    }
                 }
                 //if (access_auth == "Declaration") {
                 //    $('.btn_disabled').prop("disabled", false);

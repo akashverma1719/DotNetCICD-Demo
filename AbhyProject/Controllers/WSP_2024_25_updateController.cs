@@ -276,7 +276,7 @@ namespace AbhyProject.Controllers
                     var jsonresults30 = Json(WList, JsonRequestBehavior.AllowGet);
                     jsonresults30.MaxJsonLength = int.MaxValue;
                     return jsonresults30;
-                   // return Json(WList, JsonRequestBehavior.AllowGet);
+                    // return Json(WList, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception Ex)
                 {
@@ -313,23 +313,23 @@ namespace AbhyProject.Controllers
             && x.block == Block && x.gp == Gram && x.financial_year == Year && x.module_name == "wl").FirstOrDefault();
             if (Details != null)
             {
-                        string BasePath = AppDomain.CurrentDomain.BaseDirectory;// ConfigurationManager.AppSettings["path"];
-                        string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\WaterLevel_Maps\\" + Gram + "\\");
+                string BasePath = AppDomain.CurrentDomain.BaseDirectory;// ConfigurationManager.AppSettings["path"];
+                string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\WaterLevel_Maps\\" + Gram + "\\");
 
-                        if (!Directory.Exists(path))
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                        path = path + data.FileName;
-                        data.SaveAs(path);
-                        var File_path = "/Ataljalimages/WaterLevel_Maps/" + Gram + "/" + data.FileName;
-                        Details.image_path = File_path;
-                        Details.image_name = data.FileName;
-                        Details.module_name = "wl";
-                        Details.financial_year = Year;
-                        ABE.Entry(Details).State = EntityState.Modified;
-                        ABE.SaveChanges();
-                        return Json("Map saved successfully");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                path = path + data.FileName;
+                data.SaveAs(path);
+                var File_path = "/Ataljalimages/WaterLevel_Maps/" + Gram + "/" + data.FileName;
+                Details.image_path = File_path;
+                Details.image_name = data.FileName;
+                Details.module_name = "wl";
+                Details.financial_year = Year;
+                ABE.Entry(Details).State = EntityState.Modified;
+                ABE.SaveChanges();
+                return Json("Map saved successfully");
             }
             else
             {
@@ -338,23 +338,23 @@ namespace AbhyProject.Controllers
                 obj.block = Block;
                 obj.gp = Gram;
                 obj.financial_year = Year;
-                        string BasePath = AppDomain.CurrentDomain.BaseDirectory; // ConfigurationManager.AppSettings["path"];
-                        string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\WaterLevel_Maps\\" + Gram + "\\");
-                        if (!Directory.Exists(path))
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                        path = path + data.FileName;
-                        string[] count = data.FileName.Split('.');
-                        data.SaveAs(path);
-                        // File_path = path.Replace("D:\\Ataljal_grievnce\\", "http://54.221.131.231:8014/ataljalimages/");
-                        var File_path = "/Ataljalimages/WaterLevel_Maps/" + Gram + "/" + data.FileName;
-                        obj.image_path = File_path;
-                        obj.image_name = data.FileName;
-                        obj.financial_year = Year;
-                        ABE.obj_abhy_wsp_mapview_image_path.Add(obj);
-                        ABE.SaveChanges();
-                        return Json("Map saved successfully");
+                string BasePath = AppDomain.CurrentDomain.BaseDirectory; // ConfigurationManager.AppSettings["path"];
+                string path = System.IO.Path.Combine(BasePath, "Ataljalimages\\WaterLevel_Maps\\" + Gram + "\\");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                path = path + data.FileName;
+                string[] count = data.FileName.Split('.');
+                data.SaveAs(path);
+                // File_path = path.Replace("D:\\Ataljal_grievnce\\", "http://54.221.131.231:8014/ataljalimages/");
+                var File_path = "/Ataljalimages/WaterLevel_Maps/" + Gram + "/" + data.FileName;
+                obj.image_path = File_path;
+                obj.image_name = data.FileName;
+                obj.financial_year = Year;
+                ABE.obj_abhy_wsp_mapview_image_path.Add(obj);
+                ABE.SaveChanges();
+                return Json("Map saved successfully");
             }
         }
 
@@ -1198,11 +1198,11 @@ namespace AbhyProject.Controllers
                     {
                         var status_id = Convert.ToInt32(data.status_id);
                         ViewBag.status_id = Convert.ToInt32(data.status_id);
-                        return Json(data, JsonRequestBehavior.AllowGet);
+                        return Json(status_id, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        return Json( new { state_name = State, data= "null" }, JsonRequestBehavior.AllowGet);
+                        return Json("null", JsonRequestBehavior.AllowGet);
                     }
                 }
                 catch (Exception Ex)
@@ -2408,10 +2408,10 @@ namespace AbhyProject.Controllers
                     var Year = "2024-25 Update";
                     var Month = monthName;
                     var CheckMap = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).FirstOrDefault();
-                    if(CheckMap == null)
+                    if (CheckMap == null)
                     {
                         CheckMap = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2024-25").FirstOrDefault();
-                        if(CheckMap == null)
+                        if (CheckMap == null)
                         {
                             CheckMap = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2023-24").FirstOrDefault();
                             if (CheckMap != null)
@@ -2586,7 +2586,7 @@ namespace AbhyProject.Controllers
 
 
                     }
-                   
+
                     else
                     {
                         if (CheckMap.gpimage1 != null && CheckMap.gpimage1 != "" && CheckMap.gpimage2 != null && CheckMap.gpimage2 != "" && CheckMap.gpimage2 != null && CheckMap.gpimage2 != "")
@@ -2675,7 +2675,7 @@ namespace AbhyProject.Controllers
                     return Json("Error", JsonRequestBehavior.AllowGet);
                 }
             }
-            
+
             {
                 return Json("Logout", JsonRequestBehavior.AllowGet);
             }
@@ -3892,12 +3892,12 @@ namespace AbhyProject.Controllers
                 check = true;
             }
 
-            var Details = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year== Year).FirstOrDefault();
-            if(Details == null)
+            var Details = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).FirstOrDefault();
+            if (Details == null)
             {
-               Details = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2024-25").FirstOrDefault();
-               if(Details == null)
-               {
+                Details = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2024-25").FirstOrDefault();
+                if (Details == null)
+                {
                     Details = ABE.obj_abhy_wsp_gram_images_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2023-24").FirstOrDefault();
                     if (Details != null)
                     {
@@ -3924,11 +3924,11 @@ namespace AbhyProject.Controllers
                 }
             }
 
-            
-            
+
+
             var WL_Map = ABE.obj_abhy_wsp_gwl_24_update.Where(x => x.state == State && x.district == Dist
                     && x.block == Block && x.grampanchayat == Gram && x.wsp_fyyear == Year).FirstOrDefault();
-            if(WL_Map == null)
+            if (WL_Map == null)
             {
                 var Final_data = AJE.obj_vw_gwl_all.Where(x => x.state == State && x.district == Dist && x.block == Block && x.grampanchayat == Gram).ToList();
                 if (Final_data.Count != 0)
@@ -3936,7 +3936,7 @@ namespace AbhyProject.Controllers
                     return Json("You didn't save water level data, Please save", JsonRequestBehavior.AllowGet);
                 }
             }
-           
+
             var WQ_Map = ABE.obj_abhy_wsp_gwq_24_update.Where(x => x.State == State && x.District == Dist
                     && x.Block == Block && x.GP == Gram && x.wsp_fyyear == Year).FirstOrDefault();
             if (WQ_Map != null)
@@ -3962,7 +3962,7 @@ namespace AbhyProject.Controllers
         [HttpPost]
         public JsonResult mapvalidate()
         {
-           
+
             var State = Session["gstate"].ToString().Trim();
             var Dist = Session["gdist"].ToString().Trim();
 
@@ -3977,7 +3977,8 @@ namespace AbhyProject.Controllers
                 {
                     return Json("You didn't upload all maps, Please upload all maps", JsonRequestBehavior.AllowGet);
                 }
-                else {
+                else
+                {
                     return Json(new { result = true });
                 }
             }
@@ -3986,7 +3987,7 @@ namespace AbhyProject.Controllers
                 return Json("You didn't upload all maps, Please upload all maps", JsonRequestBehavior.AllowGet);
             }
 
-            
+
         }
 
 
@@ -4168,7 +4169,7 @@ namespace AbhyProject.Controllers
                 //var Month = Session["month"].ToString().Trim();
                 abhy_wsp_approved_status dd = new abhy_wsp_approved_status();
                 var DataCheck = ABE.obj_abhy_wsp_approved_status.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.year == Year).ToList();
-                if(DataCheck.Count == 0)
+                if (DataCheck.Count == 0)
                 {
                     dd.state_name = State;
                     dd.district_name = Dist;
@@ -5614,7 +5615,7 @@ namespace AbhyProject.Controllers
                     }
                     if (DataIrrigation != null)
                     {
-                        if(DataIrrigation.uti_ground_water != "" && DataIrrigation.uti_ground_water != null && DataIrrigation.uti_surface_water != "" && DataIrrigation.uti_surface_water != null)
+                        if (DataIrrigation.uti_ground_water != "" && DataIrrigation.uti_ground_water != null && DataIrrigation.uti_surface_water != "" && DataIrrigation.uti_surface_water != null)
                         {
                             wb_gw_utili += Convert.ToDouble(DataIrrigation.uti_ground_water);
                             wb_sw_utili += Convert.ToDouble(DataIrrigation.uti_surface_water);
@@ -5624,7 +5625,7 @@ namespace AbhyProject.Controllers
                             return Json("3", JsonRequestBehavior.AllowGet);
                         }
 
-                        
+
                         //wb_total_utili += wb_gw_utili + wb_sw_utili;
                     }
                     else
@@ -6001,9 +6002,9 @@ namespace AbhyProject.Controllers
                             //if (ddetails.dist_annual_rainfall != result.annual_rainfall)
                             //{
 
-                                if (Convert.ToDouble(ddetails.dist_annual_rainfall) != Convert.ToDouble(result.annual_rainfall))
-                                {
-                                    return Json("Please Enter Other Source Name");
+                            if (Convert.ToDouble(ddetails.dist_annual_rainfall) != Convert.ToDouble(result.annual_rainfall))
+                            {
+                                return Json("Please Enter Other Source Name");
                             }
                             else
                             {
@@ -6293,10 +6294,11 @@ namespace AbhyProject.Controllers
                     var year = "2024-25 Update";
                     //var month = Session["month"].ToString();
                     ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == year).ToList();//total list
-                    if (ddetails.Count < 1) {
+                    if (ddetails.Count < 1)
+                    {
                         ddetails = ABE.obj_abhy_wsp_waterbudget_new_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == "2024-25").ToList();
                     }
-                        return Json(ddetails, JsonRequestBehavior.AllowGet);
+                    return Json(ddetails, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception Ex)
                 {
@@ -7849,8 +7851,8 @@ namespace AbhyProject.Controllers
                     var DEtails = ABE.obj_abhy_waterdraft_irrigation_data_24_update.Where(x => x.id == id).ToList();
                     string season = DEtails[0].season_type;
                     string crop_name = DEtails[0].crop_name;
-                    
-                    
+
+
                     //Delete all Data From Demand Side
                     var Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == year).ToList().FirstOrDefault();
                     if (Details != null)
@@ -9155,18 +9157,18 @@ namespace AbhyProject.Controllers
                     string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(MonthNumber);
                     var result = JsonConvert.DeserializeObject<dynamic>(data);
                     string fund_for = result["fund_for"];
-                    var state = Session["gstate"].ToString();       
+                    var state = Session["gstate"].ToString();
                     var dist = Session["gdist"].ToString();
                     var block = Session["gblock"].ToString();
                     var gram = Session["ggram"].ToString();
                     string year = "2024-25 Update";
                     var month = monthName;
                     abhy_wsp_demand_meta_24_update obj = new abhy_wsp_demand_meta_24_update();
-                    var DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year== year).SingleOrDefault();
-                    if (DEtails==null) 
+                    var DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == year).SingleOrDefault();
+                    if (DEtails == null)
                     {
-                         DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").SingleOrDefault();
-                        if (DEtails==null)
+                        DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").SingleOrDefault();
+                        if (DEtails == null)
                         {
                             DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").SingleOrDefault();
                         }
@@ -9258,7 +9260,7 @@ namespace AbhyProject.Controllers
                     if (Details == null)
                     {
                         Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList().FirstOrDefault();
-                       if(Details == null)
+                        if (Details == null)
                         {
                             Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").ToList().FirstOrDefault();
 
@@ -9296,7 +9298,7 @@ namespace AbhyProject.Controllers
                     string year = "2024-25 Update";
                     //var month = Session["month"].ToString();
                     var Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == year).ToList();
-                    if(Details.Count == 0)
+                    if (Details.Count == 0)
                     {
                         Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList();
                         if (Details.Count == 0)
@@ -9758,13 +9760,13 @@ namespace AbhyProject.Controllers
                                     t2.id,
                                     t2.isupdated_sp
                                 }).FirstOrDefault();
-                    if(Data != null)
+                    if (Data != null)
                     {
                         var GetData = ABE.obj_abhy_waterdraft_irrigation_data_24_update.Where(x => x.id == Data.id).FirstOrDefault();
                         GetData.isupdated_sp = 0;
                         ABE.Entry(GetData).State = EntityState.Modified;
                     }
-                    
+
                     ABE.SaveChanges();
 
                     return Json("Deleted", JsonRequestBehavior.AllowGet);
@@ -9829,12 +9831,12 @@ namespace AbhyProject.Controllers
                                     t2.id,
                                     t2.isupdated_sp
                                 }).FirstOrDefault();
-                    if(Data != null)
+                    if (Data != null)
                     {
                         var GetData = ABE.obj_abhy_waterdraft_irrigation_data_24_update.Where(x => x.id == Data.id).FirstOrDefault();
                         GetData.isupdated_dp = 0;
                         ABE.Entry(GetData).State = EntityState.Modified;
-                        
+
                     }
                     ABE.SaveChanges();
                     return Json("Deleted", JsonRequestBehavior.AllowGet);
@@ -10469,11 +10471,12 @@ namespace AbhyProject.Controllers
             var year = "2024-25 Update";
             var Data = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == state && x.district == dist && x.block == block).ToList();
             Data.ForEach(a => {
-                if (!string.IsNullOrEmpty(a.gp)) {
+                if (!string.IsNullOrEmpty(a.gp))
+                {
                     a.gp = WebUtility.HtmlDecode(a.gp);
-                    }
+                }
             });
-            var DataFilter = Data.Where(x =>x.gp==gram).ToList();
+            var DataFilter = Data.Where(x => x.gp == gram).ToList();
             return Json(DataFilter, JsonRequestBehavior.AllowGet);
         }
 
@@ -10582,7 +10585,7 @@ namespace AbhyProject.Controllers
                     DemandSummary Data = new DemandSummary();
                     abhy_wsp_demand_meta_24_update obj = new abhy_wsp_demand_meta_24_update();
                     var DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram).FirstOrDefault();
-                    if (DEtails!= null)
+                    if (DEtails != null)
                     {
 
                         var ID = DEtails.id;
@@ -10636,7 +10639,7 @@ namespace AbhyProject.Controllers
                                 }
 
                             });
-                           // double NetWaterDemandDrip = ALLDataDrip.Sum(x => Convert.ToDouble(x.net_water_demand));
+                            // double NetWaterDemandDrip = ALLDataDrip.Sum(x => Convert.ToDouble(x.net_water_demand));
 
                             double TotalWaterDemandDrip = ALLDataDrip.Sum(x => {
                                 double value;
@@ -11052,7 +11055,7 @@ namespace AbhyProject.Controllers
                     //return Json("error", JsonRequestBehavior.AllowGet);
                     return new JsonResult
                     {
-                        Data = new { ErrorMessage =$"{ex.Message}\n\nStackTrace: {ex.StackTrace}" },
+                        Data = new { ErrorMessage = $"{ex.Message}\n\nStackTrace: {ex.StackTrace}" },
                         ContentEncoding = System.Text.Encoding.UTF8,
                         JsonRequestBehavior = JsonRequestBehavior.DenyGet
                     };
@@ -11092,7 +11095,7 @@ namespace AbhyProject.Controllers
                         var DEtails1 = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").FirstOrDefault();
                         if (DEtails1 == null)
                         {
-                           DEtails1 = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").FirstOrDefault();
+                            DEtails1 = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").FirstOrDefault();
 
                         }
                         var ID = DEtails1.id;
@@ -11204,10 +11207,10 @@ namespace AbhyProject.Controllers
                     abhy_wsp_demand_meta_24_update obj = new abhy_wsp_demand_meta_24_update();
                     List<abhy_wsp_demand_change_crop_24_update> Data = new List<abhy_wsp_demand_change_crop_24_update>();
                     var DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == year).FirstOrDefault();
-                    if(DEtails == null)
+                    if (DEtails == null)
                     {
                         DEtails = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").FirstOrDefault();
-                       
+
                     }
                     if (DEtails != null)
                     {
@@ -11639,7 +11642,7 @@ namespace AbhyProject.Controllers
 
         [HttpGet]
         public ActionResult Getting_abhy_wsp_pgwm_committee_member()
-       {
+        {
             if (Session["UserId"] != null)
             {
                 try
@@ -11932,7 +11935,7 @@ namespace AbhyProject.Controllers
 
                     if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != "" && Year != null)
                     {
-                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year== Year).ToList();//total list
+                        ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).ToList();//total list
                         if (ddetails.Count == 0)
                         {
                             ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == "2024-25").ToList();//total list
@@ -12553,7 +12556,7 @@ namespace AbhyProject.Controllers
             {
                 //var data = ABE.obj_abhy_wsp_pgwm_committee_meeting_23.Where(x => x.state == State).OrderByDescending(c => c.id).ToList();
                 string _filepath = string.Empty;
-                string filename =System.IO.Path.GetFileName(FileName);
+                string filename = System.IO.Path.GetFileName(FileName);
                 string key = ConfigurationManager.AppSettings["path"];
                 string _fname = FileName.Substring(1);
                 string contentType = string.Empty;

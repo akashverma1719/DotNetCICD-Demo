@@ -1,30 +1,30 @@
-﻿//document.addEventListener('keydown', function (event) {
-//    // Disable F12
-//    if (event.keyCode === 123) {
-//        event.preventDefault();
-//        return false;
-//    }
-//    // Disable Ctrl+Shift+I
-//    if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
-//        event.preventDefault();
-//        return false;
-//    }
-//    // Disable Ctrl+Shift+C
-//    if (event.ctrlKey && event.shiftKey && event.keyCode === 67) {
-//        event.preventDefault();
-//        return false;
-//    }
-//    // Disable Ctrl+U
-//    if (event.ctrlKey && event.keyCode === 85) {
-//        event.preventDefault();
-//        return false;
-//    }
-//});
+﻿document.addEventListener('keydown', function (event) {
+    // Disable F12
+    if (event.keyCode === 123) {
+        event.preventDefault();
+        return false;
+    }
+    // Disable Ctrl+Shift+I
+    if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
+        event.preventDefault();
+        return false;
+    }
+    // Disable Ctrl+Shift+C
+    if (event.ctrlKey && event.shiftKey && event.keyCode === 67) {
+        event.preventDefault();
+        return false;
+    }
+    // Disable Ctrl+U
+    if (event.ctrlKey && event.keyCode === 85) {
+        event.preventDefault();
+        return false;
+    }
+});
 
-//// Disable Right-Click
-//document.addEventListener('contextmenu', function (event) {
-//    event.preventDefault();
-//});
+// Disable Right-Click
+document.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+});
 
 function get_approved_status(val) {
     $.ajax({
@@ -33,10 +33,10 @@ function get_approved_status(val) {
         url: "/WSP_2024_25_update/get_approved_status",
         dataType: 'JSON',
         success: function (data) {
-            debugger;
+            //debugger;
             console.log(data)
             /*    if (data>1) {*/
-            if (data.status_id > 1) {
+            if (data >= 1) {
                 $('input[type=text]').prop("disabled", true)
                 $('select').prop("disabled", true);
                 $('input[type=file]').prop("disabled", true)
@@ -44,22 +44,6 @@ function get_approved_status(val) {
                 $('.livestock_remove_field').removeAttr("onclick");
                 $('.livestock_remove_field').removeAttr("href");
             }
-            else if ((StateOfficer == "Gram Panchyat Nodal Officer" && data.status_id == '1')
-                || (StateOfficer == "Gram Panchyat Nodal Officer" && data.data == "null")) {
-
-                if (data.state_name =="Haryana_6") {
-                    $('input[type=text]').prop("disabled", false)
-                    $('select').prop("disabled", false);
-                    $('input[type=file]').prop("disabled", false)
-                    $('.btn_disabled').prop("disabled", false);
-                } else {
-                    $('input[type=text]').prop("disabled", true)
-                    $('select').prop("disabled", true);
-                    $('input[type=file]').prop("disabled", true)
-                    $('.btn_disabled').prop("disabled", true);
-                }
-            }
-
             else if (access_auth == "admin") {
                 $('input[type=text]').prop("disabled", false)
                 $('select').prop("disabled", false);
@@ -127,46 +111,6 @@ function get_approved_status(val) {
 }
 
 
-function get_approved_statusCallback(val) {
-    $.ajax({
-        type: 'POST',
-        contentType: 'application/json; chatset=utf-8',
-        url: "/WSP_2024_25_update/get_approved_status",
-        dataType: 'JSON',
-        success: function (data) {
-            //debugger;
-            console.log(data)
-            alert(State);
-
-            /*    if (data>1) {*/
-            if (data.status_id >= 1) {
-                $('input[type=text]').prop("disabled", true)
-                $('select').prop("disabled", true);
-                $('input[type=file]').prop("disabled", true)
-                $('.btn_disabled').prop("disabled", true);
-                $('.livestock_remove_field').removeAttr("onclick");
-                $('.livestock_remove_field').removeAttr("href");
-            }
-            else if (access_auth == "admin") {
-                $('input[type=text]').prop("disabled", false)
-                $('select').prop("disabled", false);
-                $('input[type=file]').prop("disabled", false)
-                $('.btn_disabled').prop("disabled", false);
-            }
-
-            else {
-                //$(".btnNext").show();
-                $('input[type=text]').prop("disabled", true)
-                $('select').prop("disabled", true);
-                $('input[type=file]').prop("disabled", true)
-                $('.btn_disabled').prop("disabled", true);
-            }
-
-        }
-    });
-}
-
-
 
 function get_approved_status_balance() {
     $.ajax({
@@ -176,7 +120,7 @@ function get_approved_status_balance() {
         dataType: 'JSON',
         success: function (data) {
 
-            if (data.status_id > 1) {
+            if (data > 1) {
                 //$('input[type=text]').prop("disabled", true)
                 //$('select').prop("disabled", true);
                 //$('input[type=file]').prop("disabled", true)
