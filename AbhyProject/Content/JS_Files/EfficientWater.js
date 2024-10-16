@@ -304,10 +304,12 @@ function get_irrigation_system() {
                     //$("#obc_pipe_ben").prop("disabled", false);
                     //$("#gen_pipe_ben").prop("disabled", false);
 
-                    $("#btnFinalSave2").show();
-                    $("#saveagri").show();
-                    $("#btnFinalSave").show();
-                    $(".disable_btn").show();
+                    /*district level*/
+
+                    $("#btnFinalSave2").hide();
+                    $("#saveagri").hide();
+                    $("#btnFinalSave").hide();
+                    $(".disable_btn").hide();
                     k = 1;
                 }
                 else {
@@ -381,10 +383,11 @@ function get_irrigation_system() {
                     //$("#obc_pipe_ben").prop("disabled", false);
                     //$("#gen_pipe_ben").prop("disabled", false);
 
-                    $("#btnFinalSave2").show();
-                    $("#saveagri").show();
-                    $("#btnFinalSave").show();
-                    $(".disable_btn").show();
+                    /*district level*/
+                    $("#btnFinalSave2").hide();
+                    $("#saveagri").hide();
+                    $("#btnFinalSave").hide();
+                    $(".disable_btn").hide();
 
                     k = 1;
                 }
@@ -458,10 +461,11 @@ function get_irrigation_system() {
                 //$("#obc_pipe_ben").prop("disabled", false);
                 //$("#gen_pipe_ben").prop("disabled", false);
                 //$("input[type='text']").prop("disabled", false);
-                $("#btnFinalSave2").show();
-                $("#saveagri").show();
-                $("#btnFinalSave").show();
-                $(".disable_btn").show();
+                /*district level*/
+                $("#btnFinalSave2").hide();
+                $("#saveagri").hide();
+                $("#btnFinalSave").hide();
+                $(".disable_btn").hide();
                 k = 1;
             }
             SumTotal();
@@ -768,7 +772,7 @@ function get_area_with_crop_shifting() {
             tr += '<tr><td style="background-color:orange;color:#fff">Total</td><td></td><td></td><td style="font-weight:bold;">' + total_hightolow_wcc + '</td><td></td><td></td><td style="font-weight:bold;">' + total_beneficiary + '</td><td></td></tr>'
             $("#crop_shifting").html(tr);
 
-            //$(".disable_btn").hide();
+            $(".disable_btn").hide();
             get_dli4_water_saving_agriculture();
         }
     });

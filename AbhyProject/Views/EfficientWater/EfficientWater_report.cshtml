@@ -1669,13 +1669,13 @@
 
             }
             if (StateOfficer == "National Level Nodal Officer" && selectpahse == "Phase-1" && yy == "2024-25" ) {
-                $(".Isenabledpahse").show();
+                $(".Isenabledpahse").hide();
 
             }
 
-            ///         $(".disable_btn").prop("disabled", false)
+                 $(".disable_btn").prop("disabled", false)
 
-            //
+            
         }
         function SelectedPhase() {
         let selectpahse = $("#fy_phase").val();
@@ -1686,7 +1686,7 @@
         }
         else {
             if (StateOfficer == "National Level Nodal Officer" && selectpahse == "Phase-2") {
-                $(".Isenabledpahse").show();
+                $(".Isenabledpahse").hide();
 
             }
             const myTimeout = setTimeout(callback, 5000);
@@ -2615,7 +2615,7 @@
                                     var tot_pipe_benf = parseFloat(data[i].tot_pipe_ben)||0;
                                     var totalben = tot_spr_benf + tot_drip_benf + tot_pipe_benf;
                                     totalbenf += totalben;
-                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + tot_spr_benf + '</td><td>' + tot_drip_benf + '</td><td>' + tot_pipe_benf + '</td><td>' + totalben + '</td><td> <button type="button" class="btn btn-primary disable_btn"  onclick="approve_state(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status' + i + '"  class=" form-control" rows="" cols="40" placeholder="Remarks"  name="push_title"></textarea></td></tr> ';
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].sprinkler_convergence + '</td><td>' + data[i].drip_convergence + '</td><td>' + data[i].pipeline_convergence + '</td><td>' + data[i].total_convergence + '</td><td>' + data[i].sprinkler_incentive + '</td><td>' + data[i].drip_incentive + '</td><td>' + data[i].pipeline_incentive + '</td><td>' + data[i].total_incentive + '</td><td>' + data[i].sprinkler_financing + '</td><td>' + data[i].drip_financing + '</td><td>' + data[i].pipeline_financing + '</td><td>' + data[i].total_financing + '</td><td>' + data[i].all_irrigation_total + '</td><td>' + tot_spr_benf + '</td><td>' + tot_drip_benf + '</td><td>' + tot_pipe_benf + '</td><td>' + totalben + '</td><td> <button type="button" class="btn btn-primary disable_btn"  onclick="approve_state(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status' + i + '"  class=" form-control disable_btn" rows="" cols="40" placeholder="Remarks"  name="push_title"></textarea></td></tr> ';
 
 
 
@@ -2799,6 +2799,8 @@
 
                     tr += '<tr id="BGColor" style="text-align:left; background: #ddd; font-weight: bold;"><td> Total </td><td></td><td></td><td></td><td></td><td></td><td>' + sprinkler_convergence.toFixed(2) + '</td><td>' + drip_convergence.toFixed(2) + '</td><td>' + pipeline_convergence.toFixed(2) + '</td><td>' + total_convergence.toFixed(2) + '</td><td>' + sprinkler_incentive.toFixed(2) + '</td><td>' + drip_incentive.toFixed(2) + '</td><td>' + pipeline_incentive.toFixed(2) + '</td><td>' + total_incentive.toFixed(2) + '</td><td>' + sprinkler_financing.toFixed(2) + '</td><td>' + drip_financing.toFixed(2) + '</td><td>' + pipeline_financing.toFixed(2) + '</td><td>' + total_financing.toFixed(2) + '</td><td>' + all_irrigation_total.toFixed(2) + '</td><td>' + tot_spr_ben.toFixed(2) + '</td><td>' + tot_drip_ben.toFixed(2) + '</td><td>' + tot_pipe_ben.toFixed(2) + '</td><td>'+totalbenf+'</td></tr>';
                     $('#tbl_details').html(tr);
+                    $('.disable_btn').hide();
+
 
                 }
                //Data_get_a();
@@ -3180,7 +3182,7 @@
                                     tot_ben += parseFloat(data[i].total_ben);
                                     hightolow_wcc += data[i].hightolow_wcc;
 
-                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + (schema === 'Other' ? schema + ' - ' + otherscheme : schema) + '</td><td>' + total_ben + '</td><td> <button type="button" class="btn btn-primary disable_btn"  onclick="approve_state_a(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram_a(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status_a' + i + '"  class=" form-control" rows="" cols="40" placeholder="Remarks"  name="push_title"></textarea></td></tr> ';
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].existing_high_wcc + '</td><td>' + data[i].replacing_low_wcc + '</td><td>' + data[i].hightolow_wcc + '</td><td>' + data[i].department + '</td><td>' + (schema === 'Other' ? schema + ' - ' + otherscheme : schema) + '</td><td>' + total_ben + '</td><td> <button type="button" class="btn btn-primary disable_btn"  onclick="approve_state_a(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram_a(' + data[i].id + ',' + i + ')">Reject</button></td><td><textarea id="remarks_status_a' + i + '"  class=" form-control disable_btn" rows="" cols="40" placeholder="Remarks"  name="push_title"></textarea></td></tr> ';
 
 
 
@@ -3263,6 +3265,7 @@
                     }
                     tr += '<tr style="text-align:left; background: #ddd; font-weight: bold;"><td> Total </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>' + hightolow_wcc.toFixed(2) + '</td><td></td><td></td><td>' + tot_ben + '</td></tr>';
                     $('#tbl_details_a').html(tr);
+                    $('.disable_btn').hide();
                 }
                 //Data_get_b();
                 $('.loader').hide();
@@ -3759,7 +3762,7 @@
                                     tot_other3_total_ben += parseFloat(data[i].other3_total_ben) || 0;
                                     alltotal_final += (parseFloat(super_total_ben + polyhouse_total_ben + mulching_total_ben + hydrogel_total_ben + dsr_total_ben + other1_total_ben + other2_total_ben + other3_total_ben) || 0);
 
-                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + super_total_ben + '</td><td>' + polyhouse_total_ben + '</td><td>' + mulching_total_ben + '</td><td>' + hydrogel_total_ben + '</td><td>' + dsr_total_ben + '</td><td>' + other1_total_ben + '</td><td>' + other2_total_ben + '</td><td>' + other3_total_ben + '</td><td>' + alltotal + '</td><td><button type="button" class="btn btn-primary disable_btn" onclick="approve_state_b(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram_b(' + data[i].id + ',' + i + ')">Reject</button></td > <td><textarea id="remarks_status_b' + i + '" class=" form-control" rows="" cols="40" placeholder="Remarks" name="push_title"></textarea></td></tr > ';
+                                    tr += '<tr id="AWP1_TR_new' + i + '"><td>' + (sno) + '</td><td>' + data[i].state + '</td><td>' + data[i].district + '</td><td>' + data[i].block + '</td><td>' + data[i].gram + '</td><td>' + data[i].year + '</td><td>' + data[i].super_area_covered_through_convergence + '</td><td>' + data[i].polyhouse_area_covered_through_convergence + '</td><td>' + data[i].mulching_area_covered_through_convergence + '</td><td>' + data[i].hydrogel_area_covered_through_convergence + '</td><td>' + data[i].dsr_area_covered_through_convergence + '</td><td> ' + data[i].other_area_covered_through_convergence1 + '</td><td>' + data[i].other_area_covered_through_convergence2 + '</td><td>' + data[i].other_area_covered_through_convergence3 + '</td><td>' + data[i].convergence_total_area + '</td><td>' + data[i].super_area_covered_through_incentive + '</td><td>' + data[i].polyhouse_area_covered_through_incentive + '</td><td>' + data[i].mulching_area_covered_through_incentive + '</td><td>' + data[i].hydrogel_area_covered_through_incentive + '</td><td>' + data[i].dsr_area_covered_through_incentive + '</td><td>' + data[i].other_area_covered_through_incentive1 + '</td><td>' + data[i].other_area_covered_through_incentive2 + '</td><td>' + data[i].other_area_covered_through_incentive3 + '</td><td>' + data[i].incentive_total_area + '</td><td>' + data[i].super_area_covered_through_financing + '</td><td>' + data[i].polyhouse_area_covered_through_financing + '</td><td>' + data[i].mulching_area_covered_through_financing + '</td><td>' + data[i].hydrogel_area_covered_through_financing + '</td><td>' + data[i].dsr_area_covered_through_financing + '</td><td>' + data[i].other_area_covered_through_financing1 + '</td><td>' + data[i].other_area_covered_through_financing2 + '</td><td>' + data[i].other_area_covered_through_financing3 + '</td><td>' + data[i].financing_total_area + '</td><td>' + data[i].all_total_area + '</td><td>' + data[i].other_water_saving_method1 + '</td><td>' + data[i].other_water_saving_method2 + '</td><td>' + data[i].other_water_saving_method3 + '</td><td>' + super_total_ben + '</td><td>' + polyhouse_total_ben + '</td><td>' + mulching_total_ben + '</td><td>' + hydrogel_total_ben + '</td><td>' + dsr_total_ben + '</td><td>' + other1_total_ben + '</td><td>' + other2_total_ben + '</td><td>' + other3_total_ben + '</td><td>' + alltotal + '</td><td><button type="button" class="btn btn-primary disable_btn" onclick="approve_state_b(' + data[i].id + ',' + i + ')">Approved</button><button type="button" style="margin-left: 10px;" class="btn btn-danger disable_btn"  onclick="reject_gram_b(' + data[i].id + ',' + i + ')">Reject</button></td > <td><textarea id="remarks_status_b' + i + '" class=" form-control disable_btn" rows="" cols="40" placeholder="Remarks" name="push_title"></textarea></td></tr > ';
 
 
                                     //if (data[i].state == 'Haryana_6' || data[i].state == 'Karnataka_29' || data[i].state == 'Madhya Pradesh_23' || data[i].state == 'Maharashtra_27' ) {
@@ -4017,9 +4020,9 @@
                     $(".disable_btn").prop("disabled", false);
                 }
 
-                //else {
-                //    $(".disable_btn").prop("disabled", false);
-                //}
+                else {
+                    $(".disable_btn").prop("disabled", false);
+                }
 
                 //if (State == "Haryana_6") {
                 //    if (StateOfficer != "Admin" || StateOfficer != "National Level Nodal Officer") {

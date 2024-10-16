@@ -616,7 +616,7 @@
 
                 <ul class="Select_option selectbackhome" style="text-align:center;">
                     <li>
-                        <a class="btn btn-success" id="btnSave" onclick="Insert_data()">Save</a>
+                        <a class="btn btn-success" id="btnSave" style="display:none" onclick="Insert_data()">Save</a>
                     </li>
 
                 </ul>
@@ -1269,6 +1269,7 @@
                             }
                         }
                         $('#tbl_details').html(tr);
+                        $('.disable_btn').hide();
                     }
                     $('.loader').hide();
                 }
