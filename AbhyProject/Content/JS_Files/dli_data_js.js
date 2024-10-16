@@ -274,7 +274,7 @@ function HideFinctions() {
     if (eemail == "vivekvivektiwari80@gmail.com") {
         $(".hidethedelete").attr("disabled", false);
     }
-    else if (eemail == "neetynagi@gmail.com") {
+    else if (eemail == "neetynagi@gmail.comaaa") {
         $(".hidethedelete").attr("disabled", false);
     }
     else {
