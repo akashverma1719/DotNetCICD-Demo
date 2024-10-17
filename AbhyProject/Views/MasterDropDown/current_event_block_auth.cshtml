@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "WSPgram";
-    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+    Layout = "~/Views/Shared/training_block_auth.cshtml";
 }
 <title>Training</title>
 <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
@@ -543,88 +543,7 @@
         <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
     </div>
 </div>
-<main>
-    <header class="header hederImage">
-        <div class="clearfix">
-            <div class="clearfix">
-                <div class="col-lg-9">
-                    <div class="header-top-info">
-                        <ul class="clearfix">
-                            <li>
-                                <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
-                            </li>
 
-                            <li>
-                                <span>
-                                    <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
-                                </span>
-                                <span>
-                                    <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
-                                        Ministry of Jal Shakti
-                                    </a>
-                                </span>
-                                <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
-                                <span style="text-align:center;">
-                                    <a href="javascript:;" title="GOVERNMENT OF INDIA"
-                                       style="text-transform:none; font-size:14px;">
-                                        River Development & Ganga Rejuvenation
-                                    </a>
-                                </span>
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <ul class="imgHome clearfix">
-
-                        <li>
-                            <img src="~/Content/WspImages/user-silhouette.png" title="User" />
-                            @if (Session["UserName"] != null)
-                            {
-                                <span style="color:#fff;">:@Session["UserName"].ToString()</span>
-                            }
-
-                        </li>
-                        <li>
-                            <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
-                    <ul class="imgHome clearfix">
-                        <li>
-                            <a href="~/Home/index">
-                                <span>
-                                    <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
-                                </span>
-                                <label>MIS Users <i class="fa fa-angle-double-right"></i></label>
-                            </a>
-                        </li>
-                        <li>
-                            <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
-                            <label>Training & Workshop </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-2 pull-right">
-
-                    <a href="~/Home/LogOut" class="btn btn-danger" style="margin-bottom:10px;">
-                        Back To Login
-                    </a>
-
-
-                </div>
-            </div>
-        </div>
-    </header>
-</main>
-<div class="loading-container">
-    <div class="loader">
-        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
-    </div>
-</div>
 <main class="main-wrapper">
     <div class="row" id="">
         <div class="container-fluid " style="padding:10px;padding-top:0;">

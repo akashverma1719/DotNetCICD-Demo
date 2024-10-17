@@ -429,7 +429,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/reg_block" class="btn btn-dark button"> Back</a>
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -560,7 +560,7 @@
 
             <div class="col-md-12 last-div-footer" id="btnExport1">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/reg_block" class="btn btn-dark button"> Back</a>
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                     @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
 
 
@@ -684,9 +684,9 @@
     var event_name = "0";
     var year = "0";
     var month = "0";
-
+    var Auth = "";
     $(document).ready(function () {
-
+        debugger;
         var StateOfficer = '@Session["Officer"]';
         State = '@Session["gstate"]';
         state_name1 = '@Session["state_name"]';
@@ -700,6 +700,7 @@
         event_name = '@Session["event_name"]';
         year = '@Session["year"]';
         month = '@Session["month"]';
+         Auth = '@Session["Access_Auth"]'
         if (year == '0' || year == 0 || year == null) {
             $('#spnyear').text("");
             $('#year').text("");
@@ -927,6 +928,20 @@
 
             }
         });
+    }
+
+
+    function GoToBackCurr() {
+        debugger;
+        if (Auth == "dist-Training") {
+            window.location = "/MasterDropDown/reg_block_distauth";
+        }
+       else if (Auth == "block-Training") {
+            window.location = "/MasterDropDown/reg_block_blockauth";
+        }
+        else {
+            window.location = "/MasterDropDown/reg_block";
+        }
     }
 
 

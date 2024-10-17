@@ -1412,7 +1412,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + spmumonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmutotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_male + '</label></td>';
@@ -1420,7 +1425,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].spmucount_female_per.toFixed(2) + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + dpmumonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_male + '</label></td>';
@@ -1428,7 +1438,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_female_per.toFixed(2) + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + blockmonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_male + '</label></td>';
@@ -1436,7 +1451,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female_per.toFixed(2) + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + grammonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_male + '</label></td>';
@@ -1444,11 +1464,13 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per.toFixed(2) + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
+                            
                             if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                             }
                             else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
                             }
                             Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';
@@ -1507,7 +1529,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].district + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + dpmumonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_male + '</label></td>';
@@ -1515,7 +1542,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_female_per + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + blockmonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_male + '</label></td>';
@@ -1523,7 +1555,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female_per + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + grammonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_male + '</label></td>';
@@ -1531,11 +1568,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
                             if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                             }
                             else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
                             }
                             Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';
@@ -1601,11 +1639,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
                             if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                             }
                             else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
                             }
                             Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';
@@ -1621,7 +1660,7 @@
                         for (var i = 0; i < results.length; i++) {
                             var yy = results[i].year;
                             if (yy == '0') {
-                                yy = 'All Year'
+                                yy = 'All Year';
                             }
                             var mm = results[i].month;
                             var grammonthcum = results[i].grammonthcum;
@@ -1646,7 +1685,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gram + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
                             Tbodyhtml += '<td id="rainfall"><label>' + grammonthcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotalcum + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_male + '</label></td>';
@@ -1654,11 +1698,12 @@
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
                             Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per + '</label></td>';
-                            Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
                             if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                             }
                             else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
                                 Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
                             }
                             Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';

@@ -436,6 +436,7 @@ namespace AbhyProject.Models
         //procurement milestone 
         public virtual DbSet<abhy_procurement_milestone_dropdown> obj_abhy_procurement_milestone_dropdown { get; set; }
         public virtual DbSet<abhy_physicalmonitoring_insertdata_view> obj_abhy_physicalmonitoring_insertdata_view { get; set; }
+        public virtual DbSet<state_awp_target> obj_state_awp_target { get; set; }
         public virtual DbSet<abhy_procurement_milestone_insertdata> obj_abhy_procurement_milestone_insertdata { get; set; }
         public virtual DbSet<incentive_fund_utilization> obj_incentive_fund_utilization { get; set; }
         public virtual DbSet<abhy_procurement_milestone_type_download> obj_abhy_procurement_milestone_type_download { get; set; }

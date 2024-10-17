@@ -1,0 +1,814 @@
+﻿@{
+    ViewBag.Title = "WSPgram";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<title>Training</title>
+<script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- favicon
+============================================ -->
+<link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/datecss.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/wspView_new.css" rel="stylesheet" />
+<link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+<script src="~/Scripts/all_scripts/core.js"></script>
+<script src="~/Scripts/all_scripts/charts.js"></script>
+<script src="~/Scripts/all_scripts/animated.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<style>
+    .submenu {
+        display: none;
+        margin-left: 20px;
+    }
+
+    .dropdown-menu > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .dropdown-menu a {
+        padding: 8px 10px;
+        text-align: left;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .dropdown-menu a:hover {
+            border-bottom: 1px solid #ddd;
+            text-decoration: none;
+            background: #337ab7;
+            color: #fff;
+        }
+
+    .nav-tabs .dropdown-menu.show {
+        padding: 0px;
+    }
+    /*    a {
+        padding: 3px;
+        width: 100%;
+    }
+    */
+    .nav-tabs > li {
+        border: 2px solid #000;
+        border-radius: 25px;
+        padding: 6px 40px;
+        margin-bottom: 20px;
+        margin-top: 12px;
+    }
+
+    .nav-tabs .dropdown-menu.show {
+        display: block;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
+
+    .nav-tabs .dropdown-menu.show > div .dropdown-item {
+        padding: 4px 12px;
+        font-weight: 700;
+        color: #000;
+    }
+
+    .show {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .nav-item dropdown.show a {
+        color: #fff !important;
+    }
+
+        .nav-item dropdown.show a:hover {
+            color: #fff !important;
+        }
+
+    .nav-item dropdown.show .nav-link {
+        color: #fff !important;
+        font-weight: bold;
+    }
+
+    .nav-tabs > li > a {
+        color: #000 !important;
+        font-weight: bold;
+    }
+
+    nav-item.dropdown .nav-link {
+        color: #fff !important;
+        font-weight: bold;
+    }
+
+    .nav .nav-item.dropdown.show .navbarDropdownMenuLink {
+        color: #fff !important;
+        font-weight: bold;
+    }
+
+    .nav-tabs > li {
+        margin-bottom: 10px !important;
+    }
+
+    #btnSave {
+        width: 150px !important;
+    }
+
+    body {
+        padding-right: 0px !important;
+    }
+
+    .nav {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .nav-item {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-toggle {
+        cursor: pointer;
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+        left: 13%;
+        top: 90px;
+    }
+
+    .dropdown-item {
+        padding: 10px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-item:hover {
+            background-color: #f1f1f1;
+        }
+
+    .active .dropdown-menu {
+        display: block;
+        padding: 0px;
+    }
+
+    .active > .dropdown-toggle {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .nav > li > a:hover {
+        background-color: #337ab7 !important;
+        color: #fff;
+    }
+
+    .nav > li > a:focus {
+        background-color: #337ab7 !important;
+        color: #fff;
+    }
+
+    #myTab {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        padding-top: 12px;
+    }
+
+        #myTab li {
+            cursor: pointer;
+        }
+
+        #myTab .nav-item {
+            width: 16%;
+            border: 2px solid #000000a3;
+            border-radius: 25px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    .nav-item.dropdown.active {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .nav > li > a:hover #myTab li {
+        background-color: #337ab7 !important;
+        color: #fff;
+    }
+
+
+    .nav-item:hover {
+        background-color: #337ab7;
+    }
+
+        .nav-item:hover .dropdown-toggle {
+            color: #fff;
+        }
+
+    .nav > li > a {
+        color: #000;
+    }
+
+    .nav-item.dropdown.ActiveElement {
+        background-color: #337ab7;
+    }
+
+        .nav-item.dropdown.ActiveElement > a {
+            color: #fff;
+        }
+
+    #myTab .nav-item.dropdown > a {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+    }
+
+    .nav-item.dropdown.ActiveElement:after {
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #337ab7;
+        content: " ";
+        position: absolute;
+        bottom: -10px;
+        margin-left: -15px;
+        left: 50%;
+    }
+
+    #Support_UL li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        gap: 15px;
+    }
+
+    .Select_option_div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 17px 0px;
+        padding: 20px !important;
+        border: 1px solid #dfdbdb;
+        border-radius: 10px;
+        background: linear-gradient(to right, #ece9e6, #ffffff);
+    }
+
+    .NPMU_leve_data {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+        .NPMU_leve_data h4 {
+            margin-top: 0px;
+        }
+
+    .btn_export {
+        width: 80px;
+        border: 1px solid #ddd !important;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .btn_export > span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+    .Select_option_div {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 17px 0px;
+        padding: 20px !important;
+        border: 1px solid #dfdbdb;
+        border-radius: 10px;
+        background: linear-gradient(to right, #ece9e6, #ffffff);
+    }
+
+    main {
+        padding: 0 10px;
+    }
+
+    .border {
+        border: 1px solid #ddd;
+        border-bottom: 0px;
+    }
+
+    .pl-1 {
+        padding-left: .25rem !important;
+    }
+
+    .pl-2 {
+        padding-left: .5rem !important;
+    }
+
+    .pl-3 {
+        padding-left: 1rem !important;
+    }
+
+    .pl-4 {
+        padding-left: 1.5rem !important;
+    }
+
+    .pl-5 {
+        padding-left: 3rem !important;
+    }
+
+    .d-flex {
+        display: flex !important;
+    }
+
+    .NPMU_leve_data h4 {
+        margin-bottom: 0px;
+    }
+
+    #Support_UL {
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .Plus_icon {
+        float: right;
+    }
+
+    #Support_UL > li > a {
+        width: 298px;
+        word-wrap: break-word;
+    }
+
+    .special-drop {
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+</style>
+<div class="loading-container">
+    <div class="loader">
+        <img src="~/Content/WspImages/loader.gif" height="200" width="200" />
+    </div>
+</div>
+
+<header class="header hederImage">
+    <div class="clearfix">
+        <div class="clearfix">
+            <div class="col-lg-9">
+                <div class="header-top-info">
+                    <ul class="clearfix">
+                        <li>
+                            <img src="/Content/Website/images/banner/emblem-dark.png" alt="" style="height:60px ;width: 40px;">
+                        </li>
+
+                        <li>
+                            <span>
+                                <a href="~/home/index" title="ATAL BHUJAL YOJANA (ATAL JAL)" role="link" class="atlaligan" style="font-weight:800">ATAL BHUJAL YOJANA (ATAL JAL)</a>
+                            </span>
+                            <span>
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA" style="color:#fff;font-size:14px;" role="link">
+                                    Ministry of Jal Shakti
+                                </a>
+                            </span>
+                            <span class="li_eng responsive_go_eng"><a href="javascript:;" title="GOVERNMENT OF INDIA" role="link" style="color: #fff;font-size:14px;">Department of Water Resources,</a></span>
+                            <span style="text-align:center;">
+                                <a href="javascript:;" title="GOVERNMENT OF INDIA"
+                                   style="text-transform:none; font-size:14px;">
+                                    River Development & Ganga Rejuvenation
+                                </a>
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="imgHome clearfix">
+
+                    <li>
+                        <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                        @if (Session["UserName"] != null)
+                        {
+                            <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                        }
+
+                    </li>
+                    <li>
+                        <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-8" style="padding: 0px 0px 0px 5px; margin-top:10px;">
+                <ul class="imgHome clearfix">
+                    <li>
+                        <a href="~/Home/index">
+                            <span>
+                                <img src="~/Content/WspImages/home-icon-silhouette.png" title="Home" />
+                            </span>
+                            <label>MIS Users <i class="fa fa-angle-double-right"></i></label>
+                        </a>
+                    </li>
+                    <li>
+                        <span><img src="~/Content/WspImages/WSP Home.png" style="width:23px;" /></span>
+                        <label>Training & Workshop </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 pull-right">
+
+                <a href="~/Home/LogOut" class="btn btn-danger" style="margin-bottom:10px;">
+                    Back To Login
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="completed col-md-12" style="padding:10px;">
+    <div class="wrapper" style="padding: 10px; ">
+        <div class="col-lg-12" style="border: 5px solid #337ab7; background-color: #edebeb;">
+            <div class="col-md-12 text-center p-0">
+                <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-weight:600; font-size: 18px;margin-bottom:10px;margin-top:10px">Completed Trainings</h4>
+            </div>
+
+            <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+                <p style=" margin: 0; width: fit-content; ">Note:- The below-mentioned statistics are shown based on the approved data by the competent authority. If the competent authority is approving data continuously, the statistics will change only after refreshing the page.</p>
+            </div>
+
+            <div id="style-1" class=" center" style="font-size: 13px;border: transparent;">
+                <div id="" class="table-responsive">
+                    <table id="" class="GWL_deviation_table table table-bordered  table-__web-inspector-hide-shortcut__" style="font-size: 13px;border: transparent;">
+
+                        <tbody id="">
+
+                            <tr style="background-color: #337ab7; color: #fff; font-weight: bold;">
+                                <td id="bpmu_a" colspan="1" class="font-bold">Total Trainings Completed At Block Level</td>
+                                <td id="gpmu_a" colspan="1" class="font-bold">Total Trainings Completed At Gram Panchayat Level</td>
+                                <td id="tota_a" colspan="1" class="font-bold">Total</td>
+                            </tr>
+
+                            <tr style="font-size: 13px; border: transparent;font-weight:600; background-color: #fff;">
+                                <td id="bpmu_b">
+                                    <label id="atblock_approve"></label>
+                                </td>
+                                <td id="gpmu_b">
+                                    <label id="at_gp_approve"></label>
+                                </td>
+                                <td id="tota_b">
+                                    <label id="at_total_approve"></label>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12 col-lg-12 p-0">
+            <div>
+                <!-- Main Tabs -->
+                <ul class="nav" id="myTab" role="tablist">
+                    <!-- Tab 1 with Submenu -->
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" id="tab1-dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Training Creation</a>
+                        <div class="dropdown-menu" aria-labelledby="tab1-dropdown">
+                            <a class="dropdown-item ceblock" href="/MasterDropDown/current_event_block_auth">Block</a>
+                            <a class="dropdown-item cegp" href="/MasterDropDown/current_event_block_authpage">Gram Panchayat</a>
+                            <a class="dropdown-item" href="/MasterDropDown/all_dataexport_blockauth">All Data Export</a>
+                        </div>
+                    </li>
+                    <!-- Tab 2 with Submenu -->
+                    <li class="nav-item dropdown pfhide">
+                        <a class="dropdown-toggle" id="tab2-dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Registered Participants</a>
+                        <div class="dropdown-menu" aria-labelledby="tab2-dropdown">
+                            <a class="dropdown-item ceblock" href="/MasterDropDown/reg_block_blockauth">Block</a>
+                            <a class="dropdown-item" href="/MasterDropDown/allreg_export_blockauth">All Data Export</a>
+                        </div>
+                    </li>
+                    <!-- Tab 3 with Submenu -->
+                    <li class="nav-item dropdown pfhide">
+                        <a class="dropdown-toggle" id="tab3-dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Feedback Participants</a>
+                        <div class="dropdown-menu" aria-labelledby="tab3-dropdown">
+                            <a class="dropdown-item ceblock" href="/MasterDropDown/feed_block_blockauth">Block</a>
+                            <a class="dropdown-item" href="/MasterDropDown/allfeed_export_blockauth">All Data Export</a>
+                        </div>
+                    </li>
+                    <!-- Tab 5 with Submenu -->
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle " id="tab5-dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Report</a>
+                        <div class="dropdown-menu special-drop" aria-labelledby="tab5-dropdown">
+                            <a class="dropdown-item " href="/MasterDropDown/rp_npmu_blockauth">Training </a>
+                            <a class="dropdown-item " href="/MasterDropDown/rp_block_blockauth">FeedBack</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    @RenderBody()
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<!-- Popper JS -->
+@*
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>*@
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/Content/JS_Files/trainingjs.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="~/Scripts/validations.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+    document.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function (event) {
+            event.preventDefault();
+            document.querySelectorAll('.nav-item').forEach(function (item) {
+                if (item !== toggle.parentElement) {
+                    item.classList.remove('active');
+                }
+            });
+
+            toggle.parentElement.classList.toggle('active');
+        });
+    });
+
+    window.addEventListener('click', function (event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            document.querySelectorAll('.nav-item').forEach(function (item) {
+                item.classList.remove('active');
+            });
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const pathToLiIndexMap = {
+            "/MasterDropDown/current_event_block_auth": 0,
+            "/MasterDropDown/current_event_block_authpage": 0,
+            "/MasterDropDown/all_dataexport_blockauth": 0,
+            "/MasterDropDown/reg_block_blockauth": 1,
+            "/MasterDropDown/allreg_export_blockauth": 1,
+            "/MasterDropDown/feed_block_blockauth": 2,
+            "/MasterDropDown/allfeed_export_blockauth": 2,
+            "/MasterDropDown/rp_npmu_blockauth": 3,
+            "/MasterDropDown/rp_block_blockauth": 3,
+           
+
+        };
+        const currentPath = window.location.pathname;
+        const targetIndex = pathToLiIndexMap[currentPath];
+
+        if (targetIndex !== undefined) {
+            const liElements = document.querySelectorAll("#myTab li");
+            if (liElements[targetIndex]) {
+                liElements[targetIndex].classList.add("ActiveElement");
+            }
+        }
+    });
+
+    
+
+</script>
+
+<script>
+    var StateOfficer = "";
+    $(document).ready(function () {
+        $('.loader').show();
+        StateOfficer = '@Session["Officer"]';
+
+        current_event_info_count();
+
+        test();
+    });
+
+    function gplevel() {
+        window.location = "/MasterDropDown/rp_npmu";
+    }
+    function calstate() {
+        window.location = "/MasterDropDown/cal_state";
+    }
+    function test() {
+
+        if (StateOfficer == "National Level Nodal Officer" || StateOfficer == "Admin") {
+            $(".hidedist").show();
+            $(".onlystate").hide();
+            $(".allsdb").hide();
+            $(".tchide").show();
+            $(".pfhide").show();
+            $(".disthh").show();
+            $(".npmuhh").hide();
+            $(".cenpmu").show();
+            $(".cestate").show();
+            $(".cedistrict").show();
+            $(".ceblock").show();
+            $(".cegp").show();
+            $(".gphide").show();
+            $("#npmu_a").show();
+            $("#spmu_a").show();
+            $("#dpmu_a").show();
+            $("#bpmu_a").show();
+            $("#gpmu_a").show();
+            $("#tota_a").show();
+            $("#npmu_b").show();
+            $("#spmu_b").show();
+            $("#dpmu_b").show();
+            $("#bpmu_b").show();
+            $("#gpmu_b").show();
+            $("#tota_b").show();
+        }
+        else if (StateOfficer == "State Level Nodal Officer") {
+            $(".hidedist").hide();
+            $(".onlystate").show();
+            $(".allsdb").hide();
+            $(".tchide").show();
+            $(".pfhide").show();
+            $(".disthh").show();
+            $(".npmuhh").show();
+            $(".cenpmu").hide();
+            $(".cestate").show();
+            $(".cedistrict").show();
+            $(".ceblock").show();
+            $(".cegp").show();
+            $(".gphide").show();
+            $("#npmu_a").hide();
+            $("#spmu_a").show();
+            $("#dpmu_a").show();
+            $("#bpmu_a").show();
+            $("#gpmu_a").show();
+            $("#tota_a").show();
+            $("#npmu_b").hide();
+            $("#spmu_b").show();
+            $("#dpmu_b").show();
+            $("#bpmu_b").show();
+            $("#gpmu_b").show();
+            $("#tota_b").show();
+        }
+        else if (StateOfficer == "District Level Nodal Officer") {
+            $(".hidedist").hide();
+            $(".onlystate").hide();
+            $(".allsdb").hide();
+            $(".pfhide").show();
+            $(".tchide").hide();
+            $(".disthh").hide();
+            $(".npmuhh").show();
+            $(".cenpmu").hide();
+            $(".cestate").hide();
+            $(".cedistrict").show();
+            $(".ceblock").show();
+            $(".cegp").show();
+            $(".gphide").show();
+            $("#npmu_a").hide();
+            $("#spmu_a").hide();
+            $("#dpmu_a").show();
+            $("#bpmu_a").show();
+            $("#gpmu_a").show();
+            $("#tota_a").show();
+            $("#npmu_b").hide();
+            $("#spmu_b").hide();
+            $("#dpmu_b").show();
+            $("#bpmu_b").show();
+            $("#gpmu_b").show();
+            $("#tota_b").show();
+        }
+        else if (StateOfficer == "Block Level Nodal Officer") {
+            $(".hidedist").hide();
+            $(".onlystate").hide();
+            $(".allsdb").hide();
+            $(".pfhide").show();
+            $(".tchide").hide();
+            $(".disthh").hide();
+            $(".npmuhh").show();
+            $(".cenpmu").hide();
+            $(".cestate").hide();
+            $(".cedistrict").hide();
+            $(".ceblock").show();
+            $(".cegp").show();
+            $(".gphide").show();
+            $("#npmu_a").hide();
+            $("#spmu_a").hide();
+            $("#dpmu_a").hide();
+            $("#bpmu_a").show();
+            $("#gpmu_a").show();
+            $("#tota_a").show();
+            $("#npmu_b").hide();
+            $("#spmu_b").hide();
+            $("#dpmu_b").hide();
+            $("#bpmu_b").show();
+            $("#gpmu_b").show();
+            $("#tota_b").show();
+        }
+        else if (StateOfficer == "Gram Panchyat Nodal Officer") {
+            $(".hidedist").hide();
+            $(".onlystate").hide();
+            $(".allsdb").show();
+            $(".npmuhh").show();
+            $(".tchide").hide();
+            $(".pfhide").hide();
+            $(".cenpmu").hide();
+            $(".cestate").hide();
+            $(".cedistrict").hide();
+            $(".ceblock").hide();
+            $(".cegp").show();
+            // $(".gphide").hide();
+            $("#npmu_a").hide();
+            $("#spmu_a").hide();
+            $("#dpmu_a").hide();
+            $("#bpmu_a").hide();
+            $("#gpmu_a").show();
+            $("#tota_a").show();
+            $("#npmu_b").hide();
+            $("#spmu_b").hide();
+            $("#dpmu_b").hide();
+            $("#bpmu_b").hide();
+            $("#gpmu_b").show();
+            $("#tota_b").show();
+        }
+        else {
+            $(".hidedist").hide();
+            $(".onlystate").hide();
+            $(".allsdb").hide();
+            $(".disthh").hide();
+            $(".cenpmu").hide();
+            $(".cestate").hide();
+            $(".cedistrict").hide();
+            $(".ceblock").hide();
+            $(".cegp").hide();
+            $("#npmu_a").hide();
+            $("#spmu_a").hide();
+            $("#dpmu_a").hide();
+            $("#bpmu_a").hide();
+            $("#gpmu_a").hide();
+            $("#tota_a").hide();
+            $("#npmu_b").hide();
+            $("#spmu_b").hide();
+            $("#dpmu_b").hide();
+            $("#bpmu_b").hide();
+            $("#gpmu_b").hide();
+            $("#tota_b").hide();
+        }
+    }
+</script>
+<script>
+    function current_event_info_count() {
+        $('.loader').show();
+
+        $.ajax({
+
+            type: 'GET',
+            contentType: 'application/json; chatset=utf-8',
+            url: '/MasterDropDown/current_event_Data_count_new',
+            data: {},
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+                var data = data.split(',');
+
+                
+                $('#atstate_approve').text(data[0]);
+                $('#atdpmu_approve').text(data[1]);
+                $('#atblock_approve').text(data[2]);
+                $('#at_gp_approve').text(data[3]);
+                $('#atnpmu_approve').text(data[4]);
+                $('#at_total_approve').text(Number(data[2]) + Number(data[3]));
+                $('.loader').hide();
+            }
+        });
+
+    }
+
+</script>

@@ -17390,6 +17390,19 @@ namespace AbhyProject.Models
         public string material_type { get; set; }
 
     }
+    [Table("state_awp_target", Schema = "public")]
+    public class state_awp_target
+    {
+        public int id { get; set; }
+        public string state { get; set; }
+        public string district { get; set; }
+        public string block { get; set; }
+        public string gp { get; set; }
+        public string year { get; set; }
+        public string awp_target { get; set; }
+        public string nodal { get; set; }
+        
+    }
 
     [Table("abhy_physicalmonitoring_insertdata_vw", Schema = "public")]
     public class abhy_physicalmonitoring_insertdata_view

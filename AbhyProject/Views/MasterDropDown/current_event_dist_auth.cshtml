@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "WSPgram";
-    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+    Layout = "~/Views/Shared/training_district_auth.cshtml";
 }
 <title>Training</title>
 <script src="~/Content/Website/js/vendor/jquery-1.12.4.min.js"></script>
@@ -1207,18 +1207,18 @@
         if (auth == "dist-Training") {
             $("#entryauth").show();
             StateOfficer = "District Level Nodal Officer";
-            $("#npmu_a").hide();
-            $("#spmu_a").hide();
-            $("#dpmu_a").hide();
-            $("#bpmu_a").show();
-            $("#gpmu_a").show();
-            $("#tota_a").show();
-            $("#npmu_b").hide();
-            $("#spmu_b").hide();
-            $("#dpmu_b").hide();
-            $("#bpmu_b").show();
-            $("#gpmu_b").show();
-            $("#tota_b").show();
+            //$("#npmu_a").hide();
+            //$("#spmu_a").hide();
+            //$("#dpmu_a").hide();
+            //$("#bpmu_a").show();
+            //$("#gpmu_a").show();
+            //$("#tota_a").show();
+            //$("#npmu_b").hide();
+            //$("#spmu_b").hide();
+            //$("#dpmu_b").hide();
+            //$("#bpmu_b").show();
+            //$("#gpmu_b").show();
+            //$("#tota_b").show();
         }
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -2410,8 +2410,8 @@
         var location_expo = $("#loc_expo").val();
         var particular_expo = $("#parti_expo").val();
 
-        var year = $("#year option:selected").val();
-        var month = $("#month option:selected").val();
+        var year = $("#year_npmu option:selected").val();
+        var month = $("#month_npmu option:selected").val();
         var event_platform = $("#Training_platform option:selected").val();
         var from_date = $("#from_date").val();
         var to_date = $("#to_date").val();
@@ -2419,7 +2419,7 @@
         var reg_close_date = $("#reg_close_date").val();
 
         var formdata = new FormData();
-
+        debugger;
         if (State == "0") {
             alert('Select State');
             return;
