@@ -1,0 +1,1782 @@
+﻿@{
+    ViewBag.Title = "current_Training_npmu";
+    Layout = "~/Views/Shared/training_district_auth.cshtml";
+}
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/png" sizes="32x32" href="~/Content/WspImages/Favicon 32 px.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/Content/WspImages/Favicon 96 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+<link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@*<script src="~/Scripts/all_scripts/bootstrap_3.4.0.min.js"></script>*@
+<script src="~/Scripts/all_scripts/highcharts.js"></script>
+<script src="~/Scripts/all_scripts/data.js"></script>
+<script src="~/Scripts/all_scripts/drilldown.js"></script>
+<!--Pie Chart-->
+<script src="~/Scripts/all_scripts/exporting.js"></script>
+<script src="~/Scripts/all_scripts/export-data.js"></script>
+<!--pie chart-->
+<!--favicon end-->
+@*<link href="/Scripts/all_scripts/bootstrap.min.css" rel="stylesheet" />*@
+<link href="~/Content/css/wsp_report_css.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+
+<title>Training Detalis</title>
+<style>
+    .table-responsive {
+        width: 100%;
+    }
+
+    .database_trainer_row > h3 {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 7px 15px;
+        font-size: 18px;
+        margin: 6px 0px;
+    }
+    /*table fix code*/
+
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: white;
+        position: sticky;
+        top: 0;
+    }
+
+    .font-bold {
+        font-weight: bold;
+    }
+
+    /*ends here*/
+    .second_heading {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 10px;
+        font-family: raleway;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+        .second_heading.tbd > th {
+            font-size: 14px;
+            text-align: center;
+        }
+
+
+    /*    .main_div {
+            padding-bottom: 30px;
+        }
+    */
+    /*.btn-success {
+            margin: 5px 0px !important;
+        }*/
+
+
+    table#TblData_b_part tr.info > th,
+    table#TblData_c_part tr.info > th,
+    table#TblData_d_part tr.info > th,
+    table#TblData_e_part tr.info > th,
+    table#TblData_abc_part1 tr.info > th,
+    table#TblData_jj_part1 tr.info > th,
+    table.GWL_deviation_table tr.info > th,
+    table#TblData_g_part tr.info > th {
+        background-color: #337ab7;
+        color: #fff;
+        vertical-align: middle;
+    }
+
+        table#TblData_abc_part1 tr.info > th.background_color {
+            background-color: #fff !important;
+            color: #000;
+        }
+
+    .E_table_header > h4 {
+        color: #337ab7;
+        padding: 10px 0px;
+    }
+
+    .alertshowingdiv {
+        height: 25px;
+    }
+
+        .alertshowingdiv > label {
+            color: red;
+            font-size: 16px;
+        }
+
+    #breadcrumb {
+        color: #0000ff;
+        font-size: 15px;
+        margin: 0;
+        height: 15px;
+        margin-bottom: 10px;
+    }
+
+        #breadcrumb a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+
+    ul#myTabs > li > a > span > img {
+        height: 26px;
+        width: 26px;
+    }
+
+    ul.ReRecharge_list > li > span {
+        width: 70%;
+    }
+
+    ul#submenu1 > li > span {
+        font-size: 17px;
+    }
+
+    ul.imgHome > li > a > span {
+        font-size: 17px;
+        text-decoration: none;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+        ul.imgHome > li > a > span :hover {
+            text-decoration: none;
+        }
+
+    ul.imgHome > li > a > label {
+        font-size: 13px;
+        text-decoration: underline;
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+        margin: 0;
+        height: 15px;
+    }
+
+    ul.imgHome > li > label {
+        color: #fff;
+        padding: 0px 0px 0px 5px;
+    }
+
+    ul.imgHome > li > a > span > img,
+    ul.imgHome > li > span > img {
+        width: 25px;
+    }
+
+    ul.imgHome > li > a > label {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .nav-justified {
+        padding-bottom: 0em;
+    }
+
+    ul.imgHome > li > img,
+    ul.imgHome > li > a > img {
+        width: 25px !important;
+    }
+
+    .highcharts-background {
+        /*width: 100% !important;*/
+    }
+
+    .highcharts-title {
+        display: none;
+    }
+
+    span.marqueegwr {
+        font-weight: 700;
+        margin-top: 10px;
+        /*font-family: raleway;*/
+        color: #333;
+        font-size: 1vw;
+    }
+
+    .modal-backdrop.in {
+        z-index: 0 !important;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+
+    .loading-inactive {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    ul.btnall > li {
+        display: inline-block;
+    }
+
+    .backgroundtr {
+        background-color: lightgray !important;
+    }
+
+        .backgroundtr:hover {
+            background-color: #fff !important;
+        }
+
+    .backgroundtr1 {
+        background-color: lightgoldenrodyellow !important;
+    }
+
+        .backgroundtr1:hover {
+            background-color: #fff !important;
+        }
+
+    .selectdistshowoption select {
+        border-radius: 25px;
+        width: 200px;
+        text-align: left;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #F5F5F5;
+        border-radius: 25px;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+    /* .card {
+            margin-top: 25px;
+        }*/
+
+    /*.card-body {
+            border: 1px solid#ccc;*/
+    /*padding: 5px;*/
+    /*}*/
+
+    .headings_border {
+        position: relative;
+        color: #fff;
+        font-size: 35px;
+        text-align: center;
+        font-family: raleway;
+        font-weight: 900;
+        display: inline-block;
+    }
+
+    /*.headings_border::after {
+                content: '';
+                position: absolute;
+                top: 45px;
+                left: 13%;
+                width: 168px;
+                height: 2px;
+                background: #5cb85c;
+            }*/
+    /*.box_shadow {
+            box-shadow: 0px 3px 46px rgb(0 0 0 / 7%);
+            padding: 15px 15px;
+            background: #f2f2f2;
+        }*/
+
+    ul.Select_option {
+        padding-left: 0;
+        /*   text-align: initial;
+            padding-top: 24px;*/
+    }
+</style>
+<style>
+    .under_list > li {
+        list-style: none;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .under_list > li > span > input {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+        .under_list > li > span > select {
+            width: 500px;
+            height: 30px;
+            padding: 3px 10px;
+            display: inline;
+        }
+
+    @@media (max-width:1200px) and (min-width: 360px) {
+        .panelbodyheading {
+            background: none !important;
+            color: #337ab7;
+        }
+    }
+
+    .loader > img {
+        top: 45%;
+        left: 45%;
+        position: fixed;
+        height: 150px;
+        width: 150px;
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: block;
+        opacity: 0.95;
+        visibility: visible;
+        background-color: #fff;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .cust_center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .cust_center h6 {
+            font-size: 15px;
+        }
+</style>
+<style>
+    table {
+        border: 1px solid #ddd;
+    }
+
+        table tr th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 12px;
+        }
+
+    .vertical th {
+        font-size: 12px;
+        transform: rotate(180deg);
+        white-space: nowrap;
+        writing-mode: vertical-rl;
+    }
+</style>
+
+<main>
+
+
+
+    <div class="row main_div" style="margin: 10px; border: 1px solid #ddd;">
+        @*for Binding*@
+        <div class="col-md-12 col-sm-12">
+            <center>
+                <div class="ss">
+                    <div class="row">
+
+                        <div class="col-md-12 text-center">
+                            <h4 style="background-color: #337ab7; color: #fff; padding: 10px; font-family: raleway;font-weight:600; margin-top: 0px;">Training Details</h4>
+                        </div>
+                    </div>
+                </div>
+            </center>
+            <div class="selectdistshowoption" style="padding: 0 10px; margin-bottom: 10px;">
+                <span style="width:100%;display:block;text-align:left;"><label style="color:red;" id="Error_"></label></span>
+                <ul class="Select_option selectbackhome" style="display:flex;justify-content:flex-start;align-items:center;column-gap:10px;flex-wrap:wrap;row-gap:10px;">
+                    <li id="StateLabel">
+                        <label id="lblstate">State:</label>
+                        <span id="spnstate1">@Session["gstate"]</span>
+                    </li>
+                    <li id="StateDropdownLabel">
+                        <select class="form-control" id="spnstate" onchange="State_Dropdown_Function()"></select>
+                    </li>
+
+                    <li id="DistLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label id="lbldistrict">District:</label>
+                        <span id="spndistrict">@Session["gdist"]</span>
+                    </li>
+
+                    <li id="DistDropdownLabel">
+                        <select class="form-control" id="dist11" onchange="Dist_fun()"></select>
+                    </li>
+
+                    <li id="BlockLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Block:</label>
+                        <span>@Session["gblock"] </span>
+                    </li>
+
+                    <li id="BlockDropdownLabel">
+
+                        <select class="form-control" id="block1" onchange="Block_fun()"></select>
+                    </li>
+                    <li id="GramLabel">
+                        <i class="fas fa fa-angle-double-right"></i>
+                        <label>Gram Panchayat:</label>
+                        <span>@Session["ggram"] </span>
+                    </li>
+
+                    <li id="GramDropdownLabel">
+
+                        <select class="form-control" id="gram" onchange="Gram_change()"></select>
+                    </li>
+                    <li>
+                        <select class="form-control" id="year">
+                            <option value="0">Select Financial Year</option>
+                            <option value="2021-22">2021-22</option>
+                            <option value="2022-23">2022-23</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2024-25">2024-25</option>
+                        </select>
+                    </li>
+
+                    <li id="MonthDropdownLabel">
+
+                        <select class="form-control" id="month" onchange="">
+                            <option value="0">Select Month</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                        </select>
+                    </li>
+                    <li id="DropdownSearch_btn">
+                        @*<a class="btn btn-success" onclick="Dropdown_Search()">Search</a>*@
+                        <a class="btn btn-success" onclick="npmu_data()">Search</a>
+                    </li>
+                    <li style="float:right">
+                        <button class="btn" id="exportBtn"><img src="/Content/WspImages/xls_icon.png" /><span>xlsx</span></button>
+                        <button class="btn" id="exportBtn_dist"><img src="/Content/WspImages/xls_icon.png" />xlsx</button>
+                        <button class="btn" id="exportBtn_block"><img src="/Content/WspImages/xls_icon.png" />xlsx</button>
+                        <button class="btn" id="exportBtn_gram"><img src="/Content/WspImages/xls_icon.png" />xlsx</button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-12" style=" color: red; font-weight:600; font-size: 14px;  margin: 10px 0px;">
+        <p style="margin: 0; width: fit-content;">Note: - The below table will show the statistics after clicking on the "Search" button</p>
+    </div>
+    <div class="container-fluid mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive" id="style-1">
+                    <table id="state_tt" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="52" class="text-center"> Training Details</th>
+                            </tr>
+                            <tr style="">
+                                <th rowspan="3">SL. No.</th>
+                                <th rowspan="3">State</th>
+                                <th style="width: 7%;" rowspan="3">Year</th>
+                                <th style="width: 7%;" rowspan="3">Month</th>
+                                <th colspan="40" style="background-color: #ffc107" class="text-center bg-warning">Number of Trainings</th>
+                            </tr>
+                            <tr>
+                                <th id="statel1" style="background-color: #28a745" colspan="3" class="bg-success">State level</th>
+                                <th id="statel2" style="background-color: #28a745" colspan="5" class="bg-success">Participants details </th>
+                                <th id="distl1" style="background-color: #28a745" colspan="3" class="bg-success">District level</th>
+                                <th id="distl2" style="background-color: #28a745" colspan="5" class="bg-success">Participants details </th>
+                                <th id="blockl1" style="background-color: #28a745" colspan="3" class="bg-success">Block Level</th>
+                                <th id="blockl2" style="background-color: #28a745" colspan="5" class="bg-success">Participants details </th>
+                                <th id="graml1" style="background-color: #28a745" colspan="3" class="bg-success">GP level </th>
+                                <th id="graml2" style="background-color: #28a745" colspan="5" class="bg-success">Participants details</th>
+                                <th colspan="3" style="background-color: #094080; color: #fff;">Total </th>
+                                <th colspan="5" style="background-color: #094080; color: #fff;">Toal Participants</th>
+
+                            </tr>
+                            <tr class="vertical">
+                                <th id="state1">Total Targets</th>
+                                <th id="state2">Achievement during the month</th>
+                                <th id="state3">Cumulative Achievement</th>
+                                <th id="state4">Male</th>
+                                <th id="state5">Female</th>
+                                <th id="state6">Transgender</th>
+                                <th id="state7">Total</th>
+                                <th id="state8">Percentage of Females</th>
+                                <th id="dist1">Total Targets</th>
+                                <th id="dist2">Achievement during the month</th>
+                                <th id="dist3">Cumulative Achievement</th>
+                                <th id="dist4">Male</th>
+                                <th id="dist5">Female</th>
+                                <th id="dist6">Transgender</th>
+                                <th id="dist7">Total</th>
+                                <th id="dist8">Percentage of Females</th>
+                                <th id="block11">Total Targets</th>
+                                <th id="block21">Achievement during the month</th>
+                                <th id="block31">Cumulative Achievement</th>
+                                <th id="block41">Male</th>
+                                <th id="block51">Female</th>
+                                <th id="block61">Transgender</th>
+                                <th id="block71">Total</th>
+                                <th id="block81">Percentage of Females</th>
+                                <th id="gram1">Total Targets</th>
+                                <th id="gram2">Achievement during the month</th>
+                                <th id="gram3">Cumulative Achievement</th>
+                                <th id="gram4">Male</th>
+                                <th id="gram5">Female</th>
+                                <th id="gram6">Transgender</th>
+                                <th id="gram7">Total</th>
+                                <th id="gram8">Percentage of Females</th>
+                                <th>Total Targets</th>
+                                <th>Achievement during the month</th>
+                                <th>Cumulative Achievement</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Transgender</th>
+                                <th>Total</th>
+                                <th>Percentage of Females</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="tbldata"></tbody>
+                    </table>
+                    <table id="ddldist" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="46" class="text-center"> Training Details</th>
+                            </tr>
+                            <tr style="">
+                                <th rowspan="3">SL. No.</th>
+                                <th rowspan="3">State</th>
+                                <th id="" rowspan="3">District</th>
+                                <th style="width: 7%;" rowspan="3">Year</th>
+                                <th style="width: 7%;" rowspan="3">Month</th>
+                                <th colspan="40" style="background-color: #ffc107" class="text-center bg-warning">Number of Trainings</th>
+                            </tr>
+                            <tr>
+
+                                <th style="background-color: #28a745" id="distl1" colspan="3" class="bg-success">District level</th>
+                                <th style="background-color: #28a745" id="distl2" colspan="5" class="bg-success">Participants details </th>
+                                <th style="background-color: #28a745" id="blockl1" colspan="3" class="bg-success">Block Level</th>
+                                <th style="background-color: #28a745" id="blockl2" colspan="5" class="bg-success">Participants details </th>
+                                <th style="background-color: #28a745" id="graml1" colspan="3" class="bg-success">GP level </th>
+                                <th style="background-color: #28a745" id="graml2" colspan="5" class="bg-success">Participants details</th>
+                                <th colspan="3" style="background-color: #094080; color: #fff;">Total </th>
+                                <th colspan="5" style="background-color: #094080; color: #fff;">Toal Participants</th>
+
+                            </tr>
+                            <tr class="vertical">
+
+                                <th id="dist1">Total Targets</th>
+                                <th id="dist2">Achievement during the month</th>
+                                <th id="dist3">Cumulative Achievement</th>
+                                <th id="dist4">Male</th>
+                                <th id="dist5">Female</th>
+                                <th id="dist6">Transgender</th>
+                                <th id="dist7">Total</th>
+                                <th id="dist8">Percentage of Females</th>
+                                <th id="block11">Total Targets</th>
+                                <th id="block21">Achievement during the month</th>
+                                <th id="block31">Cumulative Achievement</th>
+                                <th id="block41">Male</th>
+                                <th id="block51">Female</th>
+                                <th id="block61">Transgender</th>
+                                <th id="block71">Total</th>
+                                <th id="block81">Percentage of Females</th>
+                                <th id="gram1">Total Targets</th>
+                                <th id="gram2">Achievement during the month</th>
+                                <th id="gram3">Cumulative Achievement</th>
+                                <th id="gram4">Male</th>
+                                <th id="gram5">Female</th>
+                                <th id="gram6">Transgender</th>
+                                <th id="gram7">Total</th>
+                                <th id="gram8">Percentage of Females</th>
+                                <th>Total Targets</th>
+                                <th>Achievement during the month</th>
+                                <th>Cumulative Achievement</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Transgender</th>
+                                <th>Total</th>
+                                <th>Percentage of Females</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="tbldata_dist"></tbody>
+                    </table>
+                    <table id="ddlblock" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="46" class="text-center"> Training Details</th>
+                            </tr>
+                            <tr style="">
+                                <th rowspan="3">SL. No.</th>
+                                <th rowspan="3">State</th>
+                                <th id="" rowspan="3">District</th>
+                                <th id="" rowspan="3">Block</th>
+                                <th style="width: 7%;" rowspan="3">Year</th>
+                                <th style="width: 7%;" rowspan="3">Month</th>
+                                <th colspan="40" style="background-color: #ffc107" class="text-center bg-warning">Number of Trainings</th>
+                            </tr>
+                            <tr>
+
+                                <th style="background-color: #28a745" id="blockl1" colspan="3" class="bg-success">Block Level</th>
+                                <th style="background-color: #28a745" id="blockl2" colspan="5" class="bg-success">Participants details </th>
+                                <th style="background-color: #28a745" id="graml1" colspan="3" class="bg-success">GP level </th>
+                                <th style="background-color: #28a745" id="graml2" colspan="5" class="bg-success">Participants details</th>
+                                <th colspan="3" style="background-color: #094080; color: #fff;">Total </th>
+                                <th colspan="5" style="background-color: #094080; color: #fff;">Toal Participants</th>
+
+                            </tr>
+                            <tr class="vertical">
+
+                                <th id="block11">Total Targets</th>
+                                <th id="block21">Achievement during the month</th>
+                                <th id="block31">Cumulative Achievement</th>
+                                <th id="block41">Male</th>
+                                <th id="block51">Female</th>
+                                <th id="block61">Transgender</th>
+                                <th id="block71">Total</th>
+                                <th id="block81">Percentage of Females</th>
+                                <th id="gram1">Total Targets</th>
+                                <th id="gram2">Achievement during the month</th>
+                                <th id="gram3">Cumulative Achievement</th>
+                                <th id="gram4">Male</th>
+                                <th id="gram5">Female</th>
+                                <th id="gram6">Transgender</th>
+                                <th id="gram7">Total</th>
+                                <th id="gram8">Percentage of Females</th>
+                                <th>Total Targets</th>
+                                <th>Achievement during the month</th>
+                                <th>Cumulative Achievement</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Transgender</th>
+                                <th>Total</th>
+                                <th>Percentage of Females</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="tbldata_block"></tbody>
+                    </table>
+                    <table id="ddlgram" class="table table-striped table-hover">
+                        <thead>
+                            <tr style=" background-color: #094080; color: #fff;">
+                                <th colspan="46" class="text-center"> Training Details</th>
+                            </tr>
+                            <tr style="">
+                                <th rowspan="3">SL. No.</th>
+                                <th rowspan="3">State</th>
+                                <th id="" rowspan="3">District</th>
+                                <th id="" rowspan="3">Block</th>
+                                <th id="" rowspan="3">Gram Panchayat</th>
+                                <th style="width: 7%;" rowspan="3">Year</th>
+                                <th style="width: 7%;" rowspan="3">Month</th>
+                                <th colspan="40" style="background-color: #ffc107" class="text-center bg-warning">Number of Trainings</th>
+                            </tr>
+                            <tr>
+
+                                <th style="background-color: #28a745" id="graml1" colspan="3" class="bg-success">GP level </th>
+                                <th style="background-color: #28a745" id="graml2" colspan="5" class="bg-success">Participants details</th>
+                                <th colspan="3" style="background-color: #094080; color: #fff;">Total </th>
+                                <th colspan="5" style="background-color: #094080; color: #fff;">Toal Participants</th>
+
+                            </tr>
+                            <tr class="vertical">
+
+                                <th id="gram1">Total Targets</th>
+                                <th id="gram2">Achievement during the month</th>
+                                <th id="gram3">Cumulative Achievement</th>
+                                <th id="gram4">Male</th>
+                                <th id="gram5">Female</th>
+                                <th id="gram6">Transgender</th>
+                                <th id="gram7">Total</th>
+                                <th id="gram8">Percentage of Females</th>
+                                <th>Total Targets</th>
+                                <th>Achievement during the month</th>
+                                <th>Cumulative Achievement</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Transgender</th>
+                                <th>Total</th>
+                                <th>Percentage of Females</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="tbldata_gram"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</main>
+
+@*
+    <script src="~/Scripts/jquery-3.3.1.js"></script>*@
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="~/Content/JS_Files/IdealState.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script>
+
+    var Jsondata = "";
+
+    var WaterAvialability = 0;
+    var WaterDropt = 0;
+    var AA = 0, DD = 0;
+    var State = "0";
+    var Dist = "0";
+    var Block = "0";
+    var Gram = "0";
+    var off_1 = "";
+    var StateOfficer = "";
+    var Email = "";
+    $(document).ready(function () {
+        $('#Error_').text("States Information is Loading....");
+        $('#StateLabel').hide();
+        $('#StateDropdownLabel').hide();
+        $('#DistLabel').hide();
+        $('#DistDropdownLabel').hide();
+        $('#BlockLabel').hide();
+        $('#BlockDropdownLabel').hide();
+        $('#GramLabel').hide();
+        $('#GramDropdownLabel').hide();
+        $('#DropdownSearch_btn').hide();
+        $("#ddldist").hide();
+        $("#ddlblock").hide();
+        $("#ddlgram").hide();
+        $("#exportBtn_dist").hide();
+        $("#exportBtn_block").hide();
+        $("#exportBtn_gram").hide();
+        $("#exportBtn").attr("disabled", "disabled");
+        $("#exportBtn_dist").attr("disabled", "disabled");
+        $("#exportBtn_block").attr("disabled", "disabled");
+        $("#exportBtn_gram").attr("disabled", "disabled");
+
+
+        StateOfficer = '@Session["Officer"]';
+        Email = '@Session["Email"]';
+
+        $(".loader").hide();
+        DropDownInfo();
+
+    });
+    function pagechange() {
+        window.location = "WspWaterAvailability", "WspNew"
+    }
+</script>
+<script>
+
+    function SessionInfo() {
+
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                if (data == "Logout") {
+                    window.location = "/Home/LogOut";
+                }
+                else {
+                    $('#Error_').text("");
+
+                    $('#StateLabel').hide();
+                    $('#StateDropdownLabel').hide();
+                    $('#DistLabel').hide();
+                    $('#DistDropdownLabel').hide();
+                    $('#BlockLabel').hide();
+                    $('#BlockDropdownLabel').hide();
+                    $('#GramLabel').hide();
+                    $('#GramDropdownLabel').hide();
+                    $('#DropdownSearch_btn').hide();
+
+                    var Str = data.split(',');
+                    if (Str[0] == "Admin") {
+                        $('#StateLabel').hide();
+                        $('#StateDropdownLabel').show();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+
+
+                    }
+                    else if (Str[0] == "State Level Nodal Officer") {
+                        State = Str[1];
+                        off_1 = "state";
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').hide();
+                        $('#DistDropdownLabel').show();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        State_Dropdown_Function();
+
+
+                    }
+                    else if (Str[0] == "District Level Nodal Officer") {
+                        off_1 = "dist";
+                        State = Str[1];
+                        Dist = Str[2];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').hide();
+                        $('#BlockDropdownLabel').show();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Dist_fun();
+
+                    }
+                    else if (Str[0] == "Block Level Nodal Officer") {
+                        off_1 = "block";
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').hide();
+                        $('#GramDropdownLabel').show();
+                        $('#DropdownSearch_btn').show();
+                        Block_fun();
+
+
+                    }
+                    else if (Str[0] == "Gram Panchyat Nodal Officer") {
+                        State = Str[1];
+                        Dist = Str[2];
+                        Block = Str[3];
+                        Gram = Str[4];
+                        $('#StateLabel').show();
+                        $('#StateDropdownLabel').hide();
+                        $('#DistLabel').show();
+                        $('#DistDropdownLabel').hide();
+                        $('#BlockLabel').show();
+                        $('#BlockDropdownLabel').hide();
+                        $('#GramLabel').show();
+                        $('#GramDropdownLabel').hide();
+                        $('#DropdownSearch_btn').show();
+                        $("#exportBtn").hide();
+                        $("#exportBtn_dist").hide();
+                        $("#exportBtn_block").hide();
+                        $("#exportBtn_gram").show();
+                        $("#state_tt").hide();
+                        $("#ddldist").hide();
+                        $("#ddlblock").hide();
+                        $("#ddlgram").show();
+
+                    }
+
+
+                }
+            }
+
+        });
+
+    }
+    function DropDownInfo() {
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/Home/Sign_Up_DropdownInfo",
+            data: "{ }",
+            dataType: 'JSON',
+            success: function (response) {
+
+                if (response.length != 0) {
+                    Jsondata = response;
+                    $("#spnstate").empty();
+                    var opstate = '<option value="0">Select StateName</option>';
+                    $("#spnstate").append(opstate);
+                    $("#dist11").empty();
+                    var opdist = '<option value="0">Select District</option>';
+                    $("#dist11").append(opdist);
+                    $("#block1").empty();
+                    var opblock = '<option value="0">Select Block</option>';
+                    $("#block1").append(opblock);
+                    $("#gram").empty();
+                    var opgram = '<option value="0">Select GramPanchayat</option>';
+                    $("#gram").append(opgram);
+                    //var StateName = $("#spnstate").text();
+                    if (Jsondata.length != 0) {
+                        var ddlst = {};
+                        var all_dists = [];
+                        var optionState = '';
+                        for (var i = 0; i < Jsondata.length; i++) {
+
+                            if (Jsondata[i].state_name != "Delhi_7") {
+                                if (!ddlst[Jsondata[i].state_name]) {
+                                    all_dists.push(Jsondata[i].state_name);
+                                    ddlst[Jsondata[i].state_name] = Jsondata[i].state_name;
+
+                                }
+                            }
+                        }
+                        var DistArray = [];
+                        DistArray = all_dists.sort(function (a, b) {
+                            if (a < b) return -1;
+                            else if (a > b) return 1;
+                            return 0;
+                        });
+                        optionState = '<option value="0">Select StateName</option>';
+                        optionState += '<option value="All">All</option>';
+                        /*optionState += '<option value="NPMU (Delhi)">NPMU (Delhi)</option>';*/
+                        for (var i = 0; i < DistArray.length; i++) {
+                            if (DistArray[i] != null && DistArray[i] != "") {
+                                optionState += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                            }
+                        }
+                        $("#spnstate").html(optionState);
+                    }
+
+                }
+
+                SessionInfo();
+
+
+            }
+        });
+    }
+    function NPMU() {
+
+        var npmu = $("#spnstate").val();
+        if (npmu == 'NPMU (Delhi)' || npmu == 'All') {
+            $("#dist11").hide();
+            $("#block1").hide();
+            $("#gram").hide();
+        }
+        else {
+            $("#dist11").show();
+            $("#block1").show();
+            $("#gram").show();
+        }
+
+    }
+    function State_Dropdown_Function() {
+        NPMU();
+        var Tbodyhtml = '';
+        $('#tbldata').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
+        $('#tbldata_gram').html(Tbodyhtml);
+        $("#dist11").empty();
+        var opdist = '<option value="0">Select District</option>';
+        $("#dist11").append(opdist);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var StateName = $("#spnstate").val();
+        if (off_1 == "state") {
+            StateName = State;
+        } else {
+            State = StateName;
+        }
+        if (StateName != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_dists = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (StateName == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].district_name]) {
+                        all_dists.push(Jsondata[i].district_name);
+                        ddlst[Jsondata[i].district_name] = Jsondata[i].district_name;
+
+                    }
+                }
+            }
+
+
+            var DistArray = [];
+            DistArray = all_dists.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+
+            for (var i = 0; i < DistArray.length; i++) {
+                if (DistArray[i] != null && DistArray[i] != "") {
+                    optionDist += '<option value="' + DistArray[i] + '">' + DistArray[i] + '</option>';
+                }
+            }
+            $("#dist11").append(optionDist);
+        }
+        Dist_fun();
+    }
+    function Dist_fun() {
+        var Tbodyhtml = '';
+        $('#tbldata').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
+        $('#tbldata_gram').html(Tbodyhtml);
+        $("#block1").empty();
+        var opblock = '<option value="0">Select Block</option>';
+        $("#block1").append(opblock);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+
+        var dist = $("#dist11").val();
+        if (off_1 == "dist") {
+            dist = Dist;
+        } else {
+            Dist = dist;
+        }
+        if (Dist == '0') {
+            $("#state_tt").hide();
+            $("#ddldist").show();
+            $("#ddlblock").hide();
+            $("#ddlgram").hide();
+            $("#exportBtn").hide();
+            $("#exportBtn_dist").show();
+            $("#exportBtn_block").hide();
+            $("#exportBtn_gram").hide();
+
+        }
+        else {
+            $("#exportBtn").hide();
+            $("#exportBtn_dist").show();
+            $("#exportBtn_block").hide();
+            $("#exportBtn_gram").hide();
+            $("#state_tt").hide();
+            $("#ddldist").show();
+            $("#ddlblock").hide();
+            $("#ddlgram").hide();
+
+        }
+        if (dist != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_blocks = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+
+                if (dist == Jsondata[i].district_name && State == Jsondata[i].state_name) {
+
+                    if (!ddlst[Jsondata[i].block_name]) {
+                        all_blocks.push(Jsondata[i].block_name);
+                        ddlst[Jsondata[i].block_name] = Jsondata[i].block_name;
+                    }
+                }
+            }
+
+
+            var BlockArray = [];
+            BlockArray = all_blocks.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < BlockArray.length; i++) {
+                if (BlockArray[i] != null && BlockArray[i] != "") {
+                    optionDist += '<option value="' + BlockArray[i] + '">' + BlockArray[i] + '</option>';
+                }
+            }
+            $("#block1").append(optionDist);
+
+        }
+        Block_fun();
+    }
+    function Block_fun() {
+        var Tbodyhtml = '';
+        $('#tbldata').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
+        $('#tbldata_gram').html(Tbodyhtml);
+        $("#gram").empty();
+        var opgram = '<option value="0">Select GramPanchayat</option>';
+        $("#gram").append(opgram);
+        var block = $("#block1").val();
+
+        if (off_1 == "block") {
+            block = Block;
+        } else {
+            Block = block;
+        }
+        if (Dist != '0') {
+            if (Block == '0') {
+                $("#exportBtn").hide();
+                $("#exportBtn_dist").show();
+                $("#exportBtn_block").hide();
+                $("#exportBtn_gram").hide();
+                $("#state_tt").hide();
+                $("#ddldist").show();
+                $("#ddlblock").hide();
+                $("#ddlgram").hide();
+            }
+            else {
+                $("#exportBtn").hide();
+                $("#exportBtn_dist").hide();
+                $("#exportBtn_block").show();
+                $("#exportBtn_gram").hide();
+                $("#state_tt").hide();
+                $("#ddldist").hide();
+                $("#ddlblock").show();
+                $("#ddlgram").hide();
+            }
+        }
+        if (block != "0" && Jsondata.length != 0) {
+            var ddlst = {};
+            var all_grams = [];
+            var optionDist = '';
+            for (var i = 0; i < Jsondata.length; i++) {
+                if (State == Jsondata[i].state_name && Dist == Jsondata[i].district_name && block == Jsondata[i].block_name) {
+
+                    if (!ddlst[Jsondata[i].gram_panchayat_name]) {
+                        ddlst[Jsondata[i].gram_panchayat_name] = Jsondata[i].gram_panchayat_name;
+                        all_grams.push(Jsondata[i].gram_panchayat_name);
+                    }
+                }
+            }
+
+
+            var GramArray = [];
+            GramArray = all_grams.sort(function (a, b) {
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            for (var i = 0; i < GramArray.length; i++) {
+                if (GramArray[i] != null && GramArray[i] != "") {
+
+                    optionDist += '<option value="' + GramArray[i] + '">' + GramArray[i] + '</option>';
+                }
+            }
+            $("#gram").append(optionDist);
+        }
+    }
+    function Gram_change() {
+        var Tbodyhtml = '';
+        $('#tbldata').html(Tbodyhtml);
+        $('#tbldata_dist').html(Tbodyhtml);
+        $('#tbldata_block').html(Tbodyhtml);
+        $('#tbldata_gram').html(Tbodyhtml);
+        var Gram1 = $("#gram").val();
+        if (Gram1 == '0') {
+            $("#exportBtn").hide();
+            $("#exportBtn_dist").hide();
+            $("#exportBtn_block").show();
+            $("#exportBtn_gram").hide();
+            $("#state_tt").hide();
+            $("#ddldist").hide();
+            $("#ddlblock").show();
+            $("#ddlgram").hide();
+
+        }
+        else {
+            $("#exportBtn").hide();
+            $("#exportBtn_dist").hide();
+            $("#exportBtn_block").hide();
+            $("#exportBtn_gram").show();
+            $("#state_tt").hide();
+            $("#ddldist").hide();
+            $("#ddlblock").hide();
+            $("#ddlgram").show();
+
+        }
+        Gram = $('#gram').val();
+    }
+    function Dropdown_Search() {
+
+        if (State == '0') {
+            alert("Plaese Select State Name");
+            return false;
+            $('#.loader').hide();
+        }
+        var year = $('#year').val();
+        var month = $('#month').val();
+        if (month != "0") {
+            if (year == "0") {
+                alert("select Financial Year");
+                $('#month_state').val("0");
+                $(".loader").hide();
+                return;
+            }
+        }
+
+        $.ajax({
+            type: "Post",
+            url: "/Home/StateLevel_Dropdown",
+            contentType: "application/json;charset=utf-8",
+            data: "{'StateName':'" + State + "','Dist':'" + Dist + "','Block':'" + Block + "','Gram':'" + Gram + "'}",
+            dataType: "json",
+            success: function (results) {
+
+                npmu_data();
+
+
+            }
+        });
+
+
+
+    }
+
+    function npmu_data() {
+        $(".loader").show();
+        if (State == '0') {
+            alert("Select State Name");
+            $('.loader').hide();
+            return false;
+        }
+
+        var state = State;
+        var dist = Dist;
+        var block = Block;
+        var gram = Gram;
+        var year = $('#year').val();
+        var month = $('#month').val();
+        if (month != "0") {
+            if (year == "0") {
+                alert("select Financial Year");
+                $('#month').val("0");
+                $('.loader').hide();
+                return;
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            url: '/MasterDropDown/state_npmu_data_report',
+            data: {
+                state: state,
+                dist: dist,
+                block: block,
+                gram: gram,
+                year: year,
+                month: month
+            },
+            success: function (results) {
+
+                $(".loader").show();
+                var Tbodyhtml = '';
+                if (results.length != 0) {
+                    $("#exportBtn").removeAttr("disabled");
+                    $("#exportBtn_dist").removeAttr("disabled");
+                    $("#exportBtn_block").removeAttr("disabled");
+                    $("#exportBtn_gram").removeAttr("disabled");
+
+                    var state = results[0].state;
+                    var district = results[0].district;
+                    var block = results[0].block;
+                    var gram = results[0].gram;
+
+                    var totaltarget = 0;
+                    var total_monthly = 0;
+                    var total_cum = 0;
+                    var total_male = 0;
+                    var total_female = 0;
+                    var total_tran = 0;
+                    var total_all = 0;
+                    var total_female_per = 0;
+
+                    if (state != "0" && district == "0" && block == "0" && gram == "0") {
+
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year'
+                            }
+                            var mm = results[i].month;
+                            var spmumonthcum = results[i].spmumonthcum;
+                            var dpmumonthcum = results[i].dpmumonthcum;
+                            var blockmonthcum = results[i].blockmonthcum;
+                            var grammonthcum = results[i].grammonthcum;
+                            if (mm == '0') {
+                                mm = 'All Month';
+                                spmumonthcum = "NA";
+                                dpmumonthcum = "NA";
+                                blockmonthcum = "NA";
+                                grammonthcum = "NA";
+                            }
+                            totaltarget = 0;
+                            total_monthly = 0;
+                            total_cum = 0;
+                            total_male = 0;
+                            total_female = 0;
+                            total_tran = 0;
+                            total_all = 0;
+                            total_female_per = 0;
+
+                            totaltarget += results[i].dpmutotaltarger;
+                            totaltarget += results[i].blocktotaltarger;
+                            totaltarget += results[i].gramtotaltarger; 
+                            total_monthly += results[i].dpmumonthcum;
+                            total_monthly += results[i].blockmonthcum;
+                            total_monthly += results[i].grammonthcum;
+                            total_cum += results[i].dpmutotalcum;
+                            total_cum += results[i].blocktotalcum;
+                            total_cum += results[i].gramtotalcum;
+                            total_male += results[i].dpmucount_male;
+                            total_male += results[i].blockcount_male;
+                            total_male += results[i].gramcount_male;
+                            total_female += results[i].dpmucount_female;
+                            total_female += results[i].blockcount_female;
+                            total_female += results[i].gramcount_female;
+                            total_tran += results[i].dpmucount_trangender;
+                            total_tran += results[i].blockcount_trangender;
+                            total_tran += results[i].gramcount_trangender;
+                            total_all += results[i].dpmucount_total;
+                            total_all += results[i].blockcount_total;
+                            total_all += results[i].gramcount_total;
+                            total_female_per += results[i].dpmucount_female_per;
+                            total_female_per += results[i].blockcount_female_per;
+                            total_female_per += results[i].gramcount_female_per;
+
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>All District</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + dpmumonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_female_per.toFixed(2) + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + blockmonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female_per.toFixed(2) + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + grammonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per.toFixed(2) + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                        }
+                        $('#tbldata_dist').html(Tbodyhtml);
+                    }
+                    if (state != "0" && district != "0" && block == "0" && gram == "0") {
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year';
+                            }
+                            var mm = results[i].month;
+                            var dpmumonthcum = results[i].dpmumonthcum;
+                            var blockmonthcum = results[i].blockmonthcum;
+                            var grammonthcum = results[i].grammonthcum;
+                            if (mm == '0') {
+                                mm = 'All Month';
+                                dpmumonthcum = "NA";
+                                blockmonthcum = "NA";
+                                grammonthcum = "NA";
+                            }
+
+                            totaltarget += results[i].dpmutotaltarger;
+                            totaltarget += results[i].blocktotaltarger;
+                            totaltarget += results[i].gramtotaltarger;
+                            total_monthly += results[i].dpmumonthcum;
+                            total_monthly += results[i].blockmonthcum;
+                            total_monthly += results[i].grammonthcum;
+                            total_cum += results[i].dpmutotalcum;
+                            total_cum += results[i].blocktotalcum;
+                            total_cum += results[i].gramtotalcum;
+                            total_male += results[i].dpmucount_male;
+                            total_male += results[i].blockcount_male;
+                            total_male += results[i].gramcount_male;
+                            total_female += results[i].dpmucount_female;
+                            total_female += results[i].blockcount_female;
+                            total_female += results[i].gramcount_female;
+                            total_tran += results[i].dpmucount_trangender;
+                            total_tran += results[i].blockcount_trangender;
+                            total_tran += results[i].gramcount_trangender;
+                            total_all += results[i].dpmucount_total;
+                            total_all += results[i].blockcount_total;
+                            total_all += results[i].gramcount_total;
+                            total_female_per += results[i].dpmucount_female_per;
+                            total_female_per += results[i].blockcount_female_per;
+                            total_female_per += results[i].gramcount_female_per;
+
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].district + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + dpmumonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmutotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].dpmucount_female_per + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + blockmonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female_per + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + grammonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                        }
+                        $('#tbldata_dist').html(Tbodyhtml);
+                    }
+                    if (state != "0" && district != "0" && block != "0" && gram == "0") {
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year'
+                            }
+                            var mm = results[i].month;
+                            var blockmonthcum = results[i].blockmonthcum;
+                            var grammonthcum = results[i].grammonthcum;
+                            if (mm == '0') {
+                                mm = 'All Month';
+                                blockmonthcum = "NA";
+                                grammonthcum = "NA";
+                            }
+                            totaltarget += results[i].blocktotaltarger;
+                            totaltarget += results[i].gramtotaltarger;
+                            total_monthly += results[i].blockmonthcum;
+                            total_monthly += results[i].grammonthcum;
+                            total_cum += results[i].blocktotalcum;
+                            total_cum += results[i].gramtotalcum;
+                            total_male += results[i].blockcount_male;
+                            total_male += results[i].gramcount_male;
+                            total_female += results[i].blockcount_female;
+                            total_female += results[i].gramcount_female;
+                            total_tran += results[i].blockcount_trangender;
+                            total_tran += results[i].gramcount_trangender;
+                            total_all += results[i].blockcount_total;
+                            total_all += results[i].gramcount_total;
+                            total_female_per += results[i].blockcount_female_per;
+                            total_female_per += results[i].gramcount_female_per;
+
+
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].district + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].block + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + blockmonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blocktotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].blockcount_female_per + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + grammonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                        }
+                        $('#tbldata_block').html(Tbodyhtml);
+                    }
+                    if (state != "0" && district != "0" && block != "0" && gram != "0") {
+                        for (var i = 0; i < results.length; i++) {
+                            var yy = results[i].year;
+                            if (yy == '0') {
+                                yy = 'All Year'
+                            }
+                            var mm = results[i].month;
+                            var grammonthcum = results[i].grammonthcum;
+                            if (mm == '0') {
+                                mm = 'All Month';
+                                grammonthcum = "NA";
+                            }
+                            totaltarget += results[i].gramtotaltarger;
+                            total_monthly += results[i].grammonthcum;
+                            total_cum += results[i].gramtotalcum;
+                            total_male += results[i].gramcount_male;
+                            total_female += results[i].gramcount_female;
+                            total_tran += results[i].gramcount_trangender;
+                            total_all += results[i].gramcount_total;
+                            total_female_per += results[i].gramcount_female_per;
+
+
+                            Tbodyhtml += '<tr><td id="srNo"><label>' + (i + 1) + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].state + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].district + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].block + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gram + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + yy + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + mm + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotaltarger + '</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + grammonthcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramtotalcum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_trangender + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_total + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + results[i].gramcount_female_per + '</label></td>';
+                            if (mm == 'All Month') {
+                                Tbodyhtml += '<td id="rainfall"><label>' + totaltarget + '</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            }
+                            else {
+                                Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                                Tbodyhtml += '<td id="rainfall"><label>' + total_monthly + '</label></td>';
+                            }
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_male + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_tran + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_all + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + total_female_per.toFixed(2) + '</label></td></tr>';
+                        }
+                        $('#tbldata_gram').html(Tbodyhtml);
+                    }
+                }
+                else {
+                    tr = '<tr style="text-align:center;"><td colspan="11">No Data</td></tr>';
+                    $('#tbldata').html(tr);
+
+                }
+
+                $(".loader").hide();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#exportBtn").click(function () {
+            var tableClone = $("#state_tt").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Training Details');
+            XLSX.writeFile(wb, 'Training Details.xlsx');
+        });
+    });
+    $(document).ready(function () {
+        $("#exportBtn_dist").click(function () {
+            var tableClone = $("#ddldist").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata_dist").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Training Details');
+            XLSX.writeFile(wb, 'Training Details.xlsx');
+        });
+    });
+    $(document).ready(function () {
+        $("#exportBtn_block").click(function () {
+            var tableClone = $("#ddlblock").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata_block").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Training Details');
+            XLSX.writeFile(wb, 'Training Details.xlsx');
+        });
+    });
+    $(document).ready(function () {
+        $("#exportBtn_gram").click(function () {
+            var tableClone = $("#ddlgram").clone();
+
+            var newRow = "";
+            tableClone.find("#tbldata_gram").append(newRow);
+
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(tableClone[0]);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Training Details');
+            XLSX.writeFile(wb, 'Training Details.xlsx');
+        });
+    });
+</script>

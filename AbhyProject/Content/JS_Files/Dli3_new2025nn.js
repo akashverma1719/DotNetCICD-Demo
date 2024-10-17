@@ -1911,15 +1911,15 @@ function data_show_phase1(id) {
 
                                 }
                                 if (State == "Haryana_6") {
-                                    $('#phase1submittoapprove').show();
+                                    $('#phase1submittospmu').show();
+
                                     $('.hidebutton').show();
                                 }
                                 else {
-                                    $('#phase1submittoapprove').hide();
+                                    $('#phase1submittospmu').hide();
                                     $('.hidebutton').hide();
                                 }
-                                
-                                $('#phase1submittospmu').hide();
+                                $('#phase1submittoapprove').hide();
                                 $('#txtrejectremark').hide();
                                 $('#phase1reject').hide();
                                 $('#gp_status').text("Rejected").css({ 'color': 'Red' });
@@ -1992,14 +1992,15 @@ function data_show_phase1(id) {
 
                                 }
                                 if (State == "Haryana_6") {
-                                    $('#phase1submittoapprove').show();
+                                    $('#phase1submittospmu').show();
+                                    
                                     $('.hidebutton').show();
                                 }
                                 else {
-                                    $('#phase1submittoapprove').hide();
+                                    $('#phase1submittospmu').hide();
                                     $('.hidebutton').hide();
                                 }
-                                $('#phase1submittospmu').hide();
+                                $('#phase1submittoapprove').hide();
                                 $('#txtrejectremark').hide();
                                 $('#phase1reject').hide();
                                 $('#gp_status').text("At DPMU").css({ 'color': 'Black' });
@@ -7334,7 +7335,7 @@ function Data_get_supply() {
                 $('.disable').attr("disabled", "disabled");
                 
                 if (State == "Haryana_6") {
-                    $('.hidebutton').hide();
+                    $('.hidebutton').show();
                 }
                 else {
                     $('.hidebutton').hide();}

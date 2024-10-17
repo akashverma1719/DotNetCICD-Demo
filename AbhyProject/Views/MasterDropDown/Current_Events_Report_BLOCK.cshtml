@@ -428,23 +428,11 @@
         </div>
         <div class="col-md-12">
 
-            <div class="col-md-12 last-div-footer" id="btnExport1_1">
+            <div class="col-md-12 last-div-footer" id="">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/current_event_block" class="btn btn-dark button"> Back</a>
-                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
-
-
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                 </div>
             </div>
-            <div class="col-md-12 last-div-footer" id="btnExport_auth_1">
-                <div class="col-md-12">
-                    <a href="~/MasterDropDown/currentevent_block_auth" class="btn btn-dark button"> Back</a>
-                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
-
-
-                </div>
-            </div>
-
         </div>
         <div class="col-md-12 state_dist_level">
             <div class="row" id="Select_dist_level">
@@ -567,23 +555,11 @@
 
         <div class="col-md-12">
 
-            <div class="col-md-12 last-div-footer" id="btnExport1">
+            <div class="col-md-12 last-div-footer" id="">
                 <div class="col-md-12">
-                    <a href="~/MasterDropDown/current_event_block" class="btn btn-dark button"> Back</a>
-                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
-
-
+                    <a onclick="GoToBackCurr()" class="btn btn-dark button"> Back</a>
                 </div>
             </div>
-            <div class="col-md-12 last-div-footer" id="btnExport_auth">
-                <div class="col-md-12">
-                    <a href="~/MasterDropDown/currentevent_block_auth" class="btn btn-dark button"> Back</a>
-                    @*<button class="btn btn-success" id="download" onclick="ReportPdf();">Download</button>*@
-
-
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
@@ -917,6 +893,17 @@
         });
     }
 
+    function GoToBackCurr() {
 
+         if (Auth == "block-Training") {
+            window.location = "/MasterDropDown/current_event_block_auth";
+        }
+        else if (Auth == "dist-Training") {
+            window.location = "/MasterDropDown/current_event_distblock_authpage";
+        }
+        else {
+             window.location = "/MasterDropDown/current_event_block";
+        }
+    }
 
 </script>

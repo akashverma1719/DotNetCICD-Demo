@@ -1038,7 +1038,14 @@
 
         if (Auth == "GP-Training") {
             window.location = "/MasterDropDown/current_event_gp_auth";
-        } else {
+        }
+        else if (Auth == "block-Training") {
+            window.location = "/MasterDropDown/current_event_block_authpage";
+        }
+        else if (Auth == "dist-Training") {
+            window.location = "/MasterDropDown/current_event_distgp_authpage";
+        }
+        else {
             window.location = "/MasterDropDown/current_event_gp";
         }
     }
