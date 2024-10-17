@@ -9260,14 +9260,25 @@ namespace AbhyProject.Controllers
                     if (Details == null)
                     {
                         Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList().FirstOrDefault();
+
                         if (Details == null)
                         {
                             Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").ToList().FirstOrDefault();
 
                         }
+
                     }
 
                     var data = ABE.obj_abhy_wsp_demand_sprinkler_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    if (data.Count == 0) {
+                        Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList().FirstOrDefault();
+                        if (Details == null)
+                        {
+                            Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").ToList().FirstOrDefault();
+
+                        }
+                         data = ABE.obj_abhy_wsp_demand_sprinkler_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    }
 
                     return Json(data, JsonRequestBehavior.AllowGet);
                 }
@@ -9310,7 +9321,8 @@ namespace AbhyProject.Controllers
                     if (Details.Count > 0)
                     {
                         int id_get = Details[0].id;
-                        var DataFinal = ABE.obj_abhy_wsp_demand_fund_details_24_update.Where(x => x.meta_id == id_get && x.fund_for == fund_for && x.financial_year == "2024-25").ToList();
+                        //var DataFinal = ABE.obj_abhy_wsp_demand_fund_details_24_update.Where(x => x.meta_id == id_get && x.fund_for == fund_for && x.financial_year == "2024-25").ToList();
+                        var DataFinal = ABE.obj_abhy_wsp_demand_fund_details_24_update.Where(x => x.gp == gram && x.fund_for == fund_for && x.financial_year == "2024-25").ToList();
                         return Json(DataFinal, JsonRequestBehavior.AllowGet);
                     }
                     else { return Json("", JsonRequestBehavior.AllowGet); }
@@ -9351,6 +9363,16 @@ namespace AbhyProject.Controllers
                     }
 
                     var data = ABE.obj_abhy_wsp_demand_drip_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    if (data.Count == 0)
+                    {
+                        Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList().FirstOrDefault();
+                        if (Details == null)
+                        {
+                            Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").ToList().FirstOrDefault();
+
+                        }
+                        data = ABE.obj_abhy_wsp_demand_drip_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    }
 
                     return Json(data, JsonRequestBehavior.AllowGet);
                 }
@@ -9390,6 +9412,16 @@ namespace AbhyProject.Controllers
                     }
 
                     var data = ABE.obj_abhy_wsp_demand_pipeline_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    if (data.Count == 0)
+                    {
+                        Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList().FirstOrDefault();
+                        if (Details == null)
+                        {
+                            Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").ToList().FirstOrDefault();
+
+                        }
+                        data = ABE.obj_abhy_wsp_demand_pipeline_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    }
 
                     return Json(data, JsonRequestBehavior.AllowGet);
                 }
@@ -9429,6 +9461,16 @@ namespace AbhyProject.Controllers
                     }
 
                     var data = ABE.obj_abhy_wsp_demand_anyother_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    if (data.Count == 0)
+                    {
+                        Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList().FirstOrDefault();
+                        if (Details == null)
+                        {
+                            Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").ToList().FirstOrDefault();
+
+                        }
+                        data = ABE.obj_abhy_wsp_demand_anyother_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    }
 
                     return Json(data, JsonRequestBehavior.AllowGet);
                 }
@@ -9699,6 +9741,16 @@ namespace AbhyProject.Controllers
                     }
 
                     var data = ABE.obj_abhy_wsp_demand_change_crop_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    if (data.Count == 0)
+                    {
+                        Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2024-25").ToList().FirstOrDefault();
+                        if (Details == null)
+                        {
+                            Details = ABE.obj_abhy_wsp_demand_meta_24_update.Where(x => x.state == state && x.district == dist && x.block == block && x.gp == gram && x.data_year == "2023-24").ToList().FirstOrDefault();
+
+                        }
+                        data = ABE.obj_abhy_wsp_demand_change_crop_24_update.Where(x => x.meta_id == Details.id).ToList();
+                    }
 
                     return Json(data, JsonRequestBehavior.AllowGet);
                 }
