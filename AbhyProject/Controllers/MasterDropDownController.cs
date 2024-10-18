@@ -11915,7 +11915,7 @@ namespace AbhyProject.Controllers
                                 var CheckData2 = ABE.obj_abhy_training_newregs.Where(x => x.unic_key == unic_key).OrderByDescending(x => x.id).ToList();
                                 if (CheckData2.Count != 0)
                                 {
-                                    return Json("You have already registered participant for that training, delete that training first and then you will be able to delete the current training");
+                                    return Json("You have already registered participants for that training delete the registered participants first, and then you will be able to delete the current training.");
                                 }
                                 var CheckDat3 = ABE.obj_abhy_feedback_latest.Where(x => x.unic_key == unic_key).OrderByDescending(x => x.id).ToList();
                                 if (CheckDat3.Count != 0)
