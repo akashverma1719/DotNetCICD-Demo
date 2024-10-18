@@ -2284,18 +2284,35 @@ namespace AbhyProject.Controllers
                         Log($"FileName DPMU_Pdf Year 24-25: {MOM_Pdf}");
                         obj.Add(MOM_Pdf);
                     }
+                    else {
+                         MOM_Pdf = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == "2024-25").Select(x => x.mom_doc).FirstOrDefault();
+                        obj.Add(MOM_Pdf);
+                    }
+
                     var meeting_res = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).Select(x => x.meeting_resolution).FirstOrDefault();
                     if (meeting_res != null)
                     {
                         Log($"FileName meeting_res Year 24-25: {meeting_res}");
                         obj.Add(meeting_res);
                     }
+                    else
+                    {
+                        meeting_res = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == "2024-25").Select(x => x.meeting_resolution).FirstOrDefault();
+                        obj.Add(meeting_res);
+                    }
+
                     var attendance_sheet = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == Year).Select(x => x.attendance_sheet).FirstOrDefault();
                     if (attendance_sheet != null)
                     {
                         Log($"FileName attendance_sheet Year 24-25: {attendance_sheet}");
                         obj.Add(attendance_sheet);
                     }
+                    else
+                    {
+                        attendance_sheet = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == "2024-25").Select(x => x.attendance_sheet).FirstOrDefault();
+                        obj.Add(attendance_sheet);
+                    }
+
                 }
                 // Create a memory stream to store the zip file
                 using (MemoryStream memoryStream = new MemoryStream())
@@ -11993,79 +12010,135 @@ namespace AbhyProject.Controllers
                             ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gp_name == Gram && x.data_year == "2024-25").ToList();//total list
 
                         }
-
-                        ddetails.ForEach(a =>
+                        if (ddetails != null)
                         {
 
-                            if (!string.IsNullOrEmpty(a.mom_doc))
-                            {
-                                string momfilepath = Server.MapPath(a.mom_doc);
 
-                                if (System.IO.File.Exists(momfilepath))
+
+                            ddetails.ForEach(a =>
+                            {
+
+                                if (!string.IsNullOrEmpty(a.mom_doc))
                                 {
-                                    a.mom_doc = a.mom_doc;
+                                    string momfilepath = Server.MapPath(a.mom_doc);
+
+                                    if (System.IO.File.Exists(momfilepath))
+                                    {
+                                        a.mom_doc = a.mom_doc;
+                                    }
+                                    else
+                                    {
+
+                                        string UpdateFilepathmom = string.Empty;
+                                        if (!string.IsNullOrEmpty(a.mom_doc))
+                                        {
+                                            a.mom_doc = a.mom_doc.Replace("Ataljalimages", "UpdateAtaljalimages");
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    var mom = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.gp_name == Gram && x.data_year == Year).SingleOrDefault();
+                                    if (mom.mom_doc != null)
+                                    {
+                                        a.mom_doc = mom.mom_doc;
+
+                                    }
+                                    else
+                                    {
+                                        mom = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.gp_name == Gram && x.data_year == "2024-25").SingleOrDefault();
+                                        if (mom != null)
+                                        {
+                                            a.mom_doc = mom.mom_doc;
+                                        }
+                                    }
+
+                                }
+                                if (!string.IsNullOrEmpty(a.attendance_sheet))
+                                {
+                                    string attendance_sheetfilepath = Server.MapPath(a.attendance_sheet);
+
+                                    if (System.IO.File.Exists(attendance_sheetfilepath))
+                                    {
+                                        a.attendance_sheet = a.attendance_sheet;
+                                    }
+                                    else
+                                    {
+
+                                        string UpdateFilepathmom = string.Empty;
+                                        if (!string.IsNullOrEmpty(a.attendance_sheet))
+                                        {
+                                            a.attendance_sheet = a.attendance_sheet.Replace("Ataljalimages", "UpdateAtaljalimages");
+                                        }
+
+                                    }
+
+                                }
+                                else
+                                {
+                                    var attendance_sheetmom = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.gp_name == Gram && x.data_year == Year).SingleOrDefault();
+                                    if (attendance_sheetmom.attendance_sheet != null)
+                                    {
+                                        a.attendance_sheet = attendance_sheetmom.attendance_sheet;
+                                    }
+                                    else
+                                    {
+                                        attendance_sheetmom = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.gp_name == Gram && x.data_year == "2024-25").SingleOrDefault();
+                                        if (attendance_sheetmom != null)
+                                        {
+                                            a.attendance_sheet = attendance_sheetmom.attendance_sheet;
+                                        }
+                                    }
+
+                                }
+                                if (!string.IsNullOrEmpty(a.meeting_resolution))
+                                {
+                                    string meeting_resolutionfilepath = Server.MapPath(a.meeting_resolution);
+
+                                    if (System.IO.File.Exists(meeting_resolutionfilepath))
+                                    {
+                                        a.meeting_resolution = a.meeting_resolution;
+                                    }
+                                    else
+                                    {
+
+                                        string UpdateFilepathmom = string.Empty;
+                                        if (!string.IsNullOrEmpty(a.meeting_resolution))
+                                        {
+                                            a.meeting_resolution = a.meeting_resolution.Replace("Ataljalimages", "UpdateAtaljalimages");
+                                        }
+
+                                    }
+
                                 }
                                 else
                                 {
 
-                                    string UpdateFilepathmom = string.Empty;
-                                    if (!string.IsNullOrEmpty(a.mom_doc))
+                                    var meeting_resolutiondata = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.gp_name == Gram && x.data_year == Year).SingleOrDefault();
+                                    if (meeting_resolutiondata.meeting_resolution != null)
                                     {
-                                        a.mom_doc = a.mom_doc.Replace("Ataljalimages", "UpdateAtaljalimages");
+                                        a.meeting_resolution = meeting_resolutiondata.meeting_resolution;
                                     }
-
-                                }
-                            }
-
-                            if (!string.IsNullOrEmpty(a.attendance_sheet))
-                            {
-                                string attendance_sheetfilepath = Server.MapPath(a.attendance_sheet);
-
-                                if (System.IO.File.Exists(attendance_sheetfilepath))
-                                {
-                                    a.attendance_sheet = a.attendance_sheet;
-                                }
-                                else
-                                {
-
-                                    string UpdateFilepathmom = string.Empty;
-                                    if (!string.IsNullOrEmpty(a.attendance_sheet))
+                                    else
                                     {
-                                        a.attendance_sheet = a.attendance_sheet.Replace("Ataljalimages", "UpdateAtaljalimages");
+                                        meeting_resolutiondata = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.gp_name == Gram && x.data_year == "2024-25").SingleOrDefault();
+                                        if (meeting_resolutiondata != null)
+                                        {
+                                            a.meeting_resolution = meeting_resolutiondata.meeting_resolution;
+                                        }
                                     }
 
                                 }
 
-                            }
-                            if (!string.IsNullOrEmpty(a.meeting_resolution))
-                            {
-                                string meeting_resolutionfilepath = Server.MapPath(a.meeting_resolution);
-
-                                if (System.IO.File.Exists(meeting_resolutionfilepath))
-                                {
-                                    a.meeting_resolution = a.meeting_resolution;
-                                }
-                                else
-                                {
-
-                                    string UpdateFilepathmom = string.Empty;
-                                    if (!string.IsNullOrEmpty(a.meeting_resolution))
-                                    {
-                                        a.meeting_resolution = a.meeting_resolution.Replace("Ataljalimages", "UpdateAtaljalimages");
-                                    }
-
-                                }
-
-                            }
 
 
 
 
 
-
-                        });
+                            });
+                        }
                     }
-
                     return Json(ddetails, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception Ex)
