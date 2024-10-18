@@ -571,7 +571,7 @@
                     <tr>
                         <td colspan="2" class="font-bold">Description <span style="color: red;"> <label>*</label></span>: </td>
                         <td>
-                            <input class="form-control" type="text" id="to_date" name="name" placeholder="Please Enter Description" style="width: 200px " disabled />
+                            <input class="form-control hidebutton" type="text" id="to_date" name="name" placeholder="Please Enter Description" style="width: 200px " />
 
                         </td>
                     </tr>
@@ -585,7 +585,7 @@
                         </td>
 
                         <td>
-                            <input type="file" class="form-control disable_btn" id="upload_module" accept=".pdf,.xls,.xlsx" style="width:300px" disabled />
+                            <input type="file" class="form-control disable_btn hidebutton" id="upload_module" accept=".pdf,.xls,.xlsx" style="width:300px"  />
                         </td>
                     </tr>
 
@@ -599,7 +599,7 @@
 
                 <ul class="Select_option selectbackhome" style="text-align:center;">
                     <li>
-                        <a class="btn btn-success disable_btn" id="btnSave" style="display:none" onclick="Insert_data()">Save</a>
+                        <a class="btn btn-success disable_btn hidebutton" id="btnSave" onclick="Insert_data()">Save</a>
                     </li>
 
                 </ul>
@@ -685,20 +685,32 @@
 
         }
 
-        divhideshow();
+        if (state == "Haryana_6") {
+            $('.hidebutton').show();
+        }
+        else {
+            $('.hidebutton').hide();
+        }
         DropDownInfo();
+        divhideshow();
 
         //$('#myModal').modal('show');
     });
 
     function divhideshow() {
-
+        debugger;
         var phase = $("#phase").val();
         if (StateOfficer == "District Level Nodal Officer") {
             if (phase == "phase1") {
-                $("#uploadtext").text("Upload Document " + phase)
-                $(".entryfoam").show();
-                Data_get();
+                if (state == "Haryana_6") {
+                    $("#uploadtext").text("Upload Document " + phase)
+                    $(".entryfoam").show();
+                    Data_get();
+                } else {
+                    $("#uploadtext").text("Upload Document " + phase)
+                    $(".entryfoam").hide();
+                    Data_get();
+                }
             }
             if (phase == "phase2") {
                 $("#uploadtext").text("Upload Document " + phase)
@@ -712,12 +724,12 @@
             }
             else {
                 $("#uploadtext").text("Upload Document " + phase)
-                if (State == "Haryana_6" || State == "Karnataka_29" || State == "Madhya Pradesh_23" || State == "Maharashtra_27" || State == "Gujarat_24" || State == "Rajasthan_8" || State == "Uttar Pradesh_9") {
+                if (state == "Haryana_6") {
                     $('.entryfoam').show();
                     Data_get();
             }
             else {
-                    $('.entryfoam').show();
+                    $('.entryfoam').hide();
                     Data_get();
             }
            //     $(".entryfoam").show();
