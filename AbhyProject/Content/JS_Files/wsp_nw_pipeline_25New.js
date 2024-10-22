@@ -865,9 +865,9 @@ function Get_pipe_data() {
                         net_wat_dem += parseFloat(data[i].net_water_demand);
                         reduction += parseFloat(data[i].reduction_gw);
 
-                        $('#Pipeline_Kharif_Water_demand').text(wat_dem);
-                        $('#pipeline_kharif_total_pipeline_waterdemand').text(net_wat_dem);
-                        $('#pipeline_kharif_total_reduction_waterdemand').text(reduction);
+                        $('#Pipeline_Kharif_Water_demand').text(wat_dem.toFixed(4));
+                        $('#pipeline_kharif_total_pipeline_waterdemand').text(net_wat_dem.toFixed(4));
+                        $('#pipeline_kharif_total_reduction_waterdemand').text(reduction.toFixed(4));
                         $("#kharif_sp_pipe").append(tr);
                         srl_pipe_kharif++;
                     }
@@ -889,9 +889,9 @@ function Get_pipe_data() {
 
 
 
-                        $('#Pipeline_Rabi_Water_demand').text(wat_dem);
-                        $('#pipeline_rabi_total_rabi_waterdemand').text(net_wat_dem);
-                        $('#pipeline_rabi_total_reduction_waterdemand').text(reduction);
+                        $('#Pipeline_Rabi_Water_demand').text(wat_dem.toFixed(4));
+                        $('#pipeline_rabi_total_rabi_waterdemand').text(net_wat_dem.toFixed(4));
+                        $('#pipeline_rabi_total_reduction_waterdemand').text(reduction.toFixed(4));
 
                         $("#rabi_sp_pipe").append(tr);
                         srl_pipe_rabi++;
@@ -915,9 +915,9 @@ function Get_pipe_data() {
 
 
 
-                        $('#Pipeline_SummerCrop_Water_demand').text(wat_dem);
-                        $('#pipeline_summer_total_summer_waterdemand').text(net_wat_dem);
-                        $('#pipeline_summer_total_reduction_waterdemand').text(reduction);
+                        $('#Pipeline_SummerCrop_Water_demand').text(wat_dem.toFixed(4));
+                        $('#pipeline_summer_total_summer_waterdemand').text(net_wat_dem.toFixed(4));
+                        $('#pipeline_summer_total_reduction_waterdemand').text(reduction.toFixed(4));
                         $("#summer_sp_pipe").append(tr);
                         srl_pipe_summer++;
                     }
