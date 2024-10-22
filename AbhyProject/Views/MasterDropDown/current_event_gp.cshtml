@@ -2950,12 +2950,12 @@
                         if (reject_status == null) {
                             reject_status = ""
                         }
-                        var male_population = data[i].male_population;
+                        var male_population = data[i].total_participants;
                         if (male_population == null) {
                             male_population = "";
                         }
                         else {
-                            male_population = data[i].male_population.toString();
+                            male_population = data[i].total_participants.toString();
                         }
                         var Li = '';
                         var Lia = '';
@@ -2983,7 +2983,7 @@
                         
                         var p_training_name = data[i].p_training_name;
                         if (email == "akash.verma@kreatetechnologies.com") {
-                            if (male_population != "") {
+                            if (male_population != "" && male_population != "0") {
                                 if (data[i].nameofparticipent != null && data[i].nameofparticipent != "") {
                                     if (data[i].feedbackentry == "Yes") {
                                         if (approve_status == "Approved") {
@@ -3244,7 +3244,7 @@
 
                             if (StateOfficer == "District Level Nodal Officer") {
                                 if (isWithinRange(new Date(to_date))) {
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3328,7 +3328,7 @@
                                 }
                                 else {
                                     
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3411,10 +3411,10 @@
                                 }
                             }
                             else if (StateOfficer == "Gram Panchyat Nodal Officer") {
-                                
+                                debugger;
                                 if (isWithinRange(new Date(to_date))) {
 
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3669,7 +3669,7 @@
                                     $('#event1' + i).val(data[i].event_platform);
                                 }
                                 else {
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3927,7 +3927,7 @@
                                 }
                             }
                             else {
-                                if (male_population != "") {
+                                if (male_population != "" && male_population != "0"){
                                     if (data[i].feedbackentry == "Yes") {
                                         if (approve_status == "Approved") {
                                             ++at;

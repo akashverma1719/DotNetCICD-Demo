@@ -316,6 +316,7 @@ namespace AbhyProject.Models
         public virtual DbSet<master_list_gp_wsp> obj_master_list_gp_wsp { get; set; }
 
         public virtual DbSet<vw_orderwise_state_district_block_gp_area_info> obj_vw_orderwise_state_district_block_gp_area_info { get; set; }
+        public virtual DbSet<vw_iec_report> obj_vw_iec_report { get; set; }
         public virtual DbSet<Training_dropdown_info> obj_Training_dropdown_info { get; set; }
         public virtual DbSet<abhy_baseline_drinkingwater_irrigation_gpdata> obj_abhy_baseline_drinkingwater_irrigation_gpdata { get; set; }
 
