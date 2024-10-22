@@ -38962,21 +38962,17 @@ namespace AbhyProject.Controllers
             var namewebside = "ataljal.mowr.gov.in";
             var ff = "ataljalimages";
 
-
-
-
             string path = "";
-            string filename = Path.GetFileName(folder_filename);
+            string finalFilename = Path.GetFileName(folder_filename);
+            string lowerCaseExtension = Path.GetExtension(finalFilename).ToLower();
+            string filenameWithoutExtension = Path.GetFileNameWithoutExtension(finalFilename);
+            string filename = filenameWithoutExtension + lowerCaseExtension;
 
             if (FileName != null && FileName != "")
             {
-
-
-
                 string Hfilepath = hdrive + '\\' + namewebside + '\\' + ff + '\\' + foldername + '\\' + one_foldername + '\\' + two_foldername + '\\';
 
                 path = @Hfilepath;
-
                 DirectoryInfo directory = new DirectoryInfo(path);
                 FileInfo[] files = directory.GetFiles();
                 bool fileFound = false;
@@ -38989,10 +38985,18 @@ namespace AbhyProject.Controllers
                         break;
                     }
                 }
+                foreach (FileInfo file in files)
+                {
+                    if (String.Compare(file.Name, finalFilename) == 0)
+                    {
+                        fileFound = true;
+                        Console.WriteLine(path);
+                        break;
+                    }
+                }
 
                 if (!fileFound)
                 {
-
                     string Ffilepath = Fdrive + '\\' + foldername + '\\' + one_foldername + '\\' + two_foldername + '\\';
 
                     path = @Ffilepath;
@@ -39001,6 +39005,15 @@ namespace AbhyProject.Controllers
                     foreach (FileInfo file in files1)
                     {
                         if (String.Compare(file.Name, filename) == 0)
+                        {
+                            fileFound = true;
+                            break;
+
+                        }
+                    }
+                    foreach (FileInfo file in files1)
+                    {
+                        if (String.Compare(file.Name, finalFilename) == 0)
                         {
                             fileFound = true;
                             break;
@@ -39025,6 +39038,16 @@ namespace AbhyProject.Controllers
 
                         }
                     }
+                    foreach (FileInfo file in files1)
+                    {
+                        if (String.Compare(file.Name, finalFilename) == 0)
+                        {
+                            fileFound = true;
+                            break;
+
+                        }
+                    }
+
                 }
 
                 if (fileFound)
