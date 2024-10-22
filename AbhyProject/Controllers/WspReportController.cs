@@ -1,5 +1,6 @@
 ﻿using AbhyProject.Models;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
@@ -49226,19 +49227,19 @@ namespace AbhyProject.Controllers
                                     List<abhy_artificial_recharge_st_data_24_update> ddetails = new List<abhy_artificial_recharge_st_data_24_update>();
                                     if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                                     {
-                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram).ToList();//total list
                                     }
                                     else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                                     {
-                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
                                     }
                                     else if (State != "0" && State != null && District != "0" && District != null)
                                     {
-                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
                                     }
                                     else
                                     {
-                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State).ToList();//total list
                                     }
 
 
@@ -49316,19 +49317,19 @@ namespace AbhyProject.Controllers
                                     List<abhy_water_conservation_st_data_24_update> ddetails = new List<abhy_water_conservation_st_data_24_update>();
                                     if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                                     {
-                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram).ToList();//total list
                                     }
                                     else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                                     {
-                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
                                     }
                                     else if (State != "0" && State != null && District != "0" && District != null)
                                     {
-                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
                                     }
                                     else
                                     {
-                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                        ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State).ToList();//total list
                                     }
 
 
@@ -49487,6 +49488,9 @@ namespace AbhyProject.Controllers
                                         ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
                                     }
 
+                                    var resolutionsFor2024_25 = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                             .Where(x => x.data_year == "2024-25")
+                             .ToList();
 
                                     var worksheet = workbookAll.Worksheets.Add("PGWM Meeting");
                                     var currentRow = 1;
@@ -49516,6 +49520,70 @@ namespace AbhyProject.Controllers
                                             var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
                                             if (ddetails1 != null)
                                             {
+
+
+                                                if (ddetails[i].meeting_resolution == null)
+                                                {
+                                                    // Fetching from the database, ensure it is loaded to memory first
+                                                    var resolution = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                  x.district_name == ddetails[i].district_name &&
+                                                                                  x.block_name == ddetails[i].block_name &&
+                                                                                  x.gp_name == ddetails[i].gp_name &&
+                                                                                  x.data_year == "2024-25")
+                                                                      .Select(x => x.meeting_resolution)
+                                                                      .FirstOrDefault();  // This will fetch data to memory
+
+                                                    // Now assign the result back to ddetails[i]
+                                                    ddetails[i].meeting_resolution = resolution;
+                                                }
+
+                                                if (ddetails[i].mom_doc == null)
+                                                {
+                                                    // Fetching from the database, ensure it is loaded to memory first
+                                                    var mom = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                  x.district_name == ddetails[i].district_name &&
+                                                                                  x.block_name == ddetails[i].block_name &&
+                                                                                  x.gp_name == ddetails[i].gp_name &&
+                                                                                  x.data_year == "2024-25")
+                                                                      .Select(x => x.mom_doc)
+                                                                      .FirstOrDefault();  // This will fetch data to memory
+
+                                                    // Now assign the result back to ddetails[i]
+                                                    ddetails[i].mom_doc = mom;
+                                                }
+
+
+                                                if (ddetails[i].meeting_image == null)
+                                                {
+                                                    // Fetching from the database, ensure it is loaded to memory first
+                                                    var meeting_image = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                  x.district_name == ddetails[i].district_name &&
+                                                                                  x.block_name == ddetails[i].block_name &&
+                                                                                  x.gp_name == ddetails[i].gp_name &&
+                                                                                  x.data_year == "2024-25")
+                                                                      .Select(x => x.meeting_image)
+                                                                      .FirstOrDefault();  // This will fetch data to memory
+
+                                                    // Now assign the result back to ddetails[i]
+                                                    ddetails[i].meeting_image = meeting_image;
+                                                }
+                                                if (ddetails[i].attendance_sheet == null)
+                                                {
+                                                    // Fetching from the database, ensure it is loaded to memory first
+                                                    var attendance_sheet = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                  x.district_name == ddetails[i].district_name &&
+                                                                                  x.block_name == ddetails[i].block_name &&
+                                                                                  x.gp_name == ddetails[i].gp_name &&
+                                                                                  x.data_year == "2024-25")
+                                                                      .Select(x => x.attendance_sheet)
+                                                                      .FirstOrDefault();  // This will fetch data to memory
+
+                                                    // Now assign the result back to ddetails[i]
+                                                    ddetails[i].attendance_sheet = attendance_sheet;
+                                                }
+
+
+
                                                 currentRow++;
                                                 worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
                                                 worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
@@ -52500,19 +52568,19 @@ namespace AbhyProject.Controllers
                             List<abhy_artificial_recharge_st_data_24_update> ddetails = new List<abhy_artificial_recharge_st_data_24_update>();
                             if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                             {
-                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram).ToList();//total list
                             }
                             else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                             {
-                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
                             }
                             else if (State != "0" && State != null && District != "0" && District != null)
                             {
-                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
                             }
                             else
                             {
-                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State).ToList();//total list
                             }
 
                             using (var workbook = new XLWorkbook())
@@ -52610,19 +52678,19 @@ namespace AbhyProject.Controllers
                             List<abhy_water_conservation_st_data_24_update> ddetails = new List<abhy_water_conservation_st_data_24_update>();
                             if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                             {
-                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram).ToList();//total list
                             }
                             else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                             {
-                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
                             }
                             else if (State != "0" && State != null && District != "0" && District != null)
                             {
-                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
                             }
                             else
                             {
-                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State).ToList();//total list
                             }
 
 
@@ -52816,6 +52884,10 @@ namespace AbhyProject.Controllers
                                 ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
                             }
 
+                            var resolutionsFor2024_25 = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                                .Where(x => x.data_year == "2024-25")
+                                .ToList();
+
                             using (var workbook = new XLWorkbook())
                             {
                                 var worksheet = workbook.Worksheets.Add("PGWM Meeting");
@@ -52846,6 +52918,69 @@ namespace AbhyProject.Controllers
                                         var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
                                         if (ddetails1 != null)
                                         {
+
+                                            if (ddetails[i].meeting_resolution == null)
+                                            {
+                                                // Fetching from the database, ensure it is loaded to memory first
+                                                var resolution = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                              x.district_name == ddetails[i].district_name &&
+                                                                              x.block_name == ddetails[i].block_name &&
+                                                                              x.gp_name == ddetails[i].gp_name &&
+                                                                              x.data_year == "2024-25")
+                                                                  .Select(x => x.meeting_resolution)
+                                                                  .FirstOrDefault();  // This will fetch data to memory
+
+                                                // Now assign the result back to ddetails[i]
+                                                ddetails[i].meeting_resolution = resolution;
+                                            }
+
+                                            if (ddetails[i].mom_doc == null)
+                                            {
+                                                // Fetching from the database, ensure it is loaded to memory first
+                                                var mom = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                              x.district_name == ddetails[i].district_name &&
+                                                                              x.block_name == ddetails[i].block_name &&
+                                                                              x.gp_name == ddetails[i].gp_name &&
+                                                                              x.data_year == "2024-25")
+                                                                  .Select(x => x.mom_doc)
+                                                                  .FirstOrDefault();  // This will fetch data to memory
+
+                                                // Now assign the result back to ddetails[i]
+                                                ddetails[i].mom_doc = mom;
+                                            }
+
+
+                                            if (ddetails[i].meeting_image == null)
+                                            {
+                                                // Fetching from the database, ensure it is loaded to memory first
+                                                var meeting_image = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                              x.district_name == ddetails[i].district_name &&
+                                                                              x.block_name == ddetails[i].block_name &&
+                                                                              x.gp_name == ddetails[i].gp_name &&
+                                                                              x.data_year == "2024-25")
+                                                                  .Select(x => x.meeting_image)
+                                                                  .FirstOrDefault();  // This will fetch data to memory
+
+                                                // Now assign the result back to ddetails[i]
+                                                ddetails[i].meeting_image = meeting_image;
+                                            }
+                                            if (ddetails[i].attendance_sheet == null)
+                                            {
+                                                // Fetching from the database, ensure it is loaded to memory first
+                                                var attendance_sheet = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                              x.district_name == ddetails[i].district_name &&
+                                                                              x.block_name == ddetails[i].block_name &&
+                                                                              x.gp_name == ddetails[i].gp_name &&
+                                                                              x.data_year == "2024-25")
+                                                                  .Select(x => x.attendance_sheet)
+                                                                  .FirstOrDefault();  // This will fetch data to memory
+
+                                                // Now assign the result back to ddetails[i]
+                                                ddetails[i].attendance_sheet = attendance_sheet;
+                                            }
+
+
+
                                             currentRow++;
                                             worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
                                             worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
@@ -55420,19 +55555,19 @@ namespace AbhyProject.Controllers
                                         List<abhy_artificial_recharge_st_data_24_update> ddetails = new List<abhy_artificial_recharge_st_data_24_update>();
                                         if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                                         {
-                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram).ToList();//total list
                                         }
                                         else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                                         {
-                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
                                         }
                                         else if (State != "0" && State != null && District != "0" && District != null)
                                         {
-                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
                                         }
                                         else
                                         {
-                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_artificial_recharge_st_data_24_update.Where(x => x.state == State).ToList();//total list
                                         }
 
 
@@ -55510,19 +55645,19 @@ namespace AbhyProject.Controllers
                                         List<abhy_water_conservation_st_data_24_update> ddetails = new List<abhy_water_conservation_st_data_24_update>();
                                         if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null && Gram != "0" && Gram != null)
                                         {
-                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.gp == Gram).ToList();//total list
                                         }
                                         else if (State != "0" && State != null && District != "0" && District != null && Block != "0" && Block != null)
                                         {
-                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.block == Block).ToList();//total list
                                         }
                                         else if (State != "0" && State != null && District != "0" && District != null)
                                         {
-                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.district == District).ToList();//total list
                                         }
                                         else
                                         {
-                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State && x.year == Year).ToList();//total list
+                                            ddetails = ABE.obj_abhy_water_conservation_st_data_24_update.Where(x => x.state == State).ToList();//total list
                                         }
 
 
@@ -55712,6 +55847,9 @@ namespace AbhyProject.Controllers
                                             ddetails = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update.Where(x => x.state_name == State && x.data_year == Year).ToList();//total list
                                         }
 
+                                        var resolutionsFor2024_25 = ABE.obj_abhy_wsp_pgwm_committee_meeting_24_update
+                                 .Where(x => x.data_year == "2024-25")
+                                 .ToList();
 
                                         var worksheet = workbookAllSub.Worksheets.Add("PGWM Meeting");
                                         var currentRow = 1;
@@ -55741,6 +55879,66 @@ namespace AbhyProject.Controllers
                                                 var ddetails1 = ABE.obj_abhy_wsp_approved_status.Where(x => x.gp_name == gp && x.status_id == 5).FirstOrDefault();
                                                 if (ddetails1 != null)
                                                 {
+                                                    if (ddetails[i].meeting_resolution == null)
+                                                    {
+                                                        // Fetching from the database, ensure it is loaded to memory first
+                                                        var resolution = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                      x.district_name == ddetails[i].district_name &&
+                                                                                      x.block_name == ddetails[i].block_name &&
+                                                                                      x.gp_name == ddetails[i].gp_name &&
+                                                                                      x.data_year == "2024-25")
+                                                                          .Select(x => x.meeting_resolution)
+                                                                          .FirstOrDefault();  // This will fetch data to memory
+
+                                                        // Now assign the result back to ddetails[i]
+                                                        ddetails[i].meeting_resolution = resolution;
+                                                    }
+
+                                                    if (ddetails[i].mom_doc == null)
+                                                    {
+                                                        // Fetching from the database, ensure it is loaded to memory first
+                                                        var mom = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                      x.district_name == ddetails[i].district_name &&
+                                                                                      x.block_name == ddetails[i].block_name &&
+                                                                                      x.gp_name == ddetails[i].gp_name &&
+                                                                                      x.data_year == "2024-25")
+                                                                          .Select(x => x.mom_doc)
+                                                                          .FirstOrDefault();  // This will fetch data to memory
+
+                                                        // Now assign the result back to ddetails[i]
+                                                        ddetails[i].mom_doc = mom;
+                                                    }
+
+
+                                                    if (ddetails[i].meeting_image == null)
+                                                    {
+                                                        // Fetching from the database, ensure it is loaded to memory first
+                                                        var meeting_image = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                      x.district_name == ddetails[i].district_name &&
+                                                                                      x.block_name == ddetails[i].block_name &&
+                                                                                      x.gp_name == ddetails[i].gp_name &&
+                                                                                      x.data_year == "2024-25")
+                                                                          .Select(x => x.meeting_image)
+                                                                          .FirstOrDefault();  // This will fetch data to memory
+
+                                                        // Now assign the result back to ddetails[i]
+                                                        ddetails[i].meeting_image = meeting_image;
+                                                    }
+                                                    if (ddetails[i].attendance_sheet == null)
+                                                    {
+                                                        // Fetching from the database, ensure it is loaded to memory first
+                                                        var attendance_sheet = resolutionsFor2024_25.Where(x => x.state_name == ddetails[i].state_name &&
+                                                                                      x.district_name == ddetails[i].district_name &&
+                                                                                      x.block_name == ddetails[i].block_name &&
+                                                                                      x.gp_name == ddetails[i].gp_name &&
+                                                                                      x.data_year == "2024-25")
+                                                                          .Select(x => x.attendance_sheet)
+                                                                          .FirstOrDefault();  // This will fetch data to memory
+
+                                                        // Now assign the result back to ddetails[i]
+                                                        ddetails[i].attendance_sheet = attendance_sheet;
+                                                    }
+
                                                     currentRow++;
                                                     worksheet.Cell(currentRow, 1).Value = ddetails[i].state_name;
                                                     worksheet.Cell(currentRow, 2).Value = ddetails[i].district_name;
@@ -55823,7 +56021,5 @@ namespace AbhyProject.Controllers
             }
 
         }
-
-
     }
 }
