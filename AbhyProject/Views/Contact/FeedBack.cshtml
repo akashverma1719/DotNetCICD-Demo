@@ -429,7 +429,7 @@
 
 
                                                 <tr>
-                                                    <th colspan="5" class="text_span font-16">9. What was the most interesting thing you learned? <span class="requrid_star">*</span></th>
+                                                    <th colspan="5" class="text_span font-16">9. What was the most interesting thing you learned? </th>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="5">
@@ -458,7 +458,7 @@
 
 
                                                 <tr>
-                                                    <th colspan="5" class="text_span font-16">Your suggestions /Comments for further improvements<span class="requrid_star">*</span></th>
+                                                    <th colspan="5" class="text_span font-16">Your suggestions /Comments for further improvements</th>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="5">
@@ -596,14 +596,6 @@
             i = 1;
             return;
         }
-
-        var MIT = $('#most_interesting_thing').val();
-        if (MIT == "") {
-            alert('Enter most interesting thing you learned ');
-            $(".loader").hide();
-            i = 1;
-            return;
-        }
         var abc = ($('input[class="chk8"]:checked').length > 0);
         if (abc == false) {
             alert('Choose Overall Impression Feedback');
@@ -611,14 +603,6 @@
             i = 1;
             return;
         }
-        var YS = $('#your_suggestions').val();
-        if (YS == "") {
-            alert('Enter Your suggestions /Comments ');
-            $(".loader").hide();
-            i = 1;
-            return;
-        }
-
         var client_cap = $('#clientCaptcha').val();
         if (client_cap == "") {
             alert('Enter Capcha');
