@@ -14929,6 +14929,67 @@ namespace AbhyProject.Models
         public int? month_order_by { get; set; }
         public string entry_by { get; set; }
     }
+
+    [Table("vw_iec_report", Schema = "public")]    //abhi
+    public class vw_iec_report
+    {
+        [Key]
+        public int id { get; set; }
+        public string state_name { get; set; }
+        public string district_name { get; set; }
+        public string block_name { get; set; }
+        public string gpname { get; set; }
+        public string month { get; set; }
+        public string year { get; set; }
+        public string awareness_meetings_ach { get; set; }
+        public string awareness_meetings_cum { get; set; }
+        public string pamphlets_ach { get; set; }
+        public string pamphlets_cum { get; set; }
+        public string leaflets_ach { get; set; }
+        public string leaflets_cum { get; set; }
+        public string magazine_ach { get; set; }
+        public string magazine_cum { get; set; }
+        public string brochures_ach { get; set; }
+        public string brochures_cum { get; set; }
+        public string other_iec_mat_ach { get; set; }
+        public string other_iec_mat_cum { get; set; }
+        public string wall_paintings_ach { get; set; }
+        public string wall_paintings_cum { get; set; }
+        public string hoardings_ach { get; set; }
+        public string hoardings_cum { get; set; }
+        public string posters_ach { get; set; }
+        public string posters_cum { get; set; }
+        public string signages_ach { get; set; }
+        public string signages_cum { get; set; }
+        public string iec_disp_others_ach { get; set; }
+        public string iec_disp_others_cum { get; set; }
+        public string road_shows_ach { get; set; }
+        public string road_shows_cum { get; set; }
+        public string street_plays_ach { get; set; }
+        public string street_plays_cum { get; set; }
+        public string households_ach { get; set; }
+        public string households_cum { get; set; }
+        public string facebook_ach { get; set; }
+        public string facebook_cum { get; set; }
+        public string twitter_ach { get; set; }
+        public string twitter_cum { get; set; }
+        public string youtube_ach { get; set; }
+        public string youtube_cum { get; set; }
+        public string instagram_ach { get; set; }
+        public string instagram_cum { get; set; }
+        public string socialmedia_others_ach { get; set; }
+        public string socialmedia_others_cum { get; set; }
+        public string exhibitions_ach { get; set; }
+        public string exhibitions_cum { get; set; }
+        public string seminars_ach { get; set; }
+        public string seminars_cum { get; set; }
+        public string fair_ach { get; set; }
+        public string fair_cum { get; set; }
+        public string others_ach { get; set; }
+        public string others_cum { get; set; }
+
+    }
+
     [Table("vw_orderwise_state_district_block_gp_area_info", Schema = "public")]
     public class vw_orderwise_state_district_block_gp_area_info
     {

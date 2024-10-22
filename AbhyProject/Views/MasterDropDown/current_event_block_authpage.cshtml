@@ -3000,7 +3000,7 @@
 
                         var p_training_name = data[i].p_training_name;
                         if (email == "akash.verma@kreatetechnologies.com") {
-                            if (male_population != "") {
+                            if (male_population != "" && male_population != "0") {
                                 if (data[i].nameofparticipent != null && data[i].nameofparticipent != "") {
                                     if (data[i].feedbackentry == "Yes") {
                                         if (approve_status == "Approved") {
@@ -3191,7 +3191,6 @@
                                     }
                                 }
                             }
-
                             else {
                                 if (approve_status == "Approved") {
                                     ++at;
@@ -3261,7 +3260,7 @@
 
                             if (StateOfficer == "District Level Nodal Officer") {
                                 if (isWithinRange(new Date(to_date))) {
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3345,7 +3344,7 @@
                                 }
                                 else {
 
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3431,7 +3430,7 @@
 
                                 if (isWithinRange(new Date(to_date))) {
 
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3686,7 +3685,7 @@
                                     $('#event1' + i).val(data[i].event_platform);
                                 }
                                 else {
-                                    if (male_population != "") {
+                                    if (male_population != "" && male_population != "0") {
                                         if (data[i].feedbackentry == "Yes") {
                                             if (approve_status == "Approved") {
                                                 ++at;
@@ -3944,7 +3943,7 @@
                                 }
                             }
                             else {
-                                if (male_population != "") {
+                                if (male_population != "" && male_population != "0") {
                                     if (data[i].feedbackentry == "Yes") {
                                         if (approve_status == "Approved") {
                                             ++at;
