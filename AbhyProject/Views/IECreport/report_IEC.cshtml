@@ -1585,6 +1585,13 @@
             xx = 1;
             alert("Please Select Month");
         }
+        if (month != "13") {
+            if (year == "All") {
+                xx = 1;
+                alert("Select Year");
+                return;
+            }
+        }
         if (xx == 0) {
             $.ajax({
                 type: 'POST',
@@ -2239,6 +2246,7 @@
                 var Tbodyhtml = '';
                 if (data.length != 0) {
 
+
                     for (var i = 0; i < data.length; i++) {
                         sno += 1;
                        
@@ -2249,52 +2257,103 @@
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].gpname + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].year + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].month + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        if (month == "13") {
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        }
+                        else {
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        }
+                        
 
                     }
 
@@ -2364,52 +2423,102 @@
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].gpname + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].year + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].month + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        if (month == "13") {
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        }
+                        else {
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        }
 
                     }
                     count = i + 200;
@@ -2487,52 +2596,102 @@
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].gpname + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].year + '</label></td>';
                         Tbodyhtml += '<td id="rainfall"><label>' + data[i].month + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_ach + '</label></td>';
-                        Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        if (month == "13") {
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>NA</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        }
+                        else {
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].awareness_meetings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].pamphlets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].leaflets_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].magazine_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].brochures_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].other_iec_mat_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].wall_paintings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].hoardings_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].posters_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].signages_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].iec_disp_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].road_shows_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].street_plays_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].households_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].facebook_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].twitter_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].youtube_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].instagram_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].socialmedia_others_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].exhibitions_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].seminars_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].fair_cum + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_ach + '</label></td>';
+                            Tbodyhtml += '<td id="rainfall"><label>' + data[i].others_cum + '</label></td></tr>';
+                        }
 
                     }
                     count = i + 200;
@@ -2600,8 +2759,15 @@
             alert("Please Select Month");
             return;
         }
+        if (month != "13") {
+            if (year == "All") {
+                xx = 1;
+                alert("Select Year");
+                return;
+            }
+        }
          {
-            window.location.href = "/IECreport/demandside_excel_phase1?state1=" + State + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&month1=" + month;
+            window.location.href = "/IECreport/demandside_excel_phase1?state1=" + StateName + "&district1=" + Dist + "&block01=" + Block + "&gp1=" + Gram + "&year1=" + year + "&month1=" + month;
         }
 
 

@@ -2252,7 +2252,11 @@ namespace AbhyProject.Controllers
                 List<vw_iec_report> data = new List<vw_iec_report>();
                 if (State == "All")
                 {
-                    if (Year != "0" && Year != "" && Year != null)
+                    if (Year != "0" && Year != "" && Year != null && month1 != 0)
+                    {
+                        data = ABE.obj_vw_iec_report.Where(x => x.year == Year && x.month_number == month1).OrderBy(c => c.id).ToList();
+                    }
+                   else if (Year != "0" && Year != "" && Year != null)
                     {
                         data = ABE.obj_vw_iec_report.Where(x => x.year == Year).OrderBy(c => c.id).ToList();
                     }
@@ -2263,13 +2267,21 @@ namespace AbhyProject.Controllers
                 }
                 else
                 {
-                    if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != "" && Year != null)
+                    if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != "" && Year != null && month1 != 0 )
+                    {
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year && x.month_number == month1).OrderBy(c => c.id).ToList();
+                    } 
+                   else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null && Year != "0" && Year != "" && Year != null)
                     {
                         data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram && x.year == Year).OrderBy(c => c.id).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Gram != "0" && Gram != "" && Gram != null)
                     {
                         data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.gpname == Gram).OrderBy(c => c.id).ToList();
+                    }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null && month1 != 0 )
+                    {
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block && x.year == Year && x.month_number == month1).OrderBy(c => c.id).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Block != "0" && Block != "" && Block != null && Year != "0" && Year != "" && Year != null)
                     {
@@ -2279,6 +2291,10 @@ namespace AbhyProject.Controllers
                     {
                         data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.block_name == Block).OrderBy(c => c.id).ToList();
                     }
+                    else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null && month1 != 0  )
+                    {
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year && x.month_number == month1).OrderBy(c => c.id).ToList();
+                    }
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null && Year != "0" && Year != "" && Year != null)
                     {
                         data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist && x.year == Year).OrderBy(c => c.id).ToList();
@@ -2286,6 +2302,10 @@ namespace AbhyProject.Controllers
                     else if (State != "0" && State != "" && State != null && Dist != "0" && Dist != "" && Dist != null)
                     {
                         data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.district_name == Dist).OrderBy(c => c.id).ToList();
+                    }
+                    else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null && month1 != 0 )
+                    {
+                        data = ABE.obj_vw_iec_report.Where(x => x.state_name == State && x.year == Year && x.month_number == month1).OrderBy(c => c.id).ToList();
                     }
                     else if (State != "0" && State != "" && State != null && Year != "0" && Year != "" && Year != null)
                     {
@@ -2453,52 +2473,103 @@ namespace AbhyProject.Controllers
                             worksheet.Cell(currentRow, 4).Value = item.gpname;
                             worksheet.Cell(currentRow, 5).Value = item.year;
                             worksheet.Cell(currentRow, 6).Value = item.month;
-                            worksheet.Cell(currentRow, 7).Value = item.awareness_meetings_ach;
-                            worksheet.Cell(currentRow, 8).Value = item.awareness_meetings_cum;
-                            worksheet.Cell(currentRow, 9).Value = item.pamphlets_ach;
-                            worksheet.Cell(currentRow, 10).Value = item.pamphlets_cum;
-                            worksheet.Cell(currentRow, 11).Value = item.leaflets_ach;
-                            worksheet.Cell(currentRow, 12).Value = item.leaflets_cum;
-                            worksheet.Cell(currentRow, 13).Value = item.magazine_ach;
-                            worksheet.Cell(currentRow, 14).Value = item.magazine_cum;
-                            worksheet.Cell(currentRow, 15).Value = item.brochures_ach;
-                            worksheet.Cell(currentRow, 16).Value = item.brochures_cum;
-                            worksheet.Cell(currentRow, 17).Value = item.other_iec_mat_ach;
-                            worksheet.Cell(currentRow, 18).Value = item.other_iec_mat_cum;
-                            worksheet.Cell(currentRow, 19).Value = item.wall_paintings_ach;
-                            worksheet.Cell(currentRow, 20).Value = item.wall_paintings_cum;
-                            worksheet.Cell(currentRow, 21).Value = item.hoardings_ach;
-                            worksheet.Cell(currentRow, 22).Value = item.hoardings_cum;
-                            worksheet.Cell(currentRow, 23).Value = item.posters_ach;
-                            worksheet.Cell(currentRow, 24).Value = item.posters_cum;
-                            worksheet.Cell(currentRow, 25).Value = item.signages_ach;
-                            worksheet.Cell(currentRow, 26).Value = item.signages_cum;
-                            worksheet.Cell(currentRow, 27).Value = item.iec_disp_others_ach;
-                            worksheet.Cell(currentRow, 28).Value = item.iec_disp_others_cum;
-                            worksheet.Cell(currentRow, 29).Value = item.road_shows_ach;
-                            worksheet.Cell(currentRow, 30).Value = item.road_shows_cum;
-                            worksheet.Cell(currentRow, 31).Value = item.street_plays_ach;
-                            worksheet.Cell(currentRow, 32).Value = item.street_plays_cum;
-                            worksheet.Cell(currentRow, 33).Value = item.households_ach;
-                            worksheet.Cell(currentRow, 34).Value = item.households_cum;
-                            worksheet.Cell(currentRow, 35).Value = item.facebook_ach;
-                            worksheet.Cell(currentRow, 36).Value = item.facebook_cum;
-                            worksheet.Cell(currentRow, 37).Value = item.twitter_ach;
-                            worksheet.Cell(currentRow, 38).Value = item.twitter_cum;
-                            worksheet.Cell(currentRow, 39).Value = item.youtube_ach;
-                            worksheet.Cell(currentRow, 40).Value = item.youtube_cum;
-                            worksheet.Cell(currentRow, 41).Value = item.instagram_ach;
-                            worksheet.Cell(currentRow, 42).Value = item.instagram_cum;
-                            worksheet.Cell(currentRow, 43).Value = item.socialmedia_others_ach;
-                            worksheet.Cell(currentRow, 44).Value = item.socialmedia_others_cum;
-                            worksheet.Cell(currentRow, 45).Value = item.exhibitions_ach;
-                            worksheet.Cell(currentRow, 46).Value = item.exhibitions_cum;
-                            worksheet.Cell(currentRow, 47).Value = item.seminars_ach;
-                            worksheet.Cell(currentRow, 48).Value = item.seminars_cum;
-                            worksheet.Cell(currentRow, 49).Value = item.fair_ach;
-                            worksheet.Cell(currentRow, 50).Value = item.fair_cum;
-                            worksheet.Cell(currentRow, 51).Value = item.others_ach;
-                            worksheet.Cell(currentRow, 52).Value = item.others_cum;
+                            if (month1 == 0) {
+                                worksheet.Cell(currentRow, 7).Value = "NA";
+                                worksheet.Cell(currentRow, 8).Value = item.awareness_meetings_cum;
+                                worksheet.Cell(currentRow, 9).Value = "NA";
+                                worksheet.Cell(currentRow, 10).Value = item.pamphlets_cum;
+                                worksheet.Cell(currentRow, 11).Value = "NA";
+                                worksheet.Cell(currentRow, 12).Value = item.leaflets_cum;
+                                worksheet.Cell(currentRow, 13).Value = "NA";
+                                worksheet.Cell(currentRow, 14).Value = item.magazine_cum;
+                                worksheet.Cell(currentRow, 15).Value = "NA";
+                                worksheet.Cell(currentRow, 16).Value = item.brochures_cum;
+                                worksheet.Cell(currentRow, 17).Value = "NA";
+                                worksheet.Cell(currentRow, 18).Value = item.other_iec_mat_cum;
+                                worksheet.Cell(currentRow, 19).Value = "NA";
+                                worksheet.Cell(currentRow, 20).Value = item.wall_paintings_cum;
+                                worksheet.Cell(currentRow, 21).Value = "NA";
+                                worksheet.Cell(currentRow, 22).Value = item.hoardings_cum;
+                                worksheet.Cell(currentRow, 23).Value = "NA";
+                                worksheet.Cell(currentRow, 24).Value = item.posters_cum;
+                                worksheet.Cell(currentRow, 25).Value = "NA";
+                                worksheet.Cell(currentRow, 26).Value = item.signages_cum;
+                                worksheet.Cell(currentRow, 27).Value = "NA";
+                                worksheet.Cell(currentRow, 28).Value = item.iec_disp_others_cum;
+                                worksheet.Cell(currentRow, 29).Value = "NA";
+                                worksheet.Cell(currentRow, 30).Value = item.road_shows_cum;
+                                worksheet.Cell(currentRow, 31).Value = "NA";
+                                worksheet.Cell(currentRow, 32).Value = item.street_plays_cum;
+                                worksheet.Cell(currentRow, 33).Value = "NA";
+                                worksheet.Cell(currentRow, 34).Value = item.households_cum;
+                                worksheet.Cell(currentRow, 35).Value = "NA";
+                                worksheet.Cell(currentRow, 36).Value = item.facebook_cum;
+                                worksheet.Cell(currentRow, 37).Value = "NA";
+                                worksheet.Cell(currentRow, 38).Value = item.twitter_cum;
+                                worksheet.Cell(currentRow, 39).Value = "NA";
+                                worksheet.Cell(currentRow, 40).Value = item.youtube_cum;
+                                worksheet.Cell(currentRow, 41).Value = "NA";
+                                worksheet.Cell(currentRow, 42).Value = item.instagram_cum;
+                                worksheet.Cell(currentRow, 43).Value = "NA";
+                                worksheet.Cell(currentRow, 44).Value = item.socialmedia_others_cum;
+                                worksheet.Cell(currentRow, 45).Value = "NA";
+                                worksheet.Cell(currentRow, 46).Value = item.exhibitions_cum;
+                                worksheet.Cell(currentRow, 47).Value = "NA";
+                                worksheet.Cell(currentRow, 48).Value = item.seminars_cum;
+                                worksheet.Cell(currentRow, 49).Value = "NA";
+                                worksheet.Cell(currentRow, 50).Value = item.fair_cum;
+                                worksheet.Cell(currentRow, 51).Value = "NA";
+                                worksheet.Cell(currentRow, 52).Value = item.others_cum;
+                            }
+                            else
+                            {
+                                worksheet.Cell(currentRow, 7).Value = item.awareness_meetings_ach;
+                                worksheet.Cell(currentRow, 8).Value = item.awareness_meetings_cum;
+                                worksheet.Cell(currentRow, 9).Value = item.pamphlets_ach;
+                                worksheet.Cell(currentRow, 10).Value = item.pamphlets_cum;
+                                worksheet.Cell(currentRow, 11).Value = item.leaflets_ach;
+                                worksheet.Cell(currentRow, 12).Value = item.leaflets_cum;
+                                worksheet.Cell(currentRow, 13).Value = item.magazine_ach;
+                                worksheet.Cell(currentRow, 14).Value = item.magazine_cum;
+                                worksheet.Cell(currentRow, 15).Value = item.brochures_ach;
+                                worksheet.Cell(currentRow, 16).Value = item.brochures_cum;
+                                worksheet.Cell(currentRow, 17).Value = item.other_iec_mat_ach;
+                                worksheet.Cell(currentRow, 18).Value = item.other_iec_mat_cum;
+                                worksheet.Cell(currentRow, 19).Value = item.wall_paintings_ach;
+                                worksheet.Cell(currentRow, 20).Value = item.wall_paintings_cum;
+                                worksheet.Cell(currentRow, 21).Value = item.hoardings_ach;
+                                worksheet.Cell(currentRow, 22).Value = item.hoardings_cum;
+                                worksheet.Cell(currentRow, 23).Value = item.posters_ach;
+                                worksheet.Cell(currentRow, 24).Value = item.posters_cum;
+                                worksheet.Cell(currentRow, 25).Value = item.signages_ach;
+                                worksheet.Cell(currentRow, 26).Value = item.signages_cum;
+                                worksheet.Cell(currentRow, 27).Value = item.iec_disp_others_ach;
+                                worksheet.Cell(currentRow, 28).Value = item.iec_disp_others_cum;
+                                worksheet.Cell(currentRow, 29).Value = item.road_shows_ach;
+                                worksheet.Cell(currentRow, 30).Value = item.road_shows_cum;
+                                worksheet.Cell(currentRow, 31).Value = item.street_plays_ach;
+                                worksheet.Cell(currentRow, 32).Value = item.street_plays_cum;
+                                worksheet.Cell(currentRow, 33).Value = item.households_ach;
+                                worksheet.Cell(currentRow, 34).Value = item.households_cum;
+                                worksheet.Cell(currentRow, 35).Value = item.facebook_ach;
+                                worksheet.Cell(currentRow, 36).Value = item.facebook_cum;
+                                worksheet.Cell(currentRow, 37).Value = item.twitter_ach;
+                                worksheet.Cell(currentRow, 38).Value = item.twitter_cum;
+                                worksheet.Cell(currentRow, 39).Value = item.youtube_ach;
+                                worksheet.Cell(currentRow, 40).Value = item.youtube_cum;
+                                worksheet.Cell(currentRow, 41).Value = item.instagram_ach;
+                                worksheet.Cell(currentRow, 42).Value = item.instagram_cum;
+                                worksheet.Cell(currentRow, 43).Value = item.socialmedia_others_ach;
+                                worksheet.Cell(currentRow, 44).Value = item.socialmedia_others_cum;
+                                worksheet.Cell(currentRow, 45).Value = item.exhibitions_ach;
+                                worksheet.Cell(currentRow, 46).Value = item.exhibitions_cum;
+                                worksheet.Cell(currentRow, 47).Value = item.seminars_ach;
+                                worksheet.Cell(currentRow, 48).Value = item.seminars_cum;
+                                worksheet.Cell(currentRow, 49).Value = item.fair_ach;
+                                worksheet.Cell(currentRow, 50).Value = item.fair_cum;
+                                worksheet.Cell(currentRow, 51).Value = item.others_ach;
+                                worksheet.Cell(currentRow, 52).Value = item.others_cum;
+                            }
                         }
                     }
 
