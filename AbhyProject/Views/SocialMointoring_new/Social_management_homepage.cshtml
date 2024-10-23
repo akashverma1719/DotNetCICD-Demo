@@ -1,0 +1,220 @@
+﻿
+@{
+    ViewBag.Title = "Gp_information";
+    Layout = "~/Views/Shared/loginlogoutcheck.cshtml";
+}
+<head>
+    <link rel="icon" type="image/x-icon" href="~/DashboardStyles/images/atal-jal-logo.png">
+
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="~/Content/WspImages/Favicon 57 px.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="~/Content/WspImages/Favicon 114 px.png">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/datecss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/css/abhycss.css" rel="stylesheet" />
+    <link href="~/Content/wsp_formcss.css" rel="stylesheet" />
+    <link href="~/Content/wspnewcss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Content/JS_Files/wsphome.js"></script>
+    <link href="~/Content/css/mis_after_css.css" rel="stylesheet" />
+    <script src="~/Content/JS_Files/IdealState.js"></script>
+
+    <style>
+        .notice-ribbon {
+            font-size: 14px;
+            background: #3585dc;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+            .notice-ribbon p {
+                font-size: 14px;
+                color: #fff;
+                margin-bottom: 0px;
+            }
+
+        .total_div_wsp_home {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0px 20px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<main>
+    <div class="container-fluid notice-ribbon">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mb-0">To clear cache, please refresh this page by pressing Ctrl + F5.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 Select_option_div">
+
+        <ul class="Select_option pull-left col-md-2 col-sm-2">
+            <li>
+                <a href="~/WSPHome/Gp_information" class="btn btn-primary">
+                    Back
+                </a>
+
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+
+        <div class="Select_option_div">
+            <ul class="imgHome clearfix Select_option pull-right" style="padding-top: 10px;">
+                <li>
+                    <img src="~/Content/WspImages/user-silhouette.png" title="User" />
+                    @if (Session["UserName"] != null)
+                    {
+                        <span style="color:#fff;">:@Session["UserName"].ToString()</span>
+                    }
+                </li>
+                <li>
+                    <a href="~/Home/LogOut"> <img src="~/Content/WspImages/Logout white1.png" title="Logout" /></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="clearfix total_div_wsp_home container-fluid" style="">
+
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="social_div">
+            <a href="~/SocialMointoring/Social_management">
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            <li><img src="~/Content/Agriculture_icons/Social_Management_info-22.png" /></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 sub_total_div" id="social_div_new">
+            <a href="~/SocialMointoring_new/Social_management_new">
+                @*<a href="~/Home/under_maintainance">*@
+                <ul class="ul_image_wsphome ">
+                    <li>
+                        <ul class="arrow_ul_css">
+
+                            <li><img src="~/Content/Agriculture_icons/Social_Management_info-23.png" /></li>
+                            <li><i class="fa fa-angle-double-right"></i></li>
+                        </ul>
+
+                    </li>
+                    <li><span></span></li>
+                </ul>
+            </a>
+        </div>
+    </div>
+    <div id="progress">
+        <ul id="progress-ui" class="nav-tabs" role="tablist" data-tabs="tabs" style="padding:0px">
+            <li id="Surface-water" class="progress-group set tabs_menu sru_menu active">
+                <span class="progress-group-label" data-target="#music" data-toggle="tab">Social Management</span>
+                <div class="tri shadow"></div>
+                <div class="tri"></div>
+            </li>
+        </ul>
+    </div>
+
+</main>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <img src="~/Ataljalimages/GP_WSP_under_maintenance.png" />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        //$('#myModal').modal('show');
+        SessionInfo();
+
+        var Auth = '@Session["Access_Auth"]';
+
+        if (Auth == "Training-SM") {
+            $('#gpdci_div').hide();
+            $('#wsp_div').hide();
+            $('#esstool_div').hide();
+            $('#social_div_new').hide();
+        }
+        else if (Auth == "WSP") {
+            $('#gpdci_div').hide();
+            /*$('#wsp_div').hide();*/
+            $('#esstool_div').hide();
+            $('#social_div').hide();
+            $('#social_div_new').hide();
+        }
+
+
+        var officer = '@Session["Officer"]';
+        var email = '@Session["Email"]';
+
+
+    });
+    var state = "";
+    function SessionInfo() {
+        var obj = {};
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json; chatset=utf-8',
+            url: "/SocialMointoring/State_SessionInfo_1",
+            data: "{'Data': '" + JSON.stringify(obj) + "'}",
+            dataType: 'JSON',
+            success: function (data) {
+
+                var arr = data.split(",");
+                state = arr[1];
+
+                if (data == "Logout") {
+                      window.location = "/Home/LogOut";
+                }
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        let i = 0;
+        if (i == 0) {
+            i = i + 1;
+            GetCunCurrentUser();
+        }
+        });
+
+      function GetCunCurrentUser() {
+            $.ajax({
+                type: 'get',
+                url: '@Url.Action("CheckCunCurrentUser", "WspNew")',
+                success: function (data) {
+                    if (data == "False") {
+                        //window.location.href = "/Home/LogOut";
+                        window.location.href = "../../WspNew/WSP_GWM_HOME";
+                    }
+                }
+            });
+        }
+</script>
