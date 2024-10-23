@@ -1289,7 +1289,7 @@ function fivth_bar_chart(fivth_bar_chart, FInalData_achive, FInalData) {
         }
     }
 
-    max = parseFloat(max) + 500;
+    max = parseFloat(max) + 1200;
     am4core.useTheme(am4themes_animated);
     var chart = am4core.create(fivth_bar_chart, am4charts.XYChart)
     chart.colors.step = 2;

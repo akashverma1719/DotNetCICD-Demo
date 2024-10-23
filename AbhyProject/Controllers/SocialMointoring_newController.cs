@@ -27,6 +27,10 @@ namespace AbhyProject.Controllers
         {
             return View();
         }
+        public ActionResult Social_management_homepage()
+        {
+            return View();
+        }
         public ActionResult Social_management_report()
         {
             return View();
